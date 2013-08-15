@@ -1,0 +1,9 @@
+{
+  List<Job> jobList=new LinkedList<Job>();
+  String[] qls=split(zql,";");
+  for (  String ql : qls) {
+    Job job=getJob(ql);
+    jobList.add(job);
+  }
+  return jobList;
+}

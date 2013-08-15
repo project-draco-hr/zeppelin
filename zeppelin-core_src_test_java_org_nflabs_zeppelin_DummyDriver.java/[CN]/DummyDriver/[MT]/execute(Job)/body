@@ -1,0 +1,14 @@
+{
+  long start=System.currentTimeMillis();
+  while (System.currentTimeMillis() - start < to) {
+    progress=(int)((System.currentTimeMillis() - start) * 100 / to);
+    if (abort == true)     throw new AbortException();
+    try {
+      Thread.sleep(100);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+  return new JobResult("hello",false);
+}

@@ -1,0 +1,4 @@
+{
+  this.path=path;
+  gson=new GsonBuilder().setPrettyPrinting().create();
+}

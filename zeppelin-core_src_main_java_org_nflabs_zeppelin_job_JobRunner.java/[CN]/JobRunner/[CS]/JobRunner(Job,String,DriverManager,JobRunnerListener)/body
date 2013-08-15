@@ -1,0 +1,8 @@
+{
+  this.job=job;
+  this.driverClass=driverClass;
+  this.driverManager=driverManager;
+  this.listener=listener;
+  status=Status.CREATED;
+  if (listener != null)   listener.onStatusChange(job,this,Status.CREATED);
+}

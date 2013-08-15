@@ -1,0 +1,20 @@
+{
+  List<JobInfo> jobList=new LinkedList<JobInfo>();
+  Date p=fromInclusive;
+  while (p.before(toExclusive)) {
+    File dir=getDirectory(p);
+    p=new Date(p.getTime() + 1000 * 60 * 60* 24);
+    if (dir.isDirectory() == false)     continue;
+    File[] files=dir.listFiles();
+    Arrays.sort(files,new SortByFileName());
+    for (    File jobFile : files) {
+      JobId id=new JobId(jobFile.getName());
+      if (id.getDate().before(fromInclusive) || id.getDate().before(toExclusive) == false) {
+        break;
+      }
+      JobInfo jobInfo=load(id);
+      jobList.add(jobInfo);
+    }
+  }
+  return jobList;
+}

@@ -1,0 +1,8 @@
+{
+  if (status == Status.FINISHED || status == Status.ABORTED || status == Status.ERROR) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

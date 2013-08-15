@@ -1,0 +1,6 @@
+{
+  Class<?> cls=Class.forName(driverClass);
+  Driver d=(Driver)cls.newInstance();
+  d.init();
+  return d;
+}

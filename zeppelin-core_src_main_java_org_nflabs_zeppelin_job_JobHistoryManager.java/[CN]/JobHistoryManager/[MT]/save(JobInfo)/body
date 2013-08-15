@@ -1,0 +1,9 @@
+{
+  JobId jobId=jobInfo.getJob().getJobId();
+  getDirectory(jobId).mkdirs();
+  File file=getFile(jobId);
+  String str=gson.toJson(jobInfo);
+  FileWriter fw=new FileWriter(file);
+  fw.append(str);
+  fw.close();
+}

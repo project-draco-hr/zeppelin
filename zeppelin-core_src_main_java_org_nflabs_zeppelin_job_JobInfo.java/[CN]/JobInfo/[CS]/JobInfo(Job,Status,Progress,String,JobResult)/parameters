@@ -1,0 +1,5 @@
+Job job
+Status status
+Progress progress
+String driverClass
+JobResult result

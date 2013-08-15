@@ -1,0 +1,6 @@
+{
+  Zql zql=new Zql("select * from tbl1",tmpDir);
+  List<Job> jobs=zql.compile();
+  assertEquals(1,jobs.size());
+  assertEquals("select * from tbl1",jobs.get(0).getScript());
+}

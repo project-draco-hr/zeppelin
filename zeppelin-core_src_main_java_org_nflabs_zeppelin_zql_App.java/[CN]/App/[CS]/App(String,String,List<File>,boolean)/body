@@ -1,0 +1,7 @@
+{
+  super();
+  this.templatePath=templatePath;
+  this.name=name;
+  this.resources=resources;
+  this.erb=erb;
+}

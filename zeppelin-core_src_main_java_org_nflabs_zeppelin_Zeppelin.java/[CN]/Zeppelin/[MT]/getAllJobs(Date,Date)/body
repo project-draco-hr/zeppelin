@@ -1,0 +1,17 @@
+{
+  List<JobInfo> jobList=new LinkedList<JobInfo>();
+synchronized (jobs) {
+    for (    JobRunner runner : jobs.values()) {
+      JobId id=runner.getJob().getJobId();
+      if (id.getDate().before(fromInclusive) || id.getDate().before(toExclusive) == false) {
+        break;
+      }
+      Job job=runner.getJob();
+      Driver driver=runner.getDriver();
+      Progress progress=(driver == null) ? null : driver.progress(job);
+      jobList.add(new JobInfo(job,runner.getStatus(),progress,runner.getDriverClass(),runner.getResult()));
+    }
+  }
+  jobList.addAll(jobHistoryManager.getAll(fromInclusive,toExclusive));
+  return jobList;
+}

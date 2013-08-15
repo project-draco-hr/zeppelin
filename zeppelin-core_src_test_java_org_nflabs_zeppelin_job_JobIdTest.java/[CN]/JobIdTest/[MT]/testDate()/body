@@ -1,0 +1,5 @@
+{
+  JobId id=new JobId();
+  Date d=id.getDate();
+  assertTrue(System.currentTimeMillis() - d.getTime() < 500);
+}

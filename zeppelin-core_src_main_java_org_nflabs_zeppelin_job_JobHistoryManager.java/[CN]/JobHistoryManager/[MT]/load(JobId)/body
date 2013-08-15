@@ -1,0 +1,13 @@
+{
+  StringBuilder contents=new StringBuilder();
+  File file=getFile(jobId);
+  BufferedReader fr=new BufferedReader(new FileReader(file));
+  String line=null;
+  while ((line=fr.readLine()) != null) {
+    contents.append(line);
+    contents.append(System.getProperty("line.separator"));
+  }
+  fr.close();
+  JobInfo jobInfo=gson.fromJson(contents.toString(),JobInfo.class);
+  return jobInfo;
+}

@@ -1,0 +1,13 @@
+{
+synchronized (jobs) {
+    JobRunner runner=jobs.get(jobId);
+    if (runner != null) {
+      Job job=runner.getJob();
+      Driver driver=runner.getDriver();
+      Progress progress=(driver == null) ? null : driver.progress(job);
+      return new JobInfo(job,runner.getStatus(),progress,runner.getDriverClass(),runner.getResult());
+    }
+  }
+  JobInfo jobInfo=jobHistoryManager.load(jobId);
+  return jobInfo;
+}

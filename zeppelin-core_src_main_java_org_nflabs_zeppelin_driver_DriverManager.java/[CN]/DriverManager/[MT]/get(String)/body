@@ -1,0 +1,11 @@
+{
+  Driver d=drivers.get(driverClass);
+  if (d != null)   return d;
+synchronized (drivers) {
+    d=drivers.get(driverClass);
+    if (d != null)     return d;
+    d=createDriver(driverClass);
+    drivers.put(driverClass,d);
+    return d;
+  }
+}

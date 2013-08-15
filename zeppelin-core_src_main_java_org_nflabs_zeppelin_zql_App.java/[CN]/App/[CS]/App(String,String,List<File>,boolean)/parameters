@@ -1,0 +1,4 @@
+String name
+String templatePath
+List<File> resources
+boolean erb

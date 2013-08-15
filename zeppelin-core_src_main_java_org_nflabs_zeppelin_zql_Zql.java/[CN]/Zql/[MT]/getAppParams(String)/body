@@ -1,0 +1,16 @@
+{
+  Map<String,String> params=new HashMap<String,String>();
+  if (param == null || param.length() == 0)   return params;
+  param=param.trim();
+  param=param.substring(1,param.length() - 1);
+  param=param.trim();
+  for (  String kvs : param.split(",")) {
+    int p=kvs.indexOf('=');
+    if (p < 0)     continue;
+    String key=kvs.substring(0,p);
+    String value="";
+    if (p < kvs.length())     value=kvs.substring(p + 1);
+    params.put(key.trim(),value.trim());
+  }
+  return params;
+}
