@@ -1,0 +1,3 @@
+{
+  return super.getString(c.name(),c.getStringValue());
+}

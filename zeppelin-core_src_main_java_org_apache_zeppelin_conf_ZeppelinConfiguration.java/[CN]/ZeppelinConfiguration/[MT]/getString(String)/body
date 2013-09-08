@@ -1,0 +1,3 @@
+{
+  return super.getString(k,ConfVars.valueOf(k).getStringValue());
+}

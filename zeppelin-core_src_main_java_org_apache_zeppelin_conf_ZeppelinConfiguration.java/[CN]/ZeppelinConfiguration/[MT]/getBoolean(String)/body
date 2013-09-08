@@ -1,0 +1,3 @@
+{
+  return super.getBoolean(k,ConfVars.valueOf(k).getBooleanValue());
+}

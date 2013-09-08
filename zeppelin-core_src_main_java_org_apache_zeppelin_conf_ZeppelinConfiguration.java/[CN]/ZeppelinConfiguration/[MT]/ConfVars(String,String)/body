@@ -1,0 +1,9 @@
+{
+  this.varName=varName;
+  this.varClass=String.class;
+  this.stringValue=varValue;
+  this.intValue=-1;
+  this.floatValue=-1;
+  this.booleanValue=false;
+  this.type=VarType.STRING;
+}

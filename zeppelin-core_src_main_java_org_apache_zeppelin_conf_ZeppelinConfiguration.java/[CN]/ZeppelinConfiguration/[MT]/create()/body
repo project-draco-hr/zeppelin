@@ -1,0 +1,4 @@
+{
+  URL url=ZeppelinConfiguration.class.getClassLoader().getResource("zeppelin-site.xml");
+  return new ZeppelinConfiguration(url);
+}
