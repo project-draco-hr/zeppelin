@@ -1,6 +1,0 @@
-{
-  ZqlLexer lex=new ZqlLexer(new ANTLRInputStream(new ByteArrayInputStream(str.getBytes())));
-  CommonTokenStream tokens=new CommonTokenStream(lex);
-  ZqlParser parser=new ZqlParser(tokens);
-  return parser;
-}
