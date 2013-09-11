@@ -4,7 +4,7 @@ synchronized (jobs) {
     if (runner != null) {
       Job job=runner.getJob();
       Driver driver=runner.getDriver();
-      Progress progress=(driver == null) ? null : driver.progress(job);
+      Progress progress=null;
       return new JobInfo(job,runner.getStatus(),progress,runner.getDriverClass(),runner.getResult());
     }
   }

@@ -2,5 +2,4 @@
   if (status == Status.FINISHED || status == Status.ERROR) {
     return;
   }
-  if (driver != null)   driver.abort(job);
 }

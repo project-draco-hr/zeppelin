@@ -1,3 +1,0 @@
-{
-  return new Progress(progress,"progress");
-}

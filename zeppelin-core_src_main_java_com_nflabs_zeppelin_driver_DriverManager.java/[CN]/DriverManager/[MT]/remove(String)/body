@@ -1,9 +1,0 @@
-{
-synchronized (drivers) {
-    Driver d=drivers.get(driverClass);
-    if (d != null) {
-      d.terminate();
-      drivers.remove(driverClass);
-    }
-  }
-}

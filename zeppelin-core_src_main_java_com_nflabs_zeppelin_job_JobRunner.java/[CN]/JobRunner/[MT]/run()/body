@@ -1,17 +1,11 @@
 {
   status=Status.RUNNING;
   try {
-    driver=driverManager.get(driverClass);
     if (listener != null)     listener.onStatusChange(job,this,Status.RUNNING);
-    result=driver.execute(job);
     status=Status.FINISHED;
     if (listener != null)     listener.onStatusChange(job,this,Status.FINISHED);
   }
- catch (  AbortException e) {
-    status=Status.ABORTED;
-    if (listener != null)     listener.onStatusChange(job,this,Status.ABORTED);
-  }
-catch (  Exception e) {
+ catch (  Exception e) {
     this.e=e;
     status=Status.ERROR;
     if (listener != null)     listener.onStatusChange(job,this,Status.ERROR);

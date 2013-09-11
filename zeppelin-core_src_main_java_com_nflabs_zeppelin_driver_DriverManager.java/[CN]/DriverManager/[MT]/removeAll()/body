@@ -1,7 +1,0 @@
-{
-synchronized (drivers) {
-    for (    String cls : drivers.keySet()) {
-      remove(cls);
-    }
-  }
-}

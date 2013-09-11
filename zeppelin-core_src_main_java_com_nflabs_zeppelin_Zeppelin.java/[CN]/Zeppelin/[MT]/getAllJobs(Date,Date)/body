@@ -7,9 +7,6 @@ synchronized (jobs) {
         break;
       }
       Job job=runner.getJob();
-      Driver driver=runner.getDriver();
-      Progress progress=(driver == null) ? null : driver.progress(job);
-      jobList.add(new JobInfo(job,runner.getStatus(),progress,runner.getDriverClass(),runner.getResult()));
     }
   }
   jobList.addAll(jobHistoryManager.getAll(fromInclusive,toExclusive));
