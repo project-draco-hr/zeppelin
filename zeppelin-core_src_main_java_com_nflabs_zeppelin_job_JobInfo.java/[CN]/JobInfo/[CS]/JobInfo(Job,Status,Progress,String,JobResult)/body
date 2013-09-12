@@ -1,8 +1,0 @@
-{
-  super();
-  this.job=job;
-  this.status=status;
-  this.progress=progress;
-  this.driverClass=driverClass;
-  this.result=result;
-}

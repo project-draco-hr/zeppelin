@@ -1,0 +1,11 @@
+{
+  if (cols == null)   return new ColumnDesc[]{};
+ else {
+    ColumnDesc[] desc=new ColumnDesc[cols.length];
+    int i=0;
+    for (    shark.api.ColumnDesc d : cols) {
+      desc[i++]=new ColumnDesc(d);
+    }
+    return desc;
+  }
+}

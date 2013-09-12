@@ -1,9 +1,0 @@
-{
-  List<Job> jobList=zql.compile();
-  JobId[] jobIdList=new JobId[jobList.size()];
-  for (int i=0; i < jobList.size(); i++) {
-    Job job=jobList.get(i);
-    jobIdList[i]=submit(job,driverClass);
-  }
-  return jobIdList;
-}

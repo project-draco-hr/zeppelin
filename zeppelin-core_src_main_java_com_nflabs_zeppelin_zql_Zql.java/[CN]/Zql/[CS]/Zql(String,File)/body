@@ -1,4 +1,0 @@
-{
-  this.zql=zql;
-  this.appRoot=appRoot;
-}

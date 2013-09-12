@@ -1,4 +1,0 @@
-{
-  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinAppTest_" + System.currentTimeMillis());
-  tmpDir.mkdir();
-}

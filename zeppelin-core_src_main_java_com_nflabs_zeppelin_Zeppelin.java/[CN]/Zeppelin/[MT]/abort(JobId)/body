@@ -1,8 +1,0 @@
-{
-synchronized (jobs) {
-    JobRunner jobRunner=jobs.get(jobId);
-    if (jobRunner != null) {
-      jobRunner.abort();
-    }
-  }
-}

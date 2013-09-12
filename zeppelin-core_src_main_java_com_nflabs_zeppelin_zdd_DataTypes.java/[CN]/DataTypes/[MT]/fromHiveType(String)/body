@@ -1,0 +1,9 @@
+{
+  DataType type=hiveTypes.get(hiveType);
+  if (null == type) {
+    return new DataType(hiveType,hiveType,false);
+  }
+ else {
+    return type;
+  }
+}

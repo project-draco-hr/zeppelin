@@ -1,5 +1,0 @@
-{
-  super();
-  this.query=query;
-  this.table=table;
-}

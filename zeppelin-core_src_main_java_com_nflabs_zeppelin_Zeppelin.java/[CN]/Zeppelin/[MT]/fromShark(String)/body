@@ -1,0 +1,4 @@
+{
+  TableRDD rdd=runtime.sharkContext().sql2rdd(sql);
+  return new ZDD(rdd);
+}

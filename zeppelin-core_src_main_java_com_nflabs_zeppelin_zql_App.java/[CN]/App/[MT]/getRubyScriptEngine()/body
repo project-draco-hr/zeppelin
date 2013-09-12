@@ -1,7 +1,0 @@
-{
-  if (rubyEngine == null) {
-    System.setProperty("org.jruby.embed.localvariable.behavior","global");
-    rubyEngine=new ScriptEngineManager().getEngineByName("jruby");
-  }
-  return rubyEngine;
-}

@@ -1,5 +1,0 @@
-{
-  this.jobId=jobId;
-  this.script=script;
-  this.resources=resources;
-}

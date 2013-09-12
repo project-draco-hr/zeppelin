@@ -1,0 +1,8 @@
+{
+  if (schema == null) {
+    return new ColumnDesc[]{};
+  }
+ else {
+    return createSchema(schema.getFieldSchemas());
+  }
+}

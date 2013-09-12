@@ -1,8 +1,0 @@
-{
-  if (erb == false) {
-    return getSimpleQuery(params,sql);
-  }
- else {
-    return getErbQuery(params,sql);
-  }
-}

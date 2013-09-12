@@ -1,4 +1,0 @@
-{
-  new File(tmpDir.getAbsolutePath() + "/testapp1").mkdir();
-  assertNull(App.load(new File(tmpDir.getAbsolutePath() + "/testapp1")));
-}

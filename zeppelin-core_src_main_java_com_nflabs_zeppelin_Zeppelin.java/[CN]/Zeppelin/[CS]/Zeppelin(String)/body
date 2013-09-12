@@ -1,8 +1,0 @@
-{
-  ThreadFactory threadFactory=Executors.defaultThreadFactory();
-  int corePoolSize=10;
-  int maximumPoolSize=20;
-  long keepAliveTime=10;
-  executorPool=new ThreadPoolExecutor(corePoolSize,maximumPoolSize,keepAliveTime,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(corePoolSize),threadFactory);
-  jobHistoryManager=new JobHistoryManager(new File(historyPath));
-}

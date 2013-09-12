@@ -1,5 +1,0 @@
-{
-  if (status == Status.FINISHED || status == Status.ERROR) {
-    return;
-  }
-}

@@ -1,0 +1,4 @@
+{
+  this.rdd=rdd;
+  this.schema=new Schema(ColumnDesc.createSchema(rdd.schema()));
+}
