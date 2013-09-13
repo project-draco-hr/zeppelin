@@ -1,0 +1,4 @@
+{
+  this.columnName=name;
+  return this;
+}

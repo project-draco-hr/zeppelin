@@ -1,0 +1,8 @@
+{
+  this.name=name;
+  this.description=description;
+  this.defaultValue=defaultValue;
+  this.allowAny=allowAny;
+  this.options=options;
+  this.range=range;
+}

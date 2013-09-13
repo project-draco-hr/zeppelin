@@ -1,0 +1,20 @@
+{
+  ConfVars[] vars=ConfVars.values();
+  for (  ConfVars v : vars) {
+    if (v.getType() == ConfVars.VarType.BOOLEAN) {
+      this.setProperty(v.getVarName(),v.getBooleanValue());
+    }
+ else     if (v.getType() == ConfVars.VarType.INT) {
+      this.setProperty(v.getVarName(),v.getIntValue());
+    }
+ else     if (v.getType() == ConfVars.VarType.FLOAT) {
+      this.setProperty(v.getVarName(),v.getFloatValue());
+    }
+ else     if (v.getType() == ConfVars.VarType.STRING) {
+      this.setProperty(v.getVarName(),v.getStringValue());
+    }
+ else {
+      throw new RuntimeException("Unsupported VarType");
+    }
+  }
+}

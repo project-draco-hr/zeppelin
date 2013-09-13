@@ -1,0 +1,3 @@
+{
+  columnSpecs=new LinkedList<ColumnSpec>();
+}

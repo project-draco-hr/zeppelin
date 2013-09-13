@@ -1,0 +1,4 @@
+{
+  this.dataType=type;
+  return this;
+}

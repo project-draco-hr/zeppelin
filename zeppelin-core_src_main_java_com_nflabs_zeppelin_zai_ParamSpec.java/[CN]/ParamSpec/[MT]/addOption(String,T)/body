@@ -1,0 +1,7 @@
+{
+  if (options == null) {
+    options=new LinkedList<Option<T>>();
+  }
+  options.add(new Option<T>(friendlyName,v));
+  return this;
+}

@@ -1,0 +1,9 @@
+{
+  if (range == null) {
+    range=new Range<T>(null,new Option<T>(v));
+  }
+ else {
+    range=new Range<T>(range.from(),new Option<T>(v));
+  }
+  return this;
+}

@@ -1,0 +1,6 @@
+String name
+String description
+T defaultValue
+boolean allowAny
+List<Option<T>> options
+Range<T> range
