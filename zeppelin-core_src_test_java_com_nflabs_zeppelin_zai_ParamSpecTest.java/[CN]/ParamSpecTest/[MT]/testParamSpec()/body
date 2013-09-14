@@ -1,0 +1,43 @@
+{
+  ParamSpec.IntegerParamSpec param=new ParamSpec.IntegerParamSpec("age");
+  param.withDefaultValue(12);
+  assertEquals(new Integer(12),param.validate(null));
+  try {
+    assertEquals(new Integer(10),param.validate(10));
+    assertTrue(false);
+  }
+ catch (  ParamSpecException e) {
+  }
+  param.addOption(10);
+  assertEquals(new Integer(10),param.validate(10));
+  assertEquals(new Integer(12),param.validate(12));
+  param.withAllowAny(true);
+  assertEquals(new Integer(9),param.validate(9));
+  assertEquals(new Integer(10),param.validate(10));
+  assertEquals(new Integer(12),param.validate(12));
+  param.from(10);
+  try {
+    assertEquals(new Integer(9),param.validate(9));
+    assertTrue(false);
+  }
+ catch (  ParamSpecException e) {
+  }
+  assertEquals(new Integer(10),param.validate(10));
+  assertEquals(new Integer(12),param.validate(12));
+  param.to(11);
+  try {
+    assertEquals(new Integer(9),param.validate(9));
+    assertTrue(false);
+  }
+ catch (  ParamSpecException e) {
+  }
+  assertEquals(new Integer(10),param.validate(10));
+  assertEquals(new Integer(11),param.validate(11));
+  assertEquals(new Integer(12),param.validate(12));
+  try {
+    assertEquals(new Integer(13),param.validate(13));
+    assertTrue(false);
+  }
+ catch (  ParamSpecException e) {
+  }
+}
