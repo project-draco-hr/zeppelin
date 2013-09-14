@@ -9,34 +9,34 @@
   }
  else {
     if (defaultValue != null) {
-      if (defaultValue.equals(v)) {
+      if (compare(defaultValue,v) == 0) {
         return v;
       }
     }
     if (options != null) {
       for (      Option<T> o : options) {
-        if (o.getValue().equals(v)) {
+        if (compare(o.getValue(),v) == 0) {
           return v;
         }
       }
     }
-    if (range != null) {
-      Option<T> from=range.from();
-      Option<T> to=range.to();
-      if ((from == null || compare(from.getValue(),v) >= 0) && (to == null || compare(v,to.getValue()) >= 0)) {
-        return v;
+    if (allowAny == true) {
+      if (range != null) {
+        Option<T> from=range.from();
+        Option<T> to=range.to();
+        if ((from == null || compare(from.getValue(),v) >= 0) && (to == null || compare(v,to.getValue()) >= 0)) {
+          return v;
+        }
+ else {
+          throw new ParamSpecException("Value not in range");
+        }
       }
  else {
-        throw new ParamSpecException("Value not in range");
+        return v;
       }
     }
  else {
-      if (allowAny == true) {
-        return v;
-      }
- else {
-        throw new ParamSpecException("Does not allow any value");
-      }
+      throw new ParamSpecException("Any value is not allowed");
     }
   }
 }
