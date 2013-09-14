@@ -1,0 +1,9 @@
+{
+  try {
+    sharkContext.sql("CREATE VIEW " + tableName + " as "+ sql,0);
+    return fromTable(tableName);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinRuntimeException(e);
+  }
+}

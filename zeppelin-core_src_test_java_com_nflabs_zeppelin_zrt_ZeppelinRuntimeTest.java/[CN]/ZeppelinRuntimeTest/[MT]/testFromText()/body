@@ -10,6 +10,10 @@
   out.close();
   ZeppelinConfiguration conf=new ZeppelinConfiguration();
   ZeppelinRuntime zr=new ZeppelinRuntime(conf,new User("test"));
-  ZDD zdd=zr.fromText(new Schema("test",new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.toURI(),',');
+  ZDD zdd=zr.fromText(new Schema(new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.toURI(),',');
   assertEquals(3,zdd.rdd().count());
+  ZDD select=zr.fromSql("select * from " + zdd.tableName());
+  assertEquals("a",select.rdd().first().getString(0));
+  ZDD sum=zr.fromSql("select sum(value) from " + zdd.tableName());
+  assertEquals(new Long(6),sum.rdd().first().getLong(0));
 }

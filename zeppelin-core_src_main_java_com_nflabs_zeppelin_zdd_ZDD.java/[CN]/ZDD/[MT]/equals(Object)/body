@@ -1,0 +1,8 @@
+{
+  if (o instanceof ZDD) {
+    return tableName().equals(((ZDD)o).tableName());
+  }
+ else {
+    return false;
+  }
+}

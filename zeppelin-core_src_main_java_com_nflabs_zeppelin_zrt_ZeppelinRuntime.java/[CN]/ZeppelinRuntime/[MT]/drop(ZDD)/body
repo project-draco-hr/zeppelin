@@ -1,6 +1,7 @@
 {
   try {
-    sharkContext.sql("drop table " + zdd.schema().getName(),0);
+    sharkContext.sql("drop table if exists " + zdd.tableName(),0);
+    sharkContext.sql("drop view if exists " + zdd.tableName(),0);
   }
  catch (  Exception e) {
     throw new ZeppelinRuntimeException(e);

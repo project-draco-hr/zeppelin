@@ -1,0 +1,3 @@
+RDD rdd
+Schema schema
+String tableName

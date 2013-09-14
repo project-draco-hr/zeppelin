@@ -1,0 +1,11 @@
+{
+  TableRDD rdd;
+  try {
+    rdd=sharkContext.sql2rdd("select * from " + tableName);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinRuntimeException(e);
+  }
+  rdd.setName(tableName);
+  return new ZDD(rdd);
+}
