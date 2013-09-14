@@ -1,4 +1,3 @@
 {
   this.conf=conf;
-  this.runtime=new ZeppelinRuntime(conf);
 }

@@ -1,0 +1,7 @@
+{
+  super.setUp();
+  String tempDir=System.getProperty("java.io.tmpdir") + "/zeppelin_test_" + System.currentTimeMillis();
+  tmpPath=new File(tempDir);
+  tmpPath.mkdirs();
+  deleteRecursive(new File("./metastore_db"));
+}

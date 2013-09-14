@@ -1,0 +1,10 @@
+{
+  String tc="CREATE EXTERNAL TABLE " + schema.getName() + "("+ schema.toHiveTableCreationQueryColumnPart()+ ") "+ "ROW FORMAT DELIMITED FIELDS TERMINATED BY '"+ split+ "' "+ "STORED AS TEXTFILE "+ "LOCATION '"+ location.toString()+ "'";
+  try {
+    sharkContext.sql(tc,0);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinRuntimeException(e);
+  }
+  return fromSql("select * from " + schema.getName());
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    sharkContext.sql("drop table " + zdd.schema().getName(),0);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinRuntimeException(e);
+  }
+}

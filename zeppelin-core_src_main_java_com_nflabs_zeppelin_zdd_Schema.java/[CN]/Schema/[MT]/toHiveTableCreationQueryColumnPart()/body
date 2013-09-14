@@ -1,0 +1,13 @@
+{
+  String col=null;
+  if (columns != null) {
+    for (    ColumnDesc c : columns) {
+      if (col != null)       col+=", ";
+      col+=c.name() + " " + c.type().hiveName;
+    }
+  }
+ else {
+    return "";
+  }
+  return col;
+}

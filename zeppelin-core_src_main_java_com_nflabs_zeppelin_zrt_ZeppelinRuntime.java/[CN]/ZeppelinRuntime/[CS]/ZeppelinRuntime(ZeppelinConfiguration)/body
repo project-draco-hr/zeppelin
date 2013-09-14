@@ -1,7 +1,0 @@
-{
-  this.conf=conf;
-  String sparkMaster=getEnv("MASTER","local");
-  String sparkHome=getEnv("SPARK_HOME","./");
-  String jobName="ZeppelinRuntime-" + new Date();
-  sparkContext=sharkContext=new SharkContext(sparkMaster,jobName,sparkHome,null,scala.collection.JavaConversions.mapAsScalaMap(System.getenv()));
-}
