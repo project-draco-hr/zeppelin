@@ -2,8 +2,11 @@
   if (isEvaluated() == true)   return;
   if (src == Source.Text) {
     String tc="CREATE EXTERNAL TABLE " + name + "("+ schema.toHiveTableCreationQueryColumnPart()+ ") "+ "ROW FORMAT DELIMITED FIELDS TERMINATED BY '"+ split+ "' "+ "STORED AS TEXTFILE "+ "LOCATION '"+ location.toString()+ "'";
+    Log.debug("execute sql " + tc);
     try {
-      this.rdd=runtime.sql2rdd(tc);
+      runtime.sql(tc);
+      rdd=runtime.sql2rdd("select * from " + name);
+      rdd.setName(name);
     }
  catch (    Exception e) {
       throw new ZeppelinRuntimeException(e);
