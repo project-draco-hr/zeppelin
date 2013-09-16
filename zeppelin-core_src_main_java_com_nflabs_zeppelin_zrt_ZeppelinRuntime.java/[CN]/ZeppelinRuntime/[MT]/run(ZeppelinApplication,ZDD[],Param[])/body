@@ -1,0 +1,3 @@
+{
+  return za.run(inputs,params);
+}

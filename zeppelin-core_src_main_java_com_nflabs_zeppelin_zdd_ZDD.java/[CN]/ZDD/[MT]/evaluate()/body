@@ -1,0 +1,33 @@
+{
+  if (isEvaluated() == true)   return;
+  if (src == Source.Text) {
+    String tc="CREATE EXTERNAL TABLE " + name + "("+ schema.toHiveTableCreationQueryColumnPart()+ ") "+ "ROW FORMAT DELIMITED FIELDS TERMINATED BY '"+ split+ "' "+ "STORED AS TEXTFILE "+ "LOCATION '"+ location.toString()+ "'";
+    try {
+      this.rdd=runtime.sql2rdd(tc);
+    }
+ catch (    Exception e) {
+      throw new ZeppelinRuntimeException(e);
+    }
+  }
+ else   if (src == Source.SQL) {
+    try {
+      runtime.sql("CREATE VIEW " + name + " as "+ sql);
+      rdd=runtime.sql2rdd("select * from " + name);
+      rdd.setName(name);
+      schema=new Schema(ColumnDesc.createSchema(rdd.schema()));
+    }
+ catch (    Exception e) {
+      throw new ZeppelinRuntimeException(e);
+    }
+  }
+ else   if (src == Source.Table) {
+    try {
+      rdd=runtime.sql2rdd("select * from " + name);
+      rdd.setName(name);
+      schema=new Schema(ColumnDesc.createSchema(rdd.schema()));
+    }
+ catch (    Exception e) {
+      throw new ZeppelinRuntimeException(e);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  ZDD zdd=new ZDD(runtime,Source.Text,name);
+  zdd.location=location;
+  zdd.schema=schema;
+  zdd.split=split;
+  return zdd;
+}

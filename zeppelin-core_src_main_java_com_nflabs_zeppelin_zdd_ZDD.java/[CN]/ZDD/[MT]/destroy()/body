@@ -1,0 +1,11 @@
+{
+  if (isEvaluated() == false)   return;
+  if (src == Source.Text) {
+    runtime.sql("DROP TABLE IF EXISTS " + name);
+  }
+ else   if (src == Source.SQL) {
+    runtime.sql("DROP VIEW IF EXISTS " + name);
+  }
+ else   if (src == Source.Table) {
+  }
+}

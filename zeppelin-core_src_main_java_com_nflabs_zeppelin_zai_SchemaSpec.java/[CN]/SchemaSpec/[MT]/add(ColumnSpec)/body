@@ -1,4 +1,0 @@
-{
-  columnSpecs.add(col);
-  return this;
-}

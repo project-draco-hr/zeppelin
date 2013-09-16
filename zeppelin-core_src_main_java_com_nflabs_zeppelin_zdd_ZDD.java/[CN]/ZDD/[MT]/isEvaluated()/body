@@ -1,0 +1,8 @@
+{
+  if (name != null && rdd != null && schema != null) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

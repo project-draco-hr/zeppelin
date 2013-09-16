@@ -1,0 +1,3 @@
+{
+  return ZDD.createFromText(this,genTableName(),schema,location,split);
+}

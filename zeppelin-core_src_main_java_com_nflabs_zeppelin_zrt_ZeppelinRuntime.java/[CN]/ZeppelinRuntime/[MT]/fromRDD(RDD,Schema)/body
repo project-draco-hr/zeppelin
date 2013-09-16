@@ -1,3 +1,0 @@
-{
-  return fromRDD(rdd,schema,genTableName());
-}

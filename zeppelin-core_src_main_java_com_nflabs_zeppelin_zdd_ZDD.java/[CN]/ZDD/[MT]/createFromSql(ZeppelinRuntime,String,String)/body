@@ -1,0 +1,5 @@
+{
+  ZDD zdd=new ZDD(runtime,Source.SQL,name);
+  zdd.sql=sql;
+  return zdd;
+}

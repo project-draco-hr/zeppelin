@@ -1,3 +1,6 @@
 {
   this.conf=conf;
+  if (System.getProperty("spark.serializer") == null) {
+    System.setProperty("spark.serializer","org.apache.spark.serializer.KryoSerializer");
+  }
 }

@@ -1,0 +1,9 @@
+{
+  try {
+    scala.collection.Seq<String> ret=sharkContext.sql(query,0);
+    return scala.collection.JavaConversions.seqAsJavaList(ret);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinRuntimeException(e);
+  }
+}
