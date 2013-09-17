@@ -1,0 +1,18 @@
+{
+  if (src == Source.Text) {
+    return location;
+  }
+ else   if (src == Source.Table) {
+    List<String> ret=runtime.sql("describe formatted " + name);
+    Pattern p=Pattern.compile("^Location:+\\s(.*)");
+    for (    String s : ret) {
+      Matcher m=p.matcher(s);
+      if (m.matches() == false)       continue;
+      return m.group(1).trim();
+    }
+    throw new ZeppelinRuntimeException("Can not get location of the table '" + name + "'");
+  }
+ else {
+    throw new ZeppelinRuntimeException("Not implemented");
+  }
+}

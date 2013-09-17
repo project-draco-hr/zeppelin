@@ -11,9 +11,11 @@
   ZeppelinConfiguration conf=new ZeppelinConfiguration();
   ZeppelinRuntime zr=new ZeppelinRuntime(conf,new User("test"));
   ZDD zdd=ZDD.createFromText(zr,"test",new Schema(new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.getAbsolutePath(),',');
-  assertEquals(3,zdd.rdd().count());
+  assertEquals(3,zdd.tableRdd().count());
+  assertEquals(dir.getAbsolutePath().toString(),zdd.getLocation());
   ZDD select=zr.fromTable(zdd.name());
-  assertEquals("a",select.rdd().first().getString(0));
+  assertEquals("a",select.tableRdd().first().getString(0));
+  assertEquals("file:" + dir.getAbsolutePath().toString(),select.getLocation());
   ZDD sum=zr.fromSql("test1","select sum(value) from " + zdd.name());
-  assertEquals(new Long(6),sum.rdd().first().getLong(0));
+  assertEquals(new Long(6),sum.tableRdd().first().getLong(0));
 }

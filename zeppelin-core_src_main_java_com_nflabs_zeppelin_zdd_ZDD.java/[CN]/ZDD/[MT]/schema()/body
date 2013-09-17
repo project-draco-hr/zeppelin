@@ -1,4 +1,6 @@
 {
-  evaluate();
+  if (schema == null) {
+    evaluate();
+  }
   return schema;
 }

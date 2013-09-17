@@ -1,6 +1,6 @@
 {
   try {
-    scala.collection.Seq<String> ret=sharkContext.sql(query,0);
+    scala.collection.Seq<String> ret=sharkContext.sql(query,1000);
     return scala.collection.JavaConversions.seqAsJavaList(ret);
   }
  catch (  Exception e) {

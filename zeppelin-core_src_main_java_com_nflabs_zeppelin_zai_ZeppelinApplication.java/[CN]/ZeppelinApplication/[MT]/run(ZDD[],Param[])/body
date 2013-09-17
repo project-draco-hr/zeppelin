@@ -1,3 +1,4 @@
 {
-  return execute(input,params);
+  this.params=params;
+  return execute(input);
 }

@@ -1,0 +1,6 @@
+{
+  ZDD zdd=new ZDD(runtime,Source.Table,name);
+  zdd.schema=schema;
+  zdd.rdd=rdd;
+  return zdd;
+}

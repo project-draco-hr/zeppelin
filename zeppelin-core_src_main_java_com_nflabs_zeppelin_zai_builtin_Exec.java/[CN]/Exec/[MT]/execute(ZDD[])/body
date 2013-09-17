@@ -1,0 +1,6 @@
+{
+  if (input == null || input.length == 0)   return new ZDD[]{};
+  ;
+  RDD rdd;
+  return null;
+}

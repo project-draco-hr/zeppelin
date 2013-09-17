@@ -2,11 +2,11 @@
   if (isEvaluated() == true)   return;
   if (src == Source.Text) {
     String tc="CREATE EXTERNAL TABLE " + name + "("+ schema.toHiveTableCreationQueryColumnPart()+ ") "+ "ROW FORMAT DELIMITED FIELDS TERMINATED BY '"+ split+ "' "+ "STORED AS TEXTFILE "+ "LOCATION '"+ location.toString()+ "'";
-    Log.debug("execute sql " + tc);
+    logger.info("Execute " + tc);
     try {
       runtime.sql(tc);
-      rdd=runtime.sql2rdd("select * from " + name);
-      rdd.setName(name);
+      tableRDD=runtime.sql2rdd("select * from " + name);
+      tableRDD.setName(name);
     }
  catch (    Exception e) {
       throw new ZeppelinRuntimeException(e);
@@ -15,9 +15,9 @@
  else   if (src == Source.SQL) {
     try {
       runtime.sql("CREATE VIEW " + name + " as "+ sql);
-      rdd=runtime.sql2rdd("select * from " + name);
-      rdd.setName(name);
-      schema=new Schema(ColumnDesc.createSchema(rdd.schema()));
+      tableRDD=runtime.sql2rdd("select * from " + name);
+      tableRDD.setName(name);
+      schema=new Schema(ColumnDesc.createSchema(tableRDD.schema()));
     }
  catch (    Exception e) {
       throw new ZeppelinRuntimeException(e);
@@ -25,9 +25,33 @@
   }
  else   if (src == Source.Table) {
     try {
-      rdd=runtime.sql2rdd("select * from " + name);
-      rdd.setName(name);
-      schema=new Schema(ColumnDesc.createSchema(rdd.schema()));
+      tableRDD=runtime.sql2rdd("select * from " + name);
+      tableRDD.setName(name);
+      schema=new Schema(ColumnDesc.createSchema(tableRDD.schema()));
+    }
+ catch (    Exception e) {
+      throw new ZeppelinRuntimeException(e);
+    }
+  }
+ else   if (src == Source.RDD) {
+    try {
+      List<ObjectInspector> columnOIs=new ArrayList<ObjectInspector>(schema.getColumns().length);
+      for (int i=0; i < schema.getColumns().length; i++) {
+        ColumnDesc col=schema.getColumns()[i];
+        ObjectInspector oi=null;
+        if (col.type().name.equals(DataTypes.STRING.name)) {
+          oi=PrimitiveObjectInspectorFactory.javaStringObjectInspector;
+        }
+ else         if (col.type().name.equals(DataTypes.INT)) {
+          oi=PrimitiveObjectInspectorFactory.javaIntObjectInspector;
+        }
+        columnOIs.add(i,oi);
+      }
+      Map<Object,TablePartitionStats> stats=new HashMap<Object,TablePartitionStats>();
+      tableRDD=new TableRDD(rdd,ColumnDesc.convertToSharkColumnDesc(schema.getColumns()),ObjectInspectorFactory.getStandardUnionObjectInspector(columnOIs),-1);
+      runtime.sql("CREATE TABLE " + name + "("+ schema.toHiveTableCreationQueryColumnPart()+ ") TBLPROPERTIES('shark.cache'='true')");
+      SharkEnv.memoryMetadataManager().put(name,tableRDD);
+      SharkEnv.memoryMetadataManager().putStats(name,scala.collection.JavaConversions.mapAsScalaMap(stats));
     }
  catch (    Exception e) {
       throw new ZeppelinRuntimeException(e);

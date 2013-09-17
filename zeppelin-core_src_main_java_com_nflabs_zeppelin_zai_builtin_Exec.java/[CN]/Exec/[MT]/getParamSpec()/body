@@ -1,0 +1,3 @@
+{
+  return new ParamSpec[]{new ParamSpec.StringParamSpec("command").withDescription("Command").withAllowAny(true)};
+}

@@ -1,4 +1,8 @@
 {
-  evaluate();
-  return rdd;
+  if (rdd != null) {
+    return rdd;
+  }
+ else {
+    return tableRdd();
+  }
 }

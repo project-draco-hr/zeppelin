@@ -1,0 +1,4 @@
+ZeppelinRuntime runtime
+String name
+Schema schema
+RDD rdd

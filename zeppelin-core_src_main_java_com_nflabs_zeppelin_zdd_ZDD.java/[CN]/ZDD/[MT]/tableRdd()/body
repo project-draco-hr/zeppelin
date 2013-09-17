@@ -1,0 +1,6 @@
+{
+  if (tableRDD == null) {
+    evaluate();
+  }
+  return tableRDD;
+}
