@@ -1,3 +1,9 @@
 {
-  return super.getBoolean(c.name(),c.getBooleanValue());
+  if (System.getenv(c.name()) != null) {
+    return Boolean.parseBoolean(System.getenv(c.name()));
+  }
+  if (System.getProperty(c.getVarName()) != null) {
+    return Boolean.parseBoolean(System.getProperty(c.getVarName()));
+  }
+  return getBooleanValue(c.getVarName(),c.getBooleanValue());
 }

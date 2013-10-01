@@ -4,5 +4,10 @@
     classLoader=ZeppelinConfiguration.class.getClassLoader();
   }
   URL url=classLoader.getResource("zeppelin-site.xml");
-  return new ZeppelinConfiguration(url);
+  if (url != null) {
+    return new ZeppelinConfiguration(url);
+  }
+ else {
+    return new ZeppelinConfiguration();
+  }
 }

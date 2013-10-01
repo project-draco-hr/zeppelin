@@ -1,3 +1,0 @@
-{
-  return super.getFloat(k,ConfVars.valueOf(k).getFloatValue());
-}

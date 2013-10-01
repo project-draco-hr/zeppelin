@@ -1,3 +1,9 @@
 {
-  return super.getInt(c.name(),c.getIntValue());
+  if (System.getenv(c.name()) != null) {
+    return Integer.parseInt(System.getenv(c.name()));
+  }
+  if (System.getProperty(c.getVarName()) != null) {
+    return Integer.parseInt(System.getProperty(c.getVarName()));
+  }
+  return getIntValue(c.getVarName(),c.getIntValue());
 }

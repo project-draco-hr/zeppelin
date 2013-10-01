@@ -1,3 +1,9 @@
 {
-  return super.getString(c.name(),c.getStringValue());
+  if (System.getenv(c.name()) != null) {
+    return System.getenv(c.name());
+  }
+  if (System.getProperty(c.getVarName()) != null) {
+    return System.getProperty(c.getVarName());
+  }
+  return getStringValue(c.getVarName(),c.getStringValue());
 }

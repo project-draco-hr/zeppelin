@@ -1,3 +1,9 @@
 {
-  return super.getFloat(c.name(),c.getFloatValue());
+  if (System.getenv(c.name()) != null) {
+    return Float.parseFloat(System.getenv(c.name()));
+  }
+  if (System.getProperty(c.getVarName()) != null) {
+    return Float.parseFloat(System.getProperty(c.getVarName()));
+  }
+  return getFloatValue(c.getVarName(),c.getFloatValue());
 }
