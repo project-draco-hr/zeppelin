@@ -29,8 +29,9 @@
   File resourcePath=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
   if (resourcePath.isDirectory()) {
     System.setProperty("wicket.configuration","development");
-    System.out.println("----------------- DEV MODE -----------------");
     ServletHolder wicketServletHolder=new ServletHolder(WicketServlet.class);
+    wicketServletHolder.setInitParameter(ContextParamWebApplicationFactory.APP_CLASS_PARAM,"com.nflabs.zeppelin.web.WicketApplication");
+    wicketServletHolder.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM,"/*");
     sch.setWar(resourcePath.getAbsolutePath());
     sch.addServlet(wicketServletHolder,"/");
   }
@@ -40,19 +41,19 @@
   ContextHandlerCollection contexts=new ContextHandlerCollection();
   contexts.setHandlers(new Handler[]{cxfContext,sch});
   server.setHandler(contexts);
-  LOG.info("Start zeppelin server");
+  logger.info("Start zeppelin server");
   server.start();
-  LOG.info("Started");
+  logger.info("Started");
   Runtime.getRuntime().addShutdownHook(new Thread(){
     @Override public void run(){
-      LOG.info("Shutting down Zeppelin Server ... ");
+      logger.info("Shutting down Zeppelin Server ... ");
       try {
         server.stop();
       }
  catch (      Exception e) {
-        LOG.error("Error while stopping servlet container",e);
+        logger.error("Error while stopping servlet container",e);
       }
-      LOG.info("Bye");
+      logger.info("Bye");
     }
   }
 );
