@@ -1,0 +1,3 @@
+{
+  return RuntimeConfigurationType.DEVELOPMENT.equals(getApplication().getConfigurationType());
+}

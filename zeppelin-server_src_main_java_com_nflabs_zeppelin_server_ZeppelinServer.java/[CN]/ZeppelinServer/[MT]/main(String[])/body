@@ -1,8 +1,45 @@
 {
+  if (System.getProperty("log4j.configuration") == null) {
+    ConsoleAppender console=new ConsoleAppender();
+    String PATTERN="%d [%p|%c|%C{1}] %m%n";
+    console.setLayout(new PatternLayout(PATTERN));
+    console.setThreshold(Level.DEBUG);
+    console.activateOptions();
+    Logger.getRootLogger().addAppender(console);
+  }
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
-  JAXRSServerFactoryBean jaxrsServerFactory=RuntimeDelegate.getInstance().createEndpoint(new ZeppelinServer(),JAXRSServerFactoryBean.class);
-  jaxrsServerFactory.setAddress("http://localhost:8080");
-  final org.apache.cxf.endpoint.Server server=jaxrsServerFactory.create();
+  int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
+  int timeout=1000 * 30;
+  final Server server=new Server();
+  SocketConnector connector=new SocketConnector();
+  connector.setMaxIdleTime(timeout);
+  connector.setSoLingerTime(-1);
+  connector.setPort(port);
+  server.addConnector(connector);
+  final ServletHolder cxfServletHolder=new ServletHolder(new CXFNonSpringJaxrsServlet());
+  cxfServletHolder.setInitParameter("javax.ws.rs.Application",ZeppelinServer.class.getName());
+  cxfServletHolder.setName("rest");
+  cxfServletHolder.setForcedPath("rest");
+  final ServletContextHandler cxfContext=new ServletContextHandler();
+  cxfContext.setSessionHandler(new SessionHandler());
+  cxfContext.setContextPath("/cxf");
+  cxfContext.addServlet(cxfServletHolder,"/zeppelin/*");
+  WebAppContext sch=new WebAppContext();
+  sch.setParentLoaderPriority(true);
+  File resourcePath=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
+  if (resourcePath.isDirectory()) {
+    System.setProperty("wicket.configuration","development");
+    System.out.println("----------------- DEV MODE -----------------");
+    ServletHolder wicketServletHolder=new ServletHolder(WicketServlet.class);
+    sch.setWar(resourcePath.getAbsolutePath());
+    sch.addServlet(wicketServletHolder,"/");
+  }
+ else {
+    sch.setWar(resourcePath.getAbsolutePath());
+  }
+  ContextHandlerCollection contexts=new ContextHandlerCollection();
+  contexts.setHandlers(new Handler[]{cxfContext,sch});
+  server.setHandler(contexts);
   LOG.info("Start zeppelin server");
   server.start();
   LOG.info("Started");
