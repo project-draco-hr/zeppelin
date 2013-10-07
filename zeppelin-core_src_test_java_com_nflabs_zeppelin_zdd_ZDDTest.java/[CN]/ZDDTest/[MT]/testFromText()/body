@@ -18,4 +18,5 @@
   assertEquals("file:" + dir.getAbsolutePath().toString(),select.getLocation());
   ZDD sum=zr.fromSql("test1","select sum(value) from " + zdd.name());
   assertEquals(new Long(6),sum.tableRdd().first().getLong(0));
+  zr.destroy();
 }

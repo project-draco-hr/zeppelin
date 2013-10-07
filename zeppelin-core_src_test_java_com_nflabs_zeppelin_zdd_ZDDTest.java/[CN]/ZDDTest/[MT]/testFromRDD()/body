@@ -11,4 +11,5 @@
   out.flush();
   out.close();
   ZDD zdd=ZDD.createFromText(zr,"test",new Schema(new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.getAbsolutePath(),',');
+  zr.destroy();
 }

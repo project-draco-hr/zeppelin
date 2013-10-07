@@ -38,8 +38,14 @@
  else {
     sch.setWar(resourcePath.getAbsolutePath());
   }
+  WebAppContext res=new WebAppContext();
+  DefaultServlet sv=new DefaultServlet();
+  ServletHolder resServletHolder=new ServletHolder(sv);
+  resServletHolder.setName("resources");
+  res.setWar(conf.getString(ConfVars.ZEPPELIN_RESOURCE_DIR));
+  res.addServlet(resServletHolder,"/resources/*");
   ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{cxfContext,sch});
+  contexts.setHandlers(new Handler[]{cxfContext,sch,res});
   server.setHandler(contexts);
   logger.info("Start zeppelin server");
   server.start();
