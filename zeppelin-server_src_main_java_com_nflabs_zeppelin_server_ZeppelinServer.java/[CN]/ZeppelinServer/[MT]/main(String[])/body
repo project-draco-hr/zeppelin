@@ -1,11 +1,6 @@
 {
   if (System.getProperty("log4j.configuration") == null) {
-    ConsoleAppender console=new ConsoleAppender();
-    String PATTERN="%d [%p|%c|%C{1}] %m%n";
-    console.setLayout(new PatternLayout(PATTERN));
-    console.setThreshold(Level.DEBUG);
-    console.activateOptions();
-    Logger.getRootLogger().addAppender(console);
+    Logger.getRootLogger().setLevel(Level.DEBUG);
   }
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
@@ -38,14 +33,13 @@
  else {
     sch.setWar(resourcePath.getAbsolutePath());
   }
-  WebAppContext res=new WebAppContext();
-  DefaultServlet sv=new DefaultServlet();
-  ServletHolder resServletHolder=new ServletHolder(sv);
-  resServletHolder.setName("resources");
-  res.setWar(conf.getString(ConfVars.ZEPPELIN_RESOURCE_DIR));
-  res.addServlet(resServletHolder,"/resources/*");
+  ResourceHandler res=new ResourceHandler();
+  res.setDirectoriesListed(true);
+  res.setResourceBase(conf.getString(ConfVars.ZEPPELIN_RESOURCE_DIR));
+  ContextHandler resContext=new ContextHandler("/resources");
+  resContext.setHandler(res);
   ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{cxfContext,sch,res});
+  contexts.setHandlers(new Handler[]{cxfContext,resContext,sch});
   server.setHandler(contexts);
   logger.info("Start zeppelin server");
   server.start();
