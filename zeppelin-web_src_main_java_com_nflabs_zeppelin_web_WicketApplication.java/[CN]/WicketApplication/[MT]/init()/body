@@ -1,4 +1,6 @@
 {
   super.init();
-  mountPage("home",HomePage.class);
+  mountPage("home",Home.class);
+  mountPage("analyze",Analyze.class);
+  mountPage("analyze/new",com.nflabs.zeppelin.web.analyze.New.class);
 }

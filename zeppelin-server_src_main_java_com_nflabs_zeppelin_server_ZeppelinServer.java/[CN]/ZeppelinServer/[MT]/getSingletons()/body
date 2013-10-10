@@ -1,0 +1,6 @@
+{
+  Set<Object> singletons=new HashSet<Object>();
+  Analyze analyze=new Analyze();
+  singletons.add(analyze);
+  return singletons;
+}
