@@ -1,3 +1,2 @@
 {
-  Zeppelin zp=new Zeppelin(new ZeppelinConfiguration());
 }

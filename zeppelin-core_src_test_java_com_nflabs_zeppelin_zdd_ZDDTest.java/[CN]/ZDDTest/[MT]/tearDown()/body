@@ -1,4 +1,5 @@
 {
+  zr.destroy();
   deleteRecursive(tmpPath);
   super.tearDown();
 }

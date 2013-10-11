@@ -1,6 +1,4 @@
 {
-  ZeppelinConfiguration conf=new ZeppelinConfiguration();
-  ZeppelinRuntime zr=new ZeppelinRuntime(conf,new User("test"));
   File dir=new File(tmpPath.getAbsolutePath() + "/data");
   dir.mkdir();
   File data=new File(tmpPath.getAbsolutePath() + "/data/a");
@@ -11,5 +9,4 @@
   out.flush();
   out.close();
   ZDD zdd=ZDD.createFromText(zr,"test",new Schema(new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.getAbsolutePath(),',');
-  zr.destroy();
 }

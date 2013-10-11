@@ -5,4 +5,7 @@
   tmpPath=new File(tempDir);
   tmpPath.mkdirs();
   deleteRecursive(new File("./metastore_db"));
+  Thread.sleep(3 * 1000);
+  this.conf=new ZeppelinConfiguration();
+  this.zr=new ZeppelinRuntime(conf,new User("test"));
 }

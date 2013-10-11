@@ -8,8 +8,6 @@
   out.write("c,3".getBytes());
   out.flush();
   out.close();
-  ZeppelinConfiguration conf=new ZeppelinConfiguration();
-  ZeppelinRuntime zr=new ZeppelinRuntime(conf,new User("test"));
   ZDD zdd=ZDD.createFromText(zr,"test",new Schema(new ColumnDesc[]{new ColumnDesc("key",DataTypes.STRING),new ColumnDesc("value",DataTypes.INT)}),dir.getAbsolutePath(),',');
   zdd.evaluate();
   Sql sql=new Sql(zr);
@@ -17,5 +15,4 @@
   ZDD[] outputData=output.getData();
   assertEquals(1,outputData.length);
   assertEquals(new Long(3),(((shark.api.Row[])(outputData[0].rdd().take(1)))[0].getLong(0)));
-  zr.destroy();
 }
