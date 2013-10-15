@@ -1,0 +1,12 @@
+{
+  if (params == null)   return null;
+  Param param=null;
+  for (  Param p : params) {
+    if (name.equals(p.getName())) {
+      param=p;
+      break;
+    }
+  }
+  if (param == null)   return null;
+  return param.getValue();
+}

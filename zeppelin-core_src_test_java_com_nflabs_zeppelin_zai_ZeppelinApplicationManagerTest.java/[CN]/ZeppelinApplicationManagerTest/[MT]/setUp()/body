@@ -1,0 +1,4 @@
+{
+  this.zam=new ZeppelinApplicationManager(null);
+  super.setUp();
+}

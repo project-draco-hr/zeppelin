@@ -1,0 +1,16 @@
+{
+  ParamSpec[] spec=getParamSpec();
+  if (spec == null)   return;
+  for (  ParamSpec s : spec) {
+    Param param=null;
+    if (params != null) {
+      for (      Param p : params) {
+        if (s.getName().equals(p.getName())) {
+          param=p;
+          break;
+        }
+      }
+    }
+    s.validate(param);
+  }
+}

@@ -1,0 +1,43 @@
+{
+  DataSpec[] specs=getInputSpec();
+  if (specs == null || specs.length == 0)   return;
+  for (int i=0; i < specs.length; i++) {
+    DataSpec spec=specs[i];
+    if (data == null || data.length < i + 1) {
+      throw new DataSpecException("Requires data");
+    }
+    ColumnSpec[] columnSpecs=spec.getColumnSpecs();
+    if (columnSpecs == null)     continue;
+    Schema schema=data[i].schema();
+    for (    ColumnSpec col : columnSpecs) {
+      ColumnDesc[] descs=schema.getColumns();
+      ColumnDesc d=null;
+      if (col.getColumnIndex() >= 0) {
+        if (descs == null || descs.length < col.getColumnIndex() + 1) {
+          throw new DataSpecException("Require column index: " + col.getColumnIndex());
+        }
+ else {
+          d=descs[col.getColumnIndex()];
+        }
+      }
+      if (col.getColumnName() != null) {
+        if (d == null && descs != null) {
+          for (          ColumnDesc cd : descs) {
+            if (cd.name().equals(col.getColumnName())) {
+              d=cd;
+              break;
+            }
+          }
+        }
+        if (d == null) {
+          throw new DataSpecException("Require column name : " + col.getColumnName());
+        }
+ else {
+          if (d.name().equals(col.getColumnName()) == false) {
+            throw new DataSpecException("Column name expected " + col.getColumnName() + " but found "+ d.name());
+          }
+        }
+      }
+    }
+  }
+}

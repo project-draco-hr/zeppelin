@@ -2,7 +2,7 @@
   ZeppelinRuntime rt=getRuntime();
   ZDD[] zdds=input.getData();
   if (zdds == null || zdds.length == 0)   return null;
-  String query=(String)getParam("query");
+  String query=(String)input.getParam("query");
   if (query == null)   throw new ParamSpecException("Param 'query' not defined");
   ZDD[] outs=new ZDD[zdds.length];
   for (int i=0; i < zdds.length; i++) {

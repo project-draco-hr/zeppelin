@@ -1,4 +1,5 @@
 {
-  this.params=input.getParams();
+  validateParam(input.getParams());
+  validateInputData(input.getData());
   return execute(input);
 }
