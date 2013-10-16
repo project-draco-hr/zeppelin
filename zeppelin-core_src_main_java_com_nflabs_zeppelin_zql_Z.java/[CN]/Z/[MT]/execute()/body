@@ -3,6 +3,7 @@
   List<URI> resources=getResources();
   for (  URI res : resources) {
     Statement stmt=con.createStatement();
+    logger.info("add resource " + res.toString());
     if (res.getPath().endsWith(".jar")) {
       stmt.executeQuery("add JAR " + new File(res.toString()).getAbsolutePath());
     }
@@ -11,9 +12,15 @@
     }
     stmt.close();
   }
+  List<ResultSet> results=new LinkedList<ResultSet>();
   String query=getQuery();
   Statement stmt=con.createStatement();
-  ResultSet result=stmt.executeQuery(query);
+  String[] queries=split(query,';');
+  for (  String q : queries) {
+    if (q == null || q.trim().length() == 0)     continue;
+    logger.info("executeQuery(" + q + ")");
+    results.add(stmt.executeQuery(q));
+  }
   stmt.close();
-  return result;
+  return results;
 }
