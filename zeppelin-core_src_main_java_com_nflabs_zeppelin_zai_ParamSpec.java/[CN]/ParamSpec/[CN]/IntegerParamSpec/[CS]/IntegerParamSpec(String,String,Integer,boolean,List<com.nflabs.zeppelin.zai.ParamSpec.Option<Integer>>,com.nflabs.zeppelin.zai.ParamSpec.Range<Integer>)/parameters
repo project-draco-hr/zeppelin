@@ -1,6 +1,0 @@
-String name
-String description
-Integer defaultValue
-boolean allowAny
-List<com.nflabs.zeppelin.zai.ParamSpec.Option<Integer>> options
-com.nflabs.zeppelin.zai.ParamSpec.Range<Integer> range

@@ -1,6 +1,0 @@
-String name
-String description
-String defaultValue
-boolean allowAny
-List<com.nflabs.zeppelin.zai.ParamSpec.Option<String>> options
-com.nflabs.zeppelin.zai.ParamSpec.Range<String> range

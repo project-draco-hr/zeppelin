@@ -1,0 +1,11 @@
+{
+  if (prev() == null) {
+    return resources;
+  }
+ else {
+    List<URI> r=new LinkedList<URI>();
+    r.addAll(resources);
+    r.addAll(prev().getResources());
+    return r;
+  }
+}

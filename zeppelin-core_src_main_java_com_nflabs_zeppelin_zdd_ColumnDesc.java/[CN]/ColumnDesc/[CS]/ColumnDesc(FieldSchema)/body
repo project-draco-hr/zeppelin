@@ -1,3 +1,0 @@
-{
-  this(hiveSchema.getName(),DataTypes.fromHiveType(hiveSchema.getType()));
-}

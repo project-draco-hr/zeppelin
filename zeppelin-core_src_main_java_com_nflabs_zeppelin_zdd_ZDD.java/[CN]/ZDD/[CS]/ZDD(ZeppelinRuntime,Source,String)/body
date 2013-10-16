@@ -1,5 +1,0 @@
-{
-  this.runtime=runtime;
-  this.src=src;
-  this.name=name;
-}

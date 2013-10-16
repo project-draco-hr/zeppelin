@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  this.hiveName=hiveName;
-  this.isPrimitive=isPrimitive;
-}

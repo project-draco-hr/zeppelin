@@ -1,8 +1,0 @@
-{
-  this.conf=conf;
-  this.user=user;
-  if (System.getProperty("spark.serializer") == null) {
-    System.setProperty("spark.serializer","org.apache.spark.serializer.KryoSerializer");
-  }
-  this.runtime=new ZeppelinRuntime(conf,user);
-}

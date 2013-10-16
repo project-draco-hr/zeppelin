@@ -1,0 +1,7 @@
+{
+  if (next() != null) {
+    next().setPrev(null);
+    setNext(null);
+  }
+  return this;
+}

@@ -1,3 +1,0 @@
-{
-  this(desc.name(),new DataType(desc.dataType()));
-}

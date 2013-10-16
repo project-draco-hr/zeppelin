@@ -1,8 +1,0 @@
-{
-  if (rdd != null) {
-    return rdd;
-  }
- else {
-    return tableRdd();
-  }
-}

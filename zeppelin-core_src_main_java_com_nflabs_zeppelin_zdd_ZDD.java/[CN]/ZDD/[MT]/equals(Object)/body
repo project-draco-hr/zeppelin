@@ -1,8 +1,0 @@
-{
-  if (o instanceof ZDD) {
-    return name().equals(((ZDD)o).name());
-  }
- else {
-    return false;
-  }
-}
