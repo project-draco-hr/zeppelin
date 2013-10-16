@@ -1,3 +1,0 @@
-{
-  this(type.name,type.hiveName,type.isPrimitive);
-}

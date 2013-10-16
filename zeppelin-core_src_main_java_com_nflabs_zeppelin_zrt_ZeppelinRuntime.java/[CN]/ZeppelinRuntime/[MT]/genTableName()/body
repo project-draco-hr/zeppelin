@@ -1,3 +1,0 @@
-{
-  return prefix + "_" + user.getName()+ "_"+ tableId.getAndIncrement();
-}

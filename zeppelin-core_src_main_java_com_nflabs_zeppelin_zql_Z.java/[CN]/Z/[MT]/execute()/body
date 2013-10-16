@@ -1,0 +1,19 @@
+{
+  Connection con=getConnection();
+  List<URI> resources=getResources();
+  for (  URI res : resources) {
+    Statement stmt=con.createStatement();
+    if (res.getPath().endsWith(".jar")) {
+      stmt.executeQuery("add JAR " + new File(res.toString()).getAbsolutePath());
+    }
+ else {
+      stmt.executeQuery("add FILE " + new File(res.toString()).getAbsolutePath());
+    }
+    stmt.close();
+  }
+  String query=getQuery();
+  Statement stmt=con.createStatement();
+  ResultSet result=stmt.executeQuery(query);
+  stmt.close();
+  return result;
+}

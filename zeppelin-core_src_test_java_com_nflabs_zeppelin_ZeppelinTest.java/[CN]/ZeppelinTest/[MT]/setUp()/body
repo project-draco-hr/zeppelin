@@ -1,8 +1,0 @@
-{
-  super.setUp();
-  String tempDir=System.getProperty("java.io.tmpdir") + "/zeppelin_test_" + System.currentTimeMillis();
-  tmpPath=new File(tempDir);
-  tmpPath.mkdirs();
-  Thread.sleep(3 * 1000);
-  this.zp=new Zeppelin(new ZeppelinConfiguration(),new User("test"));
-}

@@ -1,4 +1,0 @@
-{
-  this.allowAny=tf;
-  return this;
-}

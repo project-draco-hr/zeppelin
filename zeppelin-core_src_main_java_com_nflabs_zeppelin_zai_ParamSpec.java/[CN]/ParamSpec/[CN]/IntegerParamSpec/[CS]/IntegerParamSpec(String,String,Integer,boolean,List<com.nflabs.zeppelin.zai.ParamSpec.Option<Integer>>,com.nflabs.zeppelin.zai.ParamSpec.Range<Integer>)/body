@@ -1,3 +1,0 @@
-{
-  super(name,description,defaultValue,allowAny,options,range);
-}

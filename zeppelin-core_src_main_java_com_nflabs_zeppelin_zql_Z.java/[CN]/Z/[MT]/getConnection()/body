@@ -1,0 +1,6 @@
+{
+  if (conn == null) {
+    conn=DriverManager.getConnection(conf.getString(ConfVars.HIVE_URI));
+  }
+  return conn;
+}

@@ -1,5 +1,0 @@
-{
-  zp.destroy();
-  deleteRecursive(tmpPath);
-  super.tearDown();
-}

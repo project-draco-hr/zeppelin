@@ -1,0 +1,4 @@
+{
+  params.put(key,val);
+  return this;
+}

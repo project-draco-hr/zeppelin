@@ -1,4 +1,0 @@
-{
-  ZDD zdd=new ZDD(runtime,Source.Table,table);
-  return zdd;
-}

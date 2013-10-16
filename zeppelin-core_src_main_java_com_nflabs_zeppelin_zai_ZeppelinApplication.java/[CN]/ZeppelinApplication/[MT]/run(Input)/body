@@ -1,4 +1,0 @@
-{
-  this.params=input.getParams();
-  return execute(input);
-}

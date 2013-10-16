@@ -1,8 +1,0 @@
-{
-  try {
-    return sharkContext.sql2rdd(sql);
-  }
- catch (  Exception e) {
-    throw new ZeppelinRuntimeException(e);
-  }
-}

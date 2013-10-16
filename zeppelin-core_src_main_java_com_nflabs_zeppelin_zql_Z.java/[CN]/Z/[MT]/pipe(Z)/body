@@ -1,0 +1,5 @@
+{
+  setNext(z);
+  z.setPrev(this);
+  return z;
+}

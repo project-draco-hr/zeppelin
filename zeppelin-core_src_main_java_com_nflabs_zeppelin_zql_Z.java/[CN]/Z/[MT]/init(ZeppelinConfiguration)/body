@@ -1,0 +1,4 @@
+{
+  Class.forName(conf.getString(ConfVars.HIVE_DRIVER));
+  Z.conf=conf;
+}

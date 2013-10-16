@@ -1,3 +1,0 @@
-{
-  return ZDD.createFromSql(this,name,sql);
-}
