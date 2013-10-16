@@ -1,4 +1,0 @@
-{
-  this.repeat=repeat;
-  return this;
-}

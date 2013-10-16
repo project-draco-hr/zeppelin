@@ -1,9 +1,0 @@
-{
-  columnSpecs.clear();
-  if (specs != null) {
-    for (    ColumnSpec s : specs) {
-      columnSpecs.add(s);
-    }
-  }
-  return this;
-}

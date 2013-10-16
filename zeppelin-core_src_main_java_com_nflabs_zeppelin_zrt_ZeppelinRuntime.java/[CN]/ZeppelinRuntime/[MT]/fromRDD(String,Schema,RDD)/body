@@ -1,3 +1,0 @@
-{
-  return ZDD.createFromRdd(this,name,schema,rdd);
-}

@@ -1,4 +1,0 @@
-{
-  List<ZeppelinApplication> apps=zam.listApplications();
-  assertNotNull(apps);
-}

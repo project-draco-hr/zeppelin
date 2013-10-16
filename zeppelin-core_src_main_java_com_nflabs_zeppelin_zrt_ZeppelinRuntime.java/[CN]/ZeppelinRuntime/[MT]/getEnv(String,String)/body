@@ -1,5 +1,0 @@
-{
-  String val=System.getenv(key);
-  if (val == null)   return def;
- else   return val;
-}

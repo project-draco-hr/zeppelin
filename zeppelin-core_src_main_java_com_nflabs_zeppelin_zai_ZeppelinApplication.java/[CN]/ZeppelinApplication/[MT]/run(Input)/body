@@ -1,5 +1,0 @@
-{
-  validateParam(input.getParams());
-  validateInputData(input.getData());
-  return execute(input);
-}

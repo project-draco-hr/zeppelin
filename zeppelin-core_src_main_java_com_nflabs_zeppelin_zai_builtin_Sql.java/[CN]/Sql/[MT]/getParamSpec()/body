@@ -1,3 +1,0 @@
-{
-  return new ParamSpec[]{new ParamSpec.StringParamSpec("query").withDescription("query string").withAllowAny(true)};
-}
