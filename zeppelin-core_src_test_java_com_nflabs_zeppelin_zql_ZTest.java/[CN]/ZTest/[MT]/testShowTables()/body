@@ -1,0 +1,5 @@
+{
+  ZeppelinConfiguration conf=new ZeppelinConfiguration();
+  Z.init(conf);
+  new Q("show tables").execute();
+}
