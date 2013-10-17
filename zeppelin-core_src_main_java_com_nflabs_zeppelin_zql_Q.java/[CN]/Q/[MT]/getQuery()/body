@@ -2,6 +2,9 @@
   if (prev() == null) {
     return query;
   }
+ else   if (query == null) {
+    return prev().getQuery();
+  }
  else {
     String prevQuery=prev().getQuery();
     Matcher m=templatePattern.matcher(query);

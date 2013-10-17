@@ -17,7 +17,7 @@
     List<ResultSet> results=new LinkedList<ResultSet>();
     String query=getQuery();
     Statement stmt=con.createStatement();
-    String[] queries=split(query,';');
+    String[] queries=Util.split(query,';');
     for (    String q : queries) {
       if (q == null || q.trim().length() == 0)       continue;
       logger.info("executeQuery(" + q + ")");

@@ -1,8 +1,4 @@
 {
-  String escapeSeq="\"',;${}";
-  char escapeChar='\\';
-  String[] blockStart=new String[]{"\"","'","${"};
-  String[] blockEnd=new String[]{"\"","'","}"};
   List<String> splits=new ArrayList<String>();
   String curString="";
   int ignoreBlockIndex=-1;
@@ -31,10 +27,21 @@
       }
     }
  else {
-      if (c == splitter) {
-        splits.add(curString);
-        curString="";
-        lastEscapeOffset=-1;
+      boolean splitted=false;
+      for (      String splitter : splitters) {
+        if (splitter.compareTo(str.substring(i,Math.min(i + splitter.length(),str.length() - 1))) == 0) {
+          splits.add(curString);
+          if (includeSplitter == true) {
+            splits.add(splitter);
+          }
+          curString="";
+          lastEscapeOffset=-1;
+          i+=splitter.length() - 1;
+          splitted=true;
+          break;
+        }
+      }
+      if (splitted == true) {
         continue;
       }
       curString+=c;

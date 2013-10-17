@@ -1,0 +1,55 @@
+{
+  List<Z> zList=new LinkedList<Z>();
+  Z currentZ=null;
+  String[] t=Util.split(stmts,op,true);
+  String currentOp=null;
+  for (int i=0; i < t.length; i++) {
+    String stmt=t[i];
+    stmt=stmt.trim();
+    boolean operatorFound=false;
+    for (    String o : op) {
+      if (o.equals(stmt)) {
+        if (currentOp != null) {
+          throw new ZQLException("Operator " + o + " can not come after "+ currentOp);
+        }
+        currentOp=o;
+        operatorFound=true;
+        break;
+      }
+    }
+    if (operatorFound == true) {
+      continue;
+    }
+    if (currentZ == null && currentOp != null) {
+      throw new ZQLException(currentOp + " can not be at the beginning");
+    }
+    Z z=null;
+    try {
+      z=loadL(stmt);
+    }
+ catch (    ZException e) {
+    }
+    if (z == null) {
+      z=new Q(stmt);
+    }
+    if (currentZ == null) {
+      currentZ=z;
+    }
+ else     if (currentOp == null) {
+      throw new ZQLException("Assert! Statment does not have operator in between");
+    }
+ else     if (currentOp.equals(op[0])) {
+      zList.add(currentZ);
+      currentZ=z;
+      currentOp=null;
+    }
+ else     if (currentOp.equals(op[1])) {
+      currentZ=currentZ.pipe(z);
+      currentOp=null;
+    }
+  }
+  if (currentZ != null) {
+    zList.add(currentZ);
+  }
+  return zList;
+}

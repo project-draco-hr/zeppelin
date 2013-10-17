@@ -1,0 +1,15 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdir();
+  new File(tmpDir.getAbsolutePath() + "/test").mkdir();
+  File erb=new File(tmpDir.getAbsolutePath() + "/test/test.erb");
+  FileOutputStream out=new FileOutputStream(erb);
+  out.write("select * from (<%= arg %>) a limit <%= params['limit'] %>\n".getBytes());
+  out.close();
+  FileOutputStream resource=new FileOutputStream(new File(tmpDir.getAbsolutePath() + "/test/test_data.log"));
+  resource.write("".getBytes());
+  resource.close();
+  ZeppelinConfiguration conf=new ZeppelinConfiguration();
+  System.out.println(tmpDir.toURI().toString());
+  System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
+}

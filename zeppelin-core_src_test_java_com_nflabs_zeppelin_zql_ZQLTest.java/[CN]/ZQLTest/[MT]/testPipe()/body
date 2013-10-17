@@ -1,0 +1,7 @@
+{
+  ZQL zql=new ZQL();
+  zql.append("select * from bank | select * from (${arg}) limit 10");
+  List<Z> z=zql.eval();
+  assertEquals(1,z.size());
+  assertEquals("select * from (select * from bank) limit 10",z.get(0).getQuery());
+}

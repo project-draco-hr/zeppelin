@@ -24,8 +24,6 @@
       }
     }
   }
-  if (prev() != null) {
-    resources.addAll(prev().getResources());
-  }
+  resources.addAll(super.getResources());
   return resources;
 }

@@ -4,11 +4,8 @@
   SimpleBindings bindings=new SimpleBindings();
   engine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
   rubyScript.append("require 'erb'\n");
-  String prevQuery=null;
-  if (prev() != null) {
-    prevQuery=prev().getQuery();
-  }
-  bindings.put(Q.PREV_VAR_NAME,prevQuery);
+  String query=super.getQuery();
+  bindings.put(Q.PREV_VAR_NAME,query);
   rubyScript.append(Q.PREV_VAR_NAME + "=$" + Q.PREV_VAR_NAME+ "\n");
   bindings.put("params",params);
   rubyScript.append("params = {}\n");

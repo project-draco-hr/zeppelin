@@ -1,0 +1,4 @@
+{
+  Z.init();
+  append(zql);
+}

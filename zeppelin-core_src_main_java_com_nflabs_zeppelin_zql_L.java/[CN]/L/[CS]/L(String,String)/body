@@ -1,0 +1,29 @@
+{
+  super(query);
+  this.name=name;
+  fs=fs();
+  try {
+    if (name.indexOf(":/") > 0) {
+      libUri=new URI(name);
+    }
+ else {
+      libUri=new URI(conf().getString(ConfVars.ZEPPELIN_LIBRARY_DIR) + "/" + name);
+    }
+  }
+ catch (  URISyntaxException e1) {
+    throw new ZException(e1);
+  }
+  try {
+    this.dir=new Path(libUri);
+    if (fs.isDirectory(dir) == false) {
+      throw new ZException("Directory " + dir.toUri() + " does not exist");
+    }
+    this.erbFile=new Path(libUri.toString() + "/" + new Path(libUri).getName()+ ".erb");
+    if (fs.isFile(erbFile) == false) {
+      throw new ZException("Template " + erbFile.toString() + " does not exist");
+    }
+  }
+ catch (  IOException e) {
+    throw new ZException(e);
+  }
+}
