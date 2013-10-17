@@ -24,5 +24,8 @@
       }
     }
   }
+  if (prev() != null) {
+    resources.addAll(prev().getResources());
+  }
   return resources;
 }
