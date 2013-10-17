@@ -1,0 +1,10 @@
+{
+  ZeppelinConfiguration conf;
+  try {
+    conf=ZeppelinConfiguration.create();
+  }
+ catch (  ConfigurationException e) {
+    conf=new ZeppelinConfiguration();
+  }
+  init(conf);
+}

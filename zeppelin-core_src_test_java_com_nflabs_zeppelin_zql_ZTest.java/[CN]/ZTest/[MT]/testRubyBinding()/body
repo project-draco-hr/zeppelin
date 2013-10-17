@@ -1,0 +1,12 @@
+{
+  ScriptEngineFactory factory=new JRubyScriptEngineFactory();
+  ScriptEngine engine1=factory.getScriptEngine();
+  SimpleBindings bindings=new SimpleBindings();
+  engine1.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
+  engine1.eval("$x=1",bindings);
+  assertEquals(new Long(1),(Long)engine1.getBindings(ScriptContext.ENGINE_SCOPE).get("x"));
+  ScriptEngine engine2=factory.getScriptEngine();
+  SimpleBindings bindings2=new SimpleBindings();
+  engine2.setBindings(bindings2,ScriptContext.ENGINE_SCOPE);
+  assertEquals(null,(Long)engine2.getBindings(ScriptContext.ENGINE_SCOPE).get("x"));
+}

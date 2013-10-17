@@ -1,0 +1,30 @@
+{
+  new File(tmpDir.getAbsolutePath() + "/test").mkdir();
+  File erb=new File(tmpDir.getAbsolutePath() + "/test/test.erb");
+  FileOutputStream out=new FileOutputStream(erb);
+  out.write("select * from table limit <%= params['limit'] %>\n".getBytes());
+  out.close();
+  FileOutputStream outInvalid=new FileOutputStream(new File(tmpDir.getAbsolutePath() + "/test/no_resource"));
+  outInvalid.write("".getBytes());
+  outInvalid.close();
+  FileOutputStream resource=new FileOutputStream(new File(tmpDir.getAbsolutePath() + "/test/test_data.log"));
+  resource.write("".getBytes());
+  resource.close();
+  ZeppelinConfiguration conf=new ZeppelinConfiguration();
+  System.out.println(tmpDir.toURI().toString());
+  System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
+  Z.init();
+  try {
+    new L("abc");
+    assertTrue(false);
+  }
+ catch (  ZException e) {
+    assertTrue(true);
+  }
+  L test=new L("test");
+  test.withParam("limit",3);
+  assertEquals("select * from table limit 3",test.getQuery());
+  List<URI> res=test.getResources();
+  assertEquals(1,res.size());
+  assertEquals("file://" + tmpDir.getAbsolutePath() + "/test/test_data.log",res.get(0).toString());
+}
