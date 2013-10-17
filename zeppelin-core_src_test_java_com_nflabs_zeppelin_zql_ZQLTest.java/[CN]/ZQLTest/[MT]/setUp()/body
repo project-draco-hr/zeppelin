@@ -9,7 +9,6 @@
   FileOutputStream resource=new FileOutputStream(new File(tmpDir.getAbsolutePath() + "/test/test_data.log"));
   resource.write("".getBytes());
   resource.close();
-  ZeppelinConfiguration conf=new ZeppelinConfiguration();
   System.out.println(tmpDir.toURI().toString());
   System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
 }
