@@ -1,0 +1,31 @@
+{
+  printWelcomeMessage();
+  ConsoleReader reader=new ConsoleReader();
+  reader.setBellEnabled(false);
+  String line;
+  while ((line=readLine(reader,"")) != null) {
+    ZQL zql;
+    try {
+      zql=new ZQL(line);
+      List<Z> zs=zql.eval();
+      for (      Z z : zs) {
+        List<ResultSet> results=z.execute();
+        for (        ResultSet r : results) {
+          new ResultDataStream(r,System.out).load();
+        }
+      }
+    }
+ catch (    ZException e) {
+      e.printStackTrace();
+    }
+catch (    SQLException e) {
+      e.printStackTrace();
+    }
+catch (    ResultDataException e) {
+      e.printStackTrace();
+    }
+catch (    ZQLException e) {
+      e.printStackTrace();
+    }
+  }
+}

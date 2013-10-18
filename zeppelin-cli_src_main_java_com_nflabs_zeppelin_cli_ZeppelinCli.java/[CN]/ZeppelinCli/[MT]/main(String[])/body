@@ -30,4 +30,8 @@
     HelpFormatter formatter=new HelpFormatter();
     formatter.printHelp("ZeppelinCli",options);
   }
+ else {
+    ZeppelinCli cli=new ZeppelinCli();
+    cli.run();
+  }
 }
