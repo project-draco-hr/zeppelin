@@ -1,0 +1,5 @@
+ResultSet res
+int max
+OutputStream out
+String columnSep
+String rowSep

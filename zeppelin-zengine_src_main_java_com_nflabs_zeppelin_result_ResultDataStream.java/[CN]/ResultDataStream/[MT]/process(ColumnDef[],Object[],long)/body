@@ -1,0 +1,21 @@
+{
+  if (n == 0) {
+    for (int i=0; i < row.length; i++) {
+      Object r=row[i];
+      String strRepresentation;
+      if (r == null) {
+        strRepresentation="null";
+      }
+ else {
+        strRepresentation=r.toString();
+      }
+      if (i == 0) {
+        out.write(strRepresentation.getBytes());
+      }
+ else {
+        out.write((columnSep + strRepresentation).getBytes());
+      }
+    }
+    out.write(rowSep.getBytes());
+  }
+}

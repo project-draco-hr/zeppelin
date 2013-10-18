@@ -1,0 +1,10 @@
+{
+  try {
+    beforeProcess();
+    init(res,max);
+    afterProcess();
+  }
+ catch (  SQLException e) {
+    throw new ResultDataException(e);
+  }
+}

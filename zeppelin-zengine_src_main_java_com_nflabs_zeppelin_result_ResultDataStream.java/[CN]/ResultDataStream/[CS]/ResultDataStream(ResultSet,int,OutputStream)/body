@@ -1,0 +1,3 @@
+{
+  this(res,max,out,DEFAULT_COLUMN_SEPARATOR,DEFAULT_ROW_SEPARATOR);
+}
