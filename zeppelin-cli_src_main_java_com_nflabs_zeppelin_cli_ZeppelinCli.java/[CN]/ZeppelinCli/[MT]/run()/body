@@ -7,7 +7,7 @@
     ZQL zql;
     try {
       zql=new ZQL(line);
-      List<Z> zs=zql.eval();
+      List<Z> zs=zql.compile();
       for (      Z z : zs) {
         List<ResultSet> results=z.execute();
         for (        ResultSet r : results) {
