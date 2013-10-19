@@ -1,0 +1,3 @@
+{
+  logger.info("Job " + job.getJobName() + " finished by scheduler "+ scheduler.getName());
+}

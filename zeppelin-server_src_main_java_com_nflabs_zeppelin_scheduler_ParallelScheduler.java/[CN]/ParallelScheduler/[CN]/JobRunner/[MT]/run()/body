@@ -1,0 +1,9 @@
+{
+  if (listener != null)   listener.jobStarted(scheduler,job);
+  job.run();
+  if (listener != null)   listener.jobFinished(scheduler,job);
+synchronized (queue) {
+    running.remove(job);
+    queue.notify();
+  }
+}

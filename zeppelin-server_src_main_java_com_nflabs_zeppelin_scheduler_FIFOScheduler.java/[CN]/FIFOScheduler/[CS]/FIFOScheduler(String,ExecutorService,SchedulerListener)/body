@@ -1,0 +1,5 @@
+{
+  this.name=name;
+  this.executor=executor;
+  this.listener=listener;
+}

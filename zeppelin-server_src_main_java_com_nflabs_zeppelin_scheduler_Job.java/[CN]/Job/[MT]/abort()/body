@@ -1,0 +1,4 @@
+{
+  aborted=true;
+  jobAbort();
+}

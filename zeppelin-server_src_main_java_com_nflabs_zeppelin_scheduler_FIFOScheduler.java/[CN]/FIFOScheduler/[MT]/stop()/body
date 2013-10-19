@@ -1,0 +1,6 @@
+{
+  terminate=true;
+synchronized (queue) {
+    queue.notify();
+  }
+}

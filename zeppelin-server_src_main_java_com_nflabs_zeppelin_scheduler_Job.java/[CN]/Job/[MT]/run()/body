@@ -1,0 +1,23 @@
+{
+  if (aborted == true) {
+    setStatus(Status.ABORT);
+    return;
+  }
+  try {
+    setStatus(Status.RUNNING);
+    dateStarted=new Date();
+    ret=jobRun();
+    if (aborted == true) {
+      setStatus(Status.ABORT);
+    }
+ else {
+      setStatus(Status.FINISHED);
+    }
+    dateFinished=new Date();
+  }
+ catch (  Exception e) {
+    this.exception=e;
+    setStatus(Status.ERROR);
+    dateFinished=new Date();
+  }
+}

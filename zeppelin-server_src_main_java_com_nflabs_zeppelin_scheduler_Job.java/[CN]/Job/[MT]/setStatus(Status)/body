@@ -1,0 +1,5 @@
+{
+  if (this.status == status)   return;
+  this.status=status;
+  if (listener != null)   listener.statusChange(this);
+}

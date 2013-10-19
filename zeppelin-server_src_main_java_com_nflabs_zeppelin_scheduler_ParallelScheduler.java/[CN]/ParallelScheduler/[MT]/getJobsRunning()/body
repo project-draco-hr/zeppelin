@@ -1,0 +1,9 @@
+{
+  List<Job> ret=new LinkedList<Job>();
+synchronized (queue) {
+    for (    Job job : running) {
+      ret.add(job);
+    }
+  }
+  return ret;
+}

@@ -1,0 +1,5 @@
+{
+  Map<String,Object> i=new HashMap<String,Object>();
+  i.put("LoopCount",Integer.toString(count));
+  return i;
+}

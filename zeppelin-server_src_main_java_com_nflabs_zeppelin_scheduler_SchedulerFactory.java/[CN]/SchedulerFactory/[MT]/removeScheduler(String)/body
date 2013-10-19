@@ -1,0 +1,9 @@
+{
+synchronized (schedulers) {
+    Scheduler s=schedulers.remove(name);
+    if (s != null) {
+      s.stop();
+    }
+  }
+  return null;
+}

@@ -1,0 +1,6 @@
+{
+  long p=(System.currentTimeMillis() - start) * 100 / time;
+  if (p < 0)   p=0;
+  if (p > 100)   p=100;
+  return (int)p;
+}

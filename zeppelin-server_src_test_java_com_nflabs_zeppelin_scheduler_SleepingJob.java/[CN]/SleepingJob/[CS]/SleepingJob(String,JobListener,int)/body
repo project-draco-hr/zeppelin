@@ -1,0 +1,5 @@
+{
+  super(jobName,listener);
+  this.time=time;
+  count=0;
+}

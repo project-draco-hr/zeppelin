@@ -1,0 +1,4 @@
+String name
+ExecutorService executor
+SchedulerListener listener
+int maxConcurrency

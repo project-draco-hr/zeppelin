@@ -1,0 +1,6 @@
+{
+  this.maxConcurrency=maxConcurrency;
+synchronized (queue) {
+    queue.notify();
+  }
+}

@@ -1,0 +1,13 @@
+{
+  start=System.currentTimeMillis();
+  while (abort == false) {
+    count++;
+    try {
+      Thread.sleep(10);
+    }
+ catch (    InterruptedException e) {
+    }
+    if (System.currentTimeMillis() - start > time)     break;
+  }
+  return System.currentTimeMillis() - start;
+}

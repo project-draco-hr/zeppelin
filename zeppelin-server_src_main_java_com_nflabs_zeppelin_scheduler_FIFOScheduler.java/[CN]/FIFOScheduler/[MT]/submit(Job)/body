@@ -1,0 +1,6 @@
+{
+synchronized (queue) {
+    queue.add(job);
+    queue.notify();
+  }
+}
