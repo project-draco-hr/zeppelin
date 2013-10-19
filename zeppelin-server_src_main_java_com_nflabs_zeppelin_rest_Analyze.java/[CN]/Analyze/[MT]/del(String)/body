@@ -1,0 +1,9 @@
+{
+  boolean s=sessionManager.discard(sessionId);
+  if (s == false) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+ else {
+    return new JsonResponse(Status.OK).build();
+  }
+}
