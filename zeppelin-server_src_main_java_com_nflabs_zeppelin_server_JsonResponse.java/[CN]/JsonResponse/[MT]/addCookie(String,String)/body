@@ -1,0 +1,3 @@
+{
+  return addCookie(new NewCookie(name,value));
+}

@@ -1,0 +1,5 @@
+{
+  if (cookies == null)   cookies=new ArrayList<NewCookie>();
+  cookies.add(newCookie);
+  return this;
+}

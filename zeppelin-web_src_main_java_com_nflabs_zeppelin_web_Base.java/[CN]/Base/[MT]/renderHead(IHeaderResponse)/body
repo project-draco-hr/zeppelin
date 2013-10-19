@@ -1,13 +1,17 @@
 {
-  response.renderJavaScriptReference("https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js");
-  response.renderJavaScriptReference("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js");
-  response.renderCSSReference("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css","screen");
-  response.renderCSSReference("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css");
-  response.renderJavaScriptReference("js/lib/json2.js");
-  response.renderCSSReference("css/zeppelin.css");
-  response.renderJavaScriptReference("js/zeppelin.js");
+  response.render(JavaScriptHeaderItem.forUrl("https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/handlebars-1.0.0.js"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/ember-1.0.0.js"));
+  response.render(JavaScriptHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"));
+  response.render(CssHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css","screen"));
+  response.render(CssHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/ace/ace.js"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/json2.js"));
+  response.render(CssHeaderItem.forUrl("css/zeppelin.css"));
+  response.render(JavaScriptHeaderItem.forUrl("js/zeppelin.js"));
+  response.render(JavaScriptHeaderItem.forUrl("app/main.js"));
   if (isDevMode()) {
-    response.renderJavaScript("var zeppelinMode=\"development\";\n","configure-zeppelin");
+    response.render(JavaScriptHeaderItem.forScript("var zeppelinMode=\"development\";\n","configure-zeppelin"));
   }
-  response.renderJavaScript("var zeppelin = new Zeppelin();","init-zeppelin");
+  response.render(JavaScriptHeaderItem.forScript("var zeppelin = new Zeppelin();","init-zeppelin"));
 }

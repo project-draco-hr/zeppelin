@@ -1,4 +1,0 @@
-{
-  super.renderHead(response);
-  response.renderJavaScriptReference("js/analyze.js");
-}

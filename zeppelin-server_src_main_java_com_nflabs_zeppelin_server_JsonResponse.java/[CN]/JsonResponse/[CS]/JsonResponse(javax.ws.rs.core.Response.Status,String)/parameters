@@ -1,0 +1,2 @@
+javax.ws.rs.core.Response.Status status
+String message

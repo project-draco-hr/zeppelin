@@ -1,0 +1,7 @@
+{
+  ResponseBuilder r=javax.ws.rs.core.Response.status(status).entity(this.toString());
+  if (cookies != null) {
+    for (    NewCookie nc : cookies)     r.cookie(nc);
+  }
+  return r.build();
+}

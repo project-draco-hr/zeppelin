@@ -1,0 +1,4 @@
+{
+  logger.info("zql:" + data);
+  return new JsonResponse(Status.OK,"zql").build();
+}
