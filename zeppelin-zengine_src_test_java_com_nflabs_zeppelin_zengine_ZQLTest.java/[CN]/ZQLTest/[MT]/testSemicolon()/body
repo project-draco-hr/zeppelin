@@ -1,7 +1,7 @@
 {
   ZQL zql=new ZQL();
   zql.append("select * from bank | select * from (${arg}) limit 10; show tables");
-  List<Z> z=zql.eval();
+  List<Z> z=zql.compile();
   assertEquals(2,z.size());
   assertEquals("select * from (select * from bank) limit 10",z.get(0).getQuery());
   assertEquals("show tables",z.get(1).getQuery());

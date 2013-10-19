@@ -1,0 +1,18 @@
+{
+  ZQL zqlEvaluator=new ZQL(zql);
+  List<Z> zqlResult=null;
+  zqlResult=zqlEvaluator.compile();
+  for (  Z zz : zqlResult) {
+    List<ResultSet> res;
+    try {
+      res=zz.execute();
+      for (      ResultSet r : res) {
+        results.add(new ResultDataObject(r));
+      }
+    }
+ catch (    ZException e) {
+      results.add(new ResultDataObject(e));
+    }
+  }
+  return results;
+}

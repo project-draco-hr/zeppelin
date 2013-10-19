@@ -1,0 +1,6 @@
+{
+  AnalyzeSession s=get(sessionId);
+  if (s == null)   return null;
+  scheduler.submit(s);
+  return s;
+}

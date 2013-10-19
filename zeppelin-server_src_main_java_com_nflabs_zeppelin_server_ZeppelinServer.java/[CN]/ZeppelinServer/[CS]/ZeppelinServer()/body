@@ -1,0 +1,4 @@
+{
+  this.schedulerFactory=new SchedulerFactory();
+  this.analyzeSessionManager=new AnalyzeSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30));
+}

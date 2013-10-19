@@ -1,0 +1,10 @@
+{
+synchronized (sessions) {
+    if (sessions.containsKey(sessionId)) {
+      return sessions.get(sessionId);
+    }
+ else {
+      return null;
+    }
+  }
+}

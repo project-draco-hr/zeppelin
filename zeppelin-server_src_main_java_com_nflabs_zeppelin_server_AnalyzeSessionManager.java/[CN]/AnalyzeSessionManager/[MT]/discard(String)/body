@@ -1,0 +1,9 @@
+{
+  AnalyzeSession s=get(sessionId);
+  if (s == null)   return false;
+  abort(sessionId);
+synchronized (sessions) {
+    sessions.remove(sessionId);
+  }
+  return true;
+}
