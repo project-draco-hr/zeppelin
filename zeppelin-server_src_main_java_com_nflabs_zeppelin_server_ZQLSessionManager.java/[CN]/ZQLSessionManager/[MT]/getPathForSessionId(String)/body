@@ -1,0 +1,13 @@
+{
+  String datePart=sessionId.substring(0,sessionId.indexOf('_'));
+  SimpleDateFormat df=new SimpleDateFormat("yyyyMMdd-HHmmss");
+  Date date;
+  try {
+    date=df.parse(datePart);
+  }
+ catch (  ParseException e) {
+    logger.error("Invalid sessionId format " + sessionId,e);
+    return null;
+  }
+  return new Path(sessionPersistBasePath + "/" + pathFormat.format(date)+ sessionId);
+}

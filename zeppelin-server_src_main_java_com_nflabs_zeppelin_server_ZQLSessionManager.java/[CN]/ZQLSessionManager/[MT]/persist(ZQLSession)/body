@@ -1,2 +1,8 @@
 {
+  String json=gson.toJson(session);
+  Path path=getPathForSession(session);
+  fs.mkdirs(path.getParent());
+  FSDataOutputStream out=fs.create(path,true);
+  out.writeBytes(json);
+  out.close();
 }

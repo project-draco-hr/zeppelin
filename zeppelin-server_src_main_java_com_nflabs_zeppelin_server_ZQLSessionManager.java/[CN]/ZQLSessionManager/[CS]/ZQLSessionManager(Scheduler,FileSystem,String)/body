@@ -1,0 +1,5 @@
+{
+  this.scheduler=scheduler;
+  this.sessionPersistBasePath=sessionPersistBasePath;
+  this.fs=fs;
+}

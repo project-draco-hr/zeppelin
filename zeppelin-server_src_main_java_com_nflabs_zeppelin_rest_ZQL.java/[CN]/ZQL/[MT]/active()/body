@@ -1,4 +1,4 @@
 {
-  Map<String,ZQLSession> sessions=sessionManager.getRunning();
+  Map<String,ZQLSession> sessions=sessionManager.getActive();
   return new JsonResponse(Status.OK,"",sessions.values()).build();
 }

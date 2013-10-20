@@ -1,0 +1,17 @@
+{
+  FindParam param=gson.fromJson(json,FindParam.class);
+  Date from=new Date(0);
+  Date to=new Date();
+  int max=10;
+  if (param.from > 0) {
+    from=new Date(param.from);
+  }
+  if (param.to > 0) {
+    to=new Date(param.to);
+  }
+  if (param.max > 0) {
+    max=param.max;
+  }
+  Map<String,ZQLSession> sessions=sessionManager.find(from,to,max);
+  return new JsonResponse(Status.OK,"",sessions.values()).build();
+}

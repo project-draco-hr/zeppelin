@@ -1,0 +1,12 @@
+{
+  if (fs.isFile(path) == false) {
+    return null;
+  }
+  FSDataInputStream ins=fs.open(path);
+  ZQLSession session=gson.fromJson(new InputStreamReader(ins),ZQLSession.class);
+  if (session.getStatus() == Status.RUNNING) {
+    session.setStatus(Status.ABORT);
+  }
+  ins.close();
+  return session;
+}

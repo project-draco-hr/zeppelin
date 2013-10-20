@@ -3,8 +3,12 @@ synchronized (sessions) {
     if (sessions.containsKey(sessionId)) {
       return sessions.get(sessionId);
     }
- else {
-      return null;
-    }
+  }
+  Path path=getPathForSessionId(sessionId);
+  try {
+    return load(path);
+  }
+ catch (  IOException e) {
+    return null;
   }
 }

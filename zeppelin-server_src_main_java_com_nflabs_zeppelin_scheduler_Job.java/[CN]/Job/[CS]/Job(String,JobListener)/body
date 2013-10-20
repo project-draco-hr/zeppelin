@@ -1,7 +1,8 @@
 {
   this.jobName=jobName;
   this.listener=listener;
-  status=Status.READY;
-  id=System.currentTimeMillis() + "_" + hashCode();
   dateCreated=new Date();
+  SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
+  id=dateFormat.format(dateCreated) + "_" + hashCode();
+  setStatus(Status.READY);
 }

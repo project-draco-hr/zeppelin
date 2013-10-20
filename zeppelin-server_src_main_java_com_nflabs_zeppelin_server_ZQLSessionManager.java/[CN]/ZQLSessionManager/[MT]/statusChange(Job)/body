@@ -4,4 +4,10 @@ synchronized (sessions) {
       sessions.remove(job.getId());
     }
   }
+  try {
+    persist((ZQLSession)job);
+  }
+ catch (  IOException e) {
+    logger.error("Can't persist session " + job.getId(),e);
+  }
 }
