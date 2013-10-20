@@ -1,5 +1,5 @@
 {
-  AnalyzeSession s=sessionManager.run(sessionId);
+  AnalyzeSession s=sessionManager.get(sessionId);
   if (s == null) {
     return new JsonResponse(Status.OK,"not found").build();
   }
