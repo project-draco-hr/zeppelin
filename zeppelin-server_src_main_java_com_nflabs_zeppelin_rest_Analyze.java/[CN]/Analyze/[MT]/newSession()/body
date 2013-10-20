@@ -1,4 +1,0 @@
-{
-  AnalyzeSession s=sessionManager.create();
-  return new JsonResponse(Status.OK,"",s).build();
-}

@@ -1,4 +1,0 @@
-{
-  Map<String,AnalyzeSession> sessions=sessionManager.getRunning();
-  return new JsonResponse(Status.OK,"",sessions.values()).build();
-}

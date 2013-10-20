@@ -1,6 +1,6 @@
 {
   Set<Object> singletons=new HashSet<Object>();
-  Analyze analyze=new Analyze(analyzeSessionManager);
+  ZQL analyze=new ZQL(analyzeSessionManager);
   singletons.add(analyze);
   return singletons;
 }

@@ -1,4 +1,4 @@
 {
   this.schedulerFactory=new SchedulerFactory();
-  this.analyzeSessionManager=new AnalyzeSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30));
+  this.analyzeSessionManager=new ZQLSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30));
 }

@@ -1,0 +1,3 @@
+{
+  return (Map<String,ZQLSession>)sessions.clone();
+}

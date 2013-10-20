@@ -1,0 +1,7 @@
+{
+  ZQLSession as=new ZQLSession("",this);
+synchronized (sessions) {
+    sessions.put(as.getId(),as);
+  }
+  return as;
+}
