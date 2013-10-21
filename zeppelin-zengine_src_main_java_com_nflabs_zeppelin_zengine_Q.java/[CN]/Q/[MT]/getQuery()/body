@@ -1,11 +1,11 @@
 {
-  String q=null;
-  if (prev() != null && prev().name() != null) {
-    String prevName=prev().name();
-    q=query.replaceAll("[$][{]" + PREV_VAR_NAME + "[}]",prevName.trim());
+  ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
+  BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+  String q=getQuery(erb,(prev() == null) ? null : prev().name(),null,params);
+  try {
+    ins.close();
   }
- else {
-    q=query;
+ catch (  IOException e) {
   }
   String tableCreation=null;
   if (name == null) {

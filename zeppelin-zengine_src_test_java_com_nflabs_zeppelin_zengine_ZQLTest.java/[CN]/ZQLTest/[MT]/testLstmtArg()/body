@@ -1,6 +1,6 @@
 {
-  ZQL zql=new ZQL("select * from test | test(limit=10) select * from arg");
+  ZQL zql=new ZQL("select * from test | test(limit=10)");
   List<Z> z=zql.compile();
   assertEquals(1,z.size());
-  assertEquals("CREATE VIEW " + z.get(0).name() + " AS select * from (select * from arg) a limit 10",z.get(0).getQuery());
+  assertEquals("CREATE VIEW " + z.get(0).name() + " AS select * from ("+ z.get(0).prev().name()+ ") a limit 10",z.get(0).getQuery());
 }
