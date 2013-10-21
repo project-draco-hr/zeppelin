@@ -1,13 +1,13 @@
 {
   super(query);
-  this.name=name;
+  this.libName=libName;
   fs=fs();
   try {
-    if (name.indexOf(":/") > 0) {
-      libUri=new URI(name);
+    if (libName.indexOf(":/") > 0) {
+      libUri=new URI(libName);
     }
  else {
-      libUri=new URI(conf().getString(ConfVars.ZEPPELIN_LIBRARY_DIR) + "/" + name);
+      libUri=new URI(conf().getString(ConfVars.ZEPPELIN_LIBRARY_DIR) + "/" + libName);
     }
   }
  catch (  URISyntaxException e1) {

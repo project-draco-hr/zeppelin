@@ -1,0 +1,9 @@
+{
+  if (name == null)   return null;
+  if (cache == true) {
+    return "DROP TABLE " + name;
+  }
+ else {
+    return "DROP VIEW " + name;
+  }
+}

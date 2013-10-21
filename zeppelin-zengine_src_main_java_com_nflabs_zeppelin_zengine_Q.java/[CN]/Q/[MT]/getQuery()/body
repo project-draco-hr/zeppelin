@@ -1,18 +1,23 @@
 {
-  if (prev() == null) {
-    return query;
-  }
- else   if (query == null) {
-    return prev().getQuery();
+  String q=null;
+  if (prev() != null && prev().name() != null) {
+    String prevName=prev().name();
+    q=query.replaceAll("[$][{]" + PREV_VAR_NAME + "[}]",prevName.trim());
   }
  else {
-    String prevQuery=prev().getQuery();
-    Matcher m=templatePattern.matcher(query);
-    if (m.matches()) {
-      return query.replaceAll("[$][{]" + PREV_VAR_NAME + "[}]",prevQuery.replaceAll("\\$","\\\\\\$").trim());
+    q=query;
+  }
+  String tableCreation=null;
+  if (name == null) {
+    tableCreation="";
+  }
+ else {
+    if (cache) {
+      tableCreation="CREATE TABLE " + name + " AS ";
     }
  else {
-      return query + " " + prevQuery;
+      tableCreation="CREATE VIEW " + name + " AS ";
     }
   }
+  return tableCreation + q;
 }

@@ -9,10 +9,8 @@
       zql=new ZQL(line);
       List<Z> zs=zql.compile();
       for (      Z z : zs) {
-        List<ResultSet> results=z.execute();
-        for (        ResultSet r : results) {
-          new ResultDataStream(r,System.out).load();
-        }
+        ResultSet res=z.execute();
+        new ResultDataStream(res,System.out).load();
       }
     }
  catch (    ZException e) {

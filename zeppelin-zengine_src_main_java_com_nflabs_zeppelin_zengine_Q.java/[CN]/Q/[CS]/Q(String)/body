@@ -1,3 +1,5 @@
 {
   this.query=query;
+  name=NAME_PREFIX + this.hashCode();
+  cache=false;
 }

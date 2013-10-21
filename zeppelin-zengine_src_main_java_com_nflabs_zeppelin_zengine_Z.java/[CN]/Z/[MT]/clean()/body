@@ -1,0 +1,15 @@
+{
+  if (result == null)   return;
+  try {
+    result.close();
+  }
+ catch (  SQLException e) {
+    logger.error("Error on close ResultSet",e);
+  }
+  String q=getCleanQuery();
+  executeQuery(q);
+  if (prev() != null) {
+    prev().clean();
+  }
+  result=null;
+}

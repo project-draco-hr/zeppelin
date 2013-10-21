@@ -1,0 +1,34 @@
+{
+  if (query == null)   return null;
+  Connection con=null;
+  try {
+    con=getConnection();
+    List<URI> resources=getResources();
+    for (    URI res : resources) {
+      Statement stmt=con.createStatement();
+      logger.info("add resource " + res.toString());
+      if (res.getPath().endsWith(".jar")) {
+        stmt.executeQuery("add JAR " + new File(res.toString()).getAbsolutePath());
+      }
+ else {
+        stmt.executeQuery("add FILE " + new File(res.toString()).getAbsolutePath());
+      }
+      stmt.close();
+    }
+    ResultSet res=null;
+    Statement stmt=con.createStatement();
+    logger.info("executeQuery(" + query + ")");
+    res=stmt.executeQuery(query);
+    stmt.close();
+    return res;
+  }
+ catch (  SQLException e) {
+    try {
+      con.close();
+    }
+ catch (    SQLException e1) {
+      logger.error("error on closing connection",e1);
+    }
+    throw new ZException(e);
+  }
+}
