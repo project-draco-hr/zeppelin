@@ -1,4 +1,3 @@
 {
-  aborted=true;
-  jobAbort();
+  aborted=jobAbort();
 }

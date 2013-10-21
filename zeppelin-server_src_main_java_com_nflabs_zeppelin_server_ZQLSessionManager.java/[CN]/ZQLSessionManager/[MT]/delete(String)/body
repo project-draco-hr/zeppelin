@@ -1,0 +1,13 @@
+{
+  ZQLSession s=get(sessionId);
+  if (s == null)   return false;
+  if (s.getStatus() == Status.RUNNING)   return false;
+  Path path=getPathForSessionId(sessionId);
+  try {
+    return fs.delete(path,true);
+  }
+ catch (  IOException e) {
+    logger.error("Can't remove session file " + path,e);
+    return false;
+  }
+}

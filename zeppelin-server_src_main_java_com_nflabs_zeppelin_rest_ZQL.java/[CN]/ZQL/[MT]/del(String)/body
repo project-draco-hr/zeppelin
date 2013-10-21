@@ -1,5 +1,5 @@
 {
-  boolean s=sessionManager.discard(sessionId);
+  boolean s=sessionManager.delete(sessionId);
   if (s == false) {
     return new JsonResponse(Status.NOT_FOUND).build();
   }

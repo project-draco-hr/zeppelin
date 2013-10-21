@@ -1,12 +1,13 @@
 {
-synchronized (sessions) {
-    if (sessions.containsKey(sessionId)) {
-      return sessions.get(sessionId);
-    }
-  }
   Path path=getPathForSessionId(sessionId);
   try {
-    return load(path);
+    ZQLSession session=load(path);
+    if (session != null) {
+      return session;
+    }
+ else {
+      return null;
+    }
   }
  catch (  IOException e) {
     return null;

@@ -1,3 +1,4 @@
 {
   abort=true;
+  return true;
 }

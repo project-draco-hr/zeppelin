@@ -1,7 +1,11 @@
 {
   ZQLSession as=new ZQLSession("",this);
-synchronized (sessions) {
-    sessions.put(as.getId(),as);
+  try {
+    persist(as);
+  }
+ catch (  IOException e) {
+    logger.error("Can't create session ",e);
+    return null;
   }
   return as;
 }

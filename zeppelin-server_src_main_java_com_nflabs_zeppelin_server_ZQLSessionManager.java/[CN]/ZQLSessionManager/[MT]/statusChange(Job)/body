@@ -1,9 +1,4 @@
 {
-  if (job.getStatus() == Status.FINISHED || job.getStatus() == Status.ERROR || job.getStatus() == Status.ABORT) {
-synchronized (sessions) {
-      sessions.remove(job.getId());
-    }
-  }
   try {
     persist((ZQLSession)job);
   }
