@@ -15,5 +15,4 @@
       throw new ZException(e);
     }
   }
-  Velocity.init();
 }
