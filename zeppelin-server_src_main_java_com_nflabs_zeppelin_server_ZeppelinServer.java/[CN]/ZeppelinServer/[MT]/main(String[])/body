@@ -1,6 +1,7 @@
 {
   if (System.getProperty("log4j.configuration") == null) {
-    Logger.getRootLogger().setLevel(Level.DEBUG);
+    Logger.getLogger("com.nflabs.zeppelin").setLevel(Level.DEBUG);
+    Logger.getRootLogger().setLevel(Level.INFO);
   }
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);

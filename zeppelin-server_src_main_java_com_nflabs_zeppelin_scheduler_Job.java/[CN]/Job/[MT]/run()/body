@@ -1,6 +1,5 @@
 {
   if (aborted == true) {
-    setStatus(Status.ABORT);
     return;
   }
   try {
@@ -9,7 +8,6 @@
     ret=jobRun();
     dateFinished=new Date();
     if (aborted == true) {
-      setStatus(Status.ABORT);
     }
  else {
       setStatus(Status.FINISHED);

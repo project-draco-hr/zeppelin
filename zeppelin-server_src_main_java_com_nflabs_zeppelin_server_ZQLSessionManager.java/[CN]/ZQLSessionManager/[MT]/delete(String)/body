@@ -2,6 +2,9 @@
   ZQLSession s=get(sessionId);
   if (s == null)   return false;
   if (s.getStatus() == Status.RUNNING)   return false;
+synchronized (active) {
+    active.remove(sessionId);
+  }
   Path path=getPathForSessionId(sessionId);
   try {
     return fs.delete(path,true);

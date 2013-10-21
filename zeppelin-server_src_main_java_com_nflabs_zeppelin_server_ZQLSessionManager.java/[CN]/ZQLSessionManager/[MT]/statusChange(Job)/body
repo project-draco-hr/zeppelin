@@ -1,5 +1,14 @@
 {
   try {
+    if (job.getStatus() == Status.FINISHED) {
+synchronized (active) {
+        active.remove(job.getId());
+      }
+    }
+    if (job.getStatus() == Status.ERROR && job.getException() != null) {
+      logger.error("Session error",job.getException());
+    }
+    logger.info("Session " + job.getId() + " status changed "+ job.getStatus());
     persist((ZQLSession)job);
   }
  catch (  IOException e) {

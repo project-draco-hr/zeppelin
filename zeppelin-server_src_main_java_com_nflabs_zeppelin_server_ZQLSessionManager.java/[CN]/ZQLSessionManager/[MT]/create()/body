@@ -2,6 +2,9 @@
   ZQLSession as=new ZQLSession("",this);
   try {
     persist(as);
+synchronized (active) {
+      active.put(as.getId(),as);
+    }
   }
  catch (  IOException e) {
     logger.error("Can't create session ",e);

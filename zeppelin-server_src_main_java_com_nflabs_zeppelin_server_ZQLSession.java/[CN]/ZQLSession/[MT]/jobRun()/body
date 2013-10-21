@@ -1,6 +1,7 @@
 {
+  LinkedList<ResultDataObject> results=new LinkedList<ResultDataObject>();
   ZQL zqlEvaluator=new ZQL(zql);
-  List<Z> zqlResult=null;
+  List<Z> zqlResult;
   zqlResult=zqlEvaluator.compile();
   for (  Z zz : zqlResult) {
     List<ResultSet> res;

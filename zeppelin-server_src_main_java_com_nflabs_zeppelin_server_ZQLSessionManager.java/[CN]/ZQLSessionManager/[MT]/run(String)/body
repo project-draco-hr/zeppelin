@@ -1,6 +1,7 @@
 {
   ZQLSession s=get(sessionId);
   if (s == null)   return null;
+  s.setListener(this);
   scheduler.submit(s);
   return s;
 }
