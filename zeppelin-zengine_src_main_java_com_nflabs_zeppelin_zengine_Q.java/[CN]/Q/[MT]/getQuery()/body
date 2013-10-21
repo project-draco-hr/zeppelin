@@ -1,7 +1,8 @@
 {
   ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
   BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-  String q=getQuery(erb,(prev() == null) ? null : prev().name(),null,params);
+  ZContext zContext=new ZContext((prev() == null) ? null : prev().name(),null,params);
+  String q=getQuery(erb,zContext);
   try {
     ins.close();
   }

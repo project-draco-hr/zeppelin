@@ -1,4 +1,3 @@
-BufferedReader erb
-String prev
+String table
 String arg
 Map<String,Object> params
