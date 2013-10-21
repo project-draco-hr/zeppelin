@@ -12,7 +12,8 @@
       }
     }
  catch (    ZException e) {
-      results.add(new ResultDataObject(e));
+      error=new ResultDataObject(e);
+      throw e;
     }
   }
   return results;
