@@ -1,5 +1,5 @@
 {
-  Connection con;
+  Connection con=null;
   try {
     con=getConnection();
     List<URI> resources=getResources();
@@ -27,6 +27,12 @@
     return results;
   }
  catch (  SQLException e) {
+    try {
+      con.close();
+    }
+ catch (    SQLException e1) {
+      logger.error("error on closing connection",e1);
+    }
     throw new ZException(e);
   }
 }
