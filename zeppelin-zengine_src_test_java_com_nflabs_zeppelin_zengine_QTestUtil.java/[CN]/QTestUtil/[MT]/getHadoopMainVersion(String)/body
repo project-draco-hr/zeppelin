@@ -1,0 +1,11 @@
+{
+  if (input == null) {
+    return null;
+  }
+  Pattern p=Pattern.compile("^(\\d+\\.\\d+).*");
+  Matcher m=p.matcher(input);
+  if (m.matches()) {
+    return m.group(1);
+  }
+  return null;
+}

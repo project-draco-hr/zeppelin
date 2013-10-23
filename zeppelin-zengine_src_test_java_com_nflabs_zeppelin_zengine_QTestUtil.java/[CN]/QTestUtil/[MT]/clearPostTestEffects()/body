@@ -1,0 +1,3 @@
+{
+  setup.postTest(conf);
+}

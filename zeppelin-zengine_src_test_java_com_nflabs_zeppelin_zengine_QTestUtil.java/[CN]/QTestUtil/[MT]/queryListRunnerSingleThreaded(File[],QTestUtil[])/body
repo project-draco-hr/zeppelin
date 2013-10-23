@@ -1,0 +1,18 @@
+{
+  boolean failed=false;
+  qt[0].cleanUp();
+  qt[0].createSources();
+  for (int i=0; i < qfiles.length && !failed; i++) {
+    qt[i].clearTestSideEffects();
+    qt[i].cliInit(qfiles[i].getName(),false);
+    qt[i].executeClient(qfiles[i].getName());
+    int ecode=qt[i].checkCliDriverResults(qfiles[i].getName());
+    if (ecode != 0) {
+      failed=true;
+      System.err.println("Test " + qfiles[i].getName() + " results check failed with error code "+ ecode);
+      outputTestFailureHelpMessage();
+    }
+    qt[i].clearPostTestEffects();
+  }
+  return (!failed);
+}

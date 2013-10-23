@@ -1,0 +1,24 @@
+{
+  FileSystem srcFs=src.getFileSystem(conf);
+  FileSystem destFs=dest.getFileSystem(conf);
+  if (srcFs.exists(src)) {
+    FileStatus[] files=srcFs.listStatus(src);
+    for (    FileStatus file : files) {
+      String name=file.getPath().getName();
+      Path dfs_path=file.getPath();
+      Path local_path=new Path(dest,name);
+      if (srcTables.contains(name)) {
+        continue;
+      }
+      if (file.isDir()) {
+        if (!destFs.exists(local_path)) {
+          destFs.mkdirs(local_path);
+        }
+        copyDirectoryToLocal(dfs_path,local_path);
+      }
+ else {
+        srcFs.copyToLocalFile(dfs_path,local_path);
+      }
+    }
+  }
+}

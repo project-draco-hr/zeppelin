@@ -1,0 +1,44 @@
+{
+  FileInputStream fis=new FileInputStream(qf);
+  BufferedInputStream bis=new BufferedInputStream(fis);
+  DataInputStream dis=new DataInputStream(bis);
+  StringBuilder qsb=new StringBuilder();
+  Pattern pattern=Pattern.compile("-- (EX|IN)CLUDE_HADOOP_MAJOR_VERSIONS\\((.*)\\)");
+  boolean excludeQuery=false;
+  boolean includeQuery=false;
+  Set<String> versionSet=new HashSet<String>();
+  String hadoopVer=ShimLoader.getMajorVersion();
+  while (dis.available() != 0) {
+    String line=dis.readLine();
+    Matcher matcher=pattern.matcher(line);
+    if (matcher.find()) {
+      if (excludeQuery || includeQuery) {
+        String message="QTestUtil: qfile " + qf.getName() + " contains more than one reference to (EX|IN)CLUDE_HADOOP_MAJOR_VERSIONS";
+        throw new UnsupportedOperationException(message);
+      }
+      String prefix=matcher.group(1);
+      if ("EX".equals(prefix)) {
+        excludeQuery=true;
+      }
+ else {
+        includeQuery=true;
+      }
+      String versions=matcher.group(2);
+      for (      String s : versions.split("\\,")) {
+        s=s.trim();
+        versionSet.add(s);
+      }
+    }
+    qsb.append(line + "\n");
+  }
+  qMap.put(qf.getName(),qsb.toString());
+  if (excludeQuery && versionSet.contains(hadoopVer)) {
+    System.out.println("QTestUtil: " + qf.getName() + " EXCLUDE list contains Hadoop Version "+ hadoopVer+ ". Skipping...");
+    qSkipSet.add(qf.getName());
+  }
+ else   if (includeQuery && !versionSet.contains(hadoopVer)) {
+    System.out.println("QTestUtil: " + qf.getName() + " INCLUDE list does not contain Hadoop Version "+ hadoopVer+ ". Skipping...");
+    qSkipSet.add(qf.getName());
+  }
+  dis.close();
+}

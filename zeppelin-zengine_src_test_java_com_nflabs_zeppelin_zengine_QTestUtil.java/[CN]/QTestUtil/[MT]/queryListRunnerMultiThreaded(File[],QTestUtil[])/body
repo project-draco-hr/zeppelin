@@ -1,0 +1,25 @@
+{
+  boolean failed=false;
+  qt[0].cleanUp();
+  qt[0].createSources();
+  qt[0].clearTestSideEffects();
+  QTRunner[] qtRunners=new QTestUtil.QTRunner[qfiles.length];
+  Thread[] qtThread=new Thread[qfiles.length];
+  for (int i=0; i < qfiles.length; i++) {
+    qtRunners[i]=new QTestUtil.QTRunner(qt[i],qfiles[i].getName());
+    qtThread[i]=new Thread(qtRunners[i]);
+  }
+  for (int i=0; i < qfiles.length; i++) {
+    qtThread[i].start();
+  }
+  for (int i=0; i < qfiles.length; i++) {
+    qtThread[i].join();
+    int ecode=qt[i].checkCliDriverResults(qfiles[i].getName());
+    if (ecode != 0) {
+      failed=true;
+      System.err.println("Test " + qfiles[i].getName() + " results check failed with error code "+ ecode);
+      outputTestFailureHelpMessage();
+    }
+  }
+  return (!failed);
+}

@@ -1,0 +1,8 @@
+{
+  int ecode=0;
+  ecode=drv.run(createTableCmd).getResponseCode();
+  if (ecode != 0) {
+    throw new Exception("create table command: " + createTableCmd + " failed with exit code= "+ ecode);
+  }
+  return;
+}
