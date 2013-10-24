@@ -1,9 +1,0 @@
-{
-  QTestUtil[] qt=new QTestUtil[qfiles.length];
-  for (int i=0; i < qfiles.length; i++) {
-    qt[i]=new QTestUtil(resDir,logDir,false,"0.20");
-    qt[i].addFile(qfiles[i]);
-    qt[i].clearTestSideEffects();
-  }
-  return qt;
-}

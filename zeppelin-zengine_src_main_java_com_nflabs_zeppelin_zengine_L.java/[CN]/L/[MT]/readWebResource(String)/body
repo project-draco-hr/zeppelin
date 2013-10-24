@@ -1,4 +1,5 @@
 {
+  initialize();
   FileStatus[] files;
   if (path == null || path.compareTo("/") == 0) {
     path="index.erb";
@@ -12,7 +13,12 @@
     if (resourcePath.getName().endsWith(".erb")) {
       String q;
       try {
-        ZWebContext zWebContext=new ZWebContext(result());
+        ZWebContext zWebContext=null;
+        try {
+          zWebContext=new ZWebContext(result());
+        }
+ catch (        ZException e) {
+        }
         FSDataInputStream ins=fs.open(resourcePath);
         BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
         q=evalWebTemplate(erb,zWebContext);

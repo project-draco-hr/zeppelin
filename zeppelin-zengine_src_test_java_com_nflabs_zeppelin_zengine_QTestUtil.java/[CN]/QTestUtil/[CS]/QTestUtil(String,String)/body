@@ -1,3 +1,0 @@
-{
-  this(outDir,logDir,false,"0.20");
-}

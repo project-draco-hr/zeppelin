@@ -1,5 +1,0 @@
-{
-  this.table=table;
-  this.arg=arg;
-  this.params=params;
-}

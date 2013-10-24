@@ -4,13 +4,23 @@
   }
   try {
     if (name() == null) {
-      result.load();
-      return result;
+      if (result != null) {
+        result.load();
+        return result;
+      }
+ else {
+        return null;
+      }
     }
  else {
       if (result == null) {
-        result=new Result(executeQuery("select * from " + name()),maxResult);
-        result.load();
+        if (isTableExists(name()) == true) {
+          result=new Result(executeQuery("select * from " + name()),maxResult);
+          result.load();
+        }
+ else {
+          return null;
+        }
       }
       return result;
     }

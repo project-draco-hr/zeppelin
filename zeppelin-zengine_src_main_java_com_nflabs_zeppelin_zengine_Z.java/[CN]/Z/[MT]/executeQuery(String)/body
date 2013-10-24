@@ -25,9 +25,11 @@
   }
  catch (  SQLException e) {
     try {
-      con.close();
+      if (con != null) {
+        con.close();
+      }
     }
- catch (    SQLException e1) {
+ catch (    Exception e1) {
       logger().error("error on closing connection",e1);
     }
     throw new ZException(e);

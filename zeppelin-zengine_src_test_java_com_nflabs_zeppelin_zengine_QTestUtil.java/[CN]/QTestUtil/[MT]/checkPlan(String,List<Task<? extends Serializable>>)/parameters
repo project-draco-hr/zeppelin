@@ -1,2 +1,0 @@
-String tname
-List<Task<? extends Serializable>> tasks

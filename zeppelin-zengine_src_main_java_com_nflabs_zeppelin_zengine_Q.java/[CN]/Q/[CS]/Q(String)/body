@@ -1,4 +1,5 @@
 {
+  super();
   this.query=query;
   initialize();
 }
