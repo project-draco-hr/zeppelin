@@ -3,8 +3,9 @@
     try {
       conn.close();
     }
- catch (    SQLException e) {
+ catch (    Throwable e) {
       e.printStackTrace();
     }
+    conn=null;
   }
 }

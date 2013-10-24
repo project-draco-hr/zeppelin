@@ -1,11 +1,9 @@
 {
   initialize();
   if (executed == false)   return;
-  String q=getCleanQuery();
+  String q=getReleaseQuery();
   executeQuery(q);
   if (prev() != null) {
-    prev().clean();
+    prev().release();
   }
-  result=null;
-  executed=false;
 }

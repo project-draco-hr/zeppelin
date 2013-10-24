@@ -7,12 +7,13 @@
   ResultSet res=executeQuery(query);
   if (name() == null) {
     try {
-      result=new Result(res,maxResult);
+      lastQueryResult=new Result(res,maxResult);
     }
  catch (    ResultDataException e) {
       throw new ZException(e);
     }
   }
+  webEnabled=isWebEnabled();
   executed=true;
   return this;
 }

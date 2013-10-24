@@ -10,5 +10,5 @@
   resource.write("".getBytes());
   resource.close();
   System.out.println(tmpDir.toURI().toString());
-  System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
+  System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
 }

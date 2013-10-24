@@ -4,12 +4,16 @@
     ZQL zqlEvaluator=new ZQL(zql);
     zqlPlans=zqlEvaluator.compile();
   }
+ else {
+    reconstructNextReference();
+  }
   for (  Z zz : zqlPlans) {
     try {
       if (zz.isExecuted() == false) {
         zz.execute();
       }
       results.add(zz.result());
+      zz.release();
     }
  catch (    ZException e) {
       error=new Result(e);

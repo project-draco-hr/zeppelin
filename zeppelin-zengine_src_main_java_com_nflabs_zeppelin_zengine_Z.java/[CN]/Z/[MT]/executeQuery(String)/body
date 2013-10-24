@@ -23,13 +23,13 @@
     stmt.close();
     return res;
   }
- catch (  SQLException e) {
+ catch (  Throwable e) {
     try {
       if (con != null) {
-        con.close();
+        disconnect();
       }
     }
- catch (    Exception e1) {
+ catch (    Throwable e1) {
       logger().error("error on closing connection",e1);
     }
     throw new ZException(e);
