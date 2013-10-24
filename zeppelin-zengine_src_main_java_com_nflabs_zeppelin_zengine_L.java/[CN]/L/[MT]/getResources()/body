@@ -10,17 +10,25 @@
   if (files != null) {
     for (    FileStatus status : files) {
       Path f=status.getPath();
-      if (f.getName().startsWith(".")) {
-        continue;
-      }
- else       if (f.getName().startsWith(libName + "_") == false) {
-        continue;
-      }
- else       if (f.getName().equals(libName + ".erb")) {
-        continue;
-      }
+      try {
+        if (fs.isFile(f) == false) {
+          continue;
+        }
+ else         if (f.getName().startsWith(".")) {
+          continue;
+        }
+ else         if (f.getName().startsWith(libName + "_") == false) {
+          continue;
+        }
+ else         if (f.getName().equals(libName + ".erb")) {
+          continue;
+        }
  else {
-        resources.add(f.toUri());
+          resources.add(f.toUri());
+        }
+      }
+ catch (      IOException e) {
+        logger().error("Error while reading library resource " + f.toString(),e);
       }
     }
   }

@@ -1,0 +1,24 @@
+{
+  if (executed == false) {
+    throw new ZException("Can not get result because of this is not executed");
+  }
+  try {
+    if (name() == null) {
+      result.load();
+      return result;
+    }
+ else {
+      if (result == null) {
+        result=new Result(executeQuery("select * from " + name()),maxResult);
+        result.load();
+      }
+      return result;
+    }
+  }
+ catch (  ResultDataException e) {
+    throw new ZException(e);
+  }
+catch (  SQLException e) {
+    throw new ZException(e);
+  }
+}

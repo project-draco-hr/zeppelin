@@ -30,7 +30,13 @@
  catch (    ZException e) {
     }
     if (z == null) {
-      Q q=new Q(stmt);
+      Q q;
+      try {
+        q=new Q(stmt);
+      }
+ catch (      ZException e) {
+        throw new ZQLException(e);
+      }
       if (stmt.toLowerCase().trim().startsWith("select") == false && stmt.toLowerCase().trim().startsWith("map") == false) {
         q.withName(null);
       }

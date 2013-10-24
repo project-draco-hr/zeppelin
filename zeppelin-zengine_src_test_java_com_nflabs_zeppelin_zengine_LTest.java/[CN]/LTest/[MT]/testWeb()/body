@@ -1,0 +1,16 @@
+{
+  new File(tmpDir.getAbsolutePath() + "/test/web").mkdirs();
+  File erb=new File(tmpDir.getAbsolutePath() + "/test/test.erb");
+  FileOutputStream out=new FileOutputStream(erb);
+  out.write(("show tables").getBytes());
+  out.close();
+  erb=new File(tmpDir.getAbsolutePath() + "/test/web/index.erb");
+  out=new FileOutputStream(erb);
+  out.write("HELLO HTML\n".getBytes());
+  out.close();
+  System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
+  Z.configure();
+  Z test=new L("test").withName(null).execute();
+  InputStream ins=test.readWebResource("/");
+  assertEquals("HELLO HTML",IOUtils.toString(ins,"utf8"));
+}

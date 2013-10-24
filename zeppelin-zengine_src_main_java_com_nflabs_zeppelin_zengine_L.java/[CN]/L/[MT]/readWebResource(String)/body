@@ -1,0 +1,33 @@
+{
+  FileStatus[] files;
+  if (path == null || path.compareTo("/") == 0) {
+    path="index.erb";
+  }
+  try {
+    if (fs.isDirectory(webDir) == false)     return null;
+    Path resourcePath=new Path(webDir.toUri() + "/" + path);
+    if (fs.isFile(resourcePath) == false) {
+      return null;
+    }
+    if (resourcePath.getName().endsWith(".erb")) {
+      String q;
+      try {
+        ZWebContext zWebContext=new ZWebContext(result());
+        FSDataInputStream ins=fs.open(resourcePath);
+        BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+        q=evalWebTemplate(erb,zWebContext);
+        ins.close();
+        return new ByteArrayInputStream(q.getBytes());
+      }
+ catch (      IOException e1) {
+        throw new ZException(e1);
+      }
+    }
+ else {
+      return fs.open(resourcePath);
+    }
+  }
+ catch (  IOException e) {
+    throw new ZException(e);
+  }
+}

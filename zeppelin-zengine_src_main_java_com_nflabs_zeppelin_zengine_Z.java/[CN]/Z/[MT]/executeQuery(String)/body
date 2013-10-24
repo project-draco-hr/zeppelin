@@ -1,4 +1,5 @@
 {
+  initialize();
   if (query == null)   return null;
   Connection con=null;
   try {
@@ -6,7 +7,7 @@
     List<URI> resources=getResources();
     for (    URI res : resources) {
       Statement stmt=con.createStatement();
-      logger.info("add resource " + res.toString());
+      logger().info("add resource " + res.toString());
       if (res.getPath().endsWith(".jar")) {
         stmt.executeQuery("add JAR " + new File(res.toString()).getAbsolutePath());
       }
@@ -17,7 +18,7 @@
     }
     ResultSet res=null;
     Statement stmt=con.createStatement();
-    logger.info("executeQuery(" + query + ")");
+    logger().info("executeQuery(" + query + ")");
     res=stmt.executeQuery(query);
     stmt.close();
     return res;
@@ -27,7 +28,7 @@
       con.close();
     }
  catch (    SQLException e1) {
-      logger.error("error on closing connection",e1);
+      logger().error("error on closing connection",e1);
     }
     throw new ZException(e);
   }

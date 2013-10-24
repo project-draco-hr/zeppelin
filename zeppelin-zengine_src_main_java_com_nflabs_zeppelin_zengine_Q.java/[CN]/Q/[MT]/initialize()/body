@@ -1,0 +1,7 @@
+{
+  if (initialized == true) {
+    return;
+  }
+  name=NAME_PREFIX + this.hashCode();
+  initialized=true;
+}

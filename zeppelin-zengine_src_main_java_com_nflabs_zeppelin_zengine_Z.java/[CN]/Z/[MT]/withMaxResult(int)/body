@@ -1,0 +1,4 @@
+{
+  this.maxResult=maxResult;
+  return this;
+}

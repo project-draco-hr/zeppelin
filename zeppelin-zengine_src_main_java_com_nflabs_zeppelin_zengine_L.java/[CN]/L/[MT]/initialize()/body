@@ -1,0 +1,34 @@
+{
+  super.initialize();
+  if (initialized == true) {
+    return;
+  }
+  if (libName == null)   return;
+  fs=fs();
+  try {
+    if (libName.indexOf(":/") > 0) {
+      libUri=new URI(libName);
+    }
+ else {
+      libUri=new URI(conf().getString(ConfVars.ZEPPELIN_LIBRARY_DIR) + "/" + libName);
+    }
+  }
+ catch (  URISyntaxException e1) {
+    throw new ZException(e1);
+  }
+  try {
+    this.dir=new Path(libUri);
+    if (fs.isDirectory(dir) == false) {
+      throw new ZException("Directory " + dir.toUri() + " does not exist");
+    }
+    this.erbFile=new Path(libUri.toString() + "/" + new Path(libUri).getName()+ ".erb");
+    if (fs.isFile(erbFile) == false) {
+      throw new ZException("Template " + erbFile.toString() + " does not exist");
+    }
+    this.webDir=new Path(libUri + "/web");
+  }
+ catch (  IOException e) {
+    throw new ZException(e);
+  }
+  initialized=true;
+}

@@ -1,16 +1,14 @@
 {
-  LinkedList<ResultDataObject> results=new LinkedList<ResultDataObject>();
+  LinkedList<Result> results=new LinkedList<Result>();
   ZQL zqlEvaluator=new ZQL(zql);
   List<Z> zqlResult;
   zqlResult=zqlEvaluator.compile();
   for (  Z zz : zqlResult) {
-    ResultSet res;
     try {
-      res=zz.execute();
-      results.add(new ResultDataObject(res));
+      results.add(zz.execute().result());
     }
  catch (    ZException e) {
-      error=new ResultDataObject(e);
+      error=new Result(e);
       throw e;
     }
   }

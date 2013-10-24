@@ -12,7 +12,7 @@
   resource.close();
   System.out.println(tmpDir.toURI().toString());
   System.setProperty(ConfVars.ZEPPELIN_LIBRARY_DIR.getVarName(),tmpDir.toURI().toString());
-  Z.init();
+  Z.configure();
   try {
     new L("abc");
     assertTrue(false);

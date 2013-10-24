@@ -1,10 +1,8 @@
 {
   ZeppelinConfiguration conf=new ZeppelinConfiguration();
-  Z.init(conf);
+  Z.configure(conf);
   new Q("create table if not exists test(a INT, b STRING)").withName(null).execute();
-  ResultSet results=new Q("show tables").withName(null).execute();
-  results.next();
-  assertEquals("test",results.getString(1));
-  results=new Q("drop table test").withName(null).pipe(new Q("show tables").withName(null)).execute();
-  assertFalse(results.next());
+  Result results=new Q("show tables").withName(null).execute().result();
+  assertEquals("test",results.getRows().get(0)[0]);
+  new Q("drop table test").withName(null).execute();
 }

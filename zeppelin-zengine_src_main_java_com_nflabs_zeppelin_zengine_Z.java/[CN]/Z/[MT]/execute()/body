@@ -1,11 +1,18 @@
 {
-  if (result != null) {
-    return result;
-  }
+  initialize();
   if (prev() != null) {
     prev().execute();
   }
   String query=getQuery();
-  result=executeQuery(query);
-  return result;
+  ResultSet res=executeQuery(query);
+  if (name() == null) {
+    try {
+      result=new Result(res,maxResult);
+    }
+ catch (    ResultDataException e) {
+      throw new ZException(e);
+    }
+  }
+  executed=true;
+  return this;
 }
