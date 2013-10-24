@@ -2,4 +2,8 @@
   this.scheduler=scheduler;
   this.sessionPersistBasePath=sessionPersistBasePath;
   this.fs=fs;
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  gsonBuilder.registerTypeAdapter(Z.class,new ZAdapter());
+  gson=gsonBuilder.create();
 }

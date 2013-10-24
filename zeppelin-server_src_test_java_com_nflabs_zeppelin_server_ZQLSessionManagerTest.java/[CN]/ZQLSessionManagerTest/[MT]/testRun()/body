@@ -3,7 +3,8 @@
   sm.setZql(sess.getId(),"show tables");
   sm=new ZQLSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30),Z.fs(),Z.conf().getString(ConfVars.ZEPPELIN_SESSION_DIR));
   sm.run(sess.getId());
-  while (sm.get(sess.getId()).getStatus() == Status.FINISHED) {
+  while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);
   }
+  assertEquals(Status.FINISHED,sm.get(sess.getId()).getStatus());
 }

@@ -1,11 +1,15 @@
 {
   LinkedList<Result> results=new LinkedList<Result>();
-  ZQL zqlEvaluator=new ZQL(zql);
-  List<Z> zqlResult;
-  zqlResult=zqlEvaluator.compile();
-  for (  Z zz : zqlResult) {
+  if (zqlPlans == null) {
+    ZQL zqlEvaluator=new ZQL(zql);
+    zqlPlans=zqlEvaluator.compile();
+  }
+  for (  Z zz : zqlPlans) {
     try {
-      results.add(zz.execute().result());
+      if (zz.isExecuted() == false) {
+        zz.execute();
+      }
+      results.add(zz.result());
     }
  catch (    ZException e) {
       error=new Result(e);

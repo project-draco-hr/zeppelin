@@ -1,3 +1,4 @@
 {
+  zqlPlans=null;
   this.zql=zql;
 }

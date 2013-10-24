@@ -1,0 +1,11 @@
+{
+  ZQLSession sess=sm.create();
+  sm.setZql(sess.getId(),"create table if not exists test(txt STRING); show tables");
+  sm.run(sess.getId());
+  while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
+    Thread.sleep(300);
+  }
+  assertEquals(2,((LinkedList<Result>)sess.getReturn()).size());
+  List<Result> ret=(List<Result>)sm.get(sess.getId()).getReturn();
+  assertEquals(2,ret.size());
+}
