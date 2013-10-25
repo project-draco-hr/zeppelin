@@ -2,7 +2,7 @@
   initialize();
   if (executed == false)   return;
   String q=getReleaseQuery();
-  executeQuery(q);
+  executeQuery(q,maxResult);
   if (prev() != null) {
     prev().release();
   }

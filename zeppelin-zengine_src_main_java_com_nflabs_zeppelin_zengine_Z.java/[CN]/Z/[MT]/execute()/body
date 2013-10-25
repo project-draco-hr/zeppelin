@@ -1,18 +1,11 @@
 {
+  if (executed == true)   return this;
   initialize();
   if (prev() != null) {
     prev().execute();
   }
   String query=getQuery();
-  ResultSet res=executeQuery(query);
-  if (name() == null) {
-    try {
-      lastQueryResult=new Result(res,maxResult);
-    }
- catch (    ResultDataException e) {
-      throw new ZException(e);
-    }
-  }
+  lastQueryResult=executeQuery(query,maxResult);
   webEnabled=isWebEnabled();
   executed=true;
   return this;

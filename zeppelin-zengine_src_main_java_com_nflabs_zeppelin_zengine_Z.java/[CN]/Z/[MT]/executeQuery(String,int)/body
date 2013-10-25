@@ -20,8 +20,10 @@
     Statement stmt=con.createStatement();
     logger().info("executeQuery(" + query + ")");
     res=stmt.executeQuery(query);
+    Result r=new Result(res,maxResult);
+    r.load();
     stmt.close();
-    return res;
+    return r;
   }
  catch (  Throwable e) {
     try {

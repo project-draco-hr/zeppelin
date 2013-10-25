@@ -2,33 +2,22 @@
   if (executed == false) {
     throw new ZException("Can not get result because of this is not executed");
   }
-  try {
-    if (result == null) {
-      if (name() == null) {
+  if (result == null) {
+    if (name() == null) {
+      if (lastQueryResult != null) {
+        result=lastQueryResult;
+      }
+    }
+ else {
+      try {
+        result=executeQuery("select * from " + name(),maxResult);
+      }
+ catch (      Exception e) {
         if (lastQueryResult != null) {
           result=lastQueryResult;
-          result.load();
-        }
-      }
- else {
-        try {
-          result=new Result(executeQuery("select * from " + name()),maxResult);
-          result.load();
-        }
- catch (        Exception e) {
-          if (lastQueryResult != null) {
-            result=lastQueryResult;
-            result.load();
-          }
         }
       }
     }
-    return result;
   }
- catch (  ResultDataException e) {
-    throw new ZException(e);
-  }
-catch (  SQLException e) {
-    throw new ZException(e);
-  }
+  return result;
 }
