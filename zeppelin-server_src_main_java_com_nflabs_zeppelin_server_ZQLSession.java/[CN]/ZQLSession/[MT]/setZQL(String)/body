@@ -1,4 +1,5 @@
 {
   this.zql=zql;
   zqlPlans=null;
+  setStatus(Status.READY);
 }
