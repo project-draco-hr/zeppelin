@@ -28,7 +28,7 @@
  catch (  Throwable e) {
     try {
       if (con != null) {
-        disconnect();
+        con.close();
       }
     }
  catch (    Throwable e1) {

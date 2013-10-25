@@ -1,11 +1,3 @@
 {
-  if (conn == null) {
-    conn=DriverManager.getConnection(conf().getString(ConfVars.HIVE_URI));
-  }
- else {
-    if (conn.isClosed()) {
-      conn=DriverManager.getConnection(conf().getString(ConfVars.HIVE_URI));
-    }
-  }
-  return conn;
+  return DriverManager.getConnection(conf().getString(ConfVars.HIVE_URI));
 }
