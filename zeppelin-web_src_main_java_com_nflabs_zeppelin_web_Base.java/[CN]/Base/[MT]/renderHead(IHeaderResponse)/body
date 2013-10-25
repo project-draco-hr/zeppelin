@@ -1,5 +1,7 @@
 {
   response.render(JavaScriptHeaderItem.forUrl("https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/browser.js"));
+  response.render(JavaScriptHeaderItem.forUrl("js/lib/iframe_auto_height.js"));
   response.render(JavaScriptHeaderItem.forUrl("js/lib/handlebars-1.0.0.js"));
   response.render(JavaScriptHeaderItem.forUrl("js/lib/ember-1.0.0.js"));
   response.render(JavaScriptHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"));
