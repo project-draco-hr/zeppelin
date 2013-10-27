@@ -1,6 +1,6 @@
 {
   if (name == null)   return null;
-  if (cache == true) {
+  if (table == true) {
     return "DROP TABLE if exists " + name;
   }
  else {

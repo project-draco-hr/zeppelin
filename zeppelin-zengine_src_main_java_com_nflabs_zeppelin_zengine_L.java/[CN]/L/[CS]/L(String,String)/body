@@ -1,5 +1,5 @@
 {
-  super(query);
+  super(arg);
   this.libName=libName;
   initialize();
 }
