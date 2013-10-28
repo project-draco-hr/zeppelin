@@ -5,6 +5,11 @@ synchronized (active) {
         active.remove(job.getId());
       }
     }
+ else {
+synchronized (active) {
+        active.put(job.getId(),(ZQLSession)job);
+      }
+    }
     if (job.getStatus() == Status.ERROR && job.getException() != null) {
       logger.error("Session error",job.getException());
     }
