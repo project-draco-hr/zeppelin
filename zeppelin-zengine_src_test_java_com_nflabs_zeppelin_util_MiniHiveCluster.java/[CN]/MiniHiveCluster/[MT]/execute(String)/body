@@ -1,9 +1,0 @@
-{
-  try {
-    return drv.run(qMap.get(tname)).getResponseCode();
-  }
- catch (  CommandNeedRetryException e) {
-    e.printStackTrace();
-    return -1;
-  }
-}

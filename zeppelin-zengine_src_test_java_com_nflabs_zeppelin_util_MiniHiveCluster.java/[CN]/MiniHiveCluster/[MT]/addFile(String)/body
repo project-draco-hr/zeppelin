@@ -1,4 +1,0 @@
-{
-  File qf=new File(qFile);
-  addFile(qf);
-}
