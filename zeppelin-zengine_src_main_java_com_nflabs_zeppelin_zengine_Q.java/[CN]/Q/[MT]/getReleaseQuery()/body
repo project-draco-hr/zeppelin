@@ -1,9 +1,3 @@
 {
-  if (name == null)   return null;
-  if (table == true) {
-    return "DROP TABLE if exists " + name;
-  }
- else {
-    return "DROP VIEW if exists " + name;
-  }
+  return null;
 }

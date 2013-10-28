@@ -23,6 +23,21 @@
     if (currentZ == null && currentOp != null) {
       throw new ZQLException(currentOp + " can not be at the beginning");
     }
+    if (op[2].equals(currentOp)) {
+      throw new ZQLException("redirection (append) not implemented");
+    }
+ else     if (op[3].equals(currentOp)) {
+      if (currentZ != null) {
+        RedirectStatement red=new RedirectStatement(stmt);
+        currentZ.withName(red.getName());
+        currentZ.withTable(red.isTable());
+        currentOp=null;
+        continue;
+      }
+ else {
+        throw new ZQLException("Can not redirect empty");
+      }
+    }
     Z z=null;
     try {
       z=loadL(stmt);

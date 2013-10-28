@@ -1,8 +1,18 @@
 {
   initialize();
   if (executed == false)   return;
+  if (name() != null) {
+    if (table == true) {
+      executeQuery("DROP TABLE if exists " + name(),maxResult);
+    }
+ else {
+      executeQuery("DROP VIEW if exists " + name(),maxResult);
+    }
+  }
   String q=getReleaseQuery();
-  executeQuery(q,maxResult);
+  if (q != null) {
+    executeQuery(q,maxResult);
+  }
   if (prev() != null) {
     prev().release();
   }

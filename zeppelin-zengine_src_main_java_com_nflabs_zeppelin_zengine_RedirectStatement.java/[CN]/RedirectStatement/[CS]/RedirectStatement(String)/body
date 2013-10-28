@@ -1,0 +1,24 @@
+{
+  this.stmt=stmt;
+  String[] ss=Util.split(stmt,' ');
+  if (ss != null) {
+    if (ss.length == 2) {
+      if (ss[0].toLowerCase().equals("table")) {
+        table=true;
+      }
+ else       if (ss[0].toLowerCase().equals("view")) {
+        table=false;
+      }
+ else {
+        throw new ZQLException("Invalid redirection statement " + ss[0]);
+      }
+      name=ss[1];
+    }
+ else     if (ss.length == 1) {
+      name=ss[0];
+    }
+ else {
+      throw new ZQLException("Invalid redirection statment. " + stmt);
+    }
+  }
+}

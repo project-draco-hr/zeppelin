@@ -5,7 +5,26 @@
     prev().execute();
   }
   String query=getQuery();
-  lastQueryResult=executeQuery(query,maxResult);
+  String[] queries=Util.split(query,';');
+  for (int i=0; i < queries.length; i++) {
+    String q=queries[i];
+    if (i == queries.length - 1) {
+      String tableCreation=null;
+      if (name() == null) {
+        tableCreation="";
+      }
+ else {
+        if (isTable()) {
+          tableCreation="CREATE TABLE " + name() + " AS ";
+        }
+ else {
+          tableCreation="CREATE VIEW " + name() + " AS ";
+        }
+      }
+      q=tableCreation + q;
+    }
+    lastQueryResult=executeQuery(q,maxResult);
+  }
   webEnabled=isWebEnabled();
   executed=true;
   return this;

@@ -8,17 +8,5 @@
   }
  catch (  IOException e) {
   }
-  String tableCreation=null;
-  if (name == null) {
-    tableCreation="";
-  }
- else {
-    if (table) {
-      tableCreation="CREATE TABLE " + name + " AS ";
-    }
- else {
-      tableCreation="CREATE VIEW " + name + " AS ";
-    }
-  }
-  return tableCreation + q;
+  return q;
 }
