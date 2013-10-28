@@ -1,3 +1,8 @@
 {
-  return new HiveConnection(hiveConf());
+  if (conf().getString(ConfVars.HIVE_CONNECTION_URI) == null) {
+    return new HiveConnection(hiveConf());
+  }
+ else {
+    return DriverManager.getConnection(conf().getString(ConfVars.HIVE_CONNECTION_URI));
+  }
 }
