@@ -1,0 +1,4 @@
+{
+  this.qt=qt;
+  this.fname=fname;
+}

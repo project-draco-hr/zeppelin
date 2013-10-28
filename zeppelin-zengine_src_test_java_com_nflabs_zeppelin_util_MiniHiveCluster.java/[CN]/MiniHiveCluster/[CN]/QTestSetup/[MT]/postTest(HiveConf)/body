@@ -1,0 +1,9 @@
+{
+  if (zooKeeperCluster == null) {
+    return;
+  }
+  if (zooKeeper != null) {
+    zooKeeper.close();
+  }
+  ZooKeeperHiveLockManager.releaseAllLocks(conf);
+}

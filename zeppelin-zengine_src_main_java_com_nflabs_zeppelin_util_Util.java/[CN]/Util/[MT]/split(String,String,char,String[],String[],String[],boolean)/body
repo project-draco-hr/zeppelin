@@ -52,6 +52,6 @@
       }
     }
   }
-  if (curString.length() > 0)   splits.add(curString);
+  if (curString.length() > 0)   splits.add(curString.trim());
   return splits.toArray(new String[]{});
 }

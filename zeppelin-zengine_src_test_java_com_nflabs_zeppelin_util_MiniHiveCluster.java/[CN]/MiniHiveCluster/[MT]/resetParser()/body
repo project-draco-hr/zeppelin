@@ -1,0 +1,5 @@
+{
+  drv.init();
+  pd=new ParseDriver();
+  sem=new SemanticAnalyzer(conf);
+}

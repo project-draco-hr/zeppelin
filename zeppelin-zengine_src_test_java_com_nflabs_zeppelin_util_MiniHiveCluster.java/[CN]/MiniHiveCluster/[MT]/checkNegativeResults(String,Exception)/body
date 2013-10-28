@@ -1,0 +1,34 @@
+{
+  File qf=new File(outDir,tname);
+  String expf=outPath(outDir.toString(),tname.concat(".out"));
+  File outf=null;
+  outf=new File(logDir);
+  outf=new File(outf,qf.getName().concat(".out"));
+  FileWriter outfd=new FileWriter(outf);
+  if (e instanceof ParseException) {
+    outfd.write("Parse Error: ");
+  }
+ else   if (e instanceof SemanticException) {
+    outfd.write("Semantic Exception: \n");
+  }
+ else {
+    throw e;
+  }
+  outfd.write(e.getMessage());
+  outfd.close();
+  String cmdLine="diff " + outf.getPath() + " "+ expf;
+  System.out.println(cmdLine);
+  Process executor=Runtime.getRuntime().exec(cmdLine);
+  StreamPrinter outPrinter=new StreamPrinter(executor.getInputStream(),null,SessionState.getConsole().getChildOutStream());
+  StreamPrinter errPrinter=new StreamPrinter(executor.getErrorStream(),null,SessionState.getConsole().getChildErrStream());
+  outPrinter.start();
+  errPrinter.start();
+  int exitVal=executor.waitFor();
+  if (exitVal != 0 && overWrite) {
+    System.out.println("Overwriting results");
+    cmdLine="cp " + outf.getPath() + " "+ expf;
+    executor=Runtime.getRuntime().exec(cmdLine);
+    exitVal=executor.waitFor();
+  }
+  return exitVal;
+}

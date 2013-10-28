@@ -1,0 +1,3 @@
+{
+  return cliDriver.processLine(qMap.get(tname));
+}
