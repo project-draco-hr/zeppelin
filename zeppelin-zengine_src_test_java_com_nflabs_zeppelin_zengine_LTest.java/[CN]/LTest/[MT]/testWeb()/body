@@ -8,8 +8,6 @@
   out=new FileOutputStream(erb);
   out.write("HELLO HTML\n".getBytes());
   out.close();
-  System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
-  Z.configure();
   Z test=new L("test").withName(null).execute();
   InputStream ins=test.readWebResource("/");
   assertEquals("HELLO HTML",IOUtils.toString(ins,"utf8"));

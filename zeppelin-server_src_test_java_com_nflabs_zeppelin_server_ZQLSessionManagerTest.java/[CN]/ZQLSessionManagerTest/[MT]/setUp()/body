@@ -1,8 +1,12 @@
 {
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
+  dataDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/data");
+  dataDir.mkdir();
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_LOCAL_WAREHOUSE.getVarName(),"file://" + dataDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   System.setProperty(ConfVars.ZEPPELIN_SESSION_DIR.getVarName(),tmpDir.getAbsolutePath());
-  this.schedulerFactory=new SchedulerFactory();
   Z.configure();
+  this.schedulerFactory=new SchedulerFactory();
   this.sm=new ZQLSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30),Z.fs(),Z.conf().getString(ConfVars.ZEPPELIN_SESSION_DIR));
 }
