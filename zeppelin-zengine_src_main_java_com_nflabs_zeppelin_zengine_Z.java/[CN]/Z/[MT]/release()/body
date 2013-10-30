@@ -1,7 +1,7 @@
 {
   initialize();
   if (executed == false)   return;
-  if (name() != null) {
+  if (name() != null && autogenName == true) {
     if (table == true) {
       executeQuery("DROP TABLE if exists " + name(),maxResult);
     }

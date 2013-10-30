@@ -2,5 +2,6 @@
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
   System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_LOCAL_WAREHOUSE.getVarName(),"file://" + tmpDir.getAbsolutePath());
+  delete(new File("metastore_db"));
   Z.configure();
 }

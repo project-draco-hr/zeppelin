@@ -8,7 +8,7 @@
   out=new FileOutputStream(erb);
   out.write("HELLO HTML\n".getBytes());
   out.close();
-  Z test=new L("test").withName(null).execute();
+  Z test=new L("test");
   InputStream ins=test.readWebResource("/");
   assertEquals("HELLO HTML",IOUtils.toString(ins,"utf8"));
 }

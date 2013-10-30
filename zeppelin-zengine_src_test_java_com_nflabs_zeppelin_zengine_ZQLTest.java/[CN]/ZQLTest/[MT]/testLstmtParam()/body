@@ -1,5 +1,5 @@
 {
   ZQL zql=new ZQL("test(limit=10)");
   Z z=zql.compile().get(0);
-  assertEquals("CREATE VIEW " + z.name() + " AS select * from () a limit 10",z.getQuery());
+  assertEquals("select * from () a limit 10",z.getQuery());
 }

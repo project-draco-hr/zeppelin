@@ -2,6 +2,9 @@
   if (next() != null) {
     next().setPrev(null);
     setNext(null);
+    if (autogenName == true) {
+      this.withName(null);
+    }
   }
   return this;
 }

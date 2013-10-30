@@ -1,4 +1,3 @@
 {
   this.id=Integer.toString(hashCode());
-  name=NAME_PREFIX + this.hashCode();
 }

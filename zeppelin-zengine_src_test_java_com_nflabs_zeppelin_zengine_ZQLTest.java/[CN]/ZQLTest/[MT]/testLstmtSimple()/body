@@ -3,6 +3,6 @@
   List<Z> zList=zql.compile();
   assertEquals(1,zList.size());
   Z z=zList.get(0);
-  assertEquals("CREATE VIEW " + z.name() + " AS select * from () a limit ",z.getQuery());
+  assertEquals("select * from () a limit ",z.getQuery());
   z.release();
 }
