@@ -1,0 +1,4 @@
+{
+  this.result=resultDataObject;
+  this.params=params;
+}

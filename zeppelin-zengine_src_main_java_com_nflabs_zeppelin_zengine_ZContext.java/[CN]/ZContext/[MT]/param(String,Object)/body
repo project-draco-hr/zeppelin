@@ -1,0 +1,9 @@
+{
+  Object r=params.get(name);
+  if (r == null) {
+    return defaultValue;
+  }
+ else {
+    return r;
+  }
+}

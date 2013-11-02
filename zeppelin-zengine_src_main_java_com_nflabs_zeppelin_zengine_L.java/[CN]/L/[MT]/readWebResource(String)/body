@@ -15,7 +15,7 @@
       try {
         ZWebContext zWebContext=null;
         try {
-          zWebContext=new ZWebContext(result());
+          zWebContext=new ZWebContext(params,result());
         }
  catch (        ZException e) {
         }
