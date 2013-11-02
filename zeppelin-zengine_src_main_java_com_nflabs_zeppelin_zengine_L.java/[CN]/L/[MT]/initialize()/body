@@ -23,7 +23,7 @@
     }
     this.erbFile=new Path(libUri.toString() + "/" + new Path(libUri).getName()+ ".erb");
     if (fs.isFile(erbFile) == false) {
-      throw new ZException("Template " + erbFile.toString() + " does not exist");
+      erbFile=null;
     }
     this.webDir=new Path(libUri + "/web");
   }

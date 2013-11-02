@@ -1,0 +1,11 @@
+{
+  if (erbFile == null) {
+    if (prev() != null)     return prev().result();
+ else {
+      return null;
+    }
+  }
+ else {
+    return super.result();
+  }
+}
