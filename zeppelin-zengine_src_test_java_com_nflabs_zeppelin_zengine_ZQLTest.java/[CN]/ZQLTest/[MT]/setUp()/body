@@ -2,9 +2,8 @@
   super.setUp();
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
-  dataDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/data");
-  dataDir.mkdir();
-  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_LOCAL_WAREHOUSE.getVarName(),"file://" + dataDir.getAbsolutePath());
+  TestUtil.delete(new File("/tmp/warehouse"));
+  TestUtil.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   Z.configure(client);
   new File(tmpDir.getAbsolutePath() + "/test").mkdir();
