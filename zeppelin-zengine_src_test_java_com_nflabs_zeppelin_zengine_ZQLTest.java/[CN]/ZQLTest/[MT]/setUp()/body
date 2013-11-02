@@ -11,6 +11,11 @@
   FileOutputStream out=new FileOutputStream(erb);
   out.write(("select * from (<%= z." + Q.INPUT_VAR_NAME + " %>) a limit <%= z.param('limit') %>\n").getBytes());
   out.close();
+  new File(tmpDir.getAbsolutePath() + "/test1/web").mkdirs();
+  File index=new File(tmpDir.getAbsolutePath() + "/test1/web/index.erb");
+  out=new FileOutputStream(index);
+  out.write(("WEB\n").getBytes());
+  out.close();
   FileOutputStream resource=new FileOutputStream(new File(tmpDir.getAbsolutePath() + "/test/test_data.log"));
   resource.write("".getBytes());
   resource.close();
