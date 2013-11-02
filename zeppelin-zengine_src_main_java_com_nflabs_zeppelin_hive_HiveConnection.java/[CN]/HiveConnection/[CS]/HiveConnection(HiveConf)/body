@@ -1,0 +1,10 @@
+{
+  try {
+    client=new HiveServer.HiveServerHandler(hiveConf);
+  }
+ catch (  MetaException e) {
+    throw new SQLException("Error accessing Hive metastore: " + e.getMessage(),"08S01",e);
+  }
+  isClosed=false;
+  configureConnection();
+}

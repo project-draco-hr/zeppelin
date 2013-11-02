@@ -1,0 +1,4 @@
+{
+  TestUtil.delete(tmpDir);
+  super.tearDown();
+}

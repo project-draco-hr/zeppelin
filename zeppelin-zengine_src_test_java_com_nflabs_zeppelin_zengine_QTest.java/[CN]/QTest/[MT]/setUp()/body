@@ -1,0 +1,10 @@
+{
+  super.setUp();
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdir();
+  dataDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/data");
+  dataDir.mkdir();
+  System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
+  System.setProperty(ConfVars.HIVE_CONNECTION_URI.getVarName(),"jdbc:hive://localhost:10000/default");
+  Z.configure(client);
+}

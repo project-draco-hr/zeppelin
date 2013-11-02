@@ -1,0 +1,3 @@
+{
+  return new HivePreparedStatement(client,sql);
+}
