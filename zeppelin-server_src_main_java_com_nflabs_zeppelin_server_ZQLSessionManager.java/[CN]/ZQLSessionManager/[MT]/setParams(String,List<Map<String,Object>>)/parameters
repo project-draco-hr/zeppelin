@@ -1,0 +1,2 @@
+String sessionId
+List<Map<String,Object>> params

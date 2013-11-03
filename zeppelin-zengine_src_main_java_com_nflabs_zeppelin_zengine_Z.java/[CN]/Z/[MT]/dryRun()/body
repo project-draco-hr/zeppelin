@@ -1,0 +1,9 @@
+{
+  initialize();
+  if (prev() != null) {
+    prev().dryRun();
+  }
+  Map<String,ParamInfo> infos=extractParams();
+  this.paramInfos=infos;
+  return this;
+}

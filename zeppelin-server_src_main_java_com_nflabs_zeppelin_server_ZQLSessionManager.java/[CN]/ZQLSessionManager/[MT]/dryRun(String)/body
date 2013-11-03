@@ -1,0 +1,19 @@
+{
+  ZQLSession s=get(sessionId);
+  if (s == null)   return null;
+  try {
+    s.dryRun();
+    persist(s);
+    logger.debug("---------------- persist -------------");
+  }
+ catch (  ZException e) {
+    logger.error("z error",e);
+  }
+catch (  ZQLException e) {
+    logger.error("zql error",e);
+  }
+catch (  IOException e) {
+    logger.error("persist error",e);
+  }
+  return s;
+}

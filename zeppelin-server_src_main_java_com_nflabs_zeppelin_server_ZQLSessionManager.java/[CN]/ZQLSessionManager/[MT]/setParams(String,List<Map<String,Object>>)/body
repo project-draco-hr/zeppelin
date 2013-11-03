@@ -1,0 +1,16 @@
+{
+  ZQLSession s=get(sessionId);
+  if (s == null) {
+    return null;
+  }
+ else {
+    s.setParams(params);
+    try {
+      persist(s);
+    }
+ catch (    IOException e) {
+      logger.error("Can't persist session " + sessionId,e);
+    }
+    return s;
+  }
+}

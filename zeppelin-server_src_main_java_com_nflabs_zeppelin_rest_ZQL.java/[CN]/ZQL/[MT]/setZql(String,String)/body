@@ -1,0 +1,16 @@
+{
+  SetZqlParam data=gson.fromJson(json,SetZqlParam.class);
+  ZQLSession s=sessionManager.setZql(sessionId,data.zql);
+  if (s == null) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+  s=sessionManager.setParams(sessionId,data.params);
+  if (s == null) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+  s=sessionManager.setName(sessionId,data.name);
+  if (s == null) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+  return new JsonResponse(Status.OK,"",s).build();
+}

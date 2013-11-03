@@ -1,6 +1,5 @@
 {
-  Map<String,Object> data=gson.fromJson(json,Map.class);
-  ZQLSession s=sessionManager.setZql(sessionId,(String)data.get("zql"));
+  ZQLSession s=sessionManager.dryRun(sessionId);
   if (s == null) {
     return new JsonResponse(Status.NOT_FOUND).build();
   }

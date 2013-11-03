@@ -1,0 +1,13 @@
+{
+  if (getStatus() != Status.READY)   return;
+  if (zqlPlans == null) {
+    ZQL zqlEvaluator=new ZQL(zql);
+    zqlPlans=zqlEvaluator.compile();
+  }
+ else {
+    reconstructNextReference();
+  }
+  for (  Z zz : zqlPlans) {
+    zz.dryRun();
+  }
+}
