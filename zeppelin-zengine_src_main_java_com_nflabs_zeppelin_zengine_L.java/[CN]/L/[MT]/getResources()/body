@@ -20,7 +20,7 @@
  else         if (f.getName().startsWith(libName + "_") == false) {
           continue;
         }
- else         if (f.getName().equals(libName + ".erb")) {
+ else         if (f.getName().equals("zql.erb")) {
           continue;
         }
  else {

@@ -21,7 +21,7 @@
     if (fs.isDirectory(dir) == false) {
       throw new ZException("Directory " + dir.toUri() + " does not exist");
     }
-    this.erbFile=new Path(libUri.toString() + "/" + new Path(libUri).getName()+ ".erb");
+    this.erbFile=new Path(libUri.toString() + "/zql.erb");
     if (fs.isFile(erbFile) == false) {
       erbFile=null;
     }

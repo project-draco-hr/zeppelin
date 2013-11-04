@@ -1,6 +1,6 @@
 {
   new File(tmpDir.getAbsolutePath() + "/test/web").mkdirs();
-  File erb=new File(tmpDir.getAbsolutePath() + "/test/test.erb");
+  File erb=new File(tmpDir.getAbsolutePath() + "/test/zql.erb");
   FileOutputStream out=new FileOutputStream(erb);
   out.write(("show tables").getBytes());
   out.close();
