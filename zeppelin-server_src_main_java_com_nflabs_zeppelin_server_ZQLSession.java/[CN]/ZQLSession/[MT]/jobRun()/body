@@ -7,6 +7,7 @@
  else {
     reconstructNextReference();
   }
+  Connection conn=Z.getConnection();
   for (int i=0; i < zqlPlans.size(); i++) {
     Z zz=zqlPlans.get(i);
     Map<String,Object> p=new HashMap<String,Object>();
@@ -16,7 +17,7 @@
     try {
       zz.withParams(p);
       if (zz.isExecuted() == false) {
-        zz.execute();
+        zz.execute(conn);
       }
       results.add(zz.result());
       zz.release();
@@ -26,5 +27,6 @@
       throw e;
     }
   }
+  conn.close();
   return results;
 }

@@ -1,0 +1,16 @@
+{
+  if (prev() == null) {
+    if (conn == null) {
+      if (connection == null) {
+        connection=getConnection();
+      }
+    }
+ else {
+      connection=conn;
+    }
+  }
+ else {
+    connection=prev().connection(conn);
+  }
+  return connection;
+}
