@@ -1,0 +1,4 @@
+{
+  TreeMap<String,ZQLSession> sessions=sessionManager.list();
+  return new JsonResponse(Status.OK,"",new LinkedList<ZQLSession>(sessions.descendingMap().values())).build();
+}

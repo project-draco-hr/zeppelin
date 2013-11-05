@@ -1,4 +1,3 @@
 {
-  Date date=session.getDateCreated();
-  return new Path(sessionPersistBasePath + "/" + pathFormat.format(date)+ session.getId());
+  return new Path(sessionPersistBasePath + "/" + session.getId());
 }

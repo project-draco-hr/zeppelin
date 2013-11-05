@@ -1,7 +1,0 @@
-{
-  sm.create();
-  sm.create();
-  sm.create();
-  assertEquals(3,sm.find(new Date(0),new Date(),10).size());
-  assertEquals(2,sm.find(new Date(0),new Date(),2).size());
-}

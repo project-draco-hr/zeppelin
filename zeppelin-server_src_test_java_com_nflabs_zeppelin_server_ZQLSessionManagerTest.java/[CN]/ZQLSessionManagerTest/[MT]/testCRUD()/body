@@ -1,10 +1,10 @@
 {
   ZQLSession sess=sm.create();
   assertNotNull(sess);
-  assertEquals(1,sm.find(new Date(0),new Date(),5).size());
+  assertEquals(1,sm.list().size());
   sm.setZql(sess.getId(),"show tables");
   assertEquals("show tables",sm.get(sess.getId()).getZQL());
   sm.delete(sess.getId());
   assertNull(sm.get(sess.getId()));
-  assertEquals(0,sm.find(new Date(0),new Date(),5).size());
+  assertEquals(0,sm.list().size());
 }

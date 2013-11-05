@@ -1,0 +1,40 @@
+{
+  TreeMap<String,ZQLSession> found=new TreeMap<String,ZQLSession>();
+  Path dir=new Path(sessionPersistBasePath);
+  try {
+    if (fs.isDirectory(dir) == false) {
+      return found;
+    }
+  }
+ catch (  IOException e) {
+    logger.error("Can't scan dir " + dir,e);
+  }
+  FileStatus[] files=null;
+  try {
+    files=fs.listStatus(dir);
+  }
+ catch (  IOException e) {
+    logger.error("Can't list dir " + dir,e);
+    e.printStackTrace();
+  }
+  if (files == null)   return found;
+  Arrays.sort(files,new Comparator<FileStatus>(){
+    @Override public int compare(    FileStatus a,    FileStatus b){
+      String aName=a.getPath().getName();
+      String bName=b.getPath().getName();
+      return bName.compareTo(aName);
+    }
+  }
+);
+  for (  FileStatus f : files) {
+    ZQLSession session;
+    try {
+      session=load(f.getPath());
+      found.put(session.getId(),session);
+    }
+ catch (    IOException e) {
+      logger.error("Can't load session from path " + f.getPath(),e);
+    }
+  }
+  return found;
+}
