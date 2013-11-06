@@ -3,6 +3,7 @@
   this.varClass=Float.class;
   this.stringValue=null;
   this.intValue=-1;
+  this.longValue=-1;
   this.floatValue=floatValue;
   this.booleanValue=false;
   this.type=VarType.FLOAT;

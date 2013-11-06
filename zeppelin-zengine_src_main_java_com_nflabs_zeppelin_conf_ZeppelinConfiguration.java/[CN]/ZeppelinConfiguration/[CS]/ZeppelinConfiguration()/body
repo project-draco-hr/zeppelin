@@ -4,6 +4,9 @@
     if (v.getType() == ConfVars.VarType.BOOLEAN) {
       this.setProperty(v.getVarName(),v.getBooleanValue());
     }
+ else     if (v.getType() == ConfVars.VarType.LONG) {
+      this.setProperty(v.getVarName(),v.getLongValue());
+    }
  else     if (v.getType() == ConfVars.VarType.INT) {
       this.setProperty(v.getVarName(),v.getIntValue());
     }

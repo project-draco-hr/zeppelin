@@ -1,7 +1,11 @@
 {
   List<Z> zList=new LinkedList<Z>();
   Z currentZ=null;
-  String[] t=Util.split(stmts,op,true);
+  String escapeSeq="\"',;<%>!";
+  char escapeChar='\\';
+  String[] blockStart=new String[]{"\"","'","<%","<","!"};
+  String[] blockEnd=new String[]{"\"","'","%>",">",";"};
+  String[] t=Util.split(stmts,escapeSeq,escapeChar,blockStart,blockEnd,op,true);
   String currentOp=null;
   for (int i=0; i < t.length; i++) {
     String stmt=t[i];
@@ -39,6 +43,25 @@
  else {
         throw new ZQLException("Can not redirect empty");
       }
+    }
+    if (stmt.startsWith("!")) {
+      if (currentZ != null) {
+        if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
+          zList.add(currentZ);
+          currentZ=null;
+          currentOp=null;
+        }
+ else {
+          throw new ZQLException("Can not piped or redirected from/to exec statement");
+        }
+      }
+      try {
+        currentZ=new ExecStatement(stmt);
+      }
+ catch (      ZException e) {
+        throw new ZQLException(e);
+      }
+      continue;
     }
     Z z=null;
     try {

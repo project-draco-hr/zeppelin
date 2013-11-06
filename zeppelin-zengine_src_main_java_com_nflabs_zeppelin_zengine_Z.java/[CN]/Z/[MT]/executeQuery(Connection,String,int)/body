@@ -1,6 +1,20 @@
 {
   initialize();
   if (query == null)   return null;
+  if (query.startsWith("!")) {
+    try {
+      return shellCommand(query.substring(1));
+    }
+ catch (    ExecuteException e) {
+      logger().error(e);
+    }
+catch (    IOException e) {
+      logger().error(e);
+    }
+catch (    ResultDataException e) {
+      logger().error(e);
+    }
+  }
   Connection con=null;
   try {
     con=connection(connection);

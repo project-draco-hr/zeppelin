@@ -2,9 +2,9 @@
   this.varName=varName;
   this.varClass=Integer.class;
   this.stringValue=null;
-  this.intValue=intValue;
+  this.intValue=-1;
   this.floatValue=-1;
-  this.longValue=-1;
+  this.longValue=longValue;
   this.booleanValue=false;
   this.type=VarType.INT;
 }

@@ -4,6 +4,7 @@
   this.stringValue=varValue;
   this.intValue=-1;
   this.floatValue=-1;
+  this.longValue=-1;
   this.booleanValue=false;
   this.type=VarType.STRING;
 }
