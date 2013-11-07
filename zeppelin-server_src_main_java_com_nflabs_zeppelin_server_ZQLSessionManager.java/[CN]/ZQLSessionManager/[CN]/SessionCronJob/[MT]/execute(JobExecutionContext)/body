@@ -1,0 +1,4 @@
+{
+  String sessionId=context.getJobDetail().getKey().getName();
+  sm.run(sessionId);
+}

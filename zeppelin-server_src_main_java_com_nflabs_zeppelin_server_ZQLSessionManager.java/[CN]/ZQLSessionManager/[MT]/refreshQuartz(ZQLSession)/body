@@ -1,0 +1,15 @@
+{
+  removeQuartz(session);
+  if (session.getCron() == null || session.getCron().trim().length() == 0) {
+    return;
+  }
+  SessionCronJob.sm=this;
+  JobDetail job=JobBuilder.newJob(SessionCronJob.class).withIdentity(session.getId(),"zql").usingJobData("sessionId",session.getId()).build();
+  CronTrigger trigger=TriggerBuilder.newTrigger().withIdentity("trigger_" + session.getId(),"zql").withSchedule(CronScheduleBuilder.cronSchedule(session.getCron())).forJob(session.getId(),"zql").build();
+  try {
+    quertzSched.scheduleJob(job,trigger);
+  }
+ catch (  SchedulerException e) {
+    logger.error(e);
+  }
+}

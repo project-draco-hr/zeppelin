@@ -3,6 +3,7 @@
   if (s == null)   return false;
   if (s.getStatus() == Status.RUNNING)   return false;
 synchronized (active) {
+    removeQuartz(s);
     active.remove(sessionId);
   }
   Path path=getPathForSessionId(sessionId);

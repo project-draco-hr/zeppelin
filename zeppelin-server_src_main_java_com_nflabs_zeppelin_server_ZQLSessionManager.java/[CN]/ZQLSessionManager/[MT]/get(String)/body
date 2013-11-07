@@ -7,7 +7,6 @@ synchronized (active) {
   try {
     ZQLSession session=load(path);
     if (session != null) {
-      session.setListener(this);
       return session;
     }
  else {

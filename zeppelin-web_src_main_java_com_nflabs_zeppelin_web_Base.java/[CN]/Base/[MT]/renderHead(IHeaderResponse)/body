@@ -8,6 +8,8 @@
   response.render(CssHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css","screen"));
   response.render(CssHeaderItem.forUrl("http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"));
   response.render(JavaScriptHeaderItem.forUrl("js/lib/ace/ace.js"));
+  response.render(JavaScriptHeaderItem.forUrl("http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"));
+  response.render(CssHeaderItem.forUrl("http://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"));
   response.render(JavaScriptHeaderItem.forUrl("js/lib/json2.js"));
   response.render(CssHeaderItem.forUrl("css/zeppelin.css"));
   response.render(JavaScriptHeaderItem.forUrl("js/zeppelin.js"));

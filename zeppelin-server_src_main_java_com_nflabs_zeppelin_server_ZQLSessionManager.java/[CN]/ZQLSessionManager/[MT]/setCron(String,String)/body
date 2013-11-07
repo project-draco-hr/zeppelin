@@ -1,0 +1,17 @@
+{
+  ZQLSession s=get(sessionId);
+  if (s == null) {
+    return null;
+  }
+ else {
+    s.setCron(cron);
+    try {
+      persist(s);
+      refreshQuartz(s);
+    }
+ catch (    IOException e) {
+      logger.error("Can't persist session " + sessionId,e);
+    }
+    return s;
+  }
+}

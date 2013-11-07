@@ -6,4 +6,7 @@
   gsonBuilder.setPrettyPrinting();
   gsonBuilder.registerTypeAdapter(Z.class,new ZAdapter());
   gson=gsonBuilder.create();
+  quertzSchedFact=new org.quartz.impl.StdSchedulerFactory();
+  quertzSched=quertzSchedFact.getScheduler();
+  quertzSched.start();
 }
