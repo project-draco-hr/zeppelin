@@ -1,3 +1,3 @@
 {
-  return Logger.getLogger(Z.class);
+  return LoggerFactory.getLogger(Z.class);
 }

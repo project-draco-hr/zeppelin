@@ -2,17 +2,18 @@
   initialize();
   if (query == null)   return null;
   if (query.startsWith("!")) {
+    String cmd=query.substring(1);
     try {
-      return shellCommand(query.substring(1));
+      return shellCommand(cmd);
     }
  catch (    ExecuteException e) {
-      logger().error(e);
+      logger().error("Failed to execute shell command " + cmd,e);
     }
 catch (    IOException e) {
-      logger().error(e);
+      logger().error("Failed to execute shell command " + cmd,e);
     }
 catch (    ResultDataException e) {
-      logger().error(e);
+      logger().error("Failed to execute shell command " + cmd,e);
     }
   }
   Connection con=null;

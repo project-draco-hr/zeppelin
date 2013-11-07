@@ -10,6 +10,6 @@
     quertzSched.scheduleJob(job,trigger);
   }
  catch (  SchedulerException e) {
-    logger.error(e);
+    logger.error("Failed to schedule Quartz job",e);
   }
 }
