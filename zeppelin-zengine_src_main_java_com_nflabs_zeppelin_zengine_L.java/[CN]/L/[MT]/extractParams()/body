@@ -1,7 +1,6 @@
 {
   initialize();
   Map<String,ParamInfo> paramInfos=new HashMap<String,ParamInfo>();
-  String q;
   ZContext zContext=null;
   if (erbFile != null) {
     FSDataInputStream ins;
@@ -9,7 +8,7 @@
       ins=fs.open(erbFile);
       BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
       zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
-      q=getQuery(erb,zContext);
+      getQuery(erb,zContext);
       ins.close();
     }
  catch (    IOException e1) {
@@ -26,7 +25,7 @@ catch (    ZException e) {
       zWebContext=new ZWebContext(params,null);
       FSDataInputStream ins=fs.open(resourcePath);
       BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-      q=evalWebTemplate(erb,zWebContext);
+      evalWebTemplate(erb,zWebContext);
       ins.close();
     }
   }

@@ -1,6 +1,6 @@
 {
   new File(tmpDir.getAbsolutePath() + "/test/web").mkdirs();
-  Path p=new Path(this.ROOT_DIR,"afile");
+  Path p=new Path(HiveTestBase.ROOT_DIR,"afile");
   FSDataOutputStream o=this.getFileSystem().create(p);
   BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(o));
   bw.write("5\n");

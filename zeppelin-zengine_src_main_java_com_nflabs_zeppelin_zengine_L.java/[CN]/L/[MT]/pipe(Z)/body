@@ -1,15 +1,2 @@
 {
-  if (erbFile == null) {
-    if (prev() != null) {
-      withName(z.name());
-    }
- else {
-    }
-    setNext(z);
-    z.setPrev(this);
-    return z;
-  }
- else {
-    return super.pipe(z);
-  }
 }

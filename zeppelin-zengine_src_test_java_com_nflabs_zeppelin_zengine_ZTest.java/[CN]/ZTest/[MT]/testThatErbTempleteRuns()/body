@@ -1,14 +1,14 @@
 {
   ScriptEngineFactory factory=new JRubyScriptEngineFactory();
   ScriptEngine engine=factory.getScriptEngine();
-  String varName="pelotonAppScriptOut_" + System.currentTimeMillis();
   StringBuffer rubyScript=new StringBuffer();
+  String varName="pelotonAppScriptOut_" + System.currentTimeMillis();
   rubyScript.append("require 'erb'\n");
   rubyScript.append("$" + varName + " = ERB.new(\"<%= $hql %> world\").result(binding)\n");
   SimpleBindings bindings=new SimpleBindings();
   engine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
   bindings.put("hql","hello");
   engine.eval(rubyScript.toString(),bindings);
-  String out=(String)engine.getBindings(ScriptContext.ENGINE_SCOPE).get(varName);
+  String out=(String)bindings.get(varName);
   assertEquals("hello world",out);
 }

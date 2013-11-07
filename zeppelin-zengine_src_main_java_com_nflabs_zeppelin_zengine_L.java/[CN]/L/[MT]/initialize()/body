@@ -18,7 +18,7 @@
   }
   try {
     this.dir=new Path(libUri);
-    if (fs.isDirectory(dir) == false) {
+    if (fs.getFileStatus(dir).isDir() == false) {
       throw new ZException("Directory " + dir.toUri() + " does not exist");
     }
     this.erbFile=new Path(libUri.toString() + "/zql.erb");

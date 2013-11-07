@@ -1,11 +1,10 @@
 {
   initialize();
-  FileStatus[] files;
   if (path == null || path.compareTo("/") == 0) {
     path="index.erb";
   }
   try {
-    if (fs.isDirectory(webDir) == false) {
+    if (fs.getFileStatus(webDir).isDir() == false) {
       return super.readWebResource(path);
     }
     Path resourcePath=new Path(webDir.toUri() + "/" + path);
