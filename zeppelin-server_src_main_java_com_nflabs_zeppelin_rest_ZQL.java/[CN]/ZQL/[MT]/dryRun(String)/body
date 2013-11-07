@@ -1,9 +1,7 @@
 {
   ZQLSession s=sessionManager.dryRun(sessionId);
   if (s == null) {
-    return new JsonResponse(Status.NOT_FOUND).build();
+    return STATUS_NOT_FOUND;
   }
- else {
-    return new JsonResponse(Status.OK,"",s).build();
-  }
+  return new JsonResponse<ZQLSession>(Status.OK,"",s).build();
 }

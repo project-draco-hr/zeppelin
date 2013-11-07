@@ -1,6 +1,8 @@
 {
   ZQLSession s=get(sessionId);
-  if (s == null)   return null;
+  if (s == null) {
+    return null;
+  }
   s.abort();
   return s;
 }

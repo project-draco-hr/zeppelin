@@ -2,7 +2,7 @@
   TreeMap<String,ZQLSession> found=new TreeMap<String,ZQLSession>();
   Path dir=new Path(sessionPersistBasePath);
   try {
-    if (fs.isDirectory(dir) == false) {
+    if (!fs.getFileStatus(dir).isDir()) {
       return found;
     }
   }
@@ -17,7 +17,9 @@
     logger.error("Can't list dir " + dir,e);
     e.printStackTrace();
   }
-  if (files == null)   return found;
+  if (files == null) {
+    return found;
+  }
   Arrays.sort(files,new Comparator<FileStatus>(){
     @Override public int compare(    FileStatus a,    FileStatus b){
       String aName=a.getPath().getName();

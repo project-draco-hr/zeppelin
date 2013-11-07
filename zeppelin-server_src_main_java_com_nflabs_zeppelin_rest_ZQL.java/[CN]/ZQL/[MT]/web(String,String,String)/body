@@ -1,7 +1,7 @@
 {
   ZQLSession session=sessionManager.get(sessionId);
   if (session == null) {
-    return new JsonResponse(Status.NOT_FOUND).build();
+    return STATUS_NOT_FOUND;
   }
   if (path == null || path.equals("/") || path.length() == 0) {
     path="/index.erb";

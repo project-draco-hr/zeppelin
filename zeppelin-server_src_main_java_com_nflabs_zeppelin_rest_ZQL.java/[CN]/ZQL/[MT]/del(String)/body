@@ -1,9 +1,7 @@
 {
   boolean s=sessionManager.delete(sessionId);
   if (s == false) {
-    return new JsonResponse(Status.NOT_FOUND).build();
+    return STATUS_NOT_FOUND;
   }
- else {
-    return new JsonResponse(Status.OK).build();
-  }
+  return new JsonResponse(Status.OK).build();
 }
