@@ -15,7 +15,7 @@
     }
  else {
       try {
-        result=executeQuery("select * from " + name(),maxResult);
+        result=connection().select(name(),maxResult);
       }
  catch (      Exception e) {
         if (lastQueryResult != null) {

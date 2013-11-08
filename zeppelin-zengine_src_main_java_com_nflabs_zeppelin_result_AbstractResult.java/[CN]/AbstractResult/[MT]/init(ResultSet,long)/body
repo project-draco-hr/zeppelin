@@ -6,5 +6,10 @@
     columnDef[i]=new ColumnDef(metaData.getColumnLabel(i + 1),metaData.getColumnType(i + 1),metaData.getColumnTypeName(i + 1));
   }
   this.res=res;
-  this.max=max;
+  if (max < 0) {
+    this.max=Z.conf().getLong(ConfVars.ZEPPELIN_MAX_RESULT);
+  }
+ else {
+    this.max=max;
+  }
 }

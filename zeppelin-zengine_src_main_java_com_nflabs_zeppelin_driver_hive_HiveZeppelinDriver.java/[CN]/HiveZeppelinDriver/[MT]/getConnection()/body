@@ -1,0 +1,22 @@
+{
+  try {
+    Connection con;
+    if (client != null) {
+      con=new HiveConnection(client);
+    }
+ else     if (getConnectionUri() == null || getConnectionUri().trim().length() == 0) {
+      con=new HiveConnection(hiveConf());
+    }
+ else {
+      Class.forName(getHiveDriverClass());
+      con=DriverManager.getConnection(getConnectionUri());
+    }
+    return new HiveZeppelinConnection(con);
+  }
+ catch (  SQLException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  ClassNotFoundException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

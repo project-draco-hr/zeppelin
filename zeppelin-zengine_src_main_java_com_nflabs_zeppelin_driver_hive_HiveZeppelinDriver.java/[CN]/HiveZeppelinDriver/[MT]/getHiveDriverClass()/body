@@ -1,0 +1,3 @@
+{
+  return getConf().getString("HIVE_DRIVER_CLASS","hive.driver.class","org.apache.hadoop.hive.jdbc.HiveDriver");
+}

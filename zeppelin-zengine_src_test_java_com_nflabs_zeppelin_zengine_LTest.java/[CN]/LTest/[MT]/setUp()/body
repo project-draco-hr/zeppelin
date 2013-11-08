@@ -5,5 +5,8 @@
   TestUtil.delete(new File("/tmp/warehouse"));
   TestUtil.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
-  Z.configure(client);
+  Z.configure();
+  HiveZeppelinDriver driver=new HiveZeppelinDriver(Z.conf());
+  driver.setClient(client);
+  Z.setDriver(driver);
 }

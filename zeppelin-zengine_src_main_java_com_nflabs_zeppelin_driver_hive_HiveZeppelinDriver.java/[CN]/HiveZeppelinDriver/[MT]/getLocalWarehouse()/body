@@ -1,0 +1,3 @@
+{
+  return getConf().getString("HIVE_LOCAL_WAREHOUSE","hive.local.warehouse","data");
+}

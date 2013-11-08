@@ -1,0 +1,9 @@
+{
+  if (System.getenv(envName) != null) {
+    return Long.parseLong(System.getenv(envName));
+  }
+  if (System.getProperty(propertyName) != null) {
+    return Long.parseLong(System.getProperty(propertyName));
+  }
+  return getLongValue(propertyName,defaultValue);
+}

@@ -1,0 +1,9 @@
+{
+  if (System.getenv(envName) != null) {
+    return Integer.parseInt(System.getenv(envName));
+  }
+  if (System.getProperty(propertyName) != null) {
+    return Integer.parseInt(System.getProperty(propertyName));
+  }
+  return getIntValue(propertyName,defaultValue);
+}
