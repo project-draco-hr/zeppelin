@@ -1,13 +1,18 @@
 {
   initialize();
   if (executed == false)   return;
-  if (name() != null && autogenName == true) {
-    if (table == true) {
-      executeQuery("DROP TABLE if exists " + name(),maxResult);
-    }
+  try {
+    if (name() != null && autogenName == true) {
+      if (table == true) {
+        connection().dropTable(name());
+      }
  else {
-      executeQuery("DROP VIEW if exists " + name(),maxResult);
+        connection().dropView(name());
+      }
     }
+  }
+ catch (  ZeppelinDriverException e) {
+    throw new ZException(e);
   }
   String q=getReleaseQuery();
   if (q != null) {

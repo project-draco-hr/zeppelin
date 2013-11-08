@@ -1,0 +1,13 @@
+{
+  ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
+  if (classLoader == null) {
+    classLoader=HiveZeppelinDriver.class.getClassLoader();
+  }
+  URL url=classLoader.getResource("hive-site.xml");
+  HiveConf hiveConf=null;
+  hiveConf=new HiveConf();
+  if (url == null) {
+    hiveConf.set(HiveConf.ConfVars.METASTOREWAREHOUSE.varname,getLocalWarehouse());
+  }
+  return hiveConf;
+}

@@ -1,0 +1,9 @@
+{
+  if (System.getenv(envName) != null) {
+    return Float.parseFloat(System.getenv(envName));
+  }
+  if (System.getProperty(propertyName) != null) {
+    return Float.parseFloat(System.getProperty(propertyName));
+  }
+  return getFloatValue(propertyName,defaultValue);
+}

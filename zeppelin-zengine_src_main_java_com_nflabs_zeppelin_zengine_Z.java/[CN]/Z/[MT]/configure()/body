@@ -1,4 +1,4 @@
 {
-  HiveInterface cli=null;
-  configure(cli);
+  ZeppelinDriver drv=null;
+  configure(drv);
 }

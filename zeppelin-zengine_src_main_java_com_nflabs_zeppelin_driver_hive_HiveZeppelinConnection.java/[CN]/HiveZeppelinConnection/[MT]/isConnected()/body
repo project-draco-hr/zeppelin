@@ -1,0 +1,13 @@
+{
+  try {
+    if (connection.isClosed()) {
+      return false;
+    }
+ else {
+      return true;
+    }
+  }
+ catch (  SQLException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}
