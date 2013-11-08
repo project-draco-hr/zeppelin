@@ -1,0 +1,11 @@
+{
+  final ServletHolder cxfServletHolder=new ServletHolder(new CXFNonSpringJaxrsServlet());
+  cxfServletHolder.setInitParameter("javax.ws.rs.Application",ZeppelinServer.class.getName());
+  cxfServletHolder.setName("rest");
+  cxfServletHolder.setForcedPath("rest");
+  final ServletContextHandler cxfContext=new ServletContextHandler();
+  cxfContext.setSessionHandler(new SessionHandler());
+  cxfContext.setContextPath("/cxf");
+  cxfContext.addServlet(cxfServletHolder,"/zeppelin/*");
+  return cxfContext;
+}

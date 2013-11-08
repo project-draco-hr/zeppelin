@@ -8,27 +8,17 @@
   connector.setSoLingerTime(-1);
   connector.setPort(port);
   server.addConnector(connector);
-  final ServletHolder cxfServletHolder=new ServletHolder(new CXFNonSpringJaxrsServlet());
-  cxfServletHolder.setInitParameter("javax.ws.rs.Application",ZeppelinServer.class.getName());
-  cxfServletHolder.setName("rest");
-  cxfServletHolder.setForcedPath("rest");
-  final ServletContextHandler cxfContext=new ServletContextHandler();
-  cxfContext.setSessionHandler(new SessionHandler());
-  cxfContext.setContextPath("/cxf");
-  cxfContext.addServlet(cxfServletHolder,"/zeppelin/*");
+  final ServletContextHandler cxfContext=setupRestApi();
   WebAppContext sch=new WebAppContext();
-  sch.setParentLoaderPriority(true);
-  File resourcePath=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
-  if (resourcePath.isDirectory()) {
-    System.setProperty("wicket.configuration","development");
-    ServletHolder wicketServletHolder=new ServletHolder(WicketServlet.class);
-    wicketServletHolder.setInitParameter(ContextParamWebApplicationFactory.APP_CLASS_PARAM,"com.nflabs.zeppelin.web.WicketApplication");
-    wicketServletHolder.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM,"/*");
-    sch.setWar(resourcePath.getAbsolutePath());
-    sch.addServlet(wicketServletHolder,"/");
+  File webapp=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
+  if (webapp.isDirectory()) {
+    sch.setDescriptor(webapp + "/WEB-INF/web.xml");
+    sch.setResourceBase(webapp.getPath());
+    sch.setContextPath("/zeppelin");
+    sch.setParentLoaderPriority(true);
   }
  else {
-    sch.setWar(resourcePath.getAbsolutePath());
+    sch.setWar(webapp.getAbsolutePath());
   }
   ContextHandlerCollection contexts=new ContextHandlerCollection();
   contexts.setHandlers(new Handler[]{cxfContext,sch});
@@ -49,7 +39,5 @@
     }
   }
 );
-  while (true) {
-    Thread.sleep(10000);
-  }
+  server.join();
 }
