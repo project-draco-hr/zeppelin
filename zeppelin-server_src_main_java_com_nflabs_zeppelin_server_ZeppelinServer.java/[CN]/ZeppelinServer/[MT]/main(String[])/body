@@ -14,7 +14,7 @@
   if (webapp.isDirectory()) {
     sch.setDescriptor(webapp + "/WEB-INF/web.xml");
     sch.setResourceBase(webapp.getPath());
-    sch.setContextPath("/zeppelin");
+    sch.setContextPath("/");
     sch.setParentLoaderPriority(true);
   }
  else {
