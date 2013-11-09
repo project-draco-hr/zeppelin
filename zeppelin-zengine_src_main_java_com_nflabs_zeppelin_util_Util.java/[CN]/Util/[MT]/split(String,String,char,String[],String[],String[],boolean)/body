@@ -1,10 +1,10 @@
 {
   List<String> splits=new ArrayList<String>();
   String curString="";
-  int ignoreBlockIndex=-1;
   boolean escape=false;
   int lastEscapeOffset=-1;
   int blockStartPos=-1;
+  List<Integer> blockStack=new LinkedList<Integer>();
   for (int i=0; i < str.length(); i++) {
     char c=str.charAt(i);
     if (c == escapeChar && escape == false) {
@@ -20,27 +20,41 @@
       lastEscapeOffset=i;
       continue;
     }
-    if (ignoreBlockIndex >= 0) {
+    if (blockStack.size() > 0) {
       curString+=c;
+      boolean multicharBlockDetected=false;
       for (int b=0; b < blockStart.length; b++) {
-        if (blockStart[b].compareTo(str.substring(blockStartPos,i)) == 0) {
-          ignoreBlockIndex=b;
+        if (blockStartPos >= 0 && getBlockStr(blockStart[b]).compareTo(str.substring(blockStartPos,i)) == 0) {
+          blockStack.remove(0);
+          blockStack.add(0,b);
+          multicharBlockDetected=true;
+          break;
         }
       }
-      if (curString.substring(lastEscapeOffset + 1).endsWith(blockEnd[ignoreBlockIndex])) {
-        for (        String splitter : splitters) {
-          if (splitter.compareTo(blockEnd[ignoreBlockIndex]) == 0) {
-            splits.add(curString);
-            if (includeSplitter == true) {
-              splits.add(splitter);
+      if (multicharBlockDetected == true)       continue;
+      if (isNestedBlock(blockStart[blockStack.get(0)]) == true) {
+        if (curString.substring(lastEscapeOffset + 1).endsWith(getBlockStr(blockStart[blockStack.get(0)])) == true) {
+          blockStack.add(0,blockStack.get(0));
+          blockStartPos=i;
+          continue;
+        }
+      }
+      if (curString.substring(lastEscapeOffset + 1).endsWith(getBlockStr(blockEnd[blockStack.get(0)]))) {
+        if (isNestedBlock(blockEnd[blockStack.get(0)]) == false) {
+          for (          String splitter : splitters) {
+            if (splitter.compareTo(getBlockStr(blockEnd[blockStack.get(0)])) == 0) {
+              splits.add(curString);
+              if (includeSplitter == true) {
+                splits.add(splitter);
+              }
+              curString="";
+              lastEscapeOffset=-1;
+              break;
             }
-            curString="";
-            lastEscapeOffset=-1;
-            break;
           }
         }
         blockStartPos=-1;
-        ignoreBlockIndex=-1;
+        blockStack.remove(0);
         continue;
       }
     }
@@ -64,8 +78,8 @@
       }
       curString+=c;
       for (int b=0; b < blockStart.length; b++) {
-        if (curString.substring(lastEscapeOffset + 1).endsWith(blockStart[b]) == true) {
-          ignoreBlockIndex=b;
+        if (curString.substring(lastEscapeOffset + 1).endsWith(getBlockStr(blockStart[b])) == true) {
+          blockStack.add(0,b);
           blockStartPos=i;
           break;
         }

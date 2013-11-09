@@ -1,0 +1,9 @@
+{
+  String[] op=new String[]{";","|",">>",">"};
+  String escapeSeq="\"',;<%>!";
+  char escapeChar='\\';
+  String[] blockStart=new String[]{"\"","'","<%","N_<","!"};
+  String[] blockEnd=new String[]{"\"","'","%>","N_>",";"};
+  String[] t=Util.split("array <STRUCT<STRING>> tags",escapeSeq,escapeChar,blockStart,blockEnd,op,true);
+  assertEquals("array <STRUCT<STRING>> tags",t[0]);
+}

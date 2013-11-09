@@ -1,7 +1,7 @@
 {
   String escapeSeq="\"',;<%>";
   char escapeChar='\\';
-  String[] blockStart=new String[]{"\"","'","<%","<"};
-  String[] blockEnd=new String[]{"\"","'","%>",">"};
+  String[] blockStart=new String[]{"\"","'","<%","N_<"};
+  String[] blockEnd=new String[]{"\"","'","%>","N_>"};
   return split(str,escapeSeq,escapeChar,blockStart,blockEnd,splitters,includeSplitter);
 }
