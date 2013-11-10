@@ -1,6 +1,6 @@
 {
   ZQLSession sess=sm.create();
-  sm.setZql(sess.getId(),"create table if not exists test(txt STRING); show tables");
+  sm.setZql(sess.getId(),"!echo hello;!echo world");
   sm.run(sess.getId());
   while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);

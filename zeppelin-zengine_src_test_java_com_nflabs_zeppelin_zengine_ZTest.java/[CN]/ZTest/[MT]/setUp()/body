@@ -3,7 +3,8 @@
   tmpDir.mkdir();
   TestUtil.delete(new File("/tmp/warehouse"));
   TestUtil.delete(new File(ROOT_DIR.getName()));
-  System.setProperty("hive.local.warehouse","file://" + tmpDir.getAbsolutePath());
   Z.configure();
-  Z.setDriver(new HiveZeppelinDriver(Z.conf()));
+  HiveZeppelinDriver driver=new HiveZeppelinDriver(Z.conf());
+  driver.setClient(client);
+  Z.setDriver(driver);
 }

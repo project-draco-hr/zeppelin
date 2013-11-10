@@ -2,12 +2,19 @@
   try {
     Connection con;
     if (client != null) {
+      logger.debug("Create connection from provided client instance");
       con=new HiveConnection(client);
     }
  else     if (getConnectionUri() == null || getConnectionUri().trim().length() == 0) {
+      logger.debug("Create connection from hive configuration");
       con=new HiveConnection(hiveConf());
     }
+ else     if (getConnectionUri().equals("jdbc:hive://")) {
+      logger.debug("Create connection from local mode");
+      con=new HiveConnection(localHiveConf());
+    }
  else {
+      logger.debug("Create connection from given jdbc uri");
       Class.forName(getHiveDriverClass());
       con=DriverManager.getConnection(getConnectionUri());
     }
