@@ -2,7 +2,9 @@
   LinkedList<Result> results=new LinkedList<Result>();
   ZQL zqlEvaluator=new ZQL(zql);
   zqlPlans=zqlEvaluator.compile();
-  ZeppelinConnection conn=Z.getConnection();
+synchronized (this) {
+    conn=Z.getConnection();
+  }
   for (int i=0; i < zqlPlans.size(); i++) {
     Z zz=zqlPlans.get(i);
     Map<String,Object> p=new HashMap<String,Object>();
@@ -17,9 +19,16 @@
     }
  catch (    ZException e) {
       error=new Result(e);
+      conn.close();
+synchronized (this) {
+        conn=null;
+      }
       throw e;
     }
   }
   conn.close();
+synchronized (this) {
+    conn=null;
+  }
   return results;
 }

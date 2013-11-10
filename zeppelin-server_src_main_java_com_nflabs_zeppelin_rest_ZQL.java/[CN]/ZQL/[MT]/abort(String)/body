@@ -1,0 +1,7 @@
+{
+  ZQLSession s=sessionManager.abort(sessionId);
+  if (s == null) {
+    return STATUS_NOT_FOUND;
+  }
+  return new JsonResponse<ZQLSession>(Status.OK,"",s).build();
+}
