@@ -1,4 +1,0 @@
-{
-  super.init();
-  mountPage("zeppelin",Zeppelin.class);
-}
