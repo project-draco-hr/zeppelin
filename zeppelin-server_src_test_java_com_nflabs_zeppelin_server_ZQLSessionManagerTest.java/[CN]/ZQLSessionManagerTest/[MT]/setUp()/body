@@ -8,5 +8,5 @@
   System.setProperty(ConfVars.ZEPPELIN_SESSION_DIR.getVarName(),tmpDir.getAbsolutePath());
   Z.configure();
   this.schedulerFactory=new SchedulerFactory();
-  this.sm=new ZQLSessionManager(schedulerFactory.createOrGetParallelScheduler("analyze",30),Z.fs(),Z.conf().getString(ConfVars.ZEPPELIN_SESSION_DIR));
+  this.sm=new ZQLSessionManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),Z.fs(),Z.conf().getString(ConfVars.ZEPPELIN_SESSION_DIR));
 }
