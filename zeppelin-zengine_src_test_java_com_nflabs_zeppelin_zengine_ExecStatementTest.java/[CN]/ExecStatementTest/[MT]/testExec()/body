@@ -1,5 +1,5 @@
 {
   ExecStatement e=new ExecStatement("!echo \"hello world\"");
-  Result result=e.execute().result();
+  Result result=e.execute(driver.getConnection()).result();
   assertEquals("hello world",result.getRows().get(0)[0]);
 }
