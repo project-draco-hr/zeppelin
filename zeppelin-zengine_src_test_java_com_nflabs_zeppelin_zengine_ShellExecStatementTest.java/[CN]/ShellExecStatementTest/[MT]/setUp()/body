@@ -1,0 +1,6 @@
+{
+  super.setUp();
+  driver=new HiveZeppelinDriver(Z.getConf());
+  driver.setClient(client);
+  Z.setDriver(driver);
+}
