@@ -1,0 +1,10 @@
+{
+  Path file=new Path(getPathForSessionId(sessionId) + HISTORY_DIR_NAME + "/"+ name);
+  try {
+    return load(sessionId,file,true);
+  }
+ catch (  IOException e) {
+    logger.error("Can't load session history " + file,e);
+    return null;
+  }
+}

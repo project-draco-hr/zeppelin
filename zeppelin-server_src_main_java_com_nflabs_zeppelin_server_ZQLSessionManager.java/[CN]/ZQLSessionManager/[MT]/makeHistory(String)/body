@@ -1,0 +1,5 @@
+{
+  Path from=new Path(getPathForSessionId(sessionId).toString() + CURRENT_SESSION_FILE_NAME);
+  Path to=new Path(getPathForSessionId(sessionId).toString() + HISTORY_DIR_NAME + "/"+ historyPathFormat.format(new Date()));
+  fs.rename(from,to);
+}

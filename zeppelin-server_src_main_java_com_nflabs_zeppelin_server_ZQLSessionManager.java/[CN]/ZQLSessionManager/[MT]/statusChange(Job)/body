@@ -3,6 +3,9 @@
     if (job.getStatus() == Status.ERROR && job.getException() != null) {
       logger.error("Session error",job.getException());
     }
+    if (job.getStatus() == Status.FINISHED) {
+      makeHistory(((ZQLSession)job).getId());
+    }
     logger.info("Session " + job.getId() + " status changed "+ job.getStatus());
     persist((ZQLSession)job);
   }

@@ -1,6 +1,6 @@
 {
   TreeMap<String,ZQLSession> found=new TreeMap<String,ZQLSession>();
-  Path dir=new Path(sessionPersistBasePath);
+  Path dir=new Path(getPathForSessionId(sessionId) + HISTORY_DIR_NAME);
   try {
     if (!fs.getFileStatus(dir).isDir()) {
       return found;
@@ -33,10 +33,9 @@
     ZQLSession session;
     try {
       Path path=f.getPath();
-      String sessionId=getSessionIdFromPath(path);
-      session=load(sessionId,new Path(path.toString() + CURRENT_SESSION_FILE_NAME),false);
+      session=load(sessionId,path,true);
       if (session != null) {
-        found.put(session.getId(),session);
+        found.put(f.getPath().getName(),session);
       }
  else {
         logger.error("Session not loaded " + f.getPath());

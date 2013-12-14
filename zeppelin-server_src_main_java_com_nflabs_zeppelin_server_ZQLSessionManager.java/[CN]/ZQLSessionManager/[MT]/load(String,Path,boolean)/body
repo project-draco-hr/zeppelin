@@ -1,6 +1,5 @@
 {
 synchronized (active) {
-    String sessionId=getSessionIdFromPath(path);
     if (active.containsKey(sessionId) == false) {
       if (fs.isFile(path) == false) {
         return null;
@@ -11,9 +10,11 @@ synchronized (active) {
         session.setStatus(Status.ABORT);
       }
       ins.close();
-      session.setListener(this);
-      active.put(session.getId(),session);
-      refreshQuartz(session);
+      if (history == false) {
+        session.setListener(this);
+        active.put(session.getId(),session);
+        refreshQuartz(session);
+      }
       return session;
     }
  else {
