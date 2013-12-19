@@ -1,5 +1,5 @@
 {
-  ZQLSession session=sessionManager.get(sessionId);
+  ZQLJob session=sessionManager.get(sessionId);
   if (session == null) {
     return STATUS_NOT_FOUND;
   }

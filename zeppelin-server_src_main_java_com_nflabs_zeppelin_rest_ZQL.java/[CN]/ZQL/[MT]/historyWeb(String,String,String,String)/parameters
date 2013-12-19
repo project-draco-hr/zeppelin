@@ -1,0 +1,4 @@
+String sessionId
+String historyId
+String zId
+String path

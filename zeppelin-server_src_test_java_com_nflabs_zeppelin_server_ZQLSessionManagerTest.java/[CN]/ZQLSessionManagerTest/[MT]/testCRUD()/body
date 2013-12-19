@@ -1,5 +1,5 @@
 {
-  ZQLSession sess=sm.create();
+  ZQLJob sess=sm.create();
   assertNotNull(sess);
   assertEquals(1,sm.list().size());
   sm.setZql(sess.getId(),"show tables");
