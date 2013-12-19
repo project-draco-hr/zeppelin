@@ -1,6 +1,6 @@
 {
 synchronized (active) {
-    if (active.containsKey(sessionId) == false) {
+    if (active.containsKey(sessionId) == false || history == true) {
       if (fs.isFile(path) == false) {
         return null;
       }
