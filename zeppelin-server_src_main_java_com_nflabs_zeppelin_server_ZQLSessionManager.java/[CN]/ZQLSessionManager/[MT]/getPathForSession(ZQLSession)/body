@@ -1,3 +1,0 @@
-{
-  return getPathForSessionId(session.getId());
-}

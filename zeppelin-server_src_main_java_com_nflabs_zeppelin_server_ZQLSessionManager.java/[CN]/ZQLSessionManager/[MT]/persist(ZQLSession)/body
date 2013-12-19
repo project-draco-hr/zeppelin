@@ -1,8 +1,0 @@
-{
-  String json=gson.toJson(session);
-  Path path=getPathForSession(session);
-  fs.mkdirs(new Path(path.toString() + HISTORY_DIR_NAME));
-  FSDataOutputStream out=fs.create(new Path(path.toString() + CURRENT_SESSION_FILE_NAME),true);
-  out.writeBytes(json);
-  out.close();
-}

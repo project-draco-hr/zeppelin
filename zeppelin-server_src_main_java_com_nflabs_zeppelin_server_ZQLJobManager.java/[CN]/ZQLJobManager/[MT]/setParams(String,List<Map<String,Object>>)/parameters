@@ -1,0 +1,2 @@
+String jobId
+List<Map<String,Object>> params

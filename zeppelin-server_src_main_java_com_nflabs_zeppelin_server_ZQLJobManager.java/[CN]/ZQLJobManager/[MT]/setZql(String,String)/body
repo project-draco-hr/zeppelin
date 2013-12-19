@@ -1,0 +1,16 @@
+{
+  ZQLJob s=get(jobId);
+  if (s == null) {
+    return null;
+  }
+ else {
+    s.setZQL(zql);
+    try {
+      persist(s);
+    }
+ catch (    IOException e) {
+      logger.error("Can't persist job " + jobId,e);
+    }
+    return s;
+  }
+}

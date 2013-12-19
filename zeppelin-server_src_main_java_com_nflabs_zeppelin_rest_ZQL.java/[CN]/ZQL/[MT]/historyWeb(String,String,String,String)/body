@@ -1,5 +1,5 @@
 {
-  ZQLSession session=sessionManager.getHistory(sessionId,historyId);
+  ZQLJob session=sessionManager.getHistory(sessionId,historyId);
   if (session == null) {
     logger.warn("Session " + sessionId + ", history "+ historyId+ " not found");
     return STATUS_NOT_FOUND;

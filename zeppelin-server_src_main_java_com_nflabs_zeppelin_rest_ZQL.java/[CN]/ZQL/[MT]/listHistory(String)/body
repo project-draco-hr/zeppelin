@@ -1,4 +1,4 @@
 {
-  TreeMap<String,ZQLSession> sessions=sessionManager.listHistory(sessionId);
-  return new JsonResponse<NavigableMap<String,ZQLSession>>(Status.OK,"",sessions.descendingMap()).build();
+  TreeMap<String,ZQLJob> sessions=sessionManager.listHistory(sessionId);
+  return new JsonResponse<NavigableMap<String,ZQLJob>>(Status.OK,"",sessions.descendingMap()).build();
 }
