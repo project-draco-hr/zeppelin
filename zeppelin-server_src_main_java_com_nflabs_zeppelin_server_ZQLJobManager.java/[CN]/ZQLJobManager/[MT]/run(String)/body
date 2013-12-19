@@ -1,0 +1,12 @@
+{
+  ZQLJob s=get(jobId);
+  if (s == null) {
+    return null;
+  }
+  if (s.getStatus() == Status.RUNNING) {
+    return s;
+  }
+  s.setListener(this);
+  scheduler.submit(s);
+  return s;
+}

@@ -1,5 +1,5 @@
 {
-  ZQLSession sess=sm.create();
+  ZQLJob sess=sm.create();
   sm.setZql(sess.getId(),"!echo hello;!echo world");
   sm.run(sess.getId());
   while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
