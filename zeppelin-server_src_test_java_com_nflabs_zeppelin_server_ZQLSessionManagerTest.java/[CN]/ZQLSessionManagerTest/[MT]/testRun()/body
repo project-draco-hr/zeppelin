@@ -1,7 +1,7 @@
 {
   ZQLJob sess=sm.create();
   sm.setZql(sess.getId(),"show tables");
-  sm=new ZQLJobManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),Z.fs(),Z.getConf().getString(ConfVars.ZEPPELIN_SESSION_DIR));
+  sm=new ZQLJobManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),Z.fs(),Z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
   sm.run(sess.getId());
   while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);
