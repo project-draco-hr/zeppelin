@@ -1,0 +1,3 @@
+Scheduler scheduler
+FileSystem fs
+String jobPersistBasePath

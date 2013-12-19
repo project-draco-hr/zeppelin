@@ -1,0 +1,6 @@
+{
+  SimpleDateFormat historyPathFormat=new SimpleDateFormat(HISTORY_PATH_FORMAT);
+  Path from=new Path(getPathForJobId(jobId).toString() + CURRENT_JOB_FILE_NAME);
+  Path to=new Path(getPathForJobId(jobId).toString() + HISTORY_DIR_NAME + "/"+ historyPathFormat.format(new Date()));
+  fs.rename(from,to);
+}

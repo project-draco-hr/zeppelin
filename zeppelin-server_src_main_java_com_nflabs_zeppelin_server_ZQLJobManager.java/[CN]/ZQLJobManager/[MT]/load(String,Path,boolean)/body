@@ -1,0 +1,24 @@
+{
+synchronized (active) {
+    if (active.containsKey(jobId) == false || history == true) {
+      if (fs.isFile(path) == false) {
+        return null;
+      }
+      FSDataInputStream ins=fs.open(path);
+      ZQLJob job=gson.fromJson(new InputStreamReader(ins),ZQLJob.class);
+      if (job.getStatus() == Status.RUNNING) {
+        job.setStatus(Status.ABORT);
+      }
+      ins.close();
+      if (history == false) {
+        job.setListener(this);
+        active.put(job.getId(),job);
+        refreshQuartz(job);
+      }
+      return job;
+    }
+ else {
+      return active.get(jobId);
+    }
+  }
+}

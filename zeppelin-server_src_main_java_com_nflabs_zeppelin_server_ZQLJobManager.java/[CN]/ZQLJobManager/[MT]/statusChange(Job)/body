@@ -1,0 +1,16 @@
+{
+  try {
+    if (job.getStatus() == Status.ERROR && job.getException() != null) {
+      logger.error("Job error",job.getException());
+    }
+    logger.info("Job " + job.getId() + " status changed "+ job.getStatus());
+    persist((ZQLJob)job);
+    if (job.getStatus() == Status.FINISHED) {
+      makeHistory(((ZQLJob)job).getId());
+      persist((ZQLJob)job);
+    }
+  }
+ catch (  IOException e) {
+    logger.error("Can't persist job " + job.getId(),e);
+  }
+}

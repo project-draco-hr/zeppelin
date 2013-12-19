@@ -1,0 +1,19 @@
+{
+synchronized (active) {
+    ZQLJob job=active.get(jobId);
+    if (job != null)     return job;
+  }
+  Path path=getPathForJobId(jobId);
+  try {
+    ZQLJob job=load(jobId,new Path(path.toString() + CURRENT_JOB_FILE_NAME),false);
+    if (job != null) {
+      return job;
+    }
+ else {
+      return null;
+    }
+  }
+ catch (  IOException e) {
+    return null;
+  }
+}

@@ -1,0 +1,19 @@
+{
+  ZQLJob s=get(jobId);
+  if (s == null) {
+    return false;
+  }
+  if (s.getStatus() == Status.RUNNING)   return false;
+synchronized (active) {
+    removeQuartz(s);
+    active.remove(jobId);
+  }
+  Path path=getPathForJobId(jobId);
+  try {
+    return fs.delete(path,true);
+  }
+ catch (  IOException e) {
+    logger.error("Can't remove job file " + path,e);
+    return false;
+  }
+}
