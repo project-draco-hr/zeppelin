@@ -9,7 +9,6 @@
   assertEquals(Status.FINISHED,sm.get(sess.getId()).getStatus());
   assertEquals(sess.getId(),sm.getHistory(sess.getId(),sm.listHistory(sess.getId()).firstKey()).getId());
   sm.run(sess.getId());
-  Thread.sleep(500);
   while (sm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);
   }
