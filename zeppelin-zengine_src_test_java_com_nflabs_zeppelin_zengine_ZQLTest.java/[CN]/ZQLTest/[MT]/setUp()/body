@@ -2,8 +2,8 @@
   super.setUp();
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
-  TestUtil.delete(new File("/tmp/warehouse"));
-  TestUtil.delete(new File(ROOT_DIR.getName()));
+  UtilsForTests.delete(new File("/tmp/warehouse"));
+  UtilsForTests.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   Z.configure();
   HiveZeppelinDriver driver=new HiveZeppelinDriver(Z.getConf());
