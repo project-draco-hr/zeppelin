@@ -1,0 +1,12 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdir();
+  dataDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/data");
+  dataDir.mkdir();
+  System.setProperty("hive.local.warehouse","file://" + dataDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
+  System.setProperty(ConfVars.ZEPPELIN_JOB_DIR.getVarName(),tmpDir.getAbsolutePath());
+  Z.configure();
+  this.schedulerFactory=new SchedulerFactory();
+  this.jm=new ZQLJobManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),Z.fs(),Z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
+}

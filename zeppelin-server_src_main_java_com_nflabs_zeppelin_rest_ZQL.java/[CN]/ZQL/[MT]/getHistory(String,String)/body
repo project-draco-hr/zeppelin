@@ -1,0 +1,4 @@
+{
+  ZQLJob session=sessionManager.getHistory(sessionId,name);
+  return new JsonResponse<ZQLJob>(Status.OK,"",session).build();
+}

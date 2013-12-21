@@ -1,4 +1,4 @@
 {
-  ZQLSession s=sessionManager.create();
-  return new JsonResponse<ZQLSession>(Status.OK,"",s).build();
+  ZQLJob s=sessionManager.create();
+  return new JsonResponse<ZQLJob>(Status.OK,"",s).build();
 }

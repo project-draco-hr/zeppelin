@@ -1,8 +1,8 @@
 {
   SetZqlParam data=gson.fromJson(json,SetZqlParam.class);
-  ZQLSession s=sessionManager.setCron(sessionId,data.cron);
+  ZQLJob s=sessionManager.setCron(sessionId,data.cron);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }
-  return new JsonResponse<ZQLSession>(Status.OK,"",s).build();
+  return new JsonResponse<ZQLJob>(Status.OK,"",s).build();
 }

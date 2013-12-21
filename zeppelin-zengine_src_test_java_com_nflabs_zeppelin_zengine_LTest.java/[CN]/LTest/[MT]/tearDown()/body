@@ -1,6 +1,6 @@
 {
-  TestUtil.delete(tmpDir);
+  UtilsForTests.delete(tmpDir);
   super.tearDown();
-  TestUtil.delete(new File("/tmp/warehouse"));
-  TestUtil.delete(new File(ROOT_DIR.getName()));
+  UtilsForTests.delete(new File("/tmp/warehouse"));
+  UtilsForTests.delete(new File(ROOT_DIR.getName()));
 }
