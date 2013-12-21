@@ -1,5 +1,8 @@
 {
   if (this.status == status)   return;
+  Status before=this.status;
+  Status after=status;
+  if (listener != null)   listener.beforeStatusChange(this,before,after);
   this.status=status;
-  if (listener != null)   listener.statusChange(this);
+  if (listener != null)   listener.afterStatusChange(this,before,after);
 }
