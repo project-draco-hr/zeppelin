@@ -1,0 +1,20 @@
+{
+  ZQLJob sess=jm.create();
+  jm.setZql(sess.getId(),"show tables");
+  jm=new ZQLJobManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),Z.fs(),Z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
+  jm.run(sess.getId());
+  while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
+    Thread.sleep(300);
+  }
+  assertEquals(Status.FINISHED,jm.get(sess.getId()).getStatus());
+  assertEquals(sess.getId(),jm.getHistory(sess.getId(),jm.listHistory(sess.getId()).firstKey()).getId());
+  jm.run(sess.getId());
+  while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
+    Thread.sleep(300);
+  }
+  assertEquals(2,jm.listHistory(sess.getId()).size());
+  jm.deleteHistory(sess.getId(),jm.listHistory(sess.getId()).firstKey());
+  assertEquals(1,jm.listHistory(sess.getId()).size());
+  jm.deleteHistory(sess.getId());
+  assertEquals(0,jm.listHistory(sess.getId()).size());
+}
