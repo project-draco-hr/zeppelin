@@ -1,0 +1,33 @@
+{
+  File lp=getLocalLibraryPath(libraryName);
+  try {
+    if (lp.exists() == false) {
+      CloneCommand clone=Git.cloneRepository();
+      clone.setURI(reporitoryURL);
+      clone.setBranch(branch);
+      clone.setDirectory(lp);
+      if (progressListener != null) {
+        clone.setProgressMonitor(progressListener);
+      }
+      clone.call();
+    }
+    Git git=Git.open(lp);
+    git.fetch().call();
+    ResetCommand reset=git.reset();
+    reset.setRef(commit);
+    reset.setMode(ResetType.HARD);
+    reset.call();
+  }
+ catch (  InvalidRemoteException e) {
+    throw new ZANException(e);
+  }
+catch (  TransportException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
+catch (  IOException e) {
+    throw new ZANException(e);
+  }
+}

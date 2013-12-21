@@ -1,0 +1,5 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZANTest_" + System.currentTimeMillis());
+  tmpDir.mkdir();
+  dfs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
+}
