@@ -1,0 +1,17 @@
+{
+  ZQLJob sess=jm.create();
+  jm.setZql(sess.getId(),"!echo 'hello world'");
+  jm.setCron(sess.getId(),"0/1 * * * * ?");
+  while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
+    Thread.sleep(300);
+  }
+  List<Result> ret=(List<Result>)jm.get(sess.getId()).getReturn();
+  assertEquals("hello world",ret.get(0).getRows().get(0)[0]);
+  Date firstDateFinished=jm.get(sess.getId()).getDateFinished();
+  while (jm.get(sess.getId()).getDateFinished().getTime() == firstDateFinished.getTime()) {
+    Thread.sleep(300);
+  }
+  ret=(List<Result>)jm.get(sess.getId()).getReturn();
+  assertEquals("hello world",ret.get(0).getRows().get(0)[0]);
+  jm.delete(sess.getId());
+}
