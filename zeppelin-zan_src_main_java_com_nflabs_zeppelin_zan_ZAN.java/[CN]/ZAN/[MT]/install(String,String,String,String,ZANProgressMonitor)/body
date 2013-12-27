@@ -4,8 +4,9 @@
     if (lp.exists() == false) {
       CloneCommand clone=Git.cloneRepository();
       clone.setURI(reporitoryURL);
-      clone.setBranch(branch);
       clone.setDirectory(lp);
+      clone.setBranch(branch);
+      clone.setNoCheckout(true);
       if (progressListener != null) {
         clone.setProgressMonitor(progressListener);
       }
@@ -13,10 +14,9 @@
     }
     Git git=Git.open(lp);
     git.fetch().call();
-    ResetCommand reset=git.reset();
-    reset.setRef(commit);
-    reset.setMode(ResetType.HARD);
-    reset.call();
+    git.checkout().setName(branch).setCreateBranch(true).setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM).setStartPoint("origin/" + branch).call();
+    git.reset().setRef(commit).setMode(ResetType.HARD).call();
+    sync(libraryName);
   }
  catch (  InvalidRemoteException e) {
     throw new ZANException(e);
