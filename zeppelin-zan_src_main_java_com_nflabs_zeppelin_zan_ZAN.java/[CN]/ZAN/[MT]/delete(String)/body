@@ -1,0 +1,8 @@
+{
+  File lp=getLocalLibraryPath(libraryName);
+  if (lp.exists() == false) {
+    throw new ZANException("library " + libraryName + " not installed");
+  }
+  deleteRecursive(lp);
+  sync(libraryName);
+}
