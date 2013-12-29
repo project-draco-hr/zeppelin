@@ -1,0 +1,12 @@
+{
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  gsonBuilder.registerTypeAdapter(Z.class,new ZAdapter());
+  Gson gson=gsonBuilder.create();
+  String jsonstr=gson.toJson(this);
+  ZQLJob job=gson.fromJson(jsonstr,ZQLJob.class);
+  job.conn=conn;
+  job.setListener(getListener());
+  job.setException(getException());
+  return job;
+}
