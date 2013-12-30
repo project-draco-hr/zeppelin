@@ -1,0 +1,43 @@
+{
+  if (args == null || args.length == 0) {
+    printHelp();
+    System.exit(0);
+  }
+  int cmdIndex=0;
+  String cmdStr=args[cmdIndex];
+  Command cmd=null;
+  try {
+    cmd=Command.valueOf(cmdStr);
+  }
+ catch (  IllegalArgumentException e) {
+    System.err.println("Unknown command '" + cmdStr + "'");
+    System.exit(-1);
+  }
+  if (cmd == Command.update) {
+    zan().update();
+  }
+ else   if (cmd == Command.install) {
+    for (int i=cmdIndex + 1; i < args.length; i++) {
+      zan().install(args[i],null);
+    }
+  }
+ else   if (cmd == Command.uninstall) {
+    for (int i=cmdIndex + 1; i < args.length; i++) {
+      zan().uninstall(args[i]);
+    }
+  }
+ else   if (cmd == Command.upgrade) {
+    for (int i=cmdIndex + 1; i < args.length; i++) {
+      zan().upgrade(args[i],null);
+    }
+  }
+ else   if (cmd == Command.info) {
+    for (int i=cmdIndex + 1; i < args.length; i++) {
+      zan().info(args[i]);
+    }
+  }
+ else   if (cmd == Command.help) {
+    printHelp();
+    System.exit(0);
+  }
+}
