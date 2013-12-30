@@ -33,8 +33,18 @@
   }
  else   if (cmd == Command.info) {
     for (int i=cmdIndex + 1; i < args.length; i++) {
-      zan().info(args[i]);
+      System.out.println("-------------------------------------");
+      printInfo(args[i],zan().info(args[i]));
     }
+    System.out.println("-------------------------------------");
+  }
+ else   if (cmd == Command.list) {
+    List<Info> infos=zan().list();
+    for (    Info info : infos) {
+      System.out.println("-------------------------------------");
+      printInfo(info.getName(),info);
+    }
+    System.out.println("-------------------------------------");
   }
  else   if (cmd == Command.help) {
     printHelp();

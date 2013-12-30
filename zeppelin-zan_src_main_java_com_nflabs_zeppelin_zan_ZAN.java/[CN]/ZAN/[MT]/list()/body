@@ -1,0 +1,27 @@
+{
+  List<Info> infos=new LinkedList<Info>();
+  File zp=new File(localPath + "/.zan");
+  File[] files=zp.listFiles();
+  if (files == null || files.length == 0)   return infos;
+  for (  File f : files) {
+    String libraryName=f.getName();
+    if (libraryName.startsWith("."))     continue;
+    if (libraryName.startsWith("#"))     continue;
+    if (libraryName.startsWith("~"))     continue;
+    if (f.isDirectory() == false)     continue;
+    try {
+      Meta meta=getMeta(libraryName);
+      infos.add(getInfoFromMeta(libraryName,meta));
+    }
+ catch (    NoHeadException e) {
+      throw new ZANException(e);
+    }
+catch (    IOException e) {
+      throw new ZANException(e);
+    }
+catch (    GitAPIException e) {
+      throw new ZANException(e);
+    }
+  }
+  return infos;
+}

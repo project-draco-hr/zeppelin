@@ -6,5 +6,16 @@
  catch (  IOException e) {
     throw new ZANException(e);
   }
-  return new Info(meta);
+  try {
+    return getInfoFromMeta(libraryName,meta);
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+catch (  NoHeadException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
 }

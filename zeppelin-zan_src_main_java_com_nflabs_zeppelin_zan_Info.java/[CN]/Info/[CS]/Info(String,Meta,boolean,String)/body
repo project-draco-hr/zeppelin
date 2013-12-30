@@ -1,0 +1,7 @@
+{
+  super();
+  this.name=name;
+  this.meta=meta;
+  this.installed=installed;
+  this.commit=commit;
+}

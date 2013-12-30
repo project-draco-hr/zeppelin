@@ -5,4 +5,5 @@
   System.out.println("upgrade [library name]\t\t- upgrade installed library");
   System.out.println("uninstall [library name]\t- uninstall installed library");
   System.out.println("info [library name]\t\t- print information of the library");
+  System.out.println("list");
 }

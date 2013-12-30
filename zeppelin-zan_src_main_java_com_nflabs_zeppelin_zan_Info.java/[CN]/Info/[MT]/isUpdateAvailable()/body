@@ -1,0 +1,6 @@
+{
+  if (!isInstalled()) {
+    return false;
+  }
+  return (meta.commit.compareTo(commit) == 0) ? false : true;
+}
