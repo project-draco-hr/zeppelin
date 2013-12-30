@@ -1,0 +1,25 @@
+{
+  String localBase=tmpDir.getAbsolutePath() + "/local";
+  String remoteBase=tmpDir.getAbsolutePath() + "/remote";
+  ZAN zan=new ZAN("file://" + zanrepoDir.getAbsolutePath(),localBase,remoteBase,dfs);
+  zan.update();
+  git=Git.open(lib1repoDir);
+  FileUtils.writeStringToFile(new File(lib1repoDir,"res"),"res");
+  git.add().addFilepattern("res").call();
+  RevCommit cm=git.commit().setMessage("add resources").call();
+  git.push();
+  zan.install("lib1",null);
+  assertTrue(new File(localBase,"lib1").isDirectory());
+  assertTrue(new File(localBase,"lib1/zql").isFile());
+  assertFalse(new File(localBase,"lib1/res").isFile());
+  git=Git.open(zanrepoDir);
+  new Meta("file://" + lib1repoDir.getAbsolutePath(),"master",cm.getName()).write(new File(zanrepoDir,"lib1/meta"));
+  git.commit().setAll(true).setMessage("update lib1 commit").call();
+  git.push();
+  zan.update();
+  zan.upgrade("lib1",null);
+  System.out.println("dir=" + zanrepoDir.getAbsolutePath());
+  assertTrue(new File(localBase,"lib1").isDirectory());
+  assertTrue(new File(localBase,"lib1/zql").isFile());
+  assertTrue(new File(localBase,"lib1/res").isFile());
+}

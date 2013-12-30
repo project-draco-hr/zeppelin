@@ -1,0 +1,4 @@
+String zanRepo
+String localPath
+String remotePath
+FileSystem dfs

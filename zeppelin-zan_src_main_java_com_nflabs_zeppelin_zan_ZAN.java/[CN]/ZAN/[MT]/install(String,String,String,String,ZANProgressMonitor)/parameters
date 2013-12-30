@@ -1,5 +1,0 @@
-String libraryName
-String reporitoryURL
-String branch
-String commit
-ZANProgressMonitor progressListener

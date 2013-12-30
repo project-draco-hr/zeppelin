@@ -1,7 +1,7 @@
 {
   String localBase=tmpDir.getAbsolutePath() + "/local";
   String remoteBase=tmpDir.getAbsolutePath() + "/remote";
-  ZAN zan=new ZAN(localBase,remoteBase,dfs);
+  ZAN zan=new ZAN("",localBase,remoteBase,dfs);
   new File(localBase + "/libname").mkdirs();
   Map<String,List<String>> changes=zan.sync("libname");
   assertEquals(1,changes.get("added").size());

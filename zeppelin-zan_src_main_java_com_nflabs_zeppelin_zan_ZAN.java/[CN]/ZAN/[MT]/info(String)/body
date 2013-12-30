@@ -1,0 +1,10 @@
+{
+  Meta meta;
+  try {
+    meta=getMeta(libraryName);
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+  return new Info(meta);
+}

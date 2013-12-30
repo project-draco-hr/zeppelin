@@ -1,0 +1,34 @@
+{
+  Meta meta;
+  try {
+    meta=getMeta(libraryName);
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+  if (meta == null) {
+    throw new ZANException(libraryName + " not exists");
+  }
+  File lp=getLocalLibraryPath(libraryName);
+  if (lp.exists() == false) {
+    throw new ZANException("library " + libraryName + " not installed");
+  }
+  try {
+    Git git=Git.open(lp);
+    git.fetch().call();
+    git.reset().setRef(meta.commit).setMode(ResetType.HARD).call();
+    sync(libraryName);
+  }
+ catch (  InvalidRemoteException e) {
+    throw new ZANException(e);
+  }
+catch (  TransportException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
+catch (  IOException e) {
+    throw new ZANException(e);
+  }
+}
