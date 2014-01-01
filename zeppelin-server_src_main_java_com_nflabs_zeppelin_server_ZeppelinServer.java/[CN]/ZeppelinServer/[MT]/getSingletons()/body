@@ -2,5 +2,7 @@
   Set<Object> singletons=new HashSet<Object>();
   ZQL analyze=new ZQL(analyzeSessionManager);
   singletons.add(analyze);
+  ZAN zan=new ZAN(this.zan);
+  singletons.add(zan);
   return singletons;
 }
