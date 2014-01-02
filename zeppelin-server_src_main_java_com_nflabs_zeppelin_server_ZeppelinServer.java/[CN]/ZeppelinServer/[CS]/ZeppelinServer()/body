@@ -8,4 +8,5 @@
     this.analyzeSessionManager=new ZQLJobManager(schedulerFactory.createOrGetParallelScheduler("analyze",100),Z.fs(),Z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
   }
   this.zan=new com.nflabs.zeppelin.zan.ZAN(Z.getConf().getString(ConfVars.ZEPPELIN_ZAN_REPO),Z.getConf().getString(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO),Z.getConf().getString(ConfVars.ZEPPELIN_ZAN_SHARED_REPO),Z.fs());
+  this.zanJobManager=new ZANJobManager(zan,schedulerFactory.createOrGetFIFOScheduler("analyze"));
 }

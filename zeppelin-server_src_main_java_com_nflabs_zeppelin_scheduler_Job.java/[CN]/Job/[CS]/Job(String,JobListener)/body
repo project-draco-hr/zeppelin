@@ -3,6 +3,6 @@
   this.listener=listener;
   dateCreated=new Date();
   SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
-  id=dateFormat.format(dateCreated) + "_" + hashCode();
+  id=dateFormat.format(dateCreated) + "_" + super.hashCode();
   setStatus(Status.READY);
 }

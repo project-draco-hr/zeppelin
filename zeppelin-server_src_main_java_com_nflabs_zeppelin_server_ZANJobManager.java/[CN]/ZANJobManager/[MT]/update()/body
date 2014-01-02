@@ -1,0 +1,4 @@
+{
+  ZANJob job=new ZANJob("Update",zan,ZANJob.Operation.UPDATE,null,this);
+  scheduler.submit(job);
+}

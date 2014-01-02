@@ -1,0 +1,7 @@
+{
+  if (job.isTerminated()) {
+synchronized (runningJobs) {
+      runningJobs.remove(job);
+    }
+  }
+}

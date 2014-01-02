@@ -1,0 +1,6 @@
+{
+  super(jobName,listener);
+  this.zan=zan;
+  this.op=op;
+  this.libName=libName;
+}

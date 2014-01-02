@@ -1,0 +1,7 @@
+{
+  if (after == Status.READY) {
+synchronized (runningJobs) {
+      runningJobs.add((ZANJob)job);
+    }
+  }
+}
