@@ -1,0 +1,6 @@
+{
+  if (cssjsCache.get(resourceUrl.toString()) == null) {
+    cssjsCache.put(resourceUrl.toString(),webClient.getPage(window,new WebRequest(resourceUrl)).getWebResponse().getContentAsString());
+  }
+  return cssjsCache.get(resourceUrl.toString());
+}

@@ -1,0 +1,45 @@
+{
+  WebWindow currentWindow=webClient.getCurrentWindow();
+  Map<String,String> urlMapping=new HashMap<String,String>();
+  Map<String,byte[]> files=new HashMap<String,byte[]>();
+  WebWindow window=null;
+  try {
+    window=webClient.getWebWindowByName(page.getUrl().toString() + "_screenshot");
+    webClient.getPage(window,new WebRequest(page.getUrl()));
+  }
+ catch (  Exception e) {
+    window=webClient.openWindow(page.getUrl(),page.getUrl().toString() + "_screenshot");
+  }
+  String xPathExpression="//*[name() = 'img' or name() = 'link' and (@type = 'text/css' or @type = 'image/x-icon') or  @type = 'text/javascript']";
+  List<?> resultList=page.getByXPath(xPathExpression);
+  Iterator<?> i=resultList.iterator();
+  while (i.hasNext()) {
+    try {
+      HtmlElement el=(HtmlElement)i.next();
+      String resourceSourcePath=el.getAttribute("src").equals("") ? el.getAttribute("href") : el.getAttribute("src");
+      if (resourceSourcePath == null || resourceSourcePath.equals(""))       continue;
+      URL resourceRemoteLink=page.getFullyQualifiedUrl(resourceSourcePath);
+      String resourceLocalPath=mapLocalUrl(page,resourceRemoteLink,resourceSourcePath,urlMapping);
+      urlMapping.put(resourceSourcePath,resourceLocalPath);
+      if (!resourceRemoteLink.toString().endsWith(".css")) {
+        byte[] image=downloadImage(webClient,window,resourceRemoteLink);
+        files.put(resourceLocalPath,image);
+      }
+ else {
+        String css=downloadCss(webClient,window,resourceRemoteLink);
+        for (        String cssImagePath : getLinksFromCss(css)) {
+          URL cssImagelink=page.getFullyQualifiedUrl(cssImagePath.replace("\"","").replace("\'","").replace(" ",""));
+          String cssImageLocalPath=mapLocalUrl(page,cssImagelink,cssImagePath,urlMapping);
+          files.put(cssImageLocalPath,downloadImage(webClient,window,cssImagelink));
+        }
+        files.put(resourceLocalPath,replaceRemoteUrlsWithLocal(css,urlMapping).replace("resources/","./").getBytes());
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+  String pagesrc=replaceRemoteUrlsWithLocal(page.getWebResponse().getContentAsString(),urlMapping);
+  files.put("page.html",pagesrc.getBytes());
+  webClient.setCurrentWindow(currentWindow);
+  return createZip(files);
+}

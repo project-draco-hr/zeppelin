@@ -1,0 +1,24 @@
+{
+  WebDriver driver=new ScreenCaptureHtmlUnitDriver();
+  try {
+    driver.get("http://localhost:8080");
+    WebElement start=driver.findElement(By.partialLinkText("Start"));
+    start.click();
+    System.out.println("Page title is: " + driver.getTitle());
+    (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
+      public Boolean apply(      WebDriver d){
+        return d.findElement(By.linkText("New")).isDisplayed();
+      }
+    }
+);
+    System.out.println("Page title is: " + driver.getTitle());
+  }
+ catch (  WebDriverException e) {
+    File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    System.out.println("Screenshot in: " + scrFile.getAbsolutePath());
+    fail("Error occured " + e.getMessage());
+  }
+ finally {
+    driver.quit();
+  }
+}

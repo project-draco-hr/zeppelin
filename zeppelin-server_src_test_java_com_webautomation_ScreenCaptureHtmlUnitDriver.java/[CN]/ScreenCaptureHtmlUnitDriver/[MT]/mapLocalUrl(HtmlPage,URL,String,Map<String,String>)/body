@@ -1,0 +1,5 @@
+{
+  String resultingFileName="resources/" + FilenameUtils.getName(link.getFile());
+  replacementToAdd.put(path,resultingFileName);
+  return resultingFileName;
+}
