@@ -3,6 +3,8 @@
     return new SafariDriver();
   }
  else {
-    return new ScreenCaptureHtmlUnitDriver();
+    ScreenCaptureHtmlUnitDriver driver=new ScreenCaptureHtmlUnitDriver();
+    driver.setJavascriptEnabled(true);
+    return driver;
   }
 }
