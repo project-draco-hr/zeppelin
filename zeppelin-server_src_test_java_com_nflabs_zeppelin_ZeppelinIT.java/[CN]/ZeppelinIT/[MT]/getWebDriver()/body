@@ -1,0 +1,8 @@
+{
+  if (System.getProperty("runningFromMaven") == null) {
+    return new SafariDriver();
+  }
+ else {
+    return new ScreenCaptureHtmlUnitDriver();
+  }
+}

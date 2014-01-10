@@ -1,5 +1,5 @@
 {
-  WebDriver driver=new ScreenCaptureHtmlUnitDriver();
+  WebDriver driver=getWebDriver();
   try {
     driver.get("http://localhost:8080");
     WebElement start=driver.findElement(By.partialLinkText("Start"));
