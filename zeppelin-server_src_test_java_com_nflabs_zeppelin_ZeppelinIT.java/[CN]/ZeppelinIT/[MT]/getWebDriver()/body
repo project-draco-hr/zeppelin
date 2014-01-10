@@ -1,10 +1,26 @@
 {
+  WebDriver driver;
   if (System.getProperty("runningFromMaven") == null) {
-    return new SafariDriver();
+    driver=new SafariDriver();
   }
  else {
-    ScreenCaptureHtmlUnitDriver driver=new ScreenCaptureHtmlUnitDriver();
-    driver.setJavascriptEnabled(true);
-    return driver;
+    ScreenCaptureHtmlUnitDriver htmlUnitDriver=new ScreenCaptureHtmlUnitDriver();
+    htmlUnitDriver.setJavascriptEnabled(true);
+    driver=htmlUnitDriver;
   }
+  String url;
+  if (System.getProperty("url") != null) {
+    url=System.getProperty("url");
+  }
+ else {
+    url="http://localhost:8080";
+  }
+  driver.get(url);
+  (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
+    public Boolean apply(    WebDriver d){
+      return d.findElement(By.partialLinkText("Start")).isDisplayed();
+    }
+  }
+);
+  return driver;
 }
