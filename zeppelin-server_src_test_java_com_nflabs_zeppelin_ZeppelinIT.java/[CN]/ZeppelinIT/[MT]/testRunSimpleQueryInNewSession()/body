@@ -16,6 +16,22 @@
       }
     }
 );
+    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("create table if not exists test (id STRING);\n");
+    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("show tables;\n");
+    driver.findElement(By.linkText("Run")).click();
+    (new WebDriverWait(driver,60)).until(new ExpectedCondition<Boolean>(){
+      public Boolean apply(      WebDriver d){
+        return d.findElement(By.xpath("//div[@id='visualizationContainer']//iframe")).isDisplayed();
+      }
+    }
+);
+    WebDriver iframe=driver.switchTo().frame(driver.findElement(By.xpath("//div[@id='visualizationContainer']//iframe")));
+    (new WebDriverWait(iframe,20)).until(new ExpectedCondition<Boolean>(){
+      public Boolean apply(      WebDriver d){
+        return d.findElement(By.xpath("//table//td[text()='test']")).isDisplayed();
+      }
+    }
+);
   }
  catch (  WebDriverException e) {
     File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
