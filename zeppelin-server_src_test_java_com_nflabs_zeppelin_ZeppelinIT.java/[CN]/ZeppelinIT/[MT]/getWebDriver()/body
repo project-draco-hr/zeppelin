@@ -1,12 +1,30 @@
 {
-  WebDriver driver;
-  if (System.getProperty("runningFromMaven") == null) {
-    driver=new SafariDriver();
+  WebDriver driver=null;
+  if (driver == null) {
+    try {
+      FirefoxBinary ffox=new FirefoxBinary();
+      if ("true".equals(System.getenv("TRAVIS"))) {
+        ffox.setEnvironmentProperty("DISPLAY",":99");
+      }
+      FirefoxProfile profile=new FirefoxProfile();
+      driver=new FirefoxDriver(ffox,profile);
+    }
+ catch (    Exception e) {
+    }
   }
- else {
-    ScreenCaptureHtmlUnitDriver htmlUnitDriver=new ScreenCaptureHtmlUnitDriver();
-    htmlUnitDriver.setJavascriptEnabled(true);
-    driver=htmlUnitDriver;
+  if (driver == null) {
+    try {
+      driver=new ChromeDriver();
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (driver == null) {
+    try {
+      driver=new SafariDriver();
+    }
+ catch (    Exception e) {
+    }
   }
   String url;
   if (System.getProperty("url") != null) {

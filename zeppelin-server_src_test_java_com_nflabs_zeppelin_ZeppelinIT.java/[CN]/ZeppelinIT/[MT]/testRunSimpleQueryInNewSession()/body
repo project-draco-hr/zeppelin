@@ -16,8 +16,8 @@
       }
     }
 );
-    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("create table if not exists test (id STRING);\n");
-    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("show tables;\n");
+    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("create table if not exists test " + Keys.chord(Keys.SHIFT,"9") + "id STRING);\n");
+    driver.findElement(By.xpath("//div[@id='zqlEditor']//textarea")).sendKeys("\nshow tables;");
     driver.findElement(By.linkText("Run")).click();
     (new WebDriverWait(driver,60)).until(new ExpectedCondition<Boolean>(){
       public Boolean apply(      WebDriver d){
