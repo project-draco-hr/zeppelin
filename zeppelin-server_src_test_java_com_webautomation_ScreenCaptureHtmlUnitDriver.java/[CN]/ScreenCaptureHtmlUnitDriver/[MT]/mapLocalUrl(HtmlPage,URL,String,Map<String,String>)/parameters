@@ -1,0 +1,4 @@
+HtmlPage page
+URL link
+String path
+Map<String,String> replacementToAdd

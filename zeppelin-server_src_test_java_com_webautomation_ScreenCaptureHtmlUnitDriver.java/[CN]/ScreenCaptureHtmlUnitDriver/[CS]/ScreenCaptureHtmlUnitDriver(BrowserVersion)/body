@@ -1,0 +1,5 @@
+{
+  super(version);
+  DesiredCapabilities var=((DesiredCapabilities)getCapabilities());
+  var.setCapability(CapabilityType.TAKES_SCREENSHOT,true);
+}

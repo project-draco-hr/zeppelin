@@ -1,0 +1,6 @@
+{
+  for (  String object : replacement.keySet()) {
+    source=source.replace(object,replacement.get(object));
+  }
+  return source;
+}

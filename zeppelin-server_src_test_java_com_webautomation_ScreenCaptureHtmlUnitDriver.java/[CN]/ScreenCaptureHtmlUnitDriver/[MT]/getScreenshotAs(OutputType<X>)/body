@@ -1,0 +1,24 @@
+{
+  byte[] archive=new byte[0];
+  try {
+    archive=downloadCssAndImages(getWebClient(),(HtmlPage)getCurrentWindow().getEnclosedPage());
+  }
+ catch (  Exception e) {
+  }
+  if (target.equals(OutputType.BASE64)) {
+    return target.convertFromBase64Png(new Base64Encoder().encode(archive));
+  }
+  if (target.equals(OutputType.FILE)) {
+    File f=new File("screen.tmp");
+    try {
+      FileOutputStream scr=new FileOutputStream(f);
+      scr.write(archive);
+      scr.close();
+    }
+ catch (    IOException e) {
+      throw new WebDriverException(e);
+    }
+    return (X)f;
+  }
+  return (X)archive;
+}

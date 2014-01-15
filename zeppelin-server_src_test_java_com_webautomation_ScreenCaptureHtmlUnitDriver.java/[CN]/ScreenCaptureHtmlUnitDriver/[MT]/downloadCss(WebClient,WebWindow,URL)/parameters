@@ -1,0 +1,3 @@
+WebClient webClient
+WebWindow window
+URL resourceUrl
