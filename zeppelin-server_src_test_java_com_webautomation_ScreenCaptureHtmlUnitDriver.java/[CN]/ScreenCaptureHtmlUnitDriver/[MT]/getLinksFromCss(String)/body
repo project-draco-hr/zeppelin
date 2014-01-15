@@ -1,0 +1,8 @@
+{
+  List<String> result=new LinkedList<String>();
+  Matcher m=cssUrlPattern.matcher(css);
+  while (m.find()) {
+    result.add(m.group(2));
+  }
+  return result;
+}

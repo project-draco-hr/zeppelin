@@ -1,0 +1,6 @@
+{
+  if (imagesCache.get(resourceUrl.toString()) == null) {
+    imagesCache.put(resourceUrl.toString(),IOUtils.toByteArray(webClient.getPage(window,new WebRequest(resourceUrl)).getWebResponse().getContentAsStream()));
+  }
+  return imagesCache.get(resourceUrl.toString());
+}

@@ -1,0 +1,44 @@
+{
+  WebDriver driver=null;
+  if (driver == null) {
+    try {
+      FirefoxBinary ffox=new FirefoxBinary();
+      if ("true".equals(System.getenv("TRAVIS"))) {
+        ffox.setEnvironmentProperty("DISPLAY",":99");
+      }
+      FirefoxProfile profile=new FirefoxProfile();
+      driver=new FirefoxDriver(ffox,profile);
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (driver == null) {
+    try {
+      driver=new ChromeDriver();
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (driver == null) {
+    try {
+      driver=new SafariDriver();
+    }
+ catch (    Exception e) {
+    }
+  }
+  String url;
+  if (System.getProperty("url") != null) {
+    url=System.getProperty("url");
+  }
+ else {
+    url="http://localhost:8080";
+  }
+  driver.get(url);
+  (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
+    public Boolean apply(    WebDriver d){
+      return d.findElement(By.partialLinkText("Start")).isDisplayed();
+    }
+  }
+);
+  return driver;
+}
