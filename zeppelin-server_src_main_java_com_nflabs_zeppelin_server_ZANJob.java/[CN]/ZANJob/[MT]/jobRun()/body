@@ -1,0 +1,18 @@
+{
+  if (op == Operation.UPDATE) {
+    zan.update();
+  }
+ else   if (op == Operation.INSTALL) {
+    zan.install(libName,null);
+  }
+ else   if (op == Operation.UNINSTALL) {
+    zan.uninstall(libName);
+  }
+ else   if (op == Operation.UPGRADE) {
+    zan.upgrade(libName,null);
+  }
+ else {
+    logger().warn("Unsupported operation " + op.toString());
+  }
+  return null;
+}

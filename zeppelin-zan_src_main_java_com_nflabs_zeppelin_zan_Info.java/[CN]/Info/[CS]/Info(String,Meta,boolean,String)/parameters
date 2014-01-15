@@ -1,0 +1,4 @@
+String name
+Meta meta
+boolean installed
+String commit

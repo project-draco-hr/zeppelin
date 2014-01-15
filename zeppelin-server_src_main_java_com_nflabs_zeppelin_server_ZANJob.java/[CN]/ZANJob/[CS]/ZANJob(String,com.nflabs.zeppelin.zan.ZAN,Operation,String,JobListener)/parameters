@@ -1,0 +1,5 @@
+String jobName
+com.nflabs.zeppelin.zan.ZAN zan
+Operation op
+String libName
+JobListener listener

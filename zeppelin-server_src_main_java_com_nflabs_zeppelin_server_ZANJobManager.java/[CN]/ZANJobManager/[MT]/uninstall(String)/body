@@ -1,0 +1,4 @@
+{
+  ZANJob job=new ZANJob("Uninstall " + libName,zan,ZANJob.Operation.UNINSTALL,libName,this);
+  scheduler.submit(job);
+}

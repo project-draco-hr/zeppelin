@@ -1,0 +1,31 @@
+{
+  String localBase=tmpDir.getAbsolutePath() + "/local";
+  String remoteBase=tmpDir.getAbsolutePath() + "/remote";
+  ZAN zan=new ZAN("",localBase,remoteBase,dfs);
+  new File(localBase + "/libname").mkdirs();
+  Map<String,List<String>> changes=zan.sync("libname");
+  assertEquals(1,changes.get("added").size());
+  assertTrue(dfs.exists(new Path(remoteBase + "/libname")));
+  stringToFile(localBase + "/libname/file","content");
+  changes=zan.sync("libname");
+  assertEquals(1,changes.get("added").size());
+  assertEquals(0,changes.get("modified").size());
+  assertEquals(0,changes.get("removed").size());
+  assertTrue(dfs.isFile(new Path(remoteBase + "/libname/file")));
+  changes=zan.sync("libname");
+  assertEquals(0,changes.get("added").size());
+  assertEquals(0,changes.get("modified").size());
+  assertEquals(0,changes.get("removed").size());
+  new File(localBase + "/libname/sub").mkdirs();
+  stringToFile(localBase + "/libname/sub/file","content");
+  changes=zan.sync("libname");
+  assertEquals(2,changes.get("added").size());
+  assertEquals(0,changes.get("modified").size());
+  assertEquals(0,changes.get("removed").size());
+  new File(localBase + "/libname/file").delete();
+  changes=zan.sync("libname");
+  assertEquals(0,changes.get("added").size());
+  assertEquals(0,changes.get("modified").size());
+  assertEquals(1,changes.get("removed").size());
+  assertFalse(dfs.isFile(new Path(remoteBase + "/libname/file")));
+}

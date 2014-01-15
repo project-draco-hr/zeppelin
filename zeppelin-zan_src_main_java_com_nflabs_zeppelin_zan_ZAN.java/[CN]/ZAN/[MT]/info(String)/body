@@ -1,0 +1,21 @@
+{
+  Meta meta;
+  try {
+    meta=getMeta(libraryName);
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+  try {
+    return getInfoFromMeta(libraryName,meta);
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+catch (  NoHeadException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
+}

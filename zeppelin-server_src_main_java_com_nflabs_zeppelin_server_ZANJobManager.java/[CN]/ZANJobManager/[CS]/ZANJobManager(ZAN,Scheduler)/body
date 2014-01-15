@@ -1,0 +1,4 @@
+{
+  this.zan=zan;
+  this.scheduler=scheduler;
+}

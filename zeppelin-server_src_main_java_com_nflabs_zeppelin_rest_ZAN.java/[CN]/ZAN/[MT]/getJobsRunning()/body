@@ -1,0 +1,4 @@
+{
+  List<ZANJob> job=jobManager.getJobsRunning();
+  return new JsonResponse<List<ZANJob>>(Status.OK,"",job).build();
+}

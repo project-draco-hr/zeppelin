@@ -1,0 +1,9 @@
+{
+  File metaFile=new File(localPath + "/.zan/" + libraryName+ "/meta");
+  if (metaFile.exists() == false) {
+    return null;
+  }
+ else {
+    return Meta.createFromFile(metaFile);
+  }
+}

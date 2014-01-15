@@ -1,0 +1,39 @@
+{
+  String branch="master";
+  String commit="HEAD";
+  File lp=getLocalLibraryPath(".zan");
+  try {
+    if (lp.exists() == false) {
+      CloneCommand clone=Git.cloneRepository();
+      clone.setURI(zanRepo);
+      clone.setDirectory(lp);
+      clone.setBranch(branch);
+      clone.setNoCheckout(true);
+      if (progressListener != null) {
+        clone.setProgressMonitor(progressListener);
+      }
+      clone.call();
+      Git git=Git.open(lp);
+      git.fetch().call();
+      git.checkout().setName(branch).setCreateBranch(true).setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM).setStartPoint("origin/" + branch).call();
+      git.reset().setRef(commit).setMode(ResetType.HARD).call();
+    }
+ else {
+      Git git=Git.open(lp);
+      git.fetch().setRemote("origin").call();
+      git.rebase().setUpstream("origin/" + branch).call();
+    }
+  }
+ catch (  InvalidRemoteException e) {
+    throw new ZANException(e);
+  }
+catch (  TransportException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
+catch (  IOException e) {
+    throw new ZANException(e);
+  }
+}
