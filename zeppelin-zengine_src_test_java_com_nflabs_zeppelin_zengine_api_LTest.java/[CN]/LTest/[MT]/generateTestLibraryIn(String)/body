@@ -1,0 +1,10 @@
+{
+  File f=new File(path + "/test");
+  if (!f.exists()) {
+    f.mkdir();
+  }
+  String zqlQuery="CREATE VIEW <%= z." + Q.OUTPUT_VAR_NAME + " %> AS select * from table limit <%= z.param('limit') %>\n";
+  createFileWithContent(path + "/test/zql.erb",zqlQuery);
+  createFileWithContent(path + "/test/no_resource","");
+  createFileWithContent(path + "/test/test_data.log","");
+}

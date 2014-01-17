@@ -1,0 +1,8 @@
+{
+  File f=new File(path);
+  if (!f.exists()) {
+    FileOutputStream out=new FileOutputStream(f);
+    out.write((content).getBytes());
+    out.close();
+  }
+}

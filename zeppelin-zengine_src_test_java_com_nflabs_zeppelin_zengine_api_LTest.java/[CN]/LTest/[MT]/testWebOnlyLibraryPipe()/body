@@ -1,5 +1,5 @@
 {
-  new File(tmpDir.getAbsolutePath() + "/test/web").mkdirs();
+  new File(tmpDir + "/test/web").mkdirs();
   Path p=new Path(HiveTestBase.ROOT_DIR,"afile");
   FSDataOutputStream o=this.getFileSystem().create(p);
   BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(o));
@@ -9,7 +9,7 @@
   new Q("drop table if exists test").execute().result().write(System.out);
   new Q("create table test(a INT)").execute().result().write(System.out);
   new Q("load data local inpath '" + p.toString() + "' into table test").execute().result().write(System.out);
-  File erb=new File(tmpDir.getAbsolutePath() + "/test/web/index.erb");
+  File erb=new File(tmpDir + "/test/web/index.erb");
   FileOutputStream out=new FileOutputStream(erb);
   out.write("HELLO HTML <%= z.result.rows[0][0] %>\n".getBytes());
   out.close();

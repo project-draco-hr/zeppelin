@@ -1,5 +1,5 @@
 {
-  UtilsForTests.delete(tmpDir);
+  UtilsForTests.delete(tmp);
   super.tearDown();
   UtilsForTests.delete(new File("/tmp/warehouse"));
   UtilsForTests.delete(new File(ROOT_DIR.getName()));

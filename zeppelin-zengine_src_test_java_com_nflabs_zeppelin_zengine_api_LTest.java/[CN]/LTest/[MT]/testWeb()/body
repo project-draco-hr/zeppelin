@@ -1,13 +1,7 @@
 {
-  new File(tmpDir.getAbsolutePath() + "/test/web").mkdirs();
-  File erb=new File(tmpDir.getAbsolutePath() + "/test/zql.erb");
-  FileOutputStream out=new FileOutputStream(erb);
-  out.write(("show tables").getBytes());
-  out.close();
-  erb=new File(tmpDir.getAbsolutePath() + "/test/web/index.erb");
-  out=new FileOutputStream(erb);
-  out.write("HELLO HTML\n".getBytes());
-  out.close();
+  new File(tmpDir + "/test/web").mkdirs();
+  createFileWithContent(tmpDir + "/test/zql.erb","show tables");
+  createFileWithContent(tmpDir + "/test/web/index.erb","HELLO HTML\n");
   Z test=new L("test");
   InputStream ins=test.readWebResource("/");
   assertEquals("HELLO HTML",IOUtils.toString(ins,"utf8"));
