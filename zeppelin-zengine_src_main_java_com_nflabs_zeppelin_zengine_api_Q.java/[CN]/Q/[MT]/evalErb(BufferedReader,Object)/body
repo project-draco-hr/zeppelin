@@ -1,5 +1,5 @@
 {
-  ScriptEngine engine=getRubyScriptEngine();
+  ScriptEngine engine=zen.getRubyScriptEngine();
   StringBuffer rubyScript=new StringBuffer();
   SimpleBindings bindings=new SimpleBindings();
   engine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
@@ -34,5 +34,5 @@
     throw new ZException(e);
   }
   String q=(String)engine.getBindings(ScriptContext.ENGINE_SCOPE).get("e");
-  return q;
+  return nonNullString(q);
 }

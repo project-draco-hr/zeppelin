@@ -4,13 +4,13 @@
     return;
   }
   if (libName == null)   return;
-  fs=fs();
+  fs=zen.fs();
   try {
     if (libName.indexOf(":/") > 0) {
       libUri=new URI(libName);
     }
  else {
-      libUri=new URI(getConf().getString(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO) + "/" + libName);
+      libUri=new URI(zen.getConf().getString(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO) + "/" + libName);
     }
   }
  catch (  URISyntaxException e1) {

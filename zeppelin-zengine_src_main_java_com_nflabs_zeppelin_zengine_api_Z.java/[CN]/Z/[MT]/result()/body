@@ -1,9 +1,9 @@
 {
-  if (executed == false) {
+  if (!executed) {
     throw new ZException("Can not get result because of this is not executed");
   }
   if (result == null) {
-    if (name() == null) {
+    if (isUnNamed()) {
       if (lastQueryResult != null) {
         result=lastQueryResult;
       }
@@ -15,7 +15,7 @@
     }
  else {
       try {
-        result=connection().select(name(),maxResult);
+        result=driver.select(name(),maxResult);
       }
  catch (      Exception e) {
         if (lastQueryResult != null) {

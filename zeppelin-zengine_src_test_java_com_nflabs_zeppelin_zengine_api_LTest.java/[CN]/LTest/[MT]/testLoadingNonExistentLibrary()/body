@@ -2,7 +2,7 @@
   generateTestLibraryIn(tmpDir);
   thrown.expect(ZException.class);
   try {
-    new L("abc");
+    new L("abc",z);
   }
  catch (  ZException e) {
     assertTrue(e.getMessage().contains("does not exist"));

@@ -56,7 +56,7 @@
         }
       }
       try {
-        currentZ=new ShellExecStatement(stmt);
+        currentZ=new ShellExecStatement(stmt,zen);
       }
  catch (      ZException e) {
         throw new ZQLException(e);
@@ -72,7 +72,7 @@
     if (z == null) {
       Q q;
       try {
-        q=new Q(stmt);
+        q=new Q(stmt,zen);
       }
  catch (      ZException e) {
         throw new ZQLException(e);

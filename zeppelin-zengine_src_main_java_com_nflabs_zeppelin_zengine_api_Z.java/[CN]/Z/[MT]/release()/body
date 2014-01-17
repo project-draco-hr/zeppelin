@@ -1,13 +1,13 @@
 {
   initialize();
-  if (executed == false)   return;
+  if (!executed)   return;
   try {
     if (name() != null && autogenName == true) {
-      if (table == true) {
-        connection().dropTable(name());
+      if (isTable()) {
+        driver.dropTable(name());
       }
  else {
-        connection().dropView(name());
+        driver.dropView(name());
       }
     }
   }
@@ -18,7 +18,7 @@
   if (q != null) {
     executeQuery(q,maxResult);
   }
-  if (prev() != null) {
+  if (hasPrev()) {
     prev().release();
   }
 }

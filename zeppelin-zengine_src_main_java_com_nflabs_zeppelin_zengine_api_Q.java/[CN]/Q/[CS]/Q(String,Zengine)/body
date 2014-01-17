@@ -1,0 +1,5 @@
+{
+  super(z);
+  this.query=query;
+  initialize();
+}

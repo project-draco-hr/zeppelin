@@ -5,10 +5,11 @@
   UtilsForTests.delete(new File("/tmp/warehouse"));
   UtilsForTests.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
-  Z.configure();
-  HiveZeppelinDriver driver=new HiveZeppelinDriver(Z.getConf());
+  z=new Zengine();
+  z.configure();
+  HiveZeppelinDriver driver=new HiveZeppelinDriver(z.getConf());
   driver.setClient(client);
-  Z.setDriver(driver);
+  z.setDriver(driver);
   new File(tmpDir.getAbsolutePath() + "/test").mkdir();
   File erb=new File(tmpDir.getAbsolutePath() + "/test/zql.erb");
   FileOutputStream out=new FileOutputStream(erb);

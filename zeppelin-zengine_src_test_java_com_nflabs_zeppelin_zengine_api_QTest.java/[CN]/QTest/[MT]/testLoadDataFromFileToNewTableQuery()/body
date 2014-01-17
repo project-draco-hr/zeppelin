@@ -1,7 +1,7 @@
 {
   Path p=genTestDataFile();
-  new Q("drop table if exists test").execute().result().write(System.out);
-  new Q("create table test(a INT)").execute().result().write(System.out);
-  new Q("load data local inpath '" + p.toString() + "' into table test").execute().result().write(System.out);
-  assertEquals(new Long(2),new Q("select count(*) from test").execute().result().getRows().get(0)[0]);
+  new Q("drop table if exists test",z).execute().result().write(System.out);
+  new Q("create table test(a INT)",z).execute().result().write(System.out);
+  new Q("load data local inpath '" + p.toString() + "' into table test",z).execute().result().write(System.out);
+  assertEquals(new Long(2),new Q("select count(*) from test",z).execute().result().getRows().get(0)[0]);
 }

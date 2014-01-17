@@ -6,7 +6,7 @@
   DefaultExecutor executor=new DefaultExecutor();
   ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
   executor.setStreamHandler(new PumpStreamHandler(outputStream));
-  executor.setWatchdog(new ExecuteWatchdog(conf.getLong(ConfVars.ZEPPELIN_COMMAND_TIMEOUT)));
+  executor.setWatchdog(new ExecuteWatchdog(zen.getConf().getLong(ConfVars.ZEPPELIN_COMMAND_TIMEOUT)));
   int exitValue=executor.execute(cmdLine);
   String[] msgs=null;
   if (outputStream != null) {

@@ -1,5 +1,5 @@
 {
-  ZQL zql=new ZQL("select * from test;!echo -n 'hello world';!echo ls");
+  ZQL zql=new ZQL("select * from test;!echo -n 'hello world';!echo ls",z);
   List<Z> z=zql.compile();
   assertEquals(3,z.size());
   assertEquals("select * from test",z.get(0).getQuery());

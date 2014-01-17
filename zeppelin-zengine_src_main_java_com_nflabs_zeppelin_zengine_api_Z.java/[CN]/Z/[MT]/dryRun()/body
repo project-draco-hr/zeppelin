@@ -1,6 +1,6 @@
 {
   initialize();
-  if (prev() != null) {
+  if (hasPrev()) {
     prev().dryRun();
   }
   Map<String,ParamInfo> infos=extractParams();

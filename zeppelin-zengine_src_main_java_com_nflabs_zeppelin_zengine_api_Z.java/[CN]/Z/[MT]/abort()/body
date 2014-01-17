@@ -1,0 +1,10 @@
+{
+  try {
+    this.driver.abort();
+  }
+ catch (  ZeppelinDriverException e) {
+    logger().error("Abort failure",e);
+    return false;
+  }
+  return true;
+}

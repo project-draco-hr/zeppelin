@@ -1,6 +1,6 @@
 {
   unPipe();
-  if (name() == null) {
+  if (isUnNamed()) {
     name=NAME_PREFIX + this.hashCode();
     autogenName=true;
   }

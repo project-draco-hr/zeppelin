@@ -1,6 +1,6 @@
 {
-  Z z1=new Q("select * from bank");
-  Z z2=new Q("select * from (<%=z." + Q.INPUT_VAR_NAME + "%>) q limit 10");
+  Z z1=new Q("select * from bank",z);
+  Z z2=new Q("select * from (<%=z." + Q.INPUT_VAR_NAME + "%>) q limit 10",z);
   assertNull(z1.name());
   z1.pipe(z2);
   assertNull(z2.name());

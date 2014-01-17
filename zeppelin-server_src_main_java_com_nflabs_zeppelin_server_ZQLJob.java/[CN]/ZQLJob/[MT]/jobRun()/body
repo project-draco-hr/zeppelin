@@ -1,9 +1,8 @@
 {
   LinkedList<Result> results=new LinkedList<Result>();
-  ZQL zqlEvaluator=new ZQL(zql);
+  ZQL zqlEvaluator=new ZQL(zql,z);
   zqlPlans=zqlEvaluator.compile();
 synchronized (this) {
-    conn=Z.getConnection();
   }
   for (int i=0; i < zqlPlans.size(); i++) {
     Z zz=zqlPlans.get(i);
@@ -13,22 +12,18 @@ synchronized (this) {
     }
     try {
       zz.withParams(p);
-      zz.execute(conn);
+      zz.execute();
       results.add(zz.result());
       zz.release();
     }
  catch (    ZException e) {
       error=new Result(e);
-      conn.close();
 synchronized (this) {
-        conn=null;
       }
       throw e;
     }
   }
-  conn.close();
 synchronized (this) {
-    conn=null;
   }
   return results;
 }

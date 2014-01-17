@@ -1,8 +1,8 @@
 {
-  ZQL zql=new ZQL();
+  ZQL zql=new ZQL(z);
   zql.append("select * from bank | select * from <%= z." + Q.INPUT_VAR_NAME + " %> limit 10");
-  List<Z> z=zql.compile();
-  assertEquals(1,z.size());
-  assertEquals("select * from " + z.get(0).prev().name() + " limit 10",z.get(0).getQuery());
-  z.get(0).release();
+  List<Z> plan=zql.compile();
+  assertEquals(1,plan.size());
+  assertEquals("select * from " + plan.get(0).prev().name() + " limit 10",plan.get(0).getQuery());
+  plan.get(0).release();
 }

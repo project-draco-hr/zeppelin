@@ -1,11 +1,5 @@
 {
-  if (query == null)   return false;
-  String q=query.trim();
-  q=q.toLowerCase();
-  if (q.startsWith("select") || q.startsWith("map")) {
-    return true;
-  }
- else {
-    return false;
-  }
+  if (query == null || query.isEmpty())   return false;
+  String q=query.trim().toLowerCase();
+  return q.startsWith("select") || q.startsWith("map");
 }

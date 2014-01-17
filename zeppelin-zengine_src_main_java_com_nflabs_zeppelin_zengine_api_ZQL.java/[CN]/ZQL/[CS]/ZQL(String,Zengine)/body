@@ -1,0 +1,4 @@
+{
+  this.zen=zen;
+  append(zql);
+}

@@ -3,8 +3,9 @@
   tmpDir.mkdir();
   UtilsForTests.delete(new File("/tmp/warehouse"));
   UtilsForTests.delete(new File(ROOT_DIR.getName()));
-  Z.configure();
-  HiveZeppelinDriver driver=new HiveZeppelinDriver(Z.getConf());
+  z=new Zengine();
+  z.configure();
+  HiveZeppelinDriver driver=new HiveZeppelinDriver(z.getConf());
   driver.setClient(client);
-  Z.setDriver(driver);
+  z.setDriver(driver);
 }

@@ -3,7 +3,7 @@
   if (m.matches() == true && m.groupCount() > 0) {
     String libName=m.group(1);
     String args=m.group(3);
-    L l=new L(libName,args);
+    L l=new L(libName,args,zen);
     String params=m.group(2);
     if (params != null) {
       params=params.trim();

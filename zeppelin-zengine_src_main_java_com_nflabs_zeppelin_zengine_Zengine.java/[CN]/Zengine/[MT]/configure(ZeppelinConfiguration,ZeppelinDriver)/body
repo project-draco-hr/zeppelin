@@ -1,0 +1,48 @@
+{
+  this.conf=conf;
+  this.factory=new JRubyScriptEngineFactory();
+  if (driver == null) {
+    String driverClassName=getConf().getString(ConfVars.ZEPPELIN_DRIVER);
+    try {
+      Class<?> driverClass=Class.forName(driverClassName);
+      Constructor<?> cons=driverClass.getConstructor(ZeppelinConfiguration.class);
+      this.driver=(ZeppelinDriver)cons.newInstance(getConf());
+      this.driver.init();
+    }
+ catch (    ClassNotFoundException e) {
+      throw new ZException(e);
+    }
+catch (    SecurityException e) {
+      throw new ZException(e);
+    }
+catch (    NoSuchMethodException e) {
+      throw new ZException(e);
+    }
+catch (    IllegalArgumentException e) {
+      throw new ZException(e);
+    }
+catch (    InstantiationException e) {
+      throw new ZException(e);
+    }
+catch (    IllegalAccessException e) {
+      throw new ZException(e);
+    }
+catch (    InvocationTargetException e) {
+      throw new ZException(e);
+    }
+catch (    ZeppelinDriverException e) {
+      throw new ZException(e);
+    }
+  }
+ else {
+    this.driver=driver;
+  }
+  if (fs == null) {
+    try {
+      fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
+    }
+ catch (    IOException e) {
+      throw new ZException(e);
+    }
+  }
+}

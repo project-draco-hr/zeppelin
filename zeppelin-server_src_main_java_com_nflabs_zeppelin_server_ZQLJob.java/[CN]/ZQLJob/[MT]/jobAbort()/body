@@ -1,17 +1,10 @@
 {
+  boolean result=true;
 synchronized (this) {
-    if (conn != null) {
-      try {
-        conn.abort();
-        return true;
-      }
- catch (      ZeppelinDriverException e) {
-        logger().error("Abort failure",e);
-        return false;
-      }
-    }
- else {
-      return true;
+    for (    Z zz : zqlPlans) {
+      result=zz.abort();
+      if (!result)       break;
     }
   }
+  return result;
 }

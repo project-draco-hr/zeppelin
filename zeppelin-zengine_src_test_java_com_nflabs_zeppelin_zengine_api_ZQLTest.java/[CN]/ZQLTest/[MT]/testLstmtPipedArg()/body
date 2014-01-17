@@ -1,5 +1,5 @@
 {
-  ZQL zql=new ZQL("select * from test | test1 | test1");
+  ZQL zql=new ZQL("select * from test | test1 | test1",z);
   List<Z> z=zql.compile();
   assertEquals(1,z.size());
   assertEquals(null,z.get(0).getQuery());

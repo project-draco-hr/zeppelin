@@ -1,6 +1,6 @@
 {
   generateTestLibraryIn(tmpDir);
-  L test=new L("test");
+  L test=new L("test",z);
   test.withParam("limit",3);
   test.withName("hello");
   assertEquals("CREATE VIEW " + test.name() + " AS select * from table limit 3",test.getQuery());
