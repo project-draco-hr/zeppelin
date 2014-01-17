@@ -1,5 +1,5 @@
 {
-  ZQLJob s=sessionManager.abort(sessionId);
+  ZQLJob s=jobManager.abort(jobId);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }

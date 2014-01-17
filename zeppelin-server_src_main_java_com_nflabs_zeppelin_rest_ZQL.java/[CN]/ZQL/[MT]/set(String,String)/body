@@ -1,18 +1,18 @@
 {
   SetZqlParam data=gson.fromJson(json,SetZqlParam.class);
-  ZQLJob s=sessionManager.setZql(sessionId,data.zql);
+  ZQLJob s=jobManager.setZql(jobId,data.zql);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }
-  s=sessionManager.setParams(sessionId,data.params);
+  s=jobManager.setParams(jobId,data.params);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }
-  s=sessionManager.setName(sessionId,data.name);
+  s=jobManager.setName(jobId,data.name);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }
-  s=sessionManager.setCron(sessionId,data.cron);
+  s=jobManager.setCron(jobId,data.cron);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }

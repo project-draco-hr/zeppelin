@@ -1,4 +1,4 @@
 {
-  this.sessionManager=sessionManager;
+  this.jobManager=jobManager;
   gson=new Gson();
 }

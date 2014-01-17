@@ -1,5 +1,5 @@
 {
-  ZQLJob session=sessionManager.get(sessionId);
+  ZQLJob session=jobManager.get(jobId);
   if (session == null) {
     return STATUS_NOT_FOUND;
   }
@@ -12,20 +12,15 @@
       if (z.getId().equals(zId)) {
         try {
           InputStream ins=z.readWebResource(path);
-          if (ins == null) {
-            return null;
-          }
- else {
-            return Response.ok(IOUtils.toByteArray(ins),typeByExtention(path)).build();
-          }
+          return ins != null ? Response.ok(IOUtils.toByteArray(ins),typeByExtention(path)).build() : null;
         }
  catch (        ZException e) {
           logger.error("Can't read web resource",e);
-          return new JsonResponse(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
+          return new JsonResponse<ZQLJob>(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
         }
 catch (        IOException e) {
           logger.error("IOexception",e);
-          return new JsonResponse(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
+          return new JsonResponse<ZQLJob>(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
         }
       }
     }

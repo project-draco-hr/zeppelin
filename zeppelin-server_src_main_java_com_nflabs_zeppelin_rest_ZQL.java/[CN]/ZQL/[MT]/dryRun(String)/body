@@ -1,5 +1,5 @@
 {
-  ZQLJob s=sessionManager.dryRun(sessionId);
+  ZQLJob s=jobManager.dryRun(jobId);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }

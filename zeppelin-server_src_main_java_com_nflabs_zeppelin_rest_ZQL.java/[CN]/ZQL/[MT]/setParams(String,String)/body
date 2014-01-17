@@ -1,6 +1,6 @@
 {
   SetZqlParam data=gson.fromJson(json,SetZqlParam.class);
-  ZQLJob s=sessionManager.setParams(sessionId,data.params);
+  ZQLJob s=jobManager.setParams(jobId,data.params);
   if (s == null) {
     return STATUS_NOT_FOUND;
   }

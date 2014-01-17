@@ -1,7 +1,7 @@
 {
-  boolean s=sessionManager.delete(sessionId);
+  boolean s=jobManager.delete(jobId);
   if (s == false) {
     return STATUS_NOT_FOUND;
   }
-  return new JsonResponse(Status.OK).build();
+  return new JsonResponse<ZQLJob>(Status.OK).build();
 }
