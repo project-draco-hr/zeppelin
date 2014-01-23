@@ -1,0 +1,9 @@
+{
+  Result r=queries.get(query);
+  if (r == null) {
+    return new Result();
+  }
+ else {
+    return r;
+  }
+}
