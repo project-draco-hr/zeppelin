@@ -1,0 +1,12 @@
+{
+  String driverClassName=uri.getScheme();
+  URI driverUri=new URI(uri.getSchemeSpecificPart());
+  String driverName=driverUri.getScheme();
+  URLClassLoader cl=classLoaders.get(driverName);
+  if (cl == null) {
+    throw new ZeppelinDriverException("Can not find driver " + driverName);
+  }
+  Class cls=cl.loadClass(driverClassName);
+  Constructor<ZeppelinDriver> constructor=cls.getConstructor(new Class[]{URI.class});
+  return constructor.newInstance(driverUri);
+}

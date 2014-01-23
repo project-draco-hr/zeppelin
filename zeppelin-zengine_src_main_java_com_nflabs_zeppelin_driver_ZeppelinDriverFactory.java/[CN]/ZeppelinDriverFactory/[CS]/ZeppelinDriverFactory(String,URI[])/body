@@ -1,0 +1,19 @@
+{
+  File root=new File(driverRootDir);
+  File[] drivers=root.listFiles();
+  if (drivers != null) {
+    for (    File d : drivers) {
+      classLoaders.put(d.getName(),loadLibrary(d));
+    }
+  }
+  if (uriList != null) {
+    for (    URI uri : uriList) {
+      try {
+        uris.put(uri.getScheme(),new URI(uri.getSchemeSpecificPart()));
+      }
+ catch (      URISyntaxException e) {
+        throw new ZeppelinDriverException(e);
+      }
+    }
+  }
+}

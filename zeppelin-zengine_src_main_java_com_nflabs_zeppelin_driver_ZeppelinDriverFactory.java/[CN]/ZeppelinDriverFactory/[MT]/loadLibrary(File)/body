@@ -1,0 +1,16 @@
+{
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  URL[] urls;
+  try {
+    urls=recursiveBuildLibList(path);
+    URLClassLoader cl=new URLClassLoader(urls,oldcl);
+    return cl;
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+  return null;
+}
