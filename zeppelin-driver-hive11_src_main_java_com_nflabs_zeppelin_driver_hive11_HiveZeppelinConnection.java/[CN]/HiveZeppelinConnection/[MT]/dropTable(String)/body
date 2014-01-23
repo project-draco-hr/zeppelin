@@ -1,0 +1,3 @@
+{
+  return execute("DROP TABLE " + tableName);
+}

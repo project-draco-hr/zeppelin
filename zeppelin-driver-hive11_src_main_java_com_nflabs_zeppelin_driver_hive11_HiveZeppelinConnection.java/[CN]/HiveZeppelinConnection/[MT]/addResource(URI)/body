@@ -1,0 +1,8 @@
+{
+  if (resourceLocation.getPath().endsWith(".jar")) {
+    return execute("ADD JAR " + resourceLocation.toString());
+  }
+ else {
+    return execute("ADD FILE " + resourceLocation.toString());
+  }
+}
