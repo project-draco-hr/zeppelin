@@ -1,0 +1,10 @@
+{
+  unPipe();
+  if (isUnNamed()) {
+    name=NAME_PREFIX + this.hashCode();
+    autogenName=true;
+  }
+  setNext(z);
+  z.setPrev(this);
+  return z;
+}

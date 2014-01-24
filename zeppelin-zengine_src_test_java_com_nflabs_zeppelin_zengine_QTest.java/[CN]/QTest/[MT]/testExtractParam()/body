@@ -1,6 +1,0 @@
-{
-  Z z=new Q("select <%=z.param('fieldname', 'hello')%> from here").dryRun();
-  Map<String,ParamInfo> infos=z.getParamInfos();
-  assertEquals(1,infos.size());
-  assertEquals("hello",infos.get("fieldname").getDefaultValue());
-}

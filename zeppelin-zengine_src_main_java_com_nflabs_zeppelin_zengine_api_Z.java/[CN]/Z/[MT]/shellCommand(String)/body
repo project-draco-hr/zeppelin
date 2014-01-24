@@ -1,0 +1,21 @@
+{
+  logger().info("Run shell command '" + cmd + "'");
+  CommandLine cmdLine=CommandLine.parse("bash");
+  cmdLine.addArgument("-c",false);
+  cmdLine.addArgument(cmd,false);
+  DefaultExecutor executor=new DefaultExecutor();
+  ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+  executor.setStreamHandler(new PumpStreamHandler(outputStream));
+  executor.setWatchdog(new ExecuteWatchdog(zen.getConf().getLong(ConfVars.ZEPPELIN_COMMAND_TIMEOUT)));
+  int exitValue=executor.execute(cmdLine);
+  String[] msgs=null;
+  if (outputStream != null) {
+    String msgstr=outputStream.toString();
+    logger().debug("exec out=" + msgstr);
+    if (msgstr != null) {
+      msgs=msgstr.split("\n");
+    }
+  }
+  Result resultData=new Result(exitValue,msgs);
+  return resultData;
+}

@@ -1,0 +1,4 @@
+{
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  configure(conf,null);
+}

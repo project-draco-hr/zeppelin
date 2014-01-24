@@ -1,4 +1,0 @@
-{
-  this.sessionManager=sessionManager;
-  gson=new Gson();
-}

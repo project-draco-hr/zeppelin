@@ -1,0 +1,10 @@
+{
+  int timeout=1000 * 30;
+  final Server server=new Server();
+  SocketConnector connector=new SocketConnector();
+  connector.setMaxIdleTime(timeout);
+  connector.setSoLingerTime(-1);
+  connector.setPort(port);
+  server.addConnector(connector);
+  return server;
+}

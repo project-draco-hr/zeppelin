@@ -1,0 +1,8 @@
+{
+  SetZqlParam data=gson.fromJson(json,SetZqlParam.class);
+  ZQLJob s=jobManager.setName(jobId,data.name);
+  if (s == null) {
+    return STATUS_NOT_FOUND;
+  }
+  return new JsonResponse<ZQLJob>(Status.OK,"",s).build();
+}

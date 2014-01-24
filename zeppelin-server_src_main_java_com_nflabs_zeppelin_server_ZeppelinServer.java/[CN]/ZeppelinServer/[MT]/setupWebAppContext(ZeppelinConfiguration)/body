@@ -1,0 +1,14 @@
+{
+  WebAppContext webApp=new WebAppContext();
+  File webapp=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
+  if (webapp.isDirectory()) {
+    webApp.setDescriptor(webapp + "/WEB-INF/web.xml");
+    webApp.setResourceBase(webapp.getPath());
+    webApp.setContextPath("/");
+    webApp.setParentLoaderPriority(true);
+  }
+ else {
+    webApp.setWar(webapp.getAbsolutePath());
+  }
+  return webApp;
+}

@@ -1,0 +1,4 @@
+{
+  lazyCheckForConnection();
+  return this.connection.select(tableName,maxResult);
+}

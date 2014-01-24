@@ -1,0 +1,6 @@
+{
+  super(z);
+  this.query=query;
+  this.driver=driver;
+  initialize();
+}

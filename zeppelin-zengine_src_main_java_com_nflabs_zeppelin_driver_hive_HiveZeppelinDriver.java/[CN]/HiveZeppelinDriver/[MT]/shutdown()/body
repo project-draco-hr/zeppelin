@@ -1,3 +1,0 @@
-{
-  logger.info("Shutdown " + HiveZeppelinDriver.class.getName());
-}

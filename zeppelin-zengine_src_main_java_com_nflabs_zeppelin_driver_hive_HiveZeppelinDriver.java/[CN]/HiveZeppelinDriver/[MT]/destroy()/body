@@ -1,0 +1,6 @@
+{
+  logger.info("Shutdown " + HiveZeppelinDriver.class.getName());
+  if (connection != null) {
+    connection.close();
+  }
+}

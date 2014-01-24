@@ -1,4 +1,0 @@
-{
-  sessionManager.deleteHistory(sessionId);
-  return new JsonResponse<ZQLJob>(Status.OK).build();
-}
