@@ -1,3 +1,4 @@
 {
+  lazyCheckForConnection();
   this.connection.abort();
 }

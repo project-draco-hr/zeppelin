@@ -1,0 +1,6 @@
+{
+  if (this.connection != null) {
+    return;
+  }
+  this.connection=getConnection();
+}
