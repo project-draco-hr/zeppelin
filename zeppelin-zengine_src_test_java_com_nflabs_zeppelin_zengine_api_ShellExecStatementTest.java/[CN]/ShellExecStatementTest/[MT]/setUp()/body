@@ -2,7 +2,5 @@
   super.setUp();
   z=new Zengine();
   z.configure();
-  driver=new HiveZeppelinDriver(z.getConf());
-  driver.setClient(client);
-  z.setDriver(driver);
+  drv=UtilsForTests.createHiveTestDriver(z.getConf(),client);
 }

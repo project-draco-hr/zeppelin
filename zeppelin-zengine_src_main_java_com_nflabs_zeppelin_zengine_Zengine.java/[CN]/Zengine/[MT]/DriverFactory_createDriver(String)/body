@@ -1,0 +1,34 @@
+{
+  ZeppelinDriver dr;
+  try {
+    Class<?> driverClass=Class.forName(driverClassName);
+    Constructor<?> cons=driverClass.getConstructor(ZeppelinConfiguration.class);
+    dr=(ZeppelinDriver)cons.newInstance(getConf());
+    dr.init();
+  }
+ catch (  ClassNotFoundException e) {
+    throw new ZException(e);
+  }
+catch (  SecurityException e) {
+    throw new ZException(e);
+  }
+catch (  NoSuchMethodException e) {
+    throw new ZException(e);
+  }
+catch (  IllegalArgumentException e) {
+    throw new ZException(e);
+  }
+catch (  InstantiationException e) {
+    throw new ZException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new ZException(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new ZException(e);
+  }
+catch (  ZeppelinDriverException e) {
+    throw new ZException(e);
+  }
+  return dr;
+}

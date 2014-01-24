@@ -1,4 +1,7 @@
 {
+  final Map<String,ZeppelinDriver> drivers=zengine.createAvailableDrivers();
+  String currentDriverName="hive";
+  ZeppelinDriver currentDriver=drivers.get(currentDriverName);
   List<Z> zList=new LinkedList<Z>();
   Z currentZ=null;
   String escapeSeq="\"',;<%>!";
@@ -47,7 +50,7 @@
     if (stmt.startsWith("!")) {
       if (currentZ != null) {
         if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
-          currentZ.setDriver(zen.getDriver());
+          currentZ.setDriver(currentDriver);
           zList.add(currentZ);
           currentZ=null;
           currentOp=null;
@@ -57,7 +60,7 @@
         }
       }
       try {
-        currentZ=new ShellExecStatement(stmt,zen);
+        currentZ=new ShellExecStatement(stmt,zengine,currentDriver);
       }
  catch (      ZException e) {
         throw new ZQLException(e);
@@ -66,19 +69,19 @@
     }
     Z z=null;
     try {
-      z=loadL(stmt);
+      z=loadL(stmt,currentDriver);
     }
  catch (    ZException e) {
     }
     if (z == null) {
       Q q;
       try {
-        q=new Q(stmt,zen);
+        q=new Q(stmt,zengine,currentDriver);
       }
  catch (      ZException e) {
         throw new ZQLException(e);
       }
-      if (stmt.toLowerCase().trim().startsWith("select") == false && stmt.toLowerCase().trim().startsWith("map") == false) {
+      if (!stmt.toLowerCase().trim().startsWith("select") && !stmt.toLowerCase().trim().startsWith("map")) {
         q.withName(null);
       }
       z=q;
@@ -90,7 +93,7 @@
       throw new ZQLException("Assert! Statment does not have operator in between");
     }
  else     if (currentOp.equals(op[0])) {
-      currentZ.setDriver(zen.getDriver());
+      currentZ.setDriver(currentDriver);
       zList.add(currentZ);
       currentZ=z;
       currentOp=null;
@@ -101,7 +104,7 @@
     }
   }
   if (currentZ != null) {
-    currentZ.setDriver(zen.getDriver());
+    currentZ.setDriver(currentDriver);
     zList.add(currentZ);
   }
   return zList;

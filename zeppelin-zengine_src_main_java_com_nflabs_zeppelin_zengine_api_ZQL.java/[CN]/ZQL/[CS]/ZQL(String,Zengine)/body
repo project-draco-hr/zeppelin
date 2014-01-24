@@ -1,4 +1,4 @@
 {
-  this.zen=zen;
+  this.zengine=zen;
   append(zql);
 }

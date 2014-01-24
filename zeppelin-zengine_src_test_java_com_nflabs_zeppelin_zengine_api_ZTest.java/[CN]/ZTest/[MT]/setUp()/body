@@ -5,7 +5,5 @@
   UtilsForTests.delete(new File(ROOT_DIR.getName()));
   z=new Zengine();
   z.configure();
-  HiveZeppelinDriver driver=new HiveZeppelinDriver(z.getConf());
-  driver.setClient(client);
-  z.setDriver(driver);
+  drv=UtilsForTests.createHiveTestDriver(z.getConf(),client);
 }

@@ -1,0 +1,3 @@
+{
+  return conf.getString(ConfVars.ZEPPELIN_JOB_SCHEDULER).equals("FIFO");
+}

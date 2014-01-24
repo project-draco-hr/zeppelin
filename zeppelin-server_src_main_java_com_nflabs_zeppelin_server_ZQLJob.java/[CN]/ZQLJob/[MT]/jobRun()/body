@@ -1,9 +1,7 @@
 {
   LinkedList<Result> results=new LinkedList<Result>();
-  ZQL zqlEvaluator=new ZQL(zql,z);
+  ZQL zqlEvaluator=new ZQL(userInputZql,zengine);
   zqlPlans=zqlEvaluator.compile();
-synchronized (this) {
-  }
   for (int i=0; i < zqlPlans.size(); i++) {
     Z zz=zqlPlans.get(i);
     Map<String,Object> p=new HashMap<String,Object>();
@@ -18,12 +16,8 @@ synchronized (this) {
     }
  catch (    ZException e) {
       error=new Result(e);
-synchronized (this) {
-      }
       throw e;
     }
-  }
-synchronized (this) {
   }
   return results;
 }

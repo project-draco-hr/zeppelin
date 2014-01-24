@@ -1,5 +1,4 @@
 {
-  FSDataInputStream ins=zen.fs().open(new Path(uri));
+  FSDataInputStream ins=zengine.fs().open(new Path(uri));
   load(ins);
-  ins.close();
 }

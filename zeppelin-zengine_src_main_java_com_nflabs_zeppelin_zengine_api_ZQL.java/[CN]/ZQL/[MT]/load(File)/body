@@ -1,5 +1,4 @@
 {
   FileInputStream ins=new FileInputStream(file);
   load(ins);
-  ins.close();
 }

@@ -1,3 +1,0 @@
-{
-  return LoggerFactory.getLogger(ZQLJob.class);
-}

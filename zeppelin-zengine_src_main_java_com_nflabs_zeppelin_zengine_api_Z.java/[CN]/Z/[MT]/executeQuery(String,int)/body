@@ -6,10 +6,7 @@
     try {
       return shellCommand(cmd);
     }
- catch (    ExecuteException e) {
-      logger().error("Failed to execute shell command " + cmd,e);
-    }
-catch (    IOException e) {
+ catch (    IOException e) {
       logger().error("Failed to execute shell command " + cmd,e);
     }
 catch (    ResultDataException e) {
