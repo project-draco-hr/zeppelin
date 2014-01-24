@@ -1,8 +1,8 @@
 {
   Set<Object> singletons=new HashSet<Object>();
-  ZQL analyze=new ZQL(analyzeSessionManager);
+  ZQLRestApi analyze=new ZQLRestApi(this.analyzeSessionManager);
   singletons.add(analyze);
-  ZAN zan=new ZAN(this.zan,this.zanJobManager);
+  ZANRestApi zan=new ZANRestApi(this.zan,this.zanJobManager);
   singletons.add(zan);
   return singletons;
 }
