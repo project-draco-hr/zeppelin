@@ -1,3 +1,0 @@
-{
-  return getConf().getString(ConfVars.ZEPPELIN_HOME) + "/metastore_db";
-}

@@ -47,7 +47,7 @@
         throw new ZQLException("Can not redirect empty");
       }
     }
-    if (stmt.startsWith("!")) {
+    if (stmt.startsWith("@")) {
       if (currentZ != null) {
         if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
           currentZ.setDriver(currentDriver);
@@ -60,7 +60,7 @@
         }
       }
       try {
-        currentZ=new ShellExecStatement(stmt,zengine,currentDriver);
+        currentZ=new AnnotationStatement(stmt,zengine,currentDriver);
       }
  catch (      ZException e) {
         throw new ZQLException(e);

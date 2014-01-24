@@ -1,5 +1,0 @@
-{
-  this.client=client;
-  isClosed=false;
-  configureConnection();
-}

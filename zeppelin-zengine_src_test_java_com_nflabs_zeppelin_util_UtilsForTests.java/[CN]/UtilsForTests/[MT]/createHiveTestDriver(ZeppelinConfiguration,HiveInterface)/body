@@ -1,5 +1,0 @@
-{
-  ZeppelinDriver driver=new HiveZeppelinDriver(zc);
-  ((HiveZeppelinDriver)driver).setClient(client);
-  return driver;
-}

@@ -1,3 +1,0 @@
-{
-  return getConf().getString("HIVE_CONNECTION_URI","hive.connection.uri","jdbc:hive2://");
-}

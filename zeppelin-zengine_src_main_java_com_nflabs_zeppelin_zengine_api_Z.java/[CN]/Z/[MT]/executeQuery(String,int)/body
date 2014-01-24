@@ -1,16 +1,20 @@
 {
   initialize();
   if (query == null)   return null;
-  if (query.startsWith("!")) {
-    String cmd=query.substring(1);
-    try {
-      return shellCommand(cmd);
+  if (query.startsWith("@")) {
+    Pattern driverPattern=Pattern.compile("@driver+s(set)+s([^ ]*)");
+    Matcher driverMatcher=driverPattern.matcher(query);
+    if (driverMatcher.find()) {
+      String op=driverMatcher.group(1);
+      String arg=driverMatcher.group(2);
+      if ("set".compareToIgnoreCase(op) == 0) {
+      }
+ else {
+        throw new ZException("Unsupported @driver operation " + op);
+      }
     }
- catch (    IOException e) {
-      logger().error("Failed to execute shell command " + cmd,e);
-    }
-catch (    ResultDataException e) {
-      logger().error("Failed to execute shell command " + cmd,e);
+ else {
+      throw new ZException("Invalid annotation statement " + query);
     }
   }
   List<URI> resources=getResources();

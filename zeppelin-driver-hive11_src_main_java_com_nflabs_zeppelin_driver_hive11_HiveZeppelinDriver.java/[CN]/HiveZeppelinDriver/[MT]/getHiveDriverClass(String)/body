@@ -6,5 +6,5 @@
  else {
     className=HIVE_SERVER_2;
   }
-  return getConf().getString("HIVE_DRIVER_CLASS","hive.driver.class",className);
+  return null;
 }

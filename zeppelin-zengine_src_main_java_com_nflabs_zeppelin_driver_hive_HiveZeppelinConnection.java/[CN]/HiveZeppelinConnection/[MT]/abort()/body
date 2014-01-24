@@ -1,3 +1,0 @@
-{
-  throw new ZeppelinDriverException("Abort not supported");
-}

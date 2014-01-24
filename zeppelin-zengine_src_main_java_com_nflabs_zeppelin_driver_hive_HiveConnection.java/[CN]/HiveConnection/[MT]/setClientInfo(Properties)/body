@@ -1,3 +1,0 @@
-{
-  throw new SQLClientInfoException("Method not supported",null);
-}

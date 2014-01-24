@@ -3,9 +3,8 @@
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
   UtilsForTests.delete(new File("/tmp/warehouse"));
-  UtilsForTests.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   z=new Zengine();
   z.configure();
-  drv=UtilsForTests.createHiveTestDriver(z.getConf(),client);
+  drv=UtilsForTests.createTestDriver(z.getConf());
 }

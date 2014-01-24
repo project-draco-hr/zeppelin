@@ -1,5 +1,0 @@
-{
-  ShellExecStatement e=new ShellExecStatement("!echo \"hello world\"",z,drv);
-  Result result=e.execute().result();
-  assertEquals("hello world",result.getRows().get(0)[0]);
-}

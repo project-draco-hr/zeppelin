@@ -1,6 +1,0 @@
-{
-  super.setUp();
-  z=new Zengine();
-  z.configure();
-  drv=UtilsForTests.createHiveTestDriver(z.getConf(),client);
-}

@@ -4,10 +4,8 @@
   tmp.mkdir();
   tmpDir=tmp.getAbsolutePath();
   tmpUri=tmp.toURI().toString();
-  UtilsForTests.delete(new File("/tmp/warehouse"));
-  UtilsForTests.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpUri);
   z=new Zengine();
   z.configure();
-  drv=UtilsForTests.createHiveTestDriver(z.getConf(),client);
+  drv=UtilsForTests.createTestDriver(z.getConf());
 }

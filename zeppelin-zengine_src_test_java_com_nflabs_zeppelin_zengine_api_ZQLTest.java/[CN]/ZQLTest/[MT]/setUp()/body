@@ -4,7 +4,6 @@
   tmpDir.mkdir();
   String tmpDirPath=tmpDir.getAbsolutePath();
   UtilsForTests.delete(new File("/tmp/warehouse"));
-  UtilsForTests.delete(new File(ROOT_DIR.getName()));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   String q1="select * from (<%= z." + Q.INPUT_VAR_NAME + " %>) a limit <%= z.param('limit') %>\n";
   new File(tmpDirPath + "/test").mkdir();
@@ -15,6 +14,6 @@
   UtilsForTests.createFileWithContent(tmpDirPath + "/test1/web/index.erb","WEB\n");
   z=new Zengine();
   z.configure();
-  ZeppelinDriver driver=UtilsForTests.createHiveTestDriver(z.getConf(),client);
+  ZeppelinDriver driver=UtilsForTests.createTestDriver(z.getConf());
   z._mockSingleAvailableDriver(ImmutableMap.of("hive",driver));
 }

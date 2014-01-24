@@ -1,4 +1,5 @@
 {
+  logger.info("TestDriver query(" + query + ")");
   Result r=queries.get(query);
   if (r == null) {
     return new Result();
