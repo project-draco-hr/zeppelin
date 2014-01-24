@@ -47,6 +47,7 @@
     if (stmt.startsWith("!")) {
       if (currentZ != null) {
         if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
+          currentZ.setDriver(zen.getDriver());
           zList.add(currentZ);
           currentZ=null;
           currentOp=null;
@@ -89,6 +90,7 @@
       throw new ZQLException("Assert! Statment does not have operator in between");
     }
  else     if (currentOp.equals(op[0])) {
+      currentZ.setDriver(zen.getDriver());
       zList.add(currentZ);
       currentZ=z;
       currentOp=null;
@@ -99,6 +101,7 @@
     }
   }
   if (currentZ != null) {
+    currentZ.setDriver(zen.getDriver());
     zList.add(currentZ);
   }
   return zList;
