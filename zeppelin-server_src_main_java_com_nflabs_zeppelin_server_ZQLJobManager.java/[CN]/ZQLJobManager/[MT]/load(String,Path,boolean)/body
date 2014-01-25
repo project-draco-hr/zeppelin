@@ -10,9 +10,9 @@ synchronized (active) {
         job.setStatus(Status.ABORT);
       }
       ins.close();
+      job.setZengine(zengine);
       if (history == false) {
         job.setListener(this);
-        job.setZengine(zengine);
         active.put(job.getId(),job);
         refreshQuartz(job);
       }
