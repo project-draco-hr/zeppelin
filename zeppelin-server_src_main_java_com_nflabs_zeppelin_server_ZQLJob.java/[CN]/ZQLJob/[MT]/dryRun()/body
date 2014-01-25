@@ -1,7 +1,7 @@
 {
   if (getStatus() != Status.READY)   return;
   if (zqlPlans.isEmpty()) {
-    ZQL zqlEvaluator=new ZQL(userInputZql,zengine);
+    ZQL zqlEvaluator=new ZQL(zql,zengine);
     zqlPlans=zqlEvaluator.compile();
   }
  else {

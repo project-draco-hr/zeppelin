@@ -1,6 +1,6 @@
 {
   LinkedList<Result> results=new LinkedList<Result>();
-  ZQL zqlEvaluator=new ZQL(userInputZql,zengine);
+  ZQL zqlEvaluator=new ZQL(zql,zengine);
   zqlPlans=zqlEvaluator.compile();
   for (int i=0; i < zqlPlans.size(); i++) {
     Z zz=zqlPlans.get(i);
