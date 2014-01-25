@@ -13,10 +13,12 @@
     throw new ZeppelinDriverException("Can not find driver " + driverName);
   }
   Class cls;
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   try {
+    Thread.currentThread().setContextClassLoader(cl);
     cls=cl.loadClass(driverClassName);
-    Constructor<ZeppelinDriver> constructor=cls.getConstructor(new Class[]{ZeppelinConfiguration.class,URI.class});
-    return constructor.newInstance(conf,new URI(driverUri.getSchemeSpecificPart()));
+    Constructor<ZeppelinDriver> constructor=cls.getConstructor(new Class[]{ZeppelinConfiguration.class,URI.class,URLClassLoader.class});
+    return constructor.newInstance(conf,new URI(driverUri.getSchemeSpecificPart()),cl);
   }
  catch (  ClassNotFoundException e) {
     throw new ZeppelinDriverException(e);
@@ -41,5 +43,8 @@ catch (  NoSuchMethodException e) {
   }
 catch (  URISyntaxException e) {
     throw new ZeppelinDriverException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
   }
 }

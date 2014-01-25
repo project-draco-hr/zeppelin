@@ -1,4 +1,5 @@
 {
   this.conf=conf;
   this.uri=uri;
+  this.classLoader=classLoader;
 }

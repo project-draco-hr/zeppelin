@@ -10,7 +10,7 @@
     File[] files=path.listFiles();
     if (files != null) {
       for (      File f : files) {
-        ArrayUtils.addAll(urls,recursiveBuildLibList(f));
+        urls=(URL[])ArrayUtils.addAll(urls,recursiveBuildLibList(f));
       }
     }
     return urls;

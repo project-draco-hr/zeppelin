@@ -4,6 +4,7 @@
   try {
     urls=recursiveBuildLibList(path);
     URLClassLoader cl=new URLClassLoader(urls,oldcl);
+    Thread.currentThread().setContextClassLoader(cl);
     return cl;
   }
  catch (  MalformedURLException e) {

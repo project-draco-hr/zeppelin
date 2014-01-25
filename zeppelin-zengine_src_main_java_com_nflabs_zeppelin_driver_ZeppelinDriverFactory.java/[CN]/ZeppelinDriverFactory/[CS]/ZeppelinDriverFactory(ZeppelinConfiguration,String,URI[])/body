@@ -7,6 +7,8 @@
   File[] drivers=root.listFiles();
   if (drivers != null) {
     for (    File d : drivers) {
+      logger.info("Load driver " + d.getName() + " from "+ d.getAbsolutePath());
+      ;
       classLoaders.put(d.getName(),loadLibrary(d));
     }
   }

@@ -1,3 +1,16 @@
 {
-  return this.connection.get().createViewFromQuery(name,query);
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  Thread.currentThread().setContextClassLoader(classLoader);
+  try {
+    return this.connection.get().createViewFromQuery(name,query);
+  }
+ catch (  ZeppelinDriverException e) {
+    throw e;
+  }
+catch (  Exception e) {
+    throw new ZeppelinDriverException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
 }

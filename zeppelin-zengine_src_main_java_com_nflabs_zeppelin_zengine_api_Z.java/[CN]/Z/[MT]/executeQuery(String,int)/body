@@ -2,20 +2,6 @@
   initialize();
   if (query == null)   return null;
   if (query.startsWith("@")) {
-    Pattern driverPattern=Pattern.compile("@driver+s(set)+s([^ ]*)");
-    Matcher driverMatcher=driverPattern.matcher(query);
-    if (driverMatcher.find()) {
-      String op=driverMatcher.group(1);
-      String arg=driverMatcher.group(2);
-      if ("set".compareToIgnoreCase(op) == 0) {
-      }
- else {
-        throw new ZException("Unsupported @driver operation " + op);
-      }
-    }
- else {
-      throw new ZException("Invalid annotation statement " + query);
-    }
   }
   List<URI> resources=getResources();
   for (  URI res : resources) {
