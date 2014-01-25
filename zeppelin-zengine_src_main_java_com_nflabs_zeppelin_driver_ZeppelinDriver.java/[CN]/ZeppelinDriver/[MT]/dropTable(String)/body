@@ -1,4 +1,3 @@
 {
-  lazyCheckForConnection();
-  this.connection.dropTable(name);
+  this.connection.get().dropTable(name);
 }

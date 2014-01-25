@@ -1,4 +1,3 @@
 {
-  lazyCheckForConnection();
-  return this.connection.query(query);
+  return this.connection.get().query(query);
 }
