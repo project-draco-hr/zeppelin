@@ -1,7 +1,8 @@
 {
   this.scheduler=scheduler;
   this.jobPersistBasePath=jobPersistBasePath;
-  this.fs=fs;
+  this.zengine=zengine;
+  fs=zengine.fs();
   GsonBuilder gsonBuilder=new GsonBuilder();
   gsonBuilder.setPrettyPrinting();
   gsonBuilder.registerTypeAdapter(Z.class,new ZAdapter());

@@ -8,5 +8,5 @@
   System.setProperty(ConfVars.ZEPPELIN_JOB_DIR.getVarName(),tmpDir.getAbsolutePath());
   z=UtilsForTests.createZengine();
   this.schedulerFactory=new SchedulerFactory();
-  this.jm=new ZQLJobManager(schedulerFactory.createOrGetFIFOScheduler("analyze"),z.fs(),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
+  this.jm=new ZQLJobManager(z,schedulerFactory.createOrGetFIFOScheduler("analyze"),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
 }

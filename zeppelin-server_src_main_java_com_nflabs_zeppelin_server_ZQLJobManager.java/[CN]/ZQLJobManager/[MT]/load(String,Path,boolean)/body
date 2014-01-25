@@ -12,6 +12,7 @@ synchronized (active) {
       ins.close();
       if (history == false) {
         job.setListener(this);
+        job.setZengine(zengine);
         active.put(job.getId(),job);
         refreshQuartz(job);
       }
