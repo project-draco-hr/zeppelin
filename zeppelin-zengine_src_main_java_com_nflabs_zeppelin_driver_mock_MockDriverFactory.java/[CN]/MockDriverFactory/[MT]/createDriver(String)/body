@@ -3,5 +3,5 @@
   if (uri == null) {
     throw new ZeppelinDriverException("Driver " + name + " not found");
   }
-  return new TestDriver(conf,uri);
+  return new MockDriver(conf,uri);
 }

@@ -3,5 +3,5 @@
   tmpDir.mkdir();
   UtilsForTests.delete(new File("/tmp/warehouse"));
   z=UtilsForTests.createZengine();
-  drv=(TestDriver)z.getDriverFactory().createDriver("test");
+  drv=(MockDriver)z.getDriverFactory().createDriver("test");
 }
