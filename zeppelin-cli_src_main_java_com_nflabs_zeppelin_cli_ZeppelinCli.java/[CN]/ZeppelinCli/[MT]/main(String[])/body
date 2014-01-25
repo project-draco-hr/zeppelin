@@ -6,7 +6,6 @@
   CommandLineParser parser=new BasicParser();
   CommandLine cmd=parser.parse(options,args);
   Zengine z=new Zengine();
-  z.configure();
   if (cmd.hasOption("f")) {
     ZQL zql=new ZQL(z);
     zql.load(new File(cmd.getOptionValue("f")));

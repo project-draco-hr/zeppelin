@@ -1,7 +1,6 @@
 {
   ZeppelinConfiguration conf=new ZeppelinConfiguration();
   Zengine z=new Zengine();
-  z.configure();
   String zanRepo=conf.getString(ConfVars.ZEPPELIN_ZAN_REPO);
   String zanLocalRepo=conf.getString(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO);
   String zanSharedRepo=conf.getString(ConfVars.ZEPPELIN_ZAN_SHARED_REPO);
