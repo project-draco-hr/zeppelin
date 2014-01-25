@@ -1,4 +1,3 @@
 {
-  lazyCheckForConnection();
-  this.connection.addResource(resourceLocation);
+  this.connection.get().addResource(resourceLocation);
 }

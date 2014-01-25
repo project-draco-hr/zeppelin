@@ -1,3 +1,4 @@
 {
   logger.info("Destroy " + HiveZeppelinDriver.class.getName());
+  connection.get().close();
 }

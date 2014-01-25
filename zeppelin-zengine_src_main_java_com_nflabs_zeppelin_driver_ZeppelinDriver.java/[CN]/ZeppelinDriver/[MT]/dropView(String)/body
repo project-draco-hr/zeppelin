@@ -1,4 +1,3 @@
 {
-  lazyCheckForConnection();
-  this.connection.dropView(name);
+  this.connection.get().dropView(name);
 }
