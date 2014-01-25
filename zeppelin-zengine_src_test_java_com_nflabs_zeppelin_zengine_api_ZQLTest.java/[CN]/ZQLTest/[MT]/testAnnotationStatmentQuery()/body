@@ -1,5 +1,5 @@
 {
-  ZQL zql=new ZQL("select * from test;@driver set exec;!echo ls",z);
+  ZQL zql=new ZQL("select * from test;@driver set production;!echo ls",z);
   List<Z> plan=zql.compile();
   assertEquals(3,plan.size());
   assertEquals("select * from test",plan.get(0).getQuery());

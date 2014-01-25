@@ -1,3 +1,25 @@
 {
   super(stmt,z,driver);
+  Matcher matcher=annotationPattern.matcher(query);
+  if (matcher.find()) {
+    String annotation=matcher.group(1);
+    String cmd=matcher.group(2);
+    String arg=matcher.group(4);
+    if (ANNOTATION.DRIVER.name().compareToIgnoreCase(annotation) == 0) {
+      this.annotation=ANNOTATION.DRIVER;
+      if (COMMAND.SET.name().compareToIgnoreCase(cmd) == 0) {
+        this.command=COMMAND.SET;
+      }
+ else {
+        throw new ZException("Unsupported command " + cmd);
+      }
+    }
+ else {
+      throw new ZException("Invalid annotation " + annotation);
+    }
+    this.arg=arg;
+  }
+ else {
+    throw new ZException("Invalid annotation syntax " + query);
+  }
 }

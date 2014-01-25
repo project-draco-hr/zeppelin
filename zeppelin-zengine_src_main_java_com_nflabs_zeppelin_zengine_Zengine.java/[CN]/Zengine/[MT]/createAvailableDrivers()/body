@@ -1,10 +1,8 @@
 {
-  if (_dirversMock != null) {
-    return _dirversMock;
-  }
   ImmutableMap.Builder<String,ZeppelinDriver> drivers=ImmutableMap.<String,ZeppelinDriver>builder();
-  for (  String driverName : availableDriverNames) {
-    drivers.put(driverName,DriverFactory_createDriver(driverName));
+  Collection<String> driverNames=driverFactory.getAllConfigurationNames();
+  for (  String driverName : driverNames) {
+    drivers.put(driverName,driverFactory.createDriver(driverName));
   }
   return drivers.build();
 }

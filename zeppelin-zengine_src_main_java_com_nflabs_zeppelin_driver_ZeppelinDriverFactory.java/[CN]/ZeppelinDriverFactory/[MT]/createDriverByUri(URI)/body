@@ -1,12 +1,42 @@
 {
   String driverClassName=uri.getScheme();
-  URI driverUri=new URI(uri.getSchemeSpecificPart());
+  URI driverUri;
+  try {
+    driverUri=new URI(uri.getSchemeSpecificPart());
+  }
+ catch (  URISyntaxException e1) {
+    throw new ZeppelinDriverException(e1);
+  }
   String driverName=driverUri.getScheme();
   URLClassLoader cl=classLoaders.get(driverName);
   if (cl == null) {
     throw new ZeppelinDriverException("Can not find driver " + driverName);
   }
-  Class cls=cl.loadClass(driverClassName);
-  Constructor<ZeppelinDriver> constructor=cls.getConstructor(new Class[]{URI.class});
-  return constructor.newInstance(driverUri);
+  Class cls;
+  try {
+    cls=cl.loadClass(driverClassName);
+    Constructor<ZeppelinDriver> constructor=cls.getConstructor(new Class[]{ZeppelinConfiguration.class,URI.class});
+    return constructor.newInstance(driverUri);
+  }
+ catch (  ClassNotFoundException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  IllegalArgumentException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  InstantiationException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  SecurityException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  NoSuchMethodException e) {
+    throw new ZeppelinDriverException(e);
+  }
 }

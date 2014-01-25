@@ -1,5 +1,0 @@
-{
-  List<String> result=new ArrayList<String>();
-  result.add(getConf().getString(ConfVars.ZEPPELIN_DRIVER));
-  return result;
-}

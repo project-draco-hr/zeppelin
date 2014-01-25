@@ -1,6 +1,6 @@
 {
   final Map<String,ZeppelinDriver> drivers=zengine.createAvailableDrivers();
-  String currentDriverName="hive";
+  String currentDriverName=zengine.getDriverFactory().getDefaultConfigurationName();
   ZeppelinDriver currentDriver=drivers.get(currentDriverName);
   List<Z> zList=new LinkedList<Z>();
   Z currentZ=null;
@@ -60,7 +60,20 @@
         }
       }
       try {
-        currentZ=new AnnotationStatement(stmt,zengine,currentDriver);
+        AnnotationStatement annotation=new AnnotationStatement(stmt,zengine,currentDriver);
+        if (ANNOTATION.DRIVER == annotation.getAnnotation()) {
+          if (COMMAND.SET == annotation.getCommand()) {
+            String driverName=annotation.getArgument();
+            if (driverName == null) {
+              driverName=zengine.getDriverFactory().getDefaultConfigurationName();
+            }
+            currentDriver=drivers.get(driverName);
+            if (currentDriver == null) {
+              throw new ZQLException("Can not find driver " + driverName);
+            }
+          }
+        }
+        currentZ=annotation;
       }
  catch (      ZException e) {
         throw new ZQLException(e);
@@ -80,9 +93,6 @@
       }
  catch (      ZException e) {
         throw new ZQLException(e);
-      }
-      if (!stmt.toLowerCase().trim().startsWith("select") && !stmt.toLowerCase().trim().startsWith("map")) {
-        q.withName(null);
       }
       z=q;
     }

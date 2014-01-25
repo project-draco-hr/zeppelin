@@ -1,4 +1,0 @@
-{
-  TestDriver driver=new TestDriver(zc);
-  return driver;
-}

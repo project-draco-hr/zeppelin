@@ -2,7 +2,6 @@
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   tmpDir.mkdir();
   UtilsForTests.delete(new File("/tmp/warehouse"));
-  z=new Zengine();
-  z.configure();
-  drv=UtilsForTests.createTestDriver(z.getConf());
+  z=UtilsForTests.createZengine();
+  drv=(TestDriver)z.getDriverFactory().createDriver("test");
 }

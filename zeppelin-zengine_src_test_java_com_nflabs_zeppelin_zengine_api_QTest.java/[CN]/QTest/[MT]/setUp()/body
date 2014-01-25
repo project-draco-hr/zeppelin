@@ -4,7 +4,6 @@
   tmpDir.mkdir();
   UtilsForTests.delete(new File("/tmp/warehouse"));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
-  z=new Zengine();
-  z.configure();
-  drv=UtilsForTests.createTestDriver(z.getConf());
+  z=UtilsForTests.createZengine();
+  drv=(TestDriver)z.getDriverFactory().createDriver("test");
 }

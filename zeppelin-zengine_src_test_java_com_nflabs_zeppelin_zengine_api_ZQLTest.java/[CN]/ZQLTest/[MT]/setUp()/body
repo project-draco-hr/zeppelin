@@ -12,8 +12,5 @@
   new File(tmpDirPath + "/test1").mkdir();
   new File(tmpDirPath + "/test1/web").mkdirs();
   UtilsForTests.createFileWithContent(tmpDirPath + "/test1/web/index.erb","WEB\n");
-  z=new Zengine();
-  z.configure();
-  ZeppelinDriver driver=UtilsForTests.createTestDriver(z.getConf());
-  z._mockSingleAvailableDriver(ImmutableMap.of("hive",driver));
+  z=UtilsForTests.createZengine();
 }

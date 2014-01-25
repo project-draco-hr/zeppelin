@@ -1,0 +1,7 @@
+{
+  Zengine z=new Zengine();
+  AnnotationStatement a=new AnnotationStatement("@driver set hive",z,null);
+  assertEquals(ANNOTATION.DRIVER,a.getAnnotation());
+  assertEquals(COMMAND.SET,a.getCommand());
+  assertEquals("hive",a.getArgument());
+}
