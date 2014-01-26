@@ -1,0 +1,4 @@
+{
+  FileUtils.deleteDirectory(new File("/tmp/warehouse"));
+  FileUtils.deleteDirectory(new File(ROOT_DIR.getName()));
+}
