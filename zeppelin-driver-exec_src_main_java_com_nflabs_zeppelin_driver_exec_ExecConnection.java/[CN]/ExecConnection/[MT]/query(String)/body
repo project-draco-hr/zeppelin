@@ -1,4 +1,5 @@
 {
+  logger.info("exec " + query);
   CommandLine cmdLine=CommandLine.parse("bash");
   cmdLine.addArgument("-c",false);
   cmdLine.addArgument(query,false);
