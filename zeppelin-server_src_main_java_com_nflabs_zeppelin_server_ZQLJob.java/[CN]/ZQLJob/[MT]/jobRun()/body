@@ -14,7 +14,7 @@
       results.add(zz.result());
       zz.release();
     }
- catch (    ZException e) {
+ catch (    Exception e) {
       error=new Result(e);
       throw e;
     }
