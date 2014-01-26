@@ -1,0 +1,11 @@
+{
+  if (executed) {
+    return this;
+  }
+  initialize();
+  if (this.hasPrev()) {
+    prev().execute();
+  }
+  executed=true;
+  return this;
+}
