@@ -1,7 +1,7 @@
 {
   try {
     Connection con;
-    String uri=getConnectionUri();
+    String uri=getUri().toString();
     if (client != null) {
       logger.debug("Create connection from provided client instance");
       con=new HiveConnection(client);
@@ -17,7 +17,7 @@
  else {
       logger.debug("Create connection from given jdbc uri");
       Class.forName(getHiveDriverClass(uri));
-      con=DriverManager.getConnection(getConnectionUri());
+      con=DriverManager.getConnection(uri);
     }
     return new HiveZeppelinConnection(con);
   }

@@ -6,5 +6,5 @@
  else {
     className=HIVE_SERVER_2;
   }
-  return null;
+  return className;
 }
