@@ -1,5 +1,5 @@
 {
-  if (jobWasAborted) {
+  if (aborted) {
     setStatus(Status.ABORT);
     return;
   }
@@ -8,7 +8,7 @@
     dateStarted=new Date();
     result=jobRun();
     dateFinished=new Date();
-    if (jobWasAborted) {
+    if (aborted) {
       setStatus(Status.ABORT);
     }
  else {
@@ -16,7 +16,7 @@
     }
   }
  catch (  Throwable e) {
-    this.lastException=e;
+    this.exception=e;
     dateFinished=new Date();
     setStatus(Status.ERROR);
   }
