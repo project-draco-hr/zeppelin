@@ -1,41 +1,25 @@
 {
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
-  int timeout=1000 * 30;
-  final Server server=new Server();
-  SocketConnector connector=new SocketConnector();
-  connector.setMaxIdleTime(timeout);
-  connector.setSoLingerTime(-1);
-  connector.setPort(port);
-  server.addConnector(connector);
-  final ServletContextHandler cxfContext=setupRestApi();
-  WebAppContext sch=new WebAppContext();
-  File webapp=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
-  if (webapp.isDirectory()) {
-    sch.setDescriptor(webapp + "/WEB-INF/web.xml");
-    sch.setResourceBase(webapp.getPath());
-    sch.setContextPath("/");
-    sch.setParentLoaderPriority(true);
-  }
- else {
-    sch.setWar(webapp.getAbsolutePath());
-  }
+  final Server server=setupJettyServer(port);
+  final ServletContextHandler restApi=setupRestApiContextHandler();
+  final WebAppContext webApp=setupWebAppContext(conf);
   ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{cxfContext,sch});
+  contexts.setHandlers(new Handler[]{restApi,webApp});
   server.setHandler(contexts);
-  logger.info("Start zeppelin server");
+  LOG.info("Start zeppelin server");
   server.start();
-  logger.info("Started");
+  LOG.info("Started");
   Runtime.getRuntime().addShutdownHook(new Thread(){
     @Override public void run(){
-      logger.info("Shutting down Zeppelin Server ... ");
+      LOG.info("Shutting down Zeppelin Server ... ");
       try {
         server.stop();
       }
  catch (      Exception e) {
-        logger.error("Error while stopping servlet container",e);
+        LOG.error("Error while stopping servlet container",e);
       }
-      logger.info("Bye");
+      LOG.info("Bye");
     }
   }
 );

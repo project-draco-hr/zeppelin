@@ -1,0 +1,5 @@
+{
+  logger.info("createView " + viewName);
+  views.put(viewName,queries.get(query));
+  return new Result();
+}

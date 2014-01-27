@@ -1,0 +1,35 @@
+{
+  logger.info("exec " + query);
+  CommandLine cmdLine=CommandLine.parse("bash");
+  cmdLine.addArgument("-c",false);
+  cmdLine.addArgument(query,false);
+  DefaultExecutor executor=new DefaultExecutor();
+  ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+  executor.setStreamHandler(new PumpStreamHandler(outputStream));
+  executor.setWatchdog(new ExecuteWatchdog(1000 * 60 * 30));
+  int exitValue;
+  try {
+    exitValue=executor.execute(cmdLine);
+  }
+ catch (  ExecuteException e1) {
+    throw new ZeppelinDriverException(e1);
+  }
+catch (  IOException e1) {
+    throw new ZeppelinDriverException(e1);
+  }
+  String[] msgs=null;
+  if (outputStream != null) {
+    String msgstr=outputStream.toString();
+    if (msgstr != null) {
+      msgs=msgstr.split("\n");
+    }
+  }
+  Result resultData;
+  try {
+    resultData=new Result(exitValue,msgs);
+  }
+ catch (  ResultDataException e) {
+    throw new ZeppelinDriverException(e);
+  }
+  return resultData;
+}

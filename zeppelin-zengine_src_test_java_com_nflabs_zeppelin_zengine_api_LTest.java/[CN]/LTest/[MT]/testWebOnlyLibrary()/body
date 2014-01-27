@@ -1,0 +1,10 @@
+{
+  new File(tmpDir + "/test/web").mkdirs();
+  UtilsForTests.createFileWithContent(tmpDir + "/test/web/index.erb","HELLO HTML <%= z.result.rows[0][0] %>\n");
+  drv.queries.put("select * from test",new Result(0,new String[]{"5"}));
+  Z q=new Q("select * from test",z,drv).pipe(new L("test",z,drv));
+  Result result=q.execute().result();
+  assertEquals("5",result.getRows().get(0)[0]);
+  InputStream ins=q.readWebResource("/");
+  assertEquals("HELLO HTML 5",IOUtils.toString(ins,"utf8"));
+}

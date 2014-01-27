@@ -1,4 +1,3 @@
 {
-  if (status == Status.READY || status == Status.RUNNING)   return false;
- else   return true;
+  return !this.status.isReady() && !this.status.isRunning();
 }

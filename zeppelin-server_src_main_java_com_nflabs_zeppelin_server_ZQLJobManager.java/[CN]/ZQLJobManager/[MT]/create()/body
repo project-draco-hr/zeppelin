@@ -1,5 +1,5 @@
 {
-  ZQLJob as=new ZQLJob("",this);
+  ZQLJob as=new ZQLJob("",zengine,this);
   try {
     persist(as);
 synchronized (active) {

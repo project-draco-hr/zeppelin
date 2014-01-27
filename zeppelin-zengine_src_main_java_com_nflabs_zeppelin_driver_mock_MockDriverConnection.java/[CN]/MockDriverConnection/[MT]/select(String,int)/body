@@ -1,0 +1,12 @@
+{
+  logger.info("select " + tableName);
+  if (views.containsKey(tableName)) {
+    return views.get(tableName);
+  }
+ else   if (tables.containsKey(tableName)) {
+    return tables.get(tableName);
+  }
+ else {
+    return query("select * from " + tableName);
+  }
+}

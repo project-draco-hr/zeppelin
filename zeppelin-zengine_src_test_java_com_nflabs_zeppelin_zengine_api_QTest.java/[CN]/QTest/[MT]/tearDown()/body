@@ -1,0 +1,5 @@
+{
+  UtilsForTests.delete(tmpDir);
+  super.tearDown();
+  UtilsForTests.delete(new File("/tmp/warehouse"));
+}

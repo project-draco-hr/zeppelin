@@ -1,0 +1,3 @@
+ZeppelinConfiguration conf
+URI uri
+ClassLoader classLoader

@@ -1,0 +1,7 @@
+{
+  super.setUp();
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdir();
+  FileUtils.deleteDirectory(new File("/tmp/warehouse"));
+  FileUtils.deleteDirectory(new File(ROOT_DIR.getName()));
+}

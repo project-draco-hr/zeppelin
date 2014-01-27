@@ -1,0 +1,10 @@
+{
+  Zengine z=new Zengine();
+  AnnotationStatement a;
+  try {
+    a=new AnnotationStatement("@worng set hive",z,null);
+    fail();
+  }
+ catch (  ZException e) {
+  }
+}

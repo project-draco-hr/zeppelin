@@ -1,0 +1,4 @@
+{
+  jobManager.deleteHistory(jobId);
+  return new JsonResponse<ZQLJob>(Status.OK).build();
+}

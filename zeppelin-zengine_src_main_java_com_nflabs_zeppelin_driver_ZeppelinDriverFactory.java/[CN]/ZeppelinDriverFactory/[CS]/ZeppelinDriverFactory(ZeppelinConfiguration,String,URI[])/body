@@ -1,0 +1,28 @@
+{
+  if (driverRootDir == null || uriList == null) {
+    return;
+  }
+  this.conf=conf;
+  File root=new File(driverRootDir);
+  File[] drivers=root.listFiles();
+  if (drivers != null) {
+    for (    File d : drivers) {
+      logger.info("Load driver " + d.getName() + " from "+ d.getAbsolutePath());
+      ;
+      classLoaders.put(d.getName(),loadLibrary(d));
+    }
+  }
+  if (uriList != null) {
+    for (    URI uri : uriList) {
+      try {
+        uris.put(uri.getScheme(),new URI(uri.getSchemeSpecificPart()));
+        if (defaultDriverName == null) {
+          defaultDriverName=uri.getScheme();
+        }
+      }
+ catch (      URISyntaxException e) {
+        throw new ZeppelinDriverException(e);
+      }
+    }
+  }
+}

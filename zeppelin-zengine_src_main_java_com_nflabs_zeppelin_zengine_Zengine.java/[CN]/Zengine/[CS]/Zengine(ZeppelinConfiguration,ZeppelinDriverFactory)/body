@@ -1,0 +1,29 @@
+{
+  this.conf=conf;
+  this.factory=new JRubyScriptEngineFactory();
+  if (driverFactory == null) {
+    String driverDir=conf.getString(ConfVars.ZEPPELIN_DRIVER_DIR);
+    String[] uriList=conf.getString(ConfVars.ZEPPELIN_DRIVERS).split(",");
+    URI[] uris=new URI[uriList.length];
+    for (int i=0; i < uriList.length; i++) {
+      try {
+        uris[i]=new URI(uriList[i]);
+      }
+ catch (      URISyntaxException e) {
+        throw new ZException(e);
+      }
+    }
+    this.driverFactory=new ZeppelinDriverFactory(conf,driverDir,uris);
+  }
+ else {
+    this.driverFactory=driverFactory;
+  }
+  if (fs == null) {
+    try {
+      fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
+    }
+ catch (    IOException e) {
+      throw new ZException(e);
+    }
+  }
+}

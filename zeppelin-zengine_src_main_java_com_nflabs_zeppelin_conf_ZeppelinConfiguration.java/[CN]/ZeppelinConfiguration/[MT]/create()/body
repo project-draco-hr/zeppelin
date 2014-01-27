@@ -4,10 +4,17 @@
     classLoader=ZeppelinConfiguration.class.getClassLoader();
   }
   URL url=classLoader.getResource("zeppelin-site.xml");
-  if (url != null) {
-    return new ZeppelinConfiguration(url);
-  }
- else {
+  if (url == null) {
+    LOG.warn("Failed to load configuration, proceeding with a default");
     return new ZeppelinConfiguration();
   }
+  ZeppelinConfiguration result;
+  try {
+    result=new ZeppelinConfiguration(url);
+  }
+ catch (  ConfigurationException e) {
+    LOG.warn("Failed to load configuration from " + url + " proceeding with a default",e);
+    result=new ZeppelinConfiguration();
+  }
+  return result;
 }

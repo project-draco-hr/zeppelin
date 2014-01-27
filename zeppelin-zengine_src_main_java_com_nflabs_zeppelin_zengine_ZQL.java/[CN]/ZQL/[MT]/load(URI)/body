@@ -1,5 +1,0 @@
-{
-  FSDataInputStream ins=Z.fs().open(new Path(uri));
-  load(ins);
-  ins.close();
-}

@@ -1,34 +1,17 @@
 {
-  LinkedList<Result> results=new LinkedList<Result>();
-  ZQL zqlEvaluator=new ZQL(zql);
-  zqlPlans=zqlEvaluator.compile();
-synchronized (this) {
-    conn=Z.getConnection();
+  ZQL zqlEvaluator=new ZQL(zql,zengine);
+  try {
+    zqlPlans=zqlEvaluator.compile();
   }
-  for (int i=0; i < zqlPlans.size(); i++) {
-    Z zz=zqlPlans.get(i);
-    Map<String,Object> p=new HashMap<String,Object>();
-    if (params != null && params.size() >= i + 1) {
-      p=params.get(i);
-    }
-    try {
-      zz.withParams(p);
-      zz.execute(conn);
-      results.add(zz.result());
-      zz.release();
-    }
- catch (    ZException e) {
-      error=new Result(e);
-      conn.close();
-synchronized (this) {
-        conn=null;
-      }
-      throw e;
-    }
+ catch (  ZQLException e) {
+    error=new Result(e);
+    throw e;
   }
-  conn.close();
-synchronized (this) {
-    conn=null;
+  try {
+    return zqlPlans.execute(params);
   }
-  return results;
+ catch (  Exception e) {
+    error=new Result(e);
+    throw e;
+  }
 }

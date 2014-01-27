@@ -1,4 +1,0 @@
-{
-  ZeppelinDriver drv=null;
-  configure(drv);
-}

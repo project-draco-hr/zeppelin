@@ -1,0 +1,5 @@
+{
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  MockDriverFactory driverFactory=new MockDriverFactory(conf);
+  return new Zengine(conf,driverFactory);
+}

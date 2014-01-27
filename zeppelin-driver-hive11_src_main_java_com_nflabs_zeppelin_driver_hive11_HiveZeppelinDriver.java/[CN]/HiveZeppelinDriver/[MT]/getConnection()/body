@@ -1,0 +1,30 @@
+{
+  try {
+    Connection con;
+    String uri=getUri().toString();
+    if (client != null) {
+      logger.debug("Create connection from provided client instance");
+      con=new HiveConnection(client);
+    }
+ else     if (isEmpty(uri)) {
+      logger.debug("Create connection from hive configuration");
+      con=new HiveConnection(hiveConf());
+    }
+ else     if (uri.equals("jdbc:hive://") || uri.equals("jdbc:hive2://")) {
+      logger.debug("Create connection from local mode");
+      con=new HiveConnection(localHiveConf());
+    }
+ else {
+      logger.debug("Create connection from given jdbc uri");
+      Class.forName(getHiveDriverClass(uri));
+      con=DriverManager.getConnection(uri);
+    }
+    return new HiveZeppelinConnection(con);
+  }
+ catch (  SQLException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  ClassNotFoundException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

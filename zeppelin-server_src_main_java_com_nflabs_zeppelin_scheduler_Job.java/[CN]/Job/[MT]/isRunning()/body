@@ -1,4 +1,0 @@
-{
-  if (status == Status.RUNNING)   return true;
- else   return false;
-}

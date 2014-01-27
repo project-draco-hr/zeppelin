@@ -1,0 +1,12 @@
+{
+  ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
+  BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+  ZContext zContext=new ZContext(hasPrev() ? prev().name() : null,name(),query,params);
+  String q=getQuery(erb,zContext);
+  try {
+    ins.close();
+  }
+ catch (  IOException e) {
+  }
+  return q;
+}

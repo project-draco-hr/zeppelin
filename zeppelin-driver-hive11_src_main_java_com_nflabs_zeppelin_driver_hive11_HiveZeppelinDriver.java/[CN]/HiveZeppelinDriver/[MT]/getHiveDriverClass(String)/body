@@ -1,0 +1,10 @@
+{
+  String className;
+  if (uri.startsWith("jdbc:hive://")) {
+    className=HIVE_SERVER;
+  }
+ else {
+    className=HIVE_SERVER_2;
+  }
+  return className;
+}

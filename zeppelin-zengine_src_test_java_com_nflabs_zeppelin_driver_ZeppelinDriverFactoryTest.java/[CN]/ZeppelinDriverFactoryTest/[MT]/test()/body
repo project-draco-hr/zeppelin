@@ -1,0 +1,6 @@
+{
+  URI uri=new URI("production:hive:com.nflabs.zeppelin.hive.driver.HiveDriver://localhost:10000/default");
+  assertEquals("production",uri.getScheme());
+  assertEquals("hive",new URI(uri.getSchemeSpecificPart()).getScheme());
+  assertEquals("localhost",new URI(new URI(uri.getSchemeSpecificPart()).getSchemeSpecificPart()).getHost());
+}

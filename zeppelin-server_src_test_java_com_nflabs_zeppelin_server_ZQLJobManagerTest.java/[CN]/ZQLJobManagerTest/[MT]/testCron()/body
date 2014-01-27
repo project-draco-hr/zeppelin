@@ -1,6 +1,8 @@
 {
+  MockDriver drv=(MockDriver)z.getDriverFactory().createDriver("test");
+  drv.queries.put("select * from tbl",new Result(0,new String[]{"hello world"}));
   ZQLJob sess=jm.create();
-  jm.setZql(sess.getId(),"!echo 'hello world'");
+  jm.setZql(sess.getId(),"select * from tbl");
   jm.setCron(sess.getId(),"0/1 * * * * ?");
   while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);

@@ -1,0 +1,30 @@
+{
+  ZQLJob job=jobManager.getHistory(jobId,historyId);
+  if (job == null) {
+    logger.warn("Session " + jobId + ", history "+ historyId+ " not found");
+    return STATUS_NOT_FOUND;
+  }
+  if (path == null || path.equals("/") || path.length() == 0) {
+    path="/index.erb";
+  }
+  List<Z> plans=job.getPlan();
+  for (  Z plan : plans) {
+    for (Z z=plan; z != null; z=z.prev()) {
+      if (z.getId().equals(zId)) {
+        try {
+          InputStream ins=z.readWebResource(path);
+          return ins != null ? Response.ok(IOUtils.toByteArray(ins),typeByExtention(path)).build() : null;
+        }
+ catch (        ZException e) {
+          logger.error("Can't read web resource",e);
+          return new JsonResponse<ZQLJob>(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
+        }
+catch (        IOException e) {
+          logger.error("IOexception",e);
+          return new JsonResponse<ZQLJob>(Status.INTERNAL_SERVER_ERROR,e.getMessage()).build();
+        }
+      }
+    }
+  }
+  return javax.ws.rs.core.Response.status(Status.NOT_FOUND).entity("").build();
+}

@@ -1,0 +1,4 @@
+{
+  this.jobManager=jobManager;
+  gson=new Gson();
+}

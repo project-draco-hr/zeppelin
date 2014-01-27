@@ -1,0 +1,4 @@
+{
+  UtilsForTests.delete(tmp);
+  super.tearDown();
+}

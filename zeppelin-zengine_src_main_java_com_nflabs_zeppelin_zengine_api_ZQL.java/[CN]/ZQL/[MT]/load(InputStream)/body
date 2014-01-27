@@ -1,0 +1,8 @@
+{
+  BufferedReader in=new BufferedReader(new InputStreamReader(ins));
+  String line=null;
+  while ((line=in.readLine()) != null) {
+    sb.append(line);
+  }
+  ins.close();
+}

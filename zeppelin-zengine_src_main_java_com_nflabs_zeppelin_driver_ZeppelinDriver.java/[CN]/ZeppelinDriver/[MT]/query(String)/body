@@ -1,0 +1,16 @@
+{
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  Thread.currentThread().setContextClassLoader(classLoader);
+  try {
+    return this.connection.get().query(query);
+  }
+ catch (  ZeppelinDriverException e) {
+    throw e;
+  }
+catch (  Exception e) {
+    throw new ZeppelinDriverException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+}

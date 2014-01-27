@@ -1,9 +1,0 @@
-{
-  Path p=new Path(HiveTestBase.ROOT_DIR,"afile");
-  FSDataOutputStream o=this.getFileSystem().create(p);
-  BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(o));
-  bw.write("1\n");
-  bw.write("2\n");
-  bw.close();
-  return p;
-}
