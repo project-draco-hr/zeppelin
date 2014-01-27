@@ -3,7 +3,7 @@
   if (properties == null || properties.size() == 0)   return d;
   for (  ConfigurationNode p : properties) {
     if (p.getChildren("name") != null && p.getChildren("name").size() > 0 && name.equals(p.getChildren("name").get(0).getValue())) {
-      return (Float)p.getChildren("value").get(0).getValue();
+      return Float.parseFloat((String)p.getChildren("value").get(0).getValue());
     }
   }
   return d;
