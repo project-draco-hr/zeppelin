@@ -2,7 +2,7 @@
   final Map<String,ZeppelinDriver> drivers=zengine.createAvailableDrivers();
   String currentDriverName=zengine.getDriverFactory().getDefaultConfigurationName();
   ZeppelinDriver currentDriver=drivers.get(currentDriverName);
-  List<Z> zList=new LinkedList<Z>();
+  ZPlan plan=new ZPlan();
   Z currentZ=null;
   String escapeSeq="\"',;<%>!";
   char escapeChar='\\';
@@ -51,7 +51,7 @@
       if (currentZ != null) {
         if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
           currentZ.setDriver(currentDriver);
-          zList.add(currentZ);
+          plan.add(currentZ);
           currentZ=null;
           currentOp=null;
         }
@@ -104,7 +104,7 @@
     }
  else     if (currentOp.equals(op[0])) {
       currentZ.setDriver(currentDriver);
-      zList.add(currentZ);
+      plan.add(currentZ);
       currentZ=z;
       currentOp=null;
     }
@@ -115,7 +115,7 @@
   }
   if (currentZ != null) {
     currentZ.setDriver(currentDriver);
-    zList.add(currentZ);
+    plan.add(currentZ);
   }
-  return zList;
+  return plan;
 }

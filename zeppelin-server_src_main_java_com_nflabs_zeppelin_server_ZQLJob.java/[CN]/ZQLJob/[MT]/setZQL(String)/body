@@ -1,5 +1,5 @@
 {
   this.zql=zql;
-  zqlPlans=Collections.emptyList();
+  zqlPlans=null;
   setStatus(Status.READY);
 }
