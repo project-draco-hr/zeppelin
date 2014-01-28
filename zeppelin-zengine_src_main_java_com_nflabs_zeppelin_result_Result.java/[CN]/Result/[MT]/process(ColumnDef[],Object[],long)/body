@@ -1,4 +1,3 @@
 {
-  if (rows == null)   rows=new LinkedList<Object[]>();
-  rows.add(row);
+  addRow(row);
 }
