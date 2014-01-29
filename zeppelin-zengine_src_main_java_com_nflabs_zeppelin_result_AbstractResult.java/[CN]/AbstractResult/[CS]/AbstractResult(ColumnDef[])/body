@@ -1,0 +1,4 @@
+{
+  this.code=0;
+  this.columnDef=columnDef;
+}
