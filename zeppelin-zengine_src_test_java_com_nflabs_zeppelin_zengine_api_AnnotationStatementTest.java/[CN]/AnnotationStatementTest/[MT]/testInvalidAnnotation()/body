@@ -2,7 +2,7 @@
   Zengine z=new Zengine();
   AnnotationStatement a;
   try {
-    a=new AnnotationStatement("@worng set hive",z,null);
+    a=new AnnotationStatement("@worng set hive");
     fail();
   }
  catch (  ZException e) {

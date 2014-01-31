@@ -1,0 +1,9 @@
+{
+  URI uri=uris.get(name);
+  try {
+    return getDriver(uri);
+  }
+ catch (  Exception e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

@@ -4,10 +4,10 @@
   try {
     if (name() != null && autogenName == true) {
       if (isTable()) {
-        driver.dropTable(name());
+        connection.dropTable(name());
       }
  else {
-        driver.dropView(name());
+        connection.dropView(name());
       }
     }
   }
@@ -16,7 +16,7 @@
   }
   String q=getReleaseQuery();
   if (q != null) {
-    executeQuery(q,maxResult);
+    executeQuery(q);
   }
   if (hasPrev()) {
     prev().release();

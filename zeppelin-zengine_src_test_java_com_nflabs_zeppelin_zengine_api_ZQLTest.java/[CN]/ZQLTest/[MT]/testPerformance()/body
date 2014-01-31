@@ -1,11 +1,11 @@
 {
   MockDriver.queries.put("select * from tbl",new Result(0,new String[]{"hello"}));
-  new ZQL("select * from tbl",z).compile().execute();
+  new ZQL("select * from tbl").compile().execute(z);
   long start=System.currentTimeMillis();
   int count=0;
   while (System.currentTimeMillis() - start < 2000) {
     count++;
-    new ZQL("select * from tbl",z).compile().execute();
+    new ZQL("select * from tbl").compile().execute(z);
   }
   long end=System.currentTimeMillis();
   long diff=end - start;

@@ -3,9 +3,9 @@
   Map<String,ParamInfo> paramInfos=new HashMap<String,ParamInfo>();
   ZContext zContext=null;
   if (erbFile != null) {
-    FSDataInputStream ins;
+    InputStream ins;
     try {
-      ins=fs.open(erbFile);
+      ins=new FileInputStream(erbFile);
       BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
       zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
       getQuery(erb,zContext);
@@ -20,10 +20,10 @@ catch (    ZException e) {
   }
   ZWebContext zWebContext=null;
   try {
-    Path resourcePath=new Path(webDir.toUri() + "/index.erb");
-    if (fs.isFile(resourcePath) == true) {
+    File resourcePath=new File(webDir,"index.erb");
+    if (resourcePath.isFile() == true) {
       zWebContext=new ZWebContext(params,null);
-      FSDataInputStream ins=fs.open(resourcePath);
+      FileInputStream ins=new FileInputStream(resourcePath);
       BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
       evalWebTemplate(erb,zWebContext);
       ins.close();

@@ -4,11 +4,11 @@
     path="index.erb";
   }
   try {
-    if (fs.getFileStatus(webDir).isDir() == false) {
+    if (webDir.exists() == false || webDir.isDirectory() == false) {
       return super.readWebResource(path);
     }
-    Path resourcePath=new Path(webDir.toUri() + "/" + path);
-    if (fs.isFile(resourcePath) == false) {
+    File resourcePath=new File(webDir,path);
+    if (resourcePath.isFile() == false) {
       return null;
     }
     if (resourcePath.getName().endsWith(".erb")) {
@@ -20,7 +20,7 @@
         }
  catch (        ZException e) {
         }
-        FSDataInputStream ins=fs.open(resourcePath);
+        FileInputStream ins=new FileInputStream(resourcePath);
         BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
         q=evalWebTemplate(erb,zWebContext);
         ins.close();
@@ -31,7 +31,7 @@
       }
     }
  else {
-      return fs.open(resourcePath);
+      return new FileInputStream(resourcePath);
     }
   }
  catch (  IOException e) {

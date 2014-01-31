@@ -5,7 +5,7 @@
   }
   String q;
   try {
-    FSDataInputStream ins=fs.open(erbFile);
+    FileInputStream ins=new FileInputStream(erbFile);
     BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
     ZContext zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
     q=getQuery(erb,zContext);

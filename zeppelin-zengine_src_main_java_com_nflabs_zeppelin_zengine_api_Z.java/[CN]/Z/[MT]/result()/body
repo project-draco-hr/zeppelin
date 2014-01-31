@@ -1,28 +1,5 @@
 {
-  if (!executed) {
-    throw new ZException("Can not get result because of this is not executed");
-  }
-  if (result == null) {
-    if (isUnNamed()) {
-      if (lastQueryResult != null) {
-        result=lastQueryResult;
-      }
- else {
-        if (prev() != null) {
-          result=prev().result();
-        }
-      }
-    }
- else {
-      try {
-        result=driver.select(name(),maxResult);
-      }
- catch (      Exception e) {
-        if (lastQueryResult != null) {
-          result=lastQueryResult;
-        }
-      }
-    }
-  }
-  return result;
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  int maxResult=conf.getInt(ConfVars.ZEPPELIN_MAX_RESULT);
+  return result(maxResult);
 }

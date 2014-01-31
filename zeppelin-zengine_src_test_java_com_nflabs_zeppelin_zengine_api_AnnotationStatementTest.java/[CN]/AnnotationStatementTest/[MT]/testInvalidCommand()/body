@@ -2,7 +2,7 @@
   Zengine z=new Zengine();
   AnnotationStatement a;
   try {
-    a=new AnnotationStatement("@driver wrong hive",z,null);
+    a=new AnnotationStatement("@driver wrong hive");
     fail();
   }
  catch (  ZException e) {

@@ -1,6 +1,5 @@
 {
   this.conf=conf;
-  this.factory=new JRubyScriptEngineFactory();
   if (driverFactory == null) {
     String driverDir=conf.getString(ConfVars.ZEPPELIN_DRIVER_DIR);
     String[] uriList=conf.getString(ConfVars.ZEPPELIN_DRIVERS).split(",");

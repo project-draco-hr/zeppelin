@@ -9,7 +9,7 @@
     for (    File d : drivers) {
       logger.info("Load driver " + d.getName() + " from "+ d.getAbsolutePath());
       ;
-      classLoaders.put(d.getName(),loadLibrary(d));
+      loadLibrary(d);
     }
   }
   if (uriList != null) {

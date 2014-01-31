@@ -1,6 +1,6 @@
 {
   Zengine z=new Zengine();
-  AnnotationStatement a=new AnnotationStatement("@driver set",z,null);
+  AnnotationStatement a=new AnnotationStatement("@driver set");
   assertEquals(ANNOTATION.DRIVER,a.getAnnotation());
   assertEquals(COMMAND.SET,a.getCommand());
   assertEquals(null,a.getArgument());

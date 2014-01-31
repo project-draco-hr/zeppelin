@@ -1,10 +1,9 @@
 {
-  ScriptEngine engine=zen.getRubyScriptEngine();
-synchronized (engine) {
+synchronized (rubyScriptEngine) {
     StringBuffer rubyScript=new StringBuffer();
-    Bindings bindings=engine.createBindings();
+    Bindings bindings=rubyScriptEngine.createBindings();
     bindings.put("z",zcontext);
-    engine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
+    rubyScriptEngine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
     rubyScript.append("require 'erb'\n");
     rubyScript.append("z = $z\n");
     try {
@@ -29,12 +28,12 @@ synchronized (engine) {
     rubyScript.append("$e = ERB.new(erb).result(binding)\n");
     try {
       logger().debug("rubyScript to run : \n" + rubyScript.toString());
-      engine.eval(rubyScript.toString(),bindings);
+      rubyScriptEngine.eval(rubyScript.toString(),bindings);
     }
  catch (    ScriptException e) {
       throw new ZException(e);
     }
-    String q=(String)engine.getBindings(ScriptContext.ENGINE_SCOPE).get("e");
+    String q=(String)rubyScriptEngine.getBindings(ScriptContext.ENGINE_SCOPE).get("e");
     return nonNullString(q);
   }
 }

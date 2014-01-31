@@ -1,0 +1,16 @@
+{
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  Thread.currentThread().setContextClassLoader(cl);
+  try {
+    return conn.select(tableName,limit);
+  }
+ catch (  ZeppelinDriverException e) {
+    throw e;
+  }
+catch (  Exception e) {
+    throw new ZeppelinDriverException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+}

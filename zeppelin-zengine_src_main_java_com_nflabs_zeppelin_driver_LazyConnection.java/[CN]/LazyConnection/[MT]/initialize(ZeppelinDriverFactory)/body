@@ -1,0 +1,11 @@
+{
+  if (connection != null)   return;
+  ZeppelinDriver driver;
+  if (driverUriConfName == null) {
+    driver=driverFactory.getDriver(driverFactory.getDefaultConfigurationName());
+  }
+ else {
+    driver=driverFactory.getDriver(driverUriConfName);
+  }
+  connection=driver.getConnection(driverFactory.getUriFromConfiguration(driverUriConfName));
+}

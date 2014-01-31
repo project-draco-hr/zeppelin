@@ -1,15 +1,9 @@
 {
-  Path resourcePath=new Path(webDir.toUri() + "/index.erb");
-  try {
-    if (fs.isFile(resourcePath) == false) {
-      return super.isWebEnabled();
-    }
- else {
-      return true;
-    }
-  }
- catch (  IOException e) {
-    logger().error("Error while reading file " + resourcePath,e);
+  File resourcePath=new File(webDir,"index.erb");
+  if (resourcePath.isFile() == false) {
     return super.isWebEnabled();
+  }
+ else {
+    return true;
   }
 }

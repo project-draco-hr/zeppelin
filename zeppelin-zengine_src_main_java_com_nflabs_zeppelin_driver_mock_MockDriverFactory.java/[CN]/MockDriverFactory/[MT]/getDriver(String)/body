@@ -1,0 +1,7 @@
+{
+  URI uri=drivers.get(name);
+  if (uri == null) {
+    throw new ZeppelinDriverException("Driver " + name + " not found");
+  }
+  return new MockDriver();
+}

@@ -1,6 +1,0 @@
-{
-  if (this.hasPrev()) {
-    prev().setZengine(zengine);
-  }
-  this.zen=zengine;
-}

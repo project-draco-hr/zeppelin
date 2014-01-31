@@ -1,5 +1,5 @@
 {
-  ZQL zql=new ZQL("test",z);
+  ZQL zql=new ZQL("test");
   List<Z> zList=zql.compile();
   assertEquals(1,zList.size());
   Z q=zList.get(0);

@@ -1,5 +1,5 @@
 {
-  ZQL zql=new ZQL(z);
+  ZQL zql=new ZQL();
   zql.append("select * from bank | select * from <%= z." + Q.INPUT_VAR_NAME + " %> limit 10");
   ZPlan plan=zql.compile();
   assertEquals(1,plan.size());

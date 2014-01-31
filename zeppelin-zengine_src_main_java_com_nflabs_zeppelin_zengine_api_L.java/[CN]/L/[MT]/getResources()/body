@@ -1,34 +1,22 @@
 {
   List<URI> resources=new LinkedList<URI>();
-  FileStatus[] files;
-  try {
-    files=fs.listStatus(dir);
-  }
- catch (  IOException e) {
-    throw new ZException(e);
-  }
+  File[] files=dir.listFiles();
   if (files != null) {
-    for (    FileStatus status : files) {
-      Path f=status.getPath();
-      try {
-        if (fs.isFile(f) == false) {
-          continue;
-        }
- else         if (f.getName().startsWith(".")) {
-          continue;
-        }
- else         if (f.getName().startsWith(libName + "_") == false) {
-          continue;
-        }
- else         if (f.getName().equals("zql.erb")) {
-          continue;
-        }
- else {
-          resources.add(f.toUri());
-        }
+    for (    File f : files) {
+      if (f.isFile() == false) {
+        continue;
       }
- catch (      IOException e) {
-        logger().error("Error while reading library resource " + f.toString(),e);
+ else       if (f.getName().startsWith(".")) {
+        continue;
+      }
+ else       if (f.getName().startsWith(libName + "_") == false) {
+        continue;
+      }
+ else       if (f.getName().equals("zql.erb")) {
+        continue;
+      }
+ else {
+        resources.add(f.toURI());
       }
     }
   }

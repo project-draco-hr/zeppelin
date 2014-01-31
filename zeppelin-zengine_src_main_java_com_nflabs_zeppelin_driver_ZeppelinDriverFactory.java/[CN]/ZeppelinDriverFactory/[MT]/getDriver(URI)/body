@@ -1,0 +1,8 @@
+{
+  for (  ZeppelinDriver d : drivers) {
+    if (d.acceptsURL(uri.toString())) {
+      return d;
+    }
+  }
+  throw new ZeppelinDriverException("Can't find driver for " + uri.toString());
+}

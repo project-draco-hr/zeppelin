@@ -1,7 +1,8 @@
 {
-  final Map<String,ZeppelinDriver> drivers=zengine.createAvailableDrivers();
-  String currentDriverName=zengine.getDriverFactory().getDefaultConfigurationName();
-  ZeppelinDriver currentDriver=drivers.get(currentDriverName);
+  Map<String,ZeppelinConnection> connections=new HashMap<String,ZeppelinConnection>();
+  String currentDriverName=null;
+  ZeppelinConnection currentConnection=new LazyConnection(currentDriverName);
+  connections.put(currentDriverName,currentConnection);
   ZPlan plan=new ZPlan();
   Z currentZ=null;
   String escapeSeq="\"',;<%>!";
@@ -50,7 +51,7 @@
     if (stmt.startsWith("@")) {
       if (currentZ != null) {
         if (currentOp == null || (currentOp != null && currentOp.equals(op[0]))) {
-          currentZ.setDriver(currentDriver);
+          currentZ.setConnection(currentConnection);
           plan.add(currentZ);
           currentZ=null;
           currentOp=null;
@@ -60,16 +61,17 @@
         }
       }
       try {
-        AnnotationStatement annotation=new AnnotationStatement(stmt,zengine,currentDriver);
+        AnnotationStatement annotation=new AnnotationStatement(stmt);
         if (ANNOTATION.DRIVER == annotation.getAnnotation()) {
           if (COMMAND.SET == annotation.getCommand()) {
             String driverName=annotation.getArgument();
             if (driverName == null) {
-              driverName=zengine.getDriverFactory().getDefaultConfigurationName();
+              driverName=null;
             }
-            currentDriver=drivers.get(driverName);
-            if (currentDriver == null) {
-              throw new ZQLException("Can not find driver " + driverName);
+            currentConnection=connections.get(driverName);
+            if (currentConnection == null) {
+              currentConnection=new LazyConnection(driverName);
+              connections.put(driverName,currentConnection);
             }
           }
         }
@@ -82,14 +84,14 @@
     }
     Z z=null;
     try {
-      z=loadL(stmt,currentDriver);
+      z=loadL(stmt,currentConnection);
     }
  catch (    ZException e) {
     }
     if (z == null) {
       Q q;
       try {
-        q=new Q(stmt,zengine,currentDriver);
+        q=new Q(stmt);
       }
  catch (      ZException e) {
         throw new ZQLException(e);
@@ -103,7 +105,7 @@
       throw new ZQLException("Assert! Statment does not have operator in between");
     }
  else     if (currentOp.equals(op[0])) {
-      currentZ.setDriver(currentDriver);
+      currentZ.setConnection(currentConnection);
       plan.add(currentZ);
       currentZ=z;
       currentOp=null;
@@ -114,7 +116,7 @@
     }
   }
   if (currentZ != null) {
-    currentZ.setDriver(currentDriver);
+    currentZ.setConnection(currentConnection);
     plan.add(currentZ);
   }
   return plan;

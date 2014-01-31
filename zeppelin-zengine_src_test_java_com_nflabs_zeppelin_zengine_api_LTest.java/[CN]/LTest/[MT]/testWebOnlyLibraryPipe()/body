@@ -5,7 +5,7 @@
   FileOutputStream out=new FileOutputStream(erb);
   out.write("HELLO HTML <%= z.result.rows[0][0] %>\n".getBytes());
   out.close();
-  Z q=new Q("select * from test",z,drv).pipe(new L("test",z,drv)).pipe(new L("test",z,drv));
-  Result result=q.execute().result();
+  Z q=new Q("select * from test").pipe(new L("test")).pipe(new L("test"));
+  Result result=q.execute(conn).result();
   assertEquals("5",result.getRows().get(0)[0]);
 }

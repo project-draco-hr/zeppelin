@@ -1,6 +1,6 @@
 {
   try {
-    this.driver.abort();
+    this.connection.abort();
   }
  catch (  ZeppelinDriverException e) {
     logger().error("Abort failure",e);
