@@ -24,6 +24,7 @@
         Constructor<ZeppelinDriver> constructor=c.getConstructor(new Class[]{});
         ZeppelinDriver driver=constructor.newInstance();
         driver.setClassLoader(cl);
+        driver.init();
         drivers.add(driver);
       }
     }
