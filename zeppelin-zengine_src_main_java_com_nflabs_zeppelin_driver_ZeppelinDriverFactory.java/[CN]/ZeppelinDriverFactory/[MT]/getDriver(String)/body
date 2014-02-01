@@ -1,5 +1,8 @@
 {
   String uri=uris.get(name);
+  if (uri == null) {
+    throw new ZeppelinDriverException("Can't find uri from name " + name);
+  }
   try {
     return getDriverByUrl(uri);
   }

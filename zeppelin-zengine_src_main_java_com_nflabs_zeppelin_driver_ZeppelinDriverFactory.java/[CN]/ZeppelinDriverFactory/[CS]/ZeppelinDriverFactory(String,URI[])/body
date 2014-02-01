@@ -3,6 +3,7 @@
     return;
   }
   File root=new File(driverRootDir);
+  logger.info("Driver directory " + root.getAbsolutePath());
   File[] drivers=root.listFiles();
   if (drivers != null) {
     for (    File d : drivers) {
@@ -14,6 +15,7 @@
   if (uriList != null) {
     for (    URI uri : uriList) {
       uris.put(uri.getScheme(),uri.getSchemeSpecificPart());
+      logger.info("Add configuration name=" + uri.getScheme() + ", connectionUrl="+ uri.getSchemeSpecificPart());
       if (defaultDriverName == null) {
         defaultDriverName=uri.getScheme();
       }

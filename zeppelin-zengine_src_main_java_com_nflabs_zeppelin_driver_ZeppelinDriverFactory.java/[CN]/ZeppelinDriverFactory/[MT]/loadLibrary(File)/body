@@ -19,7 +19,7 @@
     Reflections reflections=new Reflections(packages);
     Set<Class<? extends ZeppelinDriver>> driverClasses=reflections.getSubTypesOf(ZeppelinDriver.class);
     for (    Class c : driverClasses) {
-      if (MockDriver.class.isAssignableFrom(c) == false) {
+      if (c != null && MockDriver.class.isAssignableFrom(c) == false) {
         logger.info("Found driver " + c.getName() + " cl="+ cl);
         Constructor<ZeppelinDriver> constructor=c.getConstructor(new Class[]{});
         ZeppelinDriver driver=constructor.newInstance();
