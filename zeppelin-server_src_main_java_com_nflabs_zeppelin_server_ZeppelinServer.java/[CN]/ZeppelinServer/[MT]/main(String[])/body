@@ -1,5 +1,6 @@
 {
-  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  z=new Zengine();
+  ZeppelinConfiguration conf=z.getConf();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
   final Server server=setupJettyServer(port);
   final ServletContextHandler restApi=setupRestApiContextHandler();
