@@ -10,5 +10,6 @@
   MockDriverFactory driverFactory=new MockDriverFactory();
   z=new Zengine(conf,driverFactory);
   this.schedulerFactory=new SchedulerFactory();
-  this.jm=new ZQLJobManager(z,schedulerFactory.createOrGetFIFOScheduler("analyze"),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
+  fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
+  this.jm=new ZQLJobManager(z,fs,schedulerFactory.createOrGetFIFOScheduler("analyze"),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
 }
