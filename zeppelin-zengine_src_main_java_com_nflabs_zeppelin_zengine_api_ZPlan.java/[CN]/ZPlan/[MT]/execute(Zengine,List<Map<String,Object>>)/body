@@ -18,10 +18,12 @@
       zz.release();
     }
  catch (    Exception e) {
-      closeAllConnections();
+      e.printStackTrace();
       throw e;
     }
+ finally {
+      closeAllConnections();
+    }
   }
-  closeAllConnections();
   return results;
 }

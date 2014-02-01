@@ -1,3 +1,4 @@
 {
+  if (isConnected() == false)   return;
   connection.abort();
 }

@@ -1,7 +1,7 @@
 {
-  URI uri=uris.get(name);
+  String uri=uris.get(name);
   try {
-    return getDriver(uri);
+    return getDriverByUrl(uri);
   }
  catch (  Exception e) {
     throw new ZeppelinDriverException(e);

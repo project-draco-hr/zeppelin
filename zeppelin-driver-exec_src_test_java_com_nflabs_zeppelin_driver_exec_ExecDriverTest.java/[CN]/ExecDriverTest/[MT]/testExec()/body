@@ -1,4 +1,4 @@
 {
   ExecDriver driver=new ExecDriver();
-  driver.getConnection(new URI("shell://"));
+  driver.getConnection("exec://");
 }

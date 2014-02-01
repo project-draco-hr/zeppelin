@@ -10,7 +10,7 @@
       logger.debug("Create connection from hive configuration");
       con=new HiveConnection(hiveConf());
     }
- else     if (uriString.equals("jdbc:hive://local") || uriString.equals("jdbc:hive2://local")) {
+ else     if (uriString.equals("jdbc:hive://") || uriString.equals("jdbc:hive2://")) {
       logger.debug("Create connection from local mode");
       con=new HiveConnection(localHiveConf());
     }

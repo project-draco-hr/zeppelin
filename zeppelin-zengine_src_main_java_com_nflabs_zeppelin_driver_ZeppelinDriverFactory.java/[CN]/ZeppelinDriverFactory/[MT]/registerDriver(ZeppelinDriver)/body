@@ -1,5 +1,0 @@
-{
-  ClassLoader cl=Thread.currentThread().getContextClassLoader();
-  driver.setClassLoader(cl);
-  drivers.add(driver);
-}
