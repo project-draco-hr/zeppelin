@@ -1,0 +1,40 @@
+{
+  initialize();
+  if (path == null || path.compareTo("/") == 0) {
+    path="index.erb";
+  }
+  try {
+    if (webDir.exists() == false || webDir.isDirectory() == false) {
+      return super.readWebResource(path);
+    }
+    File resourcePath=new File(webDir,path);
+    if (resourcePath.isFile() == false) {
+      return null;
+    }
+    if (resourcePath.getName().endsWith(".erb")) {
+      String q;
+      try {
+        ZWebContext zWebContext=null;
+        try {
+          zWebContext=new ZWebContext(params,result());
+        }
+ catch (        ZException e) {
+        }
+        FileInputStream ins=new FileInputStream(resourcePath);
+        BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+        q=evalWebTemplate(erb,zWebContext);
+        ins.close();
+        return new ByteArrayInputStream(q.getBytes());
+      }
+ catch (      IOException e1) {
+        throw new ZException(e1);
+      }
+    }
+ else {
+      return new FileInputStream(resourcePath);
+    }
+  }
+ catch (  IOException e) {
+    throw new ZException(e);
+  }
+}

@@ -1,5 +1,0 @@
-{
-  this.zen=z;
-  this.id=Integer.toString(hashCode());
-  this.maxResult=zen.getConf().getInt(ConfVars.ZEPPELIN_MAX_RESULT);
-}

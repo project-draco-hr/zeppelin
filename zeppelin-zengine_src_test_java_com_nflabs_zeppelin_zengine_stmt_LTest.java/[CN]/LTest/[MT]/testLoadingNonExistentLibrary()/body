@@ -1,0 +1,10 @@
+{
+  generateTestLibraryIn(tmpDir);
+  thrown.expect(ZException.class);
+  try {
+    new L("abc");
+  }
+ catch (  ZException e) {
+    assertTrue(e.getMessage().contains("does not exist"));
+  }
+}

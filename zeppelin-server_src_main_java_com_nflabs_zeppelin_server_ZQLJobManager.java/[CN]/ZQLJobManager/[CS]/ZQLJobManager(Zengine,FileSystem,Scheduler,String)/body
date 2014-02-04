@@ -1,0 +1,13 @@
+{
+  this.scheduler=scheduler;
+  this.jobPersistBasePath=jobPersistBasePath;
+  this.zengine=zengine;
+  this.fs=fs;
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  gsonBuilder.registerTypeAdapter(Z.class,new ZAdapter());
+  gson=gsonBuilder.create();
+  quertzSchedFact=new org.quartz.impl.StdSchedulerFactory();
+  quertzSched=quertzSchedFact.getScheduler();
+  quertzSched.start();
+}

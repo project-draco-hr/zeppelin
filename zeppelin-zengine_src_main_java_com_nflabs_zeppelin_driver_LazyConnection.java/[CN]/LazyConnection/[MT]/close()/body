@@ -1,0 +1,4 @@
+{
+  if (isConnected() == false)   return;
+  connection.close();
+}

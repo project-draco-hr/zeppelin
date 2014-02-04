@@ -1,6 +1,0 @@
-{
-  ZQL zql=new ZQL("select\n*\nfrom\ntest",z);
-  List<Z> q=zql.compile();
-  assertEquals(1,q.size());
-  assertEquals("select\n*\nfrom\ntest",q.get(0).getQuery());
-}

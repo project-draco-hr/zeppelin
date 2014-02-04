@@ -1,0 +1,18 @@
+{
+  initialize();
+  if (erbFile == null) {
+    return null;
+  }
+  String q;
+  try {
+    FileInputStream ins=new FileInputStream(erbFile);
+    BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+    ZContext zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
+    q=getQuery(erb,zContext);
+    ins.close();
+  }
+ catch (  IOException e1) {
+    throw new ZException(e1);
+  }
+  return q;
+}

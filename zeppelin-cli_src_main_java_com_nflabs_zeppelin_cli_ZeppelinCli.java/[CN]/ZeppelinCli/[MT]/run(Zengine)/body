@@ -6,22 +6,19 @@
   while ((line=readLine(reader,"")) != null) {
     ZQL zql;
     try {
-      zql=new ZQL(line,z);
-      List<Z> zs=zql.compile();
-      for (      Z q : zs) {
-        Result result=q.execute().result();
-        if (result != null) {
-          result.write(System.out);
-        }
-      }
-      for (      Z q : zs) {
-        q.release();
+      zql=new ZQL(line);
+      LinkedList<Result> rs=zql.compile().execute(z);
+      for (      Result r : rs) {
+        r.write(System.out);
       }
     }
  catch (    ZException e) {
       e.printStackTrace();
     }
 catch (    ZQLException e) {
+      e.printStackTrace();
+    }
+catch (    Exception e) {
       e.printStackTrace();
     }
   }

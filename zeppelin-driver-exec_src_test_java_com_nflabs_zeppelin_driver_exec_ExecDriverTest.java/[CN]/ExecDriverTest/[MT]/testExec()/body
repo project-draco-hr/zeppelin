@@ -1,3 +1,4 @@
 {
-  ExecDriver driver=new ExecDriver(ZeppelinConfiguration.create(),new URI("jdbc:hive2://"),new URLClassLoader(new URL[]{},Thread.currentThread().getContextClassLoader()));
+  ExecDriver driver=new ExecDriver();
+  driver.getConnection("exec://");
 }

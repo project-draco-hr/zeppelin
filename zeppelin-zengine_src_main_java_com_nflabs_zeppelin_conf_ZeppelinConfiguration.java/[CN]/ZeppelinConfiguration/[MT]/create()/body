@@ -1,20 +1,30 @@
 {
+  if (conf != null)   return conf;
   ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
-  if (classLoader == null) {
-    classLoader=ZeppelinConfiguration.class.getClassLoader();
+  URL url;
+  url=ZeppelinConfiguration.class.getResource(ZEPPELIN_SITE_XML);
+  if (url == null) {
+    ClassLoader cl=ZeppelinConfiguration.class.getClassLoader();
+    if (cl != null) {
+      url=cl.getResource(ZEPPELIN_SITE_XML);
+    }
   }
-  URL url=classLoader.getResource("zeppelin-site.xml");
+  if (url == null) {
+    url=classLoader.getResource(ZEPPELIN_SITE_XML);
+  }
   if (url == null) {
     LOG.warn("Failed to load configuration, proceeding with a default");
-    return new ZeppelinConfiguration();
+    conf=new ZeppelinConfiguration();
   }
-  ZeppelinConfiguration result;
-  try {
-    result=new ZeppelinConfiguration(url);
+ else {
+    try {
+      LOG.info("Load configuration from " + url);
+      conf=new ZeppelinConfiguration(url);
+    }
+ catch (    ConfigurationException e) {
+      LOG.warn("Failed to load configuration from " + url + " proceeding with a default",e);
+      conf=new ZeppelinConfiguration();
+    }
   }
- catch (  ConfigurationException e) {
-    LOG.warn("Failed to load configuration from " + url + " proceeding with a default",e);
-    result=new ZeppelinConfiguration();
-  }
-  return result;
+  return conf;
 }

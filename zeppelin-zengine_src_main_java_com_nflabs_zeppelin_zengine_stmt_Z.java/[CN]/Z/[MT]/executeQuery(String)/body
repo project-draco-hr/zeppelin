@@ -1,0 +1,12 @@
+{
+  initialize();
+  if (query == null)   return null;
+  if (query.startsWith("@")) {
+  }
+  List<URI> resources=getResources();
+  for (  URI res : resources) {
+    connection.addResource(res);
+  }
+  logger().info("executeQuery : " + query);
+  return connection.query(query);
+}

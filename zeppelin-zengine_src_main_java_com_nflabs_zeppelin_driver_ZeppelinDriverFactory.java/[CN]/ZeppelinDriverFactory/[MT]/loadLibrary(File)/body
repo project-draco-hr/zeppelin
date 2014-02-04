@@ -5,9 +5,53 @@
     urls=recursiveBuildLibList(path);
     URLClassLoader cl=new URLClassLoader(urls,oldcl);
     Thread.currentThread().setContextClassLoader(cl);
+    Set<String> packages=new HashSet<String>();
+    ImmutableSet<ClassInfo> classes=ClassPath.from(cl).getTopLevelClasses();
+    for (    ClassInfo c : classes) {
+      int p=c.getName().indexOf(".");
+      if (p > 0) {
+        String rootPkgName=c.getName().substring(0,p);
+        if (packages.contains(rootPkgName) == false) {
+          packages.add(rootPkgName);
+        }
+      }
+    }
+    Reflections reflections=new Reflections(packages);
+    Set<Class<? extends ZeppelinDriver>> driverClasses=reflections.getSubTypesOf(ZeppelinDriver.class);
+    for (    Class c : driverClasses) {
+      if (c != null && MockDriver.class.isAssignableFrom(c) == false) {
+        logger.info("Found driver " + c.getName() + " cl="+ cl);
+        Constructor<ZeppelinDriver> constructor=c.getConstructor(new Class[]{});
+        ZeppelinDriver driver=constructor.newInstance();
+        driver.setClassLoader(cl);
+        driver.init();
+        drivers.add(driver);
+      }
+    }
     return cl;
   }
  catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+catch (  SecurityException e) {
+    e.printStackTrace();
+  }
+catch (  NoSuchMethodException e) {
+    e.printStackTrace();
+  }
+catch (  IllegalArgumentException e) {
+    e.printStackTrace();
+  }
+catch (  InstantiationException e) {
+    e.printStackTrace();
+  }
+catch (  IllegalAccessException e) {
+    e.printStackTrace();
+  }
+catch (  InvocationTargetException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
     e.printStackTrace();
   }
  finally {

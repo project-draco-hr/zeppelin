@@ -1,8 +1,0 @@
-{
-  ImmutableMap.Builder<String,ZeppelinDriver> drivers=ImmutableMap.<String,ZeppelinDriver>builder();
-  Collection<String> driverNames=driverFactory.getAllConfigurationNames();
-  for (  String driverName : driverNames) {
-    drivers.put(driverName,driverFactory.createDriver(driverName));
-  }
-  return drivers.build();
-}

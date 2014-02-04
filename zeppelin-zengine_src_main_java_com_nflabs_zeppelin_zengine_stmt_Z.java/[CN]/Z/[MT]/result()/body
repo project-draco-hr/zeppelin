@@ -1,0 +1,5 @@
+{
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  int maxResult=conf.getInt(ConfVars.ZEPPELIN_MAX_RESULT);
+  return result(maxResult);
+}

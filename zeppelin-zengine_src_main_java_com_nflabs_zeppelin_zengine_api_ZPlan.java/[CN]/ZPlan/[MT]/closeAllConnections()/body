@@ -1,6 +1,0 @@
-{
-  for (int i=0; i < this.size(); i++) {
-    Z zz=this.get(i);
-    zz.driver.close();
-  }
-}

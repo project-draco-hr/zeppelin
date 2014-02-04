@@ -1,3 +1,0 @@
-{
-  Result r=new Q("select count(*) from test",z,drv).execute().result();
-}

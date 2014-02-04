@@ -1,5 +1,0 @@
-{
-  super(arg,z,driver);
-  this.libName=libName;
-  initialize();
-}

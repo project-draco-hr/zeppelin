@@ -7,18 +7,18 @@
   CommandLine cmd=parser.parse(options,args);
   Zengine z=new Zengine();
   if (cmd.hasOption("f")) {
-    ZQL zql=new ZQL(z);
+    ZQL zql=new ZQL();
     zql.load(new File(cmd.getOptionValue("f")));
-    List<Z> zs=zql.compile();
-    for (    Z q : zs) {
-      q.execute().result().write(System.out);
+    LinkedList<Result> rs=zql.compile().execute(z);
+    for (    Result r : rs) {
+      r.write(System.out);
     }
   }
  else   if (cmd.hasOption("e")) {
-    ZQL zql=new ZQL(cmd.getOptionValue("e"),z);
-    List<Z> zs=zql.compile();
-    for (    Z q : zs) {
-      q.execute().result().write(System.out);
+    ZQL zql=new ZQL(cmd.getOptionValue("e"));
+    LinkedList<Result> rs=zql.compile().execute(z);
+    for (    Result r : rs) {
+      r.write(System.out);
     }
   }
  else   if (cmd.hasOption("h")) {

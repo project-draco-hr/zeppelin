@@ -1,0 +1,11 @@
+{
+  drv.queries.put("select * from test",new Result(0,new String[]{"5"}));
+  new File(tmpDir + "/test/web").mkdirs();
+  File erb=new File(tmpDir + "/test/web/index.erb");
+  FileOutputStream out=new FileOutputStream(erb);
+  out.write("HELLO HTML <%= z.result.rows[0][0] %>\n".getBytes());
+  out.close();
+  Z q=new Q("select * from test").pipe(new L("test")).pipe(new L("test"));
+  Result result=q.execute(conn).result();
+  assertEquals("5",result.getRows().get(0)[0]);
+}

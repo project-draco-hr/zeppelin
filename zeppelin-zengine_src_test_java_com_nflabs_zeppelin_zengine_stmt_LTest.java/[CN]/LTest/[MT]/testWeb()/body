@@ -1,0 +1,8 @@
+{
+  new File(tmpDir + "/test/web").mkdirs();
+  UtilsForTests.createFileWithContent(tmpDir + "/test/zql.erb","show tables");
+  UtilsForTests.createFileWithContent(tmpDir + "/test/web/index.erb","HELLO HTML\n");
+  Z test=new L("test");
+  InputStream ins=test.readWebResource("/");
+  assertEquals("HELLO HTML",IOUtils.toString(ins,"utf8"));
+}

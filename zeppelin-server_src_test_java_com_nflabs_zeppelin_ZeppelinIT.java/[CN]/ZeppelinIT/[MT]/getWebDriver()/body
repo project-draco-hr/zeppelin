@@ -33,12 +33,26 @@
  else {
     url="http://localhost:8080";
   }
+  long start=System.currentTimeMillis();
+  boolean loaded=false;
   driver.get(url);
-  (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
-    public Boolean apply(    WebDriver d){
-      return d.findElement(By.partialLinkText("Start")).isDisplayed();
+  while (System.currentTimeMillis() - start < 60 * 1000) {
+    try {
+      (new WebDriverWait(driver,5)).until(new ExpectedCondition<Boolean>(){
+        public Boolean apply(        WebDriver d){
+          return d.findElement(By.partialLinkText("Start")).isDisplayed();
+        }
+      }
+);
+      loaded=true;
+      break;
+    }
+ catch (    TimeoutException e) {
+      driver.navigate().to(url);
     }
   }
-);
+  if (loaded == false) {
+    fail();
+  }
   return driver;
 }

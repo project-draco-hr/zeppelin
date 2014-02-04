@@ -1,0 +1,39 @@
+{
+synchronized (rubyScriptEngine) {
+    StringBuffer rubyScript=new StringBuffer();
+    Bindings bindings=rubyScriptEngine.createBindings();
+    bindings.put("z",zcontext);
+    rubyScriptEngine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
+    rubyScript.append("require 'erb'\n");
+    rubyScript.append("z = $z\n");
+    try {
+      String line=null;
+      rubyScript.append("erb = \"\"\n");
+      boolean first=true;
+      while ((line=erb.readLine()) != null) {
+        String newline;
+        if (first == false) {
+          newline="\\n";
+        }
+ else {
+          newline="";
+          first=false;
+        }
+        rubyScript.append("erb += \"" + newline + StringEscapeUtils.escapeJavaScript(line)+ "\"\n");
+      }
+    }
+ catch (    IOException e1) {
+      throw new ZException(e1);
+    }
+    rubyScript.append("$e = ERB.new(erb).result(binding)\n");
+    try {
+      logger().debug("rubyScript to run : \n" + rubyScript.toString());
+      rubyScriptEngine.eval(rubyScript.toString(),bindings);
+    }
+ catch (    ScriptException e) {
+      throw new ZException(e);
+    }
+    String q=(String)rubyScriptEngine.getBindings(ScriptContext.ENGINE_SCOPE).get("e");
+    return nonNullString(q);
+  }
+}

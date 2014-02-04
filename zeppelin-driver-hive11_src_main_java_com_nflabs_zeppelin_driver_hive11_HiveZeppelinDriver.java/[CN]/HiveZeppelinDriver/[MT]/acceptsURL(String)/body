@@ -1,0 +1,3 @@
+{
+  return (Pattern.matches("hive://.*",url) || Pattern.matches("hive2://.*",url));
+}

@@ -1,0 +1,25 @@
+{
+  List<URI> resources=new LinkedList<URI>();
+  File[] files=dir.listFiles();
+  if (files != null) {
+    for (    File f : files) {
+      if (f.isFile() == false) {
+        continue;
+      }
+ else       if (f.getName().startsWith(".")) {
+        continue;
+      }
+ else       if (f.getName().startsWith(libName + "_") == false) {
+        continue;
+      }
+ else       if (f.getName().equals("zql.erb")) {
+        continue;
+      }
+ else {
+        resources.add(f.toURI());
+      }
+    }
+  }
+  resources.addAll(super.getResources());
+  return resources;
+}

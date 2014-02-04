@@ -1,0 +1,5 @@
+{
+  Z q=new Q("select * from bank").pipe(new Q("select * from (<%=z." + Q.INPUT_VAR_NAME + "%>) q limit 10")).pipe(new Q("create view vv as select * from <%=z." + Q.INPUT_VAR_NAME + "%>"));
+  assertEquals("create view vv as select * from " + q.prev().name(),q.getQuery());
+  q.release();
+}

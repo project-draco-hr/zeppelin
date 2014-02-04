@@ -1,6 +1,0 @@
-{
-  if (rubyScriptEngine == null) {
-    rubyScriptEngine=factory.getScriptEngine();
-  }
-  return rubyScriptEngine;
-}
