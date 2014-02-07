@@ -1,0 +1,8 @@
+{
+  try {
+    connection.close();
+  }
+ catch (  SQLException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

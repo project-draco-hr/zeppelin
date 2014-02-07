@@ -1,0 +1,23 @@
+{
+  URI uri;
+  try {
+    uri=new URI(new URI(url).getSchemeSpecificPart());
+  }
+ catch (  URISyntaxException e) {
+    throw new ZeppelinDriverException(e);
+  }
+  String className=uri.getScheme();
+  String connectionUrl=uri.getSchemeSpecificPart();
+  try {
+    Class.forName(className);
+  }
+ catch (  ClassNotFoundException e) {
+    throw new ZeppelinDriverException(e);
+  }
+  try {
+    return new JDBCConnection(DriverManager.getConnection("jdbc:" + connectionUrl));
+  }
+ catch (  SQLException e1) {
+    throw new ZeppelinDriverException(e1);
+  }
+}

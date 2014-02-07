@@ -1,0 +1,23 @@
+{
+  try {
+    ResultSet res=null;
+    Result r=null;
+    Statement stmt=connection.createStatement();
+    if (query.toLowerCase().startsWith("select")) {
+      res=stmt.executeQuery(query);
+      r=new Result(res);
+      r.load();
+    }
+ else {
+      stmt.execute(query);
+    }
+    stmt.close();
+    return r;
+  }
+ catch (  SQLException e) {
+    throw new ZeppelinDriverException(e);
+  }
+catch (  ResultDataException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

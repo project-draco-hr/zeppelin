@@ -1,0 +1,8 @@
+{
+  if (limit >= 0) {
+    return execute("SELECT * FROM " + tableName + " LIMIT "+ limit);
+  }
+ else {
+    return execute("SELECT * FROM " + tableName);
+  }
+}
