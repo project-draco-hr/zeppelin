@@ -1,2 +1,9 @@
 {
+  try {
+    Class.forName(HIVE_SERVER);
+    Class.forName(HIVE_SERVER_2);
+  }
+ catch (  ClassNotFoundException e) {
+    throw new ZeppelinDriverException(e);
+  }
 }
