@@ -2,13 +2,16 @@
 synchronized (rubyScriptEngine) {
     StringBuffer rubyScript=new StringBuffer();
     Bindings bindings=rubyScriptEngine.createBindings();
-    bindings.put("z",zcontext);
+    bindings.put("_zpZ",zcontext);
+    bindings.put("_zpLV",getErbBinding());
     rubyScriptEngine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
-    rubyScript.append("require 'erb'\n");
-    rubyScript.append("z = $z\n");
+    for (    String k : getErbBinding().keySet()) {
+      rubyScript.append(k + "= $_zpLV.get(\"" + k+ "\")\n");
+    }
+    rubyScript.append("z = $_zpZ\n");
     try {
       String line=null;
-      rubyScript.append("erb = \"\"\n");
+      rubyScript.append("$_zpErb = \"\"\n");
       boolean first=true;
       while ((line=erb.readLine()) != null) {
         String newline;
@@ -19,13 +22,14 @@ synchronized (rubyScriptEngine) {
           newline="";
           first=false;
         }
-        rubyScript.append("erb += \"" + newline + StringEscapeUtils.escapeJavaScript(line)+ "\"\n");
+        rubyScript.append("$_zpErb += \"" + newline + StringEscapeUtils.escapeJavaScript(line)+ "\"\n");
       }
+      rubyScript.append("$_zpErb += \"<% local_variables.each do |xx|\n    if xx != 'z' and xx != '_erbout' then $_zpLV[xx] = eval(xx) end\nend %>\"\n");
     }
  catch (    IOException e1) {
       throw new ZException(e1);
     }
-    rubyScript.append("$e = ERB.new(erb).result(binding)\n");
+    rubyScript.append("$_zpE = ERB.new($_zpErb, \"<>-\").result(binding)\n");
     try {
       logger().debug("rubyScript to run : \n" + rubyScript.toString());
       rubyScriptEngine.eval(rubyScript.toString(),bindings);
@@ -33,7 +37,7 @@ synchronized (rubyScriptEngine) {
  catch (    ScriptException e) {
       throw new ZException(e);
     }
-    String q=(String)rubyScriptEngine.getBindings(ScriptContext.ENGINE_SCOPE).get("e");
+    String q=(String)bindings.get("_zpE");
     return nonNullString(q);
   }
 }

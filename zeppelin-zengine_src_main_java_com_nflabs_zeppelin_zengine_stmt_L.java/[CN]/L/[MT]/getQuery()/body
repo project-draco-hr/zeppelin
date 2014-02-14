@@ -1,5 +1,8 @@
 {
   initialize();
+  if (hasPrev()) {
+    prev().getQuery();
+  }
   if (erbFile == null) {
     return null;
   }
