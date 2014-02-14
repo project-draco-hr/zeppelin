@@ -1,0 +1,11 @@
+{
+  if (binding == null) {
+    if (hasPrev() && prev() instanceof Q) {
+      binding=((Q)prev()).getErbBinding();
+    }
+ else {
+      binding=new HashMap<String,Object>();
+    }
+  }
+  return binding;
+}

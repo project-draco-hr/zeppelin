@@ -1,4 +1,8 @@
 {
+  if (evaluatedQuery != null)   return evaluatedQuery;
+  if (hasPrev()) {
+    prev().getQuery();
+  }
   ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
   BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
   ZContext zContext=new ZContext(hasPrev() ? prev().name() : null,name(),query,params);
