@@ -1,8 +1,16 @@
 {
-  ZQL zql=new ZQL("select * from test | test1 | test1");
-  List<Z> q=zql.compile();
+  ZQL zql=new ZQL("select * from test | test(limit=20) | test1");
+  ZPlan q=zql.compile();
   assertEquals(1,q.size());
   assertEquals(null,q.get(0).getQuery());
-  assertEquals(null,q.get(0).prev().getQuery());
+  assertEquals("select * from (" + q.get(0).prev().prev().name() + ") a limit 20",q.get(0).prev().getQuery());
   assertEquals("select * from test",q.get(0).prev().prev().getQuery());
+  assertEquals(1,q.get(0).prev().getResources().size());
+  MockDriver.queries.put("select * from (" + q.get(0).prev().prev().name() + ") a limit 20",new Result(0,new String[]{"hello"}));
+  LinkedList<Result> results=q.execute(z);
+  assertEquals(1,results.size());
+  assertEquals("hello",results.get(0).rows.get(0)[0]);
+  assertEquals(1,MockDriver.loadedResources.size());
+  InputStream ins=q.get(0).readWebResource("/");
+  assertEquals("WEB hello",IOUtils.toString(ins));
 }

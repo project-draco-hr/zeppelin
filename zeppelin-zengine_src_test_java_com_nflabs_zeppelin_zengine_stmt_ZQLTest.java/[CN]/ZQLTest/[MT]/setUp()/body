@@ -11,6 +11,6 @@
   UtilsForTests.createFileWithContent(tmpDirPath + "/test/test_data.log","");
   new File(tmpDirPath + "/test1").mkdir();
   new File(tmpDirPath + "/test1/web").mkdirs();
-  UtilsForTests.createFileWithContent(tmpDirPath + "/test1/web/index.erb","WEB\n");
+  UtilsForTests.createFileWithContent(tmpDirPath + "/test1/web/index.erb","WEB <%= z.result.rows.get(0)[0] %>\n");
   z=UtilsForTests.createZengine();
 }

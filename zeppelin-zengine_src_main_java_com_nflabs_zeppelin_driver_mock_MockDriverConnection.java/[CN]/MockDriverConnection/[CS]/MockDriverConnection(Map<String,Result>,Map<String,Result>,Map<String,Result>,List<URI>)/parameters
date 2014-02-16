@@ -1,3 +1,4 @@
 Map<String,Result> queries
 Map<String,Result> views
 Map<String,Result> tables
+List<URI> loadedResources
