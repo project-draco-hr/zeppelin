@@ -1,0 +1,7 @@
+{
+  ZQL zql=new ZQL("test2;");
+  ZPlan q=zql.compile();
+  LinkedList<Result> result=q.execute(z);
+  assertEquals(1,result.size());
+  assertEquals(1,MockDriver.loadedResources.size());
+}
