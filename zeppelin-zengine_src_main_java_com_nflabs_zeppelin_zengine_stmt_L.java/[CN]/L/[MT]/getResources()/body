@@ -20,6 +20,5 @@
       }
     }
   }
-  resources.addAll(super.getResources());
   return resources;
 }

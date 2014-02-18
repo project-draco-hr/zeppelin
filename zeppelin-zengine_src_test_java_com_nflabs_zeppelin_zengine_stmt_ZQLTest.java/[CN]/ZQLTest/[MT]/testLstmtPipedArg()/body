@@ -13,4 +13,5 @@
   assertEquals(1,MockDriver.loadedResources.size());
   InputStream ins=q.get(0).readWebResource("/");
   assertEquals("WEB hello",IOUtils.toString(ins));
+  assertEquals(1,MockDriver.loadedResources.size());
 }
