@@ -15,5 +15,4 @@
   new File(tmpDirPath + "/test2").mkdir();
   UtilsForTests.createFileWithContent(tmpDirPath + "/test2/test2_res","");
   z=UtilsForTests.createZengine();
-  MockDriver.loadedResources.clear();
 }

@@ -1,3 +1,4 @@
 {
+  this.conf=conf;
   this.connection=connection;
 }

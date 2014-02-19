@@ -1,4 +1,5 @@
 {
+  this.conf=conf;
   String driverDir=conf.getString(ConfVars.ZEPPELIN_DRIVER_DIR);
   String[] uriList=Util.split(conf.getString(ConfVars.ZEPPELIN_DRIVERS),"\"',",'\\',new String[]{"\"","'"},new String[]{"\"","'"},new String[]{","},false);
   URI[] uris=new URI[uriList.length];
