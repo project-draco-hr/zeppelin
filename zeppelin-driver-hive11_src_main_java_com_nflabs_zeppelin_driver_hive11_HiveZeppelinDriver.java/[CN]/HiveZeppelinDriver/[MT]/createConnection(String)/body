@@ -19,7 +19,7 @@
       logger.debug("Create connection from given jdbc uri");
       con=DriverManager.getConnection(uriString);
     }
-    return new HiveZeppelinConnection(con);
+    return new HiveZeppelinConnection(getConf(),con);
   }
  catch (  SQLException e) {
     throw new ZeppelinDriverException(e);
