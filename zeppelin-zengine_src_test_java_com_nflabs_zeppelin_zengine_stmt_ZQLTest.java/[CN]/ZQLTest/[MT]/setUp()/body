@@ -5,7 +5,7 @@
   String tmpDirPath=tmpDir.getAbsolutePath();
   UtilsForTests.delete(new File("/tmp/warehouse"));
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDirPath);
-  String q1="select * from (<%= z." + Q.INPUT_VAR_NAME + " %>) a limit <%= z.param('limit') %>\n";
+  String q1="select * from (<%= z." + Q.INPUT_VAR_NAME + " %>) a limit <%= z.param('limit') %><%= z.arg%>\n";
   new File(tmpDirPath + "/test").mkdir();
   UtilsForTests.createFileWithContent(tmpDirPath + "/test/zql.erb",q1);
   UtilsForTests.createFileWithContent(tmpDirPath + "/test/test_data.log","");
