@@ -2,7 +2,7 @@
   Map<String,ParamInfo> paramInfos=new HashMap<String,ParamInfo>();
   ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
   BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-  ZContext zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
+  ZLocalContextImpl zContext=new ZLocalContextImpl((prev() == null) ? null : prev().name(),name(),query,params);
   try {
     getQuery(erb,zContext);
   }

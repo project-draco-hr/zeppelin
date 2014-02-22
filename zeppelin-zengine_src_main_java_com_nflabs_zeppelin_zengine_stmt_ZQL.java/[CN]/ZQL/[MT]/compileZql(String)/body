@@ -9,7 +9,7 @@
   char escapeChar='\\';
   String[] blockStart=new String[]{"\"","'","<%","N_<","!"};
   String[] blockEnd=new String[]{"\"","'","%>","N_>",";"};
-  String[] t=Util.split(stmts,escapeSeq,escapeChar,blockStart,blockEnd,op,true);
+  String[] t=Util.split(erbEvalGlobalScope(stmts),escapeSeq,escapeChar,blockStart,blockEnd,op,true);
   String currentOp=null;
   for (int i=0; i < t.length; i++) {
     String stmt=t[i];
@@ -69,7 +69,8 @@
     }
     Z z=null;
     try {
-      z=loadL(stmt,currentConnection);
+      L l=loadL(stmt);
+      z=l;
     }
  catch (    ZException e) {
     }
@@ -77,7 +78,7 @@
       Q q;
       try {
         q=new Q(stmt);
-        q.withErbBinding(binding);
+        q.withErbEvaluator(erbEvaluator);
       }
  catch (      ZException e) {
         throw new ZQLException(e);

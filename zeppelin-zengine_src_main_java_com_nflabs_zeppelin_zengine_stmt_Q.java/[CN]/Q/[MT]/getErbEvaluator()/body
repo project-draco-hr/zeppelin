@@ -1,0 +1,11 @@
+{
+  if (erbEvaluator == null) {
+    if (hasPrev() && prev() instanceof Q) {
+      erbEvaluator=((Q)prev()).getErbEvaluator();
+    }
+ else {
+      erbEvaluator=new ERBEvaluator();
+    }
+  }
+  return erbEvaluator;
+}

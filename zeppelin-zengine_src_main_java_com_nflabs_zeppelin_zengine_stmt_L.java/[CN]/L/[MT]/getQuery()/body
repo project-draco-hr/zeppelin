@@ -10,7 +10,7 @@
   try {
     FileInputStream ins=new FileInputStream(erbFile);
     BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-    ZContext zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
+    ZLocalContextImpl zContext=new ZLocalContextImpl((prev() == null) ? null : prev().name(),name(),query,params);
     q=getQuery(erb,zContext);
     ins.close();
   }
