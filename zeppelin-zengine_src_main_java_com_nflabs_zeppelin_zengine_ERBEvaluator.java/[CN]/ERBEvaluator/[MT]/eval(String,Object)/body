@@ -1,0 +1,11 @@
+{
+  ByteArrayInputStream ins=new ByteArrayInputStream(erbString.getBytes());
+  BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+  String q=eval(erb,zcontext);
+  try {
+    ins.close();
+  }
+ catch (  IOException e) {
+  }
+  return q;
+}
