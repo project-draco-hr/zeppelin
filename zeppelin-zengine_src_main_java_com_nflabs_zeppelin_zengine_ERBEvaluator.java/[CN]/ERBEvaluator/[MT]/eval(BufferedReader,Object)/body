@@ -40,6 +40,6 @@ synchronized (rubyScriptEngine) {
       throw new ZException(e);
     }
     String q=(String)bindings.get("_zpE");
-    return q;
+    return nonNullString(q);
   }
 }
