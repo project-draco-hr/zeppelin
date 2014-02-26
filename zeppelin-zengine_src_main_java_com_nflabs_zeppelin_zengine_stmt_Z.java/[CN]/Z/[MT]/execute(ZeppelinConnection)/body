@@ -29,8 +29,8 @@
       q=queries.get(i);
       lastQueryResult=executeQuery(q);
     }
-    if (queries.length > 0) {
-      q=queries[queries.length - 1];
+    if (queries.size() > 0) {
+      q=queries.get(queries.size() - 1);
       if (isUnNamed()) {
         lastQueryResult=executeQuery(q);
       }
