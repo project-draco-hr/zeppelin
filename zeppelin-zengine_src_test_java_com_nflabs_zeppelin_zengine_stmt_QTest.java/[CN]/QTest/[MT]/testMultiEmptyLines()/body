@@ -1,0 +1,7 @@
+{
+  drv.queries.put("select count(*) from test;",new Result(0,new String[]{"1"}));
+  drv.queries.put("show tables",new Result(0,new String[]{"2"}));
+  Result r=new Q("select count(*) from test;\nshow tables;\n\n").execute(conn).result();
+  assertEquals(1,r.getRows().size());
+  assertEquals("2",r.getRows().get(0)[0]);
+}
