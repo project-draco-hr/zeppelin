@@ -1,4 +1,5 @@
 {
+  ScriptEngine rubyScriptEngine=getSingletonScriptEngine();
 synchronized (rubyScriptEngine) {
     StringBuffer rubyScript=new StringBuffer();
     Bindings bindings=rubyScriptEngine.createBindings();
