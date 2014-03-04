@@ -1,0 +1,8 @@
+{
+  if (System.getProperty("file.encoding") != null) {
+    return System.getProperty("file.encoding");
+  }
+ else {
+    return "UTF-8";
+  }
+}
