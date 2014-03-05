@@ -5,7 +5,8 @@ synchronized (active) {
         return null;
       }
       FSDataInputStream ins=fs.open(path);
-      ZQLJob job=gson.fromJson(new InputStreamReader(ins),ZQLJob.class);
+      String json=IOUtils.toString(ins,zengine.getConf().getString(ConfVars.ZEPPELIN_ENCODING));
+      ZQLJob job=gson.fromJson(json,ZQLJob.class);
       if (job.getStatus() == Status.RUNNING) {
         job.setStatus(Status.ABORT);
       }
