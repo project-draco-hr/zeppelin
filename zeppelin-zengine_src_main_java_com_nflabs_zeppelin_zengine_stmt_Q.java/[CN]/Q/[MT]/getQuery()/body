@@ -3,14 +3,16 @@
   if (hasPrev()) {
     prev().getQuery();
   }
-  ByteArrayInputStream ins=new ByteArrayInputStream(query.getBytes());
-  BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-  ZContext zContext=new ZContext(hasPrev() ? prev().name() : null,name(),query,params);
-  String q=getQuery(erb,zContext);
+  ByteArrayInputStream ins;
   try {
+    ins=new ByteArrayInputStream(query.getBytes());
+    BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
+    ZContext zContext=new ZContext(hasPrev() ? prev().name() : null,name(),query,params);
+    String q=getQuery(erb,zContext);
     ins.close();
+    return q;
   }
  catch (  IOException e) {
+    throw new ZException(e);
   }
-  return q;
 }
