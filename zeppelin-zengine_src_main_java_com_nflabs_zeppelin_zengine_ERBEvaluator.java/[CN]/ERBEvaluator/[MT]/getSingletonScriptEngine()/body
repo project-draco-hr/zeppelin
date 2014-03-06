@@ -1,0 +1,19 @@
+{
+  if (_rubyScriptEngine == null) {
+synchronized (_rubyScriptEngineCreationLock) {
+      if (_rubyScriptEngine == null) {
+        JRubyScriptEngineFactory factory=new JRubyScriptEngineFactory();
+        _rubyScriptEngine=factory.getScriptEngine();
+        StringBuffer rubyScript=new StringBuffer();
+        rubyScript.append("require 'erb'\n");
+        try {
+          _rubyScriptEngine.eval(rubyScript.toString());
+        }
+ catch (        ScriptException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+  return _rubyScriptEngine;
+}
