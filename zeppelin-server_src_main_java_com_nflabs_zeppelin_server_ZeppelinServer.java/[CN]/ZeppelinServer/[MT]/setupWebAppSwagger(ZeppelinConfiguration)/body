@@ -1,2 +1,14 @@
 {
+  WebAppContext webApp=new WebAppContext();
+  File webapp=new File(conf.getString(ConfVars.ZEPPELIN_API_WAR));
+  if (webapp.isDirectory()) {
+    webApp.setResourceBase(webapp.getPath());
+    webApp.setContextPath("/docs");
+    webApp.setParentLoaderPriority(true);
+  }
+ else {
+    webApp.setWar(webapp.getAbsolutePath());
+  }
+  webApp.addServlet(new ServletHolder(new DefaultServlet()),"/docs/*");
+  return webApp;
 }
