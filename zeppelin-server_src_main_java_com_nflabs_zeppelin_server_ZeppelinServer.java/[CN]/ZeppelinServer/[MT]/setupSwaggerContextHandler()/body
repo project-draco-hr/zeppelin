@@ -1,0 +1,11 @@
+{
+  final ServletHolder SwaggerSerlet=new ServletHolder(new com.wordnik.swagger.jaxrs.config.DefaultJaxrsConfig());
+  SwaggerSerlet.setInitParameter("api.version","1.0.0");
+  SwaggerSerlet.setInitParameter("swagger.api.basepath","http://localhost:8080/cxf/zeppelin");
+  final ServletContextHandler handler=new ServletContextHandler();
+  handler.setSessionHandler(new SessionHandler());
+  handler.setInitParameter("com.sun.jersey.config.property.packages","com.nflabs.zeppelin.rest;com.wordnik.swagger.jaxrs.listing");
+  handler.setInitParameter("com.sun.jersey.spi.container.ContainerRequestFilters","com.sun.jersey.api.container.filter.PostReplaceFilter");
+  handler.addServlet(SwaggerSerlet,"/api-docs/*");
+  return handler;
+}
