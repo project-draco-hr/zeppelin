@@ -1,0 +1,41 @@
+{
+  String branch="master";
+  String commit="HEAD";
+  File lp=new File(localPath);
+  try {
+    if (lp.exists() == false) {
+      CloneCommand clone=Git.cloneRepository();
+      clone.setURI(zanRepo);
+      clone.setDirectory(lp);
+      clone.setBranch(branch);
+      clone.setNoCheckout(true);
+      if (progressListener != null) {
+        clone.setProgressMonitor(progressListener);
+      }
+      clone.call();
+      Git git=Git.open(lp);
+      git.fetch().call();
+      git.checkout().setName(branch).setCreateBranch(true).setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM).setStartPoint("origin/" + branch).call();
+      git.reset().setRef(commit).setMode(ResetType.HARD).call();
+      git.close();
+    }
+  }
+ catch (  RefAlreadyExistsException e) {
+    throw new ZANException(e);
+  }
+catch (  RefNotFoundException e) {
+    throw new ZANException(e);
+  }
+catch (  InvalidRefNameException e) {
+    throw new ZANException(e);
+  }
+catch (  CheckoutConflictException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
+  }
+catch (  IOException e) {
+    throw new ZANException(e);
+  }
+}

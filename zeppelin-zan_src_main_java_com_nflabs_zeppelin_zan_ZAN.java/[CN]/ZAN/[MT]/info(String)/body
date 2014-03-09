@@ -1,4 +1,5 @@
 {
+  init(null);
   Git git;
   try {
     git=Git.open(new File(localPath));

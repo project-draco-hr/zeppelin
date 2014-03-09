@@ -1,4 +1,5 @@
 {
+  init(null);
   File lp=getLocalLibraryPath(libraryName);
   if (lp.exists()) {
     throw new ZANException(libraryName + " already installed");

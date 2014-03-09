@@ -1,4 +1,5 @@
 {
+  init(null);
   List<Info> infos=new LinkedList<Info>();
   Git git;
   try {
