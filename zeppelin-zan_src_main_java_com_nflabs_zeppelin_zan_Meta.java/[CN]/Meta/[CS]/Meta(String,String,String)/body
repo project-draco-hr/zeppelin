@@ -1,6 +1,0 @@
-{
-  super();
-  this.repository=repository;
-  this.branch=branch;
-  this.commit=commit;
-}
