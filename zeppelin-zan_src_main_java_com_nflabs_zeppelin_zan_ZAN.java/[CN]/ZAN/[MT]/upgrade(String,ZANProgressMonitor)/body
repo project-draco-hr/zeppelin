@@ -12,6 +12,7 @@
     init.addPath(libraryName);
     init.call();
     SubmoduleUpdateCommand submoduleUpdate=git.submoduleUpdate();
+    submoduleUpdate.addPath(libraryName);
     if (progressListener != null) {
       submoduleUpdate.setProgressMonitor(progressListener);
     }
