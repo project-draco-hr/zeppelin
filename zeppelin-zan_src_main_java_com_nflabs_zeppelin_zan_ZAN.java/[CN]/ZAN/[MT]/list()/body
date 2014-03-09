@@ -1,27 +1,20 @@
 {
-  List<Info> infos=new LinkedList<Info>();
-  File zp=new File(localPath + "/.zan");
-  File[] files=zp.listFiles();
-  if (files == null || files.length == 0)   return infos;
-  for (  File f : files) {
-    String libraryName=f.getName();
-    if (libraryName.startsWith("."))     continue;
-    if (libraryName.startsWith("#"))     continue;
-    if (libraryName.startsWith("~"))     continue;
-    if (f.isDirectory() == false)     continue;
-    try {
-      Meta meta=getMeta(libraryName);
-      infos.add(getInfoFromMeta(libraryName,meta));
+  Collection<Info> infos=new LinkedList<Info>();
+  Git git;
+  try {
+    git=Git.open(new File(localPath));
+    SubmoduleStatusCommand sc=git.submoduleStatus();
+    Map<String,SubmoduleStatus> status=sc.call();
+    for (    String k : status.keySet()) {
+      infos.add(info(k));
     }
- catch (    NoHeadException e) {
-      throw new ZANException(e);
-    }
-catch (    IOException e) {
-      throw new ZANException(e);
-    }
-catch (    GitAPIException e) {
-      throw new ZANException(e);
-    }
+    git.close();
+  }
+ catch (  IOException e) {
+    throw new ZANException(e);
+  }
+catch (  GitAPIException e) {
+    throw new ZANException(e);
   }
   return infos;
 }

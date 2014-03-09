@@ -1,7 +1,7 @@
 {
   String branch="master";
   String commit="HEAD";
-  File lp=getLocalLibraryPath(".zan");
+  File lp=new File(localPath);
   try {
     if (lp.exists() == false) {
       CloneCommand clone=Git.cloneRepository();
@@ -17,11 +17,13 @@
       git.fetch().call();
       git.checkout().setName(branch).setCreateBranch(true).setUpstreamMode(CreateBranchCommand.SetupUpstreamMode.SET_UPSTREAM).setStartPoint("origin/" + branch).call();
       git.reset().setRef(commit).setMode(ResetType.HARD).call();
+      git.close();
     }
  else {
       Git git=Git.open(lp);
       git.fetch().setRemote("origin").call();
       git.rebase().setUpstream("origin/" + branch).call();
+      git.close();
     }
   }
  catch (  InvalidRemoteException e) {

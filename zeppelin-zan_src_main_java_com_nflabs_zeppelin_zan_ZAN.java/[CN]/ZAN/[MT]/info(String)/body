@@ -1,18 +1,27 @@
 {
-  Meta meta;
+  Git git;
   try {
-    meta=getMeta(libraryName);
+    git=Git.open(new File(localPath));
+    StatusCommand sc=git.status();
+    sc.addPath(libraryName);
+    Status st=sc.call();
+    boolean updateAvailable=false;
+    if (st.getModified().size() > 0 || st.getChanged().size() > 0 || st.getAdded().size() > 0 || st.getRemoved().size() > 0) {
+      updateAvailable=true;
+    }
+    SubmoduleStatusCommand ssc=git.submoduleStatus();
+    ssc.addPath(libraryName);
+    Map<String,SubmoduleStatus> status=ssc.call();
+    if (status == null || status.size() != 1)     return null;
+    SubmoduleStatus ss=status.get(libraryName);
+    boolean installed=(ss.getType() == SubmoduleStatusType.INITIALIZED || ss.getType() == SubmoduleStatusType.REV_CHECKED_OUT) ? true : false;
+    String commit=ss.getIndexId().getName();
+    String path=ss.getPath();
+    git.close();
+    Info info=new Info(libraryName,path,installed,updateAvailable,commit);
+    return info;
   }
  catch (  IOException e) {
-    throw new ZANException(e);
-  }
-  try {
-    return getInfoFromMeta(libraryName,meta);
-  }
- catch (  IOException e) {
-    throw new ZANException(e);
-  }
-catch (  NoHeadException e) {
     throw new ZANException(e);
   }
 catch (  GitAPIException e) {
