@@ -1,5 +1,14 @@
 {
   if (resourceLocation.getPath().endsWith(".jar")) {
+    ClassLoader cl=Thread.currentThread().getContextClassLoader();
+    URLClassLoader newcl;
+    try {
+      newcl=new URLClassLoader(new URL[]{resourceLocation.toURL()},cl);
+    }
+ catch (    MalformedURLException e) {
+      throw new ZeppelinDriverException(e);
+    }
+    Thread.currentThread().setContextClassLoader(newcl);
     return execute("ADD JAR " + resourceLocation.toString());
   }
  else {
