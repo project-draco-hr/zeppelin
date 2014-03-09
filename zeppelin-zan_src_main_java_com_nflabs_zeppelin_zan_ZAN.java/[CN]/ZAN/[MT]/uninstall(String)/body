@@ -1,5 +1,6 @@
 {
   init(null);
+  logger.info("uninstall " + libraryName);
   File lp=getLocalLibraryPath(libraryName);
   if (lp.exists() == false) {
     throw new ZANException("library " + libraryName + " not installed");

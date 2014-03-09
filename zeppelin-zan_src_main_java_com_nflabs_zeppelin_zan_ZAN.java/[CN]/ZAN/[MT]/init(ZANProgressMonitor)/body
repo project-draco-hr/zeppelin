@@ -4,6 +4,7 @@
   File lp=new File(localPath);
   try {
     if (lp.exists() == false) {
+      logger.info("Init");
       CloneCommand clone=Git.cloneRepository();
       clone.setURI(zanRepo);
       clone.setDirectory(lp);

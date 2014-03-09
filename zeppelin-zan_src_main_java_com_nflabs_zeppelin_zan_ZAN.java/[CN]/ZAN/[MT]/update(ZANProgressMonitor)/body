@@ -2,6 +2,7 @@
   String branch="master";
   File lp=new File(localPath);
   try {
+    logger.info("update");
     if (lp.exists() == false) {
       init(null);
     }

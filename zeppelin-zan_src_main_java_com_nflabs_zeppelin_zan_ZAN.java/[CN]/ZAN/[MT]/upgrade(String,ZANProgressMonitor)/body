@@ -6,6 +6,7 @@
   }
   Git git;
   try {
+    logger.info("upgrade " + libraryName);
     git=Git.open(new File(localPath));
     SubmoduleInitCommand init=git.submoduleInit();
     init.addPath(libraryName);
