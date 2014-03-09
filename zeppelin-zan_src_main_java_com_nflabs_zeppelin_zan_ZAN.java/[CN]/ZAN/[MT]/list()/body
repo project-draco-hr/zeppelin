@@ -1,5 +1,5 @@
 {
-  Collection<Info> infos=new LinkedList<Info>();
+  List<Info> infos=new LinkedList<Info>();
   Git git;
   try {
     git=Git.open(new File(localPath));
