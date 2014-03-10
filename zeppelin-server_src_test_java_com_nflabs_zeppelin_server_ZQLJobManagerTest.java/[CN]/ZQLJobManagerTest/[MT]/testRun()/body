@@ -7,12 +7,22 @@
     Thread.sleep(300);
   }
   assertEquals(Status.FINISHED,jm.get(sess.getId()).getStatus());
-  assertEquals(sess.getId(),jm.getHistory(sess.getId(),jm.listHistory(sess.getId()).firstKey()).getId());
+  String history1=jm.listHistory(sess.getId()).lastKey();
+  assertEquals(sess.getId(),jm.getHistory(sess.getId(),history1).getId());
+  jm.run(sess.getId());
+  while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
+    Thread.sleep(300);
+  }
+  String history2=jm.listHistory(sess.getId()).lastKey();
+  assertEquals(2,jm.listHistory(sess.getId()).size());
+  assertNotSame(history1,history2);
   jm.run(sess.getId());
   while (jm.get(sess.getId()).getStatus() != Status.FINISHED) {
     Thread.sleep(300);
   }
   assertEquals(2,jm.listHistory(sess.getId()).size());
+  assertNull(jm.getHistory(sess.getId(),history1));
+  assertNotNull(jm.getHistory(sess.getId(),history2));
   jm.deleteHistory(sess.getId(),jm.listHistory(sess.getId()).firstKey());
   assertEquals(1,jm.listHistory(sess.getId()).size());
   jm.deleteHistory(sess.getId());
