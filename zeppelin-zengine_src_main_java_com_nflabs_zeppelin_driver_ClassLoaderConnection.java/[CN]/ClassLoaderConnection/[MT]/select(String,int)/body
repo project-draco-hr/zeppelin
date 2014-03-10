@@ -11,6 +11,7 @@ catch (  Exception e) {
     throw new ZeppelinDriverException(e);
   }
  finally {
+    cl=Thread.currentThread().getContextClassLoader();
     Thread.currentThread().setContextClassLoader(oldcl);
   }
 }
