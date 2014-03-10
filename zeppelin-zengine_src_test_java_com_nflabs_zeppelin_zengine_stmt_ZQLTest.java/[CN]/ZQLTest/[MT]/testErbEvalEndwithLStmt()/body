@@ -2,5 +2,5 @@
   ZQL zql=new ZQL("<% arg1='test'%>select * from <%=arg1%> | test(limit=10)");
   List<Z> q=zql.compile();
   assertEquals(1,q.size());
-  assertEquals("select * from (" + q.get(0).prev().name() + ") a limit 10",q.get(0).getQuery());
+  assertEquals("select *\nfrom (" + q.get(0).prev().name() + ") a\nlimit 10;",q.get(0).getQuery());
 }
