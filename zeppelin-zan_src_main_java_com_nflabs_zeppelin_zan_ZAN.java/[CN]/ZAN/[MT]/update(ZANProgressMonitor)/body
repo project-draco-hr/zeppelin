@@ -13,13 +13,7 @@
       git.close();
     }
   }
- catch (  InvalidRemoteException e) {
-    throw new ZANException(e);
-  }
-catch (  TransportException e) {
-    throw new ZANException(e);
-  }
-catch (  GitAPIException e) {
+ catch (  GitAPIException e) {
     throw new ZANException(e);
   }
 catch (  IOException e) {
