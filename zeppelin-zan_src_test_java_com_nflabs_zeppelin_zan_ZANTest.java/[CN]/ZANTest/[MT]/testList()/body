@@ -3,6 +3,6 @@
   String remoteBase=tmpDir.getAbsolutePath() + "/remote";
   ZAN zan=new ZAN("file://" + zanrepoDir.getAbsolutePath(),localBase,remoteBase,dfs);
   zan.update();
-  List<Info> infos=zan.list();
+  Collection<Info> infos=zan.list();
   assertEquals(2,infos.size());
 }

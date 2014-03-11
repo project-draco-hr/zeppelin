@@ -1,4 +1,5 @@
 String name
-Meta meta
+String path
 boolean installed
+boolean updateAvailable
 String commit

@@ -1,5 +1,0 @@
-{
-  Gson gson=new GsonBuilder().setPrettyPrinting().create();
-  String json=FileUtils.readFileToString(file);
-  return gson.fromJson(json,Meta.class);
-}

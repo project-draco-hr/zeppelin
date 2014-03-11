@@ -4,11 +4,13 @@
   ZAN zan=new ZAN("file://" + zanrepoDir.getAbsolutePath(),localBase,remoteBase,dfs);
   zan.update();
   assertFalse(new File(localBase,"lib1").isDirectory());
+  assertFalse(new File(localBase,"lib2").isDirectory());
   zan.install("lib1",null);
   assertTrue(new File(localBase,"lib1").isDirectory());
   assertTrue(new File(localBase,"lib1/zql").isFile());
   assertTrue(new File(remoteBase,"lib1").isDirectory());
   assertTrue(new File(remoteBase,"lib1/zql").isFile());
+  assertFalse(new File(localBase,"lib2").isDirectory());
   try {
     zan.install("nonexist",null);
     assertTrue(false);
