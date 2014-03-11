@@ -4,9 +4,11 @@
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
   final Server server=setupJettyServer(port);
   final ServletContextHandler restApi=setupRestApiContextHandler();
+  final ServletContextHandler swagger=setupSwaggerContextHandler(port);
   final WebAppContext webApp=setupWebAppContext(conf);
+  final WebAppContext webAppSwagg=setupWebAppSwagger(conf);
   ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{restApi,webApp});
+  contexts.setHandlers(new Handler[]{swagger,restApi,webApp,webAppSwagg});
   server.setHandler(contexts);
   LOG.info("Start zeppelin server");
   server.start();
