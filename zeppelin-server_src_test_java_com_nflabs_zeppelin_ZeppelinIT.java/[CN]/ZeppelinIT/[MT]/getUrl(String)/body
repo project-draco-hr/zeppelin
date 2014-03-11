@@ -1,0 +1,11 @@
+{
+  String url;
+  if (System.getProperty("url") != null) {
+    url=System.getProperty("url");
+  }
+ else {
+    url="http://localhost:8080";
+  }
+  if (path != null)   url+=path;
+  return url;
+}
