@@ -1,4 +1,9 @@
 {
+  String resName=new File(resourceLocation.getPath()).getName();
+  if (loadedResources.containsKey(resName)) {
+    return new Result();
+  }
+  Result result;
   if (resourceLocation.getPath().endsWith(".jar")) {
     ClassLoader cl=Thread.currentThread().getContextClassLoader();
     URLClassLoader newcl;
@@ -9,9 +14,12 @@
       throw new ZeppelinDriverException(e);
     }
     Thread.currentThread().setContextClassLoader(newcl);
-    return execute("ADD JAR " + resourceLocation.toString());
+    result=execute("ADD JAR " + resourceLocation.toString());
+    loadedResources.put(resName,new Integer(1));
   }
  else {
-    return execute("ADD FILE " + resourceLocation.toString());
+    result=execute("ADD FILE " + resourceLocation.toString());
+    loadedResources.put(resName,new Integer(1));
   }
+  return result;
 }
