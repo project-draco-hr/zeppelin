@@ -1,6 +1,6 @@
 {
   String resName=new File(resourceLocation.getPath()).getName();
-  if (loadedResources.containsKey(resName)) {
+  if (loadedResources.contains(resName)) {
     return new Result();
   }
   Result result;
@@ -15,11 +15,11 @@
     }
     Thread.currentThread().setContextClassLoader(newcl);
     result=execute("ADD JAR " + resourceLocation.toString());
-    loadedResources.put(resName,new Integer(1));
+    loadedResources.add(resName);
   }
  else {
     result=execute("ADD FILE " + resourceLocation.toString());
-    loadedResources.put(resName,new Integer(1));
+    loadedResources.add(resName);
   }
   return result;
 }

@@ -1,5 +1,5 @@
 {
   this.conf=conf;
   this.connection=connection;
-  loadedResources=new HashMap<String,Integer>();
+  loadedResources=new HashSet<String>();
 }
