@@ -10,6 +10,7 @@
     File[] files=new File(localPath).listFiles();
     if (files != null) {
       for (      File file : files) {
+        if (file.isDirectory() == false)         continue;
         String name=file.getName();
         if (name == null || name.startsWith("."))         continue;
         if (libNames.contains(name) == false) {
