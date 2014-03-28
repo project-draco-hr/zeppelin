@@ -6,7 +6,19 @@
     git=Git.open(new File(localPath));
     SubmoduleStatusCommand sc=git.submoduleStatus();
     Map<String,SubmoduleStatus> status=sc.call();
-    for (    String k : status.keySet()) {
+    Set<String> libNames=new HashSet<String>(status.keySet());
+    File[] files=new File(localPath).listFiles();
+    if (files != null) {
+      for (      File file : files) {
+        if (file.isDirectory() == false)         continue;
+        String name=file.getName();
+        if (name == null || name.startsWith("."))         continue;
+        if (libNames.contains(name) == false) {
+          libNames.add(name);
+        }
+      }
+    }
+    for (    String k : libNames) {
       infos.add(info(k));
     }
     git.close();

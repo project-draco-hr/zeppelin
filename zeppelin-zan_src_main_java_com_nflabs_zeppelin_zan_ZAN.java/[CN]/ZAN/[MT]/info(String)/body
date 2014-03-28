@@ -13,14 +13,24 @@
     SubmoduleStatusCommand ssc=git.submoduleStatus();
     ssc.addPath(libraryName);
     Map<String,SubmoduleStatus> status=ssc.call();
-    if (status == null || status.size() != 1)     return null;
-    SubmoduleStatus ss=status.get(libraryName);
-    boolean installed=(ss.getType() == SubmoduleStatusType.INITIALIZED || ss.getType() == SubmoduleStatusType.REV_CHECKED_OUT) ? true : false;
-    String commit=ss.getIndexId().getName();
-    String path=ss.getPath();
-    git.close();
-    Info info=new Info(libraryName,path,installed,updateAvailable,commit);
-    return info;
+    if (status == null || status.size() != 1) {
+      File libDir=new File(localPath,libraryName);
+      if (libDir.isDirectory() == false) {
+        return null;
+      }
+ else {
+        return new Info(libraryName,libDir.getAbsolutePath());
+      }
+    }
+ else {
+      SubmoduleStatus ss=status.get(libraryName);
+      boolean installed=(ss.getType() == SubmoduleStatusType.INITIALIZED || ss.getType() == SubmoduleStatusType.REV_CHECKED_OUT) ? true : false;
+      String commit=ss.getIndexId().getName();
+      String path=ss.getPath();
+      git.close();
+      Info info=new Info(libraryName,path,installed,updateAvailable,commit);
+      return info;
+    }
   }
  catch (  IOException e) {
     throw new ZANException(e);
