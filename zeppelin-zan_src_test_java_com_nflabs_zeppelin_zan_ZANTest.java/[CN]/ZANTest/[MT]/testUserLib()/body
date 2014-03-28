@@ -3,9 +3,8 @@
   String remoteBase=tmpDir.getAbsolutePath() + "/remote";
   ZAN zan=new ZAN("file://" + zanrepoDir.getAbsolutePath(),localBase,remoteBase,dfs);
   zan.update();
-  Collection<Info> infos=zan.list();
-  assertEquals(2,infos.size());
   new File(tmpDir.getAbsolutePath() + "/local/user").mkdirs();
-  infos=zan.list();
-  assertEquals(3,infos.size());
+  Info info=zan.info("user");
+  assertNotNull(info);
+  assertEquals(info.getStatus(),Status.USER);
 }
