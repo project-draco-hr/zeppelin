@@ -5,11 +5,11 @@
     start.click();
     (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
       public Boolean apply(      WebDriver d){
-        return d.findElement(By.linkText("New")).isDisplayed();
+        return d.findElement(By.linkText("Create new Job")).isDisplayed();
       }
     }
 );
-    driver.findElement(By.linkText("New")).click();
+    driver.findElement(By.linkText("Create new Job")).click();
     (new WebDriverWait(driver,10)).until(new ExpectedCondition<Boolean>(){
       public Boolean apply(      WebDriver d){
         return d.findElement(By.linkText("Run")).isDisplayed();
