@@ -1,0 +1,34 @@
+{
+  Path path=new Path(jobPersistBasePath + "/" + JOB_TREE_FILE);
+  try {
+    if (fs.isFile(path) == false) {
+      return null;
+    }
+  }
+ catch (  IOException e) {
+  }
+  String json;
+  FSDataInputStream ins=null;
+  try {
+    ins=fs.open(path);
+    json=IOUtils.toString(ins,zengine.getConf().getString(ConfVars.ZEPPELIN_ENCODING));
+    List<ZQLJobTree> jobTree=gson.fromJson(json,new TypeToken<List<ZQLJobTree>>(){
+    }
+.getType());
+    return jobTree;
+  }
+ catch (  IOException e) {
+    logger.error("Can't read job tree file",e);
+  }
+ finally {
+    if (ins != null) {
+      try {
+        ins.close();
+      }
+ catch (      IOException e1) {
+        logger.error("Can't close inputstream",e1);
+      }
+    }
+  }
+  return null;
+}

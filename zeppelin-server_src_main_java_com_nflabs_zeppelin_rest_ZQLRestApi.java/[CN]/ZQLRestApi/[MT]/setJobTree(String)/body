@@ -1,0 +1,7 @@
+{
+  List<ZQLJobTree> jobTree=gson.fromJson(json,new TypeToken<List<ZQLJobTree>>(){
+  }
+.getType());
+  jobManager.saveJobTree(jobTree);
+  return new JsonResponse(Status.OK,"").build();
+}
