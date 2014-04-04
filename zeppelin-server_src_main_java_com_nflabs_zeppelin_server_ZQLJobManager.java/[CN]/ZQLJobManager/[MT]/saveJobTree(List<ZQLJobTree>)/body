@@ -1,0 +1,23 @@
+{
+  String json=gson.toJson(jobTree);
+  Path path=new Path(jobPersistBasePath + "/" + JOB_TREE_FILE);
+  FSDataOutputStream out=null;
+  try {
+    out=fs.create(path,true);
+    out.write(json.getBytes(zengine.getConf().getString(ConfVars.ZEPPELIN_ENCODING)));
+    out.close();
+  }
+ catch (  IOException e) {
+    logger.error("can't write jobtree",e);
+  }
+ finally {
+    if (out != null) {
+      try {
+        out.close();
+      }
+ catch (      IOException e) {
+        logger.error("Can't close output stream",e);
+      }
+    }
+  }
+}

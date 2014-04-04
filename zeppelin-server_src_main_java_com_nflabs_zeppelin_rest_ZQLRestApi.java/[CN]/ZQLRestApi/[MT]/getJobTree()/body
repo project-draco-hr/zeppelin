@@ -1,0 +1,4 @@
+{
+  List<ZQLJobTree> jobTree=jobManager.getJobTree();
+  return new JsonResponse<List<ZQLJobTree>>(Status.OK,"",jobTree).build();
+}
