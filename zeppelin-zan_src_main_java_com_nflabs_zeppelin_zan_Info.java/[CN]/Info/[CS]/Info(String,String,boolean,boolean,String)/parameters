@@ -1,0 +1,5 @@
+String name
+String path
+boolean installed
+boolean updateAvailable
+String commit

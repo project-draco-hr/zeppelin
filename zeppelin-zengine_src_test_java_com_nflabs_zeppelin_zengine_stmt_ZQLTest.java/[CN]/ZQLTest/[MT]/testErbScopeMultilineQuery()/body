@@ -1,0 +1,7 @@
+{
+  ZQL zql=new ZQL("<% var1=\"test\" %>select a from <%=var1%>; select b from <%=var1%>;");
+  List<Z> q=zql.compile();
+  assertEquals(2,q.size());
+  assertEquals("select a from test",q.get(0).getQuery());
+  assertEquals("select b from test",q.get(1).getQuery());
+}

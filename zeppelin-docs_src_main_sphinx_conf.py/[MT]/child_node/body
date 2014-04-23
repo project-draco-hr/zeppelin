@@ -1,0 +1,5 @@
+def child_node(node, name):
+    for i in node.childNodes:
+        if ((i.nodeType == i.ELEMENT_NODE) and (i.tagName == name)):
+            return i
+    return None

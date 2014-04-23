@@ -9,9 +9,6 @@
  else       if (f.getName().startsWith(".")) {
         continue;
       }
- else       if (f.getName().startsWith(libName + "_") == false) {
-        continue;
-      }
  else       if (f.getName().equals("zql.erb")) {
         continue;
       }
@@ -20,6 +17,5 @@
       }
     }
   }
-  resources.addAll(super.getResources());
   return resources;
 }

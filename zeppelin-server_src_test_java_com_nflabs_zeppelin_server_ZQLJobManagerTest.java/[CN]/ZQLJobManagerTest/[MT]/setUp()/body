@@ -6,6 +6,7 @@
   System.setProperty("hive.local.warehouse","file://" + dataDir.getAbsolutePath());
   System.setProperty(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO.getVarName(),tmpDir.toURI().toString());
   System.setProperty(ConfVars.ZEPPELIN_JOB_DIR.getVarName(),tmpDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_MAX_HISTORY.getVarName(),"2");
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   MockDriverFactory driverFactory=new MockDriverFactory();
   z=new Zengine(conf,driverFactory);

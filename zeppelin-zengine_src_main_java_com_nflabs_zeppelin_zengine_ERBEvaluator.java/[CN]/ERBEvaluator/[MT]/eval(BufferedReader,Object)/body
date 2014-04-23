@@ -1,0 +1,46 @@
+{
+  ScriptEngine rubyScriptEngine=getSingletonScriptEngine();
+synchronized (rubyScriptEngine) {
+    StringBuffer rubyScript=new StringBuffer();
+    Bindings bindings=rubyScriptEngine.createBindings();
+    if (zcontext != null) {
+      bindings.put("_zpZ",zcontext);
+      rubyScript.append("z = $_zpZ\n");
+    }
+    bindings.put("_zpLV",localVariables);
+    for (    String k : localVariables.keySet()) {
+      rubyScript.append(k + "= $_zpLV.get(\"" + k+ "\")\n");
+    }
+    rubyScriptEngine.setBindings(bindings,ScriptContext.ENGINE_SCOPE);
+    try {
+      String line=null;
+      rubyScript.append("$_zpErb = \"\"\n");
+      boolean first=true;
+      while ((line=erb.readLine()) != null) {
+        String newline;
+        if (first == false) {
+          newline="\\n";
+        }
+ else {
+          newline="";
+          first=false;
+        }
+        rubyScript.append("$_zpErb += \"" + newline + line.replaceAll(Matcher.quoteReplacement("\\"),"\\\\\\\\").replaceAll("\"","\\\\\"")+ "\"\n");
+      }
+      rubyScript.append("$_zpErb += \"<% local_variables.each do |xx|\n    if xx != 'z' and xx != '_erbout' then $_zpLV[xx] = eval(xx) end\nend %>\"\n");
+    }
+ catch (    IOException e1) {
+      throw new ZException(e1);
+    }
+    rubyScript.append("$_zpE = ERB.new($_zpErb, \"<>-\").result(binding)\n");
+    try {
+      logger.debug("rubyScript to run : \n" + rubyScript.toString());
+      rubyScriptEngine.eval(rubyScript.toString(),bindings);
+    }
+ catch (    ScriptException e) {
+      throw new ZException(e);
+    }
+    String q=(String)bindings.get("_zpE");
+    return nonNullString(q);
+  }
+}

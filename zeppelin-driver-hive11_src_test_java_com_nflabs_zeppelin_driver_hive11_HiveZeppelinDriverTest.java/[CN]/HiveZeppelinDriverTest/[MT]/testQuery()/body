@@ -1,5 +1,6 @@
 {
   HiveZeppelinDriver driver=new HiveZeppelinDriver();
+  driver.setConf(ZeppelinConfiguration.create());
   ZeppelinConnection conn=driver.getConnection("hive2://");
   driver.setClient(client);
   Result res=conn.query("create database if not exists default");
@@ -8,9 +9,13 @@
   assertEquals("test",res.getRows().get(0)[0]);
   FileOutputStream out=new FileOutputStream(new File(ROOT_DIR.getName() + "/warehouse/test/data"));
   BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(out));
-  bw.write("1\n");
-  bw.write("2\n");
+  for (int i=1; i <= 200; i++) {
+    bw.write(i + "\n");
+  }
   bw.close();
   res=conn.query("select count(*) from test");
-  assertEquals(new Long(2),res.getRows().get(0)[0]);
+  assertEquals(new Long(200),res.getRows().get(0)[0]);
+  res=conn.query("select * from test");
+  assertEquals(200,res.getRows().size());
+  conn.query("drop table test");
 }

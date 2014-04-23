@@ -1,8 +1,0 @@
-{
-  Gson gson=new GsonBuilder().setPrettyPrinting().create();
-  String json=gson.toJson(this);
-  if (file.isFile()) {
-    file.delete();
-  }
-  FileUtils.writeStringToFile(file,json,false);
-}

@@ -2,6 +2,7 @@
   try {
     Connection con;
     String uriString="jdbc:" + uri.toString();
+    logger.info("Create connection " + uriString);
     if (client != null) {
       logger.debug("Create connection from provided client instance");
       con=new HiveConnection(client);
@@ -16,15 +17,11 @@
     }
  else {
       logger.debug("Create connection from given jdbc uri");
-      Class.forName(getHiveDriverClass(uriString));
       con=DriverManager.getConnection(uriString);
     }
-    return new HiveZeppelinConnection(con);
+    return new HiveZeppelinConnection(getConf(),con);
   }
  catch (  SQLException e) {
-    throw new ZeppelinDriverException(e);
-  }
-catch (  ClassNotFoundException e) {
     throw new ZeppelinDriverException(e);
   }
 }

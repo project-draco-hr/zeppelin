@@ -1,13 +1,13 @@
 {
   initialize();
   Map<String,ParamInfo> paramInfos=new HashMap<String,ParamInfo>();
-  ZContext zContext=null;
+  ZLocalContextImpl zContext=null;
   if (erbFile != null) {
     InputStream ins;
     try {
       ins=new FileInputStream(erbFile);
       BufferedReader erb=new BufferedReader(new InputStreamReader(ins));
-      zContext=new ZContext((prev() == null) ? null : prev().name(),name(),query,params);
+      zContext=new ZLocalContextImpl((prev() == null) ? null : prev().name(),name(),query,params);
       getQuery(erb,zContext);
       ins.close();
     }

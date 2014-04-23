@@ -1,0 +1,28 @@
+{
+  try {
+    ResultSet res=null;
+    Statement stmt=connection.createStatement();
+    stmt.setMaxRows(maxRow);
+    res=stmt.executeQuery(query);
+    Result r=new Result(res,maxRow);
+    r.load();
+    stmt.close();
+    return r;
+  }
+ catch (  SQLException e) {
+    if (e.getMessage().startsWith("The query did not generate a result set")) {
+      try {
+        return new Result(0,new String[]{});
+      }
+ catch (      ResultDataException e1) {
+        throw new ZeppelinDriverException(e1);
+      }
+    }
+ else {
+      throw new ZeppelinDriverException(e);
+    }
+  }
+catch (  ResultDataException e) {
+    throw new ZeppelinDriverException(e);
+  }
+}

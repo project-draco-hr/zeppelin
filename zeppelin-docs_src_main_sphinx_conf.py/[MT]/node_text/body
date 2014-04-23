@@ -1,0 +1,2 @@
+def node_text(node):
+    return node.childNodes[0].data

@@ -7,14 +7,17 @@
   Z currentZ=null;
   String escapeSeq="\"',;<%>!";
   char escapeChar='\\';
-  String[] blockStart=new String[]{"\"","'","<%","N_<","!"};
-  String[] blockEnd=new String[]{"\"","'","%>","N_>",";"};
-  String[] t=Util.split(stmts,escapeSeq,escapeChar,blockStart,blockEnd,op,true);
+  String[] blockStart=new String[]{"\"","'","<%"};
+  String[] blockEnd=new String[]{"\"","'","%>"};
+  String[] t=Util.split(erbEvalGlobalScope(stmts),escapeSeq,escapeChar,blockStart,blockEnd,op,true);
   String currentOp=null;
   for (int i=0; i < t.length; i++) {
     String stmt=t[i];
     if (stmt == null)     continue;
     stmt=stmt.trim();
+    if (stmt.endsWith(";") == true && stmt.length() > 1) {
+      stmt=stmt.substring(0,stmt.length() - 1);
+    }
     if (stmt.length() == 0)     continue;
     boolean operatorFound=false;
     for (    String o : op) {
@@ -32,21 +35,6 @@
     }
     if (currentZ == null && currentOp != null) {
       throw new ZQLException(currentOp + " can not be at the beginning");
-    }
-    if (op[2].equals(currentOp)) {
-      throw new ZQLException("redirection (append) not implemented");
-    }
- else     if (op[3].equals(currentOp)) {
-      if (currentZ != null) {
-        RedirectStatement red=new RedirectStatement(stmt);
-        currentZ.withName(red.getName());
-        currentZ.withTable(red.isTable());
-        currentOp=null;
-        continue;
-      }
- else {
-        throw new ZQLException("Can not redirect empty");
-      }
     }
     if (stmt.startsWith("@")) {
       if (currentZ != null) {
@@ -84,7 +72,8 @@
     }
     Z z=null;
     try {
-      z=loadL(stmt,currentConnection);
+      L l=loadL(stmt);
+      z=l;
     }
  catch (    ZException e) {
     }
@@ -92,6 +81,7 @@
       Q q;
       try {
         q=new Q(stmt);
+        q.withErbEvaluator(erbEvaluator);
       }
  catch (      ZException e) {
         throw new ZQLException(e);
