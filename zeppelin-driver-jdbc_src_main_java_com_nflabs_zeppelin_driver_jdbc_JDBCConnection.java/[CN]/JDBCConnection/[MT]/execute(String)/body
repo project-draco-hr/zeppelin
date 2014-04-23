@@ -3,13 +3,10 @@
     ResultSet res=null;
     Result r=null;
     Statement stmt=connection.createStatement();
-    if (query.toLowerCase().startsWith("select")) {
-      res=stmt.executeQuery(query);
+    if (stmt.execute(query)) {
+      res=stmt.getResultSet();
       r=new Result(res);
       r.load();
-    }
- else {
-      stmt.execute(query);
     }
     stmt.close();
     return r;
