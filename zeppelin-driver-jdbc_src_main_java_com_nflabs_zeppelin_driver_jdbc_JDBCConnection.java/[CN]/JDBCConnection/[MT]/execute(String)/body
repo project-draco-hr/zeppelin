@@ -1,15 +1,14 @@
 {
+  ResultSet res=null;
+  Result r=null;
+  Statement stmt=null;
   try {
-    ResultSet res=null;
-    Result r=null;
-    Statement stmt=connection.createStatement();
+    stmt=connection.createStatement();
     if (stmt.execute(query)) {
       res=stmt.getResultSet();
       r=new Result(res);
       r.load();
     }
-    stmt.close();
-    return r;
   }
  catch (  SQLException e) {
     throw new ZeppelinDriverException(e);
@@ -17,4 +16,13 @@
 catch (  ResultDataException e) {
     throw new ZeppelinDriverException(e);
   }
+ finally {
+    try {
+      stmt.close();
+    }
+ catch (    SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  return r;
 }
