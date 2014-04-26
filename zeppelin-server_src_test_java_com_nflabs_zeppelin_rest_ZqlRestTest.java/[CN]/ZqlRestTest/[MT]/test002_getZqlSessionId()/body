@@ -1,5 +1,10 @@
 {
-  GetMethod httpGetRoot=httpGet("/zql/" + getFisrtId());
+  String id=getFisrtId();
+  if (id.isEmpty()) {
+    assertTrue(true);
+    return;
+  }
+  GetMethod httpGetRoot=httpGet("/zql/" + id);
   assertThat(httpGetRoot,isAllowed());
   String body=httpGetRoot.getResponseBodyAsString();
   assertThat(body,isValidJSON());
