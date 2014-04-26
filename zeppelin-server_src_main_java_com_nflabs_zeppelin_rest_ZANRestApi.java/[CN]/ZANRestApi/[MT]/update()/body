@@ -1,4 +1,4 @@
 {
   jobManager.update();
-  return new JsonResponse<Object>(Status.OK,"Job submitted").build();
+  return new JsonResponse<Object>(Status.ACCEPTED,"Job submitted").build();
 }
