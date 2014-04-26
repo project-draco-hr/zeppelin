@@ -1,5 +1,7 @@
 {
   Set<Object> singletons=new HashSet<Object>();
+  ZeppelinRestApi root=new ZeppelinRestApi();
+  singletons.add(root);
   ZQLRestApi analyze=new ZQLRestApi(this.analyzeSessionManager);
   singletons.add(analyze);
   ZANRestApi zan=new ZANRestApi(this.zan,this.zanJobManager);
