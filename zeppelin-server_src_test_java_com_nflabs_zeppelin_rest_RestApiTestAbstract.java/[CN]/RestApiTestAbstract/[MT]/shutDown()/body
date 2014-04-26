@@ -1,0 +1,7 @@
+{
+  if (!wasRunning) {
+    LOG.info("Terminating test Zeppelin...");
+    executor.shutdown();
+    LOG.info("Test Zeppelin terminated.");
+  }
+}

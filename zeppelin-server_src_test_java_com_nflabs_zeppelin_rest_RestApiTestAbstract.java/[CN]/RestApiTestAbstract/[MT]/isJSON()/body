@@ -1,0 +1,15 @@
+{
+  return new TypeSafeMatcher<String>(){
+    @Override public boolean matchesSafely(    String body){
+      String b=body.trim();
+      return (b.startsWith("{") && b.endsWith("}")) || (b.startsWith("[") && b.endsWith("]"));
+    }
+    @Override public void describeTo(    Description description){
+      description.appendText("response in JSON format ");
+    }
+    @Override protected void describeMismatchSafely(    String item,    Description description){
+      description.appendText("got ").appendText(item);
+    }
+  }
+;
+}

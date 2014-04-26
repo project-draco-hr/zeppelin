@@ -1,0 +1,8 @@
+{
+  if (!wasRunning) {
+    LOG.info("Staring test Zeppelin up...");
+    executor.submit(server);
+    Thread.sleep(25000);
+    LOG.info("Test Zeppelin stared.");
+  }
+}
