@@ -1,4 +1,5 @@
 {
+  job.setStatus(Status.PENDING);
 synchronized (queue) {
     queue.add(job);
     queue.notify();
