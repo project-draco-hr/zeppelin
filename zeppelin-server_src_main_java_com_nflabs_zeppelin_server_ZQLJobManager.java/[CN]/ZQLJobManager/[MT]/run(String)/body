@@ -3,7 +3,7 @@
   if (s == null) {
     return null;
   }
-  if (s.getStatus() == Status.RUNNING) {
+  if (s.getStatus() == Status.PENDING || s.getStatus() == Status.RUNNING) {
     return s;
   }
  else {
