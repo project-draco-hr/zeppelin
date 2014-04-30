@@ -2,6 +2,12 @@
   if (!wasRunning) {
     LOG.info("Terminating test Zeppelin...");
     executor.shutdown();
+    try {
+      executor.awaitTermination(10,TimeUnit.SECONDS);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
+    }
     LOG.info("Test Zeppelin terminated.");
   }
 }
