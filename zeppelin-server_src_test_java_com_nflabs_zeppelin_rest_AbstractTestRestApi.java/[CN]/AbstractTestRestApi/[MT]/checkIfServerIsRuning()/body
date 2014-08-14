@@ -1,0 +1,17 @@
+{
+  GetMethod request=null;
+  boolean isRunning=true;
+  try {
+    request=httpGet("/");
+    isRunning=request.getStatusCode() == 200;
+  }
+ catch (  IOException e) {
+    isRunning=false;
+  }
+ finally {
+    if (request != null) {
+      request.releaseConnection();
+    }
+  }
+  return isRunning;
+}

@@ -1,0 +1,8 @@
+{
+  LOG.info("Connecting to {}",url + path);
+  HttpClient httpClient=new HttpClient();
+  GetMethod getMethod=new GetMethod(url + path);
+  httpClient.executeMethod(getMethod);
+  LOG.info("{} - {}",getMethod.getStatusCode(),getMethod.getStatusText());
+  return getMethod;
+}

@@ -1,0 +1,7 @@
+{
+  String url="http://localhost:8080" + restApiUrl;
+  if (System.getProperty("url") != null) {
+    url=System.getProperty("url");
+  }
+  return url;
+}

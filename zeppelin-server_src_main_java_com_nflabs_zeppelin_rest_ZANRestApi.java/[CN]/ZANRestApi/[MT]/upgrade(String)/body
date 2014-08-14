@@ -1,4 +1,4 @@
 {
   jobManager.upgrade(libName);
-  return new JsonResponse<List<ZANJob>>(Status.OK,"").build();
+  return new JsonResponse<List<ZANJob>>(Status.ACCEPTED,"").build();
 }

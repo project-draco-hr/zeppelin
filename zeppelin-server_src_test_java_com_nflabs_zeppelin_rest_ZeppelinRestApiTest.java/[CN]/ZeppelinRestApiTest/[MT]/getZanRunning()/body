@@ -1,0 +1,5 @@
+{
+  GetMethod httpGetRoot=httpGet("/zan/running");
+  assertThat(httpGetRoot,isAllowed());
+  httpGetRoot.releaseConnection();
+}

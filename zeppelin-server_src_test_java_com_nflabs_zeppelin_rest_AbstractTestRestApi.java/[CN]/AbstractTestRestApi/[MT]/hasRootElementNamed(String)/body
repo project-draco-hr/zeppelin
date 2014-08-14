@@ -1,0 +1,14 @@
+{
+  return new TypeSafeMatcher<JsonElement>(){
+    @Override protected boolean matchesSafely(    JsonElement item){
+      return item.isJsonObject() && item.getAsJsonObject().has(memberName);
+    }
+    @Override public void describeTo(    Description description){
+      description.appendText("response in JSON format with \"").appendText(memberName).appendText("\" beeing a root element ");
+    }
+    @Override protected void describeMismatchSafely(    JsonElement root,    Description description){
+      description.appendText("got ").appendText(root.toString());
+    }
+  }
+;
+}
