@@ -1,0 +1,12 @@
+{
+  scala.tools.nsc.interpreter.Results.Result r=intp.interpret(st);
+  if (r instanceof scala.tools.nsc.interpreter.Results.Success$) {
+    return Result.SUCCESS;
+  }
+ else   if (r instanceof scala.tools.nsc.interpreter.Results.Incomplete$) {
+    return Result.INCOMPLETE;
+  }
+ else {
+    return Result.ERROR;
+  }
+}

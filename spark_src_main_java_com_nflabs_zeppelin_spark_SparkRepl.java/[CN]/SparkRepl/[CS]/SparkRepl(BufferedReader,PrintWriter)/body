@@ -1,0 +1,11 @@
+{
+  Settings settings=new Settings();
+  settings.classpath().value_$eq(System.getProperty("java.class.path"));
+  this.interpreter=new SparkILoop(reader,writer);
+  interpreter.settings_$eq(settings);
+  interpreter.createInterpreter();
+  intp=interpreter.intp();
+  intp.initializeSynchronous();
+  this.sc=interpreter.createSparkContext();
+  intp.bindValue("sc",sc);
+}
