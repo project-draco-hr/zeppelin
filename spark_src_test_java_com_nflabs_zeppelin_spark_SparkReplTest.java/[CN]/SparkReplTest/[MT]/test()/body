@@ -1,7 +1,0 @@
-{
-  ByteArrayOutputStream out=new ByteArrayOutputStream();
-  SparkRepl repl=new SparkRepl(null,new PrintWriter(new OutputStreamWriter(out)));
-  assertEquals(Result.SUCCESS,repl.interpret("val a = 1"));
-  repl.interpret("val ver = sc.version");
-  assertEquals("1.0.2",repl.getValue("ver"));
-}

@@ -1,0 +1,7 @@
+{
+  ReplFactory factory=new ReplFactory(null);
+  ByteArrayOutputStream out=new ByteArrayOutputStream();
+  Repl repl1=factory.createRepl("com.nflabs.zeppelin.repl.mock.MockRepl",null,new OutputStreamWriter(out));
+  repl1.bindValue("a",1);
+  assertEquals(repl1.getValue("a"),1);
+}

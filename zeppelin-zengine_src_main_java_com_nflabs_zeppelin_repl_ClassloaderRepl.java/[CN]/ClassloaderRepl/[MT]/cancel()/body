@@ -1,0 +1,14 @@
+{
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  Thread.currentThread().setContextClassLoader(cl);
+  try {
+    repl.cancel();
+  }
+ catch (  Exception e) {
+    throw new ReplException(e);
+  }
+ finally {
+    cl=Thread.currentThread().getContextClassLoader();
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+}

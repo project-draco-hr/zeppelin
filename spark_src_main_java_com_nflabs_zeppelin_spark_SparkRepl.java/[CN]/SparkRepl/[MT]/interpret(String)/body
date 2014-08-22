@@ -1,12 +1,16 @@
 {
-  scala.tools.nsc.interpreter.Results.Result r=intp.interpret(st);
-  if (r instanceof scala.tools.nsc.interpreter.Results.Success$) {
-    return Result.SUCCESS;
-  }
- else   if (r instanceof scala.tools.nsc.interpreter.Results.Incomplete$) {
-    return Result.INCOMPLETE;
-  }
- else {
-    return Result.ERROR;
+synchronized (this) {
+    String[] stmts=st.split("\n");
+    sc.setJobGroup(jobGroup,"Zeppelin",false);
+    Result r=null;
+    for (    String s : stmts) {
+      r=getResult(intp.interpret(s));
+      if (r == Result.ERROR) {
+        sc.clearJobGroup();
+        return r;
+      }
+    }
+    sc.clearJobGroup();
+    return r;
   }
 }
