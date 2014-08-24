@@ -1,4 +1,3 @@
 String dirName
 String className
-Reader reader
-Writer writer
+Properties property

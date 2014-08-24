@@ -1,5 +1,4 @@
 {
-  ByteArrayOutputStream out=new ByteArrayOutputStream();
-  repl=new SparkRepl(new StringReader(""),new PrintWriter(new OutputStreamWriter(out)));
+  repl=new SparkRepl(new Properties());
   repl.initialize();
 }

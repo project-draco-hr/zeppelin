@@ -1,7 +1,7 @@
 {
   Settings settings=new Settings();
   settings.classpath().value_$eq(System.getProperty("java.class.path"));
-  this.interpreter=new SparkILoop(new BufferedReader(getReader()),new PrintWriter(getWriter()));
+  this.interpreter=new SparkILoop(null,new PrintWriter(out));
   interpreter.settings_$eq(settings);
   interpreter.createInterpreter();
   intp=interpreter.intp();

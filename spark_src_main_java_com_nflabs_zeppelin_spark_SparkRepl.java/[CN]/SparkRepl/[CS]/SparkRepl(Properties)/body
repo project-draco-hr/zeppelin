@@ -1,0 +1,4 @@
+{
+  super(property);
+  out=new ByteArrayOutputStream();
+}

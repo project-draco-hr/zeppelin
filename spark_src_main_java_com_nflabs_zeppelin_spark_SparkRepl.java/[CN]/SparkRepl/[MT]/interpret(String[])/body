@@ -1,0 +1,17 @@
+{
+synchronized (this) {
+    out.reset();
+    sc.setJobGroup(jobGroup,"Zeppelin",false);
+    Code r=null;
+    for (    String s : lines) {
+      scala.tools.nsc.interpreter.Results.Result res=intp.interpret(s);
+      r=getResultCode(res);
+      if (r == Code.ERROR) {
+        sc.clearJobGroup();
+        return new ReplResult(r,out.toString());
+      }
+    }
+    sc.clearJobGroup();
+    return new ReplResult(r,out.toString());
+  }
+}
