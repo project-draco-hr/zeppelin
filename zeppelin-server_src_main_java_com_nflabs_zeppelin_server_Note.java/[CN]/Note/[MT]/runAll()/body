@@ -1,0 +1,7 @@
+{
+  for (  Paragraph p : paragraphs) {
+    p.setRepls(repls);
+    p.setListener(this);
+    scheduler.submit(p);
+  }
+}

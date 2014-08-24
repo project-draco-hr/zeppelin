@@ -1,0 +1,6 @@
+{
+  Paragraph p=getParagraph(paragraphId);
+  p.setRepls(repls);
+  p.setListener(this);
+  scheduler.submit(p);
+}

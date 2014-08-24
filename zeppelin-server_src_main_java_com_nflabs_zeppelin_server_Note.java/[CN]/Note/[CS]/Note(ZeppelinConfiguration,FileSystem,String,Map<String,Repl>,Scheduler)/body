@@ -1,0 +1,8 @@
+{
+  this.conf=conf;
+  this.fs=fs;
+  this.name=name;
+  this.repls=repls;
+  this.scheduler=scheduler;
+  generateId();
+}

@@ -1,0 +1,5 @@
+{
+  super(generateId(),listener);
+  this.repls=repls;
+  paragraph=null;
+}

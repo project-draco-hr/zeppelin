@@ -1,0 +1,5 @@
+{
+  Repl repl=repls.get(getRequiredReplName());
+  repl.cancel();
+  return true;
+}

@@ -1,0 +1,12 @@
+{
+  Map<String,Repl> repls=new HashMap<String,Repl>();
+  Repl spark=replFactory.createRepl("spark");
+  spark.initialize();
+  repls.put("spark",spark);
+  Scheduler scheduler=schedulerFactory.createOrGetFIFOScheduler("note_" + System.currentTimeMillis());
+  Note note=new Note(conf,fs,"Untitled Note " + notes.size(),repls,scheduler);
+synchronized (notes) {
+    notes.put(note.id(),note);
+  }
+  return note;
+}

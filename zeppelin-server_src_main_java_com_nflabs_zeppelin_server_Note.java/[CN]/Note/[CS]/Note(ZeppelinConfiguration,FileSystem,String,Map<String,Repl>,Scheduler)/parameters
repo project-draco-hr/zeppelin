@@ -1,0 +1,5 @@
+ZeppelinConfiguration conf
+FileSystem fs
+String name
+Map<String,Repl> repls
+Scheduler scheduler

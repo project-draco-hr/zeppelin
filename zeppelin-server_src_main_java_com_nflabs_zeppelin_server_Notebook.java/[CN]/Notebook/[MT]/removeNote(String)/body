@@ -1,0 +1,6 @@
+{
+  Note note;
+synchronized (notes) {
+    note=notes.remove(id);
+  }
+}

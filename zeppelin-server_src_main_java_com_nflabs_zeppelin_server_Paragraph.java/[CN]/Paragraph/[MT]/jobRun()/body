@@ -1,0 +1,5 @@
+{
+  Repl repl=repls.get(getRequiredReplName());
+  ReplResult ret=repl.interpret(paragraph);
+  return ret;
+}
