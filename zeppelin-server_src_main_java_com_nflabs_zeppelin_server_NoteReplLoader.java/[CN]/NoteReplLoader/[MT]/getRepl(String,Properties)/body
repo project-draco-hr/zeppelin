@@ -1,0 +1,12 @@
+{
+synchronized (loadedRepls) {
+    if (loadedRepls.containsKey(name)) {
+      return loadedRepls.get(name);
+    }
+ else {
+      Repl repl=factory.createRepl(name,properties);
+      loadedRepls.put(name,repl);
+      return repl;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   for (  Paragraph p : paragraphs) {
-    p.setRepls(repls);
+    p.setNoteReplLoader(replLoader);
     p.setListener(this);
     scheduler.submit(p);
   }

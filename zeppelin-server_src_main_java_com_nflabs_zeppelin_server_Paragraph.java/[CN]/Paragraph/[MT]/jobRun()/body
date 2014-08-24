@@ -1,5 +1,5 @@
 {
-  Repl repl=repls.get(getRequiredReplName());
+  Repl repl=getRepl(getRequiredReplName(),new Properties());
   ReplResult ret=repl.interpret(paragraph);
   return ret;
 }

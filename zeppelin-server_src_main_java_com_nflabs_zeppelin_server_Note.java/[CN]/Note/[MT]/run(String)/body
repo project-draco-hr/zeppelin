@@ -1,6 +1,6 @@
 {
   Paragraph p=getParagraph(paragraphId);
-  p.setRepls(repls);
+  p.setNoteReplLoader(replLoader);
   p.setListener(this);
   scheduler.submit(p);
 }

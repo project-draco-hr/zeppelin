@@ -1,8 +1,0 @@
-{
-  if (replName.equals("spark")) {
-    return createRepl("spark","com.nflabs.zeppelin.spark.SparkRepl",new Properties());
-  }
- else {
-    throw new RuntimeException("Unsupported repl " + replName);
-  }
-}

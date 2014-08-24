@@ -1,0 +1,5 @@
+String id
+ZeppelinConfiguration conf
+FileSystem fs
+ReplFactory replFactory
+Scheduler scheduler
