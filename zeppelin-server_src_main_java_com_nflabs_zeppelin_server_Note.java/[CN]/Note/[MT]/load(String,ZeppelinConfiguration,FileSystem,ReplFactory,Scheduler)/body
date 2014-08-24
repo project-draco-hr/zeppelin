@@ -3,11 +3,12 @@
   gsonBuilder.setPrettyPrinting();
   Gson gson=gsonBuilder.create();
   Path file=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
+  logger().info("Load note {} from {}",id,file.toUri());
   if (!fs.isFile(file)) {
     return null;
   }
   FSDataInputStream ins=fs.open(file);
-  String json=IOUtils.toString(ins,conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR));
+  String json=IOUtils.toString(ins,conf.getString(ConfVars.ZEPPELIN_ENCODING));
   Note note=gson.fromJson(json,Note.class);
   note.setZeppelinConfiguration(conf);
   note.setFileSystem(fs);

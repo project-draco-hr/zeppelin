@@ -1,0 +1,7 @@
+{
+  if (paragraph == null)   return null;
+  String magic=getRequiredReplName();
+  if (magic == null)   return paragraph;
+  if (magic.length() + 2 >= paragraph.length())   return "";
+  return paragraph.substring(magic.length() + 2);
+}

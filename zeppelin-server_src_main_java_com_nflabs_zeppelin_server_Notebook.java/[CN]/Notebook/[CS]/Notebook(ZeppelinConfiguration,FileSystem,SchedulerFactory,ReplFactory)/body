@@ -3,4 +3,5 @@
   this.fs=fs;
   this.schedulerFactory=schedulerFactory;
   this.replFactory=replFactory;
+  loadAllNotes();
 }

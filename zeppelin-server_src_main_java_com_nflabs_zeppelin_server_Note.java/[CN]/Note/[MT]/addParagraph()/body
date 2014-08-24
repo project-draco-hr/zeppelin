@@ -1,0 +1,7 @@
+{
+  Paragraph p=new Paragraph(this,replLoader);
+synchronized (paragraphs) {
+    paragraphs.add(p);
+  }
+  return p;
+}

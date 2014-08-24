@@ -1,0 +1,11 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdirs();
+  notebookDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/notebook");
+  notebookDir.mkdirs();
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
+  conf=ZeppelinConfiguration.create();
+  fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
+  this.schedulerFactory=new SchedulerFactory();
+  notebook=new Notebook(conf,fs,schedulerFactory,new MockReplFactory(conf));
+}

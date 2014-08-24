@@ -1,5 +1,9 @@
 {
   Repl repl=getRepl(getRequiredReplName(),new Properties());
-  ReplResult ret=repl.interpret(paragraph);
+  if (repl == null) {
+    logger().error("Can not find interpreter name " + getRequiredReplName());
+    throw new RuntimeException("Can not find interpreter for " + getRequiredReplName());
+  }
+  ReplResult ret=repl.interpret(getScriptBody());
   return ret;
 }

@@ -1,0 +1,5 @@
+{
+synchronized (notes) {
+    return new LinkedList<Note>(notes.values());
+  }
+}

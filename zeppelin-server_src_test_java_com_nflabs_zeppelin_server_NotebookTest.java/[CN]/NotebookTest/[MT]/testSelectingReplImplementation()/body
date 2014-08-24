@@ -1,0 +1,13 @@
+{
+  Note note=notebook.createNote();
+  Paragraph p1=note.addParagraph();
+  p1.setParagraph("hello world");
+  note.run(p1.getId());
+  while (p1.isTerminated() == false)   Thread.yield();
+  assertEquals("repl1: hello world",p1.getResult().message());
+  Paragraph p2=note.addParagraph();
+  p2.setParagraph("%MockRepl2 hello world");
+  note.run(p2.getId());
+  while (p2.isTerminated() == false)   Thread.yield();
+  assertEquals("repl2: hello world",p2.getResult().message());
+}

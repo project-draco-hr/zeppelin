@@ -1,5 +1,5 @@
 {
-  String className=replNameClassMap.get(replName);
+  String className=replNameClassMap.get(replName != null ? replName : defaultReplName);
   if (className == null) {
     throw new RuntimeException("Configuration not found for " + replName);
   }

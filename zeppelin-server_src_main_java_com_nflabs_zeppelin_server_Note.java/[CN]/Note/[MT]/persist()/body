@@ -10,6 +10,7 @@
     throw new RuntimeException("File already exists" + dir.toString());
   }
   Path file=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
+  logger().info("Persist note {} into {}",id,file.toUri());
   String json=gson.toJson(this);
   FSDataOutputStream out;
   out=fs.create(file,true);

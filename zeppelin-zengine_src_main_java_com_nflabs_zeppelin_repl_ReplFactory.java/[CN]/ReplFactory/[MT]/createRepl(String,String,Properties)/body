@@ -1,5 +1,5 @@
 {
-  logger.info("Create {} repl",className);
+  logger.info("Create repl {} from {}",className,dirName);
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   try {
     logger.info("Reading " + conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/"+ dirName);
@@ -9,7 +9,7 @@
     Thread.currentThread().setContextClassLoader(cl);
     Class<Repl> replClass=(Class<Repl>)cl.loadClass(className);
     Constructor<Repl> constructor=replClass.getConstructor(new Class[]{Properties.class});
-    Repl repl=constructor.newInstance();
+    Repl repl=constructor.newInstance(property);
     return new ClassloaderRepl(repl,cl,property);
   }
  catch (  SecurityException e) {

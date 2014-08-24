@@ -1,7 +1,9 @@
 {
-  for (  Paragraph p : paragraphs) {
-    p.setNoteReplLoader(replLoader);
-    p.setListener(this);
-    scheduler.submit(p);
+synchronized (paragraphs) {
+    for (    Paragraph p : paragraphs) {
+      p.setNoteReplLoader(replLoader);
+      p.setListener(this);
+      scheduler.submit(p);
+    }
   }
 }

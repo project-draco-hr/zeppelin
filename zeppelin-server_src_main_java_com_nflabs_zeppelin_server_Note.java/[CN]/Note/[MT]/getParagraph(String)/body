@@ -1,7 +1,9 @@
 {
-  for (  Paragraph p : paragraphs) {
-    if (p.getId().equals(paragraphId)) {
-      return p;
+synchronized (paragraphs) {
+    for (    Paragraph p : paragraphs) {
+      if (p.getId().equals(paragraphId)) {
+        return p;
+      }
     }
   }
   return null;

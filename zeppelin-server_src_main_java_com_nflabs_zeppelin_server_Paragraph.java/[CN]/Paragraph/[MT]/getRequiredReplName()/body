@@ -1,20 +1,19 @@
 {
   if (paragraph == null)   return null;
-  String magic=null;
+  int scriptHeadIndex=0;
   for (int i=0; i < paragraph.length(); i++) {
-    int ch=paragraph.charAt(i);
-    if (!(i == 0 && ch == '%')) {
-      break;
-    }
- else {
-      magic="";
-    }
+    char ch=paragraph.charAt(i);
     if (ch == ' ' || ch == '\n') {
+      scriptHeadIndex=i;
       break;
-    }
- else {
-      magic+=ch;
     }
   }
-  return magic;
+  if (scriptHeadIndex == 0)   return null;
+  String head=paragraph.substring(0,scriptHeadIndex);
+  if (head.startsWith("%")) {
+    return head.substring(1);
+  }
+ else {
+    return null;
+  }
 }

@@ -1,0 +1,11 @@
+{
+  if ("MockRepl1".equals(replName) || replName == null) {
+    return new MockRepl1(properties);
+  }
+ else   if ("MockRepl2".equals(replName)) {
+    return new MockRepl2(properties);
+  }
+ else {
+    return null;
+  }
+}
