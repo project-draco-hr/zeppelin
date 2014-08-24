@@ -1,0 +1,6 @@
+{
+  Markdown md=new Markdown(new Properties());
+  md.initialize();
+  ReplResult result=md.interpret("This is ~~deleted~~ text");
+  assertEquals("<p>This is <s>deleted</s> text</p>\n",result.message());
+}
