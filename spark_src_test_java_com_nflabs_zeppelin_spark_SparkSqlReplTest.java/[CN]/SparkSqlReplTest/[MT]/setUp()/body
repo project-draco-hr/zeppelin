@@ -1,0 +1,7 @@
+{
+  repl=new SparkRepl(new Properties());
+  repl.initialize();
+  sql=new SparkSqlRepl(new Properties());
+  sql.setSparkRepl(repl);
+  sql.initialize();
+}

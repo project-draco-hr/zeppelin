@@ -1,8 +1,7 @@
 {
   this.conf=conf;
   this.fs=fs;
-  this.name=name;
-  this.replLoader=new NoteReplLoader(replFactory);
+  this.replLoader=replLoader;
   this.scheduler=scheduler;
   generateId();
 }

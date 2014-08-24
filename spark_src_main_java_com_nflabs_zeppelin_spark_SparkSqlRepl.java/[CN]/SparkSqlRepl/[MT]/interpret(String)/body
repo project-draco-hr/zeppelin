@@ -1,0 +1,10 @@
+{
+  String valName="zpSqlReplResult" + this.hashCode() + "_"+ num.getAndIncrement();
+  String escaped=st.replaceAll("\"","\\\"");
+  ReplResult ret=sparkRepl.interpret("val " + valName + " = collection.convert.wrapAll.asJavaCollection(sqlc.sql(\""+ escaped+ "\").take(10000))");
+  if (ret.code() != ReplResult.Code.SUCCESS) {
+    return ret;
+  }
+  Collection<Row> values=(Collection<Row>)sparkRepl.getValue(valName);
+  return new ReplResult(ret.code(),ret.message(),(Serializable)values);
+}

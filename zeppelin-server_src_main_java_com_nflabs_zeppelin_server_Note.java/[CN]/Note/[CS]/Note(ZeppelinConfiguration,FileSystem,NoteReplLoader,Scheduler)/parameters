@@ -1,5 +1,4 @@
 ZeppelinConfiguration conf
 FileSystem fs
-String name
-ReplFactory replFactory
+NoteReplLoader replLoader
 Scheduler scheduler

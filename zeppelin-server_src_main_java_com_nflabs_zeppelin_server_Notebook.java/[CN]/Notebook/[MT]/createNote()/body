@@ -1,6 +1,6 @@
 {
   Scheduler scheduler=schedulerFactory.createOrGetFIFOScheduler("note_" + System.currentTimeMillis());
-  Note note=new Note(conf,fs,"Untitled Note " + notes.size(),replFactory,scheduler);
+  Note note=new Note(conf,fs,new NoteReplLoader(replFactory),scheduler);
 synchronized (notes) {
     notes.put(note.id(),note);
   }

@@ -1,0 +1,9 @@
+{
+  repl.interpret("case class Person(name:String, age:Int)");
+  repl.interpret("val people = sc.parallelize(Seq(Person(\"moon\", 33), Person(\"jobs\", 51), Person(\"gates\", 51), Person(\"park\", 34)))");
+  repl.interpret("people.registerAsTable(\"people\")");
+  ReplResult ret=sql.interpret("select name, age from people where age < 40");
+  assertEquals(ReplResult.Code.SUCCESS,ret.code());
+  Collection<Row> data=(Collection<Row>)ret.data();
+  assertEquals(2,data.size());
+}

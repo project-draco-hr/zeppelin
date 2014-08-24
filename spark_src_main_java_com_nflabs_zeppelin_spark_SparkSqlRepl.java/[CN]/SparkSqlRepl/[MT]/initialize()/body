@@ -1,0 +1,4 @@
+{
+  Map<String,Repl> repls=(Map<String,Repl>)this.getProperty().get("repls");
+  sparkRepl=repls.get("spark");
+}

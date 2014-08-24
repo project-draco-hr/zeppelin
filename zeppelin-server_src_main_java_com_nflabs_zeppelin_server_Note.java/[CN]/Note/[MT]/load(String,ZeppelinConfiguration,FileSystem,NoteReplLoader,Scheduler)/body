@@ -12,7 +12,7 @@
   Note note=gson.fromJson(json,Note.class);
   note.setZeppelinConfiguration(conf);
   note.setFileSystem(fs);
-  note.setReplLoader(new NoteReplLoader(replFactory));
+  note.setReplLoader(replLoader);
   note.setScheduler(scheduler);
   return note;
 }

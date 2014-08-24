@@ -7,9 +7,10 @@
   intp=interpreter.intp();
   intp.initializeSynchronous();
 synchronized (sparkContextCreationLock) {
-    if (sc == null) {
-      this.sc=interpreter.createSparkContext();
-    }
+    intp.interpret("@transient val sc = com.nflabs.zeppelin.spark.SparkRepl.interpreter.createSparkContext()\n");
+    intp.interpret("import org.apache.spark.SparkContext._");
+    intp.interpret("val sqlc = new org.apache.spark.sql.SQLContext(sc)");
+    intp.interpret("import sqlc.createSchemaRDD");
+    sc=(SparkContext)getValue("sc");
   }
-  intp.bindValue("sc",sc);
 }
