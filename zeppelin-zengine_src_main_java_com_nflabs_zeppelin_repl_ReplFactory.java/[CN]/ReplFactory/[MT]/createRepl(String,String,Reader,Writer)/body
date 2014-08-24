@@ -1,10 +1,12 @@
 {
   logger.info("Create {} repl",className);
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
-  URL[] urls=new URL[]{};
-  URLClassLoader cl=new URLClassLoader(urls,oldcl);
-  Thread.currentThread().setContextClassLoader(cl);
   try {
+    logger.info("Reading " + conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/"+ dirName);
+    File path=new File(conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/" + dirName);
+    URL[] urls=recursiveBuildLibList(path);
+    URLClassLoader cl=new URLClassLoader(urls,oldcl);
+    Thread.currentThread().setContextClassLoader(cl);
     Class<Repl> replClass=(Class<Repl>)cl.loadClass(className);
     Constructor<Repl> constructor=replClass.getConstructor(new Class[]{Reader.class,Writer.class});
     Repl repl=constructor.newInstance(reader,writer);
@@ -29,6 +31,9 @@ catch (  InvocationTargetException e) {
     throw new ReplException(e);
   }
 catch (  ClassNotFoundException e) {
+    throw new ReplException(e);
+  }
+catch (  MalformedURLException e) {
     throw new ReplException(e);
   }
  finally {

@@ -5,6 +5,7 @@
     return repl.interpret(st);
   }
  catch (  Exception e) {
+    e.printStackTrace();
     throw new ReplException(e);
   }
  finally {
