@@ -1,0 +1,3 @@
+{
+  LOG.info("Closed connection to " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+}

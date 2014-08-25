@@ -1,0 +1,3 @@
+{
+  LOG.info("New connection from " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+}

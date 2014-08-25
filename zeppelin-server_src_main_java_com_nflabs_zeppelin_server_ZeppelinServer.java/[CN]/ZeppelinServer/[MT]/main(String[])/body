@@ -2,6 +2,7 @@
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
   final Server server=setupJettyServer(port);
+  final com.nflabs.zeppelin.socket.Notebook websocket=new com.nflabs.zeppelin.socket.Notebook(port + 1);
   final ServletContextHandler restApi=setupRestApiContextHandler();
   final ServletContextHandler swagger=setupSwaggerContextHandler(port);
   final WebAppContext webApp=setupWebAppContext(conf);
@@ -9,6 +10,7 @@
   ContextHandlerCollection contexts=new ContextHandlerCollection();
   contexts.setHandlers(new Handler[]{swagger,restApi,webApp,webAppSwagg});
   server.setHandler(contexts);
+  websocket.start();
   LOG.info("Start zeppelin server");
   server.start();
   LOG.info("Started");
@@ -17,6 +19,7 @@
       LOG.info("Shutting down Zeppelin Server ... ");
       try {
         server.stop();
+        websocket.stop();
       }
  catch (      Exception e) {
         LOG.error("Error while stopping servlet container",e);
