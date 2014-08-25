@@ -2,4 +2,5 @@
   super(generateId(),listener);
   this.replLoader=replLoader;
   paragraph=null;
+  form=new Form();
 }
