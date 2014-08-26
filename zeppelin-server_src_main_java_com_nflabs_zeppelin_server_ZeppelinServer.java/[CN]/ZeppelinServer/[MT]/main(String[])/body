@@ -1,8 +1,9 @@
 {
-  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  z=new Zengine();
+  ZeppelinConfiguration conf=z.getConf();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
   final Server server=setupJettyServer(port);
-  final com.nflabs.zeppelin.socket.Notebook websocket=new com.nflabs.zeppelin.socket.Notebook(port + 1);
+  final com.nflabs.zeppelin.socket.NotebookServer websocket=new com.nflabs.zeppelin.socket.NotebookServer(port + 1);
   final ServletContextHandler restApi=setupRestApiContextHandler();
   final ServletContextHandler swagger=setupSwaggerContextHandler(port);
   final WebAppContext webApp=setupWebAppContext(conf);

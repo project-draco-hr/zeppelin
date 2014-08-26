@@ -1,0 +1,22 @@
+{
+  Notebook notebook=ZeppelinServer.notebook;
+  try {
+    Message m=deserializeMessage(msg);
+    LOG.info("[OP] -- " + m.op + " --");
+    if (m.op == OP.GET_NOTE) {
+      String noteId=(String)m.get("id");
+      Note note=notebook.getNote(noteId);
+      conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+    }
+ else     if (m.op == OP.NEW_NOTE) {
+      Note note=notebook.createNote();
+      conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+    }
+ else {
+      LOG.error("Unsupported operation {}",m.op);
+    }
+  }
+ catch (  Exception e) {
+    LOG.error("Can't handle message",e);
+  }
+}
