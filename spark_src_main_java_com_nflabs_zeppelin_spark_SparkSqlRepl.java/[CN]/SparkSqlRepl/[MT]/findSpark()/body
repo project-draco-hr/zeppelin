@@ -1,4 +1,5 @@
 {
+  if (sparkClassloaderRepl != null)   return;
   Map<String,Repl> repls=(Map<String,Repl>)this.getProperty().get("repls");
   if (repls != null) {
     sparkClassloaderRepl=(ClassloaderRepl)repls.get("spark");

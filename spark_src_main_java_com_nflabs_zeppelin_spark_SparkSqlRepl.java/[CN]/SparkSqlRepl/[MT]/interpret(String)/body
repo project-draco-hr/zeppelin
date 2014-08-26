@@ -1,5 +1,6 @@
 {
-  SQLContext sqlc=sparkRepl.getSQLContext();
+  findSpark();
+  SQLContext sqlc=((SparkRepl)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
   SchemaRDD rdd=sqlc.sql(st);
   Row[] rows=null;
   try {

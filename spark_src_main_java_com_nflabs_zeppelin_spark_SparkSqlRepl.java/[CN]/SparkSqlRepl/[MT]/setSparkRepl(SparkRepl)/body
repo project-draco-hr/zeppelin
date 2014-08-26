@@ -1,3 +1,0 @@
-{
-  this.sparkRepl=(SparkRepl)repl;
-}
