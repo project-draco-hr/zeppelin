@@ -1,0 +1,8 @@
+{
+synchronized (noteSocketMap) {
+    List<WebSocket> socketList=noteSocketMap.get(noteId);
+    if (socketList != null) {
+      socketList.remove(socket);
+    }
+  }
+}

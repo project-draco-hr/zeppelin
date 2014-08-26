@@ -1,0 +1,5 @@
+{
+synchronized (paragraphs) {
+    return paragraphs.get(paragraphs.size() - 1);
+  }
+}

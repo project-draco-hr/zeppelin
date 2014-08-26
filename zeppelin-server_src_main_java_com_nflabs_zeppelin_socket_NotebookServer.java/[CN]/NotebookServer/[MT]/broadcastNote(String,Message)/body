@@ -1,0 +1,9 @@
+{
+  LOG.info("SEND >> " + m.op);
+synchronized (noteSocketMap) {
+    List<WebSocket> socketLists=noteSocketMap.get(noteId);
+    for (    WebSocket conn : socketLists) {
+      conn.send(serializeMessage(m));
+    }
+  }
+}

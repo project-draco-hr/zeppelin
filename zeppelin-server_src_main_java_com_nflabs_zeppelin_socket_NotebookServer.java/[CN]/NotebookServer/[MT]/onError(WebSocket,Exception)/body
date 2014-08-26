@@ -1,2 +1,6 @@
 {
+  removeConnectionFromAllNote(conn);
+synchronized (connectedSockets) {
+    connectedSockets.remove(conn);
+  }
 }

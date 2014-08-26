@@ -1,16 +1,47 @@
 {
-  Notebook notebook=ZeppelinServer.notebook;
+  Notebook notebook=notebook();
   try {
     Message m=deserializeMessage(msg);
-    LOG.info("[OP] -- " + m.op + " --");
+    LOG.info("RECEIVE << " + m.op);
     if (m.op == OP.GET_NOTE) {
       String noteId=(String)m.get("id");
       Note note=notebook.getNote(noteId);
+      addConnectionToNote(note.id(),conn);
       conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
     }
  else     if (m.op == OP.NEW_NOTE) {
       Note note=notebook.createNote();
-      conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+      note.addParagraph();
+      addConnectionToNote(note.id(),conn);
+      broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+      broadcastNoteList();
+    }
+ else     if (m.op == OP.RUN_PARAGRAPH) {
+      String paragraphId=(String)m.get("id");
+      final Note note=notebook.getNote(getOpenNoteId(conn));
+      Paragraph p=note.getParagraph(paragraphId);
+      p.setParagraph((String)m.get("paragraph"));
+      if (note.getLastParagraph().getId().equals(p.getId())) {
+        note.addParagraph();
+      }
+      broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+      note.run(paragraphId,new JobListener(){
+        @Override public void beforeStatusChange(        Job job,        Status before,        Status after){
+        }
+        @Override public void afterStatusChange(        Job job,        Status before,        Status after){
+          if (after == Status.ERROR) {
+            job.getException().printStackTrace();
+          }
+          if (job.isTerminated()) {
+            LOG.info("Job {} is finished",job.getId());
+            broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+          }
+        }
+      }
+);
+    }
+ else     if (m.op == OP.LIST_NOTES) {
+      broadcastNoteList();
     }
  else {
       LOG.error("Unsupported operation {}",m.op);
