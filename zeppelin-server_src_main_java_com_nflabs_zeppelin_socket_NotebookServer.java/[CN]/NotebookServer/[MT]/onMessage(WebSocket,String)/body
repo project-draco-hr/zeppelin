@@ -12,6 +12,7 @@
  else     if (m.op == OP.NEW_NOTE) {
       Note note=notebook.createNote();
       note.addParagraph();
+      note.persist();
       addConnectionToNote(note.id(),conn);
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
       broadcastNoteList();
@@ -24,6 +25,7 @@
       if (note.getLastParagraph().getId().equals(p.getId())) {
         note.addParagraph();
       }
+      note.persist();
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
       note.run(paragraphId,new JobListener(){
         @Override public void beforeStatusChange(        Job job,        Status before,        Status after){
@@ -34,6 +36,12 @@
           }
           if (job.isTerminated()) {
             LOG.info("Job {} is finished",job.getId());
+            try {
+              note.persist();
+            }
+ catch (            IOException e) {
+              e.printStackTrace();
+            }
             broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
           }
         }
