@@ -18,6 +18,15 @@
       return "";
     }
   }
+ else   if (msg.startsWith("%table ")) {
+    int magicLength="%table ".length();
+    if (msg.length() > magicLength) {
+      return msg.substring(magicLength);
+    }
+ else {
+      return "";
+    }
+  }
  else {
     return msg;
   }

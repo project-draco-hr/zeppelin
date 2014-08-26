@@ -1,10 +1,59 @@
 {
-  String valName="zpSqlReplResult" + this.hashCode() + "_"+ num.getAndIncrement();
-  String escaped=st.replaceAll("\"","\\\"");
-  ReplResult ret=sparkRepl.interpret("val " + valName + " = collection.convert.wrapAll.asJavaCollection(sqlc.sql(\""+ escaped+ "\").take(10000))");
-  if (ret.code() != ReplResult.Code.SUCCESS) {
-    return ret;
+  SQLContext sqlc=sparkRepl.getSQLContext();
+  SchemaRDD rdd=sqlc.sql(st);
+  Row[] rows=null;
+  try {
+    rows=rdd.take(10000);
   }
-  Collection<Row> values=(Collection<Row>)sparkRepl.getValue(valName);
-  return new ReplResult(ret.code(),ret.message(),(Serializable)values);
+ catch (  Exception e) {
+    return new ReplResult(Code.ERROR,e.getMessage());
+  }
+  String msg=null;
+  List<Attribute> columns=scala.collection.JavaConverters.asJavaListConverter(rdd.queryExecution().analyzed().output()).asJava();
+  for (  Attribute col : columns) {
+    if (msg == null) {
+      msg=col.name();
+    }
+ else {
+      msg+="\t" + col.name();
+    }
+  }
+  msg+="\n";
+  for (  Row row : rows) {
+    for (int i=0; i < columns.size(); i++) {
+      String type=columns.get(i).dataType().toString();
+      if ("BooleanType".equals(type)) {
+        msg+=row.getBoolean(i);
+      }
+ else       if ("DecimalType".equals(type)) {
+        msg+=row.getInt(i);
+      }
+ else       if ("DoubleType".equals(type)) {
+        msg+=row.getDouble(i);
+      }
+ else       if ("FloatType".equals(type)) {
+        msg+=row.getFloat(i);
+      }
+ else       if ("LongType".equals(type)) {
+        msg+=row.getLong(i);
+      }
+ else       if ("IntegerType".equals(type)) {
+        msg+=row.getInt(i);
+      }
+ else       if ("ShortType".equals(type)) {
+        msg+=row.getShort(i);
+      }
+ else       if ("StringType".equals(type)) {
+        msg+=row.getString(i);
+      }
+ else {
+        msg+=row.getString(i);
+      }
+      if (i != columns.size() - 1) {
+        msg+="\t";
+      }
+    }
+    msg+="\n";
+  }
+  return new ReplResult(Code.SUCCESS,"%table " + msg);
 }

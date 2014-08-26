@@ -17,5 +17,6 @@ synchronized (sparkContextCreationLock) {
     intp.interpret("val sqlc = new org.apache.spark.sql.SQLContext(sc)");
     intp.interpret("import sqlc.createSchemaRDD");
     sc=(SparkContext)getValue("sc");
+    sqlc=(SQLContext)getValue("sqlc");
   }
 }
