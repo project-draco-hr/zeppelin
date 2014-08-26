@@ -4,4 +4,5 @@
   assertEquals(2,repl.getValue("b"));
   repl.interpret("val ver = sc.version");
   assertNotNull(repl.getValue("ver"));
+  assertEquals("HELLO\n",repl.interpret("println(\"HELLO\")").message());
 }
