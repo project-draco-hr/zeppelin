@@ -1,0 +1,24 @@
+{
+  if (msg == null)   return null;
+  if (msg.startsWith("%html ")) {
+    int magicLength="%html ".length();
+    if (msg.length() > magicLength) {
+      return msg.substring(magicLength);
+    }
+ else {
+      return "";
+    }
+  }
+ else   if (msg.startsWith("%text ")) {
+    int magicLength="%text ".length();
+    if (msg.length() > magicLength) {
+      return msg.substring(magicLength);
+    }
+ else {
+      return "";
+    }
+  }
+ else {
+    return msg;
+  }
+}

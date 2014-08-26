@@ -1,0 +1,12 @@
+{
+  if (msg == null)   return Type.TEXT;
+  if (msg.startsWith("%html ")) {
+    return Type.HTML;
+  }
+ else   if (msg.startsWith("%text ")) {
+    return Type.TEXT;
+  }
+ else {
+    return Type.TEXT;
+  }
+}
