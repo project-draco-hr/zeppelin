@@ -13,7 +13,6 @@
       Note note=notebook.createNote();
       note.addParagraph();
       note.persist();
-      addConnectionToNote(note.id(),conn);
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
       broadcastNoteList();
     }

@@ -2,6 +2,7 @@
   LOG.info("SEND >> " + m.op);
 synchronized (noteSocketMap) {
     List<WebSocket> socketLists=noteSocketMap.get(noteId);
+    if (socketLists == null || socketLists.size() == 0)     return;
     for (    WebSocket conn : socketLists) {
       conn.send(serializeMessage(m));
     }

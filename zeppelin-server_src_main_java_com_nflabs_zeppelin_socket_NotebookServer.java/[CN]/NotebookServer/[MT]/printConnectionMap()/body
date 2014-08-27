@@ -1,0 +1,12 @@
+{
+synchronized (noteSocketMap) {
+    for (    Note n : notebook().getAllNotes()) {
+      System.out.println("Note " + n.id());
+      List<WebSocket> socketLists=noteSocketMap.get(n.id());
+      if (socketLists == null || socketLists.size() == 0)       return;
+      for (      WebSocket conn : socketLists) {
+        System.out.println("     - " + conn);
+      }
+    }
+  }
+}
