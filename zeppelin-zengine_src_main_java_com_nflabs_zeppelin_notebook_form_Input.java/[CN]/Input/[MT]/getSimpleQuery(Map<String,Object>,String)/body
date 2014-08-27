@@ -1,5 +1,5 @@
 {
-  String replaced=script.replace('\n',' ');
+  String replaced=script;
   for (  String key : params.keySet()) {
     Object value=params.get(key);
     replaced=replaced.replaceAll("[_]?[$][{]([^:]*[:])?" + key + "([(][^)]*[)])?(=[^}]*)?[}]",value.toString());
