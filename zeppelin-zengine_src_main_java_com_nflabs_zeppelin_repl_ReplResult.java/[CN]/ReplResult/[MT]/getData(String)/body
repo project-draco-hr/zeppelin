@@ -27,6 +27,15 @@
       return "";
     }
   }
+ else   if (msg.startsWith("%null ")) {
+    int magicLength="%null ".length();
+    if (msg.length() > magicLength) {
+      return msg.substring(magicLength);
+    }
+ else {
+      return "";
+    }
+  }
  else {
     return msg;
   }

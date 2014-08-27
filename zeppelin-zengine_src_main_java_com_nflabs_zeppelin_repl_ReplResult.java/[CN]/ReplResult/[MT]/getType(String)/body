@@ -9,6 +9,9 @@
  else   if (msg.startsWith("%table ")) {
     return Type.TABLE;
   }
+ else   if (msg.startsWith("%null ")) {
+    return Type.NULL;
+  }
  else {
     return Type.TEXT;
   }

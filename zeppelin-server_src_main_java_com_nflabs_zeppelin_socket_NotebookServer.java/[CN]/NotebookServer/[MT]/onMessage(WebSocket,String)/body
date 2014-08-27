@@ -17,6 +17,12 @@
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
       broadcastNoteList();
     }
+ else     if (m.op == OP.DEL_NOTE) {
+      String noteId=(String)m.get("id");
+      notebook.removeNote(noteId);
+      removeNote(noteId);
+      broadcastNoteList();
+    }
  else     if (m.op == OP.PARAGRAPH_PARAM) {
       String paragraphId=(String)m.get("id");
       Map<String,Object> params=(Map<String,Object>)m.get("params");

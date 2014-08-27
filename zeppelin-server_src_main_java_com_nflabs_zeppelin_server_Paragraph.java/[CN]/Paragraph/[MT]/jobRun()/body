@@ -6,6 +6,7 @@
     logger().error("Can not find interpreter name " + repl);
     throw new RuntimeException("Can not find interpreter for " + getRequiredReplName());
   }
+  form.clearForms();
   repl.bindValue("form",form);
   logger().info("RUN : " + getScriptBody());
   ReplResult ret=repl.interpret(getScriptBody());

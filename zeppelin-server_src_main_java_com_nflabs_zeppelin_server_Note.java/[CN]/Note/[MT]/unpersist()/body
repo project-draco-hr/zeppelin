@@ -1,0 +1,4 @@
+{
+  Path dir=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id);
+  fs.delete(dir,true);
+}
