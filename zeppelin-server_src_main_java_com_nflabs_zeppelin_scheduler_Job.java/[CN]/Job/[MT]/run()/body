@@ -15,8 +15,17 @@
       setStatus(Status.FINISHED);
     }
   }
- catch (  Throwable e) {
+ catch (  NullPointerException e) {
     this.exception=e;
+    result=null;
+    errorMessage=e.getMessage();
+    dateFinished=new Date();
+    setStatus(Status.ERROR);
+  }
+catch (  Throwable e) {
+    this.exception=e;
+    result=null;
+    errorMessage=e.getMessage();
     dateFinished=new Date();
     setStatus(Status.ERROR);
   }
