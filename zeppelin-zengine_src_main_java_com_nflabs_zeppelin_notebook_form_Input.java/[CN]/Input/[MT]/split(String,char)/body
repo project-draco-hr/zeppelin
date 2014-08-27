@@ -1,0 +1,3 @@
+{
+  return split(str,new String[]{String.valueOf(split)},false);
+}

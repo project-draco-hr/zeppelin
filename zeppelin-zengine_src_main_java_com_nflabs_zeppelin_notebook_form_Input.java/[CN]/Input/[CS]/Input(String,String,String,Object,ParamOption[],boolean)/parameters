@@ -1,0 +1,6 @@
+String name
+String displayName
+String type
+Object defaultValue
+ParamOption[] options
+boolean hidden

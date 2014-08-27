@@ -1,0 +1,9 @@
+{
+  super();
+  this.name=name;
+  this.displayName=displayName;
+  this.type=type;
+  this.defaultValue=defaultValue;
+  this.options=options;
+  this.hidden=hidden;
+}

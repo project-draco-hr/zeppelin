@@ -1,8 +1,0 @@
-{
-  Object value=params.get(id);
-  if (value == null) {
-    value=defaultValue;
-  }
-  forms.put(id,new Input(value));
-  return value;
-}

@@ -1,5 +1,6 @@
 {
 synchronized (this) {
+    intp.interpret("Console.setOut(_binder.get(\"out\").asInstanceOf[java.io.PrintStream])");
     out.reset();
     sc.setJobGroup(jobGroup,"Zeppelin",false);
     Code r=null;
