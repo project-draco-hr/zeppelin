@@ -1,5 +1,5 @@
 {
-  LOG.info("Closed connection to " + conn.getRemoteSocketAddress().getAddress().getHostAddress());
+  LOG.info("Closed connection to {} : {}",conn.getRemoteSocketAddress().getHostName(),conn.getRemoteSocketAddress().getPort());
   removeConnectionFromAllNote(conn);
 synchronized (connectedSockets) {
     connectedSockets.remove(conn);
