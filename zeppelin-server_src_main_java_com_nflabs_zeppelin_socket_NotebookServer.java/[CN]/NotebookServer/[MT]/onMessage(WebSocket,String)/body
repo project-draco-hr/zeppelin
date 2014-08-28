@@ -50,6 +50,7 @@
       p.form.setParams(params);
       if (note.getLastParagraph().getId().equals(p.getId())) {
         note.addParagraph();
+        broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
       }
       note.persist();
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
@@ -68,7 +69,7 @@
  catch (            IOException e) {
               e.printStackTrace();
             }
-            broadcastNote(note.id(),new Message(OP.PARAGRAPH).put("paragraph",note.getParagraph(paragraphId)));
+            broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
           }
  else {
             broadcastNote(note.id(),new Message(OP.PARAGRAPH).put("paragraph",note.getParagraph(paragraphId)));
