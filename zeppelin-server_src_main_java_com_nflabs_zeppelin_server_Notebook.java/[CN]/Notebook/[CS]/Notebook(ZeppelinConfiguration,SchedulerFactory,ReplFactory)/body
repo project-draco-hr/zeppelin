@@ -1,0 +1,6 @@
+{
+  this.conf=conf;
+  this.schedulerFactory=schedulerFactory;
+  this.replFactory=replFactory;
+  loadAllNotes();
+}

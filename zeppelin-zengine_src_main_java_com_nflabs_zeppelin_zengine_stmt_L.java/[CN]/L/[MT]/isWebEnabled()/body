@@ -1,9 +1,0 @@
-{
-  File resourcePath=new File(webDir,"index.erb");
-  if (resourcePath.isFile() == false) {
-    return super.isWebEnabled();
-  }
- else {
-    return true;
-  }
-}

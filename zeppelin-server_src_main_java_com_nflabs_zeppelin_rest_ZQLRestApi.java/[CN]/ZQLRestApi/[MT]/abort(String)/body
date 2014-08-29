@@ -1,7 +1,0 @@
-{
-  ZQLJob s=jobManager.abort(jobId);
-  if (s == null) {
-    return STATUS_NOT_FOUND;
-  }
-  return new JsonResponse<ZQLJob>(Status.OK,"",s).build();
-}

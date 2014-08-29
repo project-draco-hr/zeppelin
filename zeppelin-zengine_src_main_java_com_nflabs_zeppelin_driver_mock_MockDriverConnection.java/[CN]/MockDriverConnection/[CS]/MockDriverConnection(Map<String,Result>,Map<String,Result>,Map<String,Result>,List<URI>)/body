@@ -1,6 +1,0 @@
-{
-  this.queries=queries;
-  this.views=views;
-  this.tables=tables;
-  this.loadedResources=loadedResources;
-}

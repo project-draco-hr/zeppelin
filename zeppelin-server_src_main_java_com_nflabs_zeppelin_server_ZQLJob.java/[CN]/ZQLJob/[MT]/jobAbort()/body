@@ -1,8 +1,0 @@
-{
-  boolean result=true;
-  for (  Z zz : zqlPlans) {
-    result=zz.abort();
-    if (!result)     break;
-  }
-  return result;
-}

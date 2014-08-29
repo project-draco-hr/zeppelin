@@ -5,7 +5,6 @@
   notebookDir.mkdirs();
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
   conf=ZeppelinConfiguration.create();
-  fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
   this.schedulerFactory=new SchedulerFactory();
-  notebook=new Notebook(conf,fs,schedulerFactory,new MockReplFactory(conf));
+  notebook=new Notebook(conf,schedulerFactory,new MockReplFactory(conf));
 }

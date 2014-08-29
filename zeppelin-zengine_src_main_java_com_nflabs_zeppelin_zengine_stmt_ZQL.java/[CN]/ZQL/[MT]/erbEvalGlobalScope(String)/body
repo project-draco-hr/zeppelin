@@ -1,5 +1,0 @@
-{
-  ERBEvaluator evaluator=new ERBEvaluator();
-  ZGlobalContextImpl zcontext=new ZGlobalContextImpl();
-  return evaluator.eval(stmts,zcontext);
-}

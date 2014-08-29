@@ -1,6 +1,0 @@
-{
-  ZQL zql=new ZQL("ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'\n" + "'input.regex'='([^:]*......)\\\\s+(\\\\S+)\\\\s+([^\\\\[]*)[\\\\[][0-9]*[\\\\]][:]\\\\s+(.*)'");
-  ZPlan q=zql.compile();
-  assertEquals(1,q.size());
-  assertEquals("ROW FORMAT SERDE 'org.apache.hadoop.hive.contrib.serde2.RegexSerDe'\n" + "'input.regex'='([^:]*......)\\\\s+(\\\\S+)\\\\s+([^\\\\[]*)[\\\\[][0-9]*[\\\\]][:]\\\\s+(.*)'",q.get(0).getQuery());
-}

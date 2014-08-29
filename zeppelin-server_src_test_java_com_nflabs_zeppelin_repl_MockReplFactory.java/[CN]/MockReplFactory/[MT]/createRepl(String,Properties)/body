@@ -6,6 +6,6 @@
     return new MockRepl2(properties);
   }
  else {
-    return null;
+    return new MockRepl1(properties);
   }
 }

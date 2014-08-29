@@ -1,4 +1,0 @@
-{
-  ZQLJob s=jobManager.create();
-  return new JsonResponse<ZQLJob>(Status.OK,"",s).build();
-}

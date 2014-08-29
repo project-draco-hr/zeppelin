@@ -1,6 +1,0 @@
-{
-  this.zanRepo=zanRepo;
-  this.localPath=localPath;
-  this.remotePath=remotePath;
-  this.dfs=dfs;
-}

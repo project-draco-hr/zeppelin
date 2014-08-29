@@ -1,3 +1,0 @@
-{
-  return new MockDriverConnection(queries,views,tables,loadedResources);
-}

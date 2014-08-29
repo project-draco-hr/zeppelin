@@ -1,4 +1,0 @@
-{
-  ZANJob job=new ZANJob("Install " + libName,zan,ZANJob.Operation.INSTALL,libName,this);
-  scheduler.submit(job);
-}

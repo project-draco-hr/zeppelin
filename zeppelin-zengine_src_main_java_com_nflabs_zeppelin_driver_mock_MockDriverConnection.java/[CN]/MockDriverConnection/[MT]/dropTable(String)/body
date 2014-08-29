@@ -1,5 +1,0 @@
-{
-  logger.info("dropTable " + tableName);
-  tables.remove(tableName);
-  return new Result();
-}

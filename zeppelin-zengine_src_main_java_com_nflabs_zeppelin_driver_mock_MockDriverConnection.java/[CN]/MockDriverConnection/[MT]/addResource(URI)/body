@@ -1,4 +1,0 @@
-{
-  loadedResources.add(resourceLocation);
-  return null;
-}

@@ -1,4 +1,0 @@
-{
-  this.result=resultDataObject;
-  this.params=new HashMap<String,Object>();
-}

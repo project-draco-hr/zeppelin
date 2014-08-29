@@ -1,5 +1,0 @@
-{
-  this.name=name;
-  this.path=path;
-  status=Status.NOT_MANAGED;
-}

@@ -1,3 +1,0 @@
-{
-  throw new RuntimeException("Can not access z.arg in global context");
-}

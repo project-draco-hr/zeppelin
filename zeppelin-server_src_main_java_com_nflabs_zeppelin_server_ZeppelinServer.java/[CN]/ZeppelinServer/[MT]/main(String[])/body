@@ -1,6 +1,5 @@
 {
-  z=new Zengine();
-  ZeppelinConfiguration conf=z.getConf();
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   int port=conf.getInt(ConfVars.ZEPPELIN_PORT);
   final Server server=setupJettyServer(port);
   final com.nflabs.zeppelin.socket.NotebookServer websocket=new com.nflabs.zeppelin.socket.NotebookServer(port + 1);

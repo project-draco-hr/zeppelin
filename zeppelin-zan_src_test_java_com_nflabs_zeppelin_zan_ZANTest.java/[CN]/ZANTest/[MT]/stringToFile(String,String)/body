@@ -1,5 +1,0 @@
-{
-  FSDataOutputStream out=dfs.create(new Path(path));
-  out.write(msg.getBytes());
-  out.close();
-}

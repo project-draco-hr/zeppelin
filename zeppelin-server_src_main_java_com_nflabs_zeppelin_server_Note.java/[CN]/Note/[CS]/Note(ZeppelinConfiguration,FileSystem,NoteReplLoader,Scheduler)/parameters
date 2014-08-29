@@ -1,4 +1,0 @@
-ZeppelinConfiguration conf
-FileSystem fs
-NoteReplLoader replLoader
-Scheduler scheduler

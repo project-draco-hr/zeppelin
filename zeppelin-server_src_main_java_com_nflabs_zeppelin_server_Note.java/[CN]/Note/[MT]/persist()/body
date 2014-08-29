@@ -2,18 +2,17 @@
   GsonBuilder gsonBuilder=new GsonBuilder();
   gsonBuilder.setPrettyPrinting();
   Gson gson=gsonBuilder.create();
-  Path dir=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id);
-  if (!fs.exists(dir)) {
-    fs.mkdirs(dir);
+  File dir=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id);
+  if (!dir.exists()) {
+    dir.mkdirs();
   }
- else   if (fs.isFile(dir)) {
+ else   if (dir.isFile()) {
     throw new RuntimeException("File already exists" + dir.toString());
   }
-  Path file=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
-  logger().info("Persist note {} into {}",id,file.toUri());
+  File file=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
+  logger().info("Persist note {} into {}",id,file.getAbsolutePath());
   String json=gson.toJson(this);
-  FSDataOutputStream out;
-  out=fs.create(file,true);
+  FileOutputStream out=new FileOutputStream(file);
   out.write(json.getBytes(conf.getString(ConfVars.ZEPPELIN_ENCODING)));
   out.close();
 }

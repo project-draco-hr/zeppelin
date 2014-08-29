@@ -1,4 +1,0 @@
-ZeppelinConfiguration conf
-FileSystem fs
-SchedulerFactory schedulerFactory
-ReplFactory replFactory

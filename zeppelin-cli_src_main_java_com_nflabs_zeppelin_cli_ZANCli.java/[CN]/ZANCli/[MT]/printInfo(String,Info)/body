@@ -1,9 +1,0 @@
-{
-  if (info == null) {
-    System.out.println(name + " not found");
-  }
- else {
-    System.out.println("Name - " + name);
-    System.out.println("Status - " + info.getStatus().toString());
-  }
-}

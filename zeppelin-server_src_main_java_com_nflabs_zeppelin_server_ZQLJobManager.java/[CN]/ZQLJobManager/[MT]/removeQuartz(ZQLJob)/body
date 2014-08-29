@@ -1,8 +1,0 @@
-{
-  try {
-    quertzSched.deleteJob(new JobKey(job.getId(),"zql"));
-  }
- catch (  SchedulerException e) {
-    logger.error("Failed to delete Quartz job",e);
-  }
-}

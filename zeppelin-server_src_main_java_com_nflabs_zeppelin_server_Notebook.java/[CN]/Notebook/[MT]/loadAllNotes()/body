@@ -1,11 +1,11 @@
 {
-  Path notebookDir=new Path(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR));
-  FileStatus[] dirs=fs.listStatus(notebookDir);
-  for (  FileStatus f : dirs) {
-    if (f.isDir()) {
+  File notebookDir=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR));
+  File[] dirs=notebookDir.listFiles();
+  for (  File f : dirs) {
+    if (f.isDirectory()) {
       Scheduler scheduler=schedulerFactory.createOrGetFIFOScheduler("note_" + System.currentTimeMillis());
-      logger.info("Loading note from " + f.getPath().getName());
-      Note n=Note.load(f.getPath().getName(),conf,fs,new NoteReplLoader(replFactory),scheduler);
+      logger.info("Loading note from " + f.getName());
+      Note n=Note.load(f.getName(),conf,new NoteReplLoader(replFactory),scheduler);
 synchronized (notes) {
         notes.put(n.id(),n);
       }

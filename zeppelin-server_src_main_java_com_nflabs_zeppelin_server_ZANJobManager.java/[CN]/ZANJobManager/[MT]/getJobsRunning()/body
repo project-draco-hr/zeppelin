@@ -1,5 +1,0 @@
-{
-synchronized (runningJobs) {
-    return new LinkedList<ZANJob>(runningJobs);
-  }
-}

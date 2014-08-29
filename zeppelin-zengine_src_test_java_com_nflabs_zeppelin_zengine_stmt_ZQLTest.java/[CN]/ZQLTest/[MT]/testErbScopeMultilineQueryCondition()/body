@@ -1,6 +1,0 @@
-{
-  ZQL zql=new ZQL("<% var1=\"b\" %> <% if var1==\"a\" %>select a; <% else %> select b;<% end %>");
-  List<Z> q=zql.compile();
-  assertEquals(1,q.size());
-  assertEquals("select b",q.get(0).getQuery());
-}

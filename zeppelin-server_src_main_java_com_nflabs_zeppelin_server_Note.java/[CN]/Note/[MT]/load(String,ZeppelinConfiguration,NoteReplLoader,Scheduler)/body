@@ -1,0 +1,22 @@
+{
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  Gson gson=gsonBuilder.create();
+  File file=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
+  logger().info("Load note {} from {}",id,file.getAbsolutePath());
+  if (!file.isFile()) {
+    return null;
+  }
+  FileInputStream ins=new FileInputStream(file);
+  String json=IOUtils.toString(ins,conf.getString(ConfVars.ZEPPELIN_ENCODING));
+  Note note=gson.fromJson(json,Note.class);
+  note.setZeppelinConfiguration(conf);
+  note.setReplLoader(replLoader);
+  note.setScheduler(scheduler);
+  for (  Paragraph p : note.paragraphs) {
+    if (p.getStatus() == Status.PENDING || p.getStatus() == Status.RUNNING) {
+      p.setStatus(Status.ABORT);
+    }
+  }
+  return note;
+}

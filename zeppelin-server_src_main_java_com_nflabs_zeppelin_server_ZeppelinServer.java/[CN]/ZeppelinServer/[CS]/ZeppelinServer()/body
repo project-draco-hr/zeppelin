@@ -1,15 +1,6 @@
 {
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   this.schedulerFactory=new SchedulerFactory();
-  FileSystem fs=FileSystem.get(new org.apache.hadoop.conf.Configuration());
-  if (z.useFifoJobScheduler()) {
-    this.analyzeSessionManager=new ZQLJobManager(z,fs,schedulerFactory.createOrGetFIFOScheduler("analyze"),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
-  }
- else {
-    this.analyzeSessionManager=new ZQLJobManager(z,fs,schedulerFactory.createOrGetParallelScheduler("analyze",100),z.getConf().getString(ConfVars.ZEPPELIN_JOB_DIR));
-  }
-  this.zan=new ZAN(z.getConf().getString(ConfVars.ZEPPELIN_ZAN_REPO),z.getConf().getString(ConfVars.ZEPPELIN_ZAN_LOCAL_REPO),z.getConf().getString(ConfVars.ZEPPELIN_ZAN_SHARED_REPO),fs);
-  this.zanJobManager=new ZANJobManager(zan,schedulerFactory.createOrGetFIFOScheduler("analyze"));
   this.replFactory=new ReplFactory(conf);
-  notebook=new Notebook(conf,fs,schedulerFactory,replFactory);
+  notebook=new Notebook(conf,schedulerFactory,replFactory);
 }

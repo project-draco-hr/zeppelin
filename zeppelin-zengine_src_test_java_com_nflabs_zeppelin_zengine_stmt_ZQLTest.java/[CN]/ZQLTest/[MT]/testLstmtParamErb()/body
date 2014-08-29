@@ -1,5 +1,0 @@
-{
-  ZQL zql=new ZQL("test(limit=<%='20'%>)");
-  Z q=zql.compile().get(0);
-  assertEquals("select *\nfrom () a\nlimit 20;",q.getQuery());
-}
