@@ -1,0 +1,13 @@
+{
+  String execUri=System.getenv("SPARK_EXECUTOR_URI");
+  String[] jars=SparkILoop.getAddedJars();
+  SparkConf conf=new SparkConf().setMaster(getMaster()).setAppName("Zeppelin").setJars(jars).set("spark.repl.class.uri",interpreter.intp().classServer().uri());
+  if (execUri != null) {
+    conf.set("spark.executor.uri",execUri);
+  }
+  if (System.getenv("SPARK_HOME") != null) {
+    conf.setSparkHome(System.getenv("SPARK_HOME"));
+  }
+  SparkContext sparkContext=new SparkContext(conf);
+  return sparkContext;
+}

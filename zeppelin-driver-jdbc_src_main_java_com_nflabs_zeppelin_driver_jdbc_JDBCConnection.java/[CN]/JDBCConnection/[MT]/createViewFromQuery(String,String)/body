@@ -1,3 +1,0 @@
-{
-  return execute("CREATE VIEW " + viewName + " AS "+ query);
-}

@@ -1,3 +1,0 @@
-{
-  return Connection.TRANSACTION_NONE;
-}

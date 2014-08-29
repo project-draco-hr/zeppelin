@@ -1,4 +1,0 @@
-{
-  FileUtils.deleteDirectory(new File(ROOT_DIR.getName()));
-  FileUtils.deleteDirectory(tmpDir);
-}

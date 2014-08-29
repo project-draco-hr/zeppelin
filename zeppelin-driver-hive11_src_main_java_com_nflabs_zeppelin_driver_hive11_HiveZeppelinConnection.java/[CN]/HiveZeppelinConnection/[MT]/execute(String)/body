@@ -1,4 +1,0 @@
-{
-  int maxRow=conf.getInt(ConfVars.ZEPPELIN_MAX_RESULT);
-  return execute(query,maxRow);
-}

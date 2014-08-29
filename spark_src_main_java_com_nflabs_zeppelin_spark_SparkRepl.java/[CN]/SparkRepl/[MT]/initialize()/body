@@ -7,15 +7,17 @@
   interpreter.createInterpreter();
   intp=interpreter.intp();
   intp.initializeSynchronous();
+  sc=createSparkContext();
+  sqlc=new SQLContext(sc);
 synchronized (sparkContextCreationLock) {
     intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
     Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
     binder.put("out",printStream);
-    intp.interpret("@transient val sc = com.nflabs.zeppelin.spark.SparkRepl.interpreter.createSparkContext()\n");
+    binder.put("sc",sc);
+    binder.put("sqlc",sqlc);
+    intp.interpret("@transient var sc = _binder.get(\"sc\")");
     intp.interpret("import org.apache.spark.SparkContext._");
-    intp.interpret("val sqlc = new org.apache.spark.sql.SQLContext(sc)");
+    intp.interpret("val sqlc = _binder.get(\"sqlc\")");
     intp.interpret("import sqlc.createSchemaRDD");
-    sc=(SparkContext)getValue("sc");
-    sqlc=(SQLContext)getValue("sqlc");
   }
 }

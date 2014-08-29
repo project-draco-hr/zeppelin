@@ -16,6 +16,7 @@
     }
   }
  catch (  NullPointerException e) {
+    e.printStackTrace();
     this.exception=e;
     result=null;
     errorMessage=e.getMessage();
@@ -23,6 +24,7 @@
     setStatus(Status.ERROR);
   }
 catch (  Throwable e) {
+    e.printStackTrace();
     this.exception=e;
     result=null;
     errorMessage=e.getMessage();
