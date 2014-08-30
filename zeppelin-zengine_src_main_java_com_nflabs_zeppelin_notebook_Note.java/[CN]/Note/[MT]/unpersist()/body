@@ -1,4 +1,4 @@
 {
-  File dir=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id);
+  File dir=new File(conf.getNotebookDir() + "/" + id);
   FileUtils.deleteDirectory(dir);
 }

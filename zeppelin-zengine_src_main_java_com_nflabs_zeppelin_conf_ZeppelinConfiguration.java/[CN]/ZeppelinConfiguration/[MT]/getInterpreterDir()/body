@@ -1,0 +1,3 @@
+{
+  return getRelativeDir(ConfVars.ZEPPELIN_INTERPRETER_DIR);
+}

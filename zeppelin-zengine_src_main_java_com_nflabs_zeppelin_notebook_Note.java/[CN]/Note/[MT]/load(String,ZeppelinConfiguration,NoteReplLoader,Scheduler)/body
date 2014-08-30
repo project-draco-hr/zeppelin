@@ -2,7 +2,7 @@
   GsonBuilder gsonBuilder=new GsonBuilder();
   gsonBuilder.setPrettyPrinting();
   Gson gson=gsonBuilder.create();
-  File file=new File(conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_DIR) + "/" + id+ "/note.json");
+  File file=new File(conf.getNotebookDir() + "/" + id+ "/note.json");
   logger().info("Load note {} from {}",id,file.getAbsolutePath());
   if (!file.isFile()) {
     return null;
