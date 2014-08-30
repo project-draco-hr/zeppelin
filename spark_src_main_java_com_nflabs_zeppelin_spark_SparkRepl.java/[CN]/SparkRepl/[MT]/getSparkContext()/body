@@ -1,3 +1,11 @@
 {
+  if (sc == null) {
+    Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
+    sc=(SparkContext)share.get("sc");
+    if (sc == null) {
+      sc=createSparkContext();
+      share.put("sc",sc);
+    }
+  }
   return sc;
 }

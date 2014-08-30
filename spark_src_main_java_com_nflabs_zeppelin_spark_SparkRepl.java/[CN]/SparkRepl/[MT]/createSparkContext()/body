@@ -1,4 +1,5 @@
 {
+  System.err.println("------ Create new SparkContext " + getMaster() + " -------");
   String execUri=System.getenv("SPARK_EXECUTOR_URI");
   String[] jars=SparkILoop.getAddedJars();
   SparkConf conf=new SparkConf().setMaster(getMaster()).setAppName("Zeppelin").setJars(jars).set("spark.repl.class.uri",interpreter.intp().classServer().uri());

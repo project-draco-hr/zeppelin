@@ -2,14 +2,33 @@
   logger.info("Create repl {} from {}",className,dirName);
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   try {
-    logger.info("Reading " + conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/"+ dirName);
-    File path=new File(conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/" + dirName);
-    URL[] urls=recursiveBuildLibList(path);
-    URLClassLoader cl=new URLClassLoader(urls,oldcl);
+    ClassLoader ccl=cleanCl.get(dirName);
+    if (ccl == null) {
+      logger.info("Reading " + conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/"+ dirName);
+      File path=new File(conf.getString(ConfVars.ZEPPELIN_REPL_DIR) + "/" + dirName);
+      URL[] urls=recursiveBuildLibList(path);
+      ccl=new URLClassLoader(urls,oldcl);
+      cleanCl.put(dirName,ccl);
+    }
+    boolean separateCL=true;
+    try {
+      Class cls=this.getClass().forName(className);
+      if (cls != null)       separateCL=false;
+    }
+ catch (    Exception e) {
+    }
+    URLClassLoader cl;
+    if (separateCL == true) {
+      cl=URLClassLoader.newInstance(new URL[]{},(URLClassLoader)ccl);
+    }
+ else {
+      cl=(URLClassLoader)ccl;
+    }
     Thread.currentThread().setContextClassLoader(cl);
     Class<Repl> replClass=(Class<Repl>)cl.loadClass(className);
     Constructor<Repl> constructor=replClass.getConstructor(new Class[]{Properties.class});
     Repl repl=constructor.newInstance(property);
+    property.put("share",share);
     return new ClassloaderRepl(repl,cl,property);
   }
  catch (  SecurityException e) {
