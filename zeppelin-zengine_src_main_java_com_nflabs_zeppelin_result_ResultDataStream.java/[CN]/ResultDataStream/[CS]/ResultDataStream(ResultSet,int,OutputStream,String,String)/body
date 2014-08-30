@@ -1,6 +1,0 @@
-{
-  super(res,max);
-  this.out=out;
-  this.columnSep=columnSep;
-  this.rowSep=rowSep;
-}

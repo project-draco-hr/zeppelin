@@ -4,7 +4,7 @@
     html=md.process(st);
   }
  catch (  IOException e) {
-    return new ReplResult(Code.ERROR,e.getMessage());
+    return new InterpreterResult(Code.ERROR,e.getMessage());
   }
-  return new ReplResult(Code.SUCCESS,html);
+  return new InterpreterResult(Code.SUCCESS,html);
 }

@@ -1,6 +1,6 @@
 {
-  Map<String,Repl> repls=(Map<String,Repl>)this.getProperty().get("repls");
+  Map<String,Interpreter> repls=(Map<String,Interpreter>)this.getProperty().get("repls");
   if (repls != null) {
-    sparkClassloaderRepl=(ClassloaderRepl)repls.get("spark");
+    sparkClassloaderRepl=(ClassloaderInterpreter)repls.get("spark");
   }
 }

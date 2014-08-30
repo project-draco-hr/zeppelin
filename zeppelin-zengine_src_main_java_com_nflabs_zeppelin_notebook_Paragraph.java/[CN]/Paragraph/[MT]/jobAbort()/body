@@ -1,0 +1,5 @@
+{
+  Interpreter repl=getRepl(getRequiredReplName());
+  repl.cancel();
+  return true;
+}

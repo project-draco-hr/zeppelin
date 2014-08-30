@@ -1,4 +1,0 @@
-{
-  if (rows == null)   rows=new LinkedList<Object[]>();
-  return rows;
-}

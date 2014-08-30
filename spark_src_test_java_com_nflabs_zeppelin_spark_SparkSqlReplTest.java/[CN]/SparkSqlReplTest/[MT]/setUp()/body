@@ -2,6 +2,6 @@
   repl=new SparkRepl(new Properties());
   repl.initialize();
   sql=new SparkSqlRepl(new Properties());
-  sql.setSparkClassloaderRepl(new ClassloaderRepl(repl,Thread.currentThread().getContextClassLoader(),new Properties()));
+  sql.setSparkClassloaderRepl(new ClassloaderInterpreter(repl,Thread.currentThread().getContextClassLoader(),new Properties()));
   sql.initialize();
 }

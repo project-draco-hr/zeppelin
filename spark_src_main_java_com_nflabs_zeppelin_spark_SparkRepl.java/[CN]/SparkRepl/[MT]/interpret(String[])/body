@@ -10,7 +10,7 @@ synchronized (this) {
       r=getResultCode(res);
       if (r == Code.ERROR) {
         sc.clearJobGroup();
-        return new ReplResult(r,out.toString());
+        return new InterpreterResult(r,out.toString());
       }
  else       if (r == Code.INCOMPLETE) {
         incomplete+=s + "\n";
@@ -20,6 +20,6 @@ synchronized (this) {
       }
     }
     sc.clearJobGroup();
-    return new ReplResult(r,out.toString());
+    return new InterpreterResult(r,out.toString());
   }
 }

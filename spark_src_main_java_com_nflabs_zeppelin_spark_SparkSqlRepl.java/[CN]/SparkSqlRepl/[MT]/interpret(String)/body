@@ -7,7 +7,7 @@
     rows=rdd.take(10000);
   }
  catch (  Exception e) {
-    return new ReplResult(Code.ERROR,e.getMessage());
+    return new InterpreterResult(Code.ERROR,e.getMessage());
   }
   String msg=null;
   List<Attribute> columns=scala.collection.JavaConverters.asJavaListConverter(rdd.queryExecution().analyzed().output()).asJava();
@@ -56,5 +56,5 @@
     }
     msg+="\n";
   }
-  return new ReplResult(Code.SUCCESS,"%table " + msg);
+  return new InterpreterResult(Code.SUCCESS,"%table " + msg);
 }

@@ -1,0 +1,23 @@
+{
+  String replName=getRequiredReplName();
+  Interpreter repl=getRepl(replName);
+  logger().info("run paragraph {} using {} " + repl,getId(),replName);
+  if (repl == null) {
+    logger().error("Can not find interpreter name " + repl);
+    throw new RuntimeException("Can not find interpreter for " + getRequiredReplName());
+  }
+  String script=getScriptBody();
+  if (repl.getFormType() == FormType.NATIVE) {
+    form.clearForms();
+    repl.bindValue("form",form);
+  }
+ else   if (repl.getFormType() == FormType.SIMPLE) {
+    String scriptBody=getScriptBody();
+    Map<String,Input> inputs=Input.extractSimpleQueryParam(scriptBody);
+    form.setForms(inputs);
+    script=Input.getSimpleQuery(form.getParams(),scriptBody);
+  }
+  logger().info("RUN : " + script);
+  InterpreterResult ret=repl.interpret(script);
+  return ret;
+}
