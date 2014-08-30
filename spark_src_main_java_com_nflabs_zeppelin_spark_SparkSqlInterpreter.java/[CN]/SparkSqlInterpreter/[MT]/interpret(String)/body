@@ -1,6 +1,6 @@
 {
   findSpark();
-  SQLContext sqlc=((SparkRepl)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
+  SQLContext sqlc=((SparkInterpreter)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
   SchemaRDD rdd=sqlc.sql(st);
   Row[] rows=null;
   try {

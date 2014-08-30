@@ -1,0 +1,4 @@
+{
+  repl=new SparkInterpreter(new Properties());
+  repl.initialize();
+}
