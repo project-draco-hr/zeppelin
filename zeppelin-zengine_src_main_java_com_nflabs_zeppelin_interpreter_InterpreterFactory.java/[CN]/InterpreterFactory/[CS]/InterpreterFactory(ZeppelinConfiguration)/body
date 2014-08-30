@@ -1,6 +1,6 @@
 {
   this.conf=conf;
-  String replsConf=conf.getString(ConfVars.ZEPPELIN_REPLS);
+  String replsConf=conf.getString(ConfVars.ZEPPELIN_INTERPRETERS);
   String[] confs=replsConf.split(",");
   for (  String c : confs) {
     String[] nameAndClass=c.split(":");
