@@ -1,5 +1,5 @@
 {
-  Repl repl=getRepl(getRequiredReplName(),new Properties());
+  Repl repl=getRepl(getRequiredReplName());
   repl.cancel();
   return true;
 }

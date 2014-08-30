@@ -1,6 +1,6 @@
 {
   String replName=getRequiredReplName();
-  Repl repl=getRepl(replName,new Properties());
+  Repl repl=getRepl(replName);
   logger().info("run paragraph {} using {} " + repl,getId(),replName);
   if (repl == null) {
     logger().error("Can not find interpreter name " + repl);

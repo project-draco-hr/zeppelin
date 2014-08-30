@@ -4,7 +4,7 @@
     return loadedRepls.get(name);
   }
  else {
-    Properties p=new Properties(properties);
+    Properties p=new Properties();
     p.put("repls",loadedRepls);
     Repl repl=factory.createRepl(name,p);
     repl.initialize();

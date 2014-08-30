@@ -1,3 +1,0 @@
-{
-  return replLoader.getRepl(name,properties);
-}
