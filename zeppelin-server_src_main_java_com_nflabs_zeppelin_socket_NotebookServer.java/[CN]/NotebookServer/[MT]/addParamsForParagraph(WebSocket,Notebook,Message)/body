@@ -1,0 +1,12 @@
+{
+  String paragraphId=(String)fromMessage.get("id");
+  if (paragraphId == null) {
+    return;
+  }
+  Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
+  final Note note=notebook.getNote(getOpenNoteId(conn));
+  Paragraph p=note.getParagraph(paragraphId);
+  p.settings.setParams(params);
+  note.persist();
+  broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+}
