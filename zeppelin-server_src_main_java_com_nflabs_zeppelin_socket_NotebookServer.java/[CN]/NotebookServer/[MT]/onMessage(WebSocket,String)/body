@@ -27,7 +27,7 @@
       Map<String,Object> params=(Map<String,Object>)m.get("params");
       final Note note=notebook.getNote(getOpenNoteId(conn));
       Paragraph p=note.getParagraph(paragraphId);
-      p.form.setParams(params);
+      p.settings.setParams(params);
       note.persist();
       broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
     }
@@ -35,9 +35,9 @@
       String paragraphId=(String)m.get("id");
       final Note note=notebook.getNote(getOpenNoteId(conn));
       Paragraph p=note.getParagraph(paragraphId);
-      p.setParagraph((String)m.get("paragraph"));
+      p.setText((String)m.get("paragraph"));
       Map<String,Object> params=(Map<String,Object>)m.get("params");
-      p.form.setParams(params);
+      p.settings.setParams(params);
       note.persist();
       broadcastNote(note.id(),new Message(OP.PARAGRAPH).put("paragraph",p));
     }
@@ -45,9 +45,9 @@
       final String paragraphId=(String)m.get("id");
       final Note note=notebook.getNote(getOpenNoteId(conn));
       Paragraph p=note.getParagraph(paragraphId);
-      p.setParagraph((String)m.get("paragraph"));
+      p.setText((String)m.get("paragraph"));
       Map<String,Object> params=(Map<String,Object>)m.get("params");
-      p.form.setParams(params);
+      p.settings.setParams(params);
       if (note.getLastParagraph().getId().equals(p.getId())) {
         note.addParagraph();
         broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
