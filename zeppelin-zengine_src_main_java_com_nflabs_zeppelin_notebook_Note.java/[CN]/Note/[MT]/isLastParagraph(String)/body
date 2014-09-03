@@ -1,0 +1,11 @@
+{
+  if (!paragraphs.isEmpty()) {
+synchronized (paragraphs) {
+      if (paragraphId.equals(paragraphs.get(paragraphs.size() - 1).getId())) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return true;
+}
