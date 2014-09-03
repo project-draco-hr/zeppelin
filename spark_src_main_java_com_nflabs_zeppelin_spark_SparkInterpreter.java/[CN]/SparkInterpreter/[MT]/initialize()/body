@@ -23,12 +23,16 @@
   intp.setContextClassLoader();
   intp.initializeSynchronous();
   sc=getSparkContext();
-  sqlc=new SQLContext(sc);
+  sqlc=getSQLContext();
+  dep=getDependencyResolver();
   intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
   Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
   binder.put("out",printStream);
   binder.put("sc",sc);
   binder.put("sqlc",sqlc);
+  binder.put("dep",dep);
+  binder.put("intp",intp);
+  intp.interpret("@transient val dep = _binder.get(\"dep\").asInstanceOf[com.nflabs.zeppelin.spark.dep.DependencyResolver]");
   intp.interpret("@transient val sc = _binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
   intp.interpret("import org.apache.spark.SparkContext._");
   intp.interpret("@transient val sqlc = _binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");

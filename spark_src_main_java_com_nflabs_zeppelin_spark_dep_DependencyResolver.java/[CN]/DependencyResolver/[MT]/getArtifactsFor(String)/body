@@ -1,0 +1,8 @@
+{
+  Artifact artifact=new DefaultArtifact(dependency);
+  CollectRequest collectRequest=new CollectRequest();
+  collectRequest.setRoot(new Dependency(artifact,JavaScopes.COMPILE));
+  collectRequest.addRepository(repo);
+  DependencyRequest dependencyRequest=new DependencyRequest(collectRequest,classpathFlter);
+  return system.resolveDependencies(session,dependencyRequest).getArtifactResults();
+}

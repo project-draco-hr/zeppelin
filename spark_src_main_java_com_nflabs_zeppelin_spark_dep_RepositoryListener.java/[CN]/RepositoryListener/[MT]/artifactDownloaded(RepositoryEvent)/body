@@ -1,0 +1,3 @@
+{
+  logger.info("Downloaded artifact " + event.getArtifact() + " from "+ event.getRepository());
+}
