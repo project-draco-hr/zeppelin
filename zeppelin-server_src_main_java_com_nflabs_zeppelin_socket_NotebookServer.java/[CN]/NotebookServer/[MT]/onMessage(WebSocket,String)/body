@@ -22,6 +22,9 @@ break;
 case COMMIT_PARAGRAPH:
 updateParamsForParagraph(conn,notebook,messagereceived);
 break;
+case PARAGRAPH_UPDATE_STATE:
+updateParagraphState(conn,notebook,messagereceived);
+break;
 case RUN_PARAGRAPH:
 runParagraph(conn,notebook,messagereceived);
 break;
