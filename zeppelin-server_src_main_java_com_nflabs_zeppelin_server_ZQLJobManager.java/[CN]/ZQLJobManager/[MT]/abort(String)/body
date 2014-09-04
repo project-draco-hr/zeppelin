@@ -1,8 +1,0 @@
-{
-  ZQLJob s=get(jobId);
-  if (s == null) {
-    return null;
-  }
-  s.abort();
-  return s;
-}

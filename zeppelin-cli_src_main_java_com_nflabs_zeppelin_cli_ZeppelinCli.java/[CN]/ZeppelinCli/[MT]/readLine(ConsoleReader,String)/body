@@ -1,4 +1,0 @@
-{
-  String line=reader.readLine(promtMessage + "\nzeppelin> ");
-  return line == null ? null : line.trim();
-}

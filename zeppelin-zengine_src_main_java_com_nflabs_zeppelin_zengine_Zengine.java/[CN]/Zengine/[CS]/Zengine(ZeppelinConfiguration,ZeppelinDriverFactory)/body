@@ -1,9 +1,0 @@
-{
-  this.conf=conf;
-  if (driverFactory == null) {
-    this.driverFactory=new ZeppelinDriverFactory(conf);
-  }
- else {
-    this.driverFactory=driverFactory;
-  }
-}

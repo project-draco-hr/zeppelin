@@ -1,0 +1,4 @@
+{
+  Logger logger=LoggerFactory.getLogger(Note.class);
+  return logger;
+}

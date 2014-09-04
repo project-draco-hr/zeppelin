@@ -1,8 +1,0 @@
-{
-  initialize();
-  if (query == null)   return null;
-  if (query.startsWith("@")) {
-  }
-  logger().info("executeQuery : " + query);
-  return connection.query(query);
-}

@@ -1,0 +1,5 @@
+{
+synchronized (paragraphs) {
+    return new LinkedList<Paragraph>(paragraphs);
+  }
+}

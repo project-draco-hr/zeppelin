@@ -1,3 +1,0 @@
-{
-  return getPathForJobId(job.getId());
-}

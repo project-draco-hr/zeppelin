@@ -1,0 +1,26 @@
+{
+  String replaced=script;
+  for (  String key : params.keySet()) {
+    Object value=params.get(key);
+    replaced=replaced.replaceAll("[_]?[$][{]([^:]*[:])?" + key + "([(][^)]*[)])?(=[^}]*)?[}]",value.toString());
+  }
+  Pattern pattern=Pattern.compile("[$][{]([^=}]*[=][^}]*)[}]");
+  while (true) {
+    Matcher match=pattern.matcher(replaced);
+    if (match != null && match.find()) {
+      String m=match.group(1);
+      int p=m.indexOf('=');
+      String replacement=m.substring(p + 1);
+      int optionP=replacement.indexOf(",");
+      if (optionP > 0) {
+        replacement=replacement.substring(0,optionP);
+      }
+      replaced=replaced.replaceFirst("[_]?[$][{]" + m.replaceAll("[(]",".").replaceAll("[)]",".").replaceAll("[|]",".") + "[}]",replacement);
+    }
+ else {
+      break;
+    }
+  }
+  replaced=replaced.replace("[_]?[$][{]([^=}]*)[}]","");
+  return replaced;
+}

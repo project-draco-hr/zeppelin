@@ -1,4 +1,0 @@
-{
-  ExecDriver driver=new ExecDriver();
-  driver.getConnection("exec://");
-}

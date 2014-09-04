@@ -1,8 +1,0 @@
-{
-  ZQL zql=new ZQL();
-  zql.append("select <X:1,Y:2> from bank | test1");
-  ZPlan plan=zql.compile();
-  assertEquals(1,plan.size());
-  assertEquals("select <X:1,Y:2> from bank",plan.get(0).prev().getQuery());
-  plan.get(0).release();
-}

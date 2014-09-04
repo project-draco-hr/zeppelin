@@ -1,6 +1,0 @@
-{
-  super.setUp();
-  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
-  tmpDir.mkdir();
-  System.setProperty(ConfVars.ZEPPELIN_HOME.getVarName(),ROOT_DIR.getName());
-}

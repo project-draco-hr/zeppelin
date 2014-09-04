@@ -1,0 +1,12 @@
+{
+synchronized (paragraphs) {
+    for (int i=0; i < paragraphs.size(); i++) {
+      Paragraph p=paragraphs.get(i);
+      if (p.getId().equals(paragraphId)) {
+        paragraphs.remove(i);
+        return p;
+      }
+    }
+  }
+  return null;
+}

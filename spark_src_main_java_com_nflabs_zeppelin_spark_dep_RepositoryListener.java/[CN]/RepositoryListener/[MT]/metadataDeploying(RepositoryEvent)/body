@@ -1,0 +1,3 @@
+{
+  logger.info("Deploying " + event.getMetadata() + " to "+ event.getRepository());
+}

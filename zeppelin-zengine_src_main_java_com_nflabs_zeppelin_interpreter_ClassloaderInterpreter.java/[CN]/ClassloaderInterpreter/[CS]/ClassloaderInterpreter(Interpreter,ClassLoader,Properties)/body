@@ -1,0 +1,5 @@
+{
+  super(property);
+  this.cl=cl;
+  this.intp=intp;
+}

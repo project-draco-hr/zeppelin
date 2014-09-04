@@ -1,0 +1,12 @@
+{
+  this.conf=conf;
+  String replsConf=conf.getString(ConfVars.ZEPPELIN_INTERPRETERS);
+  String[] confs=replsConf.split(",");
+  for (  String c : confs) {
+    String[] nameAndClass=c.split(":");
+    replNameClassMap.put(nameAndClass[0],nameAndClass[1]);
+    if (defaultReplName == null) {
+      defaultReplName=nameAndClass[0];
+    }
+  }
+}

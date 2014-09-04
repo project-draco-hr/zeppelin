@@ -1,0 +1,40 @@
+{
+  Settings settings=new Settings();
+  PathSetting pathSettings=settings.classpath();
+  String classpath="";
+  List<File> paths=currentClassPath();
+  for (  File f : paths) {
+    if (classpath.length() > 0) {
+      classpath+=File.pathSeparator;
+    }
+    classpath+=f.getAbsolutePath();
+  }
+  pathSettings.v_$eq(classpath);
+  settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
+  settings.explicitParentLoader_$eq(new Some<ClassLoader>(Thread.currentThread().getContextClassLoader()));
+  BooleanSetting b=(BooleanSetting)settings.usejavacp();
+  b.v_$eq(true);
+  settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
+  PrintStream printStream=new PrintStream(out);
+  this.interpreter=new SparkILoop(null,new PrintWriter(out));
+  interpreter.settings_$eq(settings);
+  interpreter.createInterpreter();
+  intp=interpreter.intp();
+  intp.setContextClassLoader();
+  intp.initializeSynchronous();
+  sc=getSparkContext();
+  sqlc=getSQLContext();
+  dep=getDependencyResolver();
+  intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
+  Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
+  binder.put("out",printStream);
+  binder.put("sc",sc);
+  binder.put("sqlc",sqlc);
+  binder.put("dep",dep);
+  binder.put("intp",intp);
+  intp.interpret("@transient val dep = _binder.get(\"dep\").asInstanceOf[com.nflabs.zeppelin.spark.dep.DependencyResolver]");
+  intp.interpret("@transient val sc = _binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
+  intp.interpret("import org.apache.spark.SparkContext._");
+  intp.interpret("@transient val sqlc = _binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
+  intp.interpret("import sqlc.createSchemaRDD");
+}

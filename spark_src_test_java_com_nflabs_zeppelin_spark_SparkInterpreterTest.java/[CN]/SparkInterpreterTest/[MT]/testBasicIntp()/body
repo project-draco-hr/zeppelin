@@ -1,0 +1,3 @@
+{
+  assertEquals("HELLO\n",repl.interpret("println(\"HELLO\")").message());
+}

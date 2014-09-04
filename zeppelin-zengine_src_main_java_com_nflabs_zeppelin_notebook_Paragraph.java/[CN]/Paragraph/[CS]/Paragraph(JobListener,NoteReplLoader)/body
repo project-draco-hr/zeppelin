@@ -1,0 +1,8 @@
+{
+  super(generateId(),listener);
+  this.replLoader=replLoader;
+  text=null;
+  isOpen=true;
+  isEditorOpen=true;
+  settings=new Setting();
+}

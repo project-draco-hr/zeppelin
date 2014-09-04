@@ -1,0 +1,11 @@
+{
+  if (dep == null) {
+    Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
+    dep=(DependencyResolver)share.get("dep");
+    if (dep == null) {
+      dep=new DependencyResolver(intp.global(),sc);
+      share.put("dep",dep);
+    }
+  }
+  return dep;
+}

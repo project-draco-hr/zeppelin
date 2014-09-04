@@ -1,0 +1,9 @@
+{
+  String path=getString(c);
+  if (path != null && path.startsWith("/")) {
+    return path;
+  }
+ else {
+    return getString(ConfVars.ZEPPELIN_HOME) + "/" + getString(c);
+  }
+}

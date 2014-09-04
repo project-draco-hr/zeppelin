@@ -1,0 +1,7 @@
+{
+  if (text == null)   return null;
+  String magic=getRequiredReplName();
+  if (magic == null)   return text;
+  if (magic.length() + 2 >= text.length())   return "";
+  return text.substring(magic.length() + 2);
+}

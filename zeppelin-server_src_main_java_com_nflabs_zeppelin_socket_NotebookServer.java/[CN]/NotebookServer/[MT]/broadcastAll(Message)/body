@@ -1,0 +1,7 @@
+{
+synchronized (connectedSockets) {
+    for (    WebSocket conn : connectedSockets) {
+      conn.send(serializeMessage(m));
+    }
+  }
+}

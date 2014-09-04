@@ -1,0 +1,12 @@
+{
+  final String paragraphId=(String)fromMessage.get("id");
+  if (paragraphId == null) {
+    return;
+  }
+  final Note note=notebook.getNote(getOpenNoteId(conn));
+  if (!note.isLastParagraph(paragraphId)) {
+    note.removeParagraph(paragraphId);
+    note.persist();
+    broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  }
+}

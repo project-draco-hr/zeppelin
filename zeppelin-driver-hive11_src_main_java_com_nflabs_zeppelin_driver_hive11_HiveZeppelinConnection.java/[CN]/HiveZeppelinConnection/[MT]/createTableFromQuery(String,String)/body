@@ -1,3 +1,0 @@
-{
-  return execute("CREATE TABLE " + tableName + " AS "+ query);
-}

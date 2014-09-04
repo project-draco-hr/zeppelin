@@ -1,0 +1,3 @@
+{
+  id=IdHashes.encode(System.currentTimeMillis() + new Random(System.currentTimeMillis()).nextInt());
+}

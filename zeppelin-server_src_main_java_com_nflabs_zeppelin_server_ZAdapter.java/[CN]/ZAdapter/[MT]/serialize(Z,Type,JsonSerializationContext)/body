@@ -1,6 +1,0 @@
-{
-  JsonObject result=new JsonObject();
-  result.add("type",new JsonPrimitive(src.getClass().getName()));
-  result.add("properties",context.serialize(src,src.getClass()));
-  return result;
-}

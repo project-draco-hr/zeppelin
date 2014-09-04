@@ -1,8 +1,0 @@
-{
-  try {
-    init(res,max);
-  }
- catch (  SQLException e) {
-    throw new ResultDataException(e);
-  }
-}

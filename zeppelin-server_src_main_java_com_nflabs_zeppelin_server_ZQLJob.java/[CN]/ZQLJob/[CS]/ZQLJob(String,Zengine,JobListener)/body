@@ -1,4 +1,0 @@
-{
-  super(jobName,listener);
-  this.zengine=zengine;
-}

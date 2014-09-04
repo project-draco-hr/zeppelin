@@ -1,0 +1,21 @@
+{
+  URL[] urls=new URL[0];
+  if (path == null || path.exists() == false) {
+    return urls;
+  }
+ else   if (path.getName().startsWith(".")) {
+    return urls;
+  }
+ else   if (path.isDirectory()) {
+    File[] files=path.listFiles();
+    if (files != null) {
+      for (      File f : files) {
+        urls=(URL[])ArrayUtils.addAll(urls,recursiveBuildLibList(f));
+      }
+    }
+    return urls;
+  }
+ else {
+    return new URL[]{path.toURI().toURL()};
+  }
+}

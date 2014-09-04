@@ -1,5 +1,0 @@
-{
-  logger.info("dropTable " + viewName);
-  views.remove(viewName);
-  return new Result();
-}

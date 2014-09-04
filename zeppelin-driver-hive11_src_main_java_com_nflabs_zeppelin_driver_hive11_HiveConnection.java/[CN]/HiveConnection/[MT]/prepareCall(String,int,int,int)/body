@@ -1,3 +1,0 @@
-{
-  throw new SQLException("Method not supported");
-}

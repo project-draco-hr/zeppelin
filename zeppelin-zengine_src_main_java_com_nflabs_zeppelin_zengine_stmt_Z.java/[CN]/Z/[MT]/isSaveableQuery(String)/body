@@ -1,5 +1,0 @@
-{
-  if (query == null || query.isEmpty())   return false;
-  String q=query.trim().toLowerCase();
-  return q.startsWith("select") || q.startsWith("map");
-}

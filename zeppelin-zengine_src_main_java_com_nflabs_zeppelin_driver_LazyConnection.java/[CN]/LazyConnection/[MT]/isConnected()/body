@@ -1,4 +1,0 @@
-{
-  if (initialized == false)   return false;
-  return connection.isConnected();
-}

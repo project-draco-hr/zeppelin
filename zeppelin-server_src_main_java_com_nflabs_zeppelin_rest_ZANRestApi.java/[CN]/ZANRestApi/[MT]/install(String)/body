@@ -1,4 +1,0 @@
-{
-  jobManager.install(libName);
-  return new JsonResponse<List<ZANJob>>(Status.OK,"").build();
-}

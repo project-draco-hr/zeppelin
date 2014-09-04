@@ -1,0 +1,6 @@
+{
+  LOG.info("New connection from {} : {}",conn.getRemoteSocketAddress().getHostName(),conn.getRemoteSocketAddress().getPort());
+synchronized (connectedSockets) {
+    connectedSockets.add(conn);
+  }
+}

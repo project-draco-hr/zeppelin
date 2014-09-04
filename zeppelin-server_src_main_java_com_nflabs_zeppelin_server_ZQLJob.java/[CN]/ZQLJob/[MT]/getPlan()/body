@@ -1,4 +1,0 @@
-{
-  reconstructNextReference();
-  return zqlPlans;
-}

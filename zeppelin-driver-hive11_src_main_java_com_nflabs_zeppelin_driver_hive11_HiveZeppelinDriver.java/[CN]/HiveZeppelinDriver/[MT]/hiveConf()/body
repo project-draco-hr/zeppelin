@@ -1,5 +1,0 @@
-{
-  HiveConf hiveConf=null;
-  hiveConf=new HiveConf(SessionState.class);
-  return hiveConf;
-}

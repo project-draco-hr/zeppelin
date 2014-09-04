@@ -1,0 +1,3 @@
+{
+  logger.info("Missing artifact descriptor for " + event.getArtifact());
+}

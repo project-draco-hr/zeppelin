@@ -1,3 +1,0 @@
-{
-  return LoggerFactory.getLogger(Q.class);
-}

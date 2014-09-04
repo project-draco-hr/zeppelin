@@ -1,0 +1,11 @@
+{
+  String noteId=(String)fromMessage.get("id");
+  if (noteId == null) {
+    return;
+  }
+  Note note=notebook.getNote(noteId);
+  if (note != null) {
+    addConnectionToNote(note.id(),conn);
+    conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+  }
+}

@@ -1,0 +1,34 @@
+{
+  if (aborted) {
+    setStatus(Status.ABORT);
+    return;
+  }
+  try {
+    setStatus(Status.RUNNING);
+    dateStarted=new Date();
+    result=jobRun();
+    dateFinished=new Date();
+    if (aborted) {
+      setStatus(Status.ABORT);
+    }
+ else {
+      setStatus(Status.FINISHED);
+    }
+  }
+ catch (  NullPointerException e) {
+    e.printStackTrace();
+    this.exception=e;
+    result=null;
+    errorMessage=e.getMessage();
+    dateFinished=new Date();
+    setStatus(Status.ERROR);
+  }
+catch (  Throwable e) {
+    e.printStackTrace();
+    this.exception=e;
+    result=null;
+    errorMessage=e.getMessage();
+    dateFinished=new Date();
+    setStatus(Status.ERROR);
+  }
+}

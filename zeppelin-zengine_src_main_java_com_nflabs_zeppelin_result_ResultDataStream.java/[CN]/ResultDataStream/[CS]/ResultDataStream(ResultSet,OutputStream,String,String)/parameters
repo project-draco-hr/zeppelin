@@ -1,4 +1,0 @@
-ResultSet res
-OutputStream out
-String columnSep
-String rowSep

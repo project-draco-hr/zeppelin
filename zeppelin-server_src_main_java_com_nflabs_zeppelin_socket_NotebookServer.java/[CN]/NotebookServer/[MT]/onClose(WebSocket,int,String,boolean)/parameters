@@ -1,0 +1,4 @@
+WebSocket conn
+int code
+String reason
+boolean remote

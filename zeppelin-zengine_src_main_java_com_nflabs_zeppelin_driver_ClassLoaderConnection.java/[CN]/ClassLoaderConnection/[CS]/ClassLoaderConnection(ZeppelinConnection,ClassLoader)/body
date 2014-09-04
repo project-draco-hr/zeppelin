@@ -1,4 +1,0 @@
-{
-  this.conn=conn;
-  this.cl=cl;
-}

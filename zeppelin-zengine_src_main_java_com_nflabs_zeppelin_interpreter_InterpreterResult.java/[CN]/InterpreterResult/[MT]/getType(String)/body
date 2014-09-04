@@ -1,0 +1,18 @@
+{
+  if (msg == null)   return Type.TEXT;
+  if (msg.startsWith("%html ")) {
+    return Type.HTML;
+  }
+ else   if (msg.startsWith("%text ")) {
+    return Type.TEXT;
+  }
+ else   if (msg.startsWith("%table ")) {
+    return Type.TABLE;
+  }
+ else   if (msg.startsWith("%null ")) {
+    return Type.NULL;
+  }
+ else {
+    return Type.TEXT;
+  }
+}

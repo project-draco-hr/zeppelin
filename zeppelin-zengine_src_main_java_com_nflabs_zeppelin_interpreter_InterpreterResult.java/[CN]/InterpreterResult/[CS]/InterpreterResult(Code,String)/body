@@ -1,0 +1,5 @@
+{
+  this.code=code;
+  this.msg=getData(msg);
+  this.type=getType(msg);
+}

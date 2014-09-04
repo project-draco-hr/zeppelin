@@ -1,0 +1,12 @@
+{
+  DAGScheduler scheduler=sc.dagScheduler();
+  HashSet<ActiveJob> jobs=scheduler.activeJobs();
+  Iterator<ActiveJob> it=jobs.iterator();
+  while (it.hasNext()) {
+    ActiveJob job=it.next();
+    String g=(String)job.properties().get("spark.jobGroup.id");
+    if (jobGroup.equals(g)) {
+    }
+  }
+  return 0;
+}

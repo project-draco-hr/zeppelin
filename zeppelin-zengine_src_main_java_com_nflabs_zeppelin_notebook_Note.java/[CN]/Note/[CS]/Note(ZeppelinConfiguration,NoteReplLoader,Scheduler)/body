@@ -1,0 +1,6 @@
+{
+  this.conf=conf;
+  this.replLoader=replLoader;
+  this.scheduler=scheduler;
+  generateId();
+}

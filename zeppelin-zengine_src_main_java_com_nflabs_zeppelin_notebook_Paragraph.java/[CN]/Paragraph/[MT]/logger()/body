@@ -1,0 +1,4 @@
+{
+  Logger logger=LoggerFactory.getLogger(Paragraph.class);
+  return logger;
+}

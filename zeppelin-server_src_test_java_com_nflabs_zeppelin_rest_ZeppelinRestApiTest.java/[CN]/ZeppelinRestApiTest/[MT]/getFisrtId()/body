@@ -1,7 +1,0 @@
-{
-  List<Object> jobs=(List<Object>)data.get("body");
-  if (jobs.isEmpty())   return "";
-  Map<String,Object> tmp=(Map<String,Object>)jobs.get(0);
-  if (tmp.isEmpty())   return "";
-  return tmp.get("id").toString();
-}

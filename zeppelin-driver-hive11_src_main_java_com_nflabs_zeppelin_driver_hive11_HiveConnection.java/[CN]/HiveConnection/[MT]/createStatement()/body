@@ -1,6 +1,0 @@
-{
-  if (isClosed) {
-    throw new SQLException("Can't create Statement, connection is closed");
-  }
-  return new HiveStatement(client);
-}

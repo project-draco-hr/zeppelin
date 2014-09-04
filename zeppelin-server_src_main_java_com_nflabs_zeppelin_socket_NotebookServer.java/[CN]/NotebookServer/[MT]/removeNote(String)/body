@@ -1,0 +1,5 @@
+{
+synchronized (noteSocketMap) {
+    List<WebSocket> socketList=noteSocketMap.remove(noteId);
+  }
+}

@@ -1,5 +1,0 @@
-{
-  logger.info("createTable " + tableName);
-  tables.put(tableName,queries.get(query));
-  return new Result();
-}

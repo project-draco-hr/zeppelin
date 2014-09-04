@@ -1,0 +1,14 @@
+{
+  String name=(replName != null) ? replName : factory.getDefaultReplName();
+  if (loadedRepls.containsKey(name)) {
+    return loadedRepls.get(name);
+  }
+ else {
+    Properties p=new Properties();
+    p.put("repls",loadedRepls);
+    Interpreter repl=factory.createRepl(name,p);
+    repl.initialize();
+    loadedRepls.put(name,repl);
+    return repl;
+  }
+}

@@ -1,0 +1,4 @@
+String id
+ZeppelinConfiguration conf
+NoteReplLoader replLoader
+Scheduler scheduler

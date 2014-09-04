@@ -1,0 +1,13 @@
+{
+synchronized (noteSocketMap) {
+    removeConnectionFromAllNote(socket);
+    List<WebSocket> socketList=noteSocketMap.get(noteId);
+    if (socketList == null) {
+      socketList=new LinkedList<WebSocket>();
+      noteSocketMap.put(noteId,socketList);
+    }
+    if (socketList.contains(socket) == false) {
+      socketList.add(socket);
+    }
+  }
+}

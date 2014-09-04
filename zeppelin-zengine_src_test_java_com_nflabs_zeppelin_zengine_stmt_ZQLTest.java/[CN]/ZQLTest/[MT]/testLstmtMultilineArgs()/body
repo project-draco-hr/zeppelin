@@ -1,8 +1,0 @@
-{
-  ZQL zql=new ZQL("test hello\nworld");
-  List<Z> zList=zql.compile();
-  assertEquals(1,zList.size());
-  Z q=zList.get(0);
-  assertEquals("select *\nfrom () a\nlimit hello\nworld;",q.getQuery());
-  q.release();
-}

@@ -1,9 +1,0 @@
-{
-  for (  Z z : zqlPlans) {
-    Z next=null;
-    for (Z c=z; c != null; c=c.prev()) {
-      c.setNext(next);
-      next=c;
-    }
-  }
-}

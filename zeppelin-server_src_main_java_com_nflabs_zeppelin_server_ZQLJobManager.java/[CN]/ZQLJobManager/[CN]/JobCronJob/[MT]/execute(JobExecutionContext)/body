@@ -1,4 +1,0 @@
-{
-  String jobId=context.getJobDetail().getKey().getName();
-  sm.run(jobId);
-}

@@ -1,0 +1,7 @@
+{
+  String envMaster=System.getenv().get("MASTER");
+  if (envMaster != null)   return envMaster;
+  String propMaster=System.getProperty("spark.master");
+  if (propMaster != null)   return propMaster;
+  return "local[*]";
+}

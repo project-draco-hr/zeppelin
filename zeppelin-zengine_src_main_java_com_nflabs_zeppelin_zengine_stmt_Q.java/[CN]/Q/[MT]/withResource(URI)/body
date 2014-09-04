@@ -1,4 +1,0 @@
-{
-  resources.add(r);
-  return this;
-}
