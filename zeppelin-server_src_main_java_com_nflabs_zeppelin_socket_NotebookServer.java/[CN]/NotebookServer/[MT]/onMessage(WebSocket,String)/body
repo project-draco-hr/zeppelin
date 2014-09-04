@@ -31,6 +31,9 @@ break;
 case PARAGRAPH_REMOVE:
 removeParagraph(conn,notebook,messagereceived);
 break;
+case NOTE_UPDATE:
+updateNote(conn,notebook,messagereceived);
+break;
 default :
 broadcastNoteList();
 break;
