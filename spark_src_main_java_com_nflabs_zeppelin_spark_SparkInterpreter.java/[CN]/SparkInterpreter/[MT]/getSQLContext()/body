@@ -1,3 +1,11 @@
 {
+  if (sqlc == null) {
+    Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
+    sqlc=(SQLContext)share.get("sqlc");
+    if (sqlc == null) {
+      sqlc=new SQLContext(sc);
+      share.put("sqlc",sqlc);
+    }
+  }
   return sqlc;
 }

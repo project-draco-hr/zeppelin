@@ -1,0 +1,3 @@
+{
+  logger.info("Installed " + event.getMetadata() + " to "+ event.getFile());
+}

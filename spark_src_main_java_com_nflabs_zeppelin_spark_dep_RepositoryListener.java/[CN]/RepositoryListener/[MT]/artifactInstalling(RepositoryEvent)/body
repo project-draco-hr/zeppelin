@@ -1,0 +1,3 @@
+{
+  logger.info("Installing " + event.getArtifact() + " to "+ event.getFile());
+}

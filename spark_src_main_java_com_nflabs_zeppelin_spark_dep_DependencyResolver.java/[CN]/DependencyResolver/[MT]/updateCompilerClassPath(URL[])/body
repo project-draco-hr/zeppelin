@@ -1,0 +1,16 @@
+{
+  JavaPlatform platform=(JavaPlatform)global.platform();
+  MergedClassPath<AbstractFile> newClassPath=mergeUrlsIntoClassPath(platform,urls);
+  Method[] methods=platform.getClass().getMethods();
+  for (  Method m : methods) {
+    if (m.getName().endsWith("currentClassPath_$eq")) {
+      m.invoke(platform,new Some(newClassPath));
+      break;
+    }
+  }
+  List<String> classPaths=new LinkedList<String>();
+  for (  URL url : urls) {
+    classPaths.add(url.getPath());
+  }
+  global.invalidateClassPathEntries(scala.collection.JavaConversions.asScalaBuffer(classPaths).toList());
+}

@@ -1,0 +1,7 @@
+{
+  downloads.remove(event.getResource());
+  StringBuilder buffer=new StringBuilder(64);
+  pad(buffer,lastLength);
+  buffer.append('\r');
+  logger.info(buffer.toString());
+}
