@@ -1,0 +1,16 @@
+{
+  String noteId=(String)fromMessage.get("id");
+  String name=(String)fromMessage.get("name");
+  if (noteId == null) {
+    return;
+  }
+  if (name == null) {
+    return;
+  }
+  Note note=notebook.getNote(noteId);
+  if (note != null) {
+    note.setName(name);
+    broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+    broadcastNoteList();
+  }
+}

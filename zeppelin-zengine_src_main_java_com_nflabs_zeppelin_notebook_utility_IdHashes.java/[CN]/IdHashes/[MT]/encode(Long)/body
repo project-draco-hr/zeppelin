@@ -1,0 +1,23 @@
+{
+  List<Character> result=new ArrayList<Character>();
+  BigInteger base=new BigInteger("" + DICTIONARY.length);
+  int exponent=1;
+  BigInteger remaining=new BigInteger(value.toString());
+  while (true) {
+    BigInteger a=base.pow(exponent);
+    BigInteger b=remaining.mod(a);
+    BigInteger c=base.pow(exponent - 1);
+    BigInteger d=b.divide(c);
+    result.add(DICTIONARY[d.intValue()]);
+    remaining=remaining.subtract(b);
+    if (remaining.equals(BigInteger.ZERO)) {
+      break;
+    }
+    exponent++;
+  }
+  StringBuffer sb=new StringBuffer();
+  for (int i=result.size() - 1; i >= 0; i--) {
+    sb.append(result.get(i));
+  }
+  return sb.toString();
+}

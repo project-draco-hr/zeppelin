@@ -1,7 +1,7 @@
 {
   Note note=notebook.createNote();
   Paragraph p1=note.addParagraph();
-  p1.setParagraph("hello world");
+  p1.setText("hello world");
   note.persist();
   Notebook notebook2=new Notebook(conf,schedulerFactory,new MockInterpreterFactory(conf));
   assertEquals(1,notebook2.getAllNotes().size());

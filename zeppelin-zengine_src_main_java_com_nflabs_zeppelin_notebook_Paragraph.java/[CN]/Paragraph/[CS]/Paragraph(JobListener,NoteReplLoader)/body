@@ -1,6 +1,8 @@
 {
   super(generateId(),listener);
   this.replLoader=replLoader;
-  paragraph=null;
-  form=new Form();
+  text=null;
+  isOpen=true;
+  isEditorOpen=true;
+  settings=new Setting();
 }
