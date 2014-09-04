@@ -1,0 +1,4 @@
+{
+  String message=event.getRequestType() == TransferEvent.RequestType.PUT ? "Uploading" : "Downloading";
+  logger.info(message + ": " + event.getResource().getRepositoryUrl()+ event.getResource().getResourceName());
+}

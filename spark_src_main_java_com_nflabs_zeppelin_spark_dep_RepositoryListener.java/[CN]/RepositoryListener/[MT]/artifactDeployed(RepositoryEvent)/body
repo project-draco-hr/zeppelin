@@ -1,0 +1,3 @@
+{
+  logger.info("Deployed " + event.getArtifact() + " to "+ event.getRepository());
+}
