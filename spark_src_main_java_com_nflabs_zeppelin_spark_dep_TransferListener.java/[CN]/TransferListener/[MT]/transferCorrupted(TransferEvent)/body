@@ -1,0 +1,3 @@
+{
+  event.getException().printStackTrace(out);
+}

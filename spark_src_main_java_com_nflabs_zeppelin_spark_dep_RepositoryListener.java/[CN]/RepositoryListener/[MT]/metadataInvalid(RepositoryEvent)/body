@@ -1,0 +1,3 @@
+{
+  logger.info("Invalid metadata " + event.getMetadata());
+}

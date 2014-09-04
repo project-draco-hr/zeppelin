@@ -1,0 +1,4 @@
+{
+  transferCompleted(event);
+  event.getException().printStackTrace(out);
+}

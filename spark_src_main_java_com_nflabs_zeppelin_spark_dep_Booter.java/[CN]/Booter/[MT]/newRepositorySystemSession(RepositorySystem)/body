@@ -1,0 +1,6 @@
+{
+  MavenRepositorySystemSession session=new MavenRepositorySystemSession();
+  LocalRepository localRepo=new LocalRepository("/tmp/local-repo");
+  session.setLocalRepositoryManager(system.newLocalRepositoryManager(localRepo));
+  return session;
+}

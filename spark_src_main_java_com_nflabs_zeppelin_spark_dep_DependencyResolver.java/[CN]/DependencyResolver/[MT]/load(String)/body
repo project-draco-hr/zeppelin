@@ -1,0 +1,21 @@
+{
+  if (StringUtils.isBlank(artifact)) {
+    return;
+  }
+  try {
+    List<ArtifactResult> listOfArtifact=getArtifactsFor(artifact);
+    List<URL> newClassPathList=new LinkedList<URL>();
+    List<File> files=new LinkedList<File>();
+    for (    ArtifactResult artifactResult : listOfArtifact) {
+      newClassPathList.add(artifactResult.getArtifact().getFile().toURI().toURL());
+      files.add(artifactResult.getArtifact().getFile());
+    }
+    updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
+    for (    File f : files) {
+      sc.addJar(f.getAbsolutePath());
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}
