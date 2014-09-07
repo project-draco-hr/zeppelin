@@ -1,42 +1,17 @@
 {
   if (msg == null)   return null;
-  if (msg.startsWith("%html ")) {
-    int magicLength="%html ".length();
-    if (msg.length() > magicLength) {
-      return msg.substring(magicLength);
-    }
+  Type[] types=Type.values();
+  for (  Type t : types) {
+    String magic="%" + t.name().toLowerCase();
+    if (msg.startsWith(magic + " ") || msg.startsWith(magic + "\n")) {
+      int magicLength=magic.length() + 1;
+      if (msg.length() > magicLength) {
+        return msg.substring(magicLength);
+      }
  else {
-      return "";
+        return "";
+      }
     }
   }
- else   if (msg.startsWith("%text ")) {
-    int magicLength="%text ".length();
-    if (msg.length() > magicLength) {
-      return msg.substring(magicLength);
-    }
- else {
-      return "";
-    }
-  }
- else   if (msg.startsWith("%table ")) {
-    int magicLength="%table ".length();
-    if (msg.length() > magicLength) {
-      return msg.substring(magicLength);
-    }
- else {
-      return "";
-    }
-  }
- else   if (msg.startsWith("%null ")) {
-    int magicLength="%null ".length();
-    if (msg.length() > magicLength) {
-      return msg.substring(magicLength);
-    }
- else {
-      return "";
-    }
-  }
- else {
-    return msg;
-  }
+  return msg;
 }
