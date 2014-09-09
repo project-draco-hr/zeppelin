@@ -1,6 +1,7 @@
 {
   if (aborted) {
     setStatus(Status.ABORT);
+    aborted=false;
     return;
   }
   JobProgressPoller progressUpdator=null;
@@ -36,5 +37,8 @@ catch (  Throwable e) {
     errorMessage=e.getMessage();
     dateFinished=new Date();
     setStatus(Status.ERROR);
+  }
+ finally {
+    aborted=false;
   }
 }
