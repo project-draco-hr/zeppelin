@@ -1,12 +1,15 @@
 {
   findSpark();
   SQLContext sqlc=((SparkInterpreter)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
+  SparkContext sc=sqlc.sparkContext();
+  sc.setJobGroup(jobGroup,"Zeppelin",false);
   SchemaRDD rdd=sqlc.sql(st);
   Row[] rows=null;
   try {
     rows=rdd.take(10000);
   }
  catch (  Exception e) {
+    sc.clearJobGroup();
     return new InterpreterResult(Code.ERROR,e.getMessage());
   }
   String msg=null;
@@ -56,5 +59,7 @@
     }
     msg+="\n";
   }
-  return new InterpreterResult(Code.SUCCESS,"%table " + msg);
+  InterpreterResult ret=new InterpreterResult(Code.SUCCESS,"%table " + msg);
+  sc.clearJobGroup();
+  return ret;
 }

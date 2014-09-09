@@ -1,8 +1,3 @@
 {
-  this.jobName=jobName;
-  this.listener=listener;
-  dateCreated=new Date();
-  SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
-  id=dateFormat.format(dateCreated) + "_" + super.hashCode();
-  setStatus(Status.READY);
+  this(jobName,listener,JobProgressPoller.DEFAULT_INTERVAL_MSEC);
 }

@@ -1,3 +1,10 @@
 {
-  return 0;
+  String replName=getRequiredReplName();
+  Interpreter repl=getRepl(replName);
+  if (repl != null) {
+    return repl.getProgress();
+  }
+ else {
+    return 0;
+  }
 }

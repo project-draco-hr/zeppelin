@@ -1,0 +1,24 @@
+{
+  if (intervalMs < 0) {
+    return;
+  }
+ else   if (intervalMs == 0) {
+    intervalMs=DEFAULT_INTERVAL_MSEC;
+  }
+  while (terminate == false) {
+    JobListener listener=job.getListener();
+    if (listener != null) {
+      try {
+        listener.onProgressUpdate(job,job.progress());
+      }
+ catch (      Exception e) {
+        logger.error("Can not get or update progress",e);
+      }
+    }
+    try {
+      Thread.sleep(intervalMs);
+    }
+ catch (    InterruptedException e) {
+    }
+  }
+}

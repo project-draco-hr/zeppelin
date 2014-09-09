@@ -1,0 +1,9 @@
+{
+  this.jobName=jobName;
+  this.listener=listener;
+  this.progressUpdateIntervalMs=progressUpdateIntervalMs;
+  dateCreated=new Date();
+  SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd-HHmmss");
+  id=dateFormat.format(dateCreated) + "_" + super.hashCode();
+  setStatus(Status.READY);
+}

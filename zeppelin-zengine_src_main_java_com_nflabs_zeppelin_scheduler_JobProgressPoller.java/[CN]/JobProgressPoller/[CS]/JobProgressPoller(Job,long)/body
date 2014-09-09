@@ -1,0 +1,4 @@
+{
+  this.job=job;
+  this.intervalMs=intervalMs;
+}
