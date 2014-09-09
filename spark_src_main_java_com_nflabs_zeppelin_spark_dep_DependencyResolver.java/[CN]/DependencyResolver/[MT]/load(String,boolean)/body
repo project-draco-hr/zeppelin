@@ -1,0 +1,38 @@
+{
+  if (StringUtils.isBlank(artifact)) {
+    return;
+  }
+  try {
+    List<ArtifactResult> listOfArtifact;
+    if (recursive) {
+      listOfArtifact=getArtifactsWithDep(artifact);
+    }
+ else {
+      listOfArtifact=getArtifact(artifact);
+    }
+    Iterator<ArtifactResult> it=listOfArtifact.iterator();
+    while (it.hasNext()) {
+      Artifact a=it.next().getArtifact();
+      String gav=a.getGroupId() + ":" + a.getArtifactId()+ ":"+ a.getVersion();
+      for (      String exclude : EXCLUSIONS) {
+        if (gav.startsWith(exclude)) {
+          it.remove();
+          break;
+        }
+      }
+    }
+    List<URL> newClassPathList=new LinkedList<URL>();
+    List<File> files=new LinkedList<File>();
+    for (    ArtifactResult artifactResult : listOfArtifact) {
+      newClassPathList.add(artifactResult.getArtifact().getFile().toURI().toURL());
+      files.add(artifactResult.getArtifact().getFile());
+    }
+    updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
+    for (    File f : files) {
+      sc.addJar(f.getAbsolutePath());
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}
