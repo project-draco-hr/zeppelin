@@ -1,0 +1,9 @@
+{
+  StackTraceElement[] stacks=e.getStackTrace();
+  if (stacks == null)   return "";
+  String ss="";
+  for (  StackTraceElement s : stacks) {
+    ss+=s.toString() + "\n";
+  }
+  return ss;
+}

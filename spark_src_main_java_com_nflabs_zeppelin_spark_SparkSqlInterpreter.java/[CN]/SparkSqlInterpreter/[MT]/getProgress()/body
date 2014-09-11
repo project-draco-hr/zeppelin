@@ -10,6 +10,7 @@
   Iterator<ActiveJob> it=jobs.iterator();
   while (it.hasNext()) {
     ActiveJob job=it.next();
+    if (job == null || job.properties() == null)     continue;
     String g=(String)job.properties().get("spark.jobGroup.id");
     if (jobGroup.equals(g)) {
       int[] progressInfo=getProgressFromStage(sparkListener,job.finalStage());

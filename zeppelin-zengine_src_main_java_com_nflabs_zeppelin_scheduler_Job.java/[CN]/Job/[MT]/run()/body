@@ -21,20 +21,20 @@
     }
   }
  catch (  NullPointerException e) {
-    e.printStackTrace();
+    logger().error("Job failed",e);
     progressUpdator.terminate();
     this.exception=e;
-    result=null;
-    errorMessage=e.getMessage();
+    result=e.getMessage();
+    errorMessage=getStack(e);
     dateFinished=new Date();
     setStatus(Status.ERROR);
   }
 catch (  Throwable e) {
-    e.printStackTrace();
+    logger().error("Job failed",e);
     progressUpdator.terminate();
     this.exception=e;
-    result=null;
-    errorMessage=e.getMessage();
+    result=e.getMessage();
+    errorMessage=getStack(e);
     dateFinished=new Date();
     setStatus(Status.ERROR);
   }

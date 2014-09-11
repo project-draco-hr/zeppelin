@@ -26,7 +26,7 @@
   sqlc=getSQLContext();
   dep=getDependencyResolver();
   intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
-  Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
+  binder=(Map<String,Object>)getValue("_binder");
   binder.put("out",printStream);
   binder.put("sc",sc);
   binder.put("sqlc",sqlc);
