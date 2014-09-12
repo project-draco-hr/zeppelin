@@ -1,4 +1,5 @@
 {
+  Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
   Settings settings=new Settings();
   PathSetting pathSettings=settings.classpath();
   String classpath="";
@@ -32,6 +33,8 @@
   binder.put("sqlc",sqlc);
   binder.put("dep",dep);
   binder.put("intp",intp);
+  binder.put("interpreter",interpreter);
+  binder.put("env",share.get("sparkEnv"));
   intp.interpret("@transient val dep = _binder.get(\"dep\").asInstanceOf[com.nflabs.zeppelin.spark.dep.DependencyResolver]");
   intp.interpret("@transient val sc = _binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
   intp.interpret("import org.apache.spark.SparkContext._");

@@ -1,4 +1,5 @@
 {
+  binder=(Map<String,Object>)getValue("_binder");
   intp.interpret("Console.setOut(_binder.get(\"out\").asInstanceOf[java.io.PrintStream])");
   out.reset();
   Code r=null;

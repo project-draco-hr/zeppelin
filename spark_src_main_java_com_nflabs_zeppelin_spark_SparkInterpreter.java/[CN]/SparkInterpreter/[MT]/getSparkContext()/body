@@ -5,9 +5,11 @@
     sparkListener=(JobProgressListener)share.get("sparkListener");
     if (sc == null) {
       sc=createSparkContext();
+      SparkEnv env=SparkEnv.get();
       sparkListener=new JobProgressListener(sc.getConf());
       sc.listenerBus().addListener(sparkListener);
       share.put("sc",sc);
+      share.put("sparkEnv",env);
       share.put("sparkListener",sparkListener);
     }
   }
