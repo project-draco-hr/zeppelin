@@ -1,0 +1,34 @@
+{
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  File[] interpreterDirs=new File(conf.getInterpreterDir()).listFiles();
+  if (interpreterDirs != null) {
+    for (    File path : interpreterDirs) {
+      logger.info("Reading " + path.getAbsolutePath());
+      URL[] urls=null;
+      try {
+        urls=recursiveBuildLibList(path);
+      }
+ catch (      MalformedURLException e1) {
+        logger.error("Can't load jars ",e1);
+      }
+      URLClassLoader ccl=new URLClassLoader(urls,oldcl);
+      for (      String className : interpreterClassList) {
+        try {
+          Class.forName(className,true,ccl);
+          Set<String> keys=Interpreter.registeredInterpreters.keySet();
+          for (          String intName : keys) {
+            if (className.equals(Interpreter.registeredInterpreters.get(intName))) {
+              logger.info("Interpreter " + intName + " found. class="+ className);
+              cleanCl.put(intName,ccl);
+            }
+            if (className.equals(interpreterClassList[0])) {
+              defaultInterpreterName=intName;
+            }
+          }
+        }
+ catch (        ClassNotFoundException e) {
+        }
+      }
+    }
+  }
+}

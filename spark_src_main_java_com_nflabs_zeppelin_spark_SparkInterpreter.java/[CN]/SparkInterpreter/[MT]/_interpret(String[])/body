@@ -1,6 +1,6 @@
 {
-  binder=(Map<String,Object>)getValue("_binder");
-  intp.interpret("Console.setOut(_binder.get(\"out\").asInstanceOf[java.io.PrintStream])");
+  SparkEnv.set(env);
+  Console.setOut((java.io.PrintStream)binder.get("out"));
   out.reset();
   Code r=null;
   String incomplete="";

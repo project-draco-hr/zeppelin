@@ -1,0 +1,7 @@
+{
+  Set<String> keys=loadedInterpreters.keySet();
+  for (  String k : keys) {
+    Interpreter repl=loadedInterpreters.get(k);
+    repl.close();
+  }
+}

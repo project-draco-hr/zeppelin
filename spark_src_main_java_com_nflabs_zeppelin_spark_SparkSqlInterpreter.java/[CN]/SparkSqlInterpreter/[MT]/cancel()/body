@@ -1,6 +1,5 @@
 {
-  findSpark();
-  SQLContext sqlc=((SparkInterpreter)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
+  SQLContext sqlc=getSparkInterpreter().getSQLContext();
   SparkContext sc=sqlc.sparkContext();
   sc.cancelJobGroup(jobGroup);
 }

@@ -1,3 +1,0 @@
-{
-  this.sparkClassloaderRepl=(ClassloaderInterpreter)repl;
-}

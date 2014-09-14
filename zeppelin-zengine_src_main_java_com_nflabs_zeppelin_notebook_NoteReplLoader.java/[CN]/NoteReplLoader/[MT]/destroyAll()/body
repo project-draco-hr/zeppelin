@@ -1,7 +1,0 @@
-{
-  Set<String> keys=loadedRepls.keySet();
-  for (  String k : keys) {
-    Interpreter repl=loadedRepls.get(k);
-    repl.destroy();
-  }
-}
