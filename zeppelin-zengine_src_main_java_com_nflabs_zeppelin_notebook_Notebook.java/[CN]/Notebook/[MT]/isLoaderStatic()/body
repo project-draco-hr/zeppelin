@@ -1,0 +1,3 @@
+{
+  return "share".equals(conf.getString(ConfVars.ZEPPELIN_INTERPRETER_MODE));
+}

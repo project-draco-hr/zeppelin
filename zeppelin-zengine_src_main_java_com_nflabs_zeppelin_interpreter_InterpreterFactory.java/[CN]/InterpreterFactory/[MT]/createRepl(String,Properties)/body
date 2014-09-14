@@ -1,5 +1,5 @@
 {
-  String className=replNameClassMap.get(replName != null ? replName : defaultReplName);
+  String className=Interpreter.registeredInterpreters.get(replName != null ? replName : defaultInterpreterName);
   logger.info("find repl class {} = {}",replName,className);
   if (className == null) {
     throw new RuntimeException("Configuration not found for " + replName);

@@ -2,5 +2,5 @@
   Properties p=new Properties();
   p.put("share",share);
   repl=new SparkInterpreter(p);
-  repl.initialize();
+  repl.open();
 }

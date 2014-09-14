@@ -1,6 +1,0 @@
-{
-  Map<String,Interpreter> repls=(Map<String,Interpreter>)this.getProperty().get("repls");
-  if (repls != null) {
-    sparkClassloaderRepl=(ClassloaderInterpreter)repls.get("spark");
-  }
-}

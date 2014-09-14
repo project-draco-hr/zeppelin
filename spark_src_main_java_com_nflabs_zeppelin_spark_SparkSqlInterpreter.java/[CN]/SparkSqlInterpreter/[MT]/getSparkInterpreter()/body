@@ -1,0 +1,3 @@
+{
+  return SparkInterpreter.singleton(getProperty());
+}

@@ -1,0 +1,6 @@
+{
+  if (_singleton == null) {
+    new SparkInterpreter(property);
+  }
+  return _singleton;
+}

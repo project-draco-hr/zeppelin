@@ -1,0 +1,10 @@
+{
+  this.factory=factory;
+  this.staticMode=staticMode;
+  if (staticMode) {
+    loadedInterpreters=loadedInterpretersStatic;
+  }
+ else {
+    loadedInterpreters=Collections.synchronizedMap(new HashMap<String,Interpreter>());
+  }
+}

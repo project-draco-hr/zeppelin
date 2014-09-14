@@ -1,9 +1,9 @@
 {
-  JobProgressListener sparkListener=((SparkInterpreter)sparkClassloaderRepl.getInnerRepl()).getJobProgressListener();
+  JobProgressListener sparkListener=getSparkInterpreter().getJobProgressListener();
   if (sparkListener == null)   return -1;
   int completedTasks=0;
   int totalTasks=0;
-  SQLContext sqlc=((SparkInterpreter)sparkClassloaderRepl.getInnerRepl()).getSQLContext();
+  SQLContext sqlc=getSparkInterpreter().getSQLContext();
   SparkContext sc=sqlc.sparkContext();
   DAGScheduler scheduler=sc.dagScheduler();
   HashSet<ActiveJob> jobs=scheduler.activeJobs();
