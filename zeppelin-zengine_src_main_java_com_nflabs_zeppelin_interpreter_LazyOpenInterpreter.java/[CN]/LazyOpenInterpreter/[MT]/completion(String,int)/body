@@ -1,0 +1,4 @@
+{
+  open();
+  return intp.completion(buf,cursor);
+}
