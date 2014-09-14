@@ -1,10 +1,13 @@
 {
   this.factory=factory;
+  this.schedulerFactory=schedulerFactory;
   this.staticMode=staticMode;
   if (staticMode) {
     loadedInterpreters=loadedInterpretersStatic;
+    loadedSchedulers=loadedSchedulersStatic;
   }
  else {
     loadedInterpreters=Collections.synchronizedMap(new HashMap<String,Interpreter>());
+    loadedSchedulers=Collections.synchronizedMap(new HashMap<String,Scheduler>());
   }
 }

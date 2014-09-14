@@ -4,4 +4,9 @@
     Interpreter repl=loadedInterpreters.get(k);
     repl.close();
   }
+  Set<String> schedulers=loadedSchedulers.keySet();
+  for (  String k : schedulers) {
+    Scheduler scheduler=loadedSchedulers.get(k);
+    scheduler.stop();
+  }
 }

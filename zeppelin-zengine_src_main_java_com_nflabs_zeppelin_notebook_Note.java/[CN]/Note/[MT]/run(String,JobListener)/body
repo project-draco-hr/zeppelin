@@ -2,5 +2,6 @@
   Paragraph p=getParagraph(paragraphId);
   p.setNoteReplLoader(replLoader);
   p.setListener(listener);
+  Scheduler scheduler=replLoader.getScheduler(p.getRequiredReplName());
   scheduler.submit(p);
 }
