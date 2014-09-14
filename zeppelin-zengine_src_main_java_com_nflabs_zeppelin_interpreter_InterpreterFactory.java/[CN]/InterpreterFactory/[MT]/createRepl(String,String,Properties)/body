@@ -3,6 +3,9 @@
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   try {
     URLClassLoader ccl=cleanCl.get(dirName);
+    if (ccl == null) {
+      ccl=URLClassLoader.newInstance(new URL[]{},oldcl);
+    }
     boolean separateCL=true;
     try {
       Class cls=this.getClass().forName(className);
