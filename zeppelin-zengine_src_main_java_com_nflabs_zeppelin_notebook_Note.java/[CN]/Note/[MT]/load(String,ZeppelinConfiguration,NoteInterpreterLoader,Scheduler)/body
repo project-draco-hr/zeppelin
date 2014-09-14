@@ -12,7 +12,6 @@
   Note note=gson.fromJson(json,Note.class);
   note.setZeppelinConfiguration(conf);
   note.setReplLoader(replLoader);
-  note.setScheduler(scheduler);
   for (  Paragraph p : note.paragraphs) {
     if (p.getStatus() == Status.PENDING || p.getStatus() == Status.RUNNING) {
       p.setStatus(Status.ABORT);
