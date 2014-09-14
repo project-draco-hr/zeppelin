@@ -1,0 +1,12 @@
+{
+  String replName=getRequiredReplName(buffer);
+  if (replName != null) {
+    cursor-=replName.length() + 1;
+  }
+  String body=getScriptBody(buffer);
+  Interpreter repl=getRepl(replName);
+  if (repl == null) {
+    return null;
+  }
+  return repl.completion(body,cursor);
+}

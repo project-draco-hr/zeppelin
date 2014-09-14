@@ -1,0 +1,15 @@
+{
+  String paragraphId=(String)fromMessage.get("id");
+  String buffer=(String)fromMessage.get("buf");
+  int cursor=(int)Double.parseDouble(fromMessage.get("cursor").toString());
+  Message resp=new Message(OP.COMPLETION_LIST).put("id",paragraphId);
+  if (paragraphId == null) {
+    conn.send(serializeMessage(resp));
+    return;
+  }
+  final Note note=notebook.getNote(getOpenNoteId(conn));
+  Paragraph p=note.getParagraph(paragraphId);
+  List<String> candidates=p.completion(buffer,cursor);
+  resp.put("completions",candidates);
+  conn.send(serializeMessage(resp));
+}

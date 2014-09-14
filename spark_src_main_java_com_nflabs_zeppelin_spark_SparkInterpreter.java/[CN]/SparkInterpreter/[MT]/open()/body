@@ -32,6 +32,7 @@
   intp=interpreter.intp();
   intp.setContextClassLoader();
   intp.initializeSynchronous();
+  completor=new SparkJLineCompletion(intp);
   sc=getSparkContext();
   sqlc=getSQLContext();
   dep=getDependencyResolver();
