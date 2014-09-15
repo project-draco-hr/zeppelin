@@ -3,7 +3,7 @@
     Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
     dep=(DependencyResolver)share.get("dep");
     if (dep == null) {
-      dep=new DependencyResolver(intp.global(),sc);
+      dep=new DependencyResolver(intp,sc);
     }
   }
   return dep;

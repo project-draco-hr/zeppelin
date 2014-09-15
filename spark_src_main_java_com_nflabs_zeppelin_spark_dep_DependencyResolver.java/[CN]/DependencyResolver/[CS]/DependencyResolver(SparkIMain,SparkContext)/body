@@ -1,0 +1,5 @@
+{
+  this.intp=intp;
+  this.global=intp.global();
+  this.sc=sc;
+}

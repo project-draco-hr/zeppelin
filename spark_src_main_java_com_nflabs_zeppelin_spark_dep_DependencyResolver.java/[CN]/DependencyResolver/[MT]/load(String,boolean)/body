@@ -28,6 +28,7 @@
       files.add(artifactResult.getArtifact().getFile());
     }
     updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
+    updateRuntimeClassPath(newClassPathList.toArray(new URL[0]));
     for (    File f : files) {
       sc.addJar(f.getAbsolutePath());
     }
