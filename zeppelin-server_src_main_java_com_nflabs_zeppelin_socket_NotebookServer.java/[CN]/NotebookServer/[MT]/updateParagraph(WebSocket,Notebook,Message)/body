@@ -4,9 +4,12 @@
     return;
   }
   Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
+  Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
   final Note note=notebook.getNote(getOpenNoteId(conn));
   Paragraph p=note.getParagraph(paragraphId);
   p.settings.setParams(params);
+  p.setConfig(config);
+  p.setText((String)fromMessage.get("paragraph"));
   note.persist();
-  broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  broadcastNote(note.id(),new Message(OP.PARAGRAPH).put("paragraph",p));
 }
