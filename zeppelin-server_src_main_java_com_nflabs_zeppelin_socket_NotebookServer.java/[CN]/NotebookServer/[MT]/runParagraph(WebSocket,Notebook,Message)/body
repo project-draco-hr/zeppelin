@@ -8,6 +8,8 @@
   p.setText((String)fromMessage.get("paragraph"));
   Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
   p.settings.setParams(params);
+  Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
+  p.setConfig(config);
   if (note.getLastParagraph().getId().equals(p.getId())) {
     note.addParagraph();
     broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
