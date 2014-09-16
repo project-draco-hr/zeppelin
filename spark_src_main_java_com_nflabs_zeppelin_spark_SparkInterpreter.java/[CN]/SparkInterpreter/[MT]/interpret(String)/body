@@ -1,3 +1,4 @@
 {
+  if (line == null)   line="";
   return interpret(line.split("\n"));
 }
