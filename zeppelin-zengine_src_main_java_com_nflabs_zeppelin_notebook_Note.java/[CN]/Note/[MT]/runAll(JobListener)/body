@@ -2,7 +2,7 @@
 synchronized (paragraphs) {
     for (    Paragraph p : paragraphs) {
       p.setNoteReplLoader(replLoader);
-      p.setListener(this);
+      p.setListener(jobListener);
       Scheduler scheduler=replLoader.getScheduler(p.getRequiredReplName());
       scheduler.submit(p);
     }
