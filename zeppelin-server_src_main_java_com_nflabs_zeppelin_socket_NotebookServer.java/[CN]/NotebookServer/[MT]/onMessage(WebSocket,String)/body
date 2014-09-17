@@ -16,20 +16,17 @@ break;
 case DEL_NOTE:
 removeNote(conn,notebook,messagereceived);
 break;
-case PARAGRAPH_PARAM:
-addParamsForParagraph(conn,notebook,messagereceived);
-break;
 case COMMIT_PARAGRAPH:
-updateParamsForParagraph(conn,notebook,messagereceived);
-break;
-case PARAGRAPH_UPDATE_STATE:
-updateParagraphState(conn,notebook,messagereceived);
+updateParagraph(conn,notebook,messagereceived);
 break;
 case RUN_PARAGRAPH:
 runParagraph(conn,notebook,messagereceived);
 break;
 case CANCEL_PARAGRAPH:
 cancelParagraph(conn,notebook,messagereceived);
+break;
+case MOVE_PARAGRAPH:
+moveParagraph(conn,notebook,messagereceived);
 break;
 case PARAGRAPH_REMOVE:
 removeParagraph(conn,notebook,messagereceived);
