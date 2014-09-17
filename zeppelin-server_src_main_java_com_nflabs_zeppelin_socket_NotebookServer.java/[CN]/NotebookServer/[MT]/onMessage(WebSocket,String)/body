@@ -25,6 +25,9 @@ break;
 case CANCEL_PARAGRAPH:
 cancelParagraph(conn,notebook,messagereceived);
 break;
+case MOVE_PARAGRAPH:
+moveParagraph(conn,notebook,messagereceived);
+break;
 case PARAGRAPH_REMOVE:
 removeParagraph(conn,notebook,messagereceived);
 break;
