@@ -1,5 +1,5 @@
 {
-  Note note=new Note(conf,new NoteInterpreterLoader(replFactory,schedulerFactory,isLoaderStatic()));
+  Note note=new Note(conf,new NoteInterpreterLoader(replFactory,isLoaderStatic()));
 synchronized (notes) {
     notes.put(note.id(),note);
   }
