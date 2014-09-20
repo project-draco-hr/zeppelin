@@ -1,0 +1,3 @@
+SparkContext sc
+SQLContext sql
+DependencyResolver dep

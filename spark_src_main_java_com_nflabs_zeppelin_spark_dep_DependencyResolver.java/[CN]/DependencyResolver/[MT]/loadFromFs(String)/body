@@ -1,0 +1,11 @@
+{
+  File jarFile=new File(artifact);
+  try {
+    updateCompilerClassPath(new URL[]{jarFile.toURI().toURL()});
+    updateRuntimeClassPath(new URL[]{jarFile.toURI().toURL()});
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  sc.addJar(jarFile.getAbsolutePath());
+}
