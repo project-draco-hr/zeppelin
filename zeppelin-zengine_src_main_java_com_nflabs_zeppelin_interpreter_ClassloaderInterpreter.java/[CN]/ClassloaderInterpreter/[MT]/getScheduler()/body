@@ -2,7 +2,7 @@
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   Thread.currentThread().setContextClassLoader(cl);
   try {
-    return intp.getSchedulingMode();
+    return intp.getScheduler();
   }
  catch (  Exception e) {
     throw new InterpreterException(e);

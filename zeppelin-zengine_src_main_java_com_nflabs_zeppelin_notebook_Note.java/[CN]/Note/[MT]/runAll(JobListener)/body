@@ -3,8 +3,8 @@ synchronized (paragraphs) {
     for (    Paragraph p : paragraphs) {
       p.setNoteReplLoader(replLoader);
       p.setListener(jobListener);
-      Scheduler scheduler=replLoader.getScheduler(p.getRequiredReplName());
-      scheduler.submit(p);
+      Interpreter intp=replLoader.getRepl(p.getRequiredReplName());
+      intp.getScheduler().submit(p);
     }
   }
 }
