@@ -1,6 +1,7 @@
 {
   super(generateId(),listener);
   this.replLoader=replLoader;
+  title=null;
   text=null;
   settings=new Setting();
   config=new HashMap<String,Object>();
