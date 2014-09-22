@@ -1,0 +1,11 @@
+{
+  int n=options.size();
+  ParamOption[] paramOptions=new ParamOption[n];
+  Iterator<Tuple2<Object,String>> it=scala.collection.JavaConversions.asJavaIterable(options).iterator();
+  int i=0;
+  while (it.hasNext()) {
+    Tuple2<Object,String> valueAndDisplayValue=it.next();
+    paramOptions[i++]=new ParamOption(valueAndDisplayValue._1(),valueAndDisplayValue._2());
+  }
+  return form.select(name,"",paramOptions);
+}
