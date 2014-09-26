@@ -3,6 +3,8 @@
   if (noteId == null) {
     return;
   }
+  Note note=notebook.getNote(noteId);
+  note.unpersist();
   notebook.removeNote(noteId);
   removeNote(noteId);
   broadcastNoteList();
