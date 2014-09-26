@@ -1,3 +1,5 @@
 String groupId
 String artifactId
 String version
+boolean recursive
+boolean addSparkContext

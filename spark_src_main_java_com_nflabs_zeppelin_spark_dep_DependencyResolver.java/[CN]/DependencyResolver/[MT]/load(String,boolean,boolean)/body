@@ -3,9 +3,9 @@
     return;
   }
   if (artifact.split(":").length == 3) {
-    loadFromMvn(artifact,recursive);
+    loadFromMvn(artifact,recursive,addSparkContext);
   }
  else {
-    loadFromFs(artifact);
+    loadFromFs(artifact,addSparkContext);
   }
 }
