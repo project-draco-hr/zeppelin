@@ -6,7 +6,7 @@
   Row[] rows=null;
   try {
     rdd=sqlc.sql(st);
-    rows=rdd.take(10000);
+    rows=rdd.take(maxResult + 1);
   }
  catch (  Exception e) {
     logger.error("Error",e);
@@ -24,7 +24,9 @@
     }
   }
   msg+="\n";
-  for (  Row row : rows) {
+  int numRows=0;
+  for (int r=0; r < maxResult && r < rows.length; r++) {
+    Row row=rows[r];
     for (int i=0; i < columns.size(); i++) {
       String type=columns.get(i).dataType().toString();
       if ("BooleanType".equals(type)) {
@@ -59,6 +61,9 @@
       }
     }
     msg+="\n";
+  }
+  if (rows.length > maxResult) {
+    msg+="\n<font color=red>Results are limited by " + maxResult + ".</font>";
   }
   InterpreterResult rett=new InterpreterResult(Code.SUCCESS,"%table " + msg);
   sc.clearJobGroup();

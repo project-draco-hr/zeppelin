@@ -1,2 +1,4 @@
 {
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  this.maxResult=conf.getInt("ZEPPELIN_SPARK_MAX_RESULT","zeppelin.spark.maxResult",10000);
 }
