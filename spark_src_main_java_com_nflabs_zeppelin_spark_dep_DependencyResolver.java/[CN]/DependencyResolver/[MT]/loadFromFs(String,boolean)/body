@@ -1,0 +1,8 @@
+{
+  File jarFile=new File(artifact);
+  updateCompilerClassPath(new URL[]{jarFile.toURI().toURL()});
+  updateRuntimeClassPath(new URL[]{jarFile.toURI().toURL()});
+  if (addSparkContext) {
+    sc.addJar(jarFile.getAbsolutePath());
+  }
+}

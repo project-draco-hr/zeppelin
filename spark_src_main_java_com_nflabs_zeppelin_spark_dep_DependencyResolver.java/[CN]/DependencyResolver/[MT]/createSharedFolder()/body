@@ -1,6 +1,0 @@
-{
-  File sharedDirectory=new File("/tmp/imported");
-  if (!sharedDirectory.exists()) {
-    sharedDirectory.mkdir();
-  }
-}
