@@ -24,7 +24,6 @@
     }
   }
   msg+="\n";
-  int numRows=0;
   for (int r=0; r < maxResult && r < rows.length; r++) {
     Row row=rows[r];
     for (int i=0; i < columns.size(); i++) {
