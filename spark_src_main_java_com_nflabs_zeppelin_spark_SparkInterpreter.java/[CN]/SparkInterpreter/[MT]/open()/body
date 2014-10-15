@@ -1,8 +1,11 @@
 {
   Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
   URL[] urls=(URL[])getProperty().get("classloaderUrls");
-  SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer((List<String>)getProperty().get("args")).toList());
-  Settings settings=command.settings();
+  Settings settings=new Settings();
+  if (getProperty().containsKey("args")) {
+    SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer((List<String>)getProperty().get("args")).toList());
+    settings=command.settings();
+  }
   PathSetting pathSettings=settings.classpath();
   String classpath="";
   List<File> paths=currentClassPath();
