@@ -2,6 +2,10 @@
   Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
   URL[] urls=(URL[])getProperty().get("classloaderUrls");
   Settings settings=new Settings();
+  if (getProperty().containsKey("args")) {
+    SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer((List<String>)getProperty().get("args")).toList());
+    settings=command.settings();
+  }
   PathSetting pathSettings=settings.classpath();
   String classpath="";
   List<File> paths=currentClassPath();
@@ -37,6 +41,7 @@
   sqlc=getSQLContext();
   dep=getDependencyResolver();
   z=new ZeppelinContext(sc,sqlc,dep);
+  this.interpreter.loadFiles(settings);
   intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
   binder=(Map<String,Object>)getValue("_binder");
   binder.put("sc",sc);
