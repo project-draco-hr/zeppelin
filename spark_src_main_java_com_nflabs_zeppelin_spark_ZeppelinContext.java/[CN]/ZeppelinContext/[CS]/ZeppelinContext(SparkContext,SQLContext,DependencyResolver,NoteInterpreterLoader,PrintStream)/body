@@ -1,0 +1,7 @@
+{
+  this.sc=sc;
+  this.sqlContext=sql;
+  this.dep=dep;
+  this.noteInterpreterLoader=noteInterpreterLoader;
+  this.out=printStream;
+}
