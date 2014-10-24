@@ -1,7 +1,5 @@
 {
   sc.stop();
-  interpreter.closeInterpreter();
   sc=null;
-  interpreter=null;
-  intp=null;
+  intp.close();
 }
