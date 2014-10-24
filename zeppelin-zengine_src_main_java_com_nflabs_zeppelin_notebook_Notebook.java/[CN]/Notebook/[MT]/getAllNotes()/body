@@ -1,5 +1,12 @@
 {
 synchronized (notes) {
-    return new LinkedList<Note>(notes.values());
+    List<Note> noteList=new ArrayList<Note>(notes.values());
+    Collections.sort(noteList,new Comparator(){
+      @Override public int compare(      Object one,      Object two){
+        return ((Note)one).getName().compareTo(((Note)two).getName());
+      }
+    }
+);
+    return noteList;
   }
 }
