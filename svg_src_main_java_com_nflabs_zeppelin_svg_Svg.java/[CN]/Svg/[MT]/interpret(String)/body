@@ -1,0 +1,4 @@
+{
+  LOG.info("run SVG interpreter");
+  return new InterpreterResult(Code.SUCCESS,"%svg " + svgCode);
+}
