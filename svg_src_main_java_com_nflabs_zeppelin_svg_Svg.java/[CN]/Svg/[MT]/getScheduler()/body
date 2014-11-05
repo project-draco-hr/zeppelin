@@ -1,3 +1,0 @@
-{
-  return SchedulerFactory.singleton().createOrGetParallelScheduler(Svg.class.getName() + this.hashCode(),5);
-}
