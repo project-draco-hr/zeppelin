@@ -10,7 +10,24 @@ synchronized (notes) {
       return;
     }
     JobDetail newJob=JobBuilder.newJob(CronJob.class).withIdentity(id,"note").usingJobData("noteId",id).build();
-    CronTrigger trigger=TriggerBuilder.newTrigger().withIdentity("trigger_" + id,"note").withSchedule(CronScheduleBuilder.cronSchedule(cronExpr)).forJob(id,"note").build();
-    quartzSched.scheduleJob(newJob,trigger);
+    Map<String,Object> info=note.getInfo();
+    info.put("cron",null);
+    CronTrigger trigger=null;
+    try {
+      trigger=TriggerBuilder.newTrigger().withIdentity("trigger_" + id,"note").withSchedule(CronScheduleBuilder.cronSchedule(cronExpr)).forJob(id,"note").build();
+    }
+ catch (    Exception e) {
+      logger.error("Error",e);
+      info.put("cron",e.getMessage());
+    }
+    try {
+      if (trigger != null) {
+        quartzSched.scheduleJob(newJob,trigger);
+      }
+    }
+ catch (    SchedulerException e) {
+      logger.error("Error",e);
+      info.put("cron","Scheduler Exception");
+    }
   }
 }
