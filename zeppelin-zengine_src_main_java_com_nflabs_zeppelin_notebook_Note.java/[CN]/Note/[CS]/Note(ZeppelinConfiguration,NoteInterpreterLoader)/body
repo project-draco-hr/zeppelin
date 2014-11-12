@@ -1,5 +1,0 @@
-{
-  this.conf=conf;
-  this.replLoader=replLoader;
-  generateId();
-}

@@ -1,0 +1,16 @@
+{
+  removeCron(id);
+synchronized (notes) {
+    Note note=notes.get(id);
+    if (note == null)     return;
+    Map<String,Object> config=note.getConfig();
+    if (config == null)     return;
+    String cronExpr=(String)note.getConfig().get("cron");
+    if (cronExpr == null || cronExpr.trim().length() == 0) {
+      return;
+    }
+    JobDetail newJob=JobBuilder.newJob(CronJob.class).withIdentity(id,"note").usingJobData("noteId",id).build();
+    CronTrigger trigger=TriggerBuilder.newTrigger().withIdentity("trigger_" + id,"note").withSchedule(CronScheduleBuilder.cronSchedule(cronExpr)).forJob(id,"note").build();
+    quartzSched.scheduleJob(newJob,trigger);
+  }
+}

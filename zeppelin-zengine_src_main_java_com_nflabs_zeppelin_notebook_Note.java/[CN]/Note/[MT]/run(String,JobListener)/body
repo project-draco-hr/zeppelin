@@ -1,7 +1,0 @@
-{
-  Paragraph p=getParagraph(paragraphId);
-  p.setNoteReplLoader(replLoader);
-  p.setListener(listener);
-  Interpreter intp=replLoader.getRepl(p.getRequiredReplName());
-  intp.getScheduler().submit(p);
-}

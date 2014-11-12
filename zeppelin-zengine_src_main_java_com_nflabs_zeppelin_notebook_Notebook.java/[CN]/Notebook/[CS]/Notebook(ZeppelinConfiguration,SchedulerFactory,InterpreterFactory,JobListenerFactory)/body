@@ -1,0 +1,11 @@
+{
+  this.conf=conf;
+  this.schedulerFactory=schedulerFactory;
+  this.replFactory=replFactory;
+  this.jobListenerFactory=jobListenerFactory;
+  quertzSchedFact=new org.quartz.impl.StdSchedulerFactory();
+  quartzSched=quertzSchedFact.getScheduler();
+  quartzSched.start();
+  CronJob.notebook=this;
+  loadAllNotes();
+}

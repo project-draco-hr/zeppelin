@@ -1,0 +1,4 @@
+{
+  this.notebookServer=notebookServer;
+  this.note=note;
+}

@@ -1,0 +1,11 @@
+{
+  Note note=notebook.createNote();
+  Paragraph p1=note.addParagraph();
+  p1.setText("p1");
+  Paragraph p2=note.addParagraph();
+  p2.setText("p2");
+  assertEquals(null,p2.getResult());
+  note.runAll();
+  while (p2.isTerminated() == false || p2.getResult() == null)   Thread.yield();
+  assertEquals("repl1: p2",p2.getResult().message());
+}

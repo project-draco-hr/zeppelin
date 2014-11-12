@@ -1,0 +1,5 @@
+{
+  String noteId=context.getJobDetail().getJobDataMap().getString("noteId");
+  Note note=notebook.getNote(noteId);
+  note.runAll();
+}

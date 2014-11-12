@@ -1,0 +1,13 @@
+{
+  boolean cronUpdated=false;
+  if (configA.get("cron") != null && configB.get("cron") != null && configA.get("cron").equals(configB.get("cron"))) {
+    cronUpdated=true;
+  }
+ else   if (configA.get("cron") == null && configB.get("cron") == null) {
+    cronUpdated=false;
+  }
+ else   if (configA.get("cron") != null || configB.get("cron") != null) {
+    cronUpdated=true;
+  }
+  return cronUpdated;
+}
