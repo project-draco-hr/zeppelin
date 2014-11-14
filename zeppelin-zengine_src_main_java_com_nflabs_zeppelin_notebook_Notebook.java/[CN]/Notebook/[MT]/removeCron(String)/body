@@ -1,0 +1,8 @@
+{
+  try {
+    quartzSched.deleteJob(new JobKey(id,"note"));
+  }
+ catch (  SchedulerException e) {
+    logger.error("Can't remove quertz " + id,e);
+  }
+}

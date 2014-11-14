@@ -1,0 +1,19 @@
+{
+  Note note=notebook.createNote();
+  Paragraph p=note.addParagraph();
+  p.setText("p1");
+  Date dateFinished=p.getDateFinished();
+  assertNull(dateFinished);
+  Map<String,Object> config=note.getConfig();
+  config.put("cron","* * * * * ?");
+  note.setConfig(config);
+  notebook.refreshCron(note.id());
+  Thread.sleep(1 * 1000);
+  dateFinished=p.getDateFinished();
+  assertNotNull(dateFinished);
+  config.put("cron",null);
+  note.setConfig(config);
+  notebook.refreshCron(note.id());
+  Thread.sleep(1 * 1000);
+  assertEquals(dateFinished,p.getDateFinished());
+}

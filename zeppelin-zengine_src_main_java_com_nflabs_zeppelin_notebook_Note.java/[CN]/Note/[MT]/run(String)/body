@@ -1,3 +1,7 @@
 {
-  run(paragraphId,this);
+  Paragraph p=getParagraph(paragraphId);
+  p.setNoteReplLoader(replLoader);
+  p.setListener(jobListenerFactory.getParagraphJobListener(this));
+  Interpreter intp=replLoader.getRepl(p.getRequiredReplName());
+  intp.getScheduler().submit(p);
 }

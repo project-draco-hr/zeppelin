@@ -1,0 +1,18 @@
+{
+  if (after == Status.ERROR) {
+    job.getException().printStackTrace();
+  }
+  if (job.isTerminated()) {
+    LOG.info("Job {} is finished",job.getId());
+    try {
+      note.persist();
+    }
+ catch (    IOException e) {
+      e.printStackTrace();
+    }
+    notebookServer.broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  }
+ else {
+    notebookServer.broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  }
+}
