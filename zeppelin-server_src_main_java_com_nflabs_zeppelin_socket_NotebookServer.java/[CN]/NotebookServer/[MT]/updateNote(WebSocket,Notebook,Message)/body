@@ -16,7 +16,7 @@
     if (cronUpdated) {
       notebook.refreshCron(note.id());
     }
-    broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+    broadcastNote(note);
     broadcastNoteList();
   }
 }
