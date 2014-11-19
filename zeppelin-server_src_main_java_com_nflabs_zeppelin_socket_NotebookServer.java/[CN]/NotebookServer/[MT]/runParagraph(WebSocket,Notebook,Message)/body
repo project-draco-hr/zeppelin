@@ -12,11 +12,11 @@
   p.settings.setParams(params);
   Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
   p.setConfig(config);
-  if (text != null && text.length() > 0 && note.getLastParagraph().getId().equals(p.getId())) {
+  boolean isTheLastParagraph=note.getLastParagraph().getId().equals(p.getId());
+  if (!Strings.isNullOrEmpty(text) && isTheLastParagraph) {
     note.addParagraph();
-    broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
   }
   note.persist();
-  broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  broadcastNote(note);
   note.run(paragraphId);
 }

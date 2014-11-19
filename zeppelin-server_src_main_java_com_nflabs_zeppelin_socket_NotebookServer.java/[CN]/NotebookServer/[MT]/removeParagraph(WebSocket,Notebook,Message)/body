@@ -7,6 +7,6 @@
   if (!note.isLastParagraph(paragraphId)) {
     note.removeParagraph(paragraphId);
     note.persist();
-    broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+    broadcastNote(note);
   }
 }

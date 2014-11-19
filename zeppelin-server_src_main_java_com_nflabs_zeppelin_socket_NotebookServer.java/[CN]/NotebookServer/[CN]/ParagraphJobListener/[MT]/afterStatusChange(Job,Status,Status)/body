@@ -10,9 +10,6 @@
  catch (    IOException e) {
       e.printStackTrace();
     }
-    notebookServer.broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
   }
- else {
-    notebookServer.broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
-  }
+  notebookServer.broadcastNote(note);
 }

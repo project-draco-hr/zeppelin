@@ -7,5 +7,5 @@
   final Note note=notebook.getNote(getOpenNoteId(conn));
   note.moveParagraph(paragraphId,newIndex);
   note.persist();
-  broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  broadcastNote(note);
 }

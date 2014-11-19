@@ -1,3 +1,3 @@
 {
-  notebookServer.broadcastNote(note.id(),new Message(OP.PROGRESS).put("id",job.getId()).put("progress",job.progress()));
+  notebookServer.broadcast(note.id(),new Message(OP.PROGRESS).put("id",job.getId()).put("progress",job.progress()));
 }
