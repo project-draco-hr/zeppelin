@@ -1,0 +1,3 @@
+{
+  broadcast(note.id(),new Message(OP.NOTE).put("note",note));
+}

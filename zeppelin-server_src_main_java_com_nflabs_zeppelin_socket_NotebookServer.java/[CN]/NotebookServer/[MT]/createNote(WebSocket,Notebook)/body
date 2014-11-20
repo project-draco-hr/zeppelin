@@ -2,6 +2,6 @@
   Note note=notebook.createNote();
   note.addParagraph();
   note.persist();
-  broadcastNote(note.id(),new Message(OP.NOTE).put("note",note));
+  broadcastNote(note);
   broadcastNoteList();
 }

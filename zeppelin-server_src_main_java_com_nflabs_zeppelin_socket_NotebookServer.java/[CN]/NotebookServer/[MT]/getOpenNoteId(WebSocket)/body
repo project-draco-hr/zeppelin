@@ -1,6 +1,5 @@
 {
   String id=null;
-  ;
 synchronized (noteSocketMap) {
     Set<String> keys=noteSocketMap.keySet();
     for (    String noteId : keys) {
