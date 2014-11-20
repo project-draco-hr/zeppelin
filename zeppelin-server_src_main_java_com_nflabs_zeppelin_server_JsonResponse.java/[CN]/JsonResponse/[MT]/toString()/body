@@ -1,6 +1,10 @@
 {
   Gson gson=null;
-  if (pretty)   gson=new GsonBuilder().setPrettyPrinting().create();
- else   gson=new Gson();
+  if (pretty) {
+    gson=new GsonBuilder().setPrettyPrinting().create();
+  }
+ else {
+    gson=new Gson();
+  }
   return gson.toJson(this);
 }
