@@ -9,7 +9,9 @@
     boolean separateCL=true;
     try {
       Class cls=this.getClass().forName(className);
-      if (cls != null)       separateCL=false;
+      if (cls != null) {
+        separateCL=false;
+      }
     }
  catch (    Exception e) {
     }

@@ -1,5 +1,7 @@
 {
-  if (msg == null)   return Type.TEXT;
+  if (msg == null) {
+    return Type.TEXT;
+  }
   Type[] types=Type.values();
   for (  Type t : types) {
     String magic="%" + t.name().toLowerCase();

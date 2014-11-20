@@ -1,7 +1,9 @@
 {
   File notebookDir=new File(conf.getNotebookDir());
   File[] dirs=notebookDir.listFiles();
-  if (dirs == null)   return;
+  if (dirs == null) {
+    return;
+  }
   for (  File f : dirs) {
     boolean isHidden=!f.getName().startsWith(".");
     if (f.isDirectory() && isHidden) {

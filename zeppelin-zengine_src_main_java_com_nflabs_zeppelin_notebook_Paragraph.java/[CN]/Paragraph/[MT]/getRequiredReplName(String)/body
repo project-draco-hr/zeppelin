@@ -1,5 +1,7 @@
 {
-  if (text == null)   return null;
+  if (text == null) {
+    return null;
+  }
   int scriptHeadIndex=0;
   for (int i=0; i < text.length(); i++) {
     char ch=text.charAt(i);
@@ -8,7 +10,9 @@
       break;
     }
   }
-  if (scriptHeadIndex == 0)   return null;
+  if (scriptHeadIndex == 0) {
+    return null;
+  }
   String head=text.substring(0,scriptHeadIndex);
   if (head.startsWith("%")) {
     return head.substring(1);

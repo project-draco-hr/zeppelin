@@ -13,9 +13,13 @@ synchronized (queue) {
       final Scheduler scheduler=this;
       this.executor.execute(new Runnable(){
         public void run(){
-          if (listener != null)           listener.jobStarted(scheduler,runningJob);
+          if (listener != null) {
+            listener.jobStarted(scheduler,runningJob);
+          }
           runningJob.run();
-          if (listener != null)           listener.jobFinished(scheduler,runningJob);
+          if (listener != null) {
+            listener.jobFinished(scheduler,runningJob);
+          }
           runningJob=null;
 synchronized (queue) {
             queue.notify();

@@ -1,6 +1,8 @@
 {
   Map<String,Input> params=new HashMap<String,Input>();
-  if (script == null)   return params;
+  if (script == null) {
+    return params;
+  }
   String replaced=script;
   Pattern pattern=Pattern.compile("([_])?[$][{]([^=}]*([=][^}]*)?)[}]");
   Matcher match=pattern.matcher(replaced);

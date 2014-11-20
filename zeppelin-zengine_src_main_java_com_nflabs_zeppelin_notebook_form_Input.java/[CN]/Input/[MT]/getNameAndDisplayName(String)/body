@@ -1,7 +1,9 @@
 {
   Pattern p=Pattern.compile("([^(]*)\\s*[(]([^)]*)[)]");
   Matcher m=p.matcher(str.trim());
-  if (m == null || m.find() == false)   return null;
+  if (m == null || m.find() == false) {
+    return null;
+  }
   String[] ret=new String[2];
   ret[0]=m.group(1);
   ret[1]=m.group(2);
