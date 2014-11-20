@@ -10,7 +10,7 @@
   while (it.hasNext()) {
     Artifact a=it.next().getArtifact();
     String gav=a.getGroupId() + ":" + a.getArtifactId()+ ":"+ a.getVersion();
-    for (    String exclude : EXCLUSIONS) {
+    for (    String exclude : exclusions) {
       if (gav.startsWith(exclude)) {
         it.remove();
         break;
