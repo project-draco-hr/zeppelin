@@ -31,7 +31,9 @@
           break;
         }
       }
-      if (multicharBlockDetected == true)       continue;
+      if (multicharBlockDetected == true) {
+        continue;
+      }
       if (isNestedBlock(blockStart[blockStack.get(0)]) == true) {
         if (curString.substring(lastEscapeOffset + 1).endsWith(getBlockStr(blockStart[blockStack.get(0)])) == true) {
           blockStack.add(0,blockStack.get(0));
@@ -61,7 +63,8 @@
  else {
       boolean splitted=false;
       for (      String splitter : splitters) {
-        if (splitter.compareTo(str.substring(i,Math.min(i + splitter.length(),str.length()))) == 0) {
+        int curentLenght=i + splitter.length();
+        if (splitter.compareTo(str.substring(i,Math.min(curentLenght,str.length()))) == 0) {
           splits.add(curString);
           if (includeSplitter == true) {
             splits.add(splitter);
@@ -86,6 +89,8 @@
       }
     }
   }
-  if (curString.length() > 0)   splits.add(curString.trim());
+  if (curString.length() > 0) {
+    splits.add(curString.trim());
+  }
   return splits.toArray(new String[]{});
 }

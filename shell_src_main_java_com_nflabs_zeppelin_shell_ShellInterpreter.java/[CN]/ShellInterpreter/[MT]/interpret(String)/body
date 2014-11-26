@@ -7,7 +7,7 @@
   DefaultExecutor executor=new DefaultExecutor();
   ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
   executor.setStreamHandler(new PumpStreamHandler(outputStream));
-  executor.setWatchdog(new ExecuteWatchdog(CMD_TIMEOUT));
+  executor.setWatchdog(new ExecuteWatchdog(commandTimeOut));
   try {
     int exitValue=executor.execute(cmdLine);
     return new InterpreterResult(InterpreterResult.Code.SUCCESS,outputStream.toString());

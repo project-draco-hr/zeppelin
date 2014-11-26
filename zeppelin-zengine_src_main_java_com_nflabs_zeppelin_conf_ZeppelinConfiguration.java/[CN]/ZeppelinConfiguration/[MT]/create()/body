@@ -1,5 +1,7 @@
 {
-  if (conf != null)   return conf;
+  if (conf != null) {
+    return conf;
+  }
   ClassLoader classLoader=Thread.currentThread().getContextClassLoader();
   URL url;
   url=ZeppelinConfiguration.class.getResource(ZEPPELIN_SITE_XML);

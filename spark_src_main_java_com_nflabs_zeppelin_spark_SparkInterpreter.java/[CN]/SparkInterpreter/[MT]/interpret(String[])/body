@@ -1,7 +1,7 @@
 {
 synchronized (this) {
     sc.setJobGroup(jobGroup,"Zeppelin",false);
-    InterpreterResult r=_interpret(lines);
+    InterpreterResult r=interpretInput(lines);
     sc.clearJobGroup();
     return r;
   }

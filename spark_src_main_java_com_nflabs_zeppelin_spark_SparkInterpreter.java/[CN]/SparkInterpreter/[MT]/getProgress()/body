@@ -2,9 +2,13 @@
   int completedTasks=0;
   int totalTasks=0;
   DAGScheduler scheduler=sc.dagScheduler();
-  if (scheduler == null)   return 0;
+  if (scheduler == null) {
+    return 0;
+  }
   HashSet<ActiveJob> jobs=scheduler.activeJobs();
-  if (jobs == null || jobs.size() == 0)   return 0;
+  if (jobs == null || jobs.size() == 0) {
+    return 0;
+  }
   Iterator<ActiveJob> it=jobs.iterator();
   while (it.hasNext()) {
     ActiveJob job=it.next();
@@ -24,6 +28,8 @@
       completedTasks+=progressInfo[1];
     }
   }
-  if (totalTasks == 0)   return 0;
+  if (totalTasks == 0) {
+    return 0;
+  }
   return completedTasks * 100 / totalTasks;
 }

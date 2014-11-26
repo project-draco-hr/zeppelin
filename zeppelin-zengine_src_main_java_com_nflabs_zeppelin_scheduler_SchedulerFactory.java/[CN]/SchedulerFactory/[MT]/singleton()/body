@@ -1,9 +1,9 @@
 {
-  if (_singleton == null) {
+  if (singleton == null) {
 synchronized (singletonLock) {
-      if (_singleton == null) {
+      if (singleton == null) {
         try {
-          _singleton=new SchedulerFactory();
+          singleton=new SchedulerFactory();
         }
  catch (        Exception e) {
           e.printStackTrace();
@@ -11,5 +11,5 @@ synchronized (singletonLock) {
       }
     }
   }
-  return _singleton;
+  return singleton;
 }

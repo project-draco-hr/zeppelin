@@ -1,6 +1,8 @@
 {
   List<Job> ret=new LinkedList<Job>();
   Job job=runningJob;
-  if (job != null)   ret.add(job);
+  if (job != null) {
+    ret.add(job);
+  }
   return ret;
 }
