@@ -1,0 +1,7 @@
+{
+  SslContextFactory scf=getSSLContextFactory(conf);
+  if (!scf.isStarted()) {
+    scf.start();
+  }
+  return scf.getSslContext();
+}

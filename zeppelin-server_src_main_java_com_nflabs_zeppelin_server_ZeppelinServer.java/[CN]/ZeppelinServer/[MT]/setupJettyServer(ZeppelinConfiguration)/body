@@ -1,0 +1,16 @@
+{
+  SocketConnector connector;
+  if (conf.useSSL()) {
+    connector=new SslSocketConnector(getSSLContextFactory(conf));
+  }
+ else {
+    connector=new SocketConnector();
+  }
+  int timeout=1000 * 30;
+  connector.setMaxIdleTime(timeout);
+  connector.setSoLingerTime(-1);
+  connector.setPort(conf.getServerPort());
+  final Server server=new Server();
+  server.addConnector(connector);
+  return server;
+}

@@ -2,5 +2,5 @@
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   this.schedulerFactory=new SchedulerFactory();
   this.replFactory=new InterpreterFactory(conf);
-  notebook=new Notebook(conf,schedulerFactory,replFactory,websocket);
+  notebook=new Notebook(conf,schedulerFactory,replFactory,notebookServer);
 }
