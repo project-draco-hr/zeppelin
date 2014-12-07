@@ -1,9 +1,0 @@
-{
-  Set<String> keys=Interpreter.registeredInterpreters.keySet();
-  for (  String intName : keys) {
-    if (clsName.equals(Interpreter.registeredInterpreters.get(intName))) {
-      return intName;
-    }
-  }
-  return null;
-}

@@ -3,7 +3,7 @@ synchronized (loadedInterpreters) {
     InterpreterSetting intpsetting=loadedInterpreters.get(id);
     Set<String> replNames=Interpreter.registeredInterpreters.keySet();
     for (    String replName : replNames) {
-      String className=Interpreter.registeredInterpreters.get(replName);
+      String className=Interpreter.registeredInterpreters.get(replName).getClassName();
       if (className.equals(intpsetting.getClassName())) {
         Interpreter oldIntp=intpsetting.getInterpreter();
         oldIntp.close();

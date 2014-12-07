@@ -1,6 +1,5 @@
 {
   NoteInterpreterLoader intpLoader=new NoteInterpreterLoader(replFactory);
-  List<String> intpIdList=replFactory.getDefaultInterpreterList();
   Note note=new Note(conf,intpLoader,jobListenerFactory,quartzSched);
 synchronized (notes) {
     notes.put(note.id(),note);

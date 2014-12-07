@@ -1,4 +1,5 @@
 String name
-String description
+String group
 String className
+String description
 Interpreter interpreter

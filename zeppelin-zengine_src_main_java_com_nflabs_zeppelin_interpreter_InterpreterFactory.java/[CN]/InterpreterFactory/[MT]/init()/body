@@ -17,7 +17,7 @@
           Class.forName(className,true,ccl);
           Set<String> keys=Interpreter.registeredInterpreters.keySet();
           for (          String intName : keys) {
-            if (className.equals(Interpreter.registeredInterpreters.get(intName))) {
+            if (className.equals(Interpreter.registeredInterpreters.get(intName).getClassName())) {
               logger.info("Interpreter " + intName + " found. class="+ className);
               cleanCl.put(intName,ccl);
             }
@@ -34,7 +34,7 @@ synchronized (loadedInterpreters) {
       for (      String className : interpreterClassList) {
         Set<String> keys=Interpreter.registeredInterpreters.keySet();
         for (        String intName : keys) {
-          if (className.equals(Interpreter.registeredInterpreters.get(intName))) {
+          if (className.equals(Interpreter.registeredInterpreters.get(intName).getClassName())) {
             Properties p=new Properties();
             add(intName,className,p);
             break;
