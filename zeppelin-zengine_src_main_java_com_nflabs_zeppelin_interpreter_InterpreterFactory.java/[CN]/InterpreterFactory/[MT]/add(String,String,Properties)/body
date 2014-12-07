@@ -1,0 +1,13 @@
+{
+synchronized (loadedInterpreters) {
+    String name=getReplNameFromClassName(className);
+    if (name == null) {
+      throw new InterpreterException("Interpreter class " + className + " not found");
+    }
+    Interpreter intp=createRepl(name,className,properties);
+    InterpreterSetting intpSetting=new InterpreterSetting(name,description,className,intp);
+    loadedInterpreters.put(intpSetting.id(),intpSetting);
+    saveToFile();
+    return intp;
+  }
+}

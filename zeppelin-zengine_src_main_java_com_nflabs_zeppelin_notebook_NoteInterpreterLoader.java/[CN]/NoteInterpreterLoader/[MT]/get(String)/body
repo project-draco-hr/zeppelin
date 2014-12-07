@@ -1,0 +1,15 @@
+{
+  List<InterpreterSetting> settings=getInterpreterSettings();
+  if (settings == null || settings.size() == 0) {
+    return null;
+  }
+  if (replName == null) {
+    return settings.get(0).getInterpreter();
+  }
+  for (  InterpreterSetting setting : settings) {
+    if (setting.getName().equals(replName)) {
+      return setting.getInterpreter();
+    }
+  }
+  return null;
+}

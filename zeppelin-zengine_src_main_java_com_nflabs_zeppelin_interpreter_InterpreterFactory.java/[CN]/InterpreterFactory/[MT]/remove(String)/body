@@ -1,0 +1,10 @@
+{
+synchronized (loadedInterpreters) {
+    if (loadedInterpreters.containsKey(id)) {
+      InterpreterSetting intp=loadedInterpreters.remove(id);
+      intp.getInterpreter().close();
+      intp.getInterpreter().destroy();
+      saveToFile();
+    }
+  }
+}

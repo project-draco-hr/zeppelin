@@ -1,0 +1,8 @@
+{
+  this.id=generateId();
+  this.name=name;
+  this.description=description;
+  this.className=className;
+  this.properties=interpreter.getProperty();
+  this.interpreter=interpreter;
+}

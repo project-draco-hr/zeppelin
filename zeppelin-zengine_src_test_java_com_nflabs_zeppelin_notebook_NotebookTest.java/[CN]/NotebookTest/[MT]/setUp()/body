@@ -4,7 +4,11 @@
   notebookDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis()+ "/notebook");
   notebookDir.mkdirs();
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"com.nflabs.zeppelin.interpreter.mock.MockInterpreter1,com.nflabs.zeppelin.interpreter.mock.MockInterpreter2");
   conf=ZeppelinConfiguration.create();
   this.schedulerFactory=new SchedulerFactory();
-  notebook=new Notebook(conf,schedulerFactory,new MockInterpreterFactory(conf),this);
+  MockInterpreter1.register("mock1","com.nflabs.zeppelin.interpreter.mock.MockInterpreter1");
+  MockInterpreter2.register("mock2","com.nflabs.zeppelin.interpreter.mock.MockInterpreter2");
+  InterpreterFactory factory=new InterpreterFactory(conf);
+  notebook=new Notebook(conf,schedulerFactory,factory,this);
 }

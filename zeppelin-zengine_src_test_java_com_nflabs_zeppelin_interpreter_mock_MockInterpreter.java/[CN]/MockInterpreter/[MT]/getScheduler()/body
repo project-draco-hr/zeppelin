@@ -1,3 +1,0 @@
-{
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler("test_" + this.hashCode());
-}

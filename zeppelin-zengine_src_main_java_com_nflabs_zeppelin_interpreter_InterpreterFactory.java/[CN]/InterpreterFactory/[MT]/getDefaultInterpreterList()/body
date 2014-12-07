@@ -1,0 +1,15 @@
+{
+synchronized (loadedInterpreters) {
+    List<String> defaultList=new LinkedList<String>();
+    for (    String cls : interpreterClassList) {
+      for (      String intpId : loadedInterpreters.keySet()) {
+        InterpreterSetting intpSetting=loadedInterpreters.get(intpId);
+        if (intpSetting.getClassName().equals(cls)) {
+          defaultList.add(intpId);
+          break;
+        }
+      }
+    }
+    return defaultList;
+  }
+}

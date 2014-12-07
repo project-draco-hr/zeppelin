@@ -1,0 +1,18 @@
+{
+synchronized (loadedInterpreters) {
+    InterpreterSetting intpsetting=loadedInterpreters.get(id);
+    Set<String> replNames=Interpreter.registeredInterpreters.keySet();
+    for (    String replName : replNames) {
+      String className=Interpreter.registeredInterpreters.get(replName);
+      if (className.equals(intpsetting.getClassName())) {
+        Interpreter oldIntp=intpsetting.getInterpreter();
+        oldIntp.close();
+        oldIntp.destroy();
+        Interpreter newIntp=createRepl(replName,className,oldIntp.getProperty());
+        intpsetting.setInterpreter(newIntp);
+        return;
+      }
+    }
+    throw new InterpreterException("Interpreter setting id " + id + " not found");
+  }
+}

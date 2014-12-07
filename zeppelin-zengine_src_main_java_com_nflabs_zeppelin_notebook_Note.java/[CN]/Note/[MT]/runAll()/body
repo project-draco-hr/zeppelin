@@ -3,7 +3,7 @@ synchronized (paragraphs) {
     for (    Paragraph p : paragraphs) {
       p.setNoteReplLoader(replLoader);
       p.setListener(jobListenerFactory.getParagraphJobListener(this));
-      Interpreter intp=replLoader.getRepl(p.getRequiredReplName());
+      Interpreter intp=replLoader.get(p.getRequiredReplName());
       intp.getScheduler().submit(p);
     }
   }

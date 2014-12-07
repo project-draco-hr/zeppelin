@@ -1,0 +1,4 @@
+{
+  Note note=getNote(id);
+  note.getNoteReplLoader().setInterpreters(interpreterIds);
+}

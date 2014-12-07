@@ -20,13 +20,25 @@
             if (className.equals(Interpreter.registeredInterpreters.get(intName))) {
               logger.info("Interpreter " + intName + " found. class="+ className);
               cleanCl.put(intName,ccl);
-              if (className.equals(interpreterClassList[0])) {
-                defaultInterpreterName=intName;
-              }
             }
           }
         }
  catch (        ClassNotFoundException e) {
+        }
+      }
+    }
+  }
+  loadFromFile();
+synchronized (loadedInterpreters) {
+    if (loadedInterpreters.size() == 0) {
+      for (      String className : interpreterClassList) {
+        Set<String> keys=Interpreter.registeredInterpreters.keySet();
+        for (        String intName : keys) {
+          if (className.equals(Interpreter.registeredInterpreters.get(intName))) {
+            Properties p=new Properties();
+            add(intName,className,p);
+            break;
+          }
         }
       }
     }

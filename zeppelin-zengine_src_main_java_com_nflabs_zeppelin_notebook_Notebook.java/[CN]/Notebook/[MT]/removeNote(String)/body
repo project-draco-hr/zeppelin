@@ -3,7 +3,7 @@
 synchronized (notes) {
     note=notes.remove(id);
   }
-  note.getNoteReplLoader().destroyAll();
+  persistNoteReplLoaderInfo();
   try {
     note.unpersist();
   }

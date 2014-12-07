@@ -1,0 +1,5 @@
+{
+  List<String> all=factory.getDefaultInterpreterList();
+  assertEquals(2,all.size());
+  assertEquals(factory.get(all.get(0)).getClassName(),"com.nflabs.zeppelin.interpreter.mock.MockInterpreter1");
+}
