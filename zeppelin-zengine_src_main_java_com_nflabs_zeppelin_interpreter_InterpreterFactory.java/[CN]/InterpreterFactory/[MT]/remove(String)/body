@@ -1,9 +1,9 @@
 {
-synchronized (loadedInterpreters) {
-    if (loadedInterpreters.containsKey(id)) {
-      InterpreterSetting intp=loadedInterpreters.remove(id);
-      intp.getInterpreter().close();
-      intp.getInterpreter().destroy();
+synchronized (interpreterSettings) {
+    if (interpreterSettings.containsKey(id)) {
+      InterpreterSetting intp=interpreterSettings.remove(id);
+      intp.getInterpreterGroup().close();
+      intp.getInterpreterGroup().destroy();
       saveToFile();
     }
   }

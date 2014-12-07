@@ -29,14 +29,30 @@
     }
   }
   loadFromFile();
-synchronized (loadedInterpreters) {
-    if (loadedInterpreters.size() == 0) {
+synchronized (interpreterSettings) {
+    if (interpreterSettings.size() == 0) {
+      HashMap<String,List<RegisteredInterpreter>> groupClassNameMap=new HashMap<String,List<RegisteredInterpreter>>();
+      for (      String k : Interpreter.registeredInterpreters.keySet()) {
+        RegisteredInterpreter info=Interpreter.registeredInterpreters.get(k);
+        if (!groupClassNameMap.containsKey(info.getGroup())) {
+          groupClassNameMap.put(info.getGroup(),new LinkedList<RegisteredInterpreter>());
+        }
+        groupClassNameMap.get(info.getGroup()).add(info);
+      }
       for (      String className : interpreterClassList) {
-        Set<String> keys=Interpreter.registeredInterpreters.keySet();
-        for (        String intName : keys) {
-          if (className.equals(Interpreter.registeredInterpreters.get(intName).getClassName())) {
+        for (        String groupName : groupClassNameMap.keySet()) {
+          List<RegisteredInterpreter> infos=groupClassNameMap.get(groupName);
+          boolean found=false;
+          for (          RegisteredInterpreter info : infos) {
+            if (info.getClassName().equals(className)) {
+              found=true;
+              break;
+            }
+          }
+          if (found) {
             Properties p=new Properties();
-            add(intName,className,p);
+            add(groupName,groupName,p);
+            groupClassNameMap.remove(groupName);
             break;
           }
         }

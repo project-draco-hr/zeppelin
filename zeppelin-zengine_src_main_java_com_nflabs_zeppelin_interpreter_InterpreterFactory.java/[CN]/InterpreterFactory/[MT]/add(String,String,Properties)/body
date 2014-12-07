@@ -1,13 +1,9 @@
 {
-synchronized (loadedInterpreters) {
-    RegisteredInterpreter registeredInterpreterInfo=getRegisteredReplInfoFromClassName(className);
-    if (registeredInterpreterInfo == null) {
-      throw new InterpreterException("Interpreter class " + className + " not found");
-    }
-    Interpreter intp=createRepl(registeredInterpreterInfo.getName(),className,properties);
-    InterpreterSetting intpSetting=new InterpreterSetting(registeredInterpreterInfo.getName(),registeredInterpreterInfo.getGroup(),registeredInterpreterInfo.getClassName(),description,intp);
-    loadedInterpreters.put(intpSetting.id(),intpSetting);
+synchronized (interpreterSettings) {
+    InterpreterGroup interpreterGroup=createInterpreterGroup(groupName,properties);
+    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,interpreterGroup);
+    interpreterSettings.put(intpSetting.id(),intpSetting);
     saveToFile();
-    return intp;
+    return interpreterGroup;
   }
 }

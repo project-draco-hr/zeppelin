@@ -1,18 +1,16 @@
 {
-synchronized (loadedInterpreters) {
-    InterpreterSetting intpsetting=loadedInterpreters.get(id);
-    Set<String> replNames=Interpreter.registeredInterpreters.keySet();
-    for (    String replName : replNames) {
-      String className=Interpreter.registeredInterpreters.get(replName).getClassName();
-      if (className.equals(intpsetting.getClassName())) {
-        Interpreter oldIntp=intpsetting.getInterpreter();
-        oldIntp.close();
-        oldIntp.destroy();
-        Interpreter newIntp=createRepl(replName,className,oldIntp.getProperty());
-        intpsetting.setInterpreter(newIntp);
-        return;
+synchronized (interpreterSettings) {
+synchronized (interpreterSettings) {
+      InterpreterSetting intpsetting=interpreterSettings.get(id);
+      if (intpsetting != null) {
+        intpsetting.getInterpreterGroup().close();
+        intpsetting.getInterpreterGroup().destroy();
+        InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.getGroup(),intpsetting.getProperties());
+        intpsetting.setInterpreterGroup(interpreterGroup);
+      }
+ else {
+        throw new InterpreterException("Interpreter setting id " + id + " not found");
       }
     }
-    throw new InterpreterException("Interpreter setting id " + id + " not found");
   }
 }

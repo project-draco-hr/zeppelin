@@ -1,5 +1,5 @@
 {
-synchronized (loadedInterpreters) {
-    return loadedInterpreters.get(name);
+synchronized (interpreterSettings) {
+    return interpreterSettings.get(name);
   }
 }

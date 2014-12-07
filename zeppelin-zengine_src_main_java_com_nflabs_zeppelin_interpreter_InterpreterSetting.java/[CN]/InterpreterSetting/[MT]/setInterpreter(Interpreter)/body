@@ -1,4 +1,0 @@
-{
-  this.interpreter=interpreter;
-  this.properties=interpreter.getProperty();
-}
