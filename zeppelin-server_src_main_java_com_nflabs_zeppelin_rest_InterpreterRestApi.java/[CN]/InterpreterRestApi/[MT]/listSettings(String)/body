@@ -1,0 +1,4 @@
+{
+  Map<String,InterpreterSetting> interpreterSettings=interpreterFactory.get();
+  return new JsonResponse(Status.OK,"",interpreterSettings).build();
+}
