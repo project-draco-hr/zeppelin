@@ -1,7 +1,6 @@
 {
   if (repl == null) {
     Properties p=new Properties();
-    p.put("share",new HashMap<String,Object>());
     repl=new SparkInterpreter(p);
     repl.open();
   }

@@ -1,5 +1,4 @@
 {
-  Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
   URL[] urls=(URL[])getProperty().get("classloaderUrls");
   Settings settings=new Settings();
   if (getProperty().containsKey("args")) {
