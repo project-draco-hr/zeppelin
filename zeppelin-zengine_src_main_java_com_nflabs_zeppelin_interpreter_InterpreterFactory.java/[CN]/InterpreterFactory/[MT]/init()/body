@@ -59,4 +59,11 @@ synchronized (interpreterSettings) {
       }
     }
   }
+  for (  String settingId : interpreterSettings.keySet()) {
+    InterpreterSetting setting=interpreterSettings.get(settingId);
+    logger.info("Interpreter setting group {} : id={}, name={}",setting.getGroup(),settingId,setting.getName());
+    for (    Interpreter interpreter : setting.getInterpreterGroup()) {
+      logger.info("  className = {}",interpreter.getClassName());
+    }
+  }
 }

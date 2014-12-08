@@ -31,7 +31,9 @@
     }
     property.put("share",share);
     property.put("classloaderUrls",ccl.getURLs());
-    return new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl,property));
+    LazyOpenInterpreter intp=new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl,property));
+    intp.setInterpreterGroup(interpreterGroup);
+    return intp;
   }
  catch (  SecurityException e) {
     throw new InterpreterException(e);

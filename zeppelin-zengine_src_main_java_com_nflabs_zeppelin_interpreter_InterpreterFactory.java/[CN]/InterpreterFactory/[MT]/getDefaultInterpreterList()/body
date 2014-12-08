@@ -5,11 +5,16 @@ synchronized (interpreterSettings) {
       for (      String intpId : interpreterSettings.keySet()) {
         InterpreterSetting intpSetting=interpreterSettings.get(intpId);
         InterpreterGroup intpGroup=intpSetting.getInterpreterGroup();
+        boolean found=false;
         for (        Interpreter intp : intpGroup) {
           if (intp.getClassName().equals(cls)) {
             defaultList.add(intpId);
+            found=true;
             break;
           }
+        }
+        if (found) {
+          break;
         }
       }
     }
