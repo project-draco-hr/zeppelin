@@ -1,0 +1,5 @@
+{
+  JsonObject json=new JsonObject();
+  json.addProperty("class",interpreter.getClassName());
+  return json;
+}
