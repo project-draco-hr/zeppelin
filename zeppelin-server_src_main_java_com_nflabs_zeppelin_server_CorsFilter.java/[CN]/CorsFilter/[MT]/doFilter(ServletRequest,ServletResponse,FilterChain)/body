@@ -1,0 +1,7 @@
+{
+  if (response instanceof HttpServletResponse) {
+    HttpServletResponse alteredResponse=((HttpServletResponse)response);
+    addCorsHeaders(alteredResponse);
+  }
+  filterChain.doFilter(request,response);
+}
