@@ -1,0 +1,4 @@
+{
+  this.port=port;
+  this.scriptPath=scriptPath;
+}
