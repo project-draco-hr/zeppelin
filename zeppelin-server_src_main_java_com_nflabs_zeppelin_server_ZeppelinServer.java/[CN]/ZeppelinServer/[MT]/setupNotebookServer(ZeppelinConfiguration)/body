@@ -1,7 +1,7 @@
 {
   NotebookServer server=new NotebookServer(conf.getWebSocketPort());
-  if (conf.useSSL()) {
-    SSLWebSocketServerFactory wsf=new SSLWebSocketServerFactory(getSSLContext(conf));
+  if (conf.useSsl()) {
+    SslWebSocketServerFactory wsf=new SslWebSocketServerFactory(getSslContext(conf));
     wsf.setNeedClientAuth(conf.useClientAuth());
     server.setWebSocketFactory(wsf);
   }

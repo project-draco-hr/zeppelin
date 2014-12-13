@@ -4,7 +4,7 @@
   final Server jettyServer=setupJettyServer(conf);
   notebookServer=setupNotebookServer(conf);
   final ServletContextHandler restApi=setupRestApiContextHandler();
-  final ServletContextHandler swagger=setupSwaggerContextHandler(conf.getServerPort());
+  final ServletContextHandler swagger=setupSwaggerContextHandler(conf);
   final WebAppContext webApp=setupWebAppContext(conf);
   final WebAppContext webAppSwagg=setupWebAppSwagger(conf);
   ContextHandlerCollection contexts=new ContextHandlerCollection();

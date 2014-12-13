@@ -1,7 +1,7 @@
 {
   SocketConnector connector;
-  if (conf.useSSL()) {
-    connector=new SslSocketConnector(getSSLContextFactory(conf));
+  if (conf.useSsl()) {
+    connector=new SslSocketConnector(getSslContextFactory(conf));
   }
  else {
     connector=new SocketConnector();
