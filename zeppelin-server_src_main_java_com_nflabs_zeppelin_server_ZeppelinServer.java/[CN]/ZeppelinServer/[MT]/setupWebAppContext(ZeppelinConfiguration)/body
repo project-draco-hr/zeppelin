@@ -9,7 +9,6 @@
  else {
     webApp.setWar(warPath.getAbsolutePath());
   }
-  String scriptPath="/scripts/scripts.js";
-  webApp.addServlet(new ServletHolder(new AppScriptServlet(conf.getWebSocketPort(),scriptPath)),"/*");
+  webApp.addServlet(new ServletHolder(new AppScriptServlet(conf.getWebSocketPort())),"/*");
   return webApp;
 }

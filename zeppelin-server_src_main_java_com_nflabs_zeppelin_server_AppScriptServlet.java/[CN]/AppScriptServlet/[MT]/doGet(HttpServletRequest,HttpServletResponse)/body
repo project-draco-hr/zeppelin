@@ -1,10 +1,10 @@
 {
   String uri=request.getRequestURI();
-  if (scriptPath == null || !scriptPath.equals(uri)) {
+  if (!scriptPaths.contains(uri)) {
     super.doGet(request,response);
     return;
   }
-  Resource scriptFile=getResource(scriptPath);
+  Resource scriptFile=getResource(uri);
   InputStream is=scriptFile.getInputStream();
   StringBuffer script=new StringBuffer();
   byte[] buffer=new byte[1024];
@@ -18,7 +18,7 @@
   int startIndex=script.indexOf("function getPort()");
   int endIndex=script.indexOf("}",startIndex);
   if (startIndex >= 0 && endIndex >= 0) {
-    String replaceString="function getPort(){return " + port + "}";
+    String replaceString="function getPort(){return " + websocketPort + "}";
     script.replace(startIndex,endIndex + 1,replaceString);
   }
   response.getWriter().println(script.toString());
