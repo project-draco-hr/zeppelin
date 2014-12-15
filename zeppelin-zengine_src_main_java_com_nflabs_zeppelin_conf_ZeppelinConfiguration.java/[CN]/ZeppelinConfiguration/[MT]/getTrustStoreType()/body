@@ -1,0 +1,9 @@
+{
+  String type=getString(ConfVars.ZEPPELIN_SSL_TRUSTSTORE_TYPE);
+  if (type == null) {
+    return getKeyStoreType();
+  }
+ else {
+    return type;
+  }
+}

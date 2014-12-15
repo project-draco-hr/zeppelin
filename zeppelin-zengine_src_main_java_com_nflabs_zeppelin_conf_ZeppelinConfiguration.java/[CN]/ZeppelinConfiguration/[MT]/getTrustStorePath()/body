@@ -1,0 +1,9 @@
+{
+  String path=getString(ConfVars.ZEPPELIN_SSL_TRUSTSTORE_PATH);
+  if (path == null) {
+    return getKeyStorePath();
+  }
+ else {
+    return getRelativeDir(path);
+  }
+}

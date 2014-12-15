@@ -1,8 +1,8 @@
 {
-  final ServletHolder swaggerServlet=new ServletHolder(new com.wordnik.swagger.jersey.config.JerseyJaxrsConfig());
+  final ServletHolder swaggerServlet=new ServletHolder(new JerseyJaxrsConfig());
   swaggerServlet.setName("JerseyJaxrsConfig");
   swaggerServlet.setInitParameter("api.version","1.0.0");
-  swaggerServlet.setInitParameter("swagger.api.basepath","http://localhost:" + port + "/api");
+  swaggerServlet.setInitParameter("swagger.api.basepath","http://localhost:" + conf.getServerPort() + "/api");
   swaggerServlet.setInitOrder(2);
   final ServletContextHandler handler=new ServletContextHandler();
   handler.setSessionHandler(new SessionHandler());
