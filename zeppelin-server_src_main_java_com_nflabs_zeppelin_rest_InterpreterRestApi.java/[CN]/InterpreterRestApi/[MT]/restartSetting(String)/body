@@ -1,4 +1,6 @@
 {
   logger.info("Restart interpreterSetting {}",settingId);
-  return new JsonResponse(Status.OK).build();
+  interpreterFactory.restart(settingId);
+  InterpreterSetting setting=interpreterFactory.get(settingId);
+  return new JsonResponse(Status.OK,"",setting).build();
 }

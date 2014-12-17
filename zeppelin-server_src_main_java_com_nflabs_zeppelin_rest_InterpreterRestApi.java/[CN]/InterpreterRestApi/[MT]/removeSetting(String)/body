@@ -1,4 +1,5 @@
 {
   logger.info("Remove interpreterSetting {}",settingId);
+  interpreterFactory.remove(settingId);
   return new JsonResponse(Status.OK).build();
 }
