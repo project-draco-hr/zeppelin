@@ -1,0 +1,4 @@
+{
+  logger.info("Restart interpreterSetting {}",settingId);
+  return new JsonResponse(Status.OK).build();
+}
