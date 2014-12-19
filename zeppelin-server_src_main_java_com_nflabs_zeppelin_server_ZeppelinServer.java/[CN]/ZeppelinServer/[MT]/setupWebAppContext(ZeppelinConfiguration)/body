@@ -1,14 +1,14 @@
 {
   WebAppContext webApp=new WebAppContext();
-  File webapp=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
-  if (webapp.isDirectory()) {
-    webApp.setResourceBase(webapp.getPath());
+  File warPath=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
+  if (warPath.isDirectory()) {
+    webApp.setResourceBase(warPath.getPath());
     webApp.setContextPath("/");
     webApp.setParentLoaderPriority(true);
   }
  else {
-    webApp.setWar(webapp.getAbsolutePath());
+    webApp.setWar(warPath.getAbsolutePath());
   }
-  webApp.addServlet(new ServletHolder(new DefaultServlet()),"/*");
+  webApp.addServlet(new ServletHolder(new AppScriptServlet(conf.getWebSocketPort())),"/*");
   return webApp;
 }

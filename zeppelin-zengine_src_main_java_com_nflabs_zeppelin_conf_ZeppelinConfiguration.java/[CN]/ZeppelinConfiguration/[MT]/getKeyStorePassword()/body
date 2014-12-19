@@ -1,0 +1,3 @@
+{
+  return getString(ConfVars.ZEPPELIN_SSL_KEYSTORE_PASSWORD);
+}

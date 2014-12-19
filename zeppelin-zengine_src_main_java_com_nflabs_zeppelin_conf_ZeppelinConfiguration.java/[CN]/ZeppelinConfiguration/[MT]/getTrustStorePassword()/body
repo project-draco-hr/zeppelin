@@ -1,0 +1,9 @@
+{
+  String password=getString(ConfVars.ZEPPELIN_SSL_TRUSTSTORE_PASSWORD);
+  if (password == null) {
+    return getKeyStorePassword();
+  }
+ else {
+    return password;
+  }
+}
