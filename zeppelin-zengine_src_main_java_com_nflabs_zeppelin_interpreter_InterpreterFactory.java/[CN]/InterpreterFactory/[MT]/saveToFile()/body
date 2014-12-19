@@ -1,2 +1,15 @@
 {
+  String jsonString;
+synchronized (interpreterSettings) {
+    jsonString=gson.toJson(interpreterSettings);
+  }
+  File settingFile=new File(conf.getInterpreterSettingPath());
+  if (!settingFile.exists()) {
+    settingFile.createNewFile();
+  }
+  FileOutputStream fos=new FileOutputStream(settingFile,false);
+  OutputStreamWriter out=new OutputStreamWriter(fos);
+  out.append(jsonString);
+  out.close();
+  fos.close();
 }

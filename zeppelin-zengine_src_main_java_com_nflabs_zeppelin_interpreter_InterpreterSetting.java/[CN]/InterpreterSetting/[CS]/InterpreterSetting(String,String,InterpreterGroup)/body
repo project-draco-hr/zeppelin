@@ -1,7 +1,3 @@
 {
-  this.id=generateId();
-  this.name=name;
-  this.group=group;
-  this.properties=interpreterGroup.getProperty();
-  this.interpreterGroup=interpreterGroup;
+  this(generateId(),name,group,interpreterGroup);
 }
