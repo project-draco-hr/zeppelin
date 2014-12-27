@@ -1,0 +1,15 @@
+{
+  LinkedList<String> settingIds=new LinkedList<String>();
+synchronized (interpreterSettingIds) {
+    for (    String id : interpreterSettingIds) {
+      InterpreterSetting setting=factory.get(id);
+      if (setting == null) {
+        interpreterSettingIds.remove(id);
+      }
+ else {
+        settingIds.add(id);
+      }
+    }
+  }
+  return settingIds;
+}

@@ -1,2 +1,2 @@
 String id
-List<String> interpreterIds
+List<String> interpreterSettingIds

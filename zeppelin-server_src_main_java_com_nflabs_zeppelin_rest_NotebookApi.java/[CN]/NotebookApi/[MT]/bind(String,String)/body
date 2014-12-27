@@ -1,0 +1,7 @@
+{
+  List<String> settingIdList=gson.fromJson(req,new TypeToken<List<String>>(){
+  }
+.getType());
+  notebook.bindInterpretersToNote(noteId,settingIdList);
+  return new JsonResponse(Status.OK).build();
+}

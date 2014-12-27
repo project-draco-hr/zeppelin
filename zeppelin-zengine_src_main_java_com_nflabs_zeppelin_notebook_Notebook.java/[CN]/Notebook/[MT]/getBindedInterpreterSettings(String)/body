@@ -1,0 +1,9 @@
+{
+  Note note=getNote(id);
+  if (note != null) {
+    return note.getNoteReplLoader().getInterpreterSettings();
+  }
+ else {
+    return new LinkedList<InterpreterSetting>();
+  }
+}

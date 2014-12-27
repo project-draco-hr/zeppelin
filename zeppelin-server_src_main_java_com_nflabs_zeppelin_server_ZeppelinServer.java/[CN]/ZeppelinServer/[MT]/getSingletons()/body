@@ -2,6 +2,8 @@
   Set<Object> singletons=new HashSet<Object>();
   ZeppelinRestApi root=new ZeppelinRestApi();
   singletons.add(root);
+  NotebookApi notebookApi=new NotebookApi(notebook);
+  singletons.add(notebookApi);
   InterpreterRestApi interpreterApi=new InterpreterRestApi(replFactory);
   singletons.add(interpreterApi);
   return singletons;

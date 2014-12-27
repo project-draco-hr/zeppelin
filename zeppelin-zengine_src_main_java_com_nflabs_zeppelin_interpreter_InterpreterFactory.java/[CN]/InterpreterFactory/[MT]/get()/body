@@ -1,3 +1,7 @@
 {
-  return interpreterSettings;
+synchronized (interpreterSettings) {
+    Map<String,InterpreterSetting> settings=new HashMap<String,InterpreterSetting>();
+    settings.putAll(interpreterSettings);
+    return settings;
+  }
 }
