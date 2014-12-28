@@ -1,0 +1,10 @@
+{
+  List<String> intpNames=new LinkedList<String>();
+  for (  Interpreter intp : interpreters) {
+    RegisteredInterpreter ri=Interpreter.findRegisteredInterpreterByClassName(intp.getClassName());
+    if (ri != null) {
+      intpNames.add(ri.getName());
+    }
+  }
+  return intpNames;
+}

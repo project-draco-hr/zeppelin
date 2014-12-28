@@ -1,0 +1,8 @@
+{
+  for (  RegisteredInterpreter ri : registeredInterpreters.values()) {
+    if (ri.getClassName().equals(className)) {
+      return ri;
+    }
+  }
+  return null;
+}
