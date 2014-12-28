@@ -1,5 +1,5 @@
 {
-  URL[] urls=(URL[])getProperty().get("classloaderUrls");
+  URL[] urls=getClassloaderUrls();
   Settings settings=new Settings();
   if (getProperty().containsKey("args")) {
     SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer((List<String>)getProperty().get("args")).toList());
