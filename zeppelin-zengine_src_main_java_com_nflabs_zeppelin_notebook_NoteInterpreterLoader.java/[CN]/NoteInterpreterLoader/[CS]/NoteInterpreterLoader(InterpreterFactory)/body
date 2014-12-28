@@ -1,5 +1,3 @@
 {
   this.factory=factory;
-  interpreterSettingIds=Collections.synchronizedList(new LinkedList<String>());
-  interpreterSettingIds.addAll(factory.getDefaultInterpreterList());
 }

@@ -1,7 +1,10 @@
 {
   String jsonString;
 synchronized (interpreterSettings) {
-    jsonString=gson.toJson(interpreterSettings);
+    Map<String,Object> saveObject=new HashMap<String,Object>();
+    saveObject.put("interpreterSettings",interpreterSettings);
+    saveObject.put("interpreterBindings",interpreterBindings);
+    jsonString=gson.toJson(saveObject);
   }
   File settingFile=new File(conf.getInterpreterSettingPath());
   if (!settingFile.exists()) {

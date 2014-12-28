@@ -1,0 +1,10 @@
+{
+  LinkedList<String> bindings=new LinkedList<String>();
+synchronized (interpreterSettings) {
+    List<String> settingIds=interpreterBindings.get(noteId);
+    if (settingIds != null) {
+      bindings.addAll(settingIds);
+    }
+  }
+  return bindings;
+}

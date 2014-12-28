@@ -1,6 +1,3 @@
 {
-synchronized (interpreterSettingIds) {
-    interpreterSettingIds.clear();
-    interpreterSettingIds.addAll(ids);
-  }
+  factory.putNoteInterpreterSettingBinding(noteId,ids);
 }

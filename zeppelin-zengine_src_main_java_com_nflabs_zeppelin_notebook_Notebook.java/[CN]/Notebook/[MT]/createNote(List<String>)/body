@@ -2,6 +2,7 @@
   NoteInterpreterLoader intpLoader=new NoteInterpreterLoader(replFactory);
   intpLoader.setInterpreters(interpreterIds);
   Note note=new Note(conf,intpLoader,jobListenerFactory,quartzSched);
+  intpLoader.setNoteId(note.id());
 synchronized (notes) {
     notes.put(note.id(),note);
   }

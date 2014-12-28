@@ -1,0 +1,6 @@
+{
+synchronized (interpreterSettings) {
+    interpreterBindings.put(noteId,settingList);
+    saveToFile();
+  }
+}

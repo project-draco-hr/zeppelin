@@ -1,4 +1,5 @@
 {
+  List<String> interpreterSettingIds=factory.getNoteInterpreterSettingBinding(noteId);
   LinkedList<InterpreterSetting> settings=new LinkedList<InterpreterSetting>();
 synchronized (interpreterSettingIds) {
     for (    String id : interpreterSettingIds) {

@@ -2,5 +2,6 @@
   Note note=getNote(id);
   if (note != null) {
     note.getNoteReplLoader().setInterpreters(interpreterSettingIds);
+    replFactory.putNoteInterpreterSettingBinding(id,interpreterSettingIds);
   }
 }
