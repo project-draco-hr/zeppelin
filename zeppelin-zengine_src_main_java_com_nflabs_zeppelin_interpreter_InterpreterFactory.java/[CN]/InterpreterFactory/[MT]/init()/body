@@ -43,14 +43,16 @@ synchronized (interpreterSettings) {
         for (        String groupName : groupClassNameMap.keySet()) {
           List<RegisteredInterpreter> infos=groupClassNameMap.get(groupName);
           boolean found=false;
+          Properties p=new Properties();
           for (          RegisteredInterpreter info : infos) {
-            if (info.getClassName().equals(className)) {
+            if (found == false && info.getClassName().equals(className)) {
               found=true;
-              break;
+            }
+            for (            String k : info.getProperties().keySet()) {
+              p.put(k,info.getProperties().get(k).getDefaultValue());
             }
           }
           if (found) {
-            Properties p=new Properties();
             add(groupName,groupName,p);
             groupClassNameMap.remove(groupName);
             break;
