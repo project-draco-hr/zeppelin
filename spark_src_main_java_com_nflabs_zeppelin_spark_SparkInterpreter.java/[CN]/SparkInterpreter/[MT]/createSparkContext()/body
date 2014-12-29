@@ -10,6 +10,13 @@
     conf.setSparkHome(System.getenv("SPARK_HOME"));
   }
   conf.set("spark.scheduler.mode","FAIR");
+  Properties intpProperty=getProperty();
+  for (  Object k : intpProperty.keySet()) {
+    String key=(String)k;
+    if (key.startsWith("spark.")) {
+      conf.set(key,intpProperty.getProperty(key));
+    }
+  }
   SparkContext sparkContext=new SparkContext(conf);
   return sparkContext;
 }
