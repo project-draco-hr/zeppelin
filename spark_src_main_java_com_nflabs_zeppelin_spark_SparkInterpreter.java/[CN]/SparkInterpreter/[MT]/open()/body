@@ -1,8 +1,13 @@
 {
   URL[] urls=getClassloaderUrls();
   Settings settings=new Settings();
-  if (getProperty().containsKey("args")) {
-    SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer((List<String>)getProperty().get("args")).toList());
+  if (getProperty("args") != null) {
+    String[] argsArray=getProperty("args").split(" ");
+    LinkedList<String> argList=new LinkedList<String>();
+    for (    String arg : argsArray) {
+      argList.add(arg);
+    }
+    SparkCommandLine command=new SparkCommandLine(scala.collection.JavaConversions.asScalaBuffer(argList).toList());
     settings=command.settings();
   }
   PathSetting pathSettings=settings.classpath();
@@ -39,8 +44,7 @@
   sc=getSparkContext();
   sqlc=getSQLContext();
   dep=getDependencyResolver();
-  NoteInterpreterLoader noteInterpreterLoader=(NoteInterpreterLoader)getProperty().get("noteIntpLoader");
-  z=new ZeppelinContext(sc,sqlc,dep,noteInterpreterLoader,printStream);
+  z=new ZeppelinContext(sc,sqlc,dep,printStream);
   this.interpreter.loadFiles(settings);
   intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
   binder=(Map<String,Object>)getValue("_binder");

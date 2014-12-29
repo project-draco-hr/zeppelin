@@ -26,11 +26,8 @@
     Class<Interpreter> replClass=(Class<Interpreter>)cl.loadClass(className);
     Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
     Interpreter repl=constructor.newInstance(property);
-    if (conf.containsKey("args")) {
-      property.put("args",conf.getProperty("args"));
-    }
     repl.setClassloaderUrls(ccl.getURLs());
-    LazyOpenInterpreter intp=new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl,property));
+    LazyOpenInterpreter intp=new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl));
     intp.setInterpreterGroup(interpreterGroup);
     return intp;
   }

@@ -1,4 +1,4 @@
 {
-  super(intp.getProperty());
+  super(new Properties());
   this.intp=intp;
 }

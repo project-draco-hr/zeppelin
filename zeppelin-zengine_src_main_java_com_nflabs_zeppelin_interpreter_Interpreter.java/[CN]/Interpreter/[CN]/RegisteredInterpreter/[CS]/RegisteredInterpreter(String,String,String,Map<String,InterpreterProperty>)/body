@@ -3,4 +3,5 @@
   this.name=name;
   this.group=group;
   this.className=className;
+  this.properties=properties;
 }
