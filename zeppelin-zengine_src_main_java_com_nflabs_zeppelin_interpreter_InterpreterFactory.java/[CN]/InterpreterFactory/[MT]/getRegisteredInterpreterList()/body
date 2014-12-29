@@ -1,0 +1,7 @@
+{
+  List<RegisteredInterpreter> registeredInterpreters=new LinkedList<RegisteredInterpreter>();
+  for (  String className : interpreterClassList) {
+    registeredInterpreters.add(Interpreter.findRegisteredInterpreterByClassName(className));
+  }
+  return registeredInterpreters;
+}

@@ -4,8 +4,8 @@
   for (  InterpreterSetting setting : selectedSettings) {
     settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterGroup(),true));
   }
-  Map<String,InterpreterSetting> availableSettings=notebook.getInterpreterFactory().get();
-  for (  InterpreterSetting setting : availableSettings.values()) {
+  List<InterpreterSetting> availableSettings=notebook.getInterpreterFactory().get();
+  for (  InterpreterSetting setting : availableSettings) {
     boolean selected=false;
     for (    InterpreterSetting selectedSetting : selectedSettings) {
       if (selectedSetting.id().equals(setting.id())) {

@@ -1,5 +1,6 @@
 {
   Note note=notebook.createNote();
+  note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterList());
   Paragraph p1=note.addParagraph();
   p1.setText("p1");
   Paragraph p2=note.addParagraph();

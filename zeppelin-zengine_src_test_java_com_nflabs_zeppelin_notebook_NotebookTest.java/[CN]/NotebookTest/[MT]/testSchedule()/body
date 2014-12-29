@@ -1,5 +1,6 @@
 {
   Note note=notebook.createNote();
+  note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterList());
   Paragraph p=note.addParagraph();
   p.setText("p1");
   Date dateFinished=p.getDateFinished();
