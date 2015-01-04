@@ -1,29 +1,35 @@
 {
 synchronized (interpreterSettings) {
-    List<InterpreterSetting> settings=new LinkedList<InterpreterSetting>();
+    List<InterpreterSetting> orderedSettings=new LinkedList<InterpreterSetting>();
+    List<InterpreterSetting> settings=new LinkedList<InterpreterSetting>(interpreterSettings.values());
+    Collections.sort(settings,new Comparator<InterpreterSetting>(){
+      @Override public int compare(      InterpreterSetting o1,      InterpreterSetting o2){
+        return o1.getName().compareTo(o2.getName());
+      }
+    }
+);
     for (    String className : interpreterClassList) {
-      for (      String settingId : interpreterSettings.keySet()) {
-        for (        InterpreterSetting setting : settings) {
-          if (settingId.equals(setting.id())) {
+      for (      InterpreterSetting setting : settings) {
+        for (        InterpreterSetting orderedSetting : orderedSettings) {
+          if (orderedSetting.id().equals(setting.id())) {
             continue;
           }
         }
-        InterpreterSetting setting=interpreterSettings.get(settingId);
         for (        Interpreter intp : setting.getInterpreterGroup()) {
           if (className.equals(intp.getClassName())) {
             boolean alreadyAdded=false;
-            for (            InterpreterSetting st : settings) {
+            for (            InterpreterSetting st : orderedSettings) {
               if (setting.id().equals(st.id())) {
                 alreadyAdded=true;
               }
             }
             if (alreadyAdded == false) {
-              settings.add(setting);
+              orderedSettings.add(setting);
             }
           }
         }
       }
     }
-    return settings;
+    return orderedSettings;
   }
 }

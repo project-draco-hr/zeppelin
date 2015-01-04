@@ -20,7 +20,7 @@
       cl=URLClassLoader.newInstance(new URL[]{},ccl);
     }
  else {
-      cl=(URLClassLoader)ccl;
+      cl=ccl;
     }
     Thread.currentThread().setContextClassLoader(cl);
     Class<Interpreter> replClass=(Class<Interpreter>)cl.loadClass(className);
