@@ -1,7 +1,7 @@
 {
   SQLContext sqlc=getSparkInterpreter().getSQLContext();
   SparkContext sc=sqlc.sparkContext();
-  sc.setJobGroup(jobGroup,"Zeppelin",false);
+  sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
   SchemaRDD rdd;
   Row[] rows=null;
   try {
