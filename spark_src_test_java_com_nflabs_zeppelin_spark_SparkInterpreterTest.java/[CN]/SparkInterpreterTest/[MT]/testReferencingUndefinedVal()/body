@@ -1,5 +1,5 @@
 {
-  InterpreterResult result=repl.interpret("def category(min: Int) = {" + "    if (0 <= value) \"error\"" + "}");
+  InterpreterResult result=repl.interpret("def category(min: Int) = {" + "    if (0 <= value) \"error\"" + "}",null);
   assertEquals(Code.ERROR,result.code());
   System.out.println("msg=" + result.message());
 }

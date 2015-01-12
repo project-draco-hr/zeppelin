@@ -1,6 +1,0 @@
-{
-  this.sc=sc;
-  this.sqlContext=sql;
-  this.dep=dep;
-  this.out=printStream;
-}

@@ -1,12 +1,12 @@
 {
-  repl.interpret("import org.apache.spark.sql._");
-  repl.interpret("def toInt(s:String): Any = {try { s.trim().toInt} catch {case e:Exception => null}}");
-  repl.interpret("val schema = StructType(Seq(StructField(\"name\", StringType, false),StructField(\"age\" , IntegerType, true),StructField(\"other\" , StringType, false)))");
-  repl.interpret("val csv = sc.parallelize(Seq((\"jobs, 51, apple\"), (\"gates, , microsoft\")))");
-  repl.interpret("val raw = csv.map(_.split(\",\")).map(p => Row(p(0),toInt(p(1)),p(2)))");
-  repl.interpret("val people = z.sqlContext.applySchema(raw, schema)");
-  repl.interpret("people.registerTempTable(\"people\")");
-  InterpreterResult ret=sql.interpret("select name, age from people where name = 'gates'");
+  repl.interpret("import org.apache.spark.sql._",null);
+  repl.interpret("def toInt(s:String): Any = {try { s.trim().toInt} catch {case e:Exception => null}}",null);
+  repl.interpret("val schema = StructType(Seq(StructField(\"name\", StringType, false),StructField(\"age\" , IntegerType, true),StructField(\"other\" , StringType, false)))",null);
+  repl.interpret("val csv = sc.parallelize(Seq((\"jobs, 51, apple\"), (\"gates, , microsoft\")))",null);
+  repl.interpret("val raw = csv.map(_.split(\",\")).map(p => Row(p(0),toInt(p(1)),p(2)))",null);
+  repl.interpret("val people = z.sqlContext.applySchema(raw, schema)",null);
+  repl.interpret("people.registerTempTable(\"people\")",null);
+  InterpreterResult ret=sql.interpret("select name, age from people where name = 'gates'",null);
   System.err.println("RET=" + ret.message());
   assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
   assertEquals(Type.TABLE,ret.type());

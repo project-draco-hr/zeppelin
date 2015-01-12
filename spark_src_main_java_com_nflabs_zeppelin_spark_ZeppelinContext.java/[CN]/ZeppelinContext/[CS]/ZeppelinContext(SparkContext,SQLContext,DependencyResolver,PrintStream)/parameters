@@ -1,4 +1,0 @@
-SparkContext sc
-SQLContext sql
-DependencyResolver dep
-PrintStream printStream
