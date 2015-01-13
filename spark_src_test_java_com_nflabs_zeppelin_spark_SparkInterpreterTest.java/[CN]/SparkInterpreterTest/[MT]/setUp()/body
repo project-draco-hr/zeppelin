@@ -4,4 +4,5 @@
     repl=new SparkInterpreter(p);
     repl.open();
   }
+  context=new InterpreterContext(new Paragraph(null,null));
 }
