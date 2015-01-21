@@ -3,5 +3,5 @@
   Properties p=new Properties();
   p.putAll(request.getProperties());
   interpreterFactory.add(request.getName(),request.getGroup(),p);
-  return new JsonResponse(Status.OK,"").build();
+  return new JsonResponse(Status.CREATED,"").build();
 }
