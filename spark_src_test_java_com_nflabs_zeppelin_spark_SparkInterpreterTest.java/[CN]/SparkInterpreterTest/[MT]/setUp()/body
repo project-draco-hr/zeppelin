@@ -1,10 +1,8 @@
 {
-  Properties p=new Properties();
-  p.put("share",new HashMap<String,Object>());
-  repl=SparkInterpreter.singleton();
   if (repl == null) {
+    Properties p=new Properties();
     repl=new SparkInterpreter(p);
-    SparkInterpreter.setSingleton(repl);
     repl.open();
   }
+  context=new InterpreterContext(new Paragraph(null,null));
 }

@@ -1,14 +1,9 @@
 {
-  Map<String,Object> share=(Map<String,Object>)getProperty().get("share");
   if (sc == null) {
-    sc=(SparkContext)share.get("sc");
-    sparkListener=(JobProgressListener)share.get("sparkListener");
-    if (sc == null) {
-      sc=createSparkContext();
-      env=SparkEnv.get();
-      sparkListener=new JobProgressListener(sc.getConf());
-      sc.listenerBus().addListener(sparkListener);
-    }
+    sc=createSparkContext();
+    env=SparkEnv.get();
+    sparkListener=new JobProgressListener(sc.getConf());
+    sc.listenerBus().addListener(sparkListener);
   }
   return sc;
 }

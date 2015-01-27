@@ -1,0 +1,3 @@
+String paragraphId
+String buffer
+int cursor

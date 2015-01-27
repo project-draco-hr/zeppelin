@@ -1,10 +1,8 @@
 {
-  Gson gson=null;
+  GsonBuilder gsonBuilder=new GsonBuilder().registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
   if (pretty) {
-    gson=new GsonBuilder().setPrettyPrinting().create();
+    gsonBuilder.setPrettyPrinting();
   }
- else {
-    gson=new Gson();
-  }
+  Gson gson=gsonBuilder.create();
   return gson.toJson(this);
 }

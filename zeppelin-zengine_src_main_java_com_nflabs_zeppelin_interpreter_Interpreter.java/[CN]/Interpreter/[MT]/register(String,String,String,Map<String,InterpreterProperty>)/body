@@ -1,0 +1,3 @@
+{
+  registeredInterpreters.put(name,new RegisteredInterpreter(name,group,className,properties));
+}

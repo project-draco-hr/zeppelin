@@ -1,0 +1,14 @@
+{
+  logger.info("Restart interpreterSetting {}",settingId);
+  try {
+    interpreterFactory.restart(settingId);
+  }
+ catch (  InterpreterException e) {
+    return new JsonResponse(Status.NOT_FOUND,e.getMessage(),e).build();
+  }
+  InterpreterSetting setting=interpreterFactory.get(settingId);
+  if (setting == null) {
+    return new JsonResponse(Status.NOT_FOUND,"",settingId).build();
+  }
+  return new JsonResponse(Status.OK,"",setting).build();
+}

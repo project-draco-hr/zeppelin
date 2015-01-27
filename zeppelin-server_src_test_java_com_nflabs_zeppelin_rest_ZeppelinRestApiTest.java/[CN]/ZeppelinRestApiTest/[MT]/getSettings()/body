@@ -1,0 +1,8 @@
+{
+  GetMethod get=httpGet("/interpreter/setting");
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  assertThat(get,isAllowed());
+  get.releaseConnection();
+}

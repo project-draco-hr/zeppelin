@@ -1,3 +1,11 @@
 {
+  Properties p=new Properties();
+  p.putAll(property);
+  Map<String,InterpreterProperty> defaultProperties=Interpreter.findRegisteredInterpreterByClassName(getClassName()).getProperties();
+  for (  String k : defaultProperties.keySet()) {
+    if (!p.contains(k)) {
+      p.put(k,defaultProperties.get(k).getDefaultValue());
+    }
+  }
   return property;
 }

@@ -1,0 +1,7 @@
+{
+  z.setInterpreterContext(context);
+  if (line == null || line.trim().length() == 0) {
+    return new InterpreterResult(Code.SUCCESS);
+  }
+  return interpret(line.split("\n"),context);
+}

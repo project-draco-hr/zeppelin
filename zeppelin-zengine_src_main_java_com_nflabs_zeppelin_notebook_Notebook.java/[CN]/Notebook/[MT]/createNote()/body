@@ -1,7 +1,8 @@
 {
-  Note note=new Note(conf,new NoteInterpreterLoader(replFactory,isLoaderStatic()),jobListenerFactory,quartzSched);
-synchronized (notes) {
-    notes.put(note.id(),note);
+  if (conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_AUTO_INTERPRETER_BINDING)) {
+    return createNote(replFactory.getDefaultInterpreterSettingList());
   }
-  return note;
+ else {
+    return createNote(null);
+  }
 }

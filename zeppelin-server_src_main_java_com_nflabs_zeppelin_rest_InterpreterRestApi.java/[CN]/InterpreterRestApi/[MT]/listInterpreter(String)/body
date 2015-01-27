@@ -1,0 +1,4 @@
+{
+  Map<String,RegisteredInterpreter> m=Interpreter.registeredInterpreters;
+  return new JsonResponse(Status.OK,"",m).build();
+}

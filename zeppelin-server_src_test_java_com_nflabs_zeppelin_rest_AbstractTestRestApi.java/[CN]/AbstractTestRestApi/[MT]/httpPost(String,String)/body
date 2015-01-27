@@ -1,0 +1,10 @@
+{
+  LOG.info("Connecting to {}",url + path);
+  HttpClient httpClient=new HttpClient();
+  PostMethod postMethod=new PostMethod(url + path);
+  RequestEntity entity=new ByteArrayRequestEntity(body.getBytes("UTF-8"));
+  postMethod.setRequestEntity(entity);
+  httpClient.executeMethod(postMethod);
+  LOG.info("{} - {}",postMethod.getStatusCode(),postMethod.getStatusText());
+  return postMethod;
+}

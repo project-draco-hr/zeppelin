@@ -1,6 +1,10 @@
 {
-  InterpreterFactory factory=new InterpreterFactory(ZeppelinConfiguration.create());
-  Interpreter repl1=factory.createRepl("mock","com.nflabs.zeppelin.interpreter.mock.MockInterpreter",new Properties());
+  List<String> all=factory.getDefaultInterpreterSettingList();
+  Interpreter repl1=factory.get(all.get(0)).getInterpreterGroup().getFirst();
   repl1.bindValue("a",1);
   assertEquals(repl1.getValue("a"),1);
+  assertNull(factory.get("unknown"));
+  factory.restart(all.get(0));
+  repl1=factory.get(all.get(0)).getInterpreterGroup().getFirst();
+  assertEquals(repl1.getValue("a"),null);
 }

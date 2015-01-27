@@ -1,0 +1,15 @@
+{
+  List<String> defaultSettings=new LinkedList<String>();
+  Map<String,Boolean> interpreterGroupCheck=new HashMap<String,Boolean>();
+  List<InterpreterSetting> sortedSettings=get();
+  for (  InterpreterSetting setting : sortedSettings) {
+    if (defaultSettings.contains(setting.id())) {
+      continue;
+    }
+    if (!interpreterGroupCheck.containsKey(setting.getGroup())) {
+      defaultSettings.add(setting.id());
+      interpreterGroupCheck.put(setting.getGroup(),true);
+    }
+  }
+  return defaultSettings;
+}

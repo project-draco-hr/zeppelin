@@ -1,6 +1,6 @@
 {
-  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret("val a = 1\nval b = 2").code());
-  InterpreterResult incomplete=repl.interpret("val a = \"\"\"");
+  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret("val a = 1\nval b = 2",context).code());
+  InterpreterResult incomplete=repl.interpret("val a = \"\"\"",context);
   assertEquals(InterpreterResult.Code.INCOMPLETE,incomplete.code());
   assertTrue(incomplete.message().length() > 0);
 }

@@ -7,5 +7,6 @@
   cxfContext.setSessionHandler(new SessionHandler());
   cxfContext.setContextPath("/api");
   cxfContext.addServlet(cxfServletHolder,"/*");
+  cxfContext.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
   return cxfContext;
 }

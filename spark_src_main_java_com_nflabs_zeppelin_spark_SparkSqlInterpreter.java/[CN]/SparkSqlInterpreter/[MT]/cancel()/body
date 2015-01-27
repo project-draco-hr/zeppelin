@@ -1,5 +1,0 @@
-{
-  SQLContext sqlc=getSparkInterpreter().getSQLContext();
-  SparkContext sc=sqlc.sparkContext();
-  sc.cancelJobGroup(jobGroup);
-}
