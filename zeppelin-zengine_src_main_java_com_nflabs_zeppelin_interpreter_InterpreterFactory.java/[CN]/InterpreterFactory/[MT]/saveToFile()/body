@@ -1,0 +1,18 @@
+{
+  String jsonString;
+synchronized (interpreterSettings) {
+    Map<String,Object> saveObject=new HashMap<String,Object>();
+    saveObject.put("interpreterSettings",interpreterSettings);
+    saveObject.put("interpreterBindings",interpreterBindings);
+    jsonString=gson.toJson(saveObject);
+  }
+  File settingFile=new File(conf.getInterpreterSettingPath());
+  if (!settingFile.exists()) {
+    settingFile.createNewFile();
+  }
+  FileOutputStream fos=new FileOutputStream(settingFile,false);
+  OutputStreamWriter out=new OutputStreamWriter(fos);
+  out.append(jsonString);
+  out.close();
+  fos.close();
+}

@@ -1,0 +1,38 @@
+{
+  GsonBuilder builder=new GsonBuilder();
+  builder.setPrettyPrinting();
+  builder.registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
+  Gson gson=builder.create();
+  File settingFile=new File(conf.getInterpreterSettingPath());
+  if (!settingFile.exists()) {
+    return;
+  }
+  FileInputStream fis=new FileInputStream(settingFile);
+  InputStreamReader isr=new InputStreamReader(fis);
+  BufferedReader bufferedReader=new BufferedReader(isr);
+  StringBuilder sb=new StringBuilder();
+  String line;
+  while ((line=bufferedReader.readLine()) != null) {
+    sb.append(line);
+  }
+  isr.close();
+  fis.close();
+  String json=sb.toString();
+  Map<String,Object> savedObject=gson.fromJson(json,new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  Map<String,Map<String,Object>> settings=(Map<String,Map<String,Object>>)savedObject.get("interpreterSettings");
+  Map<String,List<String>> bindings=(Map<String,List<String>>)savedObject.get("interpreterBindings");
+  for (  String k : settings.keySet()) {
+    Map<String,Object> set=settings.get(k);
+    String id=(String)set.get("id");
+    String name=(String)set.get("name");
+    String group=(String)set.get("group");
+    Properties properties=new Properties();
+    properties.putAll((Map<String,String>)set.get("properties"));
+    InterpreterGroup interpreterGroup=createInterpreterGroup(group,properties);
+    InterpreterSetting intpSetting=new InterpreterSetting(id,name,group,interpreterGroup);
+    interpreterSettings.put(k,intpSetting);
+  }
+  this.interpreterBindings=bindings;
+}

@@ -1,0 +1,12 @@
+{
+  if (((HttpServletRequest)request).getMethod().equals("OPTIONS")) {
+    HttpServletResponse resp=((HttpServletResponse)response);
+    addCorsHeaders(resp);
+    return;
+  }
+  if (response instanceof HttpServletResponse) {
+    HttpServletResponse alteredResponse=((HttpServletResponse)response);
+    addCorsHeaders(alteredResponse);
+  }
+  filterChain.doFilter(request,response);
+}

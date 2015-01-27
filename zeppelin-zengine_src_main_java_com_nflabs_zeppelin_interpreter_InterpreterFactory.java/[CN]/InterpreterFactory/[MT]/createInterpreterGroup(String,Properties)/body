@@ -1,0 +1,15 @@
+{
+  InterpreterGroup interpreterGroup=new InterpreterGroup();
+  for (  String className : interpreterClassList) {
+    Set<String> keys=Interpreter.registeredInterpreters.keySet();
+    for (    String intName : keys) {
+      RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
+      if (info.getClassName().equals(className) && info.getGroup().equals(groupName)) {
+        Interpreter intp=createRepl(info.getName(),info.getClassName(),properties,interpreterGroup);
+        interpreterGroup.add(intp);
+        break;
+      }
+    }
+  }
+  return interpreterGroup;
+}

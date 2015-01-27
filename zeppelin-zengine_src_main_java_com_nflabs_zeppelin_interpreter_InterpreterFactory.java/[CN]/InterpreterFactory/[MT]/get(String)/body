@@ -1,0 +1,5 @@
+{
+synchronized (interpreterSettings) {
+    return interpreterSettings.get(name);
+  }
+}

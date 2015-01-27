@@ -1,0 +1,10 @@
+{
+  Set<String> keys=Interpreter.registeredInterpreters.keySet();
+  for (  String intName : keys) {
+    RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
+    if (clsName.equals(info.getClassName())) {
+      return info;
+    }
+  }
+  return null;
+}

@@ -1,5 +1,0 @@
-SparkContext sc
-SQLContext sql
-DependencyResolver dep
-NoteInterpreterLoader noteInterpreterLoader
-PrintStream printStream
