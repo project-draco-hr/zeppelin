@@ -1,0 +1,3 @@
+{
+  addMavenRepo(id,url,false);
+}

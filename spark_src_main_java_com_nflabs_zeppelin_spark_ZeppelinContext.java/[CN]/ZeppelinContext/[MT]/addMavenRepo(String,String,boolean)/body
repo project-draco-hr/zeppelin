@@ -1,0 +1,3 @@
+{
+  dep.addRepo(id,url,snapshot);
+}

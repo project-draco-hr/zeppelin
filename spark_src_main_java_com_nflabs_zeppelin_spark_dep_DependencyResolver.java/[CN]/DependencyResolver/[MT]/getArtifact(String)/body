@@ -2,7 +2,11 @@
   Artifact artifact=new DefaultArtifact(dependency);
   ArtifactRequest artifactRequest=new ArtifactRequest();
   artifactRequest.setArtifact(artifact);
-  artifactRequest.addRepository(repo);
+synchronized (repos) {
+    for (    RemoteRepository repo : repos) {
+      artifactRequest.addRepository(repo);
+    }
+  }
   ArtifactResult artifactResult=system.resolveArtifact(session,artifactRequest);
   LinkedList<ArtifactResult> results=new LinkedList<ArtifactResult>();
   results.add(artifactResult);
