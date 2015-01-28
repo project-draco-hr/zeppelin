@@ -1,7 +1,10 @@
 {
+  Collection<String> allExclusions=new LinkedList<String>();
+  allExclusions.addAll(excludes);
+  allExclusions.addAll(Arrays.asList(exclusions));
   List<ArtifactResult> listOfArtifact;
   if (recursive) {
-    listOfArtifact=getArtifactsWithDep(artifact,excludes);
+    listOfArtifact=getArtifactsWithDep(artifact,allExclusions);
   }
  else {
     listOfArtifact=getArtifact(artifact);
@@ -10,7 +13,7 @@
   while (it.hasNext()) {
     Artifact a=it.next().getArtifact();
     String gav=a.getGroupId() + ":" + a.getArtifactId()+ ":"+ a.getVersion();
-    for (    String exclude : exclusions) {
+    for (    String exclude : allExclusions) {
       if (gav.startsWith(exclude)) {
         it.remove();
         break;
