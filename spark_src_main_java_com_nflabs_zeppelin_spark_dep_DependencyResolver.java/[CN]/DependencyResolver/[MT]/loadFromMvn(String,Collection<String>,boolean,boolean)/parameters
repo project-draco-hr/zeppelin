@@ -1,0 +1,4 @@
+String artifact
+Collection<String> excludes
+boolean recursive
+boolean addSparkContext

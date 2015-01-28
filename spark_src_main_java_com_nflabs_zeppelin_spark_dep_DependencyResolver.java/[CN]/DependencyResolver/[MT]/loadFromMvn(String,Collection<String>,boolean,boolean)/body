@@ -1,7 +1,7 @@
 {
   List<ArtifactResult> listOfArtifact;
   if (recursive) {
-    listOfArtifact=getArtifactsWithDep(artifact);
+    listOfArtifact=getArtifactsWithDep(artifact,excludes);
   }
  else {
     listOfArtifact=getArtifact(artifact);
@@ -24,8 +24,9 @@
     newClassPathList.add(artifactResult.getArtifact().getFile().toURI().toURL());
     files.add(artifactResult.getArtifact().getFile());
   }
-  updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
+  intp.global().new Run();
   updateRuntimeClassPath(newClassPathList.toArray(new URL[0]));
+  updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
   if (addSparkContext) {
     for (    File f : files) {
       sc.addJar(f.getAbsolutePath());

@@ -1,0 +1,3 @@
+{
+  dep.load(artifact,scala.collection.JavaConversions.asJavaCollection(excludes),true,true);
+}

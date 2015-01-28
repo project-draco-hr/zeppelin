@@ -1,11 +1,3 @@
 {
-  if (StringUtils.isBlank(artifact)) {
-    return;
-  }
-  if (artifact.split(":").length == 3) {
-    loadFromMvn(artifact,recursive,addSparkContext);
-  }
- else {
-    loadFromFs(artifact,addSparkContext);
-  }
+  load(artifact,new LinkedList<String>(),recursive,addSparkContext);
 }
