@@ -14,9 +14,9 @@
   for (  Object k : intpProperty.keySet()) {
     String key=(String)k;
     if (key.startsWith("spark.")) {
-      Object value=intpProperty.get(k);
+      Object value=intpProperty.get(key);
       if (value != null && value instanceof String && !((String)value).trim().isEmpty()) {
-        conf.set(key,intpProperty.getProperty(key));
+        conf.set(key,(String)value);
       }
     }
   }
