@@ -14,7 +14,10 @@
   for (  Object k : intpProperty.keySet()) {
     String key=(String)k;
     if (key.startsWith("spark.")) {
-      conf.set(key,intpProperty.getProperty(key));
+      Object value=intpProperty.get(key);
+      if (value != null && value instanceof String && !((String)value).trim().isEmpty()) {
+        conf.set(key,(String)value);
+      }
     }
   }
   SparkContext sparkContext=new SparkContext(conf);

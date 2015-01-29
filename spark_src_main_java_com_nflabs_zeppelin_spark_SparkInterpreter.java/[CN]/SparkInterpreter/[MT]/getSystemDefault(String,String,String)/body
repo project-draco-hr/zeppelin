@@ -1,0 +1,15 @@
+{
+  if (envName != null && !envName.isEmpty()) {
+    String envValue=System.getenv().get(envName);
+    if (envValue != null) {
+      return envValue;
+    }
+  }
+  if (propertyName != null && !propertyName.isEmpty()) {
+    String propValue=System.getProperty(propertyName);
+    if (propValue != null) {
+      return propValue;
+    }
+  }
+  return defaultValue;
+}
