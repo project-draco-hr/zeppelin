@@ -1,11 +1,14 @@
 {
   if (StringUtils.isBlank(artifact)) {
-    return;
+    throw new RuntimeException("Invalid artifact to load");
   }
   if (artifact.split(":").length == 3) {
-    loadFromMvn(artifact,excludes,recursive,addSparkContext);
+    return loadFromMvn(artifact,excludes,recursive,addSparkContext);
   }
  else {
     loadFromFs(artifact,addSparkContext);
+    LinkedList<String> libs=new LinkedList<String>();
+    libs.add(artifact);
+    return libs;
   }
 }

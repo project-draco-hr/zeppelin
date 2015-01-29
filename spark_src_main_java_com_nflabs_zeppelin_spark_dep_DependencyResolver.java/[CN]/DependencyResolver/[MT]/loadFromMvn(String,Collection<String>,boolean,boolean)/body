@@ -1,4 +1,5 @@
 {
+  List<String> loadedLibs=new LinkedList<String>();
   Collection<String> allExclusions=new LinkedList<String>();
   allExclusions.addAll(excludes);
   allExclusions.addAll(Arrays.asList(exclusions));
@@ -26,6 +27,7 @@
     logger.info("Load " + artifactResult.getArtifact().getGroupId() + ":"+ artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
     newClassPathList.add(artifactResult.getArtifact().getFile().toURI().toURL());
     files.add(artifactResult.getArtifact().getFile());
+    loadedLibs.add(artifactResult.getArtifact().getGroupId() + ":" + artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
   }
   intp.global().new Run();
   updateRuntimeClassPath(newClassPathList.toArray(new URL[0]));
@@ -35,4 +37,5 @@
       sc.addJar(f.getAbsolutePath());
     }
   }
+  return loadedLibs;
 }
