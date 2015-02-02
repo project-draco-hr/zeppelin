@@ -1,3 +1,4 @@
 {
-  return getSparkInterpreter().getScheduler();
+  int maxConcurrency=10;
+  return SchedulerFactory.singleton().createOrGetParallelScheduler(SparkSqlInterpreter.class.getName() + this.hashCode(),maxConcurrency);
 }

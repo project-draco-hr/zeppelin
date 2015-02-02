@@ -1,6 +1,9 @@
 {
   SQLContext sqlc=getSparkInterpreter().getSQLContext();
   SparkContext sc=sqlc.sparkContext();
+  if (concurrentSQL()) {
+    sc.setLocalProperty("spark.scheduler.pool","fair");
+  }
   sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
   SchemaRDD rdd;
   Row[] rows=null;
