@@ -1,6 +1,4 @@
 {
-  files=new LinkedList<File>();
-  filesDist=new LinkedList<File>();
   for (  Dependency dep : dependencies) {
     if (!dep.isLocalFsArtifact()) {
       List<ArtifactResult> artifacts=fetchArtifactWithDep(dep);
