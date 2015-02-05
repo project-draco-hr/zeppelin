@@ -1,5 +1,9 @@
 {
-  for (  Interpreter intp : getInterpreterGroup()) {
+  InterpreterGroup intpGroup=getInterpreterGroup();
+  if (intpGroup == null) {
+    return null;
+  }
+  for (  Interpreter intp : intpGroup) {
     if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
       Interpreter p=intp;
       while (p instanceof WrappedInterpreter) {

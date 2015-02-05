@@ -1,4 +1,6 @@
 {
   InterpreterResult ret=dep.interpret("z.load(\"org.apache.commons:commons-csv:1.1\")",context);
-  System.out.println("ret=" + ret.message());
+  assertEquals(Code.SUCCESS,ret.code());
+  assertEquals(1,dep.getDependencyContext().getFiles().size());
+  assertEquals(0,dep.getDependencyContext().getFilesDist().size());
 }
