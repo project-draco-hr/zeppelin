@@ -1,0 +1,8 @@
+{
+  if (!(o instanceof Dependency)) {
+    return false;
+  }
+ else {
+    return ((Dependency)o).groupArtifactVersion.equals(groupArtifactVersion);
+  }
+}

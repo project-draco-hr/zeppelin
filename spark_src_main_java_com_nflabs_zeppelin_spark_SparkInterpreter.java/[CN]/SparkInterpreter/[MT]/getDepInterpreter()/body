@@ -1,0 +1,12 @@
+{
+  for (  Interpreter intp : getInterpreterGroup()) {
+    if (intp.getClassName().equals(DepInterpreter.class.getName())) {
+      Interpreter p=intp;
+      while (p instanceof WrappedInterpreter) {
+        p=((WrappedInterpreter)p).getInnerInterpreter();
+      }
+      return (DepInterpreter)p;
+    }
+  }
+  return null;
+}

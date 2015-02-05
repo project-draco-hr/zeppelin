@@ -1,0 +1,22 @@
+{
+  files=new LinkedList<File>();
+  filesDist=new LinkedList<File>();
+  for (  Dependency dep : dependencies) {
+    if (!dep.isLocalFsArtifact()) {
+      List<ArtifactResult> artifacts=fetchArtifactWithDep(dep);
+      for (      ArtifactResult artifact : artifacts) {
+        if (dep.isDist()) {
+          filesDist.add(artifact.getArtifact().getFile());
+        }
+        files.add(artifact.getArtifact().getFile());
+      }
+    }
+ else {
+      if (dep.isDist()) {
+        filesDist.add(new File(dep.getGroupArtifactVersion()));
+      }
+      files.add(new File(dep.getGroupArtifactVersion()));
+    }
+  }
+  return files;
+}

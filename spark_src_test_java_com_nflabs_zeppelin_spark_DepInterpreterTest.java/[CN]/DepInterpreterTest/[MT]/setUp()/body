@@ -1,0 +1,9 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  System.setProperty("zeppelin.dep.localrepo",tmpDir.getAbsolutePath() + "/local-repo");
+  tmpDir.mkdirs();
+  Properties p=new Properties();
+  dep=new DepInterpreter(p);
+  dep.open();
+  context=new InterpreterContext(new Paragraph(null,null));
+}

@@ -1,0 +1,22 @@
+{
+  PrintStream printStream=new PrintStream(out);
+  Console.setOut(printStream);
+  out.reset();
+  scala.tools.nsc.interpreter.Results.Result ret=intp.interpret(st);
+  Code code=getResultCode(ret);
+  try {
+    depc.fetch();
+  }
+ catch (  MalformedURLException|DependencyResolutionException|ArtifactResolutionException e) {
+    return new InterpreterResult(Code.ERROR,e.toString());
+  }
+  if (code == Code.INCOMPLETE) {
+    return new InterpreterResult(code,"Incomplete expression");
+  }
+ else   if (code == Code.ERROR) {
+    return new InterpreterResult(code,out.toString());
+  }
+ else {
+    return new InterpreterResult(code,out.toString());
+  }
+}
