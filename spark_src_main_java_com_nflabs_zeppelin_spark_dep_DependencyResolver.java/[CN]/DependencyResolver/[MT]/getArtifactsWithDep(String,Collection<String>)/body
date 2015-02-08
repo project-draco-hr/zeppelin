@@ -1,7 +1,7 @@
 {
-  Artifact artifact=new DefaultArtifact(dependency);
+  Artifact artifact=new DefaultArtifact(inferScalaVersion(dependency));
   DependencyFilter classpathFlter=DependencyFilterUtils.classpathFilter(JavaScopes.COMPILE);
-  ExclusionsDependencyFilter exclusionFilter=new ExclusionsDependencyFilter(excludes);
+  PatternExclusionsDependencyFilter exclusionFilter=new PatternExclusionsDependencyFilter(inferScalaVersion(excludes));
   CollectRequest collectRequest=new CollectRequest();
   collectRequest.setRoot(new Dependency(artifact,JavaScopes.COMPILE));
 synchronized (repos) {

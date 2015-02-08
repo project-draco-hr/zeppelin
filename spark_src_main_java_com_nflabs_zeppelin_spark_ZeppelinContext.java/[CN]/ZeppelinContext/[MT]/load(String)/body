@@ -1,3 +1,3 @@
 {
-  return collectionAsScalaIterable(dep.load(artifact,false,false));
+  return collectionAsScalaIterable(dep.load(artifact,false));
 }

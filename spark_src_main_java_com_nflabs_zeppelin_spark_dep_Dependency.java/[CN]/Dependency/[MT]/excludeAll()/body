@@ -1,4 +1,4 @@
 {
-  recursive=true;
+  exclude("*");
   return this;
 }

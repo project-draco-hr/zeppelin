@@ -4,12 +4,7 @@
   allExclusions.addAll(excludes);
   allExclusions.addAll(Arrays.asList(exclusions));
   List<ArtifactResult> listOfArtifact;
-  if (recursive) {
-    listOfArtifact=getArtifactsWithDep(artifact,allExclusions);
-  }
- else {
-    listOfArtifact=getArtifact(artifact);
-  }
+  listOfArtifact=getArtifactsWithDep(artifact,allExclusions);
   Iterator<ArtifactResult> it=listOfArtifact.iterator();
   while (it.hasNext()) {
     Artifact a=it.next().getArtifact();

@@ -1,5 +1,4 @@
 {
-  recursive();
   for (  String item : exclusions.split(",|\n")) {
     this.exclusions.add(item);
   }

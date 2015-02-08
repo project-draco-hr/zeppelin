@@ -1,3 +1,0 @@
-{
-  return load(artifact,new LinkedList<String>(),recursive,addSparkContext);
-}
