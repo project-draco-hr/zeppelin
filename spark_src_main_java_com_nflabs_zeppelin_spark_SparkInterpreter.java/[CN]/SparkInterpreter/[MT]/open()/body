@@ -42,6 +42,13 @@
   intp.initializeSynchronous();
   completor=new SparkJLineCompletion(intp);
   sc=getSparkContext();
+  if (sc.getPoolForName("fair").isEmpty()) {
+    Value schedulingMode=org.apache.spark.scheduler.SchedulingMode.FAIR();
+    int minimumShare=0;
+    int weight=1;
+    Pool pool=new Pool("fair",schedulingMode,minimumShare,weight);
+    sc.taskScheduler().rootPool().addSchedulable(pool);
+  }
   sqlc=getSQLContext();
   dep=getDependencyResolver();
   z=new ZeppelinContext(sc,sqlc,getHiveContext(),null,dep,printStream);
