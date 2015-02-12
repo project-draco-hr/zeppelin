@@ -1,12 +1,3 @@
 {
-  for (  Interpreter intp : getInterpreterGroup()) {
-    if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
-      Interpreter p=intp;
-      while (p instanceof WrappedInterpreter) {
-        p=((WrappedInterpreter)p).getInnerInterpreter();
-      }
-      return (SparkInterpreter)p;
-    }
-  }
-  return null;
+  return OpenSparkInterpreter(false);
 }
