@@ -1,0 +1,4 @@
+{
+  this.groupArtifactVersion=groupArtifactVersion;
+  exclusions=new LinkedList<String>();
+}

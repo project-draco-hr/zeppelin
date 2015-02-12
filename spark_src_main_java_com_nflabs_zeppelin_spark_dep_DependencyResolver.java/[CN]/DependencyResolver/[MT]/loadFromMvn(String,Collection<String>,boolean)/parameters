@@ -1,0 +1,3 @@
+String artifact
+Collection<String> excludes
+boolean addSparkContext

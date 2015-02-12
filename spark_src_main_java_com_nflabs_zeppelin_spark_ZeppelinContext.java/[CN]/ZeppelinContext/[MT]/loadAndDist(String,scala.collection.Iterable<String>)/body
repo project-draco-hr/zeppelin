@@ -1,3 +1,0 @@
-{
-  return collectionAsScalaIterable(dep.load(artifact,asJavaCollection(excludes),true,true));
-}

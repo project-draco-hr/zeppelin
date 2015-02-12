@@ -1,0 +1,6 @@
+{
+  dependencies=new LinkedList<Dependency>();
+  repositories=new LinkedList<Repository>();
+  files=new LinkedList<File>();
+  filesDist=new LinkedList<File>();
+}

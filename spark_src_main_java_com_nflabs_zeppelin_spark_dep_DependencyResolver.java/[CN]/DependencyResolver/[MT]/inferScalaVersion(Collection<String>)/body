@@ -1,0 +1,7 @@
+{
+  List<String> list=new LinkedList<String>();
+  for (  String a : artifact) {
+    list.add(inferScalaVersion(a));
+  }
+  return list;
+}

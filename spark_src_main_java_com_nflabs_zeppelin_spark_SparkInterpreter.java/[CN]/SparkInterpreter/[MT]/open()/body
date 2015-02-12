@@ -27,6 +27,21 @@
       classpath+=u.getFile();
     }
   }
+  DepInterpreter depInterpreter=getDepInterpreter();
+  if (depInterpreter != null) {
+    DependencyContext depc=depInterpreter.getDependencyContext();
+    if (depc != null) {
+      List<File> files=depc.getFiles();
+      if (files != null) {
+        for (        File f : files) {
+          if (classpath.length() > 0) {
+            classpath+=File.pathSeparator;
+          }
+          classpath+=f.getAbsolutePath();
+        }
+      }
+    }
+  }
   pathSettings.v_$eq(classpath);
   settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
   settings.explicitParentLoader_$eq(new Some<ClassLoader>(Thread.currentThread().getContextClassLoader()));
@@ -57,4 +72,22 @@
   intp.interpret("@transient val sqlc = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
   intp.interpret("import org.apache.spark.SparkContext._");
   intp.interpret("import sqlc._");
+  if (depInterpreter != null) {
+    DependencyContext depc=depInterpreter.getDependencyContext();
+    if (depc != null) {
+      List<File> files=depc.getFilesDist();
+      if (files != null) {
+        for (        File f : files) {
+          if (f.getName().toLowerCase().endsWith(".jar")) {
+            sc.addJar(f.getAbsolutePath());
+            logger.info("sc.addJar(" + f.getAbsolutePath() + ")");
+          }
+ else {
+            sc.addFile(f.getAbsolutePath());
+            logger.info("sc.addFile(" + f.getAbsolutePath() + ")");
+          }
+        }
+      }
+    }
+  }
 }
