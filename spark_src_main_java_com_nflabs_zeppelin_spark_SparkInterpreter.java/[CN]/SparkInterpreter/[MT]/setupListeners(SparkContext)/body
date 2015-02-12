@@ -1,0 +1,5 @@
+{
+  JobProgressListener pl=new JobProgressListener(context.getConf());
+  context.listenerBus().addListener(pl);
+  return pl;
+}
