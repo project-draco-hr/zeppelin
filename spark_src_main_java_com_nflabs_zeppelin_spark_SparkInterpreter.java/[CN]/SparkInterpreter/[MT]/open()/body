@@ -57,19 +57,28 @@
   intp.initializeSynchronous();
   completor=new SparkJLineCompletion(intp);
   sc=getSparkContext();
+  if (sc.getPoolForName("fair").isEmpty()) {
+    Value schedulingMode=org.apache.spark.scheduler.SchedulingMode.FAIR();
+    int minimumShare=0;
+    int weight=1;
+    Pool pool=new Pool("fair",schedulingMode,minimumShare,weight);
+    sc.taskScheduler().rootPool().addSchedulable(pool);
+  }
   sqlc=getSQLContext();
   dep=getDependencyResolver();
-  z=new ZeppelinContext(sc,sqlc,null,dep,printStream);
+  z=new ZeppelinContext(sc,sqlc,getHiveContext(),null,dep,printStream);
   this.interpreter.loadFiles(settings);
   intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
   binder=(Map<String,Object>)getValue("_binder");
   binder.put("sc",sc);
   binder.put("sqlc",sqlc);
+  binder.put("hiveContext",getHiveContext());
   binder.put("z",z);
   binder.put("out",printStream);
   intp.interpret("@transient val z = " + "_binder.get(\"z\").asInstanceOf[com.nflabs.zeppelin.spark.ZeppelinContext]");
   intp.interpret("@transient val sc = " + "_binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
   intp.interpret("@transient val sqlc = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
+  intp.interpret("@transient val hiveContext = " + "_binder.get(\"hiveContext\").asInstanceOf[org.apache.spark.sql.hive.HiveContext]");
   intp.interpret("import org.apache.spark.SparkContext._");
   intp.interpret("import sqlc._");
   if (depInterpreter != null) {

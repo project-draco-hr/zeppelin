@@ -1,6 +1,18 @@
 {
-  SQLContext sqlc=getSparkInterpreter().getSQLContext();
+  SQLContext sqlc=null;
+  if (useHiveContext()) {
+    sqlc=getSparkInterpreter().getHiveContext();
+  }
+ else {
+    sqlc=getSparkInterpreter().getSQLContext();
+  }
   SparkContext sc=sqlc.sparkContext();
+  if (concurrentSQL()) {
+    sc.setLocalProperty("spark.scheduler.pool","fair");
+  }
+ else {
+    sc.setLocalProperty("spark.scheduler.pool",null);
+  }
   sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
   SchemaRDD rdd;
   Row[] rows=null;

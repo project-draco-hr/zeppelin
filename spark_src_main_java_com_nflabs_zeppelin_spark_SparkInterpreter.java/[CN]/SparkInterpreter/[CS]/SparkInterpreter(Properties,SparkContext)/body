@@ -1,0 +1,6 @@
+{
+  this(property);
+  this.sc=sc;
+  env=SparkEnv.get();
+  sparkListener=setupListeners(this.sc);
+}
