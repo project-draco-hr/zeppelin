@@ -1,0 +1,5 @@
+{
+  assertEquals(InterpreterResult.Code.ERROR,repl.interpret("import org.apache.commons.csv.CSVFormat",context).code());
+  repl.interpret("z.load(\"org.apache.commons:commons-csv:1.1\")",context);
+  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret("import org.apache.commons.csv.CSVFormat",context).code());
+}

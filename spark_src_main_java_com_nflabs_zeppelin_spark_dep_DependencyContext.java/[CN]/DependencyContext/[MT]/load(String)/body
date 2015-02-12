@@ -1,0 +1,8 @@
+{
+  Dependency dep=new Dependency(lib);
+  if (dependencies.contains(dep)) {
+    dependencies.remove(dep);
+  }
+  dependencies.add(dep);
+  return dep;
+}

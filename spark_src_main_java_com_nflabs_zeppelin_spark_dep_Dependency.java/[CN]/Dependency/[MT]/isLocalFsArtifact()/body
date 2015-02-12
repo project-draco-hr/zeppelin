@@ -1,0 +1,4 @@
+{
+  int numSplits=groupArtifactVersion.split(":").length;
+  return !(numSplits >= 3 && numSplits <= 6);
+}

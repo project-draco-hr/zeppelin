@@ -1,0 +1,35 @@
+{
+  int pos=artifact.indexOf(":");
+  if (pos < 0 || pos + 2 >= artifact.length()) {
+    return artifact;
+  }
+  if (':' == artifact.charAt(pos + 1)) {
+    String restOfthem="";
+    String versionSep=":";
+    String groupId=artifact.substring(0,pos);
+    int nextPos=artifact.indexOf(":",pos + 2);
+    if (nextPos < 0) {
+      if (artifact.charAt(artifact.length() - 1) == '*') {
+        nextPos=artifact.length() - 1;
+        versionSep="";
+        restOfthem="*";
+      }
+ else {
+        versionSep="";
+        nextPos=artifact.length();
+      }
+    }
+    String artifactId=artifact.substring(pos + 2,nextPos);
+    if (nextPos < artifact.length()) {
+      if (!restOfthem.equals("*")) {
+        restOfthem=artifact.substring(nextPos + 1);
+      }
+    }
+    String[] version=scala.util.Properties.versionNumberString().split("[.]");
+    String scalaVersion=version[0] + "." + version[1];
+    return groupId + ":" + artifactId+ "_"+ scalaVersion+ versionSep+ restOfthem;
+  }
+ else {
+    return artifact;
+  }
+}
