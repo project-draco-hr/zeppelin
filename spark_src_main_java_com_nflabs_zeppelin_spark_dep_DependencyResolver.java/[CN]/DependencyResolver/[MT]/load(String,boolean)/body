@@ -1,0 +1,3 @@
+{
+  return load(artifact,new LinkedList<String>(),addSparkContext);
+}

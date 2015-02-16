@@ -1,4 +1,7 @@
 {
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  System.setProperty("zeppelin.dep.localrepo",tmpDir.getAbsolutePath() + "/local-repo");
+  tmpDir.mkdirs();
   if (repl == null) {
     Properties p=new Properties();
     repl=new SparkInterpreter(p);

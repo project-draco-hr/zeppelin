@@ -1,0 +1,8 @@
+{
+synchronized (repos) {
+    delRepo(id);
+    RemoteRepository rr=new RemoteRepository(id,"default",url);
+    rr.setPolicy(snapshot,null);
+    repos.add(rr);
+  }
+}
