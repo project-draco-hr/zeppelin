@@ -1,0 +1,19 @@
+{
+  if (System.getSecurityManager() == null) {
+    Policy.setPolicy(new RMIPolicy());
+    SecurityManager securityManager=new SecurityManager();
+    System.setSecurityManager(securityManager);
+  }
+  String name="interpreterId";
+  int port=0;
+  RemoteInterpreter remoteInterpreterServer=new RemoteInterpreterServer();
+  try {
+    RemoteInterpreter stub=(RemoteInterpreter)UnicastRemoteObject.exportObject(remoteInterpreterServer,port);
+    Registry registry=LocateRegistry.getRegistry();
+    registry.rebind(name,stub);
+  }
+ catch (  RemoteException e) {
+    e.printStackTrace();
+  }
+  System.out.println("ComputeEngine bound");
+}

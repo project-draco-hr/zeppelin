@@ -1,0 +1,8 @@
+{
+  for (Iterator<Permission> i=perms.iterator(); i.hasNext(); ) {
+    if (((Permission)i.next()).implies(p)) {
+      return true;
+    }
+  }
+  return false;
+}

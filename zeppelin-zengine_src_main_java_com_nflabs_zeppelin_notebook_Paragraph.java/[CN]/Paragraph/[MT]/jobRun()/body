@@ -18,6 +18,6 @@
     script=Input.getSimpleQuery(settings.getParams(),scriptBody);
   }
   logger().info("RUN : " + script);
-  InterpreterResult ret=repl.interpret(script,new InterpreterContext(this));
+  InterpreterResult ret=repl.interpret(script,getInterpreterContext());
   return ret;
 }

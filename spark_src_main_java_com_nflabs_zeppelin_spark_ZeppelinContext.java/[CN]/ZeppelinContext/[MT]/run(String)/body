@@ -1,18 +1,3 @@
 {
-  String intpName=Paragraph.getRequiredReplName(lines);
-  String scriptBody=Paragraph.getScriptBody(lines);
-  Interpreter intp=interpreterContext.getParagraph().getRepl(intpName);
-  InterpreterResult ret=intp.interpret(scriptBody,interpreterContext);
-  if (ret.code() == InterpreterResult.Code.SUCCESS) {
-    out.println("%" + ret.type().toString().toLowerCase() + " "+ ret.message());
-  }
- else   if (ret.code() == InterpreterResult.Code.ERROR) {
-    out.println("Error: " + ret.message());
-  }
- else   if (ret.code() == InterpreterResult.Code.INCOMPLETE) {
-    out.println("Incomplete");
-  }
- else {
-    out.println("Unknown error");
-  }
+  throw new RuntimeException("Missing implementation");
 }
