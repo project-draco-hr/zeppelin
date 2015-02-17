@@ -1,0 +1,8 @@
+{
+  if (other.isSetCode()) {
+    this.code=other.code;
+  }
+  if (other.isSetMsg()) {
+    this.msg=other.msg;
+  }
+}

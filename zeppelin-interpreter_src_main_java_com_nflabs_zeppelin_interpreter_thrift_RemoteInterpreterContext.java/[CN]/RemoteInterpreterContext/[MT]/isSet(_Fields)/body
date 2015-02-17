@@ -1,0 +1,18 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case PARAGRAPH_ID:
+    return isSetParagraphId();
+case PARAGRAPH_TITLE:
+  return isSetParagraphTitle();
+case PARAGRAPH_TEXT:
+return isSetParagraphText();
+case CONFIG:
+return isSetConfig();
+case GUI:
+return isSetGui();
+}
+throw new IllegalStateException();
+}

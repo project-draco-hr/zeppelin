@@ -1,0 +1,7 @@
+{
+switch (field) {
+case INTP_ID:
+    return Integer.valueOf(getIntpId());
+}
+throw new IllegalStateException();
+}

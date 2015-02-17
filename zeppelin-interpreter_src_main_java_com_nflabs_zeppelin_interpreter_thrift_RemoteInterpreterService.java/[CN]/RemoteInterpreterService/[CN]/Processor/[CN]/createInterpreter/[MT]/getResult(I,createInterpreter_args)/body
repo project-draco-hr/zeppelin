@@ -1,0 +1,6 @@
+{
+  createInterpreter_result result=new createInterpreter_result();
+  result.success=iface.createInterpreter(args.className,args.properties);
+  result.setSuccessIsSet(true);
+  return result;
+}

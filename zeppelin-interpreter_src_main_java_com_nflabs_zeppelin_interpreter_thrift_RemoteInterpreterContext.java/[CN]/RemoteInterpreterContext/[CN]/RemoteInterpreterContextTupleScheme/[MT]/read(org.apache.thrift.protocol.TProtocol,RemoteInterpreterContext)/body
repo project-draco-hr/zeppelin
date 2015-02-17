@@ -1,0 +1,24 @@
+{
+  TTupleProtocol iprot=(TTupleProtocol)prot;
+  BitSet incoming=iprot.readBitSet(5);
+  if (incoming.get(0)) {
+    struct.paragraphId=iprot.readString();
+    struct.setParagraphIdIsSet(true);
+  }
+  if (incoming.get(1)) {
+    struct.paragraphTitle=iprot.readString();
+    struct.setParagraphTitleIsSet(true);
+  }
+  if (incoming.get(2)) {
+    struct.paragraphText=iprot.readString();
+    struct.setParagraphTextIsSet(true);
+  }
+  if (incoming.get(3)) {
+    struct.config=iprot.readString();
+    struct.setConfigIsSet(true);
+  }
+  if (incoming.get(4)) {
+    struct.gui=iprot.readString();
+    struct.setGuiIsSet(true);
+  }
+}

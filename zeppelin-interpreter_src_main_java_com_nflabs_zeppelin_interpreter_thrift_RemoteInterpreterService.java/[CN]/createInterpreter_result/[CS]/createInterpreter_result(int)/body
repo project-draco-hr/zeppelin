@@ -1,0 +1,5 @@
+{
+  this();
+  this.success=success;
+  setSuccessIsSet(true);
+}

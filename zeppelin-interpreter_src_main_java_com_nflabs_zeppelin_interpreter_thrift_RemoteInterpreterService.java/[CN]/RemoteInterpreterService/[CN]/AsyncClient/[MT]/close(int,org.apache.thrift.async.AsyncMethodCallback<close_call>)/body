@@ -1,0 +1,6 @@
+{
+  checkReady();
+  close_call method_call=new close_call(intpId,resultHandler,this,___protocolFactory,___transport);
+  this.___currentMethod=method_call;
+  ___manager.call(method_call);
+}

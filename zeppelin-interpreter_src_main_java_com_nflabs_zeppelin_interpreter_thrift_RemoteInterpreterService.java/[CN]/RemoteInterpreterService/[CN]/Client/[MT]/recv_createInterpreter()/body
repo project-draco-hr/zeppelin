@@ -1,0 +1,8 @@
+{
+  createInterpreter_result result=new createInterpreter_result();
+  receiveBase(result,"createInterpreter");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"createInterpreter failed: unknown result");
+}

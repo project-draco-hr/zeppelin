@@ -1,0 +1,20 @@
+{
+switch (field) {
+case CODE:
+    if (value == null) {
+      unsetCode();
+    }
+ else {
+      setCode((String)value);
+    }
+  break;
+case MSG:
+if (value == null) {
+  unsetMsg();
+}
+ else {
+  setMsg((String)value);
+}
+break;
+}
+}

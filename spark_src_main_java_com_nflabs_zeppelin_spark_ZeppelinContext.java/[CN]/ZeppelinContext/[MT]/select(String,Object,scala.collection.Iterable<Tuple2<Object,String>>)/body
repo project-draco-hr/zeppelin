@@ -7,5 +7,5 @@
     Tuple2<Object,String> valueAndDisplayValue=it.next();
     paramOptions[i++]=new ParamOption(valueAndDisplayValue._1(),valueAndDisplayValue._2());
   }
-  return form.select(name,"",paramOptions);
+  return gui.select(name,"",paramOptions);
 }

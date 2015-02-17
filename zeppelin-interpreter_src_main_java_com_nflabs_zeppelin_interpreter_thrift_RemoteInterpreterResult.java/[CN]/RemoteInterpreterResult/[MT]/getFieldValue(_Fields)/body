@@ -1,0 +1,9 @@
+{
+switch (field) {
+case CODE:
+    return getCode();
+case MSG:
+  return getMsg();
+}
+throw new IllegalStateException();
+}

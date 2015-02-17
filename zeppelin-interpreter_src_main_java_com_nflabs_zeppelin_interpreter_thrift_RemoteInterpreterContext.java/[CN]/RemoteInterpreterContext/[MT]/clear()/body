@@ -1,0 +1,7 @@
+{
+  this.paragraphId=null;
+  this.paragraphTitle=null;
+  this.paragraphText=null;
+  this.config=null;
+  this.gui=null;
+}

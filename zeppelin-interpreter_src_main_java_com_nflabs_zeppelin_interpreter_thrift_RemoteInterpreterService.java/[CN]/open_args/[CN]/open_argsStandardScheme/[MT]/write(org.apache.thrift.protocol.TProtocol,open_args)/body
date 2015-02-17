@@ -1,0 +1,9 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  oprot.writeFieldBegin(INTP_ID_FIELD_DESC);
+  oprot.writeI32(struct.intpId);
+  oprot.writeFieldEnd();
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

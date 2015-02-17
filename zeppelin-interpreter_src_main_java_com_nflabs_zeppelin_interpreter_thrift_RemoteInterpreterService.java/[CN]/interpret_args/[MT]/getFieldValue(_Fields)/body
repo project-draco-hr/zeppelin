@@ -1,0 +1,11 @@
+{
+switch (field) {
+case INTP_ID:
+    return Integer.valueOf(getIntpId());
+case ST:
+  return getSt();
+case INTERPRETER_CONTEXT:
+return getInterpreterContext();
+}
+throw new IllegalStateException();
+}

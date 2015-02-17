@@ -1,0 +1,9 @@
+{
+switch (field) {
+case CLASS_NAME:
+    return getClassName();
+case PROPERTIES:
+  return getProperties();
+}
+throw new IllegalStateException();
+}

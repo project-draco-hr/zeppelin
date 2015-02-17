@@ -1,0 +1,16 @@
+{
+  try {
+    Class<Interpreter> replClass=(Class<Interpreter>)Object.class.forName(className);
+    Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
+    Interpreter repl=constructor.newInstance(properties);
+    repl.setClassloaderUrls(new URL[]{});
+    repl.setInterpreterGroup(interpreterGroup);
+synchronized (interpreterGroup) {
+      interpreterGroup.add(repl);
+    }
+    return getId(repl);
+  }
+ catch (  ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+    throw new TException(e);
+  }
+}

@@ -1,6 +1,3 @@
 {
-  if ("form".equals(name) && o instanceof Setting) {
-    z.setFormSetting((Setting)o);
-  }
   getResultCode(intp.bindValue(name,o));
 }

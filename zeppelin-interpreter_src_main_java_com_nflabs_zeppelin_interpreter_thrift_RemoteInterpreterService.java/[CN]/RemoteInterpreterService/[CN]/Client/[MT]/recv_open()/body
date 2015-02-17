@@ -1,0 +1,5 @@
+{
+  open_result result=new open_result();
+  receiveBase(result,"open");
+  return;
+}

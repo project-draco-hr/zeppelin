@@ -1,0 +1,4 @@
+{
+  setIntpIdIsSet(false);
+  this.intpId=0;
+}

@@ -1,0 +1,31 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.paragraphId != null) {
+    oprot.writeFieldBegin(PARAGRAPH_ID_FIELD_DESC);
+    oprot.writeString(struct.paragraphId);
+    oprot.writeFieldEnd();
+  }
+  if (struct.paragraphTitle != null) {
+    oprot.writeFieldBegin(PARAGRAPH_TITLE_FIELD_DESC);
+    oprot.writeString(struct.paragraphTitle);
+    oprot.writeFieldEnd();
+  }
+  if (struct.paragraphText != null) {
+    oprot.writeFieldBegin(PARAGRAPH_TEXT_FIELD_DESC);
+    oprot.writeString(struct.paragraphText);
+    oprot.writeFieldEnd();
+  }
+  if (struct.config != null) {
+    oprot.writeFieldBegin(CONFIG_FIELD_DESC);
+    oprot.writeString(struct.config);
+    oprot.writeFieldEnd();
+  }
+  if (struct.gui != null) {
+    oprot.writeFieldBegin(GUI_FIELD_DESC);
+    oprot.writeString(struct.gui);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

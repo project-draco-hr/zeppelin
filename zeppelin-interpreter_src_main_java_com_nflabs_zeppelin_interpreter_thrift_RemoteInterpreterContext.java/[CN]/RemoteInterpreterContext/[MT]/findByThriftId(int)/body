@@ -1,0 +1,16 @@
+{
+switch (fieldId) {
+case 1:
+    return PARAGRAPH_ID;
+case 2:
+  return PARAGRAPH_TITLE;
+case 3:
+return PARAGRAPH_TEXT;
+case 4:
+return CONFIG;
+case 5:
+return GUI;
+default :
+return null;
+}
+}

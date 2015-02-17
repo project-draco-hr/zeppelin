@@ -16,5 +16,5 @@
     intpGroup.add(sql);
     sql.setInterpreterGroup(intpGroup);
   }
-  context=new InterpreterContext(new Paragraph(null,null));
+  context=new InterpreterContext("id","title","text",new HashMap<String,Object>(),new GUI());
 }

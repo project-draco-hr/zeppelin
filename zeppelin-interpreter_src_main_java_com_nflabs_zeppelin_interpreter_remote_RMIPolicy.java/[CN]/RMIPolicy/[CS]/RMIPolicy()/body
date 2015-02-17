@@ -1,7 +1,0 @@
-{
-  super();
-  if (perms == null) {
-    perms=new RMIPermissionCollection();
-    addPermissions();
-  }
-}

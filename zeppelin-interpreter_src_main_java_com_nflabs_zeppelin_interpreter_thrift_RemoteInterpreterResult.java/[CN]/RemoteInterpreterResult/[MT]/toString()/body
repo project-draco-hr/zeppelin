@@ -1,0 +1,23 @@
+{
+  StringBuilder sb=new StringBuilder("RemoteInterpreterResult(");
+  boolean first=true;
+  sb.append("code:");
+  if (this.code == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.code);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("msg:");
+  if (this.msg == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.msg);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

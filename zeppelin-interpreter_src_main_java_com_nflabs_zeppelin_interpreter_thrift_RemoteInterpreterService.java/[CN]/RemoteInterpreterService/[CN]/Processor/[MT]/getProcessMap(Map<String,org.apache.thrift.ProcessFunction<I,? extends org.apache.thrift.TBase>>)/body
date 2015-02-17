@@ -1,0 +1,7 @@
+{
+  processMap.put("createInterpreter",new createInterpreter());
+  processMap.put("open",new open());
+  processMap.put("close",new close());
+  processMap.put("interpret",new interpret());
+  return processMap;
+}

@@ -1,0 +1,4 @@
+{
+  this.code=null;
+  this.msg=null;
+}

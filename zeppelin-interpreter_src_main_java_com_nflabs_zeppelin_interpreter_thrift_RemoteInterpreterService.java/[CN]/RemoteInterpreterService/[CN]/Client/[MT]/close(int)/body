@@ -1,0 +1,4 @@
+{
+  send_close(intpId);
+  recv_close();
+}

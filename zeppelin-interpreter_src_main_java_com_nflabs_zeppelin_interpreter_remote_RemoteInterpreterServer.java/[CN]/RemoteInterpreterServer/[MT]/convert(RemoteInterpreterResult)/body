@@ -1,0 +1,3 @@
+{
+  return new InterpreterResult(InterpreterResult.Code.valueOf(result.getCode()),result.getMsg());
+}

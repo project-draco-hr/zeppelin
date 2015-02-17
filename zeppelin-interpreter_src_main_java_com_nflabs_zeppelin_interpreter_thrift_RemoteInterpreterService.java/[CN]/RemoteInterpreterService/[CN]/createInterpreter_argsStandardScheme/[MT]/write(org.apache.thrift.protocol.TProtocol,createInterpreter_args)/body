@@ -1,0 +1,23 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.className != null) {
+    oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
+    oprot.writeString(struct.className);
+    oprot.writeFieldEnd();
+  }
+  if (struct.properties != null) {
+    oprot.writeFieldBegin(PROPERTIES_FIELD_DESC);
+{
+      oprot.writeMapBegin(new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING,org.apache.thrift.protocol.TType.STRING,struct.properties.size()));
+      for (      Map.Entry<String,String> _iter4 : struct.properties.entrySet()) {
+        oprot.writeString(_iter4.getKey());
+        oprot.writeString(_iter4.getValue());
+      }
+      oprot.writeMapEnd();
+    }
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

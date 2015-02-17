@@ -1,0 +1,10 @@
+{
+  if (that == null)   return false;
+  boolean this_present_intpId=true;
+  boolean that_present_intpId=true;
+  if (this_present_intpId || that_present_intpId) {
+    if (!(this_present_intpId && that_present_intpId))     return false;
+    if (this.intpId != that.intpId)     return false;
+  }
+  return true;
+}

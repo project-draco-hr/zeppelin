@@ -1,0 +1,10 @@
+{
+synchronized (interpreterGroup) {
+    for (    Interpreter inp : interpreterGroup) {
+      if (intpId == getId(inp)) {
+        return inp;
+      }
+    }
+  }
+  throw new TException(new InterpreterException("Interpreter instance " + intpId + " not found"));
+}

@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("close",org.apache.thrift.protocol.TMessageType.CALL,0));
+  close_args args=new close_args();
+  args.setIntpId(intpId);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

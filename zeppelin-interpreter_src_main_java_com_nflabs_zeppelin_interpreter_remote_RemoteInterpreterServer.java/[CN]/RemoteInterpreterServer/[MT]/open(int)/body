@@ -1,0 +1,4 @@
+{
+  Interpreter intp=getInterpreter(intpId);
+  intp.open();
+}

@@ -1,0 +1,9 @@
+{
+  StringBuilder sb=new StringBuilder("open_args(");
+  boolean first=true;
+  sb.append("intpId:");
+  sb.append(this.intpId);
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

@@ -1,4 +1,0 @@
-{
-  AllPermission allPermission=new AllPermission();
-  perms.add(allPermission);
-}

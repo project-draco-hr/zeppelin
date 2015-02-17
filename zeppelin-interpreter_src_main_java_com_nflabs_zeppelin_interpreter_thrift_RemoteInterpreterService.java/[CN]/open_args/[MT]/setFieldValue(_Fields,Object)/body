@@ -1,0 +1,12 @@
+{
+switch (field) {
+case INTP_ID:
+    if (value == null) {
+      unsetIntpId();
+    }
+ else {
+      setIntpId((Integer)value);
+    }
+  break;
+}
+}

@@ -1,0 +1,10 @@
+{
+  super(property);
+  this.client=client;
+  try {
+    intpId=client.createInterpreter(className,(Map)property);
+  }
+ catch (  TException e) {
+    throw new InterpreterException(e.getCause());
+  }
+}

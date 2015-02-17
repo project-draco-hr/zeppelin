@@ -1,0 +1,2 @@
+int intpId
+org.apache.thrift.async.AsyncMethodCallback<AsyncClient.close_call> resultHandler

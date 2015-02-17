@@ -1,0 +1,27 @@
+{
+  StringBuilder sb=new StringBuilder("interpret_args(");
+  boolean first=true;
+  sb.append("intpId:");
+  sb.append(this.intpId);
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("st:");
+  if (this.st == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.st);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("interpreterContext:");
+  if (this.interpreterContext == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.interpreterContext);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

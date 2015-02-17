@@ -1,0 +1,17 @@
+{
+  if (other.isSetParagraphId()) {
+    this.paragraphId=other.paragraphId;
+  }
+  if (other.isSetParagraphTitle()) {
+    this.paragraphTitle=other.paragraphTitle;
+  }
+  if (other.isSetParagraphText()) {
+    this.paragraphText=other.paragraphText;
+  }
+  if (other.isSetConfig()) {
+    this.config=other.config;
+  }
+  if (other.isSetGui()) {
+    this.gui=other.gui;
+  }
+}
