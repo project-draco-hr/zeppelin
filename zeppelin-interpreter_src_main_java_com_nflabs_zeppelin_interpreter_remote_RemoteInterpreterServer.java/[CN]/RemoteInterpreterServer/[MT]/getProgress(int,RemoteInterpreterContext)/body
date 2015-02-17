@@ -1,0 +1,4 @@
+{
+  Interpreter intp=getInterpreter(intpId);
+  return intp.getProgress(convert(interpreterContext));
+}

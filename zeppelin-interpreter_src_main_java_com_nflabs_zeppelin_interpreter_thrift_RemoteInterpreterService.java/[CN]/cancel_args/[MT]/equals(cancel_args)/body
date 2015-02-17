@@ -1,0 +1,16 @@
+{
+  if (that == null)   return false;
+  boolean this_present_intpId=true;
+  boolean that_present_intpId=true;
+  if (this_present_intpId || that_present_intpId) {
+    if (!(this_present_intpId && that_present_intpId))     return false;
+    if (this.intpId != that.intpId)     return false;
+  }
+  boolean this_present_interpreterContext=true && this.isSetInterpreterContext();
+  boolean that_present_interpreterContext=true && that.isSetInterpreterContext();
+  if (this_present_interpreterContext || that_present_interpreterContext) {
+    if (!(this_present_interpreterContext && that_present_interpreterContext))     return false;
+    if (!this.interpreterContext.equals(that.interpreterContext))     return false;
+  }
+  return true;
+}

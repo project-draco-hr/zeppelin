@@ -9,7 +9,7 @@
   p.setText(text);
   p.setTitle((String)fromMessage.get("title"));
   Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
-  p.gui.setParams(params);
+  p.settings.setParams(params);
   Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
   p.setConfig(config);
   boolean isTheLastParagraph=note.getLastParagraph().getId().equals(p.getId());

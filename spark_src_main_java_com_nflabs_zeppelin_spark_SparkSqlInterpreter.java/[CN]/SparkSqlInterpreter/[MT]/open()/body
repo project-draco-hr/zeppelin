@@ -1,4 +1,3 @@
 {
-  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
-  this.maxResult=conf.getInt("ZEPPELIN_SPARK_MAX_RESULT","zeppelin.spark.maxResult",Integer.parseInt(getProperty("zeppelin.spark.maxResult")));
+  this.maxResult=Integer.parseInt(getProperty("zeppelin.spark.maxResult"));
 }

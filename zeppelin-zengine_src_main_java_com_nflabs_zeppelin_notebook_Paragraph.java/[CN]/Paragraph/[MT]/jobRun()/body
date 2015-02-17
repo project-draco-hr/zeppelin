@@ -8,13 +8,13 @@
   }
   String script=getScriptBody();
   if (repl.getFormType() == FormType.NATIVE) {
-    gui.clear();
+    settings.clear();
   }
  else   if (repl.getFormType() == FormType.SIMPLE) {
     String scriptBody=getScriptBody();
     Map<String,Input> inputs=Input.extractSimpleQueryParam(scriptBody);
-    gui.setForms(inputs);
-    script=Input.getSimpleQuery(gui.getParams(),scriptBody);
+    settings.setForms(inputs);
+    script=Input.getSimpleQuery(settings.getParams(),scriptBody);
   }
   logger().info("RUN : " + script);
   InterpreterResult ret=repl.interpret(script,getInterpreterContext());

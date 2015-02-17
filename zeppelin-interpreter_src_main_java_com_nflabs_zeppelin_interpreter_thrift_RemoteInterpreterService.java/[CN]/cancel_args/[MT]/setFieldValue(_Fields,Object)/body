@@ -1,0 +1,20 @@
+{
+switch (field) {
+case INTP_ID:
+    if (value == null) {
+      unsetIntpId();
+    }
+ else {
+      setIntpId((Integer)value);
+    }
+  break;
+case INTERPRETER_CONTEXT:
+if (value == null) {
+  unsetInterpreterContext();
+}
+ else {
+  setInterpreterContext((RemoteInterpreterContext)value);
+}
+break;
+}
+}

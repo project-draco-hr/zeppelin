@@ -1,0 +1,13 @@
+{
+  TTupleProtocol iprot=(TTupleProtocol)prot;
+  BitSet incoming=iprot.readBitSet(2);
+  if (incoming.get(0)) {
+    struct.intpId=iprot.readI32();
+    struct.setIntpIdIsSet(true);
+  }
+  if (incoming.get(1)) {
+    struct.interpreterContext=new RemoteInterpreterContext();
+    struct.interpreterContext.read(iprot);
+    struct.setInterpreterContextIsSet(true);
+  }
+}

@@ -1,0 +1,3 @@
+int intpId
+RemoteInterpreterContext interpreterContext
+org.apache.thrift.async.AsyncMethodCallback<getProgress_call> resultHandler

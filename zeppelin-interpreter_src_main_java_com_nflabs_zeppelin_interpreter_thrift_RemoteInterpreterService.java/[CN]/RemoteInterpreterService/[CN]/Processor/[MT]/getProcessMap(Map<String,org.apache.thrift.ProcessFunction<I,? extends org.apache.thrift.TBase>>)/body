@@ -3,5 +3,7 @@
   processMap.put("open",new open());
   processMap.put("close",new close());
   processMap.put("interpret",new interpret());
+  processMap.put("cancel",new cancel());
+  processMap.put("getProgress",new getProgress());
   return processMap;
 }

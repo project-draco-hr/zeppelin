@@ -3,6 +3,6 @@
   this.replLoader=replLoader;
   title=null;
   text=null;
-  gui=new GUI();
+  settings=new GUI();
   config=new HashMap<String,Object>();
 }

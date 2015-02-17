@@ -1,0 +1,17 @@
+{
+  TTupleProtocol oprot=(TTupleProtocol)prot;
+  BitSet optionals=new BitSet();
+  if (struct.isSetIntpId()) {
+    optionals.set(0);
+  }
+  if (struct.isSetInterpreterContext()) {
+    optionals.set(1);
+  }
+  oprot.writeBitSet(optionals,2);
+  if (struct.isSetIntpId()) {
+    oprot.writeI32(struct.intpId);
+  }
+  if (struct.isSetInterpreterContext()) {
+    struct.interpreterContext.write(oprot);
+  }
+}

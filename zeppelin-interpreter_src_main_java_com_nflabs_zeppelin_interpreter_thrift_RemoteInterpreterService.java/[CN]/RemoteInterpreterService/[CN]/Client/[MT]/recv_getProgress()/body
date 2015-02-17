@@ -1,0 +1,8 @@
+{
+  getProgress_result result=new getProgress_result();
+  receiveBase(result,"getProgress");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"getProgress failed: unknown result");
+}

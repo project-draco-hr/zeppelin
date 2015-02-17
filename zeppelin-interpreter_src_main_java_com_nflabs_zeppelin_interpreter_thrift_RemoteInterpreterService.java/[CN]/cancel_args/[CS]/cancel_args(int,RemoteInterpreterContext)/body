@@ -1,0 +1,6 @@
+{
+  this();
+  this.intpId=intpId;
+  setIntpIdIsSet(true);
+  this.interpreterContext=interpreterContext;
+}
