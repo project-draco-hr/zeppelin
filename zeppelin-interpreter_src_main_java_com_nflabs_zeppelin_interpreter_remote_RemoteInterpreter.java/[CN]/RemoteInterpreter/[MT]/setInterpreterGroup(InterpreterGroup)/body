@@ -1,0 +1,9 @@
+{
+  super.setInterpreterGroup(interpreterGroup);
+synchronized (interpreterGroupReference) {
+    if (!interpreterGroupReference.containsKey(getInterpreterGroupKey(interpreterGroup))) {
+      interpreterGroupReference.put(getInterpreterGroupKey(interpreterGroup),new RemoteInterpreterProcess(interpreterRunner,interpreterDir));
+      System.out.println("create SetInterpreterGroup = " + getInterpreterGroupKey(interpreterGroup) + " class="+ className);
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return intpId != 0;
+}

@@ -1,0 +1,5 @@
+{
+  this.interpreterRunner=intpRunner;
+  this.interpreterDir=intpDir;
+  referenceCount=new AtomicInteger(0);
+}

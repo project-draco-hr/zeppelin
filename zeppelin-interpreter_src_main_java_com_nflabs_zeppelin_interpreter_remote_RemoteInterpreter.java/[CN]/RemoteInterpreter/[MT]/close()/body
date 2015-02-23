@@ -1,8 +1,18 @@
 {
   try {
-    client.close(intpId);
+    getClient().close(intpId);
   }
  catch (  TException e) {
     throw new InterpreterException(e.getCause());
   }
+  RemoteInterpreterProcess interpreterProcess=null;
+synchronized (interpreterGroupReference) {
+    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
+      interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
+    }
+ else {
+      throw new InterpreterException("Unexpected error");
+    }
+  }
+  interpreterProcess.dereference();
 }

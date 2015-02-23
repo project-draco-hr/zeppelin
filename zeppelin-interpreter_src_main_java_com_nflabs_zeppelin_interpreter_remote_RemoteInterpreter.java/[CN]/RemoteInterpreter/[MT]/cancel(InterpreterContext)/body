@@ -1,2 +1,8 @@
 {
+  try {
+    getClient().cancel(intpId,convert(context));
+  }
+ catch (  TException e) {
+    throw new InterpreterException(e.getCause());
+  }
 }

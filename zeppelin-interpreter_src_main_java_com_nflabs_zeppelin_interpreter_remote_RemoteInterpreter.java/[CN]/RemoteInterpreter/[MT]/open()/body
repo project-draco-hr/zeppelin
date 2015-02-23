@@ -1,8 +1,26 @@
 {
+  RemoteInterpreterProcess interpreterProcess=null;
+synchronized (interpreterGroupReference) {
+    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
+      interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
+    }
+ else {
+      throw new InterpreterException("Unexpected error");
+    }
+  }
+  interpreterProcess.reference();
   try {
-    client.open(intpId);
+    intpId=interpreterProcess.getClient().createInterpreter(className,(Map)property);
   }
  catch (  TException e) {
+    e.printStackTrace();
+    throw new InterpreterException(e.getCause());
+  }
+  try {
+    interpreterProcess.getClient().open(intpId);
+  }
+ catch (  TException e) {
+    interpreterProcess.dereference();
     throw new InterpreterException(e.getCause());
   }
 }

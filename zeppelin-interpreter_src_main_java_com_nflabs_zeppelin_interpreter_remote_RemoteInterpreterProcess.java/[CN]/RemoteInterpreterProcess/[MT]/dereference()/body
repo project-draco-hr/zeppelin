@@ -1,0 +1,12 @@
+{
+synchronized (referenceCount) {
+    int r=referenceCount.decrementAndGet();
+    if (r == 0) {
+      transport.close();
+      watchdog.destroyProcess();
+      executor=null;
+      watchdog=null;
+    }
+    return r;
+  }
+}

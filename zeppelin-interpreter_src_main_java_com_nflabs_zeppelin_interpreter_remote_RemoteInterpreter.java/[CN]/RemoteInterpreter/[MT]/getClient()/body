@@ -1,0 +1,11 @@
+{
+synchronized (interpreterGroupReference) {
+    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
+      RemoteInterpreterProcess interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
+      return interpreterProcess.getClient();
+    }
+ else {
+      throw new InterpreterException("Unexpected error");
+    }
+  }
+}
