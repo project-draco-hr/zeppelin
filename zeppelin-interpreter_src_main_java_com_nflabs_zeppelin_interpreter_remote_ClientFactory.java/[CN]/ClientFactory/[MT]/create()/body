@@ -1,0 +1,15 @@
+{
+  TSocket transport=new TSocket(host,port);
+  try {
+    transport.open();
+  }
+ catch (  TTransportException e) {
+    throw new InterpreterException(e);
+  }
+  TProtocol protocol=new TBinaryProtocol(transport);
+  Client client=new RemoteInterpreterService.Client(protocol);
+synchronized (clientSocketMap) {
+    clientSocketMap.put(client,transport);
+  }
+  return client;
+}

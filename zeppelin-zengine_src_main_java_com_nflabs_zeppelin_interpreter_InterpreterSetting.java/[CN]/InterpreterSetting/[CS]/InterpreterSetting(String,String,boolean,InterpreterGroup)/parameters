@@ -1,4 +1,4 @@
-String id
 String name
 String group
+boolean remote
 InterpreterGroup interpreterGroup

@@ -2,5 +2,5 @@
   super(property);
   this.className=className;
   this.interpreterRunner=interpreterRunner;
-  this.interpreterDir=interpreterDir;
+  this.interpreterPath=interpreterPath;
 }

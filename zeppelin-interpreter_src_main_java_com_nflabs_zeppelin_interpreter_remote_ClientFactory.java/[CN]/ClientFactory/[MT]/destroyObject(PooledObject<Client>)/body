@@ -1,0 +1,8 @@
+{
+synchronized (clientSocketMap) {
+    if (clientSocketMap.containsKey(p)) {
+      clientSocketMap.get(p).close();
+      clientSocketMap.remove(p);
+    }
+  }
+}

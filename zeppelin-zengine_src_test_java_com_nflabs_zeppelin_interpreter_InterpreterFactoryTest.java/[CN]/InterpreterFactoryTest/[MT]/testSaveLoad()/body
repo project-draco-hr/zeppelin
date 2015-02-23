@@ -1,7 +1,7 @@
 {
   assertEquals(2,factory.get().size());
   assertTrue(new File(conf.getInterpreterSettingPath()).exists());
-  factory.add("newsetting","mock1",new Properties());
+  factory.add("newsetting","mock1",false,new Properties());
   assertEquals(3,factory.get().size());
   InterpreterFactory factory2=new InterpreterFactory(conf);
   assertEquals(3,factory2.get().size());

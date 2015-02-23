@@ -1,8 +1,19 @@
 {
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  Client client=null;
   try {
-    getClient().cancel(intpId,convert(context));
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e1) {
+    throw new InterpreterException(e1);
+  }
+  try {
+    client.cancel(intpId,convert(context));
   }
  catch (  TException e) {
     throw new InterpreterException(e.getCause());
+  }
+ finally {
+    interpreterProcess.releaseClient(client);
   }
 }

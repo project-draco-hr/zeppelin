@@ -28,10 +28,14 @@
     String id=(String)set.get("id");
     String name=(String)set.get("name");
     String group=(String)set.get("group");
+    Boolean remote=(Boolean)set.get("remote");
+    if (remote == null) {
+      remote=false;
+    }
     Properties properties=new Properties();
     properties.putAll((Map<String,String>)set.get("properties"));
-    InterpreterGroup interpreterGroup=createInterpreterGroup(group,properties);
-    InterpreterSetting intpSetting=new InterpreterSetting(id,name,group,interpreterGroup);
+    InterpreterGroup interpreterGroup=createInterpreterGroup(group,remote,properties);
+    InterpreterSetting intpSetting=new InterpreterSetting(id,name,group,remote,interpreterGroup);
     interpreterSettings.put(k,intpSetting);
   }
   this.interpreterBindings=bindings;

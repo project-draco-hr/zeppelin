@@ -1,2 +1,3 @@
 String id
+boolean remote
 Properties properties

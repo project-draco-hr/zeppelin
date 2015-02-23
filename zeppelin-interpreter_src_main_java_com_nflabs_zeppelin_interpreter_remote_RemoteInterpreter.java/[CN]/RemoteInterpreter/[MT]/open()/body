@@ -9,18 +9,22 @@ synchronized (interpreterGroupReference) {
     }
   }
   interpreterProcess.reference();
+  Client client=null;
   try {
-    intpId=interpreterProcess.getClient().createInterpreter(className,(Map)property);
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e1) {
+    throw new InterpreterException(e1);
+  }
+  try {
+    intpId=client.createInterpreter(className,(Map)property);
+    client.open(intpId);
   }
  catch (  TException e) {
     e.printStackTrace();
     throw new InterpreterException(e.getCause());
   }
-  try {
-    interpreterProcess.getClient().open(intpId);
-  }
- catch (  TException e) {
-    interpreterProcess.dereference();
-    throw new InterpreterException(e.getCause());
+ finally {
+    interpreterProcess.releaseClient(client);
   }
 }

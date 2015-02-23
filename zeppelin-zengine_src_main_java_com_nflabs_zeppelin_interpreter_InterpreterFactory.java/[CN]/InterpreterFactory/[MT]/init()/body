@@ -18,8 +18,9 @@
           Set<String> keys=Interpreter.registeredInterpreters.keySet();
           for (          String intName : keys) {
             if (className.equals(Interpreter.registeredInterpreters.get(intName).getClassName())) {
+              Interpreter.registeredInterpreters.get(intName).setPath(path.getAbsolutePath());
               logger.info("Interpreter " + intName + " found. class="+ className);
-              cleanCl.put(intName,ccl);
+              cleanCl.put(path.getAbsolutePath(),ccl);
             }
           }
         }
@@ -53,7 +54,7 @@ synchronized (interpreterSettings) {
             }
           }
           if (found) {
-            add(groupName,groupName,p);
+            add(groupName,groupName,false,p);
             groupClassNameMap.remove(groupName);
             break;
           }

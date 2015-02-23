@@ -24,20 +24,12 @@ synchronized (referenceCount) {
         throw new InterpreterException(e);
       }
     }
+    clientPool=new GenericObjectPool<Client>(new ClientFactory("localhost",port));
     try {
       Thread.sleep(5000);
     }
  catch (    InterruptedException e1) {
     }
-    transport=new TSocket("localhost",port);
-    try {
-      transport.open();
-    }
- catch (    TTransportException e) {
-      throw new InterpreterException(e);
-    }
-    TProtocol protocol=new TBinaryProtocol(transport);
-    client=new RemoteInterpreterService.Client(protocol);
     return referenceCount.incrementAndGet();
   }
 }

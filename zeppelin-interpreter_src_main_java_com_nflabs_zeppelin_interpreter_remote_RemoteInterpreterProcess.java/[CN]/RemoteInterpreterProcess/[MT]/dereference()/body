@@ -2,7 +2,7 @@
 synchronized (referenceCount) {
     int r=referenceCount.decrementAndGet();
     if (r == 0) {
-      transport.close();
+      clientPool.close();
       watchdog.destroyProcess();
       executor=null;
       watchdog=null;

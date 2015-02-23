@@ -5,7 +5,13 @@
     for (    String intName : keys) {
       RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
       if (info.getClassName().equals(className) && info.getGroup().equals(groupName)) {
-        Interpreter intp=createRemoteRepl(info.getName(),info.getClassName(),properties,interpreterGroup);
+        Interpreter intp;
+        if (remote) {
+          intp=createRemoteRepl(info.getPath(),info.getClassName(),properties,interpreterGroup);
+        }
+ else {
+          intp=createRepl(info.getPath(),info.getClassName(),properties,interpreterGroup);
+        }
         interpreterGroup.add(intp);
         break;
       }

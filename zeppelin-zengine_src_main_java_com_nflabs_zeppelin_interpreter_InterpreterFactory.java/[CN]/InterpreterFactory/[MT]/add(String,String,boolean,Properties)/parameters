@@ -1,2 +1,4 @@
+String name
 String groupName
+boolean remote
 Properties properties

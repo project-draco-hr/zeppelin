@@ -5,7 +5,7 @@ synchronized (interpreterSettings) {
       if (intpsetting != null) {
         intpsetting.getInterpreterGroup().close();
         intpsetting.getInterpreterGroup().destroy();
-        InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.getGroup(),intpsetting.getProperties());
+        InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.getGroup(),intpsetting.isRemote(),intpsetting.getProperties());
         intpsetting.setInterpreterGroup(interpreterGroup);
       }
  else {

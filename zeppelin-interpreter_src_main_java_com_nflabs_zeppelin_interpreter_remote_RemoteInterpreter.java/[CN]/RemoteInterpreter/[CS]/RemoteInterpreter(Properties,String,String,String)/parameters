@@ -1,4 +1,4 @@
 Properties property
 String className
 String interpreterRunner
-String interpreterDir
+String interpreterPath

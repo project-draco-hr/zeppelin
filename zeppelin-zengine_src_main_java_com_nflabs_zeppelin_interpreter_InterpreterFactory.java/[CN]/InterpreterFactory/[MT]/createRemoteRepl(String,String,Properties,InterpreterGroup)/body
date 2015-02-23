@@ -1,5 +1,5 @@
 {
-  LazyOpenInterpreter intp=new LazyOpenInterpreter(new RemoteInterpreter(property,className,conf.getInterpreterRemoteRunnerPath(),dirName));
+  LazyOpenInterpreter intp=new LazyOpenInterpreter(new RemoteInterpreter(property,className,conf.getInterpreterRemoteRunnerPath(),interpreterPath));
   intp.setInterpreterGroup(interpreterGroup);
   return intp;
 }
