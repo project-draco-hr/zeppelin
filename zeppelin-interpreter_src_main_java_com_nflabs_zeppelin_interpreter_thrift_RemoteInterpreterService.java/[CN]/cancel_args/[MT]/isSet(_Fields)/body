@@ -3,8 +3,8 @@
     throw new IllegalArgumentException();
   }
 switch (field) {
-case INTP_ID:
-    return isSetIntpId();
+case CLASS_NAME:
+    return isSetClassName();
 case INTERPRETER_CONTEXT:
   return isSetInterpreterContext();
 }

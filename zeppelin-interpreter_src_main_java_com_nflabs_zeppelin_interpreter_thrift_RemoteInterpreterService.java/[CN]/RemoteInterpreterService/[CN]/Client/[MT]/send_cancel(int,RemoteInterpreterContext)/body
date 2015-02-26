@@ -1,6 +1,0 @@
-{
-  cancel_args args=new cancel_args();
-  args.setIntpId(intpId);
-  args.setInterpreterContext(interpreterContext);
-  sendBase("cancel",args);
-}

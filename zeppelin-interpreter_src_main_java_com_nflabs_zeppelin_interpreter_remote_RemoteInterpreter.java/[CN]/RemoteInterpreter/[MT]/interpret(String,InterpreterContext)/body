@@ -8,7 +8,7 @@
     throw new InterpreterException(e1);
   }
   try {
-    return convert(client.interpret(intpId,st,convert(context)));
+    return convert(client.interpret(className,st,convert(context)));
   }
  catch (  TException e) {
     throw new InterpreterException(e.getCause());

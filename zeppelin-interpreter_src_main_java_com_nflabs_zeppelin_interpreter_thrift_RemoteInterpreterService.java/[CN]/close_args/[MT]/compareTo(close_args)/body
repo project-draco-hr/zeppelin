@@ -4,12 +4,12 @@
   }
   int lastComparison=0;
   close_args typedOther=(close_args)other;
-  lastComparison=Boolean.valueOf(isSetIntpId()).compareTo(typedOther.isSetIntpId());
+  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(typedOther.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;
   }
-  if (isSetIntpId()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.intpId,typedOther.intpId);
+  if (isSetClassName()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,typedOther.className);
     if (lastComparison != 0) {
       return lastComparison;
     }

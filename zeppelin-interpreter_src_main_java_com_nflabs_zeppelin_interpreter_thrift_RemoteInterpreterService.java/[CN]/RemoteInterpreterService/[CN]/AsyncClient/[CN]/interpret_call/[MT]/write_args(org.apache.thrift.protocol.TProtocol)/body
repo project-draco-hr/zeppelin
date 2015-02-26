@@ -1,7 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("interpret",org.apache.thrift.protocol.TMessageType.CALL,0));
   interpret_args args=new interpret_args();
-  args.setIntpId(intpId);
+  args.setClassName(className);
   args.setSt(st);
   args.setInterpreterContext(interpreterContext);
   args.write(prot);

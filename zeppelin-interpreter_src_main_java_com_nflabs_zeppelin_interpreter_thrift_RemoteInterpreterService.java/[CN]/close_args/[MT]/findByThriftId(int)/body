@@ -1,7 +1,7 @@
 {
 switch (fieldId) {
 case 1:
-    return INTP_ID;
+    return CLASS_NAME;
 default :
   return null;
 }

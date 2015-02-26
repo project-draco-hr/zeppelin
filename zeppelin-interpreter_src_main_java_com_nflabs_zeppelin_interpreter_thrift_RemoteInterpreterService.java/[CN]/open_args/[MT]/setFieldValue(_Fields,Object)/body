@@ -1,11 +1,11 @@
 {
 switch (field) {
-case INTP_ID:
+case CLASS_NAME:
     if (value == null) {
-      unsetIntpId();
+      unsetClassName();
     }
  else {
-      setIntpId((Integer)value);
+      setClassName((String)value);
     }
   break;
 }

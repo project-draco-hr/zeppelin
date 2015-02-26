@@ -1,4 +1,0 @@
-{
-  send_interpret(intpId,st,interpreterContext);
-  return recv_interpret();
-}

@@ -1,4 +1,0 @@
-int intpId
-String st
-RemoteInterpreterContext interpreterContext
-org.apache.thrift.async.AsyncMethodCallback<AsyncClient.interpret_call> resultHandler

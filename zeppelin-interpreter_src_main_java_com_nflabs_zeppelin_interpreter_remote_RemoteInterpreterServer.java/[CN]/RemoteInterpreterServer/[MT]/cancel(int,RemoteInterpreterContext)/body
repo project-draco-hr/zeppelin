@@ -1,4 +1,0 @@
-{
-  Interpreter intp=getInterpreter(intpId);
-  intp.cancel(convert(interpreterContext));
-}

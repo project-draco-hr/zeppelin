@@ -1,4 +1,3 @@
 {
-  setIntpIdIsSet(false);
-  this.intpId=0;
+  this.className=null;
 }

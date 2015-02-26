@@ -17,8 +17,8 @@ synchronized (interpreterGroupReference) {
     throw new InterpreterException(e1);
   }
   try {
-    intpId=client.createInterpreter(className,(Map)property);
-    client.open(intpId);
+    client.createInterpreter(className,(Map)property);
+    client.open(className);
   }
  catch (  TException e) {
     e.printStackTrace();

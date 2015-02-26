@@ -1,3 +1,0 @@
-{
-  __isset_bitfield=EncodingUtils.setBit(__isset_bitfield,__SUCCESS_ISSET_ID,value);
-}

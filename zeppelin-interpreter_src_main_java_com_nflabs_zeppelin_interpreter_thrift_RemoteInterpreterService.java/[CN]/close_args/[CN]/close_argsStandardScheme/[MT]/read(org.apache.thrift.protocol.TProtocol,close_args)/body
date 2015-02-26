@@ -8,9 +8,9 @@
     }
 switch (schemeField.id) {
 case 1:
-      if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-        struct.intpId=iprot.readI32();
-        struct.setIntpIdIsSet(true);
+      if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+        struct.className=iprot.readString();
+        struct.setClassNameIsSet(true);
       }
  else {
         org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);

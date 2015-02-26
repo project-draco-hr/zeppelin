@@ -1,11 +1,6 @@
 {
   struct.validate();
   oprot.writeStructBegin(STRUCT_DESC);
-  if (struct.isSetSuccess()) {
-    oprot.writeFieldBegin(SUCCESS_FIELD_DESC);
-    oprot.writeI32(struct.success);
-    oprot.writeFieldEnd();
-  }
   oprot.writeFieldStop();
   oprot.writeStructEnd();
 }

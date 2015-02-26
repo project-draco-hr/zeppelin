@@ -1,0 +1,6 @@
+{
+  super(client,protocolFactory,transport,resultHandler,false);
+  this.className=className;
+  this.st=st;
+  this.interpreterContext=interpreterContext;
+}

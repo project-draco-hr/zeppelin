@@ -1,6 +1,0 @@
-{
-  super(client,protocolFactory,transport,resultHandler,false);
-  this.intpId=intpId;
-  this.st=st;
-  this.interpreterContext=interpreterContext;
-}

@@ -1,4 +1,0 @@
-{
-  Interpreter intp=getInterpreter(intpId);
-  return convert(intp.interpret(st,convert(interpreterContext)));
-}

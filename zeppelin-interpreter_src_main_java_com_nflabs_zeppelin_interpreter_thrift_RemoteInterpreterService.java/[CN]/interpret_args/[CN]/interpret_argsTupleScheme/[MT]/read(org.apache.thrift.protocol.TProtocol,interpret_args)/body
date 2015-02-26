@@ -2,8 +2,8 @@
   TTupleProtocol iprot=(TTupleProtocol)prot;
   BitSet incoming=iprot.readBitSet(3);
   if (incoming.get(0)) {
-    struct.intpId=iprot.readI32();
-    struct.setIntpIdIsSet(true);
+    struct.className=iprot.readString();
+    struct.setClassNameIsSet(true);
   }
   if (incoming.get(1)) {
     struct.st=iprot.readString();

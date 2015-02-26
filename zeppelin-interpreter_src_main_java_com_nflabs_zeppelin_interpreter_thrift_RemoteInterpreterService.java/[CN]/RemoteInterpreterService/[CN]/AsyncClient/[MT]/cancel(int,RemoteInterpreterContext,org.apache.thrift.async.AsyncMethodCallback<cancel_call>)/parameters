@@ -1,3 +1,0 @@
-int intpId
-RemoteInterpreterContext interpreterContext
-org.apache.thrift.async.AsyncMethodCallback<cancel_call> resultHandler

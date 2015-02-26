@@ -1,5 +1,5 @@
 {
   close_result result=new close_result();
-  iface.close(args.intpId);
+  iface.close(args.className);
   return result;
 }

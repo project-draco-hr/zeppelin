@@ -1,9 +1,6 @@
 {
   StringBuilder sb=new StringBuilder("createInterpreter_result(");
   boolean first=true;
-  sb.append("success:");
-  sb.append(this.success);
-  first=false;
   sb.append(")");
   return sb.toString();
 }

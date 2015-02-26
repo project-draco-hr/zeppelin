@@ -8,7 +8,7 @@
     throw new InterpreterException(e1);
   }
   try {
-    client.close(intpId);
+    client.close(className);
   }
  catch (  TException e) {
     throw new InterpreterException(e.getCause());

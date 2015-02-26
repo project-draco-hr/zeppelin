@@ -1,6 +1,5 @@
 {
-  setIntpIdIsSet(false);
-  this.intpId=0;
+  this.className=null;
   this.st=null;
   this.interpreterContext=null;
 }

@@ -1,10 +1,10 @@
 {
   if (that == null)   return false;
-  boolean this_present_intpId=true;
-  boolean that_present_intpId=true;
-  if (this_present_intpId || that_present_intpId) {
-    if (!(this_present_intpId && that_present_intpId))     return false;
-    if (this.intpId != that.intpId)     return false;
+  boolean this_present_className=true && this.isSetClassName();
+  boolean that_present_className=true && that.isSetClassName();
+  if (this_present_className || that_present_className) {
+    if (!(this_present_className && that_present_className))     return false;
+    if (!this.className.equals(that.className))     return false;
   }
   return true;
 }

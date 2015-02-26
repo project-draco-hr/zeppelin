@@ -1,5 +1,0 @@
-{
-  close_args args=new close_args();
-  args.setIntpId(intpId);
-  sendBase("close",args);
-}

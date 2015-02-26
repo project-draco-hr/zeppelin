@@ -1,7 +1,7 @@
 {
   TTupleProtocol oprot=(TTupleProtocol)prot;
   BitSet optionals=new BitSet();
-  if (struct.isSetIntpId()) {
+  if (struct.isSetClassName()) {
     optionals.set(0);
   }
   if (struct.isSetSt()) {
@@ -11,8 +11,8 @@
     optionals.set(2);
   }
   oprot.writeBitSet(optionals,3);
-  if (struct.isSetIntpId()) {
-    oprot.writeI32(struct.intpId);
+  if (struct.isSetClassName()) {
+    oprot.writeString(struct.className);
   }
   if (struct.isSetSt()) {
     oprot.writeString(struct.st);

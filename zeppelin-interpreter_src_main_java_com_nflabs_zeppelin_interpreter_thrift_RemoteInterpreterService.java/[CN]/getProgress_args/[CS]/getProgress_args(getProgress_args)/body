@@ -1,6 +1,7 @@
 {
-  __isset_bitfield=other.__isset_bitfield;
-  this.intpId=other.intpId;
+  if (other.isSetClassName()) {
+    this.className=other.className;
+  }
   if (other.isSetInterpreterContext()) {
     this.interpreterContext=new RemoteInterpreterContext(other.interpreterContext);
   }

@@ -10,7 +10,6 @@
 synchronized (interpreterGroup) {
       interpreterGroup.add(repl);
     }
-    return getId(repl);
   }
  catch (  ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     e.printStackTrace();

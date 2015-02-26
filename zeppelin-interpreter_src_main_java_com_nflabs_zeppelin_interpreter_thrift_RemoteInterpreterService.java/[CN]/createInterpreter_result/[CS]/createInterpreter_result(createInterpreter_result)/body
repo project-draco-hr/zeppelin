@@ -1,4 +1,2 @@
 {
-  __isset_bitfield=other.__isset_bitfield;
-  this.success=other.success;
 }

@@ -1,9 +1,11 @@
 {
   struct.validate();
   oprot.writeStructBegin(STRUCT_DESC);
-  oprot.writeFieldBegin(INTP_ID_FIELD_DESC);
-  oprot.writeI32(struct.intpId);
-  oprot.writeFieldEnd();
+  if (struct.className != null) {
+    oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
+    oprot.writeString(struct.className);
+    oprot.writeFieldEnd();
+  }
   if (struct.interpreterContext != null) {
     oprot.writeFieldBegin(INTERPRETER_CONTEXT_FIELD_DESC);
     struct.interpreterContext.write(oprot);

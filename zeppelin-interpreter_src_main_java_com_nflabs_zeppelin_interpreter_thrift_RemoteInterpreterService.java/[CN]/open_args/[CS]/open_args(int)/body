@@ -1,5 +1,0 @@
-{
-  this();
-  this.intpId=intpId;
-  setIntpIdIsSet(true);
-}

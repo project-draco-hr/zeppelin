@@ -1,5 +1,5 @@
 {
   open_result result=new open_result();
-  iface.open(args.intpId);
+  iface.open(args.className);
   return result;
 }
