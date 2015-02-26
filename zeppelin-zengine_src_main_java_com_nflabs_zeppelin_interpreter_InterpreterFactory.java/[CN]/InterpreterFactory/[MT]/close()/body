@@ -1,0 +1,11 @@
+{
+synchronized (interpreterSettings) {
+synchronized (interpreterSettings) {
+      Collection<InterpreterSetting> intpsettings=interpreterSettings.values();
+      for (      InterpreterSetting intpsetting : intpsettings) {
+        intpsetting.getInterpreterGroup().close();
+        intpsetting.getInterpreterGroup().destroy();
+      }
+    }
+  }
+}
