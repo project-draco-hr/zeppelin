@@ -10,7 +10,7 @@
           intp=createRemoteRepl(info.getPath(),info.getClassName(),properties,interpreterGroup);
         }
  else {
-          intp=createRemoteRepl(info.getPath(),info.getClassName(),properties,interpreterGroup);
+          intp=createRepl(info.getPath(),info.getClassName(),properties,interpreterGroup);
         }
         interpreterGroup.add(intp);
         break;
