@@ -1,0 +1,14 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case CLASS_NAME:
+    return isSetClassName();
+case BUF:
+  return isSetBuf();
+case CURSOR:
+return isSetCursor();
+}
+throw new IllegalStateException();
+}

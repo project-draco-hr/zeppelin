@@ -1,0 +1,6 @@
+{
+  this.className=null;
+  this.buf=null;
+  setCursorIsSet(false);
+  this.cursor=0;
+}

@@ -1,0 +1,28 @@
+{
+switch (field) {
+case CLASS_NAME:
+    if (value == null) {
+      unsetClassName();
+    }
+ else {
+      setClassName((String)value);
+    }
+  break;
+case BUF:
+if (value == null) {
+  unsetBuf();
+}
+ else {
+  setBuf((String)value);
+}
+break;
+case CURSOR:
+if (value == null) {
+unsetCursor();
+}
+ else {
+setCursor((Integer)value);
+}
+break;
+}
+}

@@ -1,0 +1,8 @@
+{
+  completion_result result=new completion_result();
+  receiveBase(result,"completion");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"completion failed: unknown result");
+}

@@ -1,3 +1,4 @@
 {
+  open();
   return intp.getFormType();
 }

@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetParallelScheduler("remoteinterpreter_" + this.hashCode(),10);
+}

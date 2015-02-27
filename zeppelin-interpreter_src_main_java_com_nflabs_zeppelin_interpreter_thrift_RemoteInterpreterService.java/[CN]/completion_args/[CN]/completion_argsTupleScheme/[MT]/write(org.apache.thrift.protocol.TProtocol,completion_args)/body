@@ -1,0 +1,23 @@
+{
+  TTupleProtocol oprot=(TTupleProtocol)prot;
+  BitSet optionals=new BitSet();
+  if (struct.isSetClassName()) {
+    optionals.set(0);
+  }
+  if (struct.isSetBuf()) {
+    optionals.set(1);
+  }
+  if (struct.isSetCursor()) {
+    optionals.set(2);
+  }
+  oprot.writeBitSet(optionals,3);
+  if (struct.isSetClassName()) {
+    oprot.writeString(struct.className);
+  }
+  if (struct.isSetBuf()) {
+    oprot.writeString(struct.buf);
+  }
+  if (struct.isSetCursor()) {
+    oprot.writeI32(struct.cursor);
+  }
+}

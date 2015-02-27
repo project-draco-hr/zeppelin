@@ -17,6 +17,7 @@ synchronized (interpreterGroupReference) {
     throw new InterpreterException(e1);
   }
   try {
+    logger.info("Create remote interpreter {}",className);
     client.createInterpreter(className,(Map)property);
     client.open(className);
   }

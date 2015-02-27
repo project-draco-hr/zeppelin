@@ -1,0 +1,19 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.className != null) {
+    oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
+    oprot.writeString(struct.className);
+    oprot.writeFieldEnd();
+  }
+  if (struct.buf != null) {
+    oprot.writeFieldBegin(BUF_FIELD_DESC);
+    oprot.writeString(struct.buf);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldBegin(CURSOR_FIELD_DESC);
+  oprot.writeI32(struct.cursor);
+  oprot.writeFieldEnd();
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

@@ -1,0 +1,27 @@
+{
+  StringBuilder sb=new StringBuilder("completion_args(");
+  boolean first=true;
+  sb.append("className:");
+  if (this.className == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.className);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("buf:");
+  if (this.buf == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.buf);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("cursor:");
+  sb.append(this.cursor);
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

@@ -1,0 +1,10 @@
+{
+  __isset_bitfield=other.__isset_bitfield;
+  if (other.isSetClassName()) {
+    this.className=other.className;
+  }
+  if (other.isSetBuf()) {
+    this.buf=other.buf;
+  }
+  this.cursor=other.cursor;
+}

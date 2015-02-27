@@ -1,0 +1,5 @@
+{
+  getFormType_args args=new getFormType_args();
+  args.setClassName(className);
+  sendBase("getFormType",args);
+}

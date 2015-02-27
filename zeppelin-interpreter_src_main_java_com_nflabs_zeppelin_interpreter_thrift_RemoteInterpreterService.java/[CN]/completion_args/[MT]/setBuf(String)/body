@@ -1,0 +1,4 @@
+{
+  this.buf=buf;
+  return this;
+}

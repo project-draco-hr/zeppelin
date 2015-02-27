@@ -1,0 +1,22 @@
+{
+  if (that == null)   return false;
+  boolean this_present_className=true && this.isSetClassName();
+  boolean that_present_className=true && that.isSetClassName();
+  if (this_present_className || that_present_className) {
+    if (!(this_present_className && that_present_className))     return false;
+    if (!this.className.equals(that.className))     return false;
+  }
+  boolean this_present_buf=true && this.isSetBuf();
+  boolean that_present_buf=true && that.isSetBuf();
+  if (this_present_buf || that_present_buf) {
+    if (!(this_present_buf && that_present_buf))     return false;
+    if (!this.buf.equals(that.buf))     return false;
+  }
+  boolean this_present_cursor=true;
+  boolean that_present_cursor=true;
+  if (this_present_cursor || that_present_cursor) {
+    if (!(this_present_cursor && that_present_cursor))     return false;
+    if (this.cursor != that.cursor)     return false;
+  }
+  return true;
+}

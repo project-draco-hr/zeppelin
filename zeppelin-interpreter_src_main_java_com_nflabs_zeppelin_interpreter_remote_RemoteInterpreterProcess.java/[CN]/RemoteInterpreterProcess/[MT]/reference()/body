@@ -23,12 +23,13 @@ synchronized (referenceCount) {
         running=false;
         throw new InterpreterException(e);
       }
-    }
-    clientPool=new GenericObjectPool<Client>(new ClientFactory("localhost",port));
-    try {
-      Thread.sleep(5000);
-    }
- catch (    InterruptedException e1) {
+      try {
+        Thread.sleep(5 * 1000);
+      }
+ catch (      InterruptedException e) {
+        e.printStackTrace();
+      }
+      clientPool=new GenericObjectPool<Client>(new ClientFactory("localhost",port));
     }
     return referenceCount.incrementAndGet();
   }

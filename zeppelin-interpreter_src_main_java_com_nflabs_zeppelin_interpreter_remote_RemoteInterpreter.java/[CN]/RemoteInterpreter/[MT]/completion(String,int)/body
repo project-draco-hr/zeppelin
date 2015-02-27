@@ -1,3 +1,19 @@
 {
-  return null;
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  Client client=null;
+  try {
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e1) {
+    throw new InterpreterException(e1);
+  }
+  try {
+    return client.completion(buf,buf,cursor);
+  }
+ catch (  TException e) {
+    throw new InterpreterException(e.getCause());
+  }
+ finally {
+    interpreterProcess.releaseClient(client);
+  }
 }

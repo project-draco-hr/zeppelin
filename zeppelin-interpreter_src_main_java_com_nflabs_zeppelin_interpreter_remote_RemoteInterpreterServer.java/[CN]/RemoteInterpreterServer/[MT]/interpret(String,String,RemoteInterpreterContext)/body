@@ -1,4 +1,22 @@
 {
   Interpreter intp=getInterpreter(className);
-  return convert(intp.interpret(st,convert(interpreterContext)));
+  Scheduler scheduler=intp.getScheduler();
+  InterpretJobListener jobListener=new InterpretJobListener();
+  InterpretJob job=new InterpretJob("remoteInterpretJob_" + System.currentTimeMillis(),jobListener,intp,st,convert(interpreterContext));
+  scheduler.submit(job);
+  while (!job.isTerminated()) {
+synchronized (jobListener) {
+      try {
+        jobListener.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+  if (job.getStatus() == Status.ERROR) {
+    throw new TException(job.getException());
+  }
+ else {
+    return convert((InterpreterResult)job.getReturn());
+  }
 }

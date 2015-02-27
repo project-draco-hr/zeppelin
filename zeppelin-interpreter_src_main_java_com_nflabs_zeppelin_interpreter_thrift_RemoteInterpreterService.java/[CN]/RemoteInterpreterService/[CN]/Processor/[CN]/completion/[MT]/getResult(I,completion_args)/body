@@ -1,0 +1,5 @@
+{
+  completion_result result=new completion_result();
+  result.success=iface.completion(args.className,args.buf,args.cursor);
+  return result;
+}
