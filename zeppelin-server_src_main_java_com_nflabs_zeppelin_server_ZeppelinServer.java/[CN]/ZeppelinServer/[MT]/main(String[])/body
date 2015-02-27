@@ -29,11 +29,13 @@
     }
   }
 );
-  try {
-    System.in.read();
+  if (System.getenv("ZEPPELIN_IDENT_STRING") == null) {
+    try {
+      System.in.read();
+    }
+ catch (    IOException e) {
+    }
+    System.exit(0);
   }
- catch (  IOException e) {
-  }
-  System.exit(0);
   jettyServer.join();
 }
