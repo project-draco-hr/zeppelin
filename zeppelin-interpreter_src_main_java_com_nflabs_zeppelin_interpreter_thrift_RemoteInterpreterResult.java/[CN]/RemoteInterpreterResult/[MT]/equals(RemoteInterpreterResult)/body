@@ -6,6 +6,12 @@
     if (!(this_present_code && that_present_code))     return false;
     if (!this.code.equals(that.code))     return false;
   }
+  boolean this_present_type=true && this.isSetType();
+  boolean that_present_type=true && that.isSetType();
+  if (this_present_type || that_present_type) {
+    if (!(this_present_type && that_present_type))     return false;
+    if (!this.type.equals(that.type))     return false;
+  }
   boolean this_present_msg=true && this.isSetMsg();
   boolean that_present_msg=true && that.isSetMsg();
   if (this_present_msg || that_present_msg) {

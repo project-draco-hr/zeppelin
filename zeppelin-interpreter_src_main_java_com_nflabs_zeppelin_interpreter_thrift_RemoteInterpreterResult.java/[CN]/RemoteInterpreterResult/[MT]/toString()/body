@@ -10,6 +10,15 @@
   }
   first=false;
   if (!first)   sb.append(", ");
+  sb.append("type:");
+  if (this.type == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.type);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
   sb.append("msg:");
   if (this.msg == null) {
     sb.append("null");

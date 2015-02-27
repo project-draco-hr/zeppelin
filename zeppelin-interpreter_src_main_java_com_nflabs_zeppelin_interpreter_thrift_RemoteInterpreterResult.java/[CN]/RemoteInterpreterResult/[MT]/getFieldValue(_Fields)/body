@@ -2,8 +2,10 @@
 switch (field) {
 case CODE:
     return getCode();
+case TYPE:
+  return getType();
 case MSG:
-  return getMsg();
+return getMsg();
 }
 throw new IllegalStateException();
 }

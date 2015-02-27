@@ -5,8 +5,10 @@
 switch (field) {
 case CODE:
     return isSetCode();
+case TYPE:
+  return isSetType();
 case MSG:
-  return isSetMsg();
+return isSetMsg();
 }
 throw new IllegalStateException();
 }

@@ -8,12 +8,20 @@ case CODE:
       setCode((String)value);
     }
   break;
-case MSG:
+case TYPE:
 if (value == null) {
-  unsetMsg();
+  unsetType();
 }
  else {
-  setMsg((String)value);
+  setType((String)value);
+}
+break;
+case MSG:
+if (value == null) {
+unsetMsg();
+}
+ else {
+setMsg((String)value);
 }
 break;
 }

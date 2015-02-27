@@ -14,6 +14,16 @@
       return lastComparison;
     }
   }
+  lastComparison=Boolean.valueOf(isSetType()).compareTo(typedOther.isSetType());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetType()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.type,typedOther.type);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   lastComparison=Boolean.valueOf(isSetMsg()).compareTo(typedOther.isSetMsg());
   if (lastComparison != 0) {
     return lastComparison;

@@ -18,12 +18,21 @@ case 1:
     break;
 case 2:
   if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-    struct.msg=iprot.readString();
-    struct.setMsgIsSet(true);
+    struct.type=iprot.readString();
+    struct.setTypeIsSet(true);
   }
  else {
     org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
   }
+break;
+case 3:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.msg=iprot.readString();
+struct.setMsgIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
 break;
 default :
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);

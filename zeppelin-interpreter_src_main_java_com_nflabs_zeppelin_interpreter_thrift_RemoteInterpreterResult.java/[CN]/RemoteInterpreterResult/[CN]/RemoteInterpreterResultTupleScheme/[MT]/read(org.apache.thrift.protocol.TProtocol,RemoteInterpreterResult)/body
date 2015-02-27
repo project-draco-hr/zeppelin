@@ -1,11 +1,15 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(2);
+  BitSet incoming=iprot.readBitSet(3);
   if (incoming.get(0)) {
     struct.code=iprot.readString();
     struct.setCodeIsSet(true);
   }
   if (incoming.get(1)) {
+    struct.type=iprot.readString();
+    struct.setTypeIsSet(true);
+  }
+  if (incoming.get(2)) {
     struct.msg=iprot.readString();
     struct.setMsgIsSet(true);
   }

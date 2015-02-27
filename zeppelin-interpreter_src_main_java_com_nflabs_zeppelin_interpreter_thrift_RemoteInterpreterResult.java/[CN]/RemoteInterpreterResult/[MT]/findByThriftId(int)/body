@@ -3,7 +3,9 @@ switch (fieldId) {
 case 1:
     return CODE;
 case 2:
-  return MSG;
+  return TYPE;
+case 3:
+return MSG;
 default :
 return null;
 }

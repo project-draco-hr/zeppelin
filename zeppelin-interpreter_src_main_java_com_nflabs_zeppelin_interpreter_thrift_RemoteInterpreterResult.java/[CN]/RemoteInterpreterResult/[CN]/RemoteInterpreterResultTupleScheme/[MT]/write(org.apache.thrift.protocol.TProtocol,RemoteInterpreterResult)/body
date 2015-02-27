@@ -4,12 +4,18 @@
   if (struct.isSetCode()) {
     optionals.set(0);
   }
-  if (struct.isSetMsg()) {
+  if (struct.isSetType()) {
     optionals.set(1);
   }
-  oprot.writeBitSet(optionals,2);
+  if (struct.isSetMsg()) {
+    optionals.set(2);
+  }
+  oprot.writeBitSet(optionals,3);
   if (struct.isSetCode()) {
     oprot.writeString(struct.code);
+  }
+  if (struct.isSetType()) {
+    oprot.writeString(struct.type);
   }
   if (struct.isSetMsg()) {
     oprot.writeString(struct.msg);

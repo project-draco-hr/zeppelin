@@ -1,4 +1,5 @@
 {
   this.code=null;
+  this.type=null;
   this.msg=null;
 }

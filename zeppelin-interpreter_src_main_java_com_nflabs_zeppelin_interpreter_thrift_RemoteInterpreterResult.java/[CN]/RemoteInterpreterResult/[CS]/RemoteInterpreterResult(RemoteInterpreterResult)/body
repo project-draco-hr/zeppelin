@@ -2,6 +2,9 @@
   if (other.isSetCode()) {
     this.code=other.code;
   }
+  if (other.isSetType()) {
+    this.type=other.type;
+  }
   if (other.isSetMsg()) {
     this.msg=other.msg;
   }

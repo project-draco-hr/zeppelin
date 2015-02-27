@@ -6,6 +6,11 @@
     oprot.writeString(struct.code);
     oprot.writeFieldEnd();
   }
+  if (struct.type != null) {
+    oprot.writeFieldBegin(TYPE_FIELD_DESC);
+    oprot.writeString(struct.type);
+    oprot.writeFieldEnd();
+  }
   if (struct.msg != null) {
     oprot.writeFieldBegin(MSG_FIELD_DESC);
     oprot.writeString(struct.msg);
