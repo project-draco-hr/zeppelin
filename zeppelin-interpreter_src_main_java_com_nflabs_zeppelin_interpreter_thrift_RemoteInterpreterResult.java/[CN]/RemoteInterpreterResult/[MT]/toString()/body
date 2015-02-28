@@ -27,6 +27,24 @@
     sb.append(this.msg);
   }
   first=false;
+  if (!first)   sb.append(", ");
+  sb.append("config:");
+  if (this.config == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.config);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("gui:");
+  if (this.gui == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.gui);
+  }
+  first=false;
   sb.append(")");
   return sb.toString();
 }

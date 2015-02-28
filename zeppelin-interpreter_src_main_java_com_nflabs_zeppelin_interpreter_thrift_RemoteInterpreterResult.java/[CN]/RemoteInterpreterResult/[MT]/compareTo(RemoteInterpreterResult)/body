@@ -34,5 +34,25 @@
       return lastComparison;
     }
   }
+  lastComparison=Boolean.valueOf(isSetConfig()).compareTo(typedOther.isSetConfig());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetConfig()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.config,typedOther.config);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
+  lastComparison=Boolean.valueOf(isSetGui()).compareTo(typedOther.isSetGui());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetGui()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.gui,typedOther.gui);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   return 0;
 }

@@ -9,6 +9,10 @@ case TYPE:
   return isSetType();
 case MSG:
 return isSetMsg();
+case CONFIG:
+return isSetConfig();
+case GUI:
+return isSetGui();
 }
 throw new IllegalStateException();
 }

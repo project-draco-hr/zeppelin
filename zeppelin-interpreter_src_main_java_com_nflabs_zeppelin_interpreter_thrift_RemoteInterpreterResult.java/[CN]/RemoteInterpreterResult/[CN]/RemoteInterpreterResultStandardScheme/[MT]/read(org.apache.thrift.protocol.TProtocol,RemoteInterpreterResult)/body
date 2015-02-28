@@ -34,6 +34,24 @@ struct.setMsgIsSet(true);
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }
 break;
+case 4:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.config=iprot.readString();
+struct.setConfigIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+break;
+case 5:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.gui=iprot.readString();
+struct.setGuiIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+break;
 default :
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }

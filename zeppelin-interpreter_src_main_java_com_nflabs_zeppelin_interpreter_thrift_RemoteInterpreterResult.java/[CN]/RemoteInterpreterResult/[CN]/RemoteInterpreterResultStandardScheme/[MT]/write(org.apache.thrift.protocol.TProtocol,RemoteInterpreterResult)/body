@@ -16,6 +16,16 @@
     oprot.writeString(struct.msg);
     oprot.writeFieldEnd();
   }
+  if (struct.config != null) {
+    oprot.writeFieldBegin(CONFIG_FIELD_DESC);
+    oprot.writeString(struct.config);
+    oprot.writeFieldEnd();
+  }
+  if (struct.gui != null) {
+    oprot.writeFieldBegin(GUI_FIELD_DESC);
+    oprot.writeString(struct.gui);
+    oprot.writeFieldEnd();
+  }
   oprot.writeFieldStop();
   oprot.writeStructEnd();
 }

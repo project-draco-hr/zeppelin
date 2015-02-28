@@ -1,8 +1,9 @@
 {
   Interpreter intp=getInterpreter(className);
+  InterpreterContext context=convert(interpreterContext);
   Scheduler scheduler=intp.getScheduler();
   InterpretJobListener jobListener=new InterpretJobListener();
-  InterpretJob job=new InterpretJob("remoteInterpretJob_" + System.currentTimeMillis(),jobListener,intp,st,convert(interpreterContext));
+  InterpretJob job=new InterpretJob("remoteInterpretJob_" + System.currentTimeMillis(),jobListener,intp,st,context);
   scheduler.submit(job);
   while (!job.isTerminated()) {
 synchronized (jobListener) {
@@ -17,6 +18,8 @@ synchronized (jobListener) {
     throw new TException(job.getException());
   }
  else {
-    return convert((InterpreterResult)job.getReturn());
+    if (intp.getFormType() == FormType.NATIVE) {
+    }
+    return convert((InterpreterResult)job.getReturn(),context.getConfig(),context.getGui());
   }
 }

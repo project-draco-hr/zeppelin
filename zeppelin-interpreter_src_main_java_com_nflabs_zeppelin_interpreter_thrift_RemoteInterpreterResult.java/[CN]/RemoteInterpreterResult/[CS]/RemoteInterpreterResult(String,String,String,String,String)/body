@@ -3,4 +3,6 @@
   this.code=code;
   this.type=type;
   this.msg=msg;
+  this.config=config;
+  this.gui=gui;
 }

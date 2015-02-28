@@ -1,3 +1,5 @@
 String code
 String type
 String msg
+String config
+String gui

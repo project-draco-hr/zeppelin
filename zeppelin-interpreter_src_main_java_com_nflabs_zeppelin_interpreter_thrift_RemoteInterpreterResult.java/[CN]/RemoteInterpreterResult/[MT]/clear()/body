@@ -2,4 +2,6 @@
   this.code=null;
   this.type=null;
   this.msg=null;
+  this.config=null;
+  this.gui=null;
 }

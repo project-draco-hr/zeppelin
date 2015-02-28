@@ -1,4 +1,7 @@
 {
+  if (formType != null) {
+    return formType;
+  }
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   Client client=null;
   try {
@@ -8,7 +11,8 @@
     throw new InterpreterException(e1);
   }
   try {
-    return FormType.valueOf(client.getFormType(className));
+    formType=FormType.valueOf(client.getFormType(className));
+    return formType;
   }
  catch (  TException e) {
     throw new InterpreterException(e.getCause());

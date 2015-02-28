@@ -8,4 +8,10 @@
   if (other.isSetMsg()) {
     this.msg=other.msg;
   }
+  if (other.isSetConfig()) {
+    this.config=other.config;
+  }
+  if (other.isSetGui()) {
+    this.gui=other.gui;
+  }
 }

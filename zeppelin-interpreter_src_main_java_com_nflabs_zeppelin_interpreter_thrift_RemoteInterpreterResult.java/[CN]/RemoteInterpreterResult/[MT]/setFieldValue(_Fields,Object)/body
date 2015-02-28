@@ -24,5 +24,21 @@ unsetMsg();
 setMsg((String)value);
 }
 break;
+case CONFIG:
+if (value == null) {
+unsetConfig();
+}
+ else {
+setConfig((String)value);
+}
+break;
+case GUI:
+if (value == null) {
+unsetGui();
+}
+ else {
+setGui((String)value);
+}
+break;
 }
 }

@@ -1,3 +1,0 @@
-{
-  return new RemoteInterpreterResult(result.code().name(),result.type().name(),result.message());
-}

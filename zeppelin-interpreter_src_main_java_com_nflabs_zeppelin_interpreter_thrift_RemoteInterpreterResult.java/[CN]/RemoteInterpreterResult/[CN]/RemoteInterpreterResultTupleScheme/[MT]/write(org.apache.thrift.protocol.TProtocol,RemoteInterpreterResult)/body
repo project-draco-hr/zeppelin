@@ -10,7 +10,13 @@
   if (struct.isSetMsg()) {
     optionals.set(2);
   }
-  oprot.writeBitSet(optionals,3);
+  if (struct.isSetConfig()) {
+    optionals.set(3);
+  }
+  if (struct.isSetGui()) {
+    optionals.set(4);
+  }
+  oprot.writeBitSet(optionals,5);
   if (struct.isSetCode()) {
     oprot.writeString(struct.code);
   }
@@ -19,5 +25,11 @@
   }
   if (struct.isSetMsg()) {
     oprot.writeString(struct.msg);
+  }
+  if (struct.isSetConfig()) {
+    oprot.writeString(struct.config);
+  }
+  if (struct.isSetGui()) {
+    oprot.writeString(struct.gui);
   }
 }
