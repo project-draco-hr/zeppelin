@@ -4,8 +4,10 @@ synchronized (interpreterSettings) {
     if (intpsetting != null) {
       intpsetting.getInterpreterGroup().close();
       intpsetting.getInterpreterGroup().destroy();
+      intpsetting.setRemote(remote);
       InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.getGroup(),remote,properties);
       intpsetting.setInterpreterGroup(interpreterGroup);
+      saveToFile();
     }
  else {
       throw new InterpreterException("Interpreter setting id " + id + " not found");
