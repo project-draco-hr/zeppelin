@@ -1,5 +1,0 @@
-{
-  super();
-  this.remote=remote;
-  this.properties=properties;
-}

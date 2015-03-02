@@ -1,0 +1,8 @@
+{
+  this.id=id;
+  this.name=name;
+  this.group=group;
+  this.properties=interpreterGroup.getProperty();
+  this.option=option;
+  this.interpreterGroup=interpreterGroup;
+}

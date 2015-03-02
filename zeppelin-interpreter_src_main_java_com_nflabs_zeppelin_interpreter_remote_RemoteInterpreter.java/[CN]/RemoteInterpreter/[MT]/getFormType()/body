@@ -15,6 +15,7 @@
     return formType;
   }
  catch (  TException e) {
+    e.printStackTrace();
     throw new InterpreterException(e.getCause());
   }
  finally {

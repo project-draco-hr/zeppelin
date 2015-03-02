@@ -1,9 +1,0 @@
-{
-synchronized (interpreterSettings) {
-    InterpreterGroup interpreterGroup=createInterpreterGroup(groupName,remote,properties);
-    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,remote,interpreterGroup);
-    interpreterSettings.put(intpSetting.id(),intpSetting);
-    saveToFile();
-    return interpreterGroup;
-  }
-}

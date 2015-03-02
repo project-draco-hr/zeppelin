@@ -2,7 +2,7 @@
   logger.info("Update interpreterSetting {}",settingId);
   try {
     UpdateInterpreterSettingRequest p=gson.fromJson(message,UpdateInterpreterSettingRequest.class);
-    interpreterFactory.setPropertyAndRestart(settingId,p.isRemote(),p.getProperties());
+    interpreterFactory.setPropertyAndRestart(settingId,p.getOption(),p.getProperties());
   }
  catch (  InterpreterException e) {
     return new JsonResponse(Status.NOT_FOUND,e.getMessage(),e).build();
