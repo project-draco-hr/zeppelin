@@ -1,4 +1,3 @@
 String interpreterPath
 String className
 Properties property
-InterpreterGroup interpreterGroup

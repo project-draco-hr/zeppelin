@@ -1,4 +1,4 @@
 {
   Interpreter intp=getInterpreter(className);
-  return intp.getFormType().name();
+  return intp.getFormType().toString();
 }

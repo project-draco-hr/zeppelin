@@ -11,7 +11,7 @@
     return client.completion(buf,buf,cursor);
   }
  catch (  TException e) {
-    throw new InterpreterException(e.getCause());
+    throw new InterpreterException(e);
   }
  finally {
     interpreterProcess.releaseClient(client);

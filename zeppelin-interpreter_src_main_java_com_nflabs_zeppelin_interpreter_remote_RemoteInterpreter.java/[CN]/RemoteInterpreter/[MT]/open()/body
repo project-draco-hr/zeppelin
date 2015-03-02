@@ -22,8 +22,7 @@ synchronized (interpreterGroupReference) {
     client.open(className);
   }
  catch (  TException e) {
-    e.printStackTrace();
-    throw new InterpreterException(e.getCause());
+    throw new InterpreterException(e);
   }
  finally {
     interpreterProcess.releaseClient(client);

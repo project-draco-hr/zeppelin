@@ -28,7 +28,6 @@
     Interpreter repl=constructor.newInstance(property);
     repl.setClassloaderUrls(ccl.getURLs());
     LazyOpenInterpreter intp=new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl));
-    intp.setInterpreterGroup(interpreterGroup);
     return intp;
   }
  catch (  SecurityException e) {

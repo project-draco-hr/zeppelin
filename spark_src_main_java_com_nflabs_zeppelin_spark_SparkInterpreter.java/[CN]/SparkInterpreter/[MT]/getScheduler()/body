@@ -1,3 +1,9 @@
 {
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler(SparkInterpreter.class.getName() + this.hashCode());
+  DepInterpreter depIntp=getDepInterpreter();
+  if (depIntp == null) {
+    return SchedulerFactory.singleton().createOrGetFIFOScheduler(SparkInterpreter.class.getName() + this.hashCode());
+  }
+ else {
+    return depIntp.getScheduler();
+  }
 }

@@ -25,7 +25,7 @@
     return convert(remoteResult);
   }
  catch (  TException e) {
-    throw new InterpreterException(e.getCause());
+    throw new InterpreterException(e);
   }
  finally {
     interpreterProcess.releaseClient(client);

@@ -6,10 +6,10 @@
     Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
     Interpreter repl=constructor.newInstance(p);
     repl.setClassloaderUrls(new URL[]{});
-    repl.setInterpreterGroup(interpreterGroup);
 synchronized (interpreterGroup) {
       interpreterGroup.add(repl);
     }
+    repl.setInterpreterGroup(interpreterGroup);
   }
  catch (  ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     e.printStackTrace();
