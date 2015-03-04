@@ -1,0 +1,18 @@
+{
+  port=findRandomOpenPortOnAllLocalInterfaces();
+  gatewayServer=new GatewayServer(this,port);
+  gatewayServer.start();
+  CommandLine cmd=CommandLine.parse("python");
+  executor=new DefaultExecutor();
+  ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+  executor.setStreamHandler(new PumpStreamHandler(outputStream));
+  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
+  Map<String,String> env=System.getenv();
+  env.put("PYTHONPATH","/Users/moon/Downloads/spark-1.2.1-bin-hadoop2.4/python/lib/py4j-0.8.2.1-src.zip");
+  try {
+    executor.execute(cmd,env,this);
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  int port;
+  try (ServerSocket socket=new ServerSocket(0)){
+    port=socket.getLocalPort();
+    socket.close();
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+  return port;
+}
