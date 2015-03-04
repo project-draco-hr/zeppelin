@@ -1,5 +1,4 @@
 {
-  init();
   RemoteInterpreterProcess interpreterProcess=null;
 synchronized (interpreterGroupReference) {
     if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
@@ -8,6 +7,9 @@ synchronized (interpreterGroupReference) {
  else {
       throw new InterpreterException("Unexpected error");
     }
+  }
+  if (interpreterProcess.isRunning() == true) {
+    return;
   }
   interpreterProcess.reference();
   Client client=null;
@@ -18,8 +20,10 @@ synchronized (interpreterGroupReference) {
     throw new InterpreterException(e1);
   }
   try {
-    logger.info("open remote interpreter {}",className);
-    client.open(className);
+    logger.info("Create remote interpreter {}",className);
+    for (    Interpreter intp : this.getInterpreterGroup()) {
+      client.createInterpreter(intp.getClassName(),(Map)property);
+    }
   }
  catch (  TException e) {
     throw new InterpreterException(e);
