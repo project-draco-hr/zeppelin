@@ -5,6 +5,6 @@
   }
 .getType());
   Map<String,Object> body=(Map<String,Object>)resp.get("body");
-  assertEquals(5,body.size());
+  assertEquals(6,body.size());
   get.releaseConnection();
 }
