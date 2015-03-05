@@ -5,6 +5,9 @@ synchronized (intpGroup) {
       if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
         Interpreter p=intp;
         while (p instanceof WrappedInterpreter) {
+          if (p instanceof LazyOpenInterpreter) {
+            ((LazyOpenInterpreter)p).open();
+          }
           p=((WrappedInterpreter)p).getInnerInterpreter();
         }
         return (SparkInterpreter)p;

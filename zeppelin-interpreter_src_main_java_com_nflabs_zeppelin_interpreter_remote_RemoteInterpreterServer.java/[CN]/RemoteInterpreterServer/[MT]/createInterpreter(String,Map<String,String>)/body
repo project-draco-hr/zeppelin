@@ -7,7 +7,7 @@
     Interpreter repl=constructor.newInstance(p);
     repl.setClassloaderUrls(new URL[]{});
 synchronized (interpreterGroup) {
-      interpreterGroup.add(repl);
+      interpreterGroup.add(new LazyOpenInterpreter(repl));
     }
     repl.setInterpreterGroup(interpreterGroup);
   }
