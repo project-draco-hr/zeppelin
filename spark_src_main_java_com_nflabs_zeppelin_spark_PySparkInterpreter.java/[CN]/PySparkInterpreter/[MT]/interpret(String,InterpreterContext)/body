@@ -1,3 +1,26 @@
 {
-  return new InterpreterResult(Code.SUCCESS,"");
+  if (!pythonscriptRunning) {
+    return new InterpreterResult(Code.ERROR,"python process not running");
+  }
+  _statements=st;
+  statementOutput=null;
+synchronized (statementSetNotifier) {
+    statementSetNotifier.notify();
+  }
+synchronized (statementFinishedNotifier) {
+    while (statementOutput == null) {
+      try {
+        logger.info("wait for output");
+        statementFinishedNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+  if (statementError) {
+    return new InterpreterResult(Code.ERROR,statementOutput);
+  }
+ else {
+    return new InterpreterResult(Code.SUCCESS,statementOutput);
+  }
 }

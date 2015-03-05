@@ -1,16 +1,46 @@
 {
+  createPythonScript();
   port=findRandomOpenPortOnAllLocalInterfaces();
   gatewayServer=new GatewayServer(this,port);
   gatewayServer.start();
   CommandLine cmd=CommandLine.parse("python");
+  cmd.addArgument(scriptPath,false);
+  cmd.addArgument(Integer.toString(port),false);
   executor=new DefaultExecutor();
-  ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-  executor.setStreamHandler(new PumpStreamHandler(outputStream));
-  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
-  Map<String,String> env=System.getenv();
-  env.put("PYTHONPATH","/Users/moon/Downloads/spark-1.2.1-bin-hadoop2.4/python/lib/py4j-0.8.2.1-src.zip");
+  outputStream=new ByteArrayOutputStream();
+  PipedOutputStream ps=new PipedOutputStream();
+  in=null;
   try {
+    in=new PipedInputStream(ps);
+  }
+ catch (  IOException e1) {
+    throw new InterpreterException(e1);
+  }
+  ins=new BufferedWriter(new OutputStreamWriter(ps));
+  input=new ByteArrayOutputStream();
+  PumpStreamHandler streamHandler=new PumpStreamHandler(outputStream,outputStream,in);
+  executor.setStreamHandler(streamHandler);
+  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
+  try {
+    Map env=EnvironmentUtils.getProcEnvironment();
+    String pythonPath=(String)env.get("PYTHONPATH");
+    if (pythonPath == null) {
+      pythonPath="";
+    }
+ else {
+      pythonPath+=":";
+    }
+    pythonPath+=getSparkHome() + "/python/lib/py4j-0.8.2.1-src.zip:" + getSparkHome()+ "/python";
+    env.put("PYTHONPATH",pythonPath);
     executor.execute(cmd,env,this);
+    pythonscriptRunning=true;
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+  try {
+    input.write("import sys, getopt\n".getBytes());
+    ins.flush();
   }
  catch (  IOException e) {
     throw new InterpreterException(e);

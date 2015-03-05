@@ -1,2 +1,4 @@
 {
+  pythonscriptRunning=false;
+  logger.error("python process failed",e);
 }

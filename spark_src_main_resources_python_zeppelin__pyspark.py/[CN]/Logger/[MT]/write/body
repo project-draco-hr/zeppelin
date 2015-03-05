@@ -1,0 +1,2 @@
+def write(self, message):
+    self.out = (self.out + message)
