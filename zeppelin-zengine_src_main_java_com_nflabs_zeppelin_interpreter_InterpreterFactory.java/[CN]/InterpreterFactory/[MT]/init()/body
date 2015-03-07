@@ -54,7 +54,7 @@ synchronized (interpreterSettings) {
             }
           }
           if (found) {
-            add(groupName,groupName,new InterpreterOption(false),p);
+            add(groupName,groupName,defaultOption,p);
             groupClassNameMap.remove(groupName);
             break;
           }

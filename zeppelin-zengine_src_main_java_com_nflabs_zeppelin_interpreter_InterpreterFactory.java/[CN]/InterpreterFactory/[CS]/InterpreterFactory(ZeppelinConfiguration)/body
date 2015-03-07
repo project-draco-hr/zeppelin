@@ -1,10 +1,3 @@
 {
-  this.conf=conf;
-  String replsConf=conf.getString(ConfVars.ZEPPELIN_INTERPRETERS);
-  interpreterClassList=replsConf.split(",");
-  GsonBuilder builder=new GsonBuilder();
-  builder.setPrettyPrinting();
-  builder.registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
-  gson=builder.create();
-  init();
+  this(conf,new InterpreterOption(true));
 }
