@@ -1,8 +1,7 @@
 {
-  handler=new RemoteInterpreterServer();
-  processor=new RemoteInterpreterService.Processor<RemoteInterpreterServer>(handler);
   int port=Integer.parseInt(args[0]);
-  TServerTransport serverTransport=new TServerSocket(port);
-  TServer server=new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
-  server.serve();
+  RemoteInterpreterServer remoteInterpreterServer=new RemoteInterpreterServer(port);
+  remoteInterpreterServer.start();
+  remoteInterpreterServer.join();
+  System.exit(0);
 }

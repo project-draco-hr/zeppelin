@@ -1,0 +1,5 @@
+{
+  shutdown_result result=new shutdown_result();
+  receiveBase(result,"shutdown");
+  return;
+}

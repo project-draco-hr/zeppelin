@@ -1,0 +1,4 @@
+{
+  send_shutdown();
+  recv_shutdown();
+}

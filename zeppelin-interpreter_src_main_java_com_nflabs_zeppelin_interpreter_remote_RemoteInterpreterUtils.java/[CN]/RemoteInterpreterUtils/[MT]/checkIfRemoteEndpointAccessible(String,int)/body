@@ -1,0 +1,12 @@
+{
+  try {
+    Socket discover=new Socket();
+    discover.setSoTimeout(1000);
+    discover.connect(new InetSocketAddress(host,port),1000);
+    discover.close();
+    return true;
+  }
+ catch (  IOException e) {
+    return false;
+  }
+}

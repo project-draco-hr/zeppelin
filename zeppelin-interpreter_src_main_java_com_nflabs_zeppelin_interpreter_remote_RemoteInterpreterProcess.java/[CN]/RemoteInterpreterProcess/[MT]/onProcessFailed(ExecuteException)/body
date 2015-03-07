@@ -1,3 +1,4 @@
 {
+  logger.info("Interpreter process failed {}",e);
   running=false;
 }

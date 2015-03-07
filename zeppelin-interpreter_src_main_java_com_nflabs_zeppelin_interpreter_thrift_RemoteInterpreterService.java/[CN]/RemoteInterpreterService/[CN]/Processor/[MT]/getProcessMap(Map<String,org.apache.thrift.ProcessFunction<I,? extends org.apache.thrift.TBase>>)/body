@@ -7,5 +7,6 @@
   processMap.put("getProgress",new getProgress());
   processMap.put("getFormType",new getFormType());
   processMap.put("completion",new completion());
+  processMap.put("shutdown",new shutdown());
   return processMap;
 }

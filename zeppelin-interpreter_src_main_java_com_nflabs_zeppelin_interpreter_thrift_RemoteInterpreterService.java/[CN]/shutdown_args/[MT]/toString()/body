@@ -1,0 +1,6 @@
+{
+  StringBuilder sb=new StringBuilder("shutdown_args(");
+  boolean first=true;
+  sb.append(")");
+  return sb.toString();
+}
