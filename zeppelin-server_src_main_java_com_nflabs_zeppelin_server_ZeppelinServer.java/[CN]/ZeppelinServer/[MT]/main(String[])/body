@@ -6,9 +6,8 @@
   final ServletContextHandler restApi=setupRestApiContextHandler();
   final ServletContextHandler swagger=setupSwaggerContextHandler(conf);
   final WebAppContext webApp=setupWebAppContext(conf);
-  final WebAppContext webAppSwagg=setupWebAppSwagger(conf);
   ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{swagger,restApi,webApp,webAppSwagg});
+  contexts.setHandlers(new Handler[]{swagger,restApi,webApp});
   jettyServer.setHandler(contexts);
   notebookServer.start();
   LOG.info("Start zeppelin server");
