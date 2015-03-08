@@ -1,0 +1,36 @@
+{
+  List<String> loadedLibs=new LinkedList<String>();
+  Collection<String> allExclusions=new LinkedList<String>();
+  allExclusions.addAll(excludes);
+  allExclusions.addAll(Arrays.asList(exclusions));
+  List<ArtifactResult> listOfArtifact;
+  listOfArtifact=getArtifactsWithDep(artifact,allExclusions);
+  Iterator<ArtifactResult> it=listOfArtifact.iterator();
+  while (it.hasNext()) {
+    Artifact a=it.next().getArtifact();
+    String gav=a.getGroupId() + ":" + a.getArtifactId()+ ":"+ a.getVersion();
+    for (    String exclude : allExclusions) {
+      if (gav.startsWith(exclude)) {
+        it.remove();
+        break;
+      }
+    }
+  }
+  List<URL> newClassPathList=new LinkedList<URL>();
+  List<File> files=new LinkedList<File>();
+  for (  ArtifactResult artifactResult : listOfArtifact) {
+    logger.info("Load " + artifactResult.getArtifact().getGroupId() + ":"+ artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
+    newClassPathList.add(artifactResult.getArtifact().getFile().toURI().toURL());
+    files.add(artifactResult.getArtifact().getFile());
+    loadedLibs.add(artifactResult.getArtifact().getGroupId() + ":" + artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
+  }
+  intp.global().new Run();
+  updateRuntimeClassPath(newClassPathList.toArray(new URL[0]));
+  updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
+  if (addSparkContext) {
+    for (    File f : files) {
+      sc.addJar(f.getAbsolutePath());
+    }
+  }
+  return loadedLibs;
+}

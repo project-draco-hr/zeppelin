@@ -16,6 +16,7 @@
     if (cronUpdated) {
       notebook.refreshCron(note.id());
     }
+    note.persist();
     broadcastNote(note);
     broadcastNoteList();
   }

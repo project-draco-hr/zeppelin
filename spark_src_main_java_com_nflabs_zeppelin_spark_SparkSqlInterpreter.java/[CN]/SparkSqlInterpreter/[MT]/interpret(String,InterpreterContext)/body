@@ -1,0 +1,60 @@
+{
+  SQLContext sqlc=null;
+  if (useHiveContext()) {
+    sqlc=getSparkInterpreter().getHiveContext();
+  }
+ else {
+    sqlc=getSparkInterpreter().getSQLContext();
+  }
+  SparkContext sc=sqlc.sparkContext();
+  if (concurrentSQL()) {
+    sc.setLocalProperty("spark.scheduler.pool","fair");
+  }
+ else {
+    sc.setLocalProperty("spark.scheduler.pool",null);
+  }
+  sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
+  SchemaRDD rdd;
+  Row[] rows=null;
+  try {
+    rdd=sqlc.sql(st);
+    rows=rdd.take(maxResult + 1);
+  }
+ catch (  Exception e) {
+    logger.error("Error",e);
+    sc.clearJobGroup();
+    return new InterpreterResult(Code.ERROR,e.getMessage());
+  }
+  String msg=null;
+  List<Attribute> columns=scala.collection.JavaConverters.asJavaListConverter(rdd.queryExecution().analyzed().output()).asJava();
+  for (  Attribute col : columns) {
+    if (msg == null) {
+      msg=col.name();
+    }
+ else {
+      msg+="\t" + col.name();
+    }
+  }
+  msg+="\n";
+  for (int r=0; r < maxResult && r < rows.length; r++) {
+    Row row=rows[r];
+    for (int i=0; i < columns.size(); i++) {
+      if (!row.isNullAt(i)) {
+        msg+=row.apply(i).toString();
+      }
+ else {
+        msg+="null";
+      }
+      if (i != columns.size() - 1) {
+        msg+="\t";
+      }
+    }
+    msg+="\n";
+  }
+  if (rows.length > maxResult) {
+    msg+="\n<font color=red>Results are limited by " + maxResult + ".</font>";
+  }
+  InterpreterResult rett=new InterpreterResult(Code.SUCCESS,"%table " + msg);
+  sc.clearJobGroup();
+  return rett;
+}

@@ -1,3 +1,0 @@
-def get_version():
-    version = os.environ.get('ZEPPELIN_VERSION', '').strip()
-    return (version or maven_version('../../../pom.xml'))

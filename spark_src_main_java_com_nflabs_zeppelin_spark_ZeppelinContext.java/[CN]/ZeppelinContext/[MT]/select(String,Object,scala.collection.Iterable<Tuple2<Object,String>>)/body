@@ -1,7 +1,7 @@
 {
   int n=options.size();
   ParamOption[] paramOptions=new ParamOption[n];
-  Iterator<Tuple2<Object,String>> it=scala.collection.JavaConversions.asJavaIterable(options).iterator();
+  Iterator<Tuple2<Object,String>> it=asJavaIterable(options).iterator();
   int i=0;
   while (it.hasNext()) {
     Tuple2<Object,String> valueAndDisplayValue=it.next();

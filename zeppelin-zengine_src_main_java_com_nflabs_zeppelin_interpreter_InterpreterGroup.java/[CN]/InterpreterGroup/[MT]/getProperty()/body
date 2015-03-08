@@ -1,0 +1,7 @@
+{
+  Properties p=new Properties();
+  for (  Interpreter intp : this) {
+    p.putAll(intp.getProperty());
+  }
+  return p;
+}

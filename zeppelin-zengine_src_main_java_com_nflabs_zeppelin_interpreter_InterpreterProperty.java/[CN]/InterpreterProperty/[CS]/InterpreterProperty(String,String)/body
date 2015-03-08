@@ -1,0 +1,5 @@
+{
+  super();
+  this.defaultValue=defaultValue;
+  this.description=description;
+}

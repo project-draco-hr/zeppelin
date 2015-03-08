@@ -1,0 +1,20 @@
+{
+synchronized (interpreterSettings) {
+    if (interpreterSettings.containsKey(id)) {
+      InterpreterSetting intp=interpreterSettings.get(id);
+      intp.getInterpreterGroup().close();
+      intp.getInterpreterGroup().destroy();
+      interpreterSettings.remove(id);
+      for (      List<String> settings : interpreterBindings.values()) {
+        Iterator<String> it=settings.iterator();
+        while (it.hasNext()) {
+          String settingId=it.next();
+          if (settingId.equals(id)) {
+            it.remove();
+          }
+        }
+      }
+      saveToFile();
+    }
+  }
+}

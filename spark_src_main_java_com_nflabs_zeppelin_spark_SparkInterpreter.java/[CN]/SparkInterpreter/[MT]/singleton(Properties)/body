@@ -1,6 +1,0 @@
-{
-  if (singleton == null) {
-    new SparkInterpreter(property);
-  }
-  return singleton;
-}

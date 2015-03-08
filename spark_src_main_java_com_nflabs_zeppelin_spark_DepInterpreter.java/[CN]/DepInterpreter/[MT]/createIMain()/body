@@ -1,0 +1,39 @@
+{
+  Settings settings=new Settings();
+  URL[] urls=getClassloaderUrls();
+  PathSetting pathSettings=settings.classpath();
+  String classpath="";
+  List<File> paths=currentClassPath();
+  for (  File f : paths) {
+    if (classpath.length() > 0) {
+      classpath+=File.pathSeparator;
+    }
+    classpath+=f.getAbsolutePath();
+  }
+  if (urls != null) {
+    for (    URL u : urls) {
+      if (classpath.length() > 0) {
+        classpath+=File.pathSeparator;
+      }
+      classpath+=u.getFile();
+    }
+  }
+  pathSettings.v_$eq(classpath);
+  settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
+  settings.explicitParentLoader_$eq(new Some<ClassLoader>(Thread.currentThread().getContextClassLoader()));
+  BooleanSetting b=(BooleanSetting)settings.usejavacp();
+  b.v_$eq(true);
+  settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
+  interpreter=new SparkILoop(null,new PrintWriter(out));
+  interpreter.settings_$eq(settings);
+  interpreter.createInterpreter();
+  intp=interpreter.intp();
+  intp.setContextClassLoader();
+  intp.initializeSynchronous();
+  depc=new DependencyContext();
+  completor=new SparkJLineCompletion(intp);
+  intp.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
+  Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
+  binder.put("depc",depc);
+  intp.interpret("@transient val z = " + "_binder.get(\"depc\").asInstanceOf[com.nflabs.zeppelin.spark.dep.DependencyContext]");
+}

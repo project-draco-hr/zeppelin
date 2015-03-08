@@ -1,8 +1,8 @@
 {
-  System.err.println("------ Create new SparkContext " + getMaster() + " -------");
+  System.err.println("------ Create new SparkContext " + getProperty("master") + " -------");
   String execUri=System.getenv("SPARK_EXECUTOR_URI");
   String[] jars=SparkILoop.getAddedJars();
-  SparkConf conf=new SparkConf().setMaster(getMaster()).setAppName("Zeppelin").setJars(jars).set("spark.repl.class.uri",interpreter.intp().classServer().uri());
+  SparkConf conf=new SparkConf().setMaster(getProperty("master")).setAppName(getProperty("spark.app.name")).setJars(jars).set("spark.repl.class.uri",interpreter.intp().classServer().uri());
   if (execUri != null) {
     conf.set("spark.executor.uri",execUri);
   }
@@ -10,6 +10,17 @@
     conf.setSparkHome(System.getenv("SPARK_HOME"));
   }
   conf.set("spark.scheduler.mode","FAIR");
+  Properties intpProperty=getProperty();
+  for (  Object k : intpProperty.keySet()) {
+    String key=(String)k;
+    if (key.startsWith("spark.")) {
+      Object value=intpProperty.get(key);
+      if (value != null && value instanceof String && !((String)value).trim().isEmpty()) {
+        logger.debug(String.format("SparkConf: key = [%s], value = [%s]",key,value));
+        conf.set(key,(String)value);
+      }
+    }
+  }
   SparkContext sparkContext=new SparkContext(conf);
   return sparkContext;
 }

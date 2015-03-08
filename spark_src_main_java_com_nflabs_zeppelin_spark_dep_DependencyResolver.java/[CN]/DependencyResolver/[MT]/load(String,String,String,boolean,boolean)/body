@@ -1,6 +1,0 @@
-{
-  if (StringUtils.isBlank(groupId) || StringUtils.isBlank(artifactId) || StringUtils.isBlank(version)) {
-    return;
-  }
-  load(groupId + ":" + artifactId+ ":"+ version,recursive,addSparkContext);
-}

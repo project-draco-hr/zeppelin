@@ -1,7 +1,4 @@
 {
   super(property);
   out=new ByteArrayOutputStream();
-  if (singleton == null) {
-    singleton=this;
-  }
 }

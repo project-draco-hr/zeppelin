@@ -1,8 +1,8 @@
 {
   String intpName=Paragraph.getRequiredReplName(lines);
   String scriptBody=Paragraph.getScriptBody(lines);
-  Interpreter intp=noteInterpreterLoader.getRepl(intpName);
-  InterpreterResult ret=intp.interpret(scriptBody);
+  Interpreter intp=interpreterContext.getParagraph().getRepl(intpName);
+  InterpreterResult ret=intp.interpret(scriptBody,interpreterContext);
   if (ret.code() == InterpreterResult.Code.SUCCESS) {
     out.println("%" + ret.type().toString().toLowerCase() + " "+ ret.message());
   }

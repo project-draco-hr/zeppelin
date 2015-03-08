@@ -1,12 +1,20 @@
 {
   Properties p=new Properties();
-  p.put("share",new HashMap<String,Object>());
-  repl=SparkInterpreter.singleton();
   if (repl == null) {
-    repl=new SparkInterpreter(p);
-    SparkInterpreter.setSingleton(repl);
-    repl.open();
+    if (SparkInterpreterTest.repl == null) {
+      repl=new SparkInterpreter(p);
+      repl.open();
+      SparkInterpreterTest.repl=repl;
+    }
+ else {
+      repl=SparkInterpreterTest.repl;
+    }
+    sql=new SparkSqlInterpreter(p);
+    InterpreterGroup intpGroup=new InterpreterGroup();
+    intpGroup.add(repl);
+    intpGroup.add(sql);
+    sql.setInterpreterGroup(intpGroup);
+    sql.open();
   }
-  sql=new SparkSqlInterpreter(p);
-  sql.open();
+  context=new InterpreterContext(new Paragraph(null,null));
 }
