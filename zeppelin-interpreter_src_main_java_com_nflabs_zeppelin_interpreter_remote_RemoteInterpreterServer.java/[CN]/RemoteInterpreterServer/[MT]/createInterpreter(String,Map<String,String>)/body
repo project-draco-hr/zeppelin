@@ -5,9 +5,10 @@
     p.putAll(properties);
     Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
     Interpreter repl=constructor.newInstance(p);
+    ClassLoader cl=ClassLoader.getSystemClassLoader();
     repl.setClassloaderUrls(new URL[]{});
 synchronized (interpreterGroup) {
-      interpreterGroup.add(repl);
+      interpreterGroup.add(new ClassloaderInterpreter(repl,cl));
     }
     repl.setInterpreterGroup(interpreterGroup);
   }
