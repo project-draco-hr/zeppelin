@@ -1,0 +1,8 @@
+{
+  this.initialPeriodMsec=initialPeriodMsec;
+  this.initialPeriodCheckIntervalMsec=initialPeriodCheckIntervalMsec;
+  this.checkIntervalMsec=checkIntervalMsec;
+  this.job=job;
+  this.listener=listener;
+  this.terminate=false;
+}

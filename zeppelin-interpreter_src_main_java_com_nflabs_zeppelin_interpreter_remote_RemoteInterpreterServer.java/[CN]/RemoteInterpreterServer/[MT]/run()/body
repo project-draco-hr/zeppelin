@@ -1,0 +1,4 @@
+{
+  logger.info("Starting remote interpreter server on port {}",port);
+  server.serve();
+}

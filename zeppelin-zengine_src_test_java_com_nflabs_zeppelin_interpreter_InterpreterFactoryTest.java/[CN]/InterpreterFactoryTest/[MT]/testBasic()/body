@@ -1,7 +1,11 @@
 {
   List<String> all=factory.getDefaultInterpreterSettingList();
   Interpreter repl1=factory.get(all.get(0)).getInterpreterGroup().getFirst();
+  assertFalse(((LazyOpenInterpreter)repl1).isOpen());
+  repl1.interpret("repl1",context);
+  assertTrue(((LazyOpenInterpreter)repl1).isOpen());
   assertNull(factory.get("unknown"));
   factory.restart(all.get(0));
   repl1=factory.get(all.get(0)).getInterpreterGroup().getFirst();
+  assertFalse(((LazyOpenInterpreter)repl1).isOpen());
 }

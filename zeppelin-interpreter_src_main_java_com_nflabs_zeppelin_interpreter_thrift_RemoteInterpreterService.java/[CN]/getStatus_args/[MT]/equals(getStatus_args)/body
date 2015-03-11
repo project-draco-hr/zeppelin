@@ -1,0 +1,10 @@
+{
+  if (that == null)   return false;
+  boolean this_present_jobId=true && this.isSetJobId();
+  boolean that_present_jobId=true && that.isSetJobId();
+  if (this_present_jobId || that_present_jobId) {
+    if (!(this_present_jobId && that_present_jobId))     return false;
+    if (!this.jobId.equals(that.jobId))     return false;
+  }
+  return true;
+}

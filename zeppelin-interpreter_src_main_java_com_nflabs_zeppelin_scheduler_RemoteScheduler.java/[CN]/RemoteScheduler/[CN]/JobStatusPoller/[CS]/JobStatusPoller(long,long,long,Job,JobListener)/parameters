@@ -1,0 +1,5 @@
+long initialPeriodMsec
+long initialPeriodCheckIntervalMsec
+long checkIntervalMsec
+Job job
+JobListener listener

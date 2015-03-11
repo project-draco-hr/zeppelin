@@ -1,0 +1,8 @@
+{
+  if (!getClass().equals(other.getClass())) {
+    return getClass().getName().compareTo(other.getClass().getName());
+  }
+  int lastComparison=0;
+  shutdown_args typedOther=(shutdown_args)other;
+  return 0;
+}

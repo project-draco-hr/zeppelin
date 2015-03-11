@@ -1,6 +1,0 @@
-{
-  super(jobName,listener);
-  this.interpreter=interpreter;
-  this.script=script;
-  this.context=context;
-}

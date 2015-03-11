@@ -8,27 +8,28 @@ synchronized (interpreterGroupReference) {
       throw new InterpreterException("Unexpected error");
     }
   }
-  if (interpreterProcess.isRunning() == true) {
-    return;
-  }
-  interpreterProcess.reference();
-  Client client=null;
-  try {
-    client=interpreterProcess.getClient();
-  }
- catch (  Exception e1) {
-    throw new InterpreterException(e1);
-  }
-  try {
-    logger.info("Create remote interpreter {}",className);
-    for (    Interpreter intp : this.getInterpreterGroup()) {
-      client.createInterpreter(intp.getClassName(),(Map)property);
-    }
-  }
- catch (  TException e) {
-    throw new InterpreterException(e);
-  }
+  int rc=interpreterProcess.reference();
+synchronized (interpreterProcess) {
+    if (rc == 1) {
+      Client client=null;
+      try {
+        client=interpreterProcess.getClient();
+      }
+ catch (      Exception e1) {
+        throw new InterpreterException(e1);
+      }
+      try {
+        for (        Interpreter intp : this.getInterpreterGroup()) {
+          logger.info("Create remote interpreter {}",intp.getClassName());
+          client.createInterpreter(intp.getClassName(),(Map)property);
+        }
+      }
+ catch (      TException e) {
+        throw new InterpreterException(e);
+      }
  finally {
-    interpreterProcess.releaseClient(client);
+        interpreterProcess.releaseClient(client);
+      }
+    }
   }
 }

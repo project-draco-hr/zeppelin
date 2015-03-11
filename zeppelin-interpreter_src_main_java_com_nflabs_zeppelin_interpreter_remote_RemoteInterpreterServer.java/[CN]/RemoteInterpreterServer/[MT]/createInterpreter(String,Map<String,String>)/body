@@ -5,10 +5,12 @@
     p.putAll(properties);
     Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
     Interpreter repl=constructor.newInstance(p);
+    ClassLoader cl=ClassLoader.getSystemClassLoader();
     repl.setClassloaderUrls(new URL[]{});
 synchronized (interpreterGroup) {
-      interpreterGroup.add(new LazyOpenInterpreter(repl));
+      interpreterGroup.add(new ClassloaderInterpreter(repl,cl));
     }
+    logger.info("Instantiate interpreter {}",className);
     repl.setInterpreterGroup(interpreterGroup);
   }
  catch (  ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {

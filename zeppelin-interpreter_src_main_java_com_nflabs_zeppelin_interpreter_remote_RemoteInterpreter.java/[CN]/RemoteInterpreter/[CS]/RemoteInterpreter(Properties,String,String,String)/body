@@ -3,4 +3,5 @@
   this.className=className;
   this.interpreterRunner=interpreterRunner;
   this.interpreterPath=interpreterPath;
+  env=new HashMap<String,String>();
 }

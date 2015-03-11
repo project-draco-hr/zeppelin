@@ -1,15 +1,6 @@
 {
   init();
-  RemoteInterpreterProcess interpreterProcess=null;
-synchronized (interpreterGroupReference) {
-    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
-      interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
-    }
- else {
-      throw new InterpreterException("Unexpected error");
-    }
-  }
-  interpreterProcess.reference();
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   Client client=null;
   try {
     client=interpreterProcess.getClient();

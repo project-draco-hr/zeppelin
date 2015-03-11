@@ -1,0 +1,7 @@
+String jobId
+String jobName
+JobListener listener
+long progressUpdateIntervalMsec
+Interpreter interpreter
+String script
+InterpreterContext context

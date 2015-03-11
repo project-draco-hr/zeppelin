@@ -1,0 +1,7 @@
+{
+  this.jobName=jobName;
+  this.listener=listener;
+  this.progressUpdateIntervalMs=progressUpdateIntervalMs;
+  id=jobId;
+  setStatus(Status.READY);
+}

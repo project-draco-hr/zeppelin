@@ -1,14 +1,14 @@
 {
-  InterpreterGroup intpGroup=getInterpreterGroup();
-synchronized (intpGroup) {
-    for (    Interpreter intp : getInterpreterGroup()) {
-      if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
-        Interpreter p=intp;
-        while (p instanceof WrappedInterpreter) {
-          p=((WrappedInterpreter)p).getInnerInterpreter();
+  for (  Interpreter intp : getInterpreterGroup()) {
+    if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
+      Interpreter p=intp;
+      while (p instanceof WrappedInterpreter) {
+        if (p instanceof LazyOpenInterpreter) {
+          p.open();
         }
-        return (SparkInterpreter)p;
+        p=((WrappedInterpreter)p).getInnerInterpreter();
       }
+      return (SparkInterpreter)p;
     }
   }
   return null;

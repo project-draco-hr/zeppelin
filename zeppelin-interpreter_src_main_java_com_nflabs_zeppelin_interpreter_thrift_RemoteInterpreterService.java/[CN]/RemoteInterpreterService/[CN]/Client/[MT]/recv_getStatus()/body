@@ -1,0 +1,8 @@
+{
+  getStatus_result result=new getStatus_result();
+  receiveBase(result,"getStatus");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"getStatus failed: unknown result");
+}

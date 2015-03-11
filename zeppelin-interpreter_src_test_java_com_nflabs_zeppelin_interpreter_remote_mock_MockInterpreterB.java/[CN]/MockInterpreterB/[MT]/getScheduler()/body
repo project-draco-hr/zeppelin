@@ -1,0 +1,9 @@
+{
+  InterpreterGroup interpreterGroup=getInterpreterGroup();
+  for (  Interpreter intp : interpreterGroup) {
+    if (intp.getClassName().equals(MockInterpreterA.class.getName())) {
+      return intp.getScheduler();
+    }
+  }
+  return null;
+}

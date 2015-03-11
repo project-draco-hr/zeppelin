@@ -1,0 +1,10 @@
+{
+synchronized (schedulers) {
+    if (schedulers.containsKey(name) == false) {
+      Scheduler s=new RemoteScheduler(name,executor,interpreterProcess,this,maxConcurrency);
+      schedulers.put(name,s);
+      executor.execute(s);
+    }
+    return schedulers.get(name);
+  }
+}

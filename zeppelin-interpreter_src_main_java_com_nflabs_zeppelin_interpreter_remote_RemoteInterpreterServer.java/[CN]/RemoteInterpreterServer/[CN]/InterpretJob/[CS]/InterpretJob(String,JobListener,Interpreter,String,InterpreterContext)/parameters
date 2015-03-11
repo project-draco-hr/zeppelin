@@ -1,5 +1,0 @@
-String jobName
-JobListener listener
-Interpreter interpreter
-String script
-InterpreterContext context

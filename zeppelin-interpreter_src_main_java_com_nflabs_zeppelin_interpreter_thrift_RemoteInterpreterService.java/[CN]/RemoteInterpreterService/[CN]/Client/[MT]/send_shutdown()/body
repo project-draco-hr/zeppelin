@@ -1,0 +1,4 @@
+{
+  shutdown_args args=new shutdown_args();
+  sendBase("shutdown",args);
+}

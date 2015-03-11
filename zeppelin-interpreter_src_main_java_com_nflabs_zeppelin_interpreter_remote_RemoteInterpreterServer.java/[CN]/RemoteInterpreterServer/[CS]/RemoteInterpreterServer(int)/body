@@ -1,0 +1,6 @@
+{
+  this.port=port;
+  processor=new RemoteInterpreterService.Processor<RemoteInterpreterServer>(this);
+  TServerSocket serverTransport=new TServerSocket(port);
+  server=new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
+}

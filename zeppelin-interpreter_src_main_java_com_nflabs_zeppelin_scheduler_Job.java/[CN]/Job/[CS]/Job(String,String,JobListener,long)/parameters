@@ -1,0 +1,4 @@
+String jobId
+String jobName
+JobListener listener
+long progressUpdateIntervalMs
