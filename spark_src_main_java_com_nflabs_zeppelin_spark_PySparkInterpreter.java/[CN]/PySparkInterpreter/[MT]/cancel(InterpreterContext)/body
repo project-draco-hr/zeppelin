@@ -1,3 +1,4 @@
 {
-  return;
+  SparkInterpreter sparkInterpreter=getSparkInterpreter();
+  sparkInterpreter.cancel(context);
 }

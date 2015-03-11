@@ -1,0 +1,4 @@
+{
+  this.statements=statements;
+  this.jobGroup=jobGroup;
+}

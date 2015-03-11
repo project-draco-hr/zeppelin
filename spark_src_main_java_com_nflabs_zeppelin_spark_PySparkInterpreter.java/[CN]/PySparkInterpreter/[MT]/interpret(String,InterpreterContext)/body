@@ -2,7 +2,9 @@
   if (!pythonscriptRunning) {
     return new InterpreterResult(Code.ERROR,"python process not running");
   }
-  _statements=st;
+  SparkInterpreter sparkInterpreter=getSparkInterpreter();
+  String jobGroup=sparkInterpreter.getJobGroup(context);
+  pythonInterpretRequest=new PythonInterpretRequest(st,jobGroup);
   statementOutput=null;
 synchronized (statementSetNotifier) {
     statementSetNotifier.notify();
