@@ -2,7 +2,6 @@
 synchronized (statementSetNotifier) {
     while (_statements == null) {
       try {
-        logger.info("wait for statements");
         statementSetNotifier.wait(1000);
       }
  catch (      InterruptedException e) {
