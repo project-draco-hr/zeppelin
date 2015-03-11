@@ -1,0 +1,28 @@
+{
+  if (interpreterProcess.referenceCount() <= 0) {
+    return null;
+  }
+  Client client;
+  try {
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e) {
+    logger.error("Can't get status information",e);
+    return Status.FINISHED;
+  }
+  try {
+    Status status=Status.valueOf(client.getStatus(job.getId()));
+    logger.info("getStatus from remote {}",status);
+    return status;
+  }
+ catch (  TException e) {
+    logger.error("Can't get status information",e);
+    return Status.FINISHED;
+  }
+catch (  Exception e) {
+    return Status.FINISHED;
+  }
+ finally {
+    interpreterProcess.releaseClient(client);
+  }
+}

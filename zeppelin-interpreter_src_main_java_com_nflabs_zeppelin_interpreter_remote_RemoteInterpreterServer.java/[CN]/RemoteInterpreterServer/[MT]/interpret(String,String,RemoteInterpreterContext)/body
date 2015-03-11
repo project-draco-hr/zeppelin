@@ -3,7 +3,7 @@
   InterpreterContext context=convert(interpreterContext);
   Scheduler scheduler=intp.getScheduler();
   InterpretJobListener jobListener=new InterpretJobListener();
-  InterpretJob job=new InterpretJob("remoteInterpretJob_" + System.currentTimeMillis(),jobListener,intp,st,context);
+  InterpretJob job=new InterpretJob(interpreterContext.getParagraphId(),"remoteInterpretJob_" + System.currentTimeMillis(),jobListener,JobProgressPoller.DEFAULT_INTERVAL_MSEC,intp,st,context);
   scheduler.submit(job);
   while (!job.isTerminated()) {
 synchronized (jobListener) {

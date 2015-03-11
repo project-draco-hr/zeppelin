@@ -1,0 +1,3 @@
+{
+  return new getStatus_result(this);
+}

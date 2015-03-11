@@ -1,0 +1,4 @@
+{
+  this.scheduler=scheduler;
+  this.job=job;
+}

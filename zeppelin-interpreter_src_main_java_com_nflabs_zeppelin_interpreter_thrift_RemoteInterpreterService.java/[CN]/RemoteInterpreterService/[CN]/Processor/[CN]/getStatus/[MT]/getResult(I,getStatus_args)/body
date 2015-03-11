@@ -1,0 +1,5 @@
+{
+  getStatus_result result=new getStatus_result();
+  result.success=iface.getStatus(args.jobId);
+  return result;
+}

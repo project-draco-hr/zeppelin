@@ -1,0 +1,12 @@
+{
+switch (field) {
+case JOB_ID:
+    if (value == null) {
+      unsetJobId();
+    }
+ else {
+      setJobId((String)value);
+    }
+  break;
+}
+}

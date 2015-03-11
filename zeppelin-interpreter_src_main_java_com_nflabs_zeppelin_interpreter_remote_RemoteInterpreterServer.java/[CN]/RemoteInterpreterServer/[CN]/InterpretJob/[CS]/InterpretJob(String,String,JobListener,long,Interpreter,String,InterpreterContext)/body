@@ -1,0 +1,6 @@
+{
+  super(jobId,jobName,listener,progressUpdateIntervalMsec);
+  this.interpreter=interpreter;
+  this.script=script;
+  this.context=context;
+}
