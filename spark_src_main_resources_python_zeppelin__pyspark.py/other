@@ -41,6 +41,8 @@ while True:
         for s in stmts:
             if ((s == None) or (len(s.strip()) == 0)):
                 continue
+            if s.strip().startswith('#'):
+                continue
             if (single == None):
                 single = s
             else:
