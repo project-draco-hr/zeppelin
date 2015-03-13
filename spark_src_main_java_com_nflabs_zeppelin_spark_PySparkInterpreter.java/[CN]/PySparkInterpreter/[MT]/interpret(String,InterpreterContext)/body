@@ -15,7 +15,6 @@ synchronized (statementSetNotifier) {
 synchronized (statementFinishedNotifier) {
     while (statementOutput == null) {
       try {
-        logger.info("wait for output");
         statementFinishedNotifier.wait(1000);
       }
  catch (      InterruptedException e) {
