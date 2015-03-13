@@ -1,0 +1,33 @@
+{
+  FormType form=getFormType();
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  Client client=null;
+  try {
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e1) {
+    throw new InterpreterException(e1);
+  }
+  try {
+    GUI settings=context.getGui();
+    RemoteInterpreterResult remoteResult=client.interpret(className,st,convert(context));
+    Map<String,Object> remoteConfig=(Map<String,Object>)gson.fromJson(remoteResult.getConfig(),new TypeToken<Map<String,Object>>(){
+    }
+.getType());
+    context.getConfig().clear();
+    context.getConfig().putAll(remoteConfig);
+    if (form == FormType.NATIVE) {
+      GUI remoteGui=gson.fromJson(remoteResult.getGui(),GUI.class);
+      context.getGui().clear();
+      context.getGui().setParams(remoteGui.getParams());
+      context.getGui().setForms(remoteGui.getForms());
+    }
+    return convert(remoteResult);
+  }
+ catch (  TException e) {
+    throw new InterpreterException(e);
+  }
+ finally {
+    interpreterProcess.releaseClient(client);
+  }
+}

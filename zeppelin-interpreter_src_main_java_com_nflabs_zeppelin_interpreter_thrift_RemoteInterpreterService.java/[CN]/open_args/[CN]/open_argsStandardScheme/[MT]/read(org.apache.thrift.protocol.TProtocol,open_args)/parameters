@@ -1,0 +1,2 @@
+org.apache.thrift.protocol.TProtocol iprot
+open_args struct

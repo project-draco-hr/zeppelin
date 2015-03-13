@@ -1,0 +1,13 @@
+{
+  RemoteInterpreterProcess rip=new RemoteInterpreterProcess("../bin/interpreter.sh","nonexists",new HashMap<String,String>());
+  rip.reference();
+  assertEquals(0,rip.getNumActiveClient());
+  assertEquals(0,rip.getNumIdleClient());
+  Client client=rip.getClient();
+  assertEquals(1,rip.getNumActiveClient());
+  assertEquals(0,rip.getNumIdleClient());
+  rip.releaseClient(client);
+  assertEquals(0,rip.getNumActiveClient());
+  assertEquals(1,rip.getNumIdleClient());
+  rip.dereference();
+}

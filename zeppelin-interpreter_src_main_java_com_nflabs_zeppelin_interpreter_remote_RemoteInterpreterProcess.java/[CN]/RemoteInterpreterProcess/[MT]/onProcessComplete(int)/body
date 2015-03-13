@@ -1,0 +1,4 @@
+{
+  logger.info("Interpreter process exited {}",exitValue);
+  running=false;
+}

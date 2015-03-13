@@ -1,0 +1,19 @@
+{
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  Client client=null;
+  try {
+    client=interpreterProcess.getClient();
+  }
+ catch (  Exception e1) {
+    throw new InterpreterException(e1);
+  }
+  try {
+    client.cancel(className,convert(context));
+  }
+ catch (  TException e) {
+    throw new InterpreterException(e);
+  }
+ finally {
+    interpreterProcess.releaseClient(client);
+  }
+}

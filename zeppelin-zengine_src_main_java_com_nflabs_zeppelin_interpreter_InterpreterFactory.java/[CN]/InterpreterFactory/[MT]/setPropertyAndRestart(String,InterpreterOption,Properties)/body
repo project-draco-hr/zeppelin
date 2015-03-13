@@ -1,0 +1,16 @@
+{
+synchronized (interpreterSettings) {
+    InterpreterSetting intpsetting=interpreterSettings.get(id);
+    if (intpsetting != null) {
+      intpsetting.getInterpreterGroup().close();
+      intpsetting.getInterpreterGroup().destroy();
+      intpsetting.setOption(option);
+      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.getGroup(),option,properties);
+      intpsetting.setInterpreterGroup(interpreterGroup);
+      saveToFile();
+    }
+ else {
+      throw new InterpreterException("Interpreter setting id " + id + " not found");
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+switch (field) {
+case CLASS_NAME:
+    if (value == null) {
+      unsetClassName();
+    }
+ else {
+      setClassName((String)value);
+    }
+  break;
+case ST:
+if (value == null) {
+  unsetSt();
+}
+ else {
+  setSt((String)value);
+}
+break;
+case INTERPRETER_CONTEXT:
+if (value == null) {
+unsetInterpreterContext();
+}
+ else {
+setInterpreterContext((RemoteInterpreterContext)value);
+}
+break;
+}
+}

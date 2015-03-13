@@ -1,0 +1,8 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("cancel",org.apache.thrift.protocol.TMessageType.CALL,0));
+  cancel_args args=new cancel_args();
+  args.setClassName(className);
+  args.setInterpreterContext(interpreterContext);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

@@ -1,0 +1,9 @@
+{
+synchronized (interpreterSettings) {
+    InterpreterGroup interpreterGroup=createInterpreterGroup(groupName,option,properties);
+    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,option,interpreterGroup);
+    interpreterSettings.put(intpSetting.id(),intpSetting);
+    saveToFile();
+    return interpreterGroup;
+  }
+}

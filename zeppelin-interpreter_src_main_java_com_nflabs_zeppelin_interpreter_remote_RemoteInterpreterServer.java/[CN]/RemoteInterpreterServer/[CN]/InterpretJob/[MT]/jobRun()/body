@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=interpreter.interpret(script,context);
+  return result;
+}

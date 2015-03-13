@@ -1,4 +1,0 @@
-{
-  open();
-  intp.bindValue(name,o);
-}

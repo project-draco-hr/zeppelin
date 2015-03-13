@@ -1,0 +1,4 @@
+{
+  this.paragraphTitle=paragraphTitle;
+  return this;
+}

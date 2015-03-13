@@ -1,0 +1,8 @@
+{
+  if (server == null) {
+    return false;
+  }
+ else {
+    return server.isServing();
+  }
+}

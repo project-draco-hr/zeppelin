@@ -1,0 +1,5 @@
+String name
+ExecutorService executor
+RemoteInterpreterProcess interpreterProcess
+SchedulerListener listener
+int maxConcurrency

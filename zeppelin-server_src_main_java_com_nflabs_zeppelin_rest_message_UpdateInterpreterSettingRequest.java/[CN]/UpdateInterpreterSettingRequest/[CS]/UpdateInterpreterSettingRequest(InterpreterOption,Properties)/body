@@ -1,0 +1,5 @@
+{
+  super();
+  this.option=option;
+  this.properties=properties;
+}

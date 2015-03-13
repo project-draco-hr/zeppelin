@@ -1,0 +1,6 @@
+{
+  if (option == null) {
+    option=new InterpreterOption();
+  }
+  return option;
+}

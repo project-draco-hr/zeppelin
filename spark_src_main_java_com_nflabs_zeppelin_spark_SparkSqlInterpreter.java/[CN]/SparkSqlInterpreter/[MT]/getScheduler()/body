@@ -3,5 +3,16 @@
     int maxConcurrency=10;
     return SchedulerFactory.singleton().createOrGetParallelScheduler(SparkSqlInterpreter.class.getName() + this.hashCode(),maxConcurrency);
   }
-  return getSparkInterpreter().getScheduler();
+ else {
+    for (    Interpreter intp : getInterpreterGroup()) {
+      if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
+        Interpreter p=intp;
+        return p.getScheduler();
+      }
+ else {
+        continue;
+      }
+    }
+    throw new InterpreterException("Can't find SparkInterpreter");
+  }
 }

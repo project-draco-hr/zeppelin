@@ -1,0 +1,8 @@
+{
+  interpret_result result=new interpret_result();
+  receiveBase(result,"interpret");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"interpret failed: unknown result");
+}

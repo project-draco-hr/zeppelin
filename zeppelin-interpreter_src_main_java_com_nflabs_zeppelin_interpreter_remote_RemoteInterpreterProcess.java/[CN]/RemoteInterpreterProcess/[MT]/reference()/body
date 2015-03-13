@@ -1,0 +1,46 @@
+{
+synchronized (referenceCount) {
+    if (executor == null) {
+      try {
+        port=RemoteInterpreterUtils.findRandomAvailablePortOnAllLocalInterfaces();
+      }
+ catch (      IOException e1) {
+        throw new InterpreterException(e1);
+      }
+      CommandLine cmdLine=CommandLine.parse(interpreterRunner);
+      cmdLine.addArgument("-d",false);
+      cmdLine.addArgument(interpreterDir,false);
+      cmdLine.addArgument("-p",false);
+      cmdLine.addArgument(Integer.toString(port),false);
+      executor=new DefaultExecutor();
+      watchdog=new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT);
+      executor.setWatchdog(watchdog);
+      running=true;
+      try {
+        Map procEnv=EnvironmentUtils.getProcEnvironment();
+        procEnv.putAll(env);
+        logger.info("Run interpreter process {}",cmdLine);
+        executor.execute(cmdLine,procEnv,this);
+      }
+ catch (      IOException e) {
+        running=false;
+        throw new InterpreterException(e);
+      }
+      long startTime=System.currentTimeMillis();
+      while (System.currentTimeMillis() - startTime < 5 * 1000) {
+        if (RemoteInterpreterUtils.checkIfRemoteEndpointAccessible("localhost",port)) {
+          break;
+        }
+ else {
+          try {
+            Thread.sleep(500);
+          }
+ catch (          InterruptedException e) {
+          }
+        }
+      }
+      clientPool=new GenericObjectPool<Client>(new ClientFactory("localhost",port));
+    }
+    return referenceCount.incrementAndGet();
+  }
+}

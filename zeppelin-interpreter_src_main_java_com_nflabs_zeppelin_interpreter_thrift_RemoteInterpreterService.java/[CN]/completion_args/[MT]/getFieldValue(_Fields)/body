@@ -1,0 +1,11 @@
+{
+switch (field) {
+case CLASS_NAME:
+    return getClassName();
+case BUF:
+  return getBuf();
+case CURSOR:
+return Integer.valueOf(getCursor());
+}
+throw new IllegalStateException();
+}

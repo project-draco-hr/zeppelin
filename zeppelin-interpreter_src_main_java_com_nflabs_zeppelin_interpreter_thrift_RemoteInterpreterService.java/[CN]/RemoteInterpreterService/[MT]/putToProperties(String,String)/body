@@ -1,0 +1,6 @@
+{
+  if (this.properties == null) {
+    this.properties=new HashMap<String,String>();
+  }
+  this.properties.put(key,val);
+}

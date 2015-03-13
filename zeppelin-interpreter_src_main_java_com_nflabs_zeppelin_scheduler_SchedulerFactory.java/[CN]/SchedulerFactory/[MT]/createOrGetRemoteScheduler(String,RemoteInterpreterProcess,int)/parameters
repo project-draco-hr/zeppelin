@@ -1,0 +1,3 @@
+String name
+RemoteInterpreterProcess interpreterProcess
+int maxConcurrency

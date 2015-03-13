@@ -1,0 +1,8 @@
+{
+  if (clientPool == null) {
+    return 0;
+  }
+ else {
+    return clientPool.getNumActive();
+  }
+}

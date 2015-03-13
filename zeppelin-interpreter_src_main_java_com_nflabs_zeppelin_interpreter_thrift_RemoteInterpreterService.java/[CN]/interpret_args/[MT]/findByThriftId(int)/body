@@ -1,0 +1,12 @@
+{
+switch (fieldId) {
+case 1:
+    return CLASS_NAME;
+case 2:
+  return ST;
+case 3:
+return INTERPRETER_CONTEXT;
+default :
+return null;
+}
+}

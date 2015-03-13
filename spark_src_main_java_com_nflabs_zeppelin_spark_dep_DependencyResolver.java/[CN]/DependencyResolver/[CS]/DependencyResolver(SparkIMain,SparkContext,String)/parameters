@@ -1,0 +1,3 @@
+SparkIMain intp
+SparkContext sc
+String localRepoPath

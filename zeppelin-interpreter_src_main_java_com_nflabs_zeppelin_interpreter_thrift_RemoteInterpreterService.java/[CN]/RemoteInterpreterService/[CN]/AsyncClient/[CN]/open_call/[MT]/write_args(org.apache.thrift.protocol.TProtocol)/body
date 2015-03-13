@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("open",org.apache.thrift.protocol.TMessageType.CALL,0));
+  open_args args=new open_args();
+  args.setClassName(className);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

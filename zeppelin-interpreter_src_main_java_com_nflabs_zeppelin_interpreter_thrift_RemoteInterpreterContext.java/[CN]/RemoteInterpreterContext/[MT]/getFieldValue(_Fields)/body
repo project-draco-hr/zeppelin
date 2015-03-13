@@ -1,0 +1,15 @@
+{
+switch (field) {
+case PARAGRAPH_ID:
+    return getParagraphId();
+case PARAGRAPH_TITLE:
+  return getParagraphTitle();
+case PARAGRAPH_TEXT:
+return getParagraphText();
+case CONFIG:
+return getConfig();
+case GUI:
+return getGui();
+}
+throw new IllegalStateException();
+}

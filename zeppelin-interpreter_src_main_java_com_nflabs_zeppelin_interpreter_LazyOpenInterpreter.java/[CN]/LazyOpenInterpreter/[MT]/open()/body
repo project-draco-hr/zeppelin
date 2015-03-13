@@ -1,0 +1,11 @@
+{
+  if (opened == true) {
+    return;
+  }
+synchronized (intp) {
+    if (opened == false) {
+      intp.open();
+      opened=true;
+    }
+  }
+}

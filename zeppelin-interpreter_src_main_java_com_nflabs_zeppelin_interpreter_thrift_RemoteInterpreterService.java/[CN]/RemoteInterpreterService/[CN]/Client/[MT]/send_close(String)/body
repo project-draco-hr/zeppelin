@@ -1,0 +1,5 @@
+{
+  close_args args=new close_args();
+  args.setClassName(className);
+  sendBase("close",args);
+}

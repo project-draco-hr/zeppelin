@@ -7,5 +7,5 @@
     repl=new SparkInterpreter(p);
     repl.open();
   }
-  context=new InterpreterContext(new Paragraph(null,null));
+  context=new InterpreterContext("id","title","text",new HashMap<String,Object>(),new GUI());
 }

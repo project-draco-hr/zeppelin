@@ -1,0 +1,6 @@
+{
+  if (job.getStatus() == after) {
+    return;
+  }
+  job.setStatus(after);
+}

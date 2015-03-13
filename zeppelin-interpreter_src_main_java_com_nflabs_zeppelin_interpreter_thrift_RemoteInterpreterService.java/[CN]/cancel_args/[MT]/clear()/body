@@ -1,0 +1,4 @@
+{
+  this.className=null;
+  this.interpreterContext=null;
+}

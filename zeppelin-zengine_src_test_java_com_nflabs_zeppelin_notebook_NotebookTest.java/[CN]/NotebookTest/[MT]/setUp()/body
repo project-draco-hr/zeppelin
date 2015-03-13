@@ -11,6 +11,6 @@
   this.schedulerFactory=new SchedulerFactory();
   MockInterpreter1.register("mock1","com.nflabs.zeppelin.interpreter.mock.MockInterpreter1");
   MockInterpreter2.register("mock2","com.nflabs.zeppelin.interpreter.mock.MockInterpreter2");
-  factory=new InterpreterFactory(conf);
+  factory=new InterpreterFactory(conf,new InterpreterOption(false));
   notebook=new Notebook(conf,schedulerFactory,factory,this);
 }

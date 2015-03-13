@@ -1,0 +1,5 @@
+{
+  close_result result=new close_result();
+  receiveBase(result,"close");
+  return;
+}

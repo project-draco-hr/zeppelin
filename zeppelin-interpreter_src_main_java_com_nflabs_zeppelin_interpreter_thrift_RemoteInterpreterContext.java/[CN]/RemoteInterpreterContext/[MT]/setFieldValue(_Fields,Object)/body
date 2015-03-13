@@ -1,0 +1,44 @@
+{
+switch (field) {
+case PARAGRAPH_ID:
+    if (value == null) {
+      unsetParagraphId();
+    }
+ else {
+      setParagraphId((String)value);
+    }
+  break;
+case PARAGRAPH_TITLE:
+if (value == null) {
+  unsetParagraphTitle();
+}
+ else {
+  setParagraphTitle((String)value);
+}
+break;
+case PARAGRAPH_TEXT:
+if (value == null) {
+unsetParagraphText();
+}
+ else {
+setParagraphText((String)value);
+}
+break;
+case CONFIG:
+if (value == null) {
+unsetConfig();
+}
+ else {
+setConfig((String)value);
+}
+break;
+case GUI:
+if (value == null) {
+unsetGui();
+}
+ else {
+setGui((String)value);
+}
+break;
+}
+}

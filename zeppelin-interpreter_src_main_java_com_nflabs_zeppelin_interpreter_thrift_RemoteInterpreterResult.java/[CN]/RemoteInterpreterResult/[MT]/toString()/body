@@ -1,0 +1,50 @@
+{
+  StringBuilder sb=new StringBuilder("RemoteInterpreterResult(");
+  boolean first=true;
+  sb.append("code:");
+  if (this.code == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.code);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("type:");
+  if (this.type == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.type);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("msg:");
+  if (this.msg == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.msg);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("config:");
+  if (this.config == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.config);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("gui:");
+  if (this.gui == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.gui);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

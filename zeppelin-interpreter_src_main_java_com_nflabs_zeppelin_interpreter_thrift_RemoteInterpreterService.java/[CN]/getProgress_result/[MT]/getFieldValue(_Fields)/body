@@ -1,0 +1,7 @@
+{
+switch (field) {
+case SUCCESS:
+    return Integer.valueOf(getSuccess());
+}
+throw new IllegalStateException();
+}

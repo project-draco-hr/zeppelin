@@ -1,0 +1,12 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case CLASS_NAME:
+    return isSetClassName();
+case INTERPRETER_CONTEXT:
+  return isSetInterpreterContext();
+}
+throw new IllegalStateException();
+}

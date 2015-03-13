@@ -1,8 +1,0 @@
-{
-synchronized (this) {
-    if (opened == true) {
-      intp.close();
-      opened=false;
-    }
-  }
-}

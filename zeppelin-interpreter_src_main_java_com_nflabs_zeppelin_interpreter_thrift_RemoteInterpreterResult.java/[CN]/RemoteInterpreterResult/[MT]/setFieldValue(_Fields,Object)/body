@@ -1,0 +1,44 @@
+{
+switch (field) {
+case CODE:
+    if (value == null) {
+      unsetCode();
+    }
+ else {
+      setCode((String)value);
+    }
+  break;
+case TYPE:
+if (value == null) {
+  unsetType();
+}
+ else {
+  setType((String)value);
+}
+break;
+case MSG:
+if (value == null) {
+unsetMsg();
+}
+ else {
+setMsg((String)value);
+}
+break;
+case CONFIG:
+if (value == null) {
+unsetConfig();
+}
+ else {
+setConfig((String)value);
+}
+break;
+case GUI:
+if (value == null) {
+unsetGui();
+}
+ else {
+setGui((String)value);
+}
+break;
+}
+}

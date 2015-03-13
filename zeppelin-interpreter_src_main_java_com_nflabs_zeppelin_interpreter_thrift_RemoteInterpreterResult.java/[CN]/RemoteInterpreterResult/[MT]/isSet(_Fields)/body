@@ -1,0 +1,18 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case CODE:
+    return isSetCode();
+case TYPE:
+  return isSetType();
+case MSG:
+return isSetMsg();
+case CONFIG:
+return isSetConfig();
+case GUI:
+return isSetGui();
+}
+throw new IllegalStateException();
+}

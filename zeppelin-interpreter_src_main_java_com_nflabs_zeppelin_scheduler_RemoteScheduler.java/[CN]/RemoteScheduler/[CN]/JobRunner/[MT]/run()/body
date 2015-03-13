@@ -1,0 +1,28 @@
+{
+  if (job.isAborted()) {
+    job.setStatus(Status.ABORT);
+    job.aborted=false;
+synchronized (queue) {
+      running.remove(job);
+      queue.notify();
+    }
+    return;
+  }
+  JobStatusPoller jobStatusPoller=new JobStatusPoller(1500,100,500,job,this);
+  logger.info("*********** Start job status poller");
+  jobStatusPoller.start();
+  if (listener != null) {
+    listener.jobStarted(scheduler,job);
+  }
+  job.run();
+  jobStatusPoller.shutdown();
+  job.setStatus(jobStatusPoller.getStatus());
+  if (listener != null) {
+    listener.jobFinished(scheduler,job);
+  }
+  job.aborted=false;
+synchronized (queue) {
+    running.remove(job);
+    queue.notify();
+  }
+}

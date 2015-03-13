@@ -1,0 +1,5 @@
+{
+  if (that == null)   return false;
+  if (that instanceof getFormType_args)   return this.equals((getFormType_args)that);
+  return false;
+}

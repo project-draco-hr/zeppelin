@@ -1,0 +1,5 @@
+{
+  if (other.isSetJobId()) {
+    this.jobId=other.jobId;
+  }
+}

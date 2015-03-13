@@ -1,0 +1,15 @@
+{
+switch (field) {
+case CODE:
+    return getCode();
+case TYPE:
+  return getType();
+case MSG:
+return getMsg();
+case CONFIG:
+return getConfig();
+case GUI:
+return getGui();
+}
+throw new IllegalStateException();
+}

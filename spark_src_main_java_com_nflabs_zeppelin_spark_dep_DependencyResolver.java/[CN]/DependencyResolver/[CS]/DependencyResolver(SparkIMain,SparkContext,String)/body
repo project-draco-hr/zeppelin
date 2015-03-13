@@ -1,0 +1,8 @@
+{
+  this.intp=intp;
+  this.global=intp.global();
+  this.sc=sc;
+  session=Booter.newRepositorySystemSession(system,localRepoPath);
+  repos.add(Booter.newCentralRepository());
+  repos.add(new RemoteRepository("local","default","file://" + System.getProperty("user.home") + "/.m2/repository"));
+}

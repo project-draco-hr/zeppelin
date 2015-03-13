@@ -1,0 +1,20 @@
+{
+switch (field) {
+case CLASS_NAME:
+    if (value == null) {
+      unsetClassName();
+    }
+ else {
+      setClassName((String)value);
+    }
+  break;
+case PROPERTIES:
+if (value == null) {
+  unsetProperties();
+}
+ else {
+  setProperties((Map<String,String>)value);
+}
+break;
+}
+}

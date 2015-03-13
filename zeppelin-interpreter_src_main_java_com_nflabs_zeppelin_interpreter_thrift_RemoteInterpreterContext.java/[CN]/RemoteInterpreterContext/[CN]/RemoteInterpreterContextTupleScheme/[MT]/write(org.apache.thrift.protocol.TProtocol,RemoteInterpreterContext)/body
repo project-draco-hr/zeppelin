@@ -1,0 +1,35 @@
+{
+  TTupleProtocol oprot=(TTupleProtocol)prot;
+  BitSet optionals=new BitSet();
+  if (struct.isSetParagraphId()) {
+    optionals.set(0);
+  }
+  if (struct.isSetParagraphTitle()) {
+    optionals.set(1);
+  }
+  if (struct.isSetParagraphText()) {
+    optionals.set(2);
+  }
+  if (struct.isSetConfig()) {
+    optionals.set(3);
+  }
+  if (struct.isSetGui()) {
+    optionals.set(4);
+  }
+  oprot.writeBitSet(optionals,5);
+  if (struct.isSetParagraphId()) {
+    oprot.writeString(struct.paragraphId);
+  }
+  if (struct.isSetParagraphTitle()) {
+    oprot.writeString(struct.paragraphTitle);
+  }
+  if (struct.isSetParagraphText()) {
+    oprot.writeString(struct.paragraphText);
+  }
+  if (struct.isSetConfig()) {
+    oprot.writeString(struct.config);
+  }
+  if (struct.isSetGui()) {
+    oprot.writeString(struct.gui);
+  }
+}

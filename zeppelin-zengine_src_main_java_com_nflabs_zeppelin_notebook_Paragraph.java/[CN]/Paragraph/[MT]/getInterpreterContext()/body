@@ -1,0 +1,4 @@
+{
+  InterpreterContext interpreterContext=new InterpreterContext(getId(),this.getTitle(),this.getText(),this.getConfig(),this.settings);
+  return interpreterContext;
+}

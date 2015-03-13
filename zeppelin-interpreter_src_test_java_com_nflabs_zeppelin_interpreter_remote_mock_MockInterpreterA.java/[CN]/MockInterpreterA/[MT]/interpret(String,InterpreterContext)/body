@@ -1,0 +1,9 @@
+{
+  try {
+    Thread.sleep(Long.parseLong(st));
+  }
+ catch (  NumberFormatException|InterruptedException e) {
+    throw new InterpreterException(e);
+  }
+  return new InterpreterResult(Code.SUCCESS,st);
+}

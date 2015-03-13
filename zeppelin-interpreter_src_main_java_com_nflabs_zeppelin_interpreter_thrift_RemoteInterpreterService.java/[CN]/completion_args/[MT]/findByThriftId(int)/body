@@ -1,0 +1,12 @@
+{
+switch (fieldId) {
+case 1:
+    return CLASS_NAME;
+case 2:
+  return BUF;
+case 3:
+return CURSOR;
+default :
+return null;
+}
+}

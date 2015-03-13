@@ -1,0 +1,6 @@
+{
+  checkReady();
+  interpret_call method_call=new interpret_call(className,st,interpreterContext,resultHandler,this,___protocolFactory,___transport);
+  this.___currentMethod=method_call;
+  ___manager.call(method_call);
+}

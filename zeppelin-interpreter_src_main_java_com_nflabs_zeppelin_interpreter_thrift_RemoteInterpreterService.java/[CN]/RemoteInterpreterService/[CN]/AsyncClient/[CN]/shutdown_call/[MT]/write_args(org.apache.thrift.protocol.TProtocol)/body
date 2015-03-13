@@ -1,0 +1,6 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("shutdown",org.apache.thrift.protocol.TMessageType.CALL,0));
+  shutdown_args args=new shutdown_args();
+  args.write(prot);
+  prot.writeMessageEnd();
+}

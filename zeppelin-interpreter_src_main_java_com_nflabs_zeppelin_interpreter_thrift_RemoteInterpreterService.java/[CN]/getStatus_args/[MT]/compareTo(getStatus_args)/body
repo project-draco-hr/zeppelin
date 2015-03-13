@@ -1,0 +1,18 @@
+{
+  if (!getClass().equals(other.getClass())) {
+    return getClass().getName().compareTo(other.getClass().getName());
+  }
+  int lastComparison=0;
+  getStatus_args typedOther=(getStatus_args)other;
+  lastComparison=Boolean.valueOf(isSetJobId()).compareTo(typedOther.isSetJobId());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetJobId()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.jobId,typedOther.jobId);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
+  return 0;
+}

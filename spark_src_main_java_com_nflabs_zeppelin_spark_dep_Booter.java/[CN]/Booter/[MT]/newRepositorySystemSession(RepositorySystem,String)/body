@@ -1,0 +1,14 @@
+{
+  MavenRepositorySystemSession session=new MavenRepositorySystemSession();
+  String home=System.getenv("ZEPPELIN_HOME");
+  if (home == null) {
+    home=System.getProperty("zeppelin.home");
+  }
+  if (home == null) {
+    home="..";
+  }
+  String path=home + "/" + localRepoPath;
+  LocalRepository localRepo=new LocalRepository(new File(path).getAbsolutePath());
+  session.setLocalRepositoryManager(system.newLocalRepositoryManager(localRepo));
+  return session;
+}

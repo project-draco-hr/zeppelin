@@ -1,0 +1,5 @@
+{
+  if (that == null)   return false;
+  if (that instanceof createInterpreter_args)   return this.equals((createInterpreter_args)that);
+  return false;
+}

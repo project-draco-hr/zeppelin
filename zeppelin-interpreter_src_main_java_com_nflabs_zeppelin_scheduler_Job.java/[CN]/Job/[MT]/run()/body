@@ -1,0 +1,31 @@
+{
+  JobProgressPoller progressUpdator=null;
+  try {
+    progressUpdator=new JobProgressPoller(this,progressUpdateIntervalMs);
+    progressUpdator.start();
+    dateStarted=new Date();
+    result=jobRun();
+    this.exception=null;
+    errorMessage=null;
+    dateFinished=new Date();
+    progressUpdator.terminate();
+  }
+ catch (  NullPointerException e) {
+    logger().error("Job failed",e);
+    progressUpdator.terminate();
+    this.exception=e;
+    result=e.getMessage();
+    errorMessage=getStack(e);
+    dateFinished=new Date();
+  }
+catch (  Throwable e) {
+    logger().error("Job failed",e);
+    progressUpdator.terminate();
+    this.exception=e;
+    result=e.getMessage();
+    errorMessage=getStack(e);
+    dateFinished=new Date();
+  }
+ finally {
+  }
+}

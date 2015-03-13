@@ -1,0 +1,57 @@
+{
+  logger.info("Create repl {} from {}",className,dirName);
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  try {
+    URLClassLoader ccl=cleanCl.get(dirName);
+    if (ccl == null) {
+      ccl=URLClassLoader.newInstance(new URL[]{},oldcl);
+    }
+    boolean separateCL=true;
+    try {
+      Class cls=this.getClass().forName(className);
+      if (cls != null) {
+        separateCL=false;
+      }
+    }
+ catch (    Exception e) {
+    }
+    URLClassLoader cl;
+    if (separateCL == true) {
+      cl=URLClassLoader.newInstance(new URL[]{},ccl);
+    }
+ else {
+      cl=ccl;
+    }
+    Thread.currentThread().setContextClassLoader(cl);
+    Class<Interpreter> replClass=(Class<Interpreter>)cl.loadClass(className);
+    Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
+    Interpreter repl=constructor.newInstance(property);
+    repl.setClassloaderUrls(ccl.getURLs());
+    LazyOpenInterpreter intp=new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl));
+    return intp;
+  }
+ catch (  SecurityException e) {
+    throw new InterpreterException(e);
+  }
+catch (  NoSuchMethodException e) {
+    throw new InterpreterException(e);
+  }
+catch (  IllegalArgumentException e) {
+    throw new InterpreterException(e);
+  }
+catch (  InstantiationException e) {
+    throw new InterpreterException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new InterpreterException(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new InterpreterException(e);
+  }
+catch (  ClassNotFoundException e) {
+    throw new InterpreterException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+}

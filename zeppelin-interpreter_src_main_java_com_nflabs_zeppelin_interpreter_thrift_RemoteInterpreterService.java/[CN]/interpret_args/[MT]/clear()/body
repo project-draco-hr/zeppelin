@@ -1,0 +1,5 @@
+{
+  this.className=null;
+  this.st=null;
+  this.interpreterContext=null;
+}

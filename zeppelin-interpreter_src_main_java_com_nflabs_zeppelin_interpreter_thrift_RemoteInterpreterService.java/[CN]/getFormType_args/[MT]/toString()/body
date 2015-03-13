@@ -1,0 +1,14 @@
+{
+  StringBuilder sb=new StringBuilder("getFormType_args(");
+  boolean first=true;
+  sb.append("className:");
+  if (this.className == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.className);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

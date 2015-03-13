@@ -1,0 +1,11 @@
+{
+switch (field) {
+case CLASS_NAME:
+    return getClassName();
+case ST:
+  return getSt();
+case INTERPRETER_CONTEXT:
+return getInterpreterContext();
+}
+throw new IllegalStateException();
+}

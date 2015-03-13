@@ -1,0 +1,10 @@
+{
+synchronized (interpreterGroup) {
+    for (    Interpreter inp : interpreterGroup) {
+      if (inp.getClassName().equals(className)) {
+        return inp;
+      }
+    }
+  }
+  throw new TException(new InterpreterException("Interpreter instance " + className + " not found"));
+}

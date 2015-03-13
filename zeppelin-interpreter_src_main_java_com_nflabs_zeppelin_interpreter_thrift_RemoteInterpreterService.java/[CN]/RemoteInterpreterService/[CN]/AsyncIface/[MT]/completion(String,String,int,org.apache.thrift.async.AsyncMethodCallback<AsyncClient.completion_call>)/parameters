@@ -1,0 +1,4 @@
+String className
+String buf
+int cursor
+org.apache.thrift.async.AsyncMethodCallback<AsyncClient.completion_call> resultHandler

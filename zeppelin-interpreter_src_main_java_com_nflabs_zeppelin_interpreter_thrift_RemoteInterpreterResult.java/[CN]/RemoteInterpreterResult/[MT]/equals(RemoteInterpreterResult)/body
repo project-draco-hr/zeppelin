@@ -1,0 +1,34 @@
+{
+  if (that == null)   return false;
+  boolean this_present_code=true && this.isSetCode();
+  boolean that_present_code=true && that.isSetCode();
+  if (this_present_code || that_present_code) {
+    if (!(this_present_code && that_present_code))     return false;
+    if (!this.code.equals(that.code))     return false;
+  }
+  boolean this_present_type=true && this.isSetType();
+  boolean that_present_type=true && that.isSetType();
+  if (this_present_type || that_present_type) {
+    if (!(this_present_type && that_present_type))     return false;
+    if (!this.type.equals(that.type))     return false;
+  }
+  boolean this_present_msg=true && this.isSetMsg();
+  boolean that_present_msg=true && that.isSetMsg();
+  if (this_present_msg || that_present_msg) {
+    if (!(this_present_msg && that_present_msg))     return false;
+    if (!this.msg.equals(that.msg))     return false;
+  }
+  boolean this_present_config=true && this.isSetConfig();
+  boolean that_present_config=true && that.isSetConfig();
+  if (this_present_config || that_present_config) {
+    if (!(this_present_config && that_present_config))     return false;
+    if (!this.config.equals(that.config))     return false;
+  }
+  boolean this_present_gui=true && this.isSetGui();
+  boolean that_present_gui=true && that.isSetGui();
+  if (this_present_gui || that_present_gui) {
+    if (!(this_present_gui && that_present_gui))     return false;
+    if (!this.gui.equals(that.gui))     return false;
+  }
+  return true;
+}

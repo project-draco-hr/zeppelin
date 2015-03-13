@@ -1,0 +1,5 @@
+{
+  interpret_result result=new interpret_result();
+  result.success=iface.interpret(args.className,args.st,args.interpreterContext);
+  return result;
+}

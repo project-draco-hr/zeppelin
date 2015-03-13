@@ -1,0 +1,8 @@
+{
+  getFormType_result result=new getFormType_result();
+  receiveBase(result,"getFormType");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"getFormType failed: unknown result");
+}

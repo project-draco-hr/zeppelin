@@ -1,0 +1,5 @@
+{
+  this.cursor=cursor;
+  setCursorIsSet(true);
+  return this;
+}

@@ -1,0 +1,25 @@
+{
+  Interpreter intp=getInterpreter(className);
+  InterpreterContext context=convert(interpreterContext);
+  Scheduler scheduler=intp.getScheduler();
+  InterpretJobListener jobListener=new InterpretJobListener();
+  InterpretJob job=new InterpretJob(interpreterContext.getParagraphId(),"remoteInterpretJob_" + System.currentTimeMillis(),jobListener,JobProgressPoller.DEFAULT_INTERVAL_MSEC,intp,st,context);
+  scheduler.submit(job);
+  while (!job.isTerminated()) {
+synchronized (jobListener) {
+      try {
+        jobListener.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+  if (job.getStatus() == Status.ERROR) {
+    throw new TException(job.getException());
+  }
+ else {
+    if (intp.getFormType() == FormType.NATIVE) {
+    }
+    return convert((InterpreterResult)job.getReturn(),context.getConfig(),context.getGui());
+  }
+}

@@ -1,0 +1,2 @@
+org.apache.thrift.protocol.TProtocol prot
+createInterpreter_args struct

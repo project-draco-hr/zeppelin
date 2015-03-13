@@ -1,0 +1,8 @@
+{
+synchronized (intp) {
+    if (opened == true) {
+      intp.close();
+      opened=false;
+    }
+  }
+}
