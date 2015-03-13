@@ -2,7 +2,24 @@
   System.err.println("------ Create new SparkContext " + getProperty("master") + " -------");
   String execUri=System.getenv("SPARK_EXECUTOR_URI");
   String[] jars=SparkILoop.getAddedJars();
-  SparkConf conf=new SparkConf().setMaster(getProperty("master")).setAppName(getProperty("spark.app.name")).setJars(jars).set("spark.repl.class.uri",interpreter.intp().classServer().uri());
+  String classServerUri=null;
+  try {
+    Method classServer=interpreter.intp().getClass().getMethod("classServer");
+    HttpServer httpServer=(HttpServer)classServer.invoke(interpreter.intp());
+    classServerUri=httpServer.uri();
+  }
+ catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+  }
+  if (classServerUri == null) {
+    try {
+      Method classServer=interpreter.intp().getClass().getMethod("classServerUri");
+      classServerUri=(String)classServer.invoke(interpreter.intp());
+    }
+ catch (    NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+      throw new InterpreterException(e);
+    }
+  }
+  SparkConf conf=new SparkConf().setMaster(getProperty("master")).setAppName(getProperty("spark.app.name")).setJars(jars).set("spark.repl.class.uri",classServerUri);
   if (execUri != null) {
     conf.set("spark.executor.uri",execUri);
   }
