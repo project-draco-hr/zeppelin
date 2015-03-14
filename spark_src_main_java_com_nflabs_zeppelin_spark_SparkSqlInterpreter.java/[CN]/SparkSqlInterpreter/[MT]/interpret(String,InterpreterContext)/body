@@ -1,11 +1,6 @@
 {
   SQLContext sqlc=null;
-  if (useHiveContext()) {
-    sqlc=getSparkInterpreter().getHiveContext();
-  }
- else {
-    sqlc=getSparkInterpreter().getSQLContext();
-  }
+  sqlc=getSparkInterpreter().getSQLContext();
   SparkContext sc=sqlc.sparkContext();
   if (concurrentSQL()) {
     sc.setLocalProperty("spark.scheduler.pool","fair");

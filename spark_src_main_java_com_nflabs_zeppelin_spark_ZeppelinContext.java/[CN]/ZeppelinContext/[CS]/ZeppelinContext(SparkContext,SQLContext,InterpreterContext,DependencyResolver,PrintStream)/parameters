@@ -1,6 +1,5 @@
 SparkContext sc
 SQLContext sql
-HiveContext hiveContext
 InterpreterContext interpreterContext
 DependencyResolver dep
 PrintStream printStream
