@@ -1,3 +1,0 @@
-{
-  getResultCode(intp.bindValue(name,o));
-}

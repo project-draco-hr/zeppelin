@@ -1,6 +1,0 @@
-{
-  if (hiveContext == null) {
-    hiveContext=new HiveContext(getSparkContext());
-  }
-  return hiveContext;
-}
