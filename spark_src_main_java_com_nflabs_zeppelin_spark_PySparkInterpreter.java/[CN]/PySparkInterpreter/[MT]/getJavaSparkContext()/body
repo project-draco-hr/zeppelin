@@ -1,0 +1,9 @@
+{
+  SparkInterpreter intp=getSparkInterpreter();
+  if (intp == null) {
+    return null;
+  }
+ else {
+    return new JavaSparkContext(intp.getSparkContext());
+  }
+}

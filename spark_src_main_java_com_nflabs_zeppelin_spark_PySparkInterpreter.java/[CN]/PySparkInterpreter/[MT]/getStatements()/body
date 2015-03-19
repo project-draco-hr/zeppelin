@@ -1,0 +1,14 @@
+{
+synchronized (statementSetNotifier) {
+    while (pythonInterpretRequest == null) {
+      try {
+        statementSetNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+    PythonInterpretRequest req=pythonInterpretRequest;
+    pythonInterpretRequest=null;
+    return req;
+  }
+}

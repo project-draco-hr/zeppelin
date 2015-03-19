@@ -1,0 +1,4 @@
+{
+  pythonscriptRunning=false;
+  logger.info("python process terminated. exit code " + exitValue);
+}

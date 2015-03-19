@@ -1,0 +1,9 @@
+{
+  JavaSparkContext sc=getJavaSparkContext();
+  if (sc == null) {
+    return null;
+  }
+ else {
+    return getJavaSparkContext().getConf();
+  }
+}

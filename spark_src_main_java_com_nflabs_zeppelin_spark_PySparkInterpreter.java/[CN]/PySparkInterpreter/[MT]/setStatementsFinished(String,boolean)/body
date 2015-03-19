@@ -1,0 +1,7 @@
+{
+synchronized (statementFinishedNotifier) {
+    statementOutput=out;
+    statementError=error;
+    statementFinishedNotifier.notify();
+  }
+}

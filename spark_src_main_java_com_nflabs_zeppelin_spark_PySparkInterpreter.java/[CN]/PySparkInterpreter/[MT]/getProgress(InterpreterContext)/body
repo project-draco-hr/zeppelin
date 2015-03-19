@@ -1,0 +1,4 @@
+{
+  SparkInterpreter sparkInterpreter=getSparkInterpreter();
+  return sparkInterpreter.getProgress(context);
+}

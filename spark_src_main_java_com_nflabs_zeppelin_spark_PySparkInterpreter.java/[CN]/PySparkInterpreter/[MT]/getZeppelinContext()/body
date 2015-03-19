@@ -1,0 +1,9 @@
+{
+  SparkInterpreter sparkIntp=getSparkInterpreter();
+  if (sparkIntp != null) {
+    return getSparkInterpreter().getZeppelinContext();
+  }
+ else {
+    return null;
+  }
+}

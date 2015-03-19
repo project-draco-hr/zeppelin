@@ -1,0 +1,16 @@
+{
+  ClassLoader classLoader=getClass().getClassLoader();
+  File out=new File(scriptPath);
+  if (out.exists() && out.isDirectory()) {
+    throw new InterpreterException("Can't create python script " + out.getAbsolutePath());
+  }
+  try {
+    FileOutputStream outStream=new FileOutputStream(out);
+    IOUtils.copy(classLoader.getResourceAsStream("python/zeppelin_pyspark.py"),outStream);
+    outStream.close();
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+  logger.info("File {} created",scriptPath);
+}

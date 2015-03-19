@@ -1,0 +1,4 @@
+{
+  executor.getWatchdog().destroyProcess();
+  gatewayServer.shutdown();
+}

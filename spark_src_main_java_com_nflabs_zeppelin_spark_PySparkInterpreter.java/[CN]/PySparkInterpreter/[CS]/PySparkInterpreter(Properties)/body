@@ -1,0 +1,4 @@
+{
+  super(property);
+  scriptPath=System.getProperty("java.io.tmpdir") + "/zeppelin_pyspark.py";
+}
