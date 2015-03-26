@@ -1,0 +1,6 @@
+def fix_version_from_branch(branch, versions):
+    if (branch == 'master'):
+        return versions[0]
+    else:
+        branch_ver = branch.replace('branch-', '')
+        return filter((lambda x: x.name.startswith(branch_ver)), versions)[(-1)]

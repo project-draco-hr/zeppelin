@@ -1,0 +1,25 @@
+def cherry_pick(pr_num, merge_hash, default_branch):
+    pick_ref = raw_input(('Enter a branch name [%s]: ' % default_branch))
+    if (pick_ref == ''):
+        pick_ref = default_branch
+    pick_branch_name = ('%s_PICK_PR_%s_%s' % (BRANCH_PREFIX, pr_num, pick_ref.upper()))
+    run_cmd(('git fetch %s %s:%s' % (PUSH_REMOTE_NAME, pick_ref, pick_branch_name)))
+    run_cmd(('git checkout %s' % pick_branch_name))
+    try:
+        run_cmd(('git cherry-pick -sx %s' % merge_hash))
+    except Exception as e:
+        msg = ('Error cherry-picking: %s\nWould you like to manually fix-up this merge?' % e)
+        continue_maybe(msg)
+        msg = 'Okay, please fix any conflicts and finish the cherry-pick. Finished?'
+        continue_maybe(msg)
+    continue_maybe(('Pick complete (local ref %s). Push to %s?' % (pick_branch_name, PUSH_REMOTE_NAME)))
+    try:
+        run_cmd(('git push %s %s:%s' % (PUSH_REMOTE_NAME, pick_branch_name, pick_ref)))
+    except Exception as e:
+        clean_up()
+        fail(('Exception while pushing: %s' % e))
+    pick_hash = run_cmd(('git rev-parse %s' % pick_branch_name))[:8]
+    clean_up()
+    print ('Pull request #%s picked into %s!' % (pr_num, pick_ref))
+    print ('Pick hash: %s' % pick_hash)
+    return pick_ref

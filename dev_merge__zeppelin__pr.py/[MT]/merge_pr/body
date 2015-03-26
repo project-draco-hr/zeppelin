@@ -1,0 +1,46 @@
+def merge_pr(pr_num, target_ref):
+    pr_branch_name = ('%s_MERGE_PR_%s' % (BRANCH_PREFIX, pr_num))
+    target_branch_name = ('%s_MERGE_PR_%s_%s' % (BRANCH_PREFIX, pr_num, target_ref.upper()))
+    run_cmd(('git fetch %s pull/%s/head:%s' % (PR_REMOTE_NAME, pr_num, pr_branch_name)))
+    run_cmd(('git fetch %s %s:%s' % (PUSH_REMOTE_NAME, target_ref, target_branch_name)))
+    run_cmd(('git checkout %s' % target_branch_name))
+    had_conflicts = False
+    try:
+        run_cmd(['git', 'merge', pr_branch_name, '--squash'])
+    except Exception as e:
+        msg = ('Error merging: %s\nWould you like to manually fix-up this merge?' % e)
+        continue_maybe(msg)
+        msg = "Okay, please fix any conflicts and 'git add' conflicting files... Finished?"
+        continue_maybe(msg)
+        had_conflicts = True
+    commit_authors = run_cmd(['git', 'log', ('HEAD..%s' % pr_branch_name), '--pretty=format:%an <%ae>']).split('\n')
+    commit_date = run_cmd(['git', 'log', ('%s' % pr_branch_name), '-1', '--pretty=format:%ad'])
+    distinct_authors = sorted(set(commit_authors), key=(lambda x: commit_authors.count(x)), reverse=True)
+    primary_author = distinct_authors[0]
+    commits = run_cmd(['git', 'log', ('HEAD..%s' % pr_branch_name), '--pretty=format:%h [%an] %s']).split('\n\n')
+    merge_message_flags = []
+    merge_message_flags += ['-m', title]
+    if (body is not None):
+        merge_message_flags += ['-m', body.replace('@', '')]
+    authors = '\n'.join([('Author: %s' % a) for a in distinct_authors])
+    merge_message_flags += ['-m', authors]
+    if had_conflicts:
+        committer_name = run_cmd('git config --get user.name').strip()
+        committer_email = run_cmd('git config --get user.email').strip()
+        message = ('This patch had conflicts when merged, resolved by\nCommitter: %s <%s>' % (committer_name, committer_email))
+        merge_message_flags += ['-m', message]
+    merge_message_flags += ['-m', ('Closes #%s from %s and squashes the following commits:' % (pr_num, pr_repo_desc))]
+    for c in commits:
+        merge_message_flags += ['-m', c]
+    run_cmd((['git', 'commit', ('--author="%s"' % primary_author), ('--date="%s"' % commit_date)] + merge_message_flags))
+    continue_maybe(('Merge complete (local ref %s). Push to %s?' % (target_branch_name, PUSH_REMOTE_NAME)))
+    try:
+        run_cmd(('git push %s %s:%s' % (PUSH_REMOTE_NAME, target_branch_name, target_ref)))
+    except Exception as e:
+        clean_up()
+        fail(('Exception while pushing: %s' % e))
+    merge_hash = run_cmd(('git rev-parse %s' % target_branch_name))[:8]
+    clean_up()
+    print ('Pull request #%s merged!' % pr_num)
+    print ('Merge hash: %s' % merge_hash)
+    return merge_hash

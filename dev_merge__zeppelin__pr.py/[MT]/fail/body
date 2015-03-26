@@ -1,0 +1,4 @@
+def fail(msg):
+    print msg
+    clean_up()
+    sys.exit((-1))
