@@ -1,0 +1,3 @@
+{
+  return val instanceof String && ((String)val).trim().isEmpty();
+}
