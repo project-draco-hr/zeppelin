@@ -1,0 +1,44 @@
+{
+  Properties p=new Properties();
+  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  intpGroup.add(intpA);
+  intpA.setInterpreterGroup(intpGroup);
+  intpA.open();
+  int concurrency=3;
+  final List<String> results=new LinkedList<String>();
+  Scheduler scheduler=intpA.getScheduler();
+  for (int i=0; i < concurrency; i++) {
+    final String jobId=Integer.toString(i);
+    scheduler.submit(new Job(jobId,Integer.toString(i),null,200){
+      @Override public int progress(){
+        return 0;
+      }
+      @Override public Map<String,Object> info(){
+        return null;
+      }
+      @Override protected Object jobRun() throws Throwable {
+        InterpreterResult ret=intpA.interpret(getJobName(),new InterpreterContext(jobId,"title","text",new HashMap<String,Object>(),new GUI()));
+synchronized (results) {
+          results.add(ret.message());
+          results.notify();
+        }
+        return null;
+      }
+      @Override protected boolean jobAbort(){
+        return false;
+      }
+    }
+);
+  }
+synchronized (results) {
+    while (results.size() != concurrency) {
+      results.wait(300);
+    }
+  }
+  int i=0;
+  for (  String result : results) {
+    assertEquals(Integer.toString(i++),result);
+  }
+  assertEquals(concurrency,i);
+  intpA.close();
+}

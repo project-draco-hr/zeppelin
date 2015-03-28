@@ -1,0 +1,13 @@
+{
+  if (terminate == true) {
+    if (lastStatus != Status.FINISHED && lastStatus != Status.ERROR && lastStatus != Status.ABORT) {
+      return Status.FINISHED;
+    }
+ else {
+      return (lastStatus == null) ? Status.FINISHED : lastStatus;
+    }
+  }
+ else {
+    return (lastStatus == null) ? Status.FINISHED : lastStatus;
+  }
+}

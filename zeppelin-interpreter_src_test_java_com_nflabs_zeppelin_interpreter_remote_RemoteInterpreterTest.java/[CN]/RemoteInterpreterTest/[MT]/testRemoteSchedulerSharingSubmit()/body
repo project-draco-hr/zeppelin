@@ -1,0 +1,54 @@
+{
+  Properties p=new Properties();
+  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  intpGroup.add(intpA);
+  intpA.setInterpreterGroup(intpGroup);
+  final RemoteInterpreter intpB=new RemoteInterpreter(p,MockInterpreterB.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  intpGroup.add(intpB);
+  intpB.setInterpreterGroup(intpGroup);
+  intpA.open();
+  intpB.open();
+  long start=System.currentTimeMillis();
+  Job jobA=new Job("jobA",null){
+    @Override public int progress(){
+      return 0;
+    }
+    @Override public Map<String,Object> info(){
+      return null;
+    }
+    @Override protected Object jobRun() throws Throwable {
+      return intpA.interpret("500",new InterpreterContext("jobA","title","text",new HashMap<String,Object>(),new GUI()));
+    }
+    @Override protected boolean jobAbort(){
+      return false;
+    }
+  }
+;
+  intpA.getScheduler().submit(jobA);
+  Job jobB=new Job("jobB",null){
+    @Override public int progress(){
+      return 0;
+    }
+    @Override public Map<String,Object> info(){
+      return null;
+    }
+    @Override protected Object jobRun() throws Throwable {
+      return intpB.interpret("500",new InterpreterContext("jobB","title","text",new HashMap<String,Object>(),new GUI()));
+    }
+    @Override protected boolean jobAbort(){
+      return false;
+    }
+  }
+;
+  intpB.getScheduler().submit(jobB);
+  while (jobA.getStatus() != Status.FINISHED || jobB.getStatus() != Status.FINISHED) {
+    Thread.sleep(100);
+  }
+  long end=System.currentTimeMillis();
+  assertTrue(end - start >= 1000);
+  assertEquals("1000",((InterpreterResult)jobB.getReturn()).message());
+  intpA.close();
+  intpB.close();
+  RemoteInterpreterProcess process=intpA.getInterpreterProcess();
+  assertFalse(process.isRunning());
+}

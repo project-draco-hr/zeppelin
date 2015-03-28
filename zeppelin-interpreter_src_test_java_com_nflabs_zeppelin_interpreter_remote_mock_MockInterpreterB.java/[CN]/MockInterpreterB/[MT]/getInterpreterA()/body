@@ -1,0 +1,13 @@
+{
+  InterpreterGroup interpreterGroup=getInterpreterGroup();
+  for (  Interpreter intp : interpreterGroup) {
+    if (intp.getClassName().equals(MockInterpreterA.class.getName())) {
+      Interpreter p=intp;
+      while (p instanceof WrappedInterpreter) {
+        p=((WrappedInterpreter)p).getInnerInterpreter();
+      }
+      return (MockInterpreterA)p;
+    }
+  }
+  return null;
+}

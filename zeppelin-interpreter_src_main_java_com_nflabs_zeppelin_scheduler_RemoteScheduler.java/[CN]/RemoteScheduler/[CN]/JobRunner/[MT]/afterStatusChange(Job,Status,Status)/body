@@ -1,6 +1,31 @@
 {
-  if (job.getStatus() == after) {
+  if (after == null) {
+    if (jobExecuted) {
+      jobSubmittedRemotely=true;
+      if (job.isAborted()) {
+        job.setStatus(Status.ABORT);
+      }
+ else       if (job.getException() != null) {
+        job.setStatus(Status.ERROR);
+      }
+ else {
+        job.setStatus(Status.FINISHED);
+      }
+    }
     return;
   }
-  job.setStatus(after);
+  if (jobExecuted == false) {
+    if (after == Status.FINISHED || after == Status.ABORT || after == Status.ERROR) {
+      return;
+    }
+ else     if (after == Status.RUNNING) {
+      jobSubmittedRemotely=true;
+    }
+  }
+ else {
+    jobSubmittedRemotely=true;
+  }
+  if (job.getStatus() != after) {
+    job.setStatus(after);
+  }
 }

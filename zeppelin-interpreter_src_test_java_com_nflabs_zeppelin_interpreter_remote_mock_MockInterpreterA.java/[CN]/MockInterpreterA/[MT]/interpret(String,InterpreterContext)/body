@@ -1,6 +1,7 @@
 {
   try {
     Thread.sleep(Long.parseLong(st));
+    this.lastSt=st;
   }
  catch (  NumberFormatException|InterruptedException e) {
     throw new InterpreterException(e);

@@ -9,13 +9,20 @@ synchronized (queue) {
     return;
   }
   JobStatusPoller jobStatusPoller=new JobStatusPoller(1500,100,500,job,this);
-  logger.info("*********** Start job status poller");
   jobStatusPoller.start();
   if (listener != null) {
     listener.jobStarted(scheduler,job);
   }
   job.run();
+  jobExecuted=true;
+  jobSubmittedRemotely=true;
   jobStatusPoller.shutdown();
+  try {
+    jobStatusPoller.join();
+  }
+ catch (  InterruptedException e) {
+    logger.error("JobStatusPoller interrupted",e);
+  }
   job.setStatus(jobStatusPoller.getStatus());
   if (listener != null) {
     listener.jobFinished(scheduler,job);

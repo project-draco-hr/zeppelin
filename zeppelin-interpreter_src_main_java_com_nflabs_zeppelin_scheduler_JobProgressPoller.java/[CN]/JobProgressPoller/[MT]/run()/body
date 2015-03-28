@@ -9,7 +9,9 @@
     JobListener listener=job.getListener();
     if (listener != null) {
       try {
-        listener.onProgressUpdate(job,job.progress());
+        if (job.isRunning()) {
+          listener.onProgressUpdate(job,job.progress());
+        }
       }
  catch (      Exception e) {
         logger.error("Can not get or update progress",e);

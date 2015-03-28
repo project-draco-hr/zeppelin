@@ -1,4 +1,7 @@
 {
+  if (initialized == true) {
+    return;
+  }
   RemoteInterpreterProcess interpreterProcess=null;
 synchronized (interpreterGroupReference) {
     if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
@@ -32,4 +35,5 @@ synchronized (interpreterProcess) {
       }
     }
   }
+  initialized=true;
 }

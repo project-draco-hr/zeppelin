@@ -1,2 +1,4 @@
 {
+  intpGroup.clone();
+  intpGroup.destroy();
 }

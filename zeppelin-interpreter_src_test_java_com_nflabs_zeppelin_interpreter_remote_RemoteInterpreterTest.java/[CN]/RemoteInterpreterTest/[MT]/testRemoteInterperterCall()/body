@@ -1,8 +1,5 @@
 {
   Properties p=new Properties();
-  InterpreterGroup intpGroup=new InterpreterGroup();
-  Map<String,String> env=new HashMap<String,String>();
-  env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
   RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);

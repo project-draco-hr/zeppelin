@@ -1,4 +1,6 @@
 {
   this.scheduler=scheduler;
   this.job=job;
+  jobExecuted=false;
+  jobSubmittedRemotely=false;
 }

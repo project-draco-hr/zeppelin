@@ -1,4 +1,5 @@
 {
   int maxConcurrency=10;
-  return SchedulerFactory.singleton().createOrGetRemoteScheduler("remoteinterpreter_" + this.hashCode(),getInterpreterProcess(),maxConcurrency);
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  return SchedulerFactory.singleton().createOrGetRemoteScheduler("remoteinterpreter_" + interpreterProcess.hashCode(),getInterpreterProcess(),maxConcurrency);
 }

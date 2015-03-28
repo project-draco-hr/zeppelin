@@ -20,10 +20,6 @@ synchronized (this) {
     if (newStatus == null) {
       continue;
     }
-    if (newStatus == Status.RUNNING) {
-      listener.afterStatusChange(job,null,newStatus);
-      break;
-    }
     if (newStatus != Status.READY && newStatus != Status.PENDING) {
       continue;
     }

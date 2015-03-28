@@ -8,7 +8,7 @@
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
   Scheduler scheduler=schedulerSvc.createOrGetRemoteScheduler("test",intpA.getInterpreterProcess(),10);
-  scheduler.submit(new Job("jobName",null){
+  Job job=new Job("jobId","jobName",null,200){
     @Override public int progress(){
       return 0;
     }
@@ -16,14 +16,24 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      intpA.interpret("500",new InterpreterContext("id","title","text",new HashMap<String,Object>(),new GUI()));
-      return "500";
+      intpA.interpret("1000",new InterpreterContext("jobId","title","text",new HashMap<String,Object>(),new GUI()));
+      return "1000";
     }
     @Override protected boolean jobAbort(){
       return false;
     }
   }
-);
+;
+  scheduler.submit(job);
+  while (job.isRunning() == false) {
+    Thread.sleep(100);
+  }
+  Thread.sleep(500);
+  assertEquals(0,scheduler.getJobsWaiting().size());
+  assertEquals(1,scheduler.getJobsRunning().size());
+  Thread.sleep(500);
+  assertEquals(0,scheduler.getJobsWaiting().size());
+  assertEquals(0,scheduler.getJobsRunning().size());
   intpA.close();
   schedulerSvc.removeScheduler("test");
 }

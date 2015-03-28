@@ -1,6 +1,6 @@
 {
   if (interpreterProcess.referenceCount() <= 0) {
-    return null;
+    return getLastStatus();
   }
   Client client;
   try {
@@ -8,19 +8,30 @@
   }
  catch (  Exception e) {
     logger.error("Can't get status information",e);
-    return Status.FINISHED;
+    lastStatus=Status.ERROR;
+    return Status.ERROR;
   }
   try {
-    Status status=Status.valueOf(client.getStatus(job.getId()));
-    logger.info("getStatus from remote {}",status);
+    String statusStr=client.getStatus(job.getId());
+    if ("Unknown".equals(statusStr)) {
+      Status status=getLastStatus();
+      listener.afterStatusChange(job,null,status);
+      return status;
+    }
+    Status status=Status.valueOf(statusStr);
+    lastStatus=status;
+    listener.afterStatusChange(job,null,status);
     return status;
   }
  catch (  TException e) {
     logger.error("Can't get status information",e);
-    return Status.FINISHED;
+    lastStatus=Status.ERROR;
+    return Status.ERROR;
   }
 catch (  Exception e) {
-    return Status.FINISHED;
+    logger.error("Unknown status",e);
+    lastStatus=Status.ERROR;
+    return Status.ERROR;
   }
  finally {
     interpreterProcess.releaseClient(client);

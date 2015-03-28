@@ -1,9 +1,15 @@
 {
+  MockInterpreterA intpA=getInterpreterA();
+  String intpASt=intpA.getLastStatement();
+  long timeToSleep=Long.parseLong(st);
+  if (intpASt != null) {
+    timeToSleep+=Long.parseLong(intpASt);
+  }
   try {
-    Thread.sleep(Long.parseLong(st));
+    Thread.sleep(timeToSleep);
   }
  catch (  NumberFormatException|InterruptedException e) {
     throw new InterpreterException(e);
   }
-  return new InterpreterResult(Code.SUCCESS,st);
+  return new InterpreterResult(Code.SUCCESS,Long.toString(timeToSleep));
 }
