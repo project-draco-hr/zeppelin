@@ -1,0 +1,21 @@
+{
+  logger.info("Jdbc open connection called!");
+  try {
+    String driverName="org.apache.hive.jdbc.HiveDriver";
+    Class.forName(driverName);
+  }
+ catch (  ClassNotFoundException e) {
+    logger.error("Can not open connection",e);
+    exceptionOnConnect=e;
+    return;
+  }
+  try {
+    jdbcConnection=getJdbcConnection();
+    exceptionOnConnect=null;
+    logger.info("Successfully created Jdbc connection");
+  }
+ catch (  SQLException e) {
+    logger.error("Cannot open connection",e);
+    exceptionOnConnect=e;
+  }
+}

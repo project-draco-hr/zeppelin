@@ -1,0 +1,2 @@
+int columnIndex
+Map<String,Class<?>> map

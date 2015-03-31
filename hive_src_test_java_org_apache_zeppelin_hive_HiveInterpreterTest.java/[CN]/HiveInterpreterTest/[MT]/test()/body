@@ -1,0 +1,9 @@
+{
+  HiveInterpreter t=new MockHiveInterpreter(new Properties());
+  t.open();
+  InterpreterResult result=t.interpret("select * from t",null);
+  assertEquals(result.type(),InterpreterResult.Type.TABLE);
+  result=t.interpret("explain select * from t",null);
+  assertEquals(result.type(),InterpreterResult.Type.TEXT);
+  t.close();
+}

@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetFIFOScheduler(HiveInterpreter.class.getName() + this.hashCode());
+}

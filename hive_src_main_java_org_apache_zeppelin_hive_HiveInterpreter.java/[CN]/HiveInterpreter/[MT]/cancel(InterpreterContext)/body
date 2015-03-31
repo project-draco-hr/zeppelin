@@ -1,0 +1,12 @@
+{
+  if (currentStatement != null) {
+    try {
+      currentStatement.cancel();
+    }
+ catch (    SQLException ex) {
+    }
+ finally {
+      currentStatement=null;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+String columnLabel
+Reader reader
+int length
