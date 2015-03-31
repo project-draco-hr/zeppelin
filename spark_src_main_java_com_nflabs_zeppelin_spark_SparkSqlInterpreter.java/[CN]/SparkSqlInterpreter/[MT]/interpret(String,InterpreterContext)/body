@@ -19,7 +19,7 @@
  catch (  Exception e) {
     logger.error("Error",e);
     sc.clearJobGroup();
-    return new InterpreterResult(Code.ERROR,e.getMessage());
+    return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
   }
   String msg=null;
   Method queryExecution;
