@@ -3,7 +3,7 @@
   port=findRandomOpenPortOnAllLocalInterfaces();
   gatewayServer=new GatewayServer(this,port);
   gatewayServer.start();
-  CommandLine cmd=CommandLine.parse("python");
+  CommandLine cmd=CommandLine.parse(getProperty("zeppelin.pyspark.python"));
   cmd.addArgument(scriptPath,false);
   cmd.addArgument(Integer.toString(port),false);
   executor=new DefaultExecutor();
