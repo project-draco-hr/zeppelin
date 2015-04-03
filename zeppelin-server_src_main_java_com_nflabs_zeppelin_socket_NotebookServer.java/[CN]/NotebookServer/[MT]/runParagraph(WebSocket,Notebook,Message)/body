@@ -18,5 +18,14 @@
   }
   note.persist();
   broadcastNote(note);
-  note.run(paragraphId);
+  try {
+    note.run(paragraphId);
+  }
+ catch (  Exception ex) {
+    LOG.error("Exception from run",ex);
+    if (p != null) {
+      p.setReturn(new InterpreterResult(InterpreterResult.Code.ERROR,ex.getMessage()),ex);
+      p.setStatus(Status.ERROR);
+    }
+  }
 }

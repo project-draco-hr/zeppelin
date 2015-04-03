@@ -3,5 +3,8 @@
   p.setNoteReplLoader(replLoader);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
   Interpreter intp=replLoader.get(p.getRequiredReplName());
+  if (intp == null) {
+    throw new InterpreterException("Interpreter " + p.getRequiredReplName() + " not found");
+  }
   intp.getScheduler().submit(p);
 }

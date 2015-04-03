@@ -5,5 +5,9 @@
       return cause.getMessage();
     }
   }
-  return ex.getMessage();
+  String message=ex.getMessage();
+  if (message == null || message == "") {
+    return ex.toString();
+  }
+  return message;
 }

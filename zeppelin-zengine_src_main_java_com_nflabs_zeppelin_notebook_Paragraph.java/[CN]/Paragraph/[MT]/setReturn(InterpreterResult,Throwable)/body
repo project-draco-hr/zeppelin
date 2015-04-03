@@ -1,0 +1,4 @@
+{
+  setResult(value);
+  setException(t);
+}
