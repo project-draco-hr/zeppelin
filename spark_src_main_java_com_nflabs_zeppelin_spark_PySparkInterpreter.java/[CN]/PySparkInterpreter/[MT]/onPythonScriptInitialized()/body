@@ -1,0 +1,6 @@
+{
+synchronized (pythonScriptInitializeNotifier) {
+    pythonScriptInitialized=true;
+    pythonScriptInitializeNotifier.notifyAll();
+  }
+}

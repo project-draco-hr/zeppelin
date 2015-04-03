@@ -1,6 +1,23 @@
 {
   if (!pythonscriptRunning) {
-    return new InterpreterResult(Code.ERROR,"python process not running");
+    return new InterpreterResult(Code.ERROR,"python process not running" + outputStream.toString());
+  }
+  outputStream.reset();
+synchronized (pythonScriptInitializeNotifier) {
+    long startTime=System.currentTimeMillis();
+    while (pythonScriptInitialized == false && pythonscriptRunning && System.currentTimeMillis() - startTime < 10 * 1000) {
+      try {
+        pythonScriptInitializeNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+  if (pythonscriptRunning == false) {
+    return new InterpreterResult(Code.ERROR,"failed to start pyspark" + outputStream.toString());
+  }
+  if (pythonScriptInitialized == false) {
+    return new InterpreterResult(Code.ERROR,"pyspark is not responding " + outputStream.toString());
   }
   SparkInterpreter sparkInterpreter=getSparkInterpreter();
   if (!sparkInterpreter.getSparkContext().version().startsWith("1.2") && !sparkInterpreter.getSparkContext().version().startsWith("1.3")) {
