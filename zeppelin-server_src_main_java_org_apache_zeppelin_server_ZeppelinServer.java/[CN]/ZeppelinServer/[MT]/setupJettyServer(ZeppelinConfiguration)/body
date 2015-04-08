@@ -9,6 +9,7 @@
   int timeout=1000 * 30;
   connector.setMaxIdleTime(timeout);
   connector.setSoLingerTime(-1);
+  connector.setHost(conf.getServerAddress());
   connector.setPort(conf.getServerPort());
   final Server server=new Server();
   server.addConnector(connector);

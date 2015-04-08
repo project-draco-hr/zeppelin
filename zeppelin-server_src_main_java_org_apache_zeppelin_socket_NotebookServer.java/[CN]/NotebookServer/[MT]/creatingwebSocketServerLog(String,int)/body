@@ -1,0 +1,3 @@
+{
+  LOG.info("Create zeppelin websocket on {}:{}",address,port);
+}
