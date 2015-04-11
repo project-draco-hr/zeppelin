@@ -1,0 +1,4 @@
+SparkContext sc
+InterpreterContext interpreterContext
+Object rdd
+int maxResult

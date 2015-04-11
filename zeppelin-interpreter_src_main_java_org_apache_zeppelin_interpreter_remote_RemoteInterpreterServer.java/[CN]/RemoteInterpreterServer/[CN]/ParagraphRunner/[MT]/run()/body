@@ -1,0 +1,4 @@
+{
+  Gson gson=new Gson();
+  server.sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.RUN_INTERPRETER_CONTEXT_RUNNER,gson.toJson(this)));
+}

@@ -1,6 +1,7 @@
 {
-  RemoteInterpreterProcess rip=new RemoteInterpreterProcess("../bin/interpreter.sh","nonexists",new HashMap<String,String>());
-  rip.reference();
+  InterpreterGroup intpGroup=new InterpreterGroup();
+  RemoteInterpreterProcess rip=new RemoteInterpreterProcess("../bin/interpreter.sh","nonexists",new HashMap<String,String>(),new InterpreterContextRunnerPool());
+  rip.reference(intpGroup);
   assertEquals(0,rip.getNumActiveClient());
   assertEquals(0,rip.getNumIdleClient());
   Client client=rip.getClient();

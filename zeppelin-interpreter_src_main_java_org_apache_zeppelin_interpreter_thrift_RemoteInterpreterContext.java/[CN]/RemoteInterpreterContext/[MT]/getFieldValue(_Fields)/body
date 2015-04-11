@@ -10,6 +10,8 @@ case CONFIG:
 return getConfig();
 case GUI:
 return getGui();
+case RUNNERS:
+return getRunners();
 }
 throw new IllegalStateException();
 }

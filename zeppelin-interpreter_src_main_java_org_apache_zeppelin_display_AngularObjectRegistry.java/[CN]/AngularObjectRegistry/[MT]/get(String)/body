@@ -1,0 +1,5 @@
+{
+synchronized (registry) {
+    return registry.get(name);
+  }
+}

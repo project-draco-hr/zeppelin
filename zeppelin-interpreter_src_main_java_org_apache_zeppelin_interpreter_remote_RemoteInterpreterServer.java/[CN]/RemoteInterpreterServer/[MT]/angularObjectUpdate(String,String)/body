@@ -1,0 +1,27 @@
+{
+  AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
+  AngularObject ao=registry.get(name);
+  if (ao == null) {
+    logger.error("Angular object {} not exists",name);
+    return;
+  }
+  if (object == null) {
+    ao.set(null,false);
+    return;
+  }
+  Object oldObject=ao.get();
+  if (oldObject != null) {
+    Object value;
+    try {
+      value=gson.fromJson(object,oldObject.getClass());
+      ao.set(value,false);
+      return;
+    }
+ catch (    Exception e) {
+    }
+  }
+  Map<String,Object> value=gson.fromJson(object,new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  ao.set(value,false);
+}

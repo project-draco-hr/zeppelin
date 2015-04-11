@@ -45,6 +45,15 @@
     sb.append(this.gui);
   }
   first=false;
+  if (!first)   sb.append(", ");
+  sb.append("runners:");
+  if (this.runners == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.runners);
+  }
+  first=false;
   sb.append(")");
   return sb.toString();
 }

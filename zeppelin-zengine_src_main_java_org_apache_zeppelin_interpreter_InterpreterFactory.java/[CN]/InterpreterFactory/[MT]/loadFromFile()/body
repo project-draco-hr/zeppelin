@@ -22,8 +22,9 @@
   for (  String k : info.interpreterSettings.keySet()) {
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
-    InterpreterGroup interpreterGroup=createInterpreterGroup(setting.getGroup(),setting.getOption(),setting.getProperties());
-    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getOption(),interpreterGroup);
+    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getOption());
+    InterpreterGroup interpreterGroup=createInterpreterGroup(setting.id(),setting.getGroup(),setting.getOption(),setting.getProperties());
+    intpSetting.setInterpreterGroup(interpreterGroup);
     interpreterSettings.put(k,intpSetting);
   }
   this.interpreterBindings=info.interpreterBindings;

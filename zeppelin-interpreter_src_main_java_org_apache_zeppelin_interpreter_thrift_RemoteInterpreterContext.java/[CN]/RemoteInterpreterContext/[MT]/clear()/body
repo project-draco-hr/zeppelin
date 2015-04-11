@@ -4,4 +4,5 @@
   this.paragraphText=null;
   this.config=null;
   this.gui=null;
+  this.runners=null;
 }

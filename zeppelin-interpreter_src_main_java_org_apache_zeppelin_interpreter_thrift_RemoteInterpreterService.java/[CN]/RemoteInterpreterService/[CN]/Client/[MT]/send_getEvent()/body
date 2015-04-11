@@ -1,0 +1,4 @@
+{
+  getEvent_args args=new getEvent_args();
+  sendBase("getEvent",args);
+}

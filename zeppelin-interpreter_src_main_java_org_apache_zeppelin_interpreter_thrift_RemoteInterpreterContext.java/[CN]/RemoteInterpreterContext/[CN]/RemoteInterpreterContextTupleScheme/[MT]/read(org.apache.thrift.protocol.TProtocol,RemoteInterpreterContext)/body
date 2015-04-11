@@ -1,6 +1,6 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(5);
+  BitSet incoming=iprot.readBitSet(6);
   if (incoming.get(0)) {
     struct.paragraphId=iprot.readString();
     struct.setParagraphIdIsSet(true);
@@ -20,5 +20,9 @@
   if (incoming.get(4)) {
     struct.gui=iprot.readString();
     struct.setGuiIsSet(true);
+  }
+  if (incoming.get(5)) {
+    struct.runners=iprot.readString();
+    struct.setRunnersIsSet(true);
   }
 }

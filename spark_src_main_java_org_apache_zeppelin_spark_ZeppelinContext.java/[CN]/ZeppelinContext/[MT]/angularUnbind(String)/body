@@ -1,0 +1,4 @@
+{
+  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
+  registry.remove(name);
+}

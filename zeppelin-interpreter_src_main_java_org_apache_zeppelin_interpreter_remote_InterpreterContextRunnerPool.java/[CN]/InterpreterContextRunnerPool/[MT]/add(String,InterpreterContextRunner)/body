@@ -1,0 +1,8 @@
+{
+synchronized (interpreterContextRunners) {
+    if (!interpreterContextRunners.containsKey(noteId)) {
+      interpreterContextRunners.put(noteId,new LinkedList<InterpreterContextRunner>());
+    }
+    interpreterContextRunners.get(noteId).add(runner);
+  }
+}

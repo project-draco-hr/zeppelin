@@ -11,7 +11,7 @@ synchronized (interpreterGroupReference) {
       throw new InterpreterException("Unexpected error");
     }
   }
-  int rc=interpreterProcess.reference();
+  int rc=interpreterProcess.reference(getInterpreterGroup());
 synchronized (interpreterProcess) {
     if (rc == 1) {
       Client client=null;

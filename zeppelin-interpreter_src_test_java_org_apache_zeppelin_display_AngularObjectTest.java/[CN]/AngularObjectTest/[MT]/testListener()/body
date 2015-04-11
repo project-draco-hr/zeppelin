@@ -1,0 +1,18 @@
+{
+  final AtomicInteger updated=new AtomicInteger(0);
+  AngularObject ao=new AngularObject("name","value",new AngularObjectListener(){
+    @Override public void updated(    AngularObject updatedObject){
+      updated.incrementAndGet();
+    }
+  }
+);
+  assertEquals(0,updated.get());
+  ao.set("newValue");
+  assertEquals(1,updated.get());
+  assertEquals("newValue",ao.get());
+  ao.set("newValue");
+  assertEquals(2,updated.get());
+  ao.set("newnewValue",false);
+  assertEquals(2,updated.get());
+  assertEquals("newnewValue",ao.get());
+}

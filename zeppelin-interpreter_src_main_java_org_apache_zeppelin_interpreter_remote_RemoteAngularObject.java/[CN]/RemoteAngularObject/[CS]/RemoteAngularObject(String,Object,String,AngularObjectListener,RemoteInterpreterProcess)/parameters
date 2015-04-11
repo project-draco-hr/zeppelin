@@ -1,0 +1,5 @@
+String name
+Object o
+String interpreterGroupId
+AngularObjectListener listener
+RemoteInterpreterProcess remoteInterpreterProcess

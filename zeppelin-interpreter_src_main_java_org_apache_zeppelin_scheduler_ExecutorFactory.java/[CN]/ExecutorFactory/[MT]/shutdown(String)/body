@@ -1,0 +1,9 @@
+{
+synchronized (executor) {
+    if (executor.containsKey(name)) {
+      ExecutorService e=executor.get(name);
+      e.shutdown();
+      executor.remove(name);
+    }
+  }
+}

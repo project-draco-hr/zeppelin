@@ -1,0 +1,20 @@
+{
+switch (field) {
+case TYPE:
+    if (value == null) {
+      unsetType();
+    }
+ else {
+      setType((RemoteInterpreterEventType)value);
+    }
+  break;
+case DATA:
+if (value == null) {
+  unsetData();
+}
+ else {
+  setData((String)value);
+}
+break;
+}
+}

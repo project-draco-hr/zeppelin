@@ -1,8 +1,0 @@
-{
-  super(generateId(),listener);
-  this.replLoader=replLoader;
-  title=null;
-  text=null;
-  settings=new GUI();
-  config=new HashMap<String,Object>();
-}

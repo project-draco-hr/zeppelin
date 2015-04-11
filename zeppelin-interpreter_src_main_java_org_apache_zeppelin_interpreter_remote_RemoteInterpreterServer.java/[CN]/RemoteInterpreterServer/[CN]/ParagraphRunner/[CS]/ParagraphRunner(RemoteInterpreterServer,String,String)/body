@@ -1,0 +1,4 @@
+{
+  super(noteId,paragraphId);
+  this.server=server;
+}

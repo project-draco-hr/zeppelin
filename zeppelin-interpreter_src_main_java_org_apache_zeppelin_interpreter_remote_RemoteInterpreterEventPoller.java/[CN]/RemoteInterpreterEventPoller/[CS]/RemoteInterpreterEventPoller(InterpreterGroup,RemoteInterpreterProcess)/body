@@ -1,0 +1,5 @@
+{
+  this.interpreterGroup=interpreterGroup;
+  this.interpreterProcess=interpreterProcess;
+  shutdown=false;
+}

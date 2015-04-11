@@ -1,0 +1,5 @@
+{
+  angularObjectUpdate_result result=new angularObjectUpdate_result();
+  iface.angularObjectUpdate(args.name,args.object);
+  return result;
+}

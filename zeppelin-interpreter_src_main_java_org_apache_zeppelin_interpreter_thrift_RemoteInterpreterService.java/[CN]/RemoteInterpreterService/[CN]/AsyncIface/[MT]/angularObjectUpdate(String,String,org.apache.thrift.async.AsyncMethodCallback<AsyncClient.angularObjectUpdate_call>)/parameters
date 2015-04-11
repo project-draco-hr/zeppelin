@@ -1,0 +1,3 @@
+String name
+String object
+org.apache.thrift.async.AsyncMethodCallback<AsyncClient.angularObjectUpdate_call> resultHandler

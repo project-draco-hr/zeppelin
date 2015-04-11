@@ -1,5 +1,8 @@
 {
   this.port=port;
+  interpreterGroup=new InterpreterGroup();
+  angularObjectRegistry=new AngularObjectRegistry(interpreterGroup.getId(),this);
+  interpreterGroup.setAngularObjectRegistry(angularObjectRegistry);
   processor=new RemoteInterpreterService.Processor<RemoteInterpreterServer>(this);
   TServerSocket serverTransport=new TServerSocket(port);
   server=new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));

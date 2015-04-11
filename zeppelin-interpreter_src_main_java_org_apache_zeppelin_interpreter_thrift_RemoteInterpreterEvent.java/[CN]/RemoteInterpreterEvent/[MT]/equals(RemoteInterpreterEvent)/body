@@ -1,0 +1,16 @@
+{
+  if (that == null)   return false;
+  boolean this_present_type=true && this.isSetType();
+  boolean that_present_type=true && that.isSetType();
+  if (this_present_type || that_present_type) {
+    if (!(this_present_type && that_present_type))     return false;
+    if (!this.type.equals(that.type))     return false;
+  }
+  boolean this_present_data=true && this.isSetData();
+  boolean that_present_data=true && that.isSetData();
+  if (this_present_data || that_present_data) {
+    if (!(this_present_data && that_present_data))     return false;
+    if (!this.data.equals(that.data))     return false;
+  }
+  return true;
+}

@@ -1,0 +1,16 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.type != null) {
+    oprot.writeFieldBegin(TYPE_FIELD_DESC);
+    oprot.writeI32(struct.type.getValue());
+    oprot.writeFieldEnd();
+  }
+  if (struct.data != null) {
+    oprot.writeFieldBegin(DATA_FIELD_DESC);
+    oprot.writeString(struct.data);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

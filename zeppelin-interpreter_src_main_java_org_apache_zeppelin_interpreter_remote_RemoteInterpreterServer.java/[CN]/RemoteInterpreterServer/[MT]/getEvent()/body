@@ -1,0 +1,17 @@
+{
+synchronized (eventQueue) {
+    if (eventQueue.isEmpty()) {
+      try {
+        eventQueue.wait(1000);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+    if (eventQueue.isEmpty()) {
+      return new RemoteInterpreterEvent(RemoteInterpreterEventType.NO_OP,"");
+    }
+ else {
+      return eventQueue.remove(0);
+    }
+  }
+}

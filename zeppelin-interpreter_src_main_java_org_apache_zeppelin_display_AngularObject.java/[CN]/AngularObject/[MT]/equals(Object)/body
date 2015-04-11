@@ -1,0 +1,8 @@
+{
+  if (o instanceof AngularObject) {
+    return name.equals(((AngularObject)o).name);
+  }
+ else {
+    return false;
+  }
+}

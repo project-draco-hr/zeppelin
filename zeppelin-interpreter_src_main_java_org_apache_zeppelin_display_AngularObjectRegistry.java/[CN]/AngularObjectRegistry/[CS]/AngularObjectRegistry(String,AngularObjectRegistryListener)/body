@@ -1,0 +1,12 @@
+{
+  this.interpreterId=interpreterId;
+  this.listener=listener;
+  angularObjectListener=new AngularObjectListener(){
+    @Override public void updated(    AngularObject updatedObject){
+      if (listener != null) {
+        listener.onUpdate(interpreterId,updatedObject);
+      }
+    }
+  }
+;
+}

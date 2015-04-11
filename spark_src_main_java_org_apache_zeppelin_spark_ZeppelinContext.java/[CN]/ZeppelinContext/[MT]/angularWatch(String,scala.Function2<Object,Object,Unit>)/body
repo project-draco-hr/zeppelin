@@ -1,0 +1,9 @@
+{
+  AngularObjectWatcher w=new AngularObjectWatcher(getInterpreterContext()){
+    @Override public void watch(    Object oldObject,    Object newObject,    InterpreterContext context){
+      func.apply(newObject,newObject);
+    }
+  }
+;
+  angularWatch(name,w);
+}

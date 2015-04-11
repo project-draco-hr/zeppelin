@@ -54,5 +54,15 @@
       return lastComparison;
     }
   }
+  lastComparison=Boolean.valueOf(isSetRunners()).compareTo(typedOther.isSetRunners());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetRunners()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.runners,typedOther.runners);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   return 0;
 }

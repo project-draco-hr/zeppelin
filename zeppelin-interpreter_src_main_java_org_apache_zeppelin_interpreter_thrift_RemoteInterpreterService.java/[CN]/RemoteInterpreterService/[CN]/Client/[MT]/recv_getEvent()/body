@@ -1,0 +1,8 @@
+{
+  getEvent_result result=new getEvent_result();
+  receiveBase(result,"getEvent");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"getEvent failed: unknown result");
+}

@@ -26,6 +26,11 @@
     oprot.writeString(struct.gui);
     oprot.writeFieldEnd();
   }
+  if (struct.runners != null) {
+    oprot.writeFieldBegin(RUNNERS_FIELD_DESC);
+    oprot.writeString(struct.runners);
+    oprot.writeFieldEnd();
+  }
   oprot.writeFieldStop();
   oprot.writeStructEnd();
 }

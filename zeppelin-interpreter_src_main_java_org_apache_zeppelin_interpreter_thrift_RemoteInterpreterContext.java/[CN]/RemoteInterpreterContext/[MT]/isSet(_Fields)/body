@@ -13,6 +13,8 @@ case CONFIG:
 return isSetConfig();
 case GUI:
 return isSetGui();
+case RUNNERS:
+return isSetRunners();
 }
 throw new IllegalStateException();
 }

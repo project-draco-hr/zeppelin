@@ -1,0 +1,7 @@
+{
+synchronized (executor) {
+    for (    String name : executor.keySet()) {
+      shutdown(name);
+    }
+  }
+}

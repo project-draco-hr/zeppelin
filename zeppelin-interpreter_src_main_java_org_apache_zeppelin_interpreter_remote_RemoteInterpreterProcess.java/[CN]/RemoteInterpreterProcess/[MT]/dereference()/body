@@ -3,6 +3,7 @@ synchronized (referenceCount) {
     int r=referenceCount.decrementAndGet();
     if (r == 0) {
       logger.info("shutdown interpreter process");
+      remoteInterpreterEventPoller.shutdown();
       try {
         Client client=getClient();
         client.shutdown();

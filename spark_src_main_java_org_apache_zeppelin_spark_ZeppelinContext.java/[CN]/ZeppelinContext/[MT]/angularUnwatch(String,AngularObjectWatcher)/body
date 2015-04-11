@@ -1,0 +1,6 @@
+{
+  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
+  if (registry.get(name) != null) {
+    registry.get(name).removeWatcher(w);
+  }
+}

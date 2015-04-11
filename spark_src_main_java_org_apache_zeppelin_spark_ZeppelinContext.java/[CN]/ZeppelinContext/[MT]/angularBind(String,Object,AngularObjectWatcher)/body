@@ -1,0 +1,10 @@
+{
+  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
+  if (registry.get(name) == null) {
+    registry.add(name,o);
+  }
+ else {
+    registry.get(name).set(o);
+  }
+  angularWatch(name,w);
+}

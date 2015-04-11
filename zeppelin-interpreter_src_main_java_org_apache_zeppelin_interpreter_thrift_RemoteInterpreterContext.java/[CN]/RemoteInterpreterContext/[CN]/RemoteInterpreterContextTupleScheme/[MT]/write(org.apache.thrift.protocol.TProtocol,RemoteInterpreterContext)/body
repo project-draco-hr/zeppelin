@@ -16,7 +16,10 @@
   if (struct.isSetGui()) {
     optionals.set(4);
   }
-  oprot.writeBitSet(optionals,5);
+  if (struct.isSetRunners()) {
+    optionals.set(5);
+  }
+  oprot.writeBitSet(optionals,6);
   if (struct.isSetParagraphId()) {
     oprot.writeString(struct.paragraphId);
   }
@@ -31,5 +34,8 @@
   }
   if (struct.isSetGui()) {
     oprot.writeString(struct.gui);
+  }
+  if (struct.isSetRunners()) {
+    oprot.writeString(struct.runners);
   }
 }

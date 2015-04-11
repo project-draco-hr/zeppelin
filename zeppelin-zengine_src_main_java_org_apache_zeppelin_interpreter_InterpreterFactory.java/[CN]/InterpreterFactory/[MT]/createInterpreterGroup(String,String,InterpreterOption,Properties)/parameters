@@ -1,0 +1,4 @@
+String id
+String groupName
+InterpreterOption option
+Properties properties

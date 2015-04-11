@@ -1,0 +1,14 @@
+{
+  if (o instanceof InterpreterContextRunner) {
+    InterpreterContextRunner io=((InterpreterContextRunner)o);
+    if (io.getParagraphId().equals(paragraphId) && io.getNoteId().equals(noteId)) {
+      return true;
+    }
+ else {
+      return false;
+    }
+  }
+ else {
+    return false;
+  }
+}

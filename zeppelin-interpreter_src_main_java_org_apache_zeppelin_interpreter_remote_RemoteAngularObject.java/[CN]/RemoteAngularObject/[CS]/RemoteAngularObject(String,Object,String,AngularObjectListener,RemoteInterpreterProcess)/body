@@ -1,0 +1,4 @@
+{
+  super(name,o,listener);
+  this.remoteInterpreterProcess=remoteInterpreterProcess;
+}

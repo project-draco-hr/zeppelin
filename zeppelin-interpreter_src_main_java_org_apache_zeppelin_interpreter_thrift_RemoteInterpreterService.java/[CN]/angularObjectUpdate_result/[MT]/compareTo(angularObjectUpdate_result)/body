@@ -1,0 +1,8 @@
+{
+  if (!getClass().equals(other.getClass())) {
+    return getClass().getName().compareTo(other.getClass().getName());
+  }
+  int lastComparison=0;
+  angularObjectUpdate_result typedOther=(angularObjectUpdate_result)other;
+  return 0;
+}

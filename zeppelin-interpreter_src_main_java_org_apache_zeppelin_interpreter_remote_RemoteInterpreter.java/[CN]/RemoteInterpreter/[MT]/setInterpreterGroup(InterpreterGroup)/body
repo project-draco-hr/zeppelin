@@ -2,7 +2,7 @@
   super.setInterpreterGroup(interpreterGroup);
 synchronized (interpreterGroupReference) {
     if (!interpreterGroupReference.containsKey(getInterpreterGroupKey(interpreterGroup))) {
-      interpreterGroupReference.put(getInterpreterGroupKey(interpreterGroup),new RemoteInterpreterProcess(interpreterRunner,interpreterPath,env));
+      interpreterGroupReference.put(getInterpreterGroupKey(interpreterGroup),new RemoteInterpreterProcess(interpreterRunner,interpreterPath,env,interpreterContextRunnerPool));
       logger.info("setInterpreterGroup = " + getInterpreterGroupKey(interpreterGroup) + " class="+ className+ ", path="+ interpreterPath);
     }
   }

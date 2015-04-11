@@ -1,0 +1,3 @@
+{
+  watch(oldObject,newObject,context);
+}

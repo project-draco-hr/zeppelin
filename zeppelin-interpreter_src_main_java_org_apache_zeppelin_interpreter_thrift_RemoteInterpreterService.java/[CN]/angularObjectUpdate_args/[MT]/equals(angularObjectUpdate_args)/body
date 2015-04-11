@@ -1,0 +1,16 @@
+{
+  if (that == null)   return false;
+  boolean this_present_name=true && this.isSetName();
+  boolean that_present_name=true && that.isSetName();
+  if (this_present_name || that_present_name) {
+    if (!(this_present_name && that_present_name))     return false;
+    if (!this.name.equals(that.name))     return false;
+  }
+  boolean this_present_object=true && this.isSetObject();
+  boolean that_present_object=true && that.isSetObject();
+  if (this_present_object || that_present_object) {
+    if (!(this_present_object && that_present_object))     return false;
+    if (!this.object.equals(that.object))     return false;
+  }
+  return true;
+}

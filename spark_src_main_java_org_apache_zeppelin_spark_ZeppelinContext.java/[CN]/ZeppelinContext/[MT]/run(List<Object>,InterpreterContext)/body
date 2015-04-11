@@ -1,0 +1,15 @@
+{
+  for (  Object idOrIdx : paragraphIdOrIdx) {
+    if (idOrIdx instanceof String) {
+      String id=(String)idOrIdx;
+      run(id,context);
+    }
+ else     if (idOrIdx instanceof Integer) {
+      Integer idx=(Integer)idOrIdx;
+      run(idx,context);
+    }
+ else {
+      throw new InterpreterException("Paragraph " + idOrIdx + " not found");
+    }
+  }
+}

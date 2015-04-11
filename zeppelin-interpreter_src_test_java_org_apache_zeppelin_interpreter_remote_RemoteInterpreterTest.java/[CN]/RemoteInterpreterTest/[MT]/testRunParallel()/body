@@ -21,7 +21,7 @@
       }
       @Override protected Object jobRun() throws Throwable {
         String stmt=Integer.toString(timeToSleep);
-        InterpreterResult ret=intpA.interpret(stmt,new InterpreterContext(jobId,"title","text",new HashMap<String,Object>(),new GUI()));
+        InterpreterResult ret=intpA.interpret(stmt,new InterpreterContext(jobId,"title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
 synchronized (results) {
           results.add(ret.message());
           results.notify();

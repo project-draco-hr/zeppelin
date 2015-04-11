@@ -1,0 +1,9 @@
+{
+switch (field) {
+case TYPE:
+    return getType();
+case DATA:
+  return getData();
+}
+throw new IllegalStateException();
+}

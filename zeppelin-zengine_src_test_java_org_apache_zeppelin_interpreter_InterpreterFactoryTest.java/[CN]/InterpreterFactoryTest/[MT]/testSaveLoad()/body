@@ -3,6 +3,6 @@
   assertTrue(new File(conf.getInterpreterSettingPath()).exists());
   factory.add("newsetting","mock1",new InterpreterOption(false),new Properties());
   assertEquals(3,factory.get().size());
-  InterpreterFactory factory2=new InterpreterFactory(conf);
+  InterpreterFactory factory2=new InterpreterFactory(conf,null);
   assertEquals(3,factory2.get().size());
 }

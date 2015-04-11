@@ -1,0 +1,4 @@
+{
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+}

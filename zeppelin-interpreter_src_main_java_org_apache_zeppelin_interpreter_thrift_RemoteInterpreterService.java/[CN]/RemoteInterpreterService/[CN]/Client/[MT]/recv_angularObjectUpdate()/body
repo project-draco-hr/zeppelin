@@ -1,0 +1,5 @@
+{
+  angularObjectUpdate_result result=new angularObjectUpdate_result();
+  receiveBase(result,"angularObjectUpdate");
+  return;
+}

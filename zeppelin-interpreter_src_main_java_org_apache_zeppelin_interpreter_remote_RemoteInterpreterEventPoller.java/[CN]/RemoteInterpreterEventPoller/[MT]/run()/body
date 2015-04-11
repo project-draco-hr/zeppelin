@@ -1,0 +1,67 @@
+{
+  Client client=null;
+  while (shutdown == false) {
+    try {
+      client=interpreterProcess.getClient();
+    }
+ catch (    Exception e1) {
+      logger.error("Can't get RemoteInterpreterEvent",e1);
+      try {
+synchronized (this) {
+          wait(1000);
+        }
+      }
+ catch (      InterruptedException e) {
+      }
+      continue;
+    }
+    RemoteInterpreterEvent event=null;
+    try {
+      event=client.getEvent();
+    }
+ catch (    TException e) {
+      logger.error("Can't get RemoteInterpreterEvent",e);
+      try {
+synchronized (this) {
+          wait(1000);
+        }
+      }
+ catch (      InterruptedException e1) {
+      }
+      continue;
+    }
+    interpreterProcess.releaseClient(client);
+    Gson gson=new Gson();
+    AngularObjectRegistry angularObjectRegistry=interpreterGroup.getAngularObjectRegistry();
+    try {
+      if (event.getType() == RemoteInterpreterEventType.NO_OP) {
+        continue;
+      }
+ else       if (event.getType() == RemoteInterpreterEventType.ANGULAR_OBJECT_ADD) {
+        AngularObject angularObject=gson.fromJson(event.getData(),AngularObject.class);
+        angularObjectRegistry.add(angularObject.getName(),angularObject.get());
+      }
+ else       if (event.getType() == RemoteInterpreterEventType.ANGULAR_OBJECT_UPDATE) {
+        AngularObject angularObject=gson.fromJson(event.getData(),AngularObject.class);
+        AngularObject localAngularObject=angularObjectRegistry.get(angularObject.getName());
+        if (localAngularObject instanceof RemoteAngularObject) {
+          ((RemoteAngularObject)localAngularObject).set(angularObject.get(),true,false);
+        }
+ else {
+          localAngularObject.set(angularObject.get());
+        }
+      }
+ else       if (event.getType() == RemoteInterpreterEventType.ANGULAR_OBJECT_REMOVE) {
+        AngularObject angularObject=gson.fromJson(event.getData(),AngularObject.class);
+        angularObjectRegistry.remove(angularObject.getName());
+      }
+ else       if (event.getType() == RemoteInterpreterEventType.RUN_INTERPRETER_CONTEXT_RUNNER) {
+        InterpreterContextRunner runnerFromRemote=gson.fromJson(event.getData(),RemoteInterpreterContextRunner.class);
+        interpreterProcess.getInterpreterContextRunnerPool().run(runnerFromRemote.getNoteId(),runnerFromRemote.getParagraphId());
+      }
+    }
+ catch (    Exception e) {
+      logger.error("Can't handle event " + event,e);
+    }
+  }
+}

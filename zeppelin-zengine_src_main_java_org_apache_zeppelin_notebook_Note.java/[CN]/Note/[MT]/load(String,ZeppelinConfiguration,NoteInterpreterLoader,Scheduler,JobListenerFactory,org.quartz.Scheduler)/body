@@ -14,6 +14,7 @@
   note.setReplLoader(replLoader);
   note.jobListenerFactory=jobListenerFactory;
   for (  Paragraph p : note.paragraphs) {
+    p.setNote(note);
     if (p.getStatus() == Status.PENDING || p.getStatus() == Status.RUNNING) {
       p.setStatus(Status.ABORT);
     }

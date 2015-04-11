@@ -1,0 +1,6 @@
+{
+  super();
+  this.intpGroupId=intpGroupId;
+  this.angularObject=angularObject;
+  this.lastUpdate=lastUpdate;
+}

@@ -1,0 +1,12 @@
+{
+  if (id.equals(context.getParagraphId())) {
+    throw new InterpreterException("Can not run current Paragraph");
+  }
+  for (  InterpreterContextRunner r : context.getRunners()) {
+    if (id.equals(r.getParagraphId())) {
+      r.run();
+      return;
+    }
+  }
+  throw new InterpreterException("Paragraph " + id + " not found");
+}

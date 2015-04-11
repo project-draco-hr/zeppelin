@@ -11,6 +11,7 @@
   }
   File file=new File(conf.getNotebookDir() + "/" + id+ "/note.json");
   logger().info("Persist note {} into {}",id,file.getAbsolutePath());
+  snapshotAngularObjectRegistry();
   String json=gson.toJson(this);
   FileOutputStream out=new FileOutputStream(file);
   out.write(json.getBytes(conf.getString(ConfVars.ZEPPELIN_ENCODING)));

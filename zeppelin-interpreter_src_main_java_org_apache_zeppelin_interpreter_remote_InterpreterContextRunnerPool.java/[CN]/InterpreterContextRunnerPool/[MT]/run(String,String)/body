@@ -1,0 +1,15 @@
+{
+synchronized (interpreterContextRunners) {
+    List<InterpreterContextRunner> list=interpreterContextRunners.get(noteId);
+    if (list != null) {
+      for (      InterpreterContextRunner r : list) {
+        if (noteId.equals(r.getNoteId()) && paragraphId.equals(r.getParagraphId())) {
+          logger.info("run paragraph {} on note {} from InterpreterContext",r.getParagraphId(),r.getNoteId());
+          r.run();
+          return;
+        }
+      }
+    }
+    throw new InterpreterException("Can not run paragraph " + paragraphId + " on "+ noteId);
+  }
+}

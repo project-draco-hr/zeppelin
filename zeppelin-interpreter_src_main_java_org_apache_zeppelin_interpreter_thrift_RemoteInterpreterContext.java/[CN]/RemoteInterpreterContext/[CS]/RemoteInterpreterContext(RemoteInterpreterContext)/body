@@ -14,4 +14,7 @@
   if (other.isSetGui()) {
     this.gui=other.gui;
   }
+  if (other.isSetRunners()) {
+    this.runners=other.runners;
+  }
 }

@@ -1,0 +1,6 @@
+{
+  shutdown=true;
+synchronized (this) {
+    notify();
+  }
+}

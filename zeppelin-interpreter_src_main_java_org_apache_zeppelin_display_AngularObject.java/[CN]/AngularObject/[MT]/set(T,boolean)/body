@@ -1,0 +1,27 @@
+{
+  final T before=object;
+  final T after=o;
+  object=o;
+  if (emit) {
+    emit();
+  }
+  final Logger logger=LoggerFactory.getLogger(AngularObject.class);
+  List<AngularObjectWatcher> ws=new LinkedList<AngularObjectWatcher>();
+synchronized (watchers) {
+    ws.addAll(watchers);
+  }
+  ExecutorService executor=ExecutorFactory.singleton().createOrGet("angularObjectWatcher",50);
+  for (  final AngularObjectWatcher w : ws) {
+    executor.submit(new Runnable(){
+      @Override public void run(){
+        try {
+          w.watch(before,after);
+        }
+ catch (        Exception e) {
+          logger.error("Exception on watch",e);
+        }
+      }
+    }
+);
+  }
+}

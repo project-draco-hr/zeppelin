@@ -1,8 +1,0 @@
-{
-  this();
-  this.paragraphId=paragraphId;
-  this.paragraphTitle=paragraphTitle;
-  this.paragraphText=paragraphText;
-  this.config=config;
-  this.gui=gui;
-}

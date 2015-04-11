@@ -1,0 +1,6 @@
+{
+synchronized (eventQueue) {
+    eventQueue.add(event);
+    eventQueue.notifyAll();
+  }
+}

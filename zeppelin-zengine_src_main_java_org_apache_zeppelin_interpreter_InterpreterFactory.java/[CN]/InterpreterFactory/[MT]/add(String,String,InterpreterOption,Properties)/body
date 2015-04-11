@@ -1,7 +1,8 @@
 {
 synchronized (interpreterSettings) {
-    InterpreterGroup interpreterGroup=createInterpreterGroup(groupName,option,properties);
-    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,option,interpreterGroup);
+    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,option);
+    InterpreterGroup interpreterGroup=createInterpreterGroup(intpSetting.id(),groupName,option,properties);
+    intpSetting.setInterpreterGroup(interpreterGroup);
     interpreterSettings.put(intpSetting.id(),intpSetting);
     saveToFile();
     return interpreterGroup;

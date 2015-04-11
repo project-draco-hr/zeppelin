@@ -1,0 +1,7 @@
+{
+  List<String> paragraphs=new LinkedList<String>();
+  for (  InterpreterContextRunner r : interpreterContext.getRunners()) {
+    paragraphs.add(r.getParagraphId());
+  }
+  return paragraphs;
+}

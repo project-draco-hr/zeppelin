@@ -1,0 +1,9 @@
+{
+  super(generateId(),listener);
+  this.note=note;
+  this.replLoader=replLoader;
+  title=null;
+  text=null;
+  settings=new GUI();
+  config=new HashMap<String,Object>();
+}

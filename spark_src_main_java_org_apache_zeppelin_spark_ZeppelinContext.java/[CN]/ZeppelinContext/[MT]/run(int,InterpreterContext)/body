@@ -1,0 +1,10 @@
+{
+  if (idx >= context.getRunners().size()) {
+    throw new InterpreterException("Index out of bound");
+  }
+  InterpreterContextRunner runner=context.getRunners().get(idx);
+  if (runner.getParagraphId().equals(context.getParagraphId())) {
+    throw new InterpreterException("Can not run current Paragraph");
+  }
+  runner.run();
+}

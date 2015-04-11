@@ -52,6 +52,15 @@ struct.setGuiIsSet(true);
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }
 break;
+case 6:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.runners=iprot.readString();
+struct.setRunnersIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+break;
 default :
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }

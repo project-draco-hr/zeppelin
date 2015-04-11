@@ -1,0 +1,4 @@
+{
+  this.type=null;
+  this.data=null;
+}

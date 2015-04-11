@@ -1,0 +1,13 @@
+{
+  List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
+  if (settings == null || settings.size() == 0) {
+    return;
+  }
+  for (  InterpreterSetting intpSetting : settings) {
+    AngularObjectRegistry registry=intpSetting.getInterpreterGroup().getAngularObjectRegistry();
+    List<AngularObject> objects=registry.getAll();
+    for (    AngularObject object : objects) {
+      conn.send(serializeMessage(new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",intpSetting.getInterpreterGroup().getId()).put("noteId",note.id())));
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.ANGULAR_OBJECT_REMOVE,gson.toJson(object)));
+}

@@ -1,0 +1,20 @@
+{
+switch (field) {
+case NAME:
+    if (value == null) {
+      unsetName();
+    }
+ else {
+      setName((String)value);
+    }
+  break;
+case OBJECT:
+if (value == null) {
+  unsetObject();
+}
+ else {
+  setObject((String)value);
+}
+break;
+}
+}

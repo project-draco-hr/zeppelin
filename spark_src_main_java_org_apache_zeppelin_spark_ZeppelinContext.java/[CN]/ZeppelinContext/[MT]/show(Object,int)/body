@@ -1,0 +1,24 @@
+{
+  Class cls=null;
+  try {
+    cls=this.getClass().forName("org.apache.spark.sql.DataFrame");
+  }
+ catch (  ClassNotFoundException e) {
+  }
+  if (cls == null) {
+    try {
+      cls=this.getClass().forName("org.apache.spark.sql.SchemaRDD");
+    }
+ catch (    ClassNotFoundException e) {
+    }
+  }
+  if (cls == null) {
+    throw new InterpreterException("Can not road DataFrame/SchemaRDD class");
+  }
+  if (cls.isInstance(o)) {
+    out.print(showRDD(sc,interpreterContext,o,maxResult));
+  }
+ else {
+    out.print(o.toString());
+  }
+}

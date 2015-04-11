@@ -1,0 +1,5 @@
+{
+  intp.close();
+  intpGroup.clone();
+  intpGroup.destroy();
+}

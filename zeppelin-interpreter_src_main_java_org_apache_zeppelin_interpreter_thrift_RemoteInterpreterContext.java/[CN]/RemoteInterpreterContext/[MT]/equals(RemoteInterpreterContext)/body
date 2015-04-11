@@ -30,5 +30,11 @@
     if (!(this_present_gui && that_present_gui))     return false;
     if (!this.gui.equals(that.gui))     return false;
   }
+  boolean this_present_runners=true && this.isSetRunners();
+  boolean that_present_runners=true && that.isSetRunners();
+  if (this_present_runners || that_present_runners) {
+    if (!(this_present_runners && that_present_runners))     return false;
+    if (!this.runners.equals(that.runners))     return false;
+  }
   return true;
 }

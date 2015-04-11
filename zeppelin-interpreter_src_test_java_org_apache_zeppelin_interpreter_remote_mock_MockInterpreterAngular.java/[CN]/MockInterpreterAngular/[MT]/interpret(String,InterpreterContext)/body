@@ -1,0 +1,35 @@
+{
+  String[] stmt=st.split(" ");
+  String cmd=stmt[0];
+  String name=null;
+  if (stmt.length >= 2) {
+    name=stmt[1];
+  }
+  String value=null;
+  if (stmt.length == 3) {
+    value=stmt[2];
+  }
+  AngularObjectRegistry registry=context.getAngularObjectRegistry();
+  if (cmd.equals("add")) {
+    registry.add(name,value);
+    registry.get(name).addWatcher(new AngularObjectWatcher(null){
+      @Override public void watch(      Object oldObject,      Object newObject,      InterpreterContext context){
+        numWatch.incrementAndGet();
+      }
+    }
+);
+  }
+ else   if (cmd.equalsIgnoreCase("update")) {
+    registry.get(name).set(value);
+  }
+ else   if (cmd.equals("remove")) {
+    registry.remove(name);
+  }
+  try {
+    Thread.sleep(500);
+  }
+ catch (  InterruptedException e) {
+  }
+  String msg=registry.getAll().size() + " " + Integer.toString(numWatch.get());
+  return new InterpreterResult(Code.SUCCESS,msg);
+}

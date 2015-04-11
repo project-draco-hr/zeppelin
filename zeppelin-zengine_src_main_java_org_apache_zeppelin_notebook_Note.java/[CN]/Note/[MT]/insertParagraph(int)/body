@@ -1,5 +1,5 @@
 {
-  Paragraph p=new Paragraph(this,replLoader);
+  Paragraph p=new Paragraph(this,this,replLoader);
 synchronized (paragraphs) {
     paragraphs.add(index,p);
   }

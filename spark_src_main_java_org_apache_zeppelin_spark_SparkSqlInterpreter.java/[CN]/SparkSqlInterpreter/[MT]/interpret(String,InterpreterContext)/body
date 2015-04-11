@@ -8,65 +8,12 @@
  else {
     sc.setLocalProperty("spark.scheduler.pool",null);
   }
-  sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
-  Object rdd;
-  Object[] rows=null;
   try {
-    rdd=sqlc.sql(st);
-    Method take=rdd.getClass().getMethod("take",int.class);
-    rows=(Object[])take.invoke(rdd,maxResult + 1);
+    Object rdd=sqlc.sql(st);
+    String msg=ZeppelinContext.showRDD(sc,context,rdd,maxResult);
+    return new InterpreterResult(Code.SUCCESS,msg);
   }
  catch (  Exception e) {
-    logger.error("Error",e);
-    sc.clearJobGroup();
-    return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
+    return new InterpreterResult(Code.ERROR,e.getMessage());
   }
-  String msg=null;
-  Method queryExecution;
-  QueryExecution qe;
-  try {
-    queryExecution=rdd.getClass().getMethod("queryExecution");
-    qe=(QueryExecution)queryExecution.invoke(rdd);
-  }
- catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
-    throw new InterpreterException(e);
-  }
-  List<Attribute> columns=scala.collection.JavaConverters.asJavaListConverter(qe.analyzed().output()).asJava();
-  for (  Attribute col : columns) {
-    if (msg == null) {
-      msg=col.name();
-    }
- else {
-      msg+="\t" + col.name();
-    }
-  }
-  msg+="\n";
-  try {
-    for (int r=0; r < maxResult && r < rows.length; r++) {
-      Object row=rows[r];
-      Method isNullAt=row.getClass().getMethod("isNullAt",int.class);
-      Method apply=row.getClass().getMethod("apply",int.class);
-      for (int i=0; i < columns.size(); i++) {
-        if (!(Boolean)isNullAt.invoke(row,i)) {
-          msg+=apply.invoke(row,i).toString();
-        }
- else {
-          msg+="null";
-        }
-        if (i != columns.size() - 1) {
-          msg+="\t";
-        }
-      }
-      msg+="\n";
-    }
-  }
- catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
-    throw new InterpreterException(e);
-  }
-  if (rows.length > maxResult) {
-    msg+="\n<font color=red>Results are limited by " + maxResult + ".</font>";
-  }
-  InterpreterResult rett=new InterpreterResult(Code.SUCCESS,"%table " + msg);
-  sc.clearJobGroup();
-  return rett;
 }

@@ -40,5 +40,13 @@ unsetGui();
 setGui((String)value);
 }
 break;
+case RUNNERS:
+if (value == null) {
+unsetRunners();
+}
+ else {
+setRunners((String)value);
+}
+break;
 }
 }
