@@ -40,7 +40,8 @@ synchronized (referenceCount) {
         }
       }
       clientPool=new GenericObjectPool<Client>(new ClientFactory("localhost",port));
-      remoteInterpreterEventPoller=new RemoteInterpreterEventPoller(interpreterGroup,this);
+      remoteInterpreterEventPoller.setInterpreterGroup(interpreterGroup);
+      remoteInterpreterEventPoller.setInterpreterProcess(this);
       remoteInterpreterEventPoller.start();
     }
     return referenceCount.incrementAndGet();

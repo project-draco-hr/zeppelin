@@ -1,18 +1,12 @@
 {
   Client client=null;
-  while (shutdown == false) {
+  while (!shutdown) {
     try {
       client=interpreterProcess.getClient();
     }
  catch (    Exception e1) {
       logger.error("Can't get RemoteInterpreterEvent",e1);
-      try {
-synchronized (this) {
-          wait(1000);
-        }
-      }
- catch (      InterruptedException e) {
-      }
+      waitQuietly();
       continue;
     }
     RemoteInterpreterEvent event=null;
@@ -21,13 +15,7 @@ synchronized (this) {
     }
  catch (    TException e) {
       logger.error("Can't get RemoteInterpreterEvent",e);
-      try {
-synchronized (this) {
-          wait(1000);
-        }
-      }
- catch (      InterruptedException e1) {
-      }
+      waitQuietly();
       continue;
     }
     interpreterProcess.releaseClient(client);

@@ -1,7 +1,3 @@
 {
-  this.interpreterRunner=intpRunner;
-  this.interpreterDir=intpDir;
-  this.env=env;
-  this.interpreterContextRunnerPool=interpreterContextRunnerPool;
-  referenceCount=new AtomicInteger(0);
+  this(intpRunner,intpDir,env,interpreterContextRunnerPool,new RemoteInterpreterEventPoller());
 }
