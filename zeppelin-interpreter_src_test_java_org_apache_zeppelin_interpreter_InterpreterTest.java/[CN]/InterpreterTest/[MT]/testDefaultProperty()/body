@@ -1,0 +1,7 @@
+{
+  Properties p=new Properties();
+  MockInterpreterA intp=new MockInterpreterA(p);
+  assertEquals(1,intp.getProperty().size());
+  assertEquals("v1",intp.getProperty().get("p1"));
+  assertEquals("v1",intp.getProperty("p1"));
+}
