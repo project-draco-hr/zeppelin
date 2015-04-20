@@ -1,0 +1,2 @@
+String colName
+Map<String,Class<?>> map

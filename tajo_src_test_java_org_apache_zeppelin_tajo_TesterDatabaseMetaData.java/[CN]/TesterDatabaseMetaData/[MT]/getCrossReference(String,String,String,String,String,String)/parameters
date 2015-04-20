@@ -1,0 +1,6 @@
+String parentCatalog
+String parentSchema
+String parentTable
+String foreignCatalog
+String foreignSchema
+String foreignTable

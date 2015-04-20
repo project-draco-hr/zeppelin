@@ -1,0 +1,4 @@
+{
+  checkFailure();
+  _open=false;
+}

@@ -1,0 +1,7 @@
+{
+  checkOpen();
+  if (_resultSet == null) {
+    _resultSet=new TesterResultSet(this);
+  }
+  return _resultSet;
+}

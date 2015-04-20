@@ -1,0 +1,15 @@
+{
+  checkOpen();
+  if (_data != null) {
+    _currentRow++;
+    return _currentRow < _data.length;
+  }
+ else {
+    if (--_rowsLeft > 0) {
+      return true;
+    }
+ else {
+      return false;
+    }
+  }
+}

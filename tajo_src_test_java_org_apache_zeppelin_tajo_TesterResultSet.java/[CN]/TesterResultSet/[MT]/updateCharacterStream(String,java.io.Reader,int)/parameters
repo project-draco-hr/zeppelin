@@ -1,0 +1,3 @@
+String columnName
+java.io.Reader reader
+int length

@@ -1,0 +1,14 @@
+{
+  try {
+    if (connection != null) {
+      connection.close();
+    }
+  }
+ catch (  SQLException e) {
+    logger.error("Cannot close connection",e);
+  }
+ finally {
+    connection=null;
+    exceptionOnConnect=null;
+  }
+}

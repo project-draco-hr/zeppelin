@@ -1,0 +1,9 @@
+{
+  if (!_open) {
+    return;
+  }
+  if (_statement != null) {
+    ((TesterStatement)_statement)._resultSet=null;
+  }
+  _open=false;
+}

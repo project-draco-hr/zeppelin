@@ -1,0 +1,4 @@
+{
+  checkOpen();
+  return new BigDecimal(columnName.hashCode());
+}

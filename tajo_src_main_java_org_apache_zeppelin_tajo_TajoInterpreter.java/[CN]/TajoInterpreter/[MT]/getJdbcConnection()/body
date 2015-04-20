@@ -1,0 +1,3 @@
+{
+  return DriverManager.getConnection(getProperty(TAJO_JDBC_URI));
+}

@@ -1,0 +1,18 @@
+{
+  TajoInterpreter t=new TesterTajoInterpreter(new Properties());
+  t.open();
+  Class clazz;
+  try {
+    clazz=Class.forName(t.TAJO_DRIVER_NAME);
+  }
+ catch (  ClassNotFoundException e) {
+    e.printStackTrace();
+    throw new JsonParseException(e);
+  }
+  assertNotNull(clazz);
+  InterpreterResult result=t.interpret("select * from t",null);
+  assertEquals(result.type(),InterpreterResult.Type.TABLE);
+  result=t.interpret("explain select * from t",null);
+  assertEquals(result.type(),InterpreterResult.Type.TEXT);
+  t.close();
+}

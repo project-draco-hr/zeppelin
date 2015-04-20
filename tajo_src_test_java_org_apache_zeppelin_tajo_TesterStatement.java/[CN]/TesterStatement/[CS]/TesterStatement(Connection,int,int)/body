@@ -1,0 +1,5 @@
+{
+  _connection=conn;
+  _resultSetType=resultSetType;
+  _resultSetConcurrency=resultSetConcurrency;
+}

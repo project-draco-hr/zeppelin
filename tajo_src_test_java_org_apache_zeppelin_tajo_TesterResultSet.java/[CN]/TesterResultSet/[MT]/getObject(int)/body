@@ -1,0 +1,7 @@
+{
+  checkOpen();
+  if (_data != null) {
+    return _data[_currentRow][columnIndex - 1];
+  }
+  return new Object();
+}

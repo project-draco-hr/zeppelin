@@ -1,0 +1,20 @@
+{
+  logger.info("Jdbc open connection called!");
+  try {
+    Class.forName(TAJO_DRIVER_NAME);
+  }
+ catch (  ClassNotFoundException e) {
+    logger.error("Can not open connection",e);
+    exceptionOnConnect=e;
+    return;
+  }
+  try {
+    connection=getJdbcConnection();
+    exceptionOnConnect=null;
+    logger.info("Successfully created connection");
+  }
+ catch (  SQLException e) {
+    logger.error("Cannot open connection",e);
+    exceptionOnConnect=e;
+  }
+}

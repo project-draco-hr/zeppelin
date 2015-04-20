@@ -1,0 +1,10 @@
+{
+  if (!_open) {
+    return;
+  }
+  _open=false;
+  if (_resultSet != null) {
+    _resultSet.close();
+    _resultSet=null;
+  }
+}

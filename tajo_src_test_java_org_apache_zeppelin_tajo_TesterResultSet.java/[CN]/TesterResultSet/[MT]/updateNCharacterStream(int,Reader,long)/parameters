@@ -1,0 +1,3 @@
+int columnIndex
+Reader reader
+long length

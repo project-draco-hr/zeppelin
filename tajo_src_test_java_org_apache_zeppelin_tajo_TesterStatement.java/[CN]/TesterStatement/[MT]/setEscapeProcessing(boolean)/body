@@ -1,0 +1,4 @@
+{
+  checkOpen();
+  _escapeProcessing=enable;
+}

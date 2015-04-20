@@ -1,0 +1,7 @@
+{
+  columns=new ArrayList<String>();
+  columns.add("id");
+  columns.add("name");
+  columns.add("score");
+  columns.add("type");
+}

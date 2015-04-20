@@ -1,0 +1,7 @@
+{
+  checkOpen();
+  if ("invalid".equals(sql)) {
+    throw new SQLException("invalid query");
+  }
+  return _executeResponse;
+}

@@ -1,0 +1,3 @@
+int columnIndex
+InputStream inputStream
+long length

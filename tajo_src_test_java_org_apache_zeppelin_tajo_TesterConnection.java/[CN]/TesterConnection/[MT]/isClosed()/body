@@ -1,0 +1,4 @@
+{
+  checkFailure();
+  return !_open;
+}

@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetFIFOScheduler(TajoInterpreter.class.getName() + this.hashCode());
+}

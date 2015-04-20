@@ -1,0 +1,6 @@
+{
+  checkOpen();
+  if (isReadOnly()) {
+    throw new SQLException("Cannot commit a readonly connection");
+  }
+}

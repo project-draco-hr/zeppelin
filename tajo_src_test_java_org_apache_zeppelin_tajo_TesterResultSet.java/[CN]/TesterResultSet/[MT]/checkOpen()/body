@@ -1,0 +1,5 @@
+{
+  if (!_open) {
+    throw new SQLException("ResultSet is closed.");
+  }
+}
