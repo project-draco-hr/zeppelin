@@ -1,0 +1,5 @@
+ZeppelinConfiguration conf
+NotebookRepo notebookRepo
+SchedulerFactory schedulerFactory
+InterpreterFactory replFactory
+JobListenerFactory jobListenerFactory

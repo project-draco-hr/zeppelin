@@ -1,6 +1,0 @@
-String id
-ZeppelinConfiguration conf
-NoteInterpreterLoader replLoader
-Scheduler scheduler
-JobListenerFactory jobListenerFactory
-org.quartz.Scheduler quartzSched

@@ -1,0 +1,11 @@
+{
+  if (path == null || path.trim().length() == 0) {
+    return filesystemRoot.toString();
+  }
+  if (path.startsWith("/")) {
+    return filesystemRoot.toString() + path;
+  }
+ else {
+    return filesystemRoot.toString() + "/" + path;
+  }
+}

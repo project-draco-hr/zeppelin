@@ -1,0 +1,6 @@
+{
+  this.repo=repo;
+  this.replLoader=replLoader;
+  this.jobListenerFactory=jobListenerFactory;
+  generateId();
+}

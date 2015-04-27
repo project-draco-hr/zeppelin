@@ -1,6 +1,0 @@
-{
-  this.conf=conf;
-  this.replLoader=replLoader;
-  this.jobListenerFactory=jobListenerFactory;
-  generateId();
-}

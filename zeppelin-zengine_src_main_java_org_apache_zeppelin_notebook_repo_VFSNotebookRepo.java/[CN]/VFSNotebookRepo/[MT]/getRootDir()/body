@@ -1,0 +1,10 @@
+{
+  FileObject rootDir=fsManager.resolveFile(getPath("/"));
+  if (!rootDir.exists()) {
+    throw new IOException("Root path does not exists");
+  }
+  if (!isDirectory(rootDir)) {
+    throw new IOException("Root path is not a directory");
+  }
+  return rootDir;
+}

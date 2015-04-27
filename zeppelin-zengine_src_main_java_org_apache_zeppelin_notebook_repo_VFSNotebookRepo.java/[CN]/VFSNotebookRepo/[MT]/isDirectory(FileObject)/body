@@ -1,0 +1,9 @@
+{
+  if (fo == null)   return false;
+  if (fo.getType() == FileType.FOLDER) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

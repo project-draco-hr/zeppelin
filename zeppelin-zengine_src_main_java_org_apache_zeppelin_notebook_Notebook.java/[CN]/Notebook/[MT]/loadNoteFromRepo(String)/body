@@ -1,0 +1,42 @@
+{
+  Note note=null;
+  try {
+    note=notebookRepo.get(id);
+  }
+ catch (  IOException e) {
+    logger.error("Failed to load " + id,e);
+  }
+  if (note == null) {
+    return null;
+  }
+  NoteInterpreterLoader noteInterpreterLoader=new NoteInterpreterLoader(replFactory);
+  note.setReplLoader(noteInterpreterLoader);
+  noteInterpreterLoader.setNoteId(note.id());
+  note.setJobListenerFactory(jobListenerFactory);
+  note.setNotebookRepo(notebookRepo);
+  Map<String,SnapshotAngularObject> angularObjectSnapshot=new HashMap<String,SnapshotAngularObject>();
+  Date lastUpdatedDate=new Date(0);
+  for (  Paragraph p : note.getParagraphs()) {
+    p.setNote(note);
+    if (p.getDateFinished() != null && lastUpdatedDate.before(p.getDateFinished())) {
+      lastUpdatedDate=p.getDateFinished();
+    }
+  }
+  Map<String,List<AngularObject>> savedObjects=note.getAngularObjects();
+  if (savedObjects != null) {
+    for (    String intpGroupName : savedObjects.keySet()) {
+      List<AngularObject> objectList=savedObjects.get(intpGroupName);
+      for (      AngularObject savedObject : objectList) {
+        SnapshotAngularObject snapshot=angularObjectSnapshot.get(savedObject.getName());
+        if (snapshot == null || snapshot.getLastUpdate().before(lastUpdatedDate)) {
+          angularObjectSnapshot.put(savedObject.getName(),new SnapshotAngularObject(intpGroupName,savedObject,lastUpdatedDate));
+        }
+      }
+    }
+  }
+synchronized (notes) {
+    notes.put(note.id(),note);
+    refreshCron(note.id());
+  }
+  return note;
+}

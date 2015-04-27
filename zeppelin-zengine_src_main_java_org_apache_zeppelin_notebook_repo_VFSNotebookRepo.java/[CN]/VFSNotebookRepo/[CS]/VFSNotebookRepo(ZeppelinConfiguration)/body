@@ -1,0 +1,21 @@
+{
+  this.conf=conf;
+  try {
+    filesystemRoot=new URI(conf.getNotebookDir());
+  }
+ catch (  URISyntaxException e1) {
+    throw new IOException(e1);
+  }
+  if (filesystemRoot.getScheme() == null) {
+    try {
+      this.filesystemRoot=new URI(new File(conf.getRelativeDir(filesystemRoot.getPath())).getAbsolutePath());
+    }
+ catch (    URISyntaxException e) {
+      throw new IOException(e);
+    }
+  }
+ else {
+    this.filesystemRoot=filesystemRoot;
+  }
+  fsManager=VFS.getManager();
+}

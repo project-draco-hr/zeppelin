@@ -1,0 +1,4 @@
+{
+  Note note=getNote(noteDir);
+  return new NoteInfo(note);
+}

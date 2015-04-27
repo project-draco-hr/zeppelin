@@ -1,0 +1,11 @@
+{
+  FileObject rootDir=fsManager.resolveFile(getPath("/"));
+  FileObject noteDir=rootDir.resolveFile(noteId,NameScope.CHILD);
+  if (!noteDir.exists()) {
+    return;
+  }
+  if (!isDirectory(noteDir)) {
+    throw new IOException("Can not remove " + noteDir.getName().toString());
+  }
+  noteDir.delete(Selectors.SELECT_SELF_AND_CHILDREN);
+}

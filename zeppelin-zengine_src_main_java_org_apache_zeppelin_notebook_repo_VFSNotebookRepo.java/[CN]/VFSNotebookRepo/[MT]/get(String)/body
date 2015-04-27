@@ -1,0 +1,5 @@
+{
+  FileObject rootDir=fsManager.resolveFile(getPath("/"));
+  FileObject noteDir=rootDir.resolveFile(noteId,NameScope.CHILD);
+  return getNote(noteDir);
+}

@@ -1,6 +1,6 @@
 {
   NoteInterpreterLoader intpLoader=new NoteInterpreterLoader(replFactory);
-  Note note=new Note(conf,intpLoader,jobListenerFactory,quartzSched);
+  Note note=new Note(notebookRepo,intpLoader,jobListenerFactory);
   intpLoader.setNoteId(note.id());
 synchronized (notes) {
     notes.put(note.id(),note);
@@ -8,5 +8,6 @@ synchronized (notes) {
   if (interpreterIds != null) {
     bindInterpretersToNote(note.id(),interpreterIds);
   }
+  note.persist();
   return note;
 }

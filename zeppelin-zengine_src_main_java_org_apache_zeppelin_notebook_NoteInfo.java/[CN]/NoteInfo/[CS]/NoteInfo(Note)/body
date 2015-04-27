@@ -1,0 +1,5 @@
+{
+  id=note.id();
+  name=note.getName();
+  config=note.getConfig();
+}
