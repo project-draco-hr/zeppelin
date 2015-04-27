@@ -1,4 +1,7 @@
 {
+  if (terminate) {
+    throw new RuntimeException("Scheduler already terminated");
+  }
   job.setStatus(Status.PENDING);
 synchronized (queue) {
     queue.add(job);
