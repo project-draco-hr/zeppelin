@@ -76,6 +76,10 @@
       Method loadFiles=this.interpreter.getClass().getMethod("org$apache$spark$repl$SparkILoop$$loadFiles",Settings.class);
       loadFiles.invoke(this.interpreter,settings);
     }
+ else     if (sc.version().startsWith("1.4")) {
+      Method loadFiles=this.interpreter.getClass().getMethod("org$apache$spark$repl$SparkILoop$$loadFiles",Settings.class);
+      loadFiles.invoke(this.interpreter,settings);
+    }
   }
  catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     throw new InterpreterException(e);
@@ -98,6 +102,11 @@
     intp.interpret("import sqlContext._");
   }
  else   if (sc.version().startsWith("1.3")) {
+    intp.interpret("import sqlContext.implicits._");
+    intp.interpret("import sqlContext.sql");
+    intp.interpret("import org.apache.spark.sql.functions._");
+  }
+ else   if (sc.version().startsWith("1.4")) {
     intp.interpret("import sqlContext.implicits._");
     intp.interpret("import sqlContext.sql");
     intp.interpret("import org.apache.spark.sql.functions._");
