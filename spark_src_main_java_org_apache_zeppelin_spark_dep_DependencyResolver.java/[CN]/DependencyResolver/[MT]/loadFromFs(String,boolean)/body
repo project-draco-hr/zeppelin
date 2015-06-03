@@ -1,8 +1,12 @@
 {
   File jarFile=new File(artifact);
   intp.global().new Run();
-  updateRuntimeClassPath(new URL[]{jarFile.toURI().toURL()});
-  updateCompilerClassPath(new URL[]{jarFile.toURI().toURL()});
+  if (sc.version().startsWith("1.1")) {
+    updateRuntimeClassPath_1_x(new URL[]{jarFile.toURI().toURL()});
+  }
+ else {
+    updateRuntimeClassPath_2_x(new URL[]{jarFile.toURI().toURL()});
+  }
   if (addSparkContext) {
     sc.addJar(jarFile.getAbsolutePath());
   }

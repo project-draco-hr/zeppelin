@@ -2,7 +2,12 @@
   repl.interpret("case class Person(name:String, age:Int)",context);
   repl.interpret("case class People(group:String, person:Person)",context);
   repl.interpret("val gr = sc.parallelize(Seq(People(\"g1\", Person(\"moon\",33)), People(\"g2\", Person(\"sun\",11))))",context);
-  repl.interpret("gr.registerAsTable(\"gr\")",context);
+  if (isDataFrameSupported()) {
+    repl.interpret("gr.toDF.registerTempTable(\"gr\")",context);
+  }
+ else {
+    repl.interpret("gr.registerTempTable(\"gr\")",context);
+  }
   InterpreterResult ret=sql.interpret("select * from gr",context);
   assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
 }

@@ -1,0 +1,3 @@
+{
+  return SparkInterpreterTest.getSparkVersionNumber() >= 13;
+}

@@ -25,7 +25,12 @@
     loadedLibs.add(artifactResult.getArtifact().getGroupId() + ":" + artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
   }
   intp.global().new Run();
-  updateRuntimeClassPath(newClassPathList.toArray(new URL[0]));
+  if (sc.version().startsWith("1.1")) {
+    updateRuntimeClassPath_1_x(newClassPathList.toArray(new URL[0]));
+  }
+ else {
+    updateRuntimeClassPath_2_x(newClassPathList.toArray(new URL[0]));
+  }
   updateCompilerClassPath(newClassPathList.toArray(new URL[0]));
   if (addSparkContext) {
     for (    File f : files) {

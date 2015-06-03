@@ -1,0 +1,9 @@
+{
+  ClassLoader cl=intp.classLoader().getParent();
+  Method addURL;
+  addURL=cl.getClass().getDeclaredMethod("addNewUrl",new Class[]{URL.class});
+  addURL.setAccessible(true);
+  for (  URL url : urls) {
+    addURL.invoke(cl,url);
+  }
+}
