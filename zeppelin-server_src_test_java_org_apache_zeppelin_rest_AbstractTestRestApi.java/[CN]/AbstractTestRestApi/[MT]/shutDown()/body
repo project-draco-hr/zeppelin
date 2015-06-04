@@ -1,12 +1,20 @@
 {
   if (!wasRunning) {
     LOG.info("Terminating test Zeppelin...");
+    ZeppelinServer.notebookServer.stop();
+    ZeppelinServer.jettyServer.stop();
     executor.shutdown();
-    try {
-      executor.awaitTermination(10,TimeUnit.SECONDS);
+    long s=System.currentTimeMillis();
+    boolean started=true;
+    while (System.currentTimeMillis() - s < 1000 * 60 * 3) {
+      Thread.sleep(2000);
+      started=checkIfServerIsRuning();
+      if (started == false) {
+        break;
+      }
     }
- catch (    InterruptedException e) {
-      e.printStackTrace();
+    if (started == true) {
+      throw new RuntimeException("Can not stop Zeppelin server");
     }
     LOG.info("Test Zeppelin terminated.");
   }

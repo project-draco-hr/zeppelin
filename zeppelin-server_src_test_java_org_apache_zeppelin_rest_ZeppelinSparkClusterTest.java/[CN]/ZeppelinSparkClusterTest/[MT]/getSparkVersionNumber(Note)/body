@@ -1,0 +1,11 @@
+{
+  Paragraph p=note.addParagraph();
+  p.setText("print(sc.version)");
+  note.run(p.getId());
+  waitForFinish(p);
+  String sparkVersion=p.getResult().message();
+  System.out.println("Spark version detected " + sparkVersion);
+  String[] split=sparkVersion.split("\\.");
+  int version=Integer.parseInt(split[0]) * 10 + Integer.parseInt(split[1]);
+  return version;
+}

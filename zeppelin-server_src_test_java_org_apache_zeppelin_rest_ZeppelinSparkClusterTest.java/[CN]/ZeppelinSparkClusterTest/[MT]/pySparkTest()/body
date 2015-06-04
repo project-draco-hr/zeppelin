@@ -1,0 +1,12 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  int sparkVersion=getSparkVersionNumber(note);
+  if (isPyspark() && sparkVersion >= 12) {
+    Paragraph p=note.addParagraph();
+    p.setText("%pyspark print(sc.parallelize(range(1, 11)).reduce(lambda a, b: a + b))");
+    note.run(p.getId());
+    waitForFinish(p);
+    assertEquals("55\n",p.getResult().message());
+  }
+  ZeppelinServer.notebook.removeNote(note.id());
+}

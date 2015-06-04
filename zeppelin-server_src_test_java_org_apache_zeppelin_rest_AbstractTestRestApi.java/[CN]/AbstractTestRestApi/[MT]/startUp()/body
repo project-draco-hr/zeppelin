@@ -1,6 +1,7 @@
 {
   if (!wasRunning) {
     LOG.info("Staring test Zeppelin up...");
+    executor=Executors.newSingleThreadExecutor();
     executor.submit(server);
     long s=System.currentTimeMillis();
     boolean started=false;
@@ -15,5 +16,21 @@
       throw new RuntimeException("Can not start Zeppelin server");
     }
     LOG.info("Test Zeppelin stared.");
+    if ("true".equals(System.getenv("CI"))) {
+      InterpreterSetting sparkIntpSetting=ZeppelinServer.notebook.getInterpreterFactory().get().get(0);
+      sparkIntpSetting.getProperties().setProperty("master","spark://" + getHostname() + ":7071");
+      sparkIntpSetting.getProperties().setProperty("spark.home",getSparkHome());
+      pySpark=true;
+      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
+    }
+ else {
+      InterpreterSetting sparkIntpSetting=ZeppelinServer.notebook.getInterpreterFactory().get().get(0);
+      String sparkHome=getSparkHome();
+      if (sparkHome != null) {
+        sparkIntpSetting.getProperties().setProperty("spark.home",sparkHome);
+        pySpark=true;
+      }
+      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
+    }
   }
 }

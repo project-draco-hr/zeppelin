@@ -1,0 +1,5 @@
+{
+  String sparkHome=getSparkHomeRecursively(new File(System.getProperty("user.dir")));
+  System.out.println("SPARK HOME detected " + sparkHome);
+  return sparkHome;
+}
