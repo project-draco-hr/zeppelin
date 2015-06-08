@@ -1,0 +1,18 @@
+{
+  if (dirOrFile2Jar == null || destJar == null) {
+    throw new IllegalArgumentException();
+  }
+  mDestJarName=destJar.getCanonicalPath();
+  FileOutputStream fout=new FileOutputStream(destJar);
+  JarOutputStream jout=new JarOutputStream(fout);
+  try {
+    jarDir(dirOrFile2Jar,jout,null);
+  }
+ catch (  IOException ioe) {
+    throw ioe;
+  }
+ finally {
+    jout.close();
+    fout.close();
+  }
+}

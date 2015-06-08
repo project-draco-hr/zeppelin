@@ -1,0 +1,11 @@
+{
+  if (args.length < 2) {
+    System.err.println("Usage: JarHelper jarname.jar directory");
+    return;
+  }
+  JarHelper jarHelper=new JarHelper();
+  jarHelper.mVerbose=true;
+  File destJar=new File(args[0]);
+  File dirOrFile2Jar=new File(args[1]);
+  jarHelper.jarDir(dirOrFile2Jar,destJar);
+}

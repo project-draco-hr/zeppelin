@@ -1,0 +1,12 @@
+{
+  Object ret=imain.valueOfTerm(name);
+  if (ret instanceof None) {
+    return null;
+  }
+ else   if (ret instanceof Some) {
+    return ((Some)ret).get();
+  }
+ else {
+    return ret;
+  }
+}

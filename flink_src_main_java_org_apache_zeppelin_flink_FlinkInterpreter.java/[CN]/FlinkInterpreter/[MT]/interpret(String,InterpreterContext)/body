@@ -1,0 +1,7 @@
+{
+  if (line == null || line.trim().length() == 0) {
+    return new InterpreterResult(Code.SUCCESS);
+  }
+  InterpreterResult result=interpret(line.split("\n"),context);
+  return result;
+}

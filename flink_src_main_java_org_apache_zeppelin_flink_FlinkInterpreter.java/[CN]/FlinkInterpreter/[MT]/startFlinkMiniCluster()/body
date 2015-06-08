@@ -1,0 +1,4 @@
+{
+  localFlinkCluster=new LocalFlinkMiniCluster(flinkConf,false);
+  localFlinkCluster.waitForTaskManagersToBeRegistered();
+}

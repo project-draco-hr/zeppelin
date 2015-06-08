@@ -1,0 +1,18 @@
+{
+  imain.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
+  binder=(Map<String,Object>)getValue("_binder");
+  flinkConf=new org.apache.flink.configuration.Configuration();
+  Properties intpProperty=getProperty();
+  for (  Object k : intpProperty.keySet()) {
+    String key=(String)k;
+    String val=toString(intpProperty.get(key));
+    flinkConf.setString(key,val);
+  }
+  if (localMode()) {
+    startFlinkMiniCluster();
+  }
+  env=new FlinkEnvironment(getRpcAddress(),getRpcPort(),imain);
+  binder.put("env",new org.apache.flink.api.scala.ExecutionEnvironment(env));
+  imain.interpret("@transient val env = " + "_binder.get(\"env\")" + ".asInstanceOf[org.apache.flink.api.scala.ExecutionEnvironment]");
+  imain.interpret("import org.apache.flink.api.scala._");
+}

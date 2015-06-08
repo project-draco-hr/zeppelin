@@ -1,0 +1,4 @@
+{
+  flink.close();
+  flink.destroy();
+}

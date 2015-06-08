@@ -1,0 +1,5 @@
+{
+  BufferedOutputStream dest=null;
+  FileInputStream fis=new FileInputStream(jarFile);
+  unjar(fis,destDir);
+}

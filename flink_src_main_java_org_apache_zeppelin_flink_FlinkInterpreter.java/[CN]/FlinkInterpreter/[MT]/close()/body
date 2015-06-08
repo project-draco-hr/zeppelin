@@ -1,0 +1,6 @@
+{
+  imain.close();
+  if (localMode()) {
+    stopFlinkMiniCluster();
+  }
+}

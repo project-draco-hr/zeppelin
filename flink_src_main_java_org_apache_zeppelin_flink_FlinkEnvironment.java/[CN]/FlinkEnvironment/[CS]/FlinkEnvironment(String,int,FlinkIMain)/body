@@ -1,0 +1,6 @@
+{
+  this.host=host;
+  this.port=port;
+  this.imain=imain;
+  logger.info("jobManager host={}, port={}",host,port);
+}

@@ -1,0 +1,8 @@
+{
+  if (localMode()) {
+    return "localhost";
+  }
+ else {
+    return getProperty("jobmanager.rpc.address");
+  }
+}

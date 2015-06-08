@@ -1,0 +1,12 @@
+{
+  JavaPlan plan=createProgramPlan("unnamed",false);
+  plan.setDefaultParallelism(getParallelism());
+  registerCachedFilesWithPlan(plan);
+  File jarFile=imain.jar();
+  PlanExecutor executor=PlanExecutor.createRemoteExecutor(host,port,jarFile.getAbsolutePath());
+  String jsonPlan=executor.getOptimizerPlanAsJSON(plan);
+  if (jarFile != null && jarFile.isFile()) {
+    jarFile.delete();
+  }
+  return jsonPlan;
+}

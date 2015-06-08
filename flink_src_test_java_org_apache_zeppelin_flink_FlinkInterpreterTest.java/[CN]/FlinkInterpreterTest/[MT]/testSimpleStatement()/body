@@ -1,0 +1,5 @@
+{
+  InterpreterResult result=flink.interpret("val a=1",context);
+  result=flink.interpret("print(a)",context);
+  assertEquals("1",result.message());
+}
