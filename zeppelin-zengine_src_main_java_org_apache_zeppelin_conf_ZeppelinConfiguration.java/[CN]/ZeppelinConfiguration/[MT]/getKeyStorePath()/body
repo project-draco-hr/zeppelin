@@ -1,3 +1,3 @@
 {
-  return getRelativeDir(ConfVars.ZEPPELIN_SSL_KEYSTORE_PATH);
+  return getRelativeDir(String.format("%s/%s",getConfDir(),getString(ConfVars.ZEPPELIN_SSL_KEYSTORE_PATH)));
 }
