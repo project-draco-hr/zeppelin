@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=intp.interpret("invalid input",INTP_CONTEXT);
+  assertEquals(InterpreterResult.Code.ERROR,result.code());
+}

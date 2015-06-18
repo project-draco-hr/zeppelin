@@ -1,0 +1,29 @@
+{
+  Settings settings=new Settings();
+  URL[] urls=getClassloaderUrls();
+  PathSetting pathSettings=settings.classpath();
+  StringBuilder sb=new StringBuilder();
+  for (  File f : currentClassPath()) {
+    if (sb.length() > 0) {
+      sb.append(File.pathSeparator);
+    }
+    sb.append(f.getAbsolutePath());
+  }
+  if (urls != null) {
+    for (    URL u : urls) {
+      if (sb.length() > 0) {
+        sb.append(File.pathSeparator);
+      }
+      sb.append(u.getFile());
+    }
+  }
+  pathSettings.v_$eq(sb.toString());
+  settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
+  settings.explicitParentLoader_$eq(new Some<>(Thread.currentThread().getContextClassLoader()));
+  BooleanSetting b=(BooleanSetting)settings.usejavacp();
+  b.v_$eq(true);
+  settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
+  out=new ByteArrayOutputStream();
+  imain=new IMain(settings,new PrintWriter(out));
+  initIgnite();
+}

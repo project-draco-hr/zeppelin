@@ -1,0 +1,16 @@
+{
+  TcpDiscoveryVmIpFinder ipFinder=new TcpDiscoveryVmIpFinder();
+  ipFinder.setAddresses(Collections.singletonList(HOST));
+  TcpDiscoverySpi discoSpi=new TcpDiscoverySpi();
+  discoSpi.setIpFinder(ipFinder);
+  IgniteConfiguration cfg=new IgniteConfiguration();
+  cfg.setDiscoverySpi(discoSpi);
+  cfg.setGridName("test");
+  ignite=Ignition.start(cfg);
+  Properties props=new Properties();
+  props.setProperty(IgniteSqlInterpreter.IGNITE_JDBC_URL,"jdbc:intp://localhost:11211/person");
+  props.setProperty(IgniteInterpreter.IGNITE_CLIENT_MODE,"false");
+  props.setProperty(IgniteInterpreter.IGNITE_PEER_CLASS_LOADING_ENABLED,"false");
+  intp=new IgniteInterpreter(props);
+  intp.open();
+}

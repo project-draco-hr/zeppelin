@@ -1,0 +1,33 @@
+{
+  String[] linesToRun=new String[lines.length + 1];
+  System.arraycopy(lines,0,linesToRun,0,lines.length);
+  linesToRun[lines.length]="print(\"\")";
+  Console.setOut(out);
+  out.reset();
+  Code code=null;
+  String incomplete="";
+  for (  String s : linesToRun) {
+    try {
+      code=getResultCode(imain.interpret(incomplete + s));
+    }
+ catch (    Exception e) {
+      logger.info("Interpreter exception",e);
+      return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
+    }
+    if (code == Code.ERROR) {
+      return new InterpreterResult(code,out.toString());
+    }
+ else     if (code == Code.INCOMPLETE) {
+      incomplete+=s + '\n';
+    }
+ else {
+      incomplete="";
+    }
+  }
+  if (code == Code.INCOMPLETE) {
+    return new InterpreterResult(code,"Incomplete expression");
+  }
+ else {
+    return new InterpreterResult(code,out.toString());
+  }
+}

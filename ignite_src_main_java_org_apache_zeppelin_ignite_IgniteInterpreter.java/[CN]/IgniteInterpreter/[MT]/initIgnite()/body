@@ -1,0 +1,8 @@
+{
+  imain.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
+  Map<String,Object> binder=(Map<String,Object>)getValue("_binder");
+  if (getIgnite() != null) {
+    binder.put("ignite",ignite);
+    imain.interpret("@transient val ignite = " + "_binder.get(\"ignite\")" + ".asInstanceOf[org.apache.ignite.Ignite]");
+  }
+}

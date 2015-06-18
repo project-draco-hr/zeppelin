@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=intp.interpret("select * hrom person",INTP_CONTEXT);
+  assertEquals(Code.ERROR,result.code());
+}

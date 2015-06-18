@@ -1,0 +1,12 @@
+{
+  if (curStmt != null) {
+    try {
+      curStmt.cancel();
+    }
+ catch (    SQLException e) {
+    }
+ finally {
+      curStmt=null;
+    }
+  }
+}

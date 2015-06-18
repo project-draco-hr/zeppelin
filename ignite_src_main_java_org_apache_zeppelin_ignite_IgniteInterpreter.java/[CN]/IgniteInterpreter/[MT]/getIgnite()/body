@@ -1,0 +1,26 @@
+{
+  if (ignite == null) {
+    try {
+      String cfgUrl=getProperty(IGNITE_CFG_URL);
+      if (cfgUrl != null && !cfgUrl.isEmpty()) {
+        ignite=Ignition.start(new URL(cfgUrl));
+      }
+ else {
+        IgniteConfiguration conf=new IgniteConfiguration();
+        conf.setClientMode(Boolean.parseBoolean(getProperty(IGNITE_CLIENT_MODE)));
+        TcpDiscoveryVmIpFinder ipFinder=new TcpDiscoveryVmIpFinder();
+        ipFinder.setAddresses(getAddresses());
+        TcpDiscoverySpi discoSpi=new TcpDiscoverySpi();
+        discoSpi.setIpFinder(ipFinder);
+        conf.setDiscoverySpi(discoSpi);
+        conf.setPeerClassLoadingEnabled(Boolean.parseBoolean(getProperty(IGNITE_PEER_CLASS_LOADING_ENABLED)));
+        ignite=Ignition.start(conf);
+      }
+      initEx=null;
+    }
+ catch (    Exception e) {
+      initEx=e;
+    }
+  }
+  return ignite;
+}

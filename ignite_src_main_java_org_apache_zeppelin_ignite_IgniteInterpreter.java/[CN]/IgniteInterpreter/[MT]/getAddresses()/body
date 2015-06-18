@@ -1,0 +1,10 @@
+{
+  String prop=getProperty(IGNITE_ADDRESSES);
+  if (prop == null || prop.isEmpty()) {
+    return Collections.emptyList();
+  }
+  String[] tokens=prop.split(",");
+  List<String> addresses=new ArrayList<>(tokens.length);
+  Collections.addAll(addresses,tokens);
+  return addresses;
+}

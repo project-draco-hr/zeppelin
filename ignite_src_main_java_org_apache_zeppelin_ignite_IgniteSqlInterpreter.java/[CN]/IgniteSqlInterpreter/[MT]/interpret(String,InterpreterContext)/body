@@ -1,0 +1,35 @@
+{
+  if (connEx != null) {
+    return new InterpreterResult(Code.ERROR,connEx.getMessage());
+  }
+  StringBuilder msg=new StringBuilder("%table ");
+  try (Statement stmt=conn.createStatement()){
+    curStmt=stmt;
+    try (ResultSet res=stmt.executeQuery(st)){
+      ResultSetMetaData md=res.getMetaData();
+      for (int i=1; i <= md.getColumnCount(); i++) {
+        if (i > 1) {
+          msg.append('\t');
+        }
+        msg.append(md.getColumnName(i));
+      }
+      msg.append('\n');
+      while (res.next()) {
+        for (int i=1; i <= md.getColumnCount(); i++) {
+          msg.append(res.getString(i));
+          if (i != md.getColumnCount()) {
+            msg.append('\t');
+          }
+        }
+        msg.append('\n');
+      }
+    }
+   }
+ catch (  Exception e) {
+    return IgniteInterpreterUtils.buildErrorResult(e);
+  }
+ finally {
+    curStmt=null;
+  }
+  return new InterpreterResult(Code.SUCCESS,msg.toString());
+}

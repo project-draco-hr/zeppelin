@@ -1,0 +1,11 @@
+{
+  initEx=null;
+  if (ignite != null) {
+    ignite.close();
+    ignite=null;
+  }
+  if (imain != null) {
+    imain.close();
+    imain=null;
+  }
+}

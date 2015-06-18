@@ -1,0 +1,20 @@
+{
+  try {
+    Class.forName(IGNITE_JDBC_DRIVER_NAME);
+  }
+ catch (  ClassNotFoundException e) {
+    logger.error("Can't open connection",e);
+    connEx=e;
+    return;
+  }
+  try {
+    logger.info("connect to " + getProperty(IGNITE_JDBC_URL));
+    conn=DriverManager.getConnection(getProperty(IGNITE_JDBC_URL));
+    connEx=null;
+    logger.info("Successfully created JDBC connection");
+  }
+ catch (  SQLException e) {
+    logger.error("Can't open connection: ",e);
+    connEx=e;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  TcpDiscoveryVmIpFinder ipFinder=new TcpDiscoveryVmIpFinder();
+  ipFinder.setAddresses(Collections.singletonList(HOST));
+  TcpDiscoverySpi discoSpi=new TcpDiscoverySpi();
+  discoSpi.setIpFinder(ipFinder);
+  IgniteConfiguration cfg=new IgniteConfiguration();
+  cfg.setDiscoverySpi(discoSpi);
+  cfg.setGridName("test");
+  ignite=Ignition.start(cfg);
+  Properties props=new Properties();
+  props.setProperty(IgniteSqlInterpreter.IGNITE_JDBC_URL,"jdbc:ignite://localhost:11211/person");
+  props.setProperty(IgniteInterpreter.IGNITE_CLIENT_MODE,"false");
+  intp=new IgniteSqlInterpreter(props);
+  CacheConfiguration<Integer,Person> cacheConf=new CacheConfiguration<>();
+  cacheConf.setIndexedTypes(Integer.class,Person.class);
+  cacheConf.setName("person");
+  IgniteCache<Integer,Person> cache=ignite.createCache(cacheConf);
+  cache.put(1,new Person("sun",100));
+  cache.put(2,new Person("moon",50));
+  assertEquals("moon",cache.get(2).getName());
+  intp.open();
+}

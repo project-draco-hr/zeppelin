@@ -1,0 +1,10 @@
+{
+  StringBuilder sb=new StringBuilder(e.getMessage());
+  while ((e=e.getCause()) != null) {
+    String errMsg=e.getMessage();
+    if (errMsg != null) {
+      sb.append('\n').append(errMsg);
+    }
+  }
+  return new InterpreterResult(InterpreterResult.Code.ERROR,sb.toString());
+}

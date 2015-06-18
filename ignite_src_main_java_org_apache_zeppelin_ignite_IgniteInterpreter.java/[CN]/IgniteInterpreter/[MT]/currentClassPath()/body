@@ -1,0 +1,8 @@
+{
+  List<File> paths=classPath(Thread.currentThread().getContextClassLoader());
+  String[] cps=System.getProperty("java.class.path").split(File.pathSeparator);
+  for (  String cp : cps) {
+    paths.add(new File(cp));
+  }
+  return paths;
+}
