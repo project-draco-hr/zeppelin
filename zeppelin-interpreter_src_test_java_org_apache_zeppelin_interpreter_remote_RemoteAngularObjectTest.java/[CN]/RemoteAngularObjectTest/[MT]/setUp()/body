@@ -8,7 +8,7 @@
   env=new HashMap<String,String>();
   env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
   Properties p=new Properties();
-  intp=new RemoteInterpreter(p,MockInterpreterAngular.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  intp=new RemoteInterpreter(p,MockInterpreterAngular.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
   intpGroup.add(intp);
   intp.setInterpreterGroup(intpGroup);
   context=new InterpreterContext("id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>());

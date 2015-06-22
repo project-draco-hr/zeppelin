@@ -1,4 +1,5 @@
 {
-  LazyOpenInterpreter intp=new LazyOpenInterpreter(new RemoteInterpreter(property,className,conf.getInterpreterRemoteRunnerPath(),interpreterPath));
+  int connectTimeout=conf.getInt(ConfVars.ZEPPELIN_INTERPRETER_CONNECT_TIMEOUT);
+  LazyOpenInterpreter intp=new LazyOpenInterpreter(new RemoteInterpreter(property,className,conf.getInterpreterRemoteRunnerPath(),interpreterPath,connectTimeout));
   return intp;
 }

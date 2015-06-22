@@ -1,9 +1,8 @@
 {
   super(property);
   this.className=className;
-  initialized=false;
   this.interpreterRunner=interpreterRunner;
   this.interpreterPath=interpreterPath;
-  env=new HashMap<String,String>();
-  interpreterContextRunnerPool=new InterpreterContextRunnerPool();
+  this.env=env;
+  this.connectTimeout=connectTimeout;
 }

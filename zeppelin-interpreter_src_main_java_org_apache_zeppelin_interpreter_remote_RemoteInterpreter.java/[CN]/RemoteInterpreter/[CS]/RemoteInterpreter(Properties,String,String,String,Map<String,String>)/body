@@ -1,7 +1,0 @@
-{
-  super(property);
-  this.className=className;
-  this.interpreterRunner=interpreterRunner;
-  this.interpreterPath=interpreterPath;
-  this.env=env;
-}

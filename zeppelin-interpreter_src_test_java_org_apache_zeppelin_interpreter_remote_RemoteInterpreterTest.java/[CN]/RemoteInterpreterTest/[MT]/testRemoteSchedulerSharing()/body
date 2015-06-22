@@ -1,9 +1,9 @@
 {
   Properties p=new Properties();
-  RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);
-  RemoteInterpreter intpB=new RemoteInterpreter(p,MockInterpreterB.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  RemoteInterpreter intpB=new RemoteInterpreter(p,MockInterpreterB.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
   intpGroup.add(intpB);
   intpB.setInterpreterGroup(intpGroup);
   intpA.open();

@@ -2,3 +2,5 @@ Properties property
 String className
 String interpreterRunner
 String interpreterPath
+Map<String,String> env
+int connectTimeout

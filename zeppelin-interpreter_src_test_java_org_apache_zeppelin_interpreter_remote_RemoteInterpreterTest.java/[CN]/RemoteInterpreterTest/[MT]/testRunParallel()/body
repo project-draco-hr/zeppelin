@@ -1,7 +1,7 @@
 {
   Properties p=new Properties();
   p.put("parallel","true");
-  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env);
+  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
