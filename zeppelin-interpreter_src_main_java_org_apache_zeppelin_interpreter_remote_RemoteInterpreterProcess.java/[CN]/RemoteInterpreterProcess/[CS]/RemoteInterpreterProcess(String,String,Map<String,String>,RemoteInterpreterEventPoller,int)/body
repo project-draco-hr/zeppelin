@@ -2,7 +2,7 @@
   this.interpreterRunner=intpRunner;
   this.interpreterDir=intpDir;
   this.env=env;
-  this.interpreterContextRunnerPool=interpreterContextRunnerPool;
+  this.interpreterContextRunnerPool=new InterpreterContextRunnerPool();
   referenceCount=new AtomicInteger(0);
   this.remoteInterpreterEventPoller=remoteInterpreterEventPoller;
   this.connectTimeout=connectTimeout;

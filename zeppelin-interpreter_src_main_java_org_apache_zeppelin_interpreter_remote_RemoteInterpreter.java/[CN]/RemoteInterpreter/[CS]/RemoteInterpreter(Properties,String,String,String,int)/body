@@ -5,6 +5,5 @@
   this.interpreterRunner=interpreterRunner;
   this.interpreterPath=interpreterPath;
   env=new HashMap<String,String>();
-  interpreterContextRunnerPool=new InterpreterContextRunnerPool();
   this.connectTimeout=connectTimeout;
 }

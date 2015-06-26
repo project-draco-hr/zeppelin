@@ -1,0 +1,15 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  Paragraph p0=note.addParagraph();
+  p0.setText("z.run(1)");
+  Paragraph p1=note.addParagraph();
+  p1.setText("val a=10");
+  Paragraph p2=note.addParagraph();
+  p2.setText("print(a)");
+  note.run(p0.getId());
+  waitForFinish(p0);
+  note.run(p2.getId());
+  waitForFinish(p2);
+  assertEquals("10",p2.getResult().message());
+  ZeppelinServer.notebook.removeNote(note.id());
+}

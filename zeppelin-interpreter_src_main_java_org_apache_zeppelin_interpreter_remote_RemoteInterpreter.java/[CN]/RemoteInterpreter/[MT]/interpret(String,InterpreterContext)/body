@@ -8,6 +8,7 @@
  catch (  Exception e1) {
     throw new InterpreterException(e1);
   }
+  InterpreterContextRunnerPool interpreterContextRunnerPool=interpreterProcess.getInterpreterContextRunnerPool();
   List<InterpreterContextRunner> runners=context.getRunners();
   if (runners != null && runners.size() != 0) {
     String noteId=runners.get(0).getNoteId();
