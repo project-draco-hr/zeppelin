@@ -1,0 +1,8 @@
+{
+  GenericApplicationContext ctx=(GenericApplicationContext)getApplicationContext();
+  RootBeanDefinition rbd=new RootBeanDefinition();
+  rbd.setBeanClass(LensJLineShellComponent.class);
+  DefaultListableBeanFactory bf=(DefaultListableBeanFactory)ctx.getBeanFactory();
+  bf.registerBeanDefinition(LensJLineShellComponent.class.getSimpleName(),rbd);
+  return ctx.getBean(LensJLineShellComponent.class);
+}

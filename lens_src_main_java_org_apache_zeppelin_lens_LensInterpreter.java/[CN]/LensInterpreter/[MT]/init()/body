@@ -1,0 +1,9 @@
+{
+  try {
+    m_bs=createBootstrap();
+    m_shell=getJLineShell(m_bs);
+  }
+ catch (  Exception ex) {
+    s_logger.error("could not initialize commandLine",ex);
+  }
+}

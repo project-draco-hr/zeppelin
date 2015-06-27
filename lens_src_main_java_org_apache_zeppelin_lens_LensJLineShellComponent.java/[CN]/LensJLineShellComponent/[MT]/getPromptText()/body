@@ -1,0 +1,10 @@
+{
+  PromptProvider promptProvider=PluginUtils.getHighestPriorityProvider(this.applicationContext,PromptProvider.class);
+  String providerPromptText=promptProvider.getPrompt();
+  if (providerPromptText != null) {
+    return providerPromptText;
+  }
+ else {
+    return promptText;
+  }
+}

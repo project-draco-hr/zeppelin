@@ -1,0 +1,8 @@
+{
+  try {
+    lensClient.closeConnection();
+  }
+ catch (  Exception e) {
+    s_logger.error("unable to close lensClient",e);
+  }
+}

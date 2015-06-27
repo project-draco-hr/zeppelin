@@ -1,0 +1,6 @@
+{
+  if (printBanner) {
+    logger.info(this.banner);
+    logger.info(getWelcomeMessage());
+  }
+}

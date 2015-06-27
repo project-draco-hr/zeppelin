@@ -1,0 +1,47 @@
+{
+  if (input == null || input.length() == 0) {
+    return new InterpreterResult(Code.ERROR,"no command submitted");
+  }
+  String st=input.replaceAll("\\n"," ");
+  s_logger.info("LensInterpreter command: " + st);
+  Bootstrap bs=createBootstrap();
+  JLineShell shell=getJLineShell(bs);
+  CommandResult res=null;
+  LensClient lensClient=null;
+  String qh=null;
+  if (st.trim().startsWith("help")) {
+    return HandleHelp(shell,st);
+  }
+  try {
+    lensClient=createAndSetLensClient(bs);
+    s_clientMap.put(lensClient,true);
+    String lensCommand=modifyQueryStatement(st);
+    s_logger.info("executing command : " + lensCommand);
+    res=shell.executeCommand(lensCommand);
+    if (!lensCommand.equals(st) && res != null && res.getResult() != null && res.getResult().toString().trim().matches("[a-z0-9-]+")) {
+      qh=res.getResult().toString();
+      s_paraToQH.put(context.getParagraphId(),new ExecutionDetail(qh,lensClient,shell));
+      String getResultsCmd="query results --async false " + qh;
+      s_logger.info("executing query results command : " + context.getParagraphId() + " : "+ getResultsCmd);
+      res=shell.executeCommand(getResultsCmd);
+      s_paraToQH.remove(context.getParagraphId());
+    }
+  }
+ catch (  Exception ex) {
+    s_logger.error("error in interpret",ex);
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+ finally {
+    if (shell != null) {
+      closeShell(shell);
+    }
+    if (lensClient != null) {
+      closeLensClient(lensClient);
+      s_clientMap.remove(lensClient);
+    }
+    if (qh != null) {
+      s_paraToQH.remove(context.getParagraphId());
+    }
+  }
+  return new InterpreterResult(Code.SUCCESS,formatResult(st,res));
+}

@@ -1,0 +1,7 @@
+{
+  s_logger.info("LensInterpreter opening");
+  m_lensClient=new LensClient(m_lensConf);
+  LensClientSingletonWrapper.instance().setClient(m_lensClient);
+  init();
+  s_logger.info("LensInterpreter opened");
+}

@@ -1,0 +1,6 @@
+{
+  if (running) {
+    closeShell();
+    running=false;
+  }
+}

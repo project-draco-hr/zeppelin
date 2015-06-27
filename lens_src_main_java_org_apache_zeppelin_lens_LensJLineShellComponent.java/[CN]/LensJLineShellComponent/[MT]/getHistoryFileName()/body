@@ -1,0 +1,10 @@
+{
+  HistoryFileNameProvider historyFileNameProvider=PluginUtils.getHighestPriorityProvider(this.applicationContext,HistoryFileNameProvider.class);
+  String providerHistoryFileName=historyFileNameProvider.getHistoryFileName();
+  if (providerHistoryFileName != null) {
+    return providerHistoryFileName;
+  }
+ else {
+    return historyFileName;
+  }
+}

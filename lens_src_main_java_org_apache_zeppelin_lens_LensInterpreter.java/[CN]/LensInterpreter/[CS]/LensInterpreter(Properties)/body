@@ -1,0 +1,29 @@
+{
+  super(property);
+  try {
+    m_lensConf=new LensClientConfig();
+    m_lensConf.set(LENS_SERVER_URL,property.get(LENS_SERVER_URL).toString());
+    m_lensConf.set(LENS_CLIENT_DBNAME,property.get(LENS_CLIENT_DBNAME).toString());
+    m_lensConf.set(LENS_SESSION_CLUSTER_USER,property.get(LENS_SESSION_CLUSTER_USER).toString());
+    m_lensConf.set(LENS_PERSIST_RESULTSET,property.get(LENS_PERSIST_RESULTSET).toString());
+    try {
+      m_maxResults=Integer.parseInt(property.get(ZEPPELIN_MAX_ROWS).toString());
+    }
+ catch (    NumberFormatException|NullPointerException e) {
+      m_maxResults=1000;
+      s_logger.error("unable to parse " + ZEPPELIN_MAX_ROWS + " :"+ property.get(ZEPPELIN_MAX_ROWS),e);
+    }
+    try {
+      m_maxThreads=Integer.parseInt(property.get(ZEPPELIN_LENS_CONCURRENT_SESSIONS).toString());
+    }
+ catch (    NumberFormatException|NullPointerException e) {
+      m_maxThreads=10;
+      s_logger.error("unable to parse " + ZEPPELIN_LENS_CONCURRENT_SESSIONS + " :"+ property.get(ZEPPELIN_LENS_CONCURRENT_SESSIONS),e);
+    }
+    s_logger.info("LensInterpreter created");
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    s_logger.error("unable to create lens interpreter",e);
+  }
+}

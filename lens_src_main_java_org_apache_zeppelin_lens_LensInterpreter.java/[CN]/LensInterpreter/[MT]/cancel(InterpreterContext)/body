@@ -1,0 +1,35 @@
+{
+  if (!s_paraToQH.containsKey(context.getParagraphId())) {
+    s_logger.error("ignoring cancel from " + context.getParagraphId());
+    return;
+  }
+  String qh=s_paraToQH.get(context.getParagraphId()).getQueryHandle();
+  s_logger.info("preparing to cancel : (" + context.getParagraphId() + ") :"+ qh);
+  Bootstrap bs=createBootstrap();
+  JLineShell shell=getJLineShell(bs);
+  LensClient lensClient=null;
+  try {
+    lensClient=createAndSetLensClient(bs);
+    s_clientMap.put(lensClient,true);
+    s_logger.info("invoke query kill (" + context.getParagraphId() + ") "+ qh);
+    CommandResult res=shell.executeCommand("query kill " + qh);
+    s_logger.info("query kill returned (" + context.getParagraphId() + ") "+ qh+ " with: "+ res.getResult());
+  }
+ catch (  Exception e) {
+    s_logger.error("unable to kill query (" + context.getParagraphId() + ") "+ qh,e);
+  }
+ finally {
+    try {
+      if (lensClient != null) {
+        closeLensClient(lensClient);
+        s_clientMap.remove(lensClient);
+      }
+      closeLensClient(s_paraToQH.get(context.getParagraphId()).getLensClient());
+      closeShell(s_paraToQH.get(context.getParagraphId()).getShell());
+    }
+ catch (    Exception e) {
+    }
+    s_paraToQH.remove(context.getParagraphId());
+    closeShell(shell);
+  }
+}

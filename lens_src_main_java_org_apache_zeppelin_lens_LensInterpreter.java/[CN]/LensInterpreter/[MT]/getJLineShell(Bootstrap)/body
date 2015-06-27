@@ -1,0 +1,8 @@
+{
+  if (bs instanceof LensBootstrap) {
+    return ((LensBootstrap)bs).getLensJLineShellComponent();
+  }
+ else {
+    return bs.getJLineShellComponent();
+  }
+}

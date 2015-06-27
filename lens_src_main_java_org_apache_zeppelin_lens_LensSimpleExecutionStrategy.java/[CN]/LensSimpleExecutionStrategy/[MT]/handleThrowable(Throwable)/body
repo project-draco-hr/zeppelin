@@ -1,0 +1,9 @@
+{
+  if (th instanceof Error) {
+    throw ((Error)th);
+  }
+  if (th instanceof RuntimeException) {
+    throw ((RuntimeException)th);
+  }
+  throw new RuntimeException(th);
+}

@@ -1,0 +1,4 @@
+{
+  closeConnections();
+  s_logger.info("LensInterpreter closed");
+}

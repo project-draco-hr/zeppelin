@@ -1,0 +1,8 @@
+{
+  if (concurrentRequests()) {
+    return SchedulerFactory.singleton().createOrGetParallelScheduler(LensInterpreter.class.getName() + this.hashCode(),m_maxThreads);
+  }
+ else {
+    return super.getScheduler();
+  }
+}

@@ -1,0 +1,16 @@
+{
+  Matcher matcher=s_queryExecutePattern.matcher(st.toLowerCase());
+  if (!matcher.find()) {
+    return st;
+  }
+  StringBuilder sb=new StringBuilder("query execute ");
+  if (!st.toLowerCase().matches(".*--async\\s+true")) {
+    sb.append("--async true ");
+  }
+  sb.append(matcher.group(1));
+  if (!st.toLowerCase().matches(".*limit\\s+\\d+.*")) {
+    sb.append(" limit ");
+    sb.append(m_maxResults);
+  }
+  return sb.toString();
+}

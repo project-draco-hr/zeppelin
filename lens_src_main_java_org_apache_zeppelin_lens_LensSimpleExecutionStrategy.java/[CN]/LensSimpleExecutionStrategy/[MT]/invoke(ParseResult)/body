@@ -1,0 +1,9 @@
+{
+  try {
+    return ReflectionUtils.invokeMethod(parseResult.getMethod(),parseResult.getInstance(),parseResult.getArguments());
+  }
+ catch (  Throwable th) {
+    logger.severe("Command failed " + th);
+    return handleThrowable(th);
+  }
+}

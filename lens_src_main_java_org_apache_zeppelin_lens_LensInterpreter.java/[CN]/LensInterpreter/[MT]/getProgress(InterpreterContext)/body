@@ -1,0 +1,44 @@
+{
+  if (s_paraToQH.containsKey(context.getParagraphId())) {
+    s_logger.info("number of items for which progress can be reported :" + s_paraToQH.size());
+    s_logger.info("number of open lensclient :" + s_clientMap.size());
+    Bootstrap bs=createBootstrap();
+    JLineShell shell=getJLineShell(bs);
+    LensClient lensClient=null;
+    String qh=s_paraToQH.get(context.getParagraphId()).getQueryHandle();
+    try {
+      s_logger.info("fetch query status for : (" + context.getParagraphId() + ") :"+ qh);
+      lensClient=createAndSetLensClient(bs);
+      s_clientMap.put(lensClient,true);
+      CommandResult res=shell.executeCommand("query status " + qh);
+      s_logger.info(context.getParagraphId() + " --> " + res.getResult().toString());
+      Pattern pattern=Pattern.compile(".*(Progress : (\\d\\.\\d)).*");
+      Matcher matcher=pattern.matcher(res.getResult().toString().replaceAll("\\n"," "));
+      if (matcher.find(2)) {
+        Double d=Double.parseDouble(matcher.group(2)) * 100;
+        if (d.intValue() == 100) {
+          s_paraToQH.remove(context.getParagraphId());
+        }
+        return d.intValue();
+      }
+ else {
+        return 1;
+      }
+    }
+ catch (    Exception e) {
+      s_logger.error("unable to get progress for (" + context.getParagraphId() + ") :"+ qh,e);
+      s_paraToQH.remove(context.getParagraphId());
+      return 0;
+    }
+ finally {
+      if (lensClient != null) {
+        closeLensClient(lensClient);
+        s_clientMap.remove(lensClient);
+      }
+      if (shell != null) {
+        closeShell(shell);
+      }
+    }
+  }
+  return 0;
+}

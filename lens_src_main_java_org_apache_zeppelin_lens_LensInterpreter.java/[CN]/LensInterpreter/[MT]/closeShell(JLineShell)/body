@@ -1,0 +1,8 @@
+{
+  if (shell instanceof LensJLineShellComponent) {
+    ((LensJLineShellComponent)shell).stop();
+  }
+ else {
+    ((JLineShellComponent)shell).stop();
+  }
+}

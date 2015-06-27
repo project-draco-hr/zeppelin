@@ -1,0 +1,9 @@
+{
+  this.historyFileName=getHistoryFileName();
+  this.promptText=getPromptText();
+  String[] banner=getBannerText();
+  this.banner=banner[0];
+  this.welcomeMessage=banner[1];
+  this.version=banner[2];
+  this.productName=banner[3];
+}

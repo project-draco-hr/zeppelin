@@ -1,0 +1,7 @@
+{
+  for (  LensClient cl : s_clientMap.keySet()) {
+    if (cl.isConnectionOpen()) {
+      closeLensClient(cl);
+    }
+  }
+}

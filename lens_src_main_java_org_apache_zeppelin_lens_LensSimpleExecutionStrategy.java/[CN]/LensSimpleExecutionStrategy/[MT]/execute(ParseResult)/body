@@ -1,0 +1,24 @@
+{
+  Assert.notNull(parseResult,"Parse result required");
+  logger.info("LensSimpleExecutionStrategy execute method invoked");
+synchronized (this) {
+    Assert.isTrue(isReadyForCommands(),"SimpleExecutionStrategy not yet ready for commands");
+    Object target=parseResult.getInstance();
+    if (target instanceof ExecutionProcessor) {
+      ExecutionProcessor processor=((ExecutionProcessor)target);
+      parseResult=processor.beforeInvocation(parseResult);
+      try {
+        Object result=invoke(parseResult);
+        processor.afterReturningInvocation(parseResult,result);
+        return result;
+      }
+ catch (      Throwable th) {
+        processor.afterThrowingInvocation(parseResult,th);
+        return handleThrowable(th);
+      }
+    }
+ else {
+      return invoke(parseResult);
+    }
+  }
+}

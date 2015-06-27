@@ -1,0 +1,6 @@
+{
+  customizePlugin();
+  shellThread=new Thread(this,"Spring Shell");
+  shellThread.start();
+  running=true;
+}

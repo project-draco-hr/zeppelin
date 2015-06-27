@@ -1,0 +1,27 @@
+{
+  java.util.logging.StreamHandler sh=null;
+  java.util.logging.Logger springLogger=null;
+  java.util.logging.Formatter formatter=new java.util.logging.Formatter(){
+    public String format(    java.util.logging.LogRecord record){
+      return record.getMessage();
+    }
+  }
+;
+  ByteArrayOutputStream baos=new ByteArrayOutputStream();
+  try {
+    sh=new java.util.logging.StreamHandler(baos,formatter);
+    springLogger=HandlerUtils.getLogger(org.springframework.shell.core.SimpleParser.class);
+    springLogger.addHandler(sh);
+    shell.executeCommand(st);
+  }
+ catch (  Exception e) {
+    s_logger.error(e.getMessage(),e);
+    return new InterpreterResult(Code.ERROR,e.getMessage());
+  }
+ finally {
+    sh.flush();
+    springLogger.removeHandler(sh);
+    sh.close();
+  }
+  return new InterpreterResult(Code.SUCCESS,baos.toString());
+}

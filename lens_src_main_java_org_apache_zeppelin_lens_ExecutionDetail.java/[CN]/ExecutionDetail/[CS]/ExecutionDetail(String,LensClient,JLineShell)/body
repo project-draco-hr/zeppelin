@@ -1,0 +1,5 @@
+{
+  this.queryHandle=qh;
+  this.lensClient=lensClient;
+  this.shell=shell;
+}

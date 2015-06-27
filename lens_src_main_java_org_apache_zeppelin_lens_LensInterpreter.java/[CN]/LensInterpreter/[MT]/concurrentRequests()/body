@@ -1,0 +1,3 @@
+{
+  return Boolean.parseBoolean(getProperty(ZEPPELIN_LENS_RUN_CONCURRENT_SESSION));
+}

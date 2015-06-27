@@ -1,0 +1,27 @@
+{
+  if (result == null) {
+    return "error in interpret, no result object returned";
+  }
+  if (!result.isSuccess() || result.getResult() == null) {
+    if (result.getException() != null) {
+      return result.getException().getMessage();
+    }
+ else {
+      return "error in interpret, unable to execute command";
+    }
+  }
+  StringBuilder sb=new StringBuilder();
+  for (  Map.Entry<String,Pattern> entry : LENS_TABLE_FORMAT_REGEX.entrySet()) {
+    if (entry.getValue().matcher(st.toLowerCase()).find()) {
+      sb.append("%table " + entry.getKey() + " \n");
+      break;
+    }
+  }
+  if (s_queryExecutePattern.matcher(st.toLowerCase()).find() && result.getResult().toString().contains(" rows process in (")) {
+    sb.append("%table ");
+  }
+  if (sb.length() > 0) {
+    return sb.append(result.getResult().toString()).toString();
+  }
+  return result.getResult().toString();
+}

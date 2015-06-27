@@ -1,0 +1,16 @@
+{
+  LensClient lensClient=null;
+  try {
+    lensClient=new LensClient(m_lensConf);
+    for (    String beanName : bs.getApplicationContext().getBeanDefinitionNames()) {
+      if (bs.getApplicationContext().getBean(beanName) instanceof BaseLensCommand) {
+        ((BaseLensCommand)bs.getApplicationContext().getBean(beanName)).setClient(lensClient);
+      }
+    }
+  }
+ catch (  Exception e) {
+    s_logger.error("unable to create lens client",e);
+    throw e;
+  }
+  return lensClient;
+}

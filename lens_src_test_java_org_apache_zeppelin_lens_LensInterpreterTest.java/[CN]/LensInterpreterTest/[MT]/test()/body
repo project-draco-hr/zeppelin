@@ -1,0 +1,15 @@
+{
+  Properties prop=new Properties();
+  prop.setProperty(LENS_SERVER_URL,"http://127.0.0.1:9999/lensapi");
+  prop.setProperty(LENS_CLIENT_DBNAME,"default");
+  prop.setProperty(LENS_PERSIST_RESULTSET,"false");
+  prop.setProperty(LENS_SESSION_CLUSTER_USER,"default");
+  prop.setProperty(ZEPPELIN_MAX_ROWS,"1000");
+  prop.setProperty(ZEPPELIN_LENS_RUN_CONCURRENT_SESSION,"true");
+  prop.setProperty(ZEPPELIN_LENS_CONCURRENT_SESSIONS,"10");
+  LensInterpreter t=new MockLensInterpreter(prop);
+  t.open();
+  InterpreterResult result=t.interpret("help",null);
+  assertEquals(result.type(),InterpreterResult.Type.TEXT);
+  t.close();
+}
