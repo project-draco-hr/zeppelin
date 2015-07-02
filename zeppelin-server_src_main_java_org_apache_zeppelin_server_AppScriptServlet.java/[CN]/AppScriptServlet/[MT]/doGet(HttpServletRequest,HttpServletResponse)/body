@@ -15,11 +15,13 @@
     }
     script.append(new String(buffer,0,numRead,"UTF-8"));
   }
-  int startIndex=script.indexOf("function getPort()");
-  int endIndex=script.indexOf("}",startIndex);
+  String startReplaceString="/* @preserve AppScriptServlet - getPort */";
+  String endReplaceString="/* @preserve AppScriptServlet - close */";
+  int startIndex=script.indexOf(startReplaceString);
+  int endIndex=script.indexOf(endReplaceString,startIndex);
   if (startIndex >= 0 && endIndex >= 0) {
-    String replaceString="function getPort(){return " + websocketPort + "}";
-    script.replace(startIndex,endIndex + 1,replaceString);
+    String replaceString="this.getPort=function(){return " + websocketPort + "};";
+    script.replace(startIndex,endIndex + endReplaceString.length(),replaceString);
   }
   response.getWriter().println(script.toString());
 }
