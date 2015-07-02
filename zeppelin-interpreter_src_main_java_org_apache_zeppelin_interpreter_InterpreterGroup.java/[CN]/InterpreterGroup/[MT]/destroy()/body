@@ -1,5 +1,22 @@
 {
-  for (  Interpreter intp : this) {
-    intp.destroy();
+  List<Thread> destroyThreads=new LinkedList<Thread>();
+  for (  final Interpreter intp : this) {
+    Thread t=new Thread(){
+      public void run(){
+        intp.destroy();
+      }
+    }
+;
+    t.start();
+    destroyThreads.add(t);
+  }
+  for (  Thread t : destroyThreads) {
+    try {
+      t.join();
+    }
+ catch (    InterruptedException e) {
+      Logger logger=Logger.getLogger(InterpreterGroup.class);
+      logger.error("Can't close interpreter",e);
+    }
   }
 }
