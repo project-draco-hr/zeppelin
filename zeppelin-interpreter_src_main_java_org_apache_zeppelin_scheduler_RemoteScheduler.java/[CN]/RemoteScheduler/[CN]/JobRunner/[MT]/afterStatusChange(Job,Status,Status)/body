@@ -2,10 +2,14 @@
   if (after == null) {
     if (jobExecuted) {
       jobSubmittedRemotely=true;
+      Object jobResult=job.getReturn();
       if (job.isAborted()) {
         job.setStatus(Status.ABORT);
       }
  else       if (job.getException() != null) {
+        job.setStatus(Status.ERROR);
+      }
+ else       if (jobResult != null && jobResult instanceof InterpreterResult && ((InterpreterResult)jobResult).code() == Code.ERROR) {
         job.setStatus(Status.ERROR);
       }
  else {

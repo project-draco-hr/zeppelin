@@ -4,8 +4,10 @@
   try {
     return intp.interpret(st,context);
   }
- catch (  Exception e) {
-    e.printStackTrace();
+ catch (  InterpreterException e) {
+    throw e;
+  }
+catch (  Exception e) {
     throw new InterpreterException(e);
   }
  finally {

@@ -23,7 +23,14 @@ synchronized (queue) {
  catch (  InterruptedException e) {
     logger.error("JobStatusPoller interrupted",e);
   }
-  job.setStatus(jobStatusPoller.getStatus());
+  Status lastStatus=jobStatusPoller.getStatus();
+  Object jobResult=job.getReturn();
+  if (jobResult != null && jobResult instanceof InterpreterResult) {
+    if (((InterpreterResult)jobResult).code() == Code.ERROR) {
+      lastStatus=Status.ERROR;
+    }
+  }
+  job.setStatus(lastStatus);
   if (listener != null) {
     listener.jobFinished(scheduler,job);
   }

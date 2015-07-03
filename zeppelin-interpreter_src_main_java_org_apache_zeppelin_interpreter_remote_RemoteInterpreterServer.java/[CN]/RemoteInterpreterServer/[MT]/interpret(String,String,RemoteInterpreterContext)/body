@@ -14,12 +14,12 @@ synchronized (jobListener) {
       }
     }
   }
+  InterpreterResult result;
   if (job.getStatus() == Status.ERROR) {
-    throw new TException(job.getException());
+    result=new InterpreterResult(Code.ERROR,Job.getStack(job.getException()));
   }
  else {
-    if (intp.getFormType() == FormType.NATIVE) {
-    }
-    return convert((InterpreterResult)job.getReturn(),context.getConfig(),context.getGui());
+    result=(InterpreterResult)job.getReturn();
   }
+  return convert(result,context.getConfig(),context.getGui());
 }

@@ -1,11 +1,7 @@
 {
-  StackTraceElement[] stacks=e.getStackTrace();
-  if (stacks == null) {
+  if (e == null) {
     return "";
   }
-  String ss="";
-  for (  StackTraceElement s : stacks) {
-    ss+=s.toString() + "\n";
-  }
-  return ss;
+  Throwable cause=ExceptionUtils.getRootCause(e);
+  return ExceptionUtils.getFullStackTrace(cause);
 }

@@ -29,7 +29,8 @@
       context.getGui().setParams(remoteGui.getParams());
       context.getGui().setForms(remoteGui.getForms());
     }
-    return convert(remoteResult);
+    InterpreterResult result=convert(remoteResult);
+    return result;
   }
  catch (  TException e) {
     throw new InterpreterException(e);

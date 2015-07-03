@@ -14,9 +14,8 @@
   try {
     String statusStr=client.getStatus(job.getId());
     if ("Unknown".equals(statusStr)) {
-      Status status=getLastStatus();
-      listener.afterStatusChange(job,null,status);
-      return status;
+      listener.afterStatusChange(job,null,null);
+      return job.getStatus();
     }
     Status status=Status.valueOf(statusStr);
     lastStatus=status;

@@ -16,12 +16,16 @@ synchronized (this) {
  catch (      InterruptedException e) {
       }
     }
+    if (terminate) {
+      break;
+    }
     Status newStatus=getStatus();
     if (newStatus == null) {
       continue;
     }
     if (newStatus != Status.READY && newStatus != Status.PENDING) {
-      continue;
+      break;
     }
   }
+  terminate=true;
 }
