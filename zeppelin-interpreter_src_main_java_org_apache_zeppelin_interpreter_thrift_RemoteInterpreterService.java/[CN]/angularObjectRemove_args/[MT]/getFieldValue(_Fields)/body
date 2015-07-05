@@ -1,0 +1,9 @@
+{
+switch (field) {
+case NAME:
+    return getName();
+case NOTE_ID:
+  return getNoteId();
+}
+throw new IllegalStateException();
+}

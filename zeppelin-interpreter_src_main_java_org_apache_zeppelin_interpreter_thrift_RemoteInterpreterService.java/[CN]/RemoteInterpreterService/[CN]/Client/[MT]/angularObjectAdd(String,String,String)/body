@@ -1,0 +1,4 @@
+{
+  send_angularObjectAdd(name,noteId,object);
+  recv_angularObjectAdd();
+}

@@ -3,6 +3,8 @@
   String interpreterGroupId=(String)fromMessage.get("interpreterGroupId");
   String varName=(String)fromMessage.get("name");
   Object varValue=fromMessage.get("value");
+  AngularObject ao=null;
+  boolean global=false;
   Note note=notebook.getNote(noteId);
   if (note != null) {
     List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
@@ -12,28 +14,40 @@
       }
       if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
         AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
-        AngularObject ao=angularObjectRegistry.get(varName);
+        ao=angularObjectRegistry.get(varName,noteId);
         if (ao == null) {
-          LOG.warn("Object {} is not binded",varName);
+          ao=angularObjectRegistry.get(varName,null);
+          if (ao == null) {
+            LOG.warn("Object {} is not binded",varName);
+          }
+ else {
+            ao.set(varValue,false);
+            global=true;
+          }
         }
  else {
           ao.set(varValue,false);
+          global=false;
         }
         break;
       }
     }
   }
-  for (  Note n : notebook.getAllNotes()) {
-    List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
-    for (    InterpreterSetting setting : settings) {
-      if (setting.getInterpreterGroup() == null) {
-        continue;
-      }
-      if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
-        AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
-        AngularObject ao=angularObjectRegistry.get(varName);
-        this.broadcast(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()));
+  if (global) {
+    for (    Note n : notebook.getAllNotes()) {
+      List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
+      for (      InterpreterSetting setting : settings) {
+        if (setting.getInterpreterGroup() == null) {
+          continue;
+        }
+        if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
+          AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
+          this.broadcast(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()));
+        }
       }
     }
+  }
+ else {
+    this.broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()));
   }
 }

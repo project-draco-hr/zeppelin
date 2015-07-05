@@ -1,0 +1,12 @@
+{
+  Note note=notebook.createNote();
+  note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
+  AngularObjectRegistry registry=note.getNoteReplLoader().getInterpreterSettings().get(0).getInterpreterGroup().getAngularObjectRegistry();
+  registry.add("o1","object1",note.id());
+  registry.add("o2","object2",null);
+  factory.restart(note.getNoteReplLoader().getInterpreterSettings().get(0).id());
+  registry=note.getNoteReplLoader().getInterpreterSettings().get(0).getInterpreterGroup().getAngularObjectRegistry();
+  assertNull(registry.get("o1",note.id()));
+  assertNull(registry.get("o2",null));
+  notebook.removeNote(note.id());
+}

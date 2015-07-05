@@ -1,0 +1,10 @@
+{
+  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
+  if (registry.get(name,noteId) == null) {
+    registry.add(name,o,noteId);
+  }
+ else {
+    registry.get(name,noteId).set(o);
+  }
+  angularWatch(name,watcher);
+}

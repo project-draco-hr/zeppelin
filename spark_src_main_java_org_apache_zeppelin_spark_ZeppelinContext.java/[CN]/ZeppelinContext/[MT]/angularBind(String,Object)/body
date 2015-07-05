@@ -1,9 +1,3 @@
 {
-  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
-  if (registry.get(name) == null) {
-    registry.add(name,o);
-  }
- else {
-    registry.get(name).set(o);
-  }
+  angularBind(name,o,interpreterContext.getNoteId());
 }

@@ -1,0 +1,5 @@
+{
+  angularObjectRemove_result result=new angularObjectRemove_result();
+  receiveBase(result,"angularObjectRemove");
+  return;
+}

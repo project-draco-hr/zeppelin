@@ -1,9 +1,11 @@
 {
 switch (field) {
+case NOTE_ID:
+    return getNoteId();
 case PARAGRAPH_ID:
-    return getParagraphId();
+  return getParagraphId();
 case PARAGRAPH_TITLE:
-  return getParagraphTitle();
+return getParagraphTitle();
 case PARAGRAPH_TEXT:
 return getParagraphText();
 case CONFIG:

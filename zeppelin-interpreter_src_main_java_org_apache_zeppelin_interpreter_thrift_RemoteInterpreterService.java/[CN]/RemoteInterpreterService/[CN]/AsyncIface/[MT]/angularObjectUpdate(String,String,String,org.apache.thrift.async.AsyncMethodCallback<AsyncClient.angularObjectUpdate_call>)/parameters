@@ -1,0 +1,4 @@
+String name
+String noteId
+String object
+org.apache.thrift.async.AsyncMethodCallback<AsyncClient.angularObjectUpdate_call> resultHandler

@@ -3,6 +3,15 @@
 synchronized (notes) {
     note=notes.remove(id);
   }
+  for (  InterpreterSetting settings : replFactory.get()) {
+    AngularObjectRegistry registry=settings.getInterpreterGroup().getAngularObjectRegistry();
+    if (registry instanceof RemoteAngularObjectRegistry) {
+      ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id);
+    }
+ else {
+      registry.removeAll(id);
+    }
+  }
   try {
     note.unpersist();
   }

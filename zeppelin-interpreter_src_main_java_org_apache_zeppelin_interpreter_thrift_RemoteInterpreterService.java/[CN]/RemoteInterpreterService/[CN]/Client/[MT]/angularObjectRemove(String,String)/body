@@ -1,0 +1,4 @@
+{
+  send_angularObjectRemove(name,noteId);
+  recv_angularObjectRemove();
+}

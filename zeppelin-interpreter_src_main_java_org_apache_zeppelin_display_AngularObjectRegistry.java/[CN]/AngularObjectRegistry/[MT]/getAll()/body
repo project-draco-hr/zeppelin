@@ -1,7 +1,0 @@
-{
-  List<AngularObject> all=new LinkedList<AngularObject>();
-synchronized (registry) {
-    all.addAll(registry.values());
-  }
-  return all;
-}

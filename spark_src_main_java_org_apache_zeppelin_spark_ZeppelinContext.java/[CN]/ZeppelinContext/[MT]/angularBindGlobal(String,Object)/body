@@ -1,0 +1,3 @@
+{
+  angularBind(name,o,(String)null);
+}

@@ -1,0 +1,14 @@
+{
+  List<AngularObject> all=new LinkedList<AngularObject>();
+synchronized (registry) {
+    Map<String,AngularObject> global=getRegistryForKey(null);
+    if (global != null) {
+      all.addAll(global.values());
+    }
+    Map<String,AngularObject> local=getRegistryForKey(noteId);
+    if (local != null) {
+      all.addAll(local.values());
+    }
+  }
+  return all;
+}

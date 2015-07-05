@@ -38,5 +38,17 @@ synchronized (notes) {
     notes.put(note.id(),note);
     refreshCron(note.id());
   }
+  for (  String name : angularObjectSnapshot.keySet()) {
+    SnapshotAngularObject snapshot=angularObjectSnapshot.get(name);
+    List<InterpreterSetting> settings=replFactory.get();
+    for (    InterpreterSetting setting : settings) {
+      InterpreterGroup intpGroup=setting.getInterpreterGroup();
+      if (intpGroup.getId().equals(snapshot.getIntpGroupId())) {
+        AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
+        String noteId=snapshot.getAngularObject().getNoteId();
+        registry.add(name,snapshot.getAngularObject().get(),noteId);
+      }
+    }
+  }
   return note;
 }

@@ -1,4 +1,0 @@
-{
-  send_angularObjectUpdate(name,object);
-  recv_angularObjectUpdate();
-}

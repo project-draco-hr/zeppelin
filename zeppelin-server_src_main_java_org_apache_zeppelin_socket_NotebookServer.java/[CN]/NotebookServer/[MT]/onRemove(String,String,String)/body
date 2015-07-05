@@ -1,0 +1,15 @@
+{
+  Notebook notebook=notebook();
+  List<Note> notes=notebook.getAllNotes();
+  for (  Note note : notes) {
+    if (noteId != null && !note.id().equals(noteId)) {
+      continue;
+    }
+    List<String> ids=note.getNoteReplLoader().getInterpreters();
+    for (    String id : ids) {
+      if (id.equals(interpreterGroupId)) {
+        broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_REMOVE).put("name",name).put("noteId",noteId));
+      }
+    }
+  }
+}

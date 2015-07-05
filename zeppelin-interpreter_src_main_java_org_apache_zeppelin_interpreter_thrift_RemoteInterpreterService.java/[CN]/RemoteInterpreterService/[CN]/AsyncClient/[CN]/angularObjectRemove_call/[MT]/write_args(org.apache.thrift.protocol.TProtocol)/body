@@ -1,0 +1,8 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("angularObjectRemove",org.apache.thrift.protocol.TMessageType.CALL,0));
+  angularObjectRemove_args args=new angularObjectRemove_args();
+  args.setName(name);
+  args.setNoteId(noteId);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

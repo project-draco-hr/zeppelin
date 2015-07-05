@@ -1,4 +1,4 @@
 {
-  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
-  registry.remove(name);
+  String noteId=interpreterContext.getNoteId();
+  angularUnbind(name,noteId);
 }

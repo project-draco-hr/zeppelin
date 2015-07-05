@@ -1,0 +1,7 @@
+{
+  angularObjectAdd_args args=new angularObjectAdd_args();
+  args.setName(name);
+  args.setNoteId(noteId);
+  args.setObject(object);
+  sendBase("angularObjectAdd",args);
+}

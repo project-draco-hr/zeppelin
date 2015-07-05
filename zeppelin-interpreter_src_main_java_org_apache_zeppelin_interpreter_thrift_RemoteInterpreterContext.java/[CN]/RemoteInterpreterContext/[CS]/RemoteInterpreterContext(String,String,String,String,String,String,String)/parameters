@@ -1,0 +1,7 @@
+String noteId
+String paragraphId
+String paragraphTitle
+String paragraphText
+String config
+String gui
+String runners

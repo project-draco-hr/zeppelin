@@ -1,0 +1,3 @@
+String name
+String noteId
+org.apache.thrift.async.AsyncMethodCallback<angularObjectRemove_call> resultHandler

@@ -1,0 +1,3 @@
+String name
+String noteId
+scala.Function3<Object,Object,InterpreterContext,Unit> func

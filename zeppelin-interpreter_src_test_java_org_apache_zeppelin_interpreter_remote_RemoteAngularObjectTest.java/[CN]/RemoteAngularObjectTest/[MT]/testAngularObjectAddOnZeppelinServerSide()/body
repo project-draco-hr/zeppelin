@@ -1,0 +1,11 @@
+{
+  InterpreterResult ret=intp.interpret("get",context);
+  Thread.sleep(500);
+  String[] result=ret.message().split(" ");
+  assertEquals("0",result[0]);
+  localRegistry.addAndNotifyRemoteProcess("n1","v1","note");
+  ret=intp.interpret("get",context);
+  Thread.sleep(500);
+  result=ret.message().split(" ");
+  assertEquals("1",result[0]);
+}

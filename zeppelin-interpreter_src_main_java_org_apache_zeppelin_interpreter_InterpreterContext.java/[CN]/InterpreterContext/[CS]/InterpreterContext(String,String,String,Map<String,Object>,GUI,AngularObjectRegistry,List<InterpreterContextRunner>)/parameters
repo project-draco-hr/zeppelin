@@ -1,7 +1,0 @@
-String paragraphId
-String paragraphTitle
-String paragraphText
-Map<String,Object> config
-GUI gui
-AngularObjectRegistry angularObjectRegistry
-List<InterpreterContextRunner> runners

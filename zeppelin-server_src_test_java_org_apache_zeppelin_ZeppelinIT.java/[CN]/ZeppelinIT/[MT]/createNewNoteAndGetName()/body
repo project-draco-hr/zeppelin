@@ -1,0 +1,24 @@
+{
+  List<WebElement> notebookLinks=driver.findElements(By.xpath("//div[contains(@class, \"col-md-4\")]/div/ul/li"));
+  List<String> notebookTitles=new LinkedList<String>();
+  for (  WebElement el : notebookLinks) {
+    notebookTitles.add(el.getText());
+  }
+  WebElement createNoteLink=driver.findElement(By.partialLinkText("Create new note"));
+  createNoteLink.click();
+  try {
+    Thread.sleep(500);
+  }
+ catch (  InterruptedException e) {
+  }
+  List<WebElement> notebookLinksAfterCreate=driver.findElements(By.xpath("//div[contains(@class, \"col-md-4\")]/div/ul/li"));
+  Iterator<WebElement> it=notebookLinksAfterCreate.iterator();
+  while (it.hasNext()) {
+    WebElement newEl=it.next();
+    if (notebookTitles.contains(newEl.getText())) {
+      it.remove();
+    }
+  }
+  assertEquals(1,notebookLinksAfterCreate.size());
+  return notebookLinksAfterCreate.get(0).getText();
+}

@@ -1,8 +1,9 @@
 {
   if (o instanceof AngularObject) {
-    return name.equals(((AngularObject)o).name);
+    AngularObject ao=(AngularObject)o;
+    if (noteId == null && ao.noteId == null || (noteId != null && ao.noteId != null && noteId.equals(ao.noteId))) {
+      return name.equals(ao.name);
+    }
   }
- else {
-    return false;
-  }
+  return false;
 }

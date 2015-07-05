@@ -1,0 +1,3 @@
+{
+  angularWatch(name,null,func);
+}

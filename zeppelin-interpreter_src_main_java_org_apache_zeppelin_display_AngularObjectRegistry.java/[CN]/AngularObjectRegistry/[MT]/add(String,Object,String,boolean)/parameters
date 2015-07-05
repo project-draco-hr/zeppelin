@@ -1,0 +1,4 @@
+String name
+Object o
+String noteId
+boolean emit

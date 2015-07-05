@@ -1,4 +1,7 @@
 {
+  if (other.isSetNoteId()) {
+    this.noteId=other.noteId;
+  }
   if (other.isSetParagraphId()) {
     this.paragraphId=other.paragraphId;
   }

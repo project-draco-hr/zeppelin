@@ -1,0 +1,36 @@
+{
+  AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
+  AngularObject ao=registry.get(name,noteId);
+  if (ao == null) {
+    logger.error("Angular object {} not exists",name);
+    return;
+  }
+  if (object == null) {
+    ao.set(null,false);
+    return;
+  }
+  Object oldObject=ao.get();
+  Object value=null;
+  if (oldObject != null) {
+    try {
+      value=gson.fromJson(object,oldObject.getClass());
+      ao.set(value,false);
+      return;
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (value == null) {
+    try {
+      value=gson.fromJson(object,new TypeToken<Map<String,Object>>(){
+      }
+.getType());
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (value == null) {
+    value=gson.fromJson(object,String.class);
+  }
+  ao.set(value,false);
+}

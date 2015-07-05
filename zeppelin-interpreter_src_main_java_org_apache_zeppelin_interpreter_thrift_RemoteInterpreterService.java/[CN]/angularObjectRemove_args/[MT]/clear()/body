@@ -1,0 +1,4 @@
+{
+  this.name=null;
+  this.noteId=null;
+}

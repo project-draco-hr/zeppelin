@@ -1,3 +1,4 @@
 {
+  snapshotAngularObjectRegistry();
   repo.save(this);
 }

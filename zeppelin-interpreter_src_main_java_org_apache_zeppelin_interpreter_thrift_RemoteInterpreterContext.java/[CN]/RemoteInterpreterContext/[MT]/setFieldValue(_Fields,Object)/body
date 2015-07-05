@@ -1,19 +1,27 @@
 {
 switch (field) {
-case PARAGRAPH_ID:
+case NOTE_ID:
     if (value == null) {
-      unsetParagraphId();
+      unsetNoteId();
     }
  else {
-      setParagraphId((String)value);
+      setNoteId((String)value);
     }
   break;
-case PARAGRAPH_TITLE:
+case PARAGRAPH_ID:
 if (value == null) {
-  unsetParagraphTitle();
+  unsetParagraphId();
 }
  else {
-  setParagraphTitle((String)value);
+  setParagraphId((String)value);
+}
+break;
+case PARAGRAPH_TITLE:
+if (value == null) {
+unsetParagraphTitle();
+}
+ else {
+setParagraphTitle((String)value);
 }
 break;
 case PARAGRAPH_TEXT:

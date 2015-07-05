@@ -2,6 +2,7 @@
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("angularObjectUpdate",org.apache.thrift.protocol.TMessageType.CALL,0));
   angularObjectUpdate_args args=new angularObjectUpdate_args();
   args.setName(name);
+  args.setNoteId(noteId);
   args.setObject(object);
   args.write(prot);
   prot.writeMessageEnd();

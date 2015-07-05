@@ -1,0 +1,9 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("angularObjectAdd",org.apache.thrift.protocol.TMessageType.CALL,0));
+  angularObjectAdd_args args=new angularObjectAdd_args();
+  args.setName(name);
+  args.setNoteId(noteId);
+  args.setObject(object);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

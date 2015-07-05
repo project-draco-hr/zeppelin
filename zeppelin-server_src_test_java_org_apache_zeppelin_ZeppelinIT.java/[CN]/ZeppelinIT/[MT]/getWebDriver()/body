@@ -40,7 +40,7 @@
     try {
       (new WebDriverWait(driver,5)).until(new ExpectedCondition<Boolean>(){
         @Override public Boolean apply(        WebDriver d){
-          return d.findElement(By.partialLinkText("Start")).isDisplayed();
+          return d.findElement(By.partialLinkText("Create new note")).isDisplayed();
         }
       }
 );

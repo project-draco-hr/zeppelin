@@ -1,7 +1,13 @@
 {
   Notebook notebook=notebook();
+  if (notebook == null) {
+    return;
+  }
   List<Note> notes=notebook.getAllNotes();
   for (  Note note : notes) {
+    if (object.getNoteId() != null && !note.id().equals(object.getNoteId())) {
+      continue;
+    }
     List<InterpreterSetting> intpSettings=note.getNoteReplLoader().getInterpreterSettings();
     if (intpSettings.isEmpty())     continue;
     for (    InterpreterSetting setting : intpSettings) {

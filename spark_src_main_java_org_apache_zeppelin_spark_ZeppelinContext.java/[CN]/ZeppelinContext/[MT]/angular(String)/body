@@ -1,6 +1,5 @@
 {
-  AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
-  AngularObject ao=registry.get(name);
+  AngularObject ao=getAngularObject(name,interpreterContext);
   if (ao == null) {
     return null;
   }

@@ -11,6 +11,6 @@
   intp=new RemoteInterpreter(p,MockInterpreterAngular.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
   intpGroup.add(intp);
   intp.setInterpreterGroup(intpGroup);
-  context=new InterpreterContext("id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>());
+  context=new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>());
   intp.open();
 }

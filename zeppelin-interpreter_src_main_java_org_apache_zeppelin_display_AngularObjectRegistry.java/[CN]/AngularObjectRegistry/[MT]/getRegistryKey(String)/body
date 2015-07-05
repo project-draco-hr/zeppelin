@@ -1,0 +1,8 @@
+{
+  if (noteId == null) {
+    return GLOBAL_KEY;
+  }
+ else {
+    return noteId;
+  }
+}

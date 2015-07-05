@@ -1,0 +1,20 @@
+{
+  AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
+  AngularObject ao=registry.get(name,noteId);
+  if (ao != null) {
+    angularObjectUpdate(name,noteId,object);
+    return;
+  }
+  Object value=null;
+  try {
+    value=gson.fromJson(object,new TypeToken<Map<String,Object>>(){
+    }
+.getType());
+  }
+ catch (  Exception e) {
+  }
+  if (value == null) {
+    value=gson.fromJson(object,String.class);
+  }
+  registry.add(name,value,noteId,false);
+}

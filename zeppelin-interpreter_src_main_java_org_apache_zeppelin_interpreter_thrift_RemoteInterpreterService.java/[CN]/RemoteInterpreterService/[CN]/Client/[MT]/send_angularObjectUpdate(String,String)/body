@@ -1,6 +1,0 @@
-{
-  angularObjectUpdate_args args=new angularObjectUpdate_args();
-  args.setName(name);
-  args.setObject(object);
-  sendBase("angularObjectUpdate",args);
-}

@@ -16,7 +16,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      intpA.interpret("1000",new InterpreterContext("jobId","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
+      intpA.interpret("1000",new InterpreterContext("note","jobId","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
       return "1000";
     }
     @Override protected boolean jobAbort(){

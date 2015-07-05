@@ -1,0 +1,8 @@
+{
+synchronized (registry) {
+    List<AngularObject> all=getAll(noteId);
+    for (    AngularObject ao : all) {
+      remove(ao.getName(),noteId);
+    }
+  }
+}

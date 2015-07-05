@@ -1,4 +1,5 @@
 {
+  this.noteId=null;
   this.paragraphId=null;
   this.paragraphTitle=null;
   this.paragraphText=null;

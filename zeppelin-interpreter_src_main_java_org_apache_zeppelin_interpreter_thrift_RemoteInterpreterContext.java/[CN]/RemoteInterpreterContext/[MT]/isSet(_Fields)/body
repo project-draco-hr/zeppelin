@@ -3,10 +3,12 @@
     throw new IllegalArgumentException();
   }
 switch (field) {
+case NOTE_ID:
+    return isSetNoteId();
 case PARAGRAPH_ID:
-    return isSetParagraphId();
+  return isSetParagraphId();
 case PARAGRAPH_TITLE:
-  return isSetParagraphTitle();
+return isSetParagraphTitle();
 case PARAGRAPH_TEXT:
 return isSetParagraphText();
 case CONFIG:

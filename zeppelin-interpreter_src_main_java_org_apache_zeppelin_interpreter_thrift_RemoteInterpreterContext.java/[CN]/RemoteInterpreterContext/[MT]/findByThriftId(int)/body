@@ -1,16 +1,18 @@
 {
 switch (fieldId) {
 case 1:
-    return PARAGRAPH_ID;
+    return NOTE_ID;
 case 2:
-  return PARAGRAPH_TITLE;
+  return PARAGRAPH_ID;
 case 3:
-return PARAGRAPH_TEXT;
+return PARAGRAPH_TITLE;
 case 4:
-return CONFIG;
+return PARAGRAPH_TEXT;
 case 5:
-return GUI;
+return CONFIG;
 case 6:
+return GUI;
+case 7:
 return RUNNERS;
 default :
 return null;

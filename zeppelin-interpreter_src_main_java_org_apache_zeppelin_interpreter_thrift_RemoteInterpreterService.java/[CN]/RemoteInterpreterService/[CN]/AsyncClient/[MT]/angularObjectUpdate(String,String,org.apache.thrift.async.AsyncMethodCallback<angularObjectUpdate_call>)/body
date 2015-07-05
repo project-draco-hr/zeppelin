@@ -1,6 +1,0 @@
-{
-  checkReady();
-  angularObjectUpdate_call method_call=new angularObjectUpdate_call(name,object,resultHandler,this,___protocolFactory,___transport);
-  this.___currentMethod=method_call;
-  ___manager.call(method_call);
-}

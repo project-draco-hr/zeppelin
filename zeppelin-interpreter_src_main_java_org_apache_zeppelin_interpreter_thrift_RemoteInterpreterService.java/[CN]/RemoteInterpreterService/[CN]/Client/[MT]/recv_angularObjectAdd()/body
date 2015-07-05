@@ -1,0 +1,5 @@
+{
+  angularObjectAdd_result result=new angularObjectAdd_result();
+  receiveBase(result,"angularObjectAdd");
+  return;
+}

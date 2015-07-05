@@ -1,3 +1,0 @@
-{
-  return add(name,o,true);
-}

@@ -1,0 +1,20 @@
+{
+switch (field) {
+case NAME:
+    if (value == null) {
+      unsetName();
+    }
+ else {
+      setName((String)value);
+    }
+  break;
+case NOTE_ID:
+if (value == null) {
+  unsetNoteId();
+}
+ else {
+  setNoteId((String)value);
+}
+break;
+}
+}
