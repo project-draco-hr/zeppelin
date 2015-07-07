@@ -9,6 +9,6 @@
  else {
     webApp.setWar(warPath.getAbsolutePath());
   }
-  webApp.addServlet(new ServletHolder(new AppScriptServlet(conf.getWebSocketPort())),"/*");
+  webApp.addServlet(new ServletHolder(new AppScriptServlet(websocketPort)),"/*");
   return webApp;
 }

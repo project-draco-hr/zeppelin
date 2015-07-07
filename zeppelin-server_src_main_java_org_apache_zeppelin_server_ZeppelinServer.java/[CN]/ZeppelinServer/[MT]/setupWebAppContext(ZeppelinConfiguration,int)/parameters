@@ -1,1 +1,2 @@
 ZeppelinConfiguration conf
+int websocketPort

@@ -3,13 +3,14 @@
   conf.setProperty("args",args);
   jettyServer=setupJettyServer(conf);
   notebookServer=setupNotebookServer(conf);
+  notebookServer.start();
   final ServletContextHandler restApi=setupRestApiContextHandler();
   final ServletContextHandler swagger=setupSwaggerContextHandler(conf);
-  final WebAppContext webApp=setupWebAppContext(conf);
+  LOG.info("Create zeppelin websocket on {}:{}",notebookServer.getAddress().getAddress(),notebookServer.getPort());
+  final WebAppContext webApp=setupWebAppContext(conf,notebookServer.getPort());
   ContextHandlerCollection contexts=new ContextHandlerCollection();
   contexts.setHandlers(new Handler[]{swagger,restApi,webApp});
   jettyServer.setHandler(contexts);
-  notebookServer.start();
   LOG.info("Start zeppelin server");
   jettyServer.start();
   LOG.info("Started");

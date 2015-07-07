@@ -1,4 +1,3 @@
 {
   super(new InetSocketAddress(DEFAULT_ADDR,DEFAULT_PORT));
-  creatingwebSocketServerLog(DEFAULT_ADDR,DEFAULT_PORT);
 }
