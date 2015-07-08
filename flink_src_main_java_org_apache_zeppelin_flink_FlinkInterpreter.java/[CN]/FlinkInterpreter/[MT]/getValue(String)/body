@@ -1,4 +1,5 @@
 {
+  IMain imain=flinkIloop.intp();
   Object ret=imain.valueOfTerm(name);
   if (ret instanceof None) {
     return null;

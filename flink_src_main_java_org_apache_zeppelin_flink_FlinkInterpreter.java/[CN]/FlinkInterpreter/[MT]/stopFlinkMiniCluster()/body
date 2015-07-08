@@ -1,6 +1,6 @@
 {
   if (localFlinkCluster != null) {
-    localFlinkCluster.shutdown();
+    localFlinkCluster.stop();
     localFlinkCluster=null;
   }
 }

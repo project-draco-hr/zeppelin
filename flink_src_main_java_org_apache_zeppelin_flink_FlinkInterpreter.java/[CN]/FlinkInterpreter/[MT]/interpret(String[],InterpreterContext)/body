@@ -1,4 +1,5 @@
 {
+  IMain imain=flinkIloop.intp();
   String[] linesToRun=new String[lines.length + 1];
   for (int i=0; i < lines.length; i++) {
     linesToRun[i]=lines[i];

@@ -1,30 +1,25 @@
 {
-  URL[] urls=getClassloaderUrls();
-  this.settings=new Settings();
-  PathSetting pathSettings=settings.classpath();
-  String classpath="";
-  List<File> paths=currentClassPath();
-  for (  File f : paths) {
-    if (classpath.length() > 0) {
-      classpath+=File.pathSeparator;
-    }
-    classpath+=f.getAbsolutePath();
-  }
-  if (urls != null) {
-    for (    URL u : urls) {
-      if (classpath.length() > 0) {
-        classpath+=File.pathSeparator;
-      }
-      classpath+=u.getFile();
-    }
-  }
-  pathSettings.v_$eq(classpath);
-  settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
-  settings.explicitParentLoader_$eq(new Some<ClassLoader>(Thread.currentThread().getContextClassLoader()));
-  BooleanSetting b=(BooleanSetting)settings.usejavacp();
-  b.v_$eq(true);
-  settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
   out=new ByteArrayOutputStream();
-  imain=new FlinkIMain(settings,new PrintWriter(out));
-  initializeFlinkEnv();
+  flinkConf=new org.apache.flink.configuration.Configuration();
+  Properties intpProperty=getProperty();
+  for (  Object k : intpProperty.keySet()) {
+    String key=(String)k;
+    String val=toString(intpProperty.get(key));
+    flinkConf.setString(key,val);
+  }
+  if (localMode()) {
+    startFlinkMiniCluster();
+  }
+  flinkIloop=new FlinkILoop(getHost(),getPort(),(BufferedReader)null,new PrintWriter(out));
+  flinkIloop.settings_$eq(createSettings());
+  flinkIloop.createInterpreter();
+  imain=flinkIloop.intp();
+  imain.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
+  binder=(Map<String,Object>)getValue("_binder");
+  imain.interpret("import scala.tools.nsc.io._");
+  imain.interpret("import Properties.userHome");
+  imain.interpret("import scala.compat.Platform.EOL");
+  imain.interpret("import org.apache.flink.api.scala._");
+  imain.interpret("import org.apache.flink.api.common.functions._");
+  imain.bindValue("env",flinkIloop.scalaEnv());
 }

@@ -3,6 +3,6 @@
     return localFlinkCluster.getJobManagerRPCPort();
   }
  else {
-    return Integer.parseInt(getProperty("jobmanager.rpc.port"));
+    return Integer.parseInt(getProperty("port"));
   }
 }

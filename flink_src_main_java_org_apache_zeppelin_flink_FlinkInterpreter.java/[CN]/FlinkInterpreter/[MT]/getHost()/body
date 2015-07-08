@@ -3,6 +3,6 @@
     return "localhost";
   }
  else {
-    return getProperty("jobmanager.rpc.address");
+    return getProperty("host");
   }
 }

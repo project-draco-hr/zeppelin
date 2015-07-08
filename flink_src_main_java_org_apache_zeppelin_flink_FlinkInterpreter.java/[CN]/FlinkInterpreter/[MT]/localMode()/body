@@ -1,3 +1,4 @@
 {
-  return Boolean.parseBoolean(getProperty("local"));
+  String host=getProperty("host");
+  return host == null || host.trim().length() == 0 || host.trim().equals("local");
 }
