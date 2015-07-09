@@ -1,0 +1,21 @@
+{
+  String KYLIN_PROJECT=getProperty(KYLIN_QUERY_PROJECT);
+  logger.info("project:" + KYLIN_PROJECT);
+  logger.info("sql:" + sql);
+  logger.info("acceptPartial:" + getProperty(KYLIN_QUERY_ACCEPT_PARTIAL));
+  logger.info("limit:" + getProperty(KYLIN_QUERY_LIMIT));
+  logger.info("offset:" + getProperty(KYLIN_QUERY_OFFSET));
+  byte[] encodeBytes=Base64.encodeBase64(new String(getProperty(KYLIN_USERNAME) + ":" + getProperty(KYLIN_PASSWORD)).getBytes("UTF-8"));
+  String postContent=new String("{\"project\":" + "\"" + KYLIN_PROJECT + "\""+ ","+ "\"sql\":"+ "\""+ sql+ "\""+ ","+ "\"acceptPartial\":"+ "\""+ getProperty(KYLIN_QUERY_ACCEPT_PARTIAL)+ "\""+ ","+ "\"offset\":"+ "\""+ getProperty(KYLIN_QUERY_OFFSET)+ "\""+ ","+ "\"limit\":"+ "\""+ getProperty(KYLIN_QUERY_LIMIT)+ "\""+ "}");
+  logger.info("post:" + postContent);
+  postContent=postContent.replaceAll("[\u0000-\u001f]"," ");
+  StringEntity entity=new StringEntity(postContent,"UTF-8");
+  entity.setContentType("application/json; charset=UTF-8");
+  logger.info("post url:" + getProperty(KYLIN_QUERY_API_URL));
+  HttpPost postRequest=new HttpPost(getProperty(KYLIN_QUERY_API_URL));
+  postRequest.setEntity(entity);
+  postRequest.addHeader("Authorization","Basic " + new String(encodeBytes));
+  postRequest.addHeader("Accept-Encoding","UTF-8");
+  HttpClient httpClient=HttpClientBuilder.create().build();
+  return httpClient.execute(postRequest);
+}

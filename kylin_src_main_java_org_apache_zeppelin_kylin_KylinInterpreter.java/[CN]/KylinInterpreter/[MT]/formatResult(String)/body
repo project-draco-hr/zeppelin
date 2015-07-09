@@ -1,0 +1,22 @@
+{
+  StringBuilder res=new StringBuilder("%table ");
+  Matcher ml=KYLIN_TABLE_FORMAT_REGEX_LABEL.matcher(msg);
+  while (!ml.hitEnd() && ml.find()) {
+    res.append(ml.group(1) + " \t");
+  }
+  res.append(" \n");
+  Matcher mr=KYLIN_TABLE_FORMAT_REGEX.matcher(msg);
+  String table=null;
+  while (!mr.hitEnd() && mr.find()) {
+    table=mr.group(1);
+  }
+  String[] row=table.split("\"],\\[\"");
+  for (int i=0; i < row.length; i++) {
+    String[] col=row[i].split("\",\"");
+    for (int j=0; j < col.length; j++) {
+      res.append(col[j] + " \t");
+    }
+    res.append(" \n");
+  }
+  return res.toString();
+}

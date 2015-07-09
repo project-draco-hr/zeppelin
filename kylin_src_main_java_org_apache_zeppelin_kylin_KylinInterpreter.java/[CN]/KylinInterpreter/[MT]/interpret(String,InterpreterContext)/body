@@ -1,0 +1,9 @@
+{
+  try {
+    return executeQuery(st);
+  }
+ catch (  IOException e) {
+    logger.error("failed to query data in kylin ",e);
+    return new InterpreterResult(InterpreterResult.Code.ERROR,e.getMessage());
+  }
+}
