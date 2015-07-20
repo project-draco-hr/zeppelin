@@ -1,0 +1,5 @@
+{
+  this.conf=conf;
+  user=conf.getUser();
+  bucketName=conf.getBucketName();
+}

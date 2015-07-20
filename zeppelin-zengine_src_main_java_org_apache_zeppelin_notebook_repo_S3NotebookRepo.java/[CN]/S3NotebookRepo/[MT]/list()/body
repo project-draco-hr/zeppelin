@@ -1,0 +1,33 @@
+{
+  List<NoteInfo> infos=new LinkedList<NoteInfo>();
+  NoteInfo info=null;
+  try {
+    ListObjectsRequest listObjectsRequest=new ListObjectsRequest().withBucketName(bucketName).withPrefix(user + "/" + "notebook");
+    ObjectListing objectListing;
+    do {
+      objectListing=s3client.listObjects(listObjectsRequest);
+      for (      S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
+        if (objectSummary.getKey().contains("note.json")) {
+          try {
+            info=getNoteInfo(objectSummary.getKey());
+            if (info != null) {
+              infos.add(info);
+            }
+          }
+ catch (          IOException e) {
+            logger.error("Can't read note ",e);
+          }
+        }
+      }
+      listObjectsRequest.setMarker(objectListing.getNextMarker());
+    }
+ while (objectListing.isTruncated());
+  }
+ catch (  AmazonServiceException ase) {
+  }
+catch (  AmazonClientException ace) {
+    logger.info("Caught an AmazonClientException, " + "which means the client encountered " + "an internal error while trying to communicate"+ " with S3, "+ "such as not being able to access the network.");
+    logger.info("Error Message: " + ace.getMessage());
+  }
+  return infos;
+}

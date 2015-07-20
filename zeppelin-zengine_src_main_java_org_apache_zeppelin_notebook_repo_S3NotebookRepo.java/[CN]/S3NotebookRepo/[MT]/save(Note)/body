@@ -1,0 +1,13 @@
+{
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  Gson gson=gsonBuilder.create();
+  String json=gson.toJson(note);
+  String key=user + "/" + "notebook"+ "/"+ note.id()+ "/"+ "note.json";
+  File file=File.createTempFile("note","json");
+  file.deleteOnExit();
+  Writer writer=new OutputStreamWriter(new FileOutputStream(file));
+  writer.write(json);
+  writer.close();
+  s3client.putObject(new PutObjectRequest(bucketName,key,file));
+}

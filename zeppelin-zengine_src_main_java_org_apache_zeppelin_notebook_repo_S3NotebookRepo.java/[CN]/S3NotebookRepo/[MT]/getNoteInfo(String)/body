@@ -1,0 +1,4 @@
+{
+  Note note=getNote(key);
+  return new NoteInfo(note);
+}
