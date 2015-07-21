@@ -1,0 +1,4 @@
+List<NoteInfo> sourceNotes
+NotebookRepo sourceRepo
+List<NoteInfo> destNotes
+NotebookRepo destRepo

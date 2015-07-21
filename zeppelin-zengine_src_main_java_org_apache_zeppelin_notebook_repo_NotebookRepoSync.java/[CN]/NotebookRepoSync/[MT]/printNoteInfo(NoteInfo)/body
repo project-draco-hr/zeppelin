@@ -1,0 +1,8 @@
+{
+  LOG.info("Note info of notebook with name : " + note.getName());
+  LOG.info("ID : " + note.getId());
+  Map<String,Object> configs=note.getConfig();
+  for (  Map.Entry<String,Object> entry : configs.entrySet()) {
+    LOG.info("Config Key = " + entry.getKey() + "  , Value = "+ entry.getValue().toString()+ "of class "+ entry.getClass());
+  }
+}

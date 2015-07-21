@@ -1,0 +1,15 @@
+{
+  Note note=notebookSync.createNote();
+  Paragraph p1=note.addParagraph();
+  p1.setText("hello world");
+  assertEquals(1,note.getParagraphs().size());
+  assertEquals(0,notebookRepoSync.get(0,notebookRepoSync.list(0).get(0).getId()).getParagraphs().size());
+  assertEquals(0,notebookRepoSync.get(1,notebookRepoSync.list(1).get(0).getId()).getParagraphs().size());
+  notebookRepoSync.save(0,note);
+  assertEquals(1,notebookRepoSync.get(0,notebookRepoSync.list(0).get(0).getId()).getParagraphs().size());
+  assertEquals(0,notebookRepoSync.get(1,notebookRepoSync.list(1).get(0).getId()).getParagraphs().size());
+  notebookRepoSync.sync();
+  assertEquals(1,notebookRepoSync.get(1,notebookRepoSync.list(1).get(0).getId()).getParagraphs().size());
+  assertEquals(p1.getId(),notebookRepoSync.get(0,notebookRepoSync.list(0).get(0).getId()).getLastParagraph().getId());
+  assertEquals(p1.getId(),notebookRepoSync.get(1,notebookRepoSync.list(1).get(0).getId()).getLastParagraph().getId());
+}

@@ -1,0 +1,11 @@
+{
+  return new JobListener(){
+    @Override public void onProgressUpdate(    Job job,    int progress){
+    }
+    @Override public void beforeStatusChange(    Job job,    Status before,    Status after){
+    }
+    @Override public void afterStatusChange(    Job job,    Status before,    Status after){
+    }
+  }
+;
+}

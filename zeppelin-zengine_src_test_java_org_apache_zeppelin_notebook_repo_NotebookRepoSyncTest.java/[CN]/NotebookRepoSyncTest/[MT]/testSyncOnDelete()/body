@@ -1,0 +1,12 @@
+{
+  assertTrue(notebookRepoSync.getRepoCount() > 1);
+  assertEquals(0,notebookRepoSync.list(0).size());
+  assertEquals(0,notebookRepoSync.list(1).size());
+  Note note=notebookSync.createNote();
+  assertEquals(1,notebookRepoSync.list(0).size());
+  assertEquals(1,notebookRepoSync.list(1).size());
+  assertEquals(notebookRepoSync.list(0).get(0).getId(),notebookRepoSync.list(1).get(0).getId());
+  notebookSync.removeNote(notebookRepoSync.list(0).get(0).getId());
+  assertEquals(0,notebookRepoSync.list(0).size());
+  assertEquals(0,notebookRepoSync.list(1).size());
+}

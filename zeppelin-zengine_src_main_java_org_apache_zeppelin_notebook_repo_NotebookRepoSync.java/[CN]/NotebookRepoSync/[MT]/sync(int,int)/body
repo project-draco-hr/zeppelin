@@ -1,0 +1,31 @@
+{
+  LOG.info("Sync started");
+  NotebookRepo sourceRepo=getRepo(sourceRepoIndex);
+  NotebookRepo destRepo=getRepo(destRepoIndex);
+  List<NoteInfo> sourceNotes=sourceRepo.list();
+  List<NoteInfo> destNotes=destRepo.list();
+  Map<String,List<String>> noteIDs=notesCheckDiff(sourceNotes,sourceRepo,destNotes,destRepo);
+  List<String> pushNoteIDs=noteIDs.get(pushKey);
+  List<String> pullNoteIDs=noteIDs.get(pullKey);
+  if (!pushNoteIDs.isEmpty()) {
+    LOG.info("Notes with the following IDs will be pushed");
+    for (    String id : pushNoteIDs) {
+      LOG.info("ID : " + id);
+    }
+    pushNotes(pushNoteIDs,sourceRepo,destRepo);
+  }
+ else {
+    LOG.info("Nothing to push");
+  }
+  if (!pullNoteIDs.isEmpty()) {
+    LOG.info("Notes with the following IDs will be pulled");
+    for (    String id : pullNoteIDs) {
+      LOG.info("ID : " + id);
+    }
+    pushNotes(pullNoteIDs,destRepo,sourceRepo);
+  }
+ else {
+    LOG.info("Nothing to pull");
+  }
+  LOG.info("Sync ended");
+}

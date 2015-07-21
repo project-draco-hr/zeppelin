@@ -1,0 +1,34 @@
+{
+  List<String> pushIDs=new ArrayList<String>();
+  List<String> pullIDs=new ArrayList<String>();
+  NoteInfo dnote;
+  Date sdate, ddate;
+  for (  NoteInfo snote : sourceNotes) {
+    dnote=containsID(destNotes,snote.getId());
+    if (dnote != null) {
+      sdate=lastModificationDate(sourceRepo.get(snote.getId()));
+      ddate=lastModificationDate(destRepo.get(dnote.getId()));
+      if (sdate.after(ddate)) {
+        pushIDs.add(snote.getId());
+        LOG.info("Modified note is added to push list : " + sdate);
+      }
+ else       if (sdate.compareTo(ddate) != 0) {
+        LOG.info("Modified note is added to pull list : " + ddate);
+        pullIDs.add(snote.getId());
+      }
+    }
+ else {
+      pushIDs.add(snote.getId());
+    }
+  }
+  for (  NoteInfo note : destNotes) {
+    dnote=containsID(sourceNotes,note.getId());
+    if (dnote == null) {
+      pullIDs.add(note.getId());
+    }
+  }
+  Map<String,List<String>> map=new HashMap<String,List<String>>();
+  map.put(pushKey,pushIDs);
+  map.put(pullKey,pullIDs);
+  return map;
+}

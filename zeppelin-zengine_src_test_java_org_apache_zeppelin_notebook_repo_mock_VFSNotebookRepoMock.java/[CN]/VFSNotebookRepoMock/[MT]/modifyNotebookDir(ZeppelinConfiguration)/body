@@ -1,0 +1,6 @@
+{
+  String secNotebookDir=conf.getNotebookDir() + "_secondary";
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),secNotebookDir);
+  ZeppelinConfiguration secConf=ZeppelinConfiguration.create();
+  return secConf;
+}

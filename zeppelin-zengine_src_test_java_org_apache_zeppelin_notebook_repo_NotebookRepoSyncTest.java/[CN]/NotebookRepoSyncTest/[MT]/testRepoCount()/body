@@ -1,0 +1,3 @@
+{
+  assertTrue(notebookRepoSync.getMaxRepoNum() >= notebookRepoSync.getRepoCount());
+}

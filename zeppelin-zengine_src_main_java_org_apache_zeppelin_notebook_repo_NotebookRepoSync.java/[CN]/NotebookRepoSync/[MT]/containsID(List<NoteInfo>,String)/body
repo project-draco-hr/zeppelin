@@ -1,0 +1,8 @@
+{
+  for (  NoteInfo note : notes) {
+    if (note.getId().equals(id)) {
+      return note;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,19 @@
+{
+  Date latest=new Date(0L);
+  Date tempCreated, tempStarted, tempFinished;
+  for (  Paragraph paragraph : note.getParagraphs()) {
+    tempCreated=paragraph.getDateCreated();
+    tempStarted=paragraph.getDateStarted();
+    tempFinished=paragraph.getDateFinished();
+    if (tempCreated != null && tempCreated.after(latest)) {
+      latest=tempCreated;
+    }
+    if (tempStarted != null && tempStarted.after(latest)) {
+      latest=tempStarted;
+    }
+    if (tempFinished != null && tempFinished.after(latest)) {
+      latest=tempFinished;
+    }
+  }
+  return latest;
+}

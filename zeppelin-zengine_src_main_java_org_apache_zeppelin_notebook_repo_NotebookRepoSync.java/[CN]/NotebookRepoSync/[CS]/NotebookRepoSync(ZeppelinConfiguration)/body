@@ -1,0 +1,18 @@
+{
+  String allStorageClassNames=conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE).trim();
+  if (allStorageClassNames.isEmpty()) {
+    throw new IOException("Empty ZEPPELIN_NOTEBOOK_STORAGE conf parameter");
+  }
+  String[] storageClassNames=allStorageClassNames.split(",");
+  if (storageClassNames.length > getMaxRepoNum()) {
+    throw new IOException("Unsupported number of storage classes (" + storageClassNames.length + ") in ZEPPELIN_NOTEBOOK_STORAGE");
+  }
+  for (int i=0; i < storageClassNames.length; i++) {
+    Class<?> notebookStorageClass=getClass().forName(storageClassNames[i].trim());
+    Constructor<?> constructor=notebookStorageClass.getConstructor(ZeppelinConfiguration.class);
+    repos.add((NotebookRepo)constructor.newInstance(conf));
+  }
+  if (getRepoCount() > 1) {
+    sync(0,1);
+  }
+}

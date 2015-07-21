@@ -1,0 +1,6 @@
+{
+  LOG.info("The following is a list of note infos");
+  for (  NoteInfo note : notes) {
+    printNoteInfo(note);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (repoIndex < 0 || repoIndex >= getRepoCount()) {
+    throw new IOException("Storage repo index is out of range");
+  }
+  return repos.get(repoIndex);
+}
