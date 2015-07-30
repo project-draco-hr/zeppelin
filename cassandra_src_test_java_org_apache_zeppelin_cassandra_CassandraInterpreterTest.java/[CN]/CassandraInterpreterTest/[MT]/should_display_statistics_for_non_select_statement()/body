@@ -1,0 +1,11 @@
+{
+  String query="USE zeppelin;\nCREATE TABLE IF NOT EXISTS no_select(id int PRIMARY KEY);";
+  final String rawResult=reformatHtml(readTestResource("/scalate/NoResultWithExecutionInfo.html"));
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  final Cluster cluster=session.getCluster();
+  final int port=cluster.getConfiguration().getProtocolOptions().getPort();
+  final String address=cluster.getMetadata().getAllHosts().iterator().next().getAddress().getHostAddress().replaceAll("/","").replaceAll("\\[","").replaceAll("\\]","");
+  final String expected=rawResult.replaceAll("TRIED_HOSTS",address + ":" + port).replaceAll("QUERIED_HOSTS",address + ":" + port);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

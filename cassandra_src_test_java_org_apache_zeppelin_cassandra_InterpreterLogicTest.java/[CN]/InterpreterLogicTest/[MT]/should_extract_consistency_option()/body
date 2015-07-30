@@ -1,0 +1,5 @@
+{
+  List<QueryParameters> options=Arrays.<QueryParameters>asList(new Consistency(ALL),new Consistency(ONE));
+  final CassandraQueryOptions actual=helper.extractQueryOptions(toScalaList(options));
+  assertThat(actual.consistency().get()).isEqualTo(ALL);
+}

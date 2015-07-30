@@ -1,0 +1,6 @@
+{
+  String statements="CREATE TABLE IF NOT EXISTS zeppelin.albums(\n" + "    title text PRIMARY KEY,\n" + "    artist text,\n"+ "    year int\n"+ ");\n"+ "BEGIN BATCH"+ "   INSERT INTO zeppelin.albums(title,artist,year) VALUES('The Impossible Dream EP','Carter the Unstoppable Sex Machine',1992);"+ "   INSERT INTO zeppelin.albums(title,artist,year) VALUES('The Way You Are','Tears for Fears',1983);"+ "   INSERT INTO zeppelin.albums(title,artist,year) VALUES('Primitive','Soulfly',2003);"+ "APPLY BATCH;\n"+ "SELECT * FROM zeppelin.albums;";
+  final InterpreterResult actual=interpreter.interpret(statements,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("title\tartist\tyear\n" + "The Impossible Dream EP\tCarter the Unstoppable Sex Machine\t1992\n" + "The Way You Are\tTears for Fears\t1983\n"+ "Primitive\tSoulfly\t2003\n");
+}

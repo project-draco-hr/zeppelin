@@ -1,0 +1,6 @@
+{
+  String statement="SELECT * zeppelin.albums;";
+  final InterpreterResult actual=interpreter.interpret(statement,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).contains("line 1:9 missing K_FROM at 'zeppelin' (SELECT * [zeppelin]....)");
+}

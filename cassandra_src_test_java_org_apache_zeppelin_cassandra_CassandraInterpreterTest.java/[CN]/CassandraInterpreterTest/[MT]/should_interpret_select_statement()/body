@@ -1,0 +1,6 @@
+{
+  final InterpreterResult actual=interpreter.interpret("SELECT * FROM " + ARTISTS_TABLE + " LIMIT 2;",intrContext);
+  assertThat(actual).isNotNull();
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("name\tborn\tcountry\tdied\tgender\tstyles\ttype\n" + "Bogdan Raczynski\t1977-01-01\tPoland\tnull\tMale\t[Dance, Electro]\tPerson\n" + "Krishna Das\t1947-05-31\tUSA\tnull\tMale\t[Unknown]\tPerson\n");
+}

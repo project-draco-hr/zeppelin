@@ -1,0 +1,7 @@
+{
+  String query="DESCRIBE KEYSPACE live_data;";
+  final String expected=reformatHtml(readTestResource("/scalate/DescribeKeyspace_live_data.html"));
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

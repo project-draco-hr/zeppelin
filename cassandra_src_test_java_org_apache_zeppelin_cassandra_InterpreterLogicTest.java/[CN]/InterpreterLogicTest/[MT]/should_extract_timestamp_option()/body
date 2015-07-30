@@ -1,0 +1,5 @@
+{
+  List<QueryParameters> options=Arrays.<QueryParameters>asList(new Timestamp(123L),new Timestamp(456L));
+  final CassandraQueryOptions actual=helper.extractQueryOptions(toScalaList(options));
+  assertThat(actual.timestamp().get()).isEqualTo(123L);
+}

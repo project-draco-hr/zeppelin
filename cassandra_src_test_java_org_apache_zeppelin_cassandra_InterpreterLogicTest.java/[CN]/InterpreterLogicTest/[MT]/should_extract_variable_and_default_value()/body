@@ -1,0 +1,6 @@
+{
+  when(intrContext.getGui().input("table","zeppelin.demo")).thenReturn("zeppelin.demo");
+  when(intrContext.getGui().input("id","'John'")).thenReturn("'John'");
+  final String actual=helper.maybeExtractVariables("SELECT * FROM {{table=zeppelin.demo}} WHERE id={{id='John'}}",intrContext);
+  assertThat(actual).isEqualTo("SELECT * FROM zeppelin.demo WHERE id='John'");
+}

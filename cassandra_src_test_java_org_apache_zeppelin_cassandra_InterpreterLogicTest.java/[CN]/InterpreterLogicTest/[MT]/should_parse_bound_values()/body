@@ -1,0 +1,5 @@
+{
+  String bs="'jdoe',32,'John DOE',null, true, '2014-06-12 34:00:34'";
+  final List<String> actual=this.<String>toJavaList(helper.parseBoundValues("ps",bs));
+  assertThat(actual).containsExactly("'jdoe'","32","'John DOE'","null","true","2014-06-12 34:00:34");
+}

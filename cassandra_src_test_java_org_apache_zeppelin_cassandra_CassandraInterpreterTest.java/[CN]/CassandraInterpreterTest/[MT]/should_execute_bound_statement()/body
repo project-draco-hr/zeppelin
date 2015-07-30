@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[users_insert]=INSERT INTO zeppelin.users" + "(login,firstname,lastname,addresses,location)" + "VALUES(:login,:fn,:ln,:addresses,:loc)\n"+ "@bind[users_insert]='jdoe','John','DOE',"+ "{street_number: 3, street_name: 'Beverly Hills Bld', zip_code: 90209,"+ " country: 'USA', extra_info: ['Right on the hills','Next to the post box'],"+ " phone_numbers: {'home': 2016778524, 'office': 2015790847}},"+ "('USA', 90209, 'Beverly Hills')\n"+ "SELECT * FROM zeppelin.users WHERE login='jdoe';";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("login\taddresses\tage\tdeceased\tfirstname\tlast_update\tlastname\tlocation\n" + "jdoe\t" + "{street_number:3, street_name:'Beverly Hills Bld', zip_code:90209,"+ " country:'USA', extra_info:['Right on the hills', 'Next to the post box'], "+ "phone_numbers:{'office':2015790847, 'home':2016778524}}\tnull\t"+ "null\t"+ "John\t"+ "null\t"+ "DOE\t"+ "('USA', 90209, 'Beverly Hills')\n");
+}

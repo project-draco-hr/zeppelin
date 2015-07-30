@@ -1,0 +1,3 @@
+{
+  return rawHtml.replaceAll("\\s*\n\\s*","").replaceAll(">\\s+<","><").replaceAll("(?s)data-target=\"#[a-f0-9-]+(?:_asCQL)?\"","").replaceAll("(?s)id=\"[a-f0-9-]+(?:_asCQL)?\"","").trim();
+}

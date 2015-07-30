@@ -1,0 +1,7 @@
+{
+  String query="DESCRIBE TABLE live_data.complex_table;";
+  final String expected=reformatHtml(readTestResource("/scalate/DescribeTable_live_data_complex_table.html"));
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

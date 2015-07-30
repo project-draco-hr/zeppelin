@@ -1,0 +1,6 @@
+{
+  String input="SELECT * FROM users LIMIT 10";
+  expectedException.expect(InterpreterException.class);
+  expectedException.expectMessage("Error parsing input:\n" + "\t'SELECT * FROM users LIMIT 10'\n" + "Did you forget to add ; (semi-colon) at the end of each CQL statement ?");
+  helper.parseInput(input);
+}

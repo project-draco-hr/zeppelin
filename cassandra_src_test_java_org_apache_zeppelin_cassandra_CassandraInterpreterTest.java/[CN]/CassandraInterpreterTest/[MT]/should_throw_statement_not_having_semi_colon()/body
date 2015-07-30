@@ -1,0 +1,6 @@
+{
+  String statement="SELECT * zeppelin.albums";
+  final InterpreterResult actual=interpreter.interpret(statement,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).contains("Error parsing input:\n" + "\t'SELECT * zeppelin.albums'\n" + "Did you forget to add ; (semi-colon) at the end of each CQL statement ?");
+}

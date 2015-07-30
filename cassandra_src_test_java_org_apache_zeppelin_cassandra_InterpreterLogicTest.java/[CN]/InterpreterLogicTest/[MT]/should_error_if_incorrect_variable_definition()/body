@@ -1,0 +1,5 @@
+{
+  expectedException.expect(ParsingException.class);
+  expectedException.expectMessage("Invalid bound variable definition for '{{table?zeppelin.demo}}' in 'SELECT * FROM {{table?zeppelin.demo}} WHERE id={{id='John'}}'. It should be of form 'variable=defaultValue'");
+  helper.maybeExtractVariables("SELECT * FROM {{table?zeppelin.demo}} WHERE id={{id='John'}}",intrContext);
+}

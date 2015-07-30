@@ -1,0 +1,5 @@
+{
+  List<QueryParameters> options=Arrays.<QueryParameters>asList(new SerialConsistency(SERIAL),new SerialConsistency(LOCAL_SERIAL));
+  final CassandraQueryOptions actual=helper.extractQueryOptions(toScalaList(options));
+  assertThat(actual.serialConsistency().get()).isEqualTo(SERIAL);
+}

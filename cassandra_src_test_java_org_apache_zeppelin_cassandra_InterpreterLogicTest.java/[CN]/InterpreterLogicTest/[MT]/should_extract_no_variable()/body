@@ -1,0 +1,7 @@
+{
+  GUI gui=mock(GUI.class);
+  when(intrContext.getGui()).thenReturn(gui);
+  final String actual=helper.maybeExtractVariables("SELECT * FROM zeppelin.demo",intrContext);
+  verifyZeroInteractions(gui);
+  assertThat(actual).isEqualTo("SELECT * FROM zeppelin.demo");
+}

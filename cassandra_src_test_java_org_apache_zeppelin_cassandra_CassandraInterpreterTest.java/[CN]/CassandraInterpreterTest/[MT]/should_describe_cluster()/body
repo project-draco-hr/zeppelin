@@ -1,0 +1,7 @@
+{
+  String query="DESCRIBE CLUSTER;";
+  final String expected=reformatHtml(readTestResource("/scalate/DescribeCluster.html"));
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

@@ -1,0 +1,3 @@
+{
+  return scala.collection.JavaConverters.asScalaBufferConverter(list).asScala().toList();
+}

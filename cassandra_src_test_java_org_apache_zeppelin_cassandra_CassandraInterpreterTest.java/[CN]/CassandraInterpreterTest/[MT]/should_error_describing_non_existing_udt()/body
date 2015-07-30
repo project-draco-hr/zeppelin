@@ -1,0 +1,6 @@
+{
+  String query="USE system;\n" + "DESCRIBE TYPE address;";
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).contains("Cannot find type system.address");
+}

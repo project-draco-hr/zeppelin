@@ -1,0 +1,6 @@
+{
+  String query="@consistency=THREE\n" + "SELECT * FROM zeppelin.users LIMIT 3;";
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).contains("All host(s) tried for query failed");
+}

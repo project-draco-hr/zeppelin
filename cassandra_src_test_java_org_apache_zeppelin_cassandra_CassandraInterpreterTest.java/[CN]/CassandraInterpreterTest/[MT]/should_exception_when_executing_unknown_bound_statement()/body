@@ -1,0 +1,6 @@
+{
+  String queries="@bind[select_users]='jdoe'";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).isEqualTo("The statement 'select_users' can not be bound to values. " + "Are you sure you did prepare it with @prepare[select_users] ?");
+}

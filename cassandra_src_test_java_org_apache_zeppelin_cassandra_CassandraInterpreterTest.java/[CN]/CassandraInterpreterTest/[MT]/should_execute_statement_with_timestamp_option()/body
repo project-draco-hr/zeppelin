@@ -1,0 +1,9 @@
+{
+  String statement1="INSERT INTO zeppelin.ts(key,val) VALUES('k','v1');";
+  String statement2="@timestamp=15\n" + "INSERT INTO zeppelin.ts(key,val) VALUES('k','v2');";
+  interpreter.interpret(statement1,intrContext);
+  Thread.sleep(1);
+  interpreter.interpret(statement2,intrContext);
+  final String actual=session.execute("SELECT * FROM zeppelin.ts LIMIT 1").one().getString("val");
+  assertThat(actual).isEqualTo("v1");
+}

@@ -1,0 +1,3 @@
+{
+  return scala.collection.JavaConverters.seqAsJavaListConverter(list).asJava();
+}

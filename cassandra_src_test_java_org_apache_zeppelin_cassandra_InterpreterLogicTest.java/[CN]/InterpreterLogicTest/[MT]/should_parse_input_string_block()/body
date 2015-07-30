@@ -1,0 +1,6 @@
+{
+  String input="SELECT * FROM users LIMIT 10;";
+  final List<AnyBlock> anyBlocks=this.<AnyBlock>toJavaList(helper.parseInput(input));
+  assertThat(anyBlocks).hasSize(1);
+  assertThat(anyBlocks.get(0)).isInstanceOf(SimpleStm.class);
+}

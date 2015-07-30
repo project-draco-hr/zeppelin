@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[bind_null]=INSERT INTO zeppelin.users(login,firstname,lastname) VALUES(?,?,?)\n" + "@bind[bind_null]='bind_null',null,'NULL'\n" + "SELECT firstname,lastname FROM zeppelin.users WHERE login='bind_null';";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("firstname\tlastname\n" + "null\tNULL\n");
+}

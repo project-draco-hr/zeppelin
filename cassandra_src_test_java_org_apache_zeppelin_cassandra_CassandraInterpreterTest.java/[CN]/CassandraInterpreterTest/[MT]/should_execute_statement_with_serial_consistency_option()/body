@@ -1,0 +1,5 @@
+{
+  String statement="@serialConsistency=SERIAL\n" + "SELECT * FROM zeppelin.artists LIMIT 1;";
+  final InterpreterResult actual=interpreter.interpret(statement,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+}

@@ -1,0 +1,8 @@
+{
+  String prepare_first="@prepare[to_be_removed]=INSERT INTO zeppelin.users(login,deceased) VALUES(?,?)";
+  interpreter.interpret(prepare_first,intrContext);
+  String remove_prepared="@remove_prepare[to_be_removed]\n" + "@bind[to_be_removed]='bind_bool'";
+  final InterpreterResult actual=interpreter.interpret(remove_prepared,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).isEqualTo("The statement 'to_be_removed' can not be bound to values. " + "Are you sure you did prepare it with @prepare[to_be_removed] ?");
+}

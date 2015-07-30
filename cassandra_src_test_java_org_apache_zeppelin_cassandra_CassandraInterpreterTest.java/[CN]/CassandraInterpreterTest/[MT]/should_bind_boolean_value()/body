@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[bind_boolean]=INSERT INTO zeppelin.users(login,deceased) VALUES(?,?)\n" + "@bind[bind_boolean]='bind_bool',false\n" + "SELECT login,deceased FROM zeppelin.users WHERE login='bind_bool';";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("login\tdeceased\n" + "bind_bool\tfalse\n");
+}

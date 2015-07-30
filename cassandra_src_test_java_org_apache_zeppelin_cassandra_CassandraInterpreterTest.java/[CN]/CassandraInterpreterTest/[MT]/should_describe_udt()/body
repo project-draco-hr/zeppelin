@@ -1,0 +1,7 @@
+{
+  String query="DESCRIBE TYPE live_data.address;";
+  final String expected=reformatHtml(readTestResource("/scalate/DescribeType_live_data_address.html"));
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

@@ -1,0 +1,9 @@
+{
+  when(intrContext.getGui().select(eq("name"),eq("'Paul'"),optionsCaptor.capture())).thenReturn("'Jack'");
+  final String actual=helper.maybeExtractVariables("SELECT * FROM zeppelin.artists WHERE name={{name='Paul'|'Jack'|'Smith'}}",intrContext);
+  assertThat(actual).isEqualTo("SELECT * FROM zeppelin.artists WHERE name='Jack'");
+  final List<ParamOption> paramOptions=asList(optionsCaptor.getValue());
+  assertThat(paramOptions.get(0).getValue()).isEqualTo("'Paul'");
+  assertThat(paramOptions.get(1).getValue()).isEqualTo("'Jack'");
+  assertThat(paramOptions.get(2).getValue()).isEqualTo("'Smith'");
+}

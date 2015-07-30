@@ -1,0 +1,6 @@
+{
+  String query="USE system;\n" + "DESCRIBE TABLE complex_table;";
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.ERROR);
+  assertThat(actual.message()).contains("Cannot find table system.complex_table");
+}

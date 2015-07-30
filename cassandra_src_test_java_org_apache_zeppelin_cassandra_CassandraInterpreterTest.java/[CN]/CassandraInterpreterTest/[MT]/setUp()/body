@@ -1,0 +1,35 @@
+{
+  Properties properties=new Properties();
+  final Cluster cluster=resource.getNativeSession().getCluster();
+  properties.setProperty(CASSANDRA_CLUSTER_NAME,cluster.getClusterName());
+  properties.setProperty(CASSANDRA_COMPRESSION_PROTOCOL,"NONE");
+  properties.setProperty(CASSANDRA_CREDENTIALS_USERNAME,"none");
+  properties.setProperty(CASSANDRA_CREDENTIALS_PASSWORD,"none");
+  properties.setProperty(CASSANDRA_PROTOCOL_VERSION,"3");
+  properties.setProperty(CASSANDRA_LOAD_BALANCING_POLICY,"DEFAULT");
+  properties.setProperty(CASSANDRA_RETRY_POLICY,"DEFAULT");
+  properties.setProperty(CASSANDRA_RECONNECTION_POLICY,"DEFAULT");
+  properties.setProperty(CASSANDRA_SPECULATIVE_EXECUTION_POLICY,"DEFAULT");
+  properties.setProperty(CASSANDRA_MAX_SCHEMA_AGREEMENT_WAIT_SECONDS,DEFAULT_MAX_SCHEMA_AGREEMENT_WAIT_SECONDS + "");
+  properties.setProperty(CASSANDRA_POOLING_NEW_CONNECTION_THRESHOLD_LOCAL,"100");
+  properties.setProperty(CASSANDRA_POOLING_NEW_CONNECTION_THRESHOLD_REMOTE,"100");
+  properties.setProperty(CASSANDRA_POOLING_CORE_CONNECTION_PER_HOST_LOCAL,"2");
+  properties.setProperty(CASSANDRA_POOLING_CORE_CONNECTION_PER_HOST_REMOTE,"1");
+  properties.setProperty(CASSANDRA_POOLING_MAX_CONNECTION_PER_HOST_LOCAL,"8");
+  properties.setProperty(CASSANDRA_POOLING_MAX_CONNECTION_PER_HOST_REMOTE,"2");
+  properties.setProperty(CASSANDRA_POOLING_MAX_REQUESTS_PER_CONNECTION_LOCAL,"1024");
+  properties.setProperty(CASSANDRA_POOLING_MAX_REQUESTS_PER_CONNECTION_REMOTE,"256");
+  properties.setProperty(CASSANDRA_POOLING_IDLE_TIMEOUT_SECONDS,"120");
+  properties.setProperty(CASSANDRA_POOLING_POOL_TIMEOUT_MILLIS,"5000");
+  properties.setProperty(CASSANDRA_POOLING_HEARTBEAT_INTERVAL_SECONDS,"30");
+  properties.setProperty(CASSANDRA_QUERY_DEFAULT_CONSISTENCY,"ONE");
+  properties.setProperty(CASSANDRA_QUERY_DEFAULT_SERIAL_CONSISTENCY,"SERIAL");
+  properties.setProperty(CASSANDRA_QUERY_DEFAULT_FETCH_SIZE,"5000");
+  properties.setProperty(CASSANDRA_SOCKET_CONNECTION_TIMEOUT_MILLIS,"5000");
+  properties.setProperty(CASSANDRA_SOCKET_READ_TIMEOUT_MILLIS,"12000");
+  properties.setProperty(CASSANDRA_SOCKET_TCP_NO_DELAY,"true");
+  properties.setProperty(CASSANDRA_HOSTS,from(cluster.getMetadata().getAllHosts()).first().get().getAddress().getHostAddress());
+  properties.setProperty(CASSANDRA_PORT,cluster.getConfiguration().getProtocolOptions().getPort() + "");
+  interpreter=new CassandraInterpreter(properties);
+  interpreter.open();
+}

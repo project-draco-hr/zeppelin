@@ -1,0 +1,7 @@
+{
+  String queries="@prepare[just_prepare]=SELECT name,country,styles FROM zeppelin.artists LIMIT 3";
+  final String expected=reformatHtml(readTestResource("/scalate/NoResult.html"));
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(reformatHtml(actual.message())).isEqualTo(expected);
+}

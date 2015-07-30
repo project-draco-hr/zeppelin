@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[ps]=INSERT INTO zeppelin.prepared(key,val) VALUES(?,?)\n" + "@prepare[select]=SELECT * FROM zeppelin.prepared WHERE key=:key\n" + "@bind[ps]='myKey','myValue'\n"+ "@bind[select]='myKey'";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("key\tval\n" + "myKey\tmyValue\n");
+}

@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetParallelScheduler(CassandraInterpreter.class.getName() + this.hashCode(),parseInt(getProperty(CASSANDRA_INTERPRETER_PARALLELISM)));
+}

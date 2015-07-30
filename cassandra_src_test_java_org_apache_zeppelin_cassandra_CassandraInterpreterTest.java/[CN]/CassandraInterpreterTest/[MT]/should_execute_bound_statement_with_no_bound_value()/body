@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[select_no_bound_value]=SELECT name,country,styles FROM zeppelin.artists LIMIT 3\n" + "@bind[select_no_bound_value]";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("name\tcountry\tstyles\n" + "Bogdan Raczynski\tPoland\t[Dance, Electro]\n" + "Krishna Das\tUSA\t[Unknown]\n"+ "Sheryl Crow\tUSA\t[Classic, Rock, Country, Blues, Pop, Folk]\n");
+}

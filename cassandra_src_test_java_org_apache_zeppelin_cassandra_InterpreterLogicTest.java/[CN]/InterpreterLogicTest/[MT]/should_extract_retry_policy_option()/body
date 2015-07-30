@@ -1,0 +1,5 @@
+{
+  List<QueryParameters> options=Arrays.<QueryParameters>asList(DowngradingRetryPolicy$.MODULE$,LoggingDefaultRetryPolicy$.MODULE$);
+  final CassandraQueryOptions actual=helper.extractQueryOptions(toScalaList(options));
+  assertThat(actual.retryPolicy().get()).isSameAs(DowngradingRetryPolicy$.MODULE$);
+}

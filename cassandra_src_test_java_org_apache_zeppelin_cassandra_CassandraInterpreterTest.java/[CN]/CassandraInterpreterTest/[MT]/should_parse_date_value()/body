@@ -1,0 +1,6 @@
+{
+  String queries="@prepare[parse_date]=INSERT INTO zeppelin.users(login,last_update) VALUES(?,?)\n" + "@bind[parse_date]='last_update','2015-07-30 12:00:01'\n" + "SELECT last_update FROM zeppelin.users WHERE login='last_update';";
+  final InterpreterResult actual=interpreter.interpret(queries,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).contains("last_update\n" + "Thu Jul 30 12:00:01");
+}
