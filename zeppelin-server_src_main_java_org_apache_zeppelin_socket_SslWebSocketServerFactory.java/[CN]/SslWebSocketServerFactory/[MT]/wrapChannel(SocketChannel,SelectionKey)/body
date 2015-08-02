@@ -1,6 +1,0 @@
-{
-  SSLEngine sslEngine=sslcontext.createSSLEngine();
-  sslEngine.setUseClientMode(false);
-  sslEngine.setNeedClientAuth(needClientAuth);
-  return new SSLSocketChannel2(channel,sslEngine,exec,key);
-}

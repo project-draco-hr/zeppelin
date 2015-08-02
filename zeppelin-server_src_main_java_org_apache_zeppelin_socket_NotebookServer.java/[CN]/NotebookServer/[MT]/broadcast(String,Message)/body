@@ -1,12 +1,17 @@
 {
 synchronized (noteSocketMap) {
-    List<WebSocket> socketLists=noteSocketMap.get(noteId);
+    List<NotebookSocket> socketLists=noteSocketMap.get(noteId);
     if (socketLists == null || socketLists.size() == 0) {
       return;
     }
     LOG.info("SEND >> " + m.op);
-    for (    WebSocket conn : socketLists) {
-      conn.send(serializeMessage(m));
+    for (    NotebookSocket conn : socketLists) {
+      try {
+        conn.send(serializeMessage(m));
+      }
+ catch (      IOException e) {
+        LOG.error("socket error",e);
+      }
     }
   }
 }

@@ -1,3 +1,0 @@
-{
-  return getString(ConfVars.ZEPPELIN_WEBSOCKET_ADDR);
-}

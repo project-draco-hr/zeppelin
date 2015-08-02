@@ -1,10 +1,10 @@
 {
-  SocketConnector connector;
+  AbstractConnector connector;
   if (conf.useSsl()) {
-    connector=new SslSocketConnector(getSslContextFactory(conf));
+    connector=new SslSelectChannelConnector(getSslContextFactory(conf));
   }
  else {
-    connector=new SocketConnector();
+    connector=new SelectChannelConnector();
   }
   int timeout=1000 * 30;
   connector.setMaxIdleTime(timeout);

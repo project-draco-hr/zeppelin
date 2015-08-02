@@ -1,3 +1,0 @@
-{
-  super(new InetSocketAddress(DEFAULT_ADDR,DEFAULT_PORT));
-}

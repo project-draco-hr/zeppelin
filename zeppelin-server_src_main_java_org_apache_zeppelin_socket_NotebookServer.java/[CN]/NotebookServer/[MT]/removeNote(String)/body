@@ -1,5 +1,5 @@
 {
 synchronized (noteSocketMap) {
-    List<WebSocket> socketList=noteSocketMap.remove(noteId);
+    List<NotebookSocket> socketList=noteSocketMap.remove(noteId);
   }
 }

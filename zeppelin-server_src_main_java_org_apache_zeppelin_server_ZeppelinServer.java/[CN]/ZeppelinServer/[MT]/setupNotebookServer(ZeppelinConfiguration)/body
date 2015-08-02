@@ -1,9 +1,11 @@
 {
-  NotebookServer server=new NotebookServer(conf.getWebSocketAddress(),conf.getWebSocketPort());
-  if (conf.useSsl()) {
-    SslWebSocketServerFactory wsf=new SslWebSocketServerFactory(getSslContext(conf));
-    wsf.setNeedClientAuth(conf.useClientAuth());
-    server.setWebSocketFactory(wsf);
-  }
-  return server;
+  notebookServer=new NotebookServer();
+  final ServletHolder servletHolder=new ServletHolder(notebookServer);
+  servletHolder.setInitParameter("maxTextMessageSize","1024000");
+  final ServletContextHandler cxfContext=new ServletContextHandler(ServletContextHandler.SESSIONS);
+  cxfContext.setSessionHandler(new SessionHandler());
+  cxfContext.setContextPath("/");
+  cxfContext.addServlet(servletHolder,"/ws/*");
+  cxfContext.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
+  return cxfContext;
 }

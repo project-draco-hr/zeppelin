@@ -1,7 +1,12 @@
 {
 synchronized (connectedSockets) {
-    for (    WebSocket conn : connectedSockets) {
-      conn.send(serializeMessage(m));
+    for (    NotebookSocket conn : connectedSockets) {
+      try {
+        conn.send(serializeMessage(m));
+      }
+ catch (      IOException e) {
+        LOG.error("socket error",e);
+      }
     }
   }
 }

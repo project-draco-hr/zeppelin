@@ -1,0 +1,3 @@
+NotebookSocket conn
+int code
+String reason

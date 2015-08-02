@@ -1,7 +1,6 @@
 {
   if (!wasRunning) {
     LOG.info("Terminating test Zeppelin...");
-    ZeppelinServer.notebookServer.stop();
     ZeppelinServer.jettyServer.stop();
     executor.shutdown();
     long s=System.currentTimeMillis();

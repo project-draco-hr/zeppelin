@@ -1,0 +1,13 @@
+{
+  String id=null;
+synchronized (noteSocketMap) {
+    Set<String> keys=noteSocketMap.keySet();
+    for (    String noteId : keys) {
+      List<NotebookSocket> sockets=noteSocketMap.get(noteId);
+      if (sockets.contains(socket)) {
+        id=noteId;
+      }
+    }
+  }
+  return id;
+}
