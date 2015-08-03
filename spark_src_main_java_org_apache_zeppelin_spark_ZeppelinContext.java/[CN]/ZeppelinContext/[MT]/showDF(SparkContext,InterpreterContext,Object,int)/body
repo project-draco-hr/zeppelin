@@ -4,10 +4,10 @@
   String jobGroup="zeppelin-" + interpreterContext.getParagraphId();
   sc.setJobGroup(jobGroup,"Zeppelin",false);
   try {
-    take=rdd.getClass().getMethod("take",int.class);
-    rows=(Object[])take.invoke(rdd,maxResult + 1);
+    take=df.getClass().getMethod("take",int.class);
+    rows=(Object[])take.invoke(df,maxResult + 1);
   }
- catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+ catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException|ClassCastException e) {
     sc.clearJobGroup();
     throw new InterpreterException(e);
   }
@@ -15,8 +15,8 @@
   Method queryExecution;
   QueryExecution qe;
   try {
-    queryExecution=rdd.getClass().getMethod("queryExecution");
-    qe=(QueryExecution)queryExecution.invoke(rdd);
+    queryExecution=df.getClass().getMethod("queryExecution");
+    qe=(QueryExecution)queryExecution.invoke(df);
   }
  catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     throw new InterpreterException(e);

@@ -1,4 +1,4 @@
 SparkContext sc
 InterpreterContext interpreterContext
-Object rdd
+Object df
 int maxResult

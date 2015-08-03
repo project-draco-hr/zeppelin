@@ -1,0 +1,2 @@
+def put(self, key, value):
+    self.__setitem__(key, value)
