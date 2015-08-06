@@ -1,0 +1,3 @@
+Iterator<Object> queryResponseIterator
+String expectedOutput
+int maxResult

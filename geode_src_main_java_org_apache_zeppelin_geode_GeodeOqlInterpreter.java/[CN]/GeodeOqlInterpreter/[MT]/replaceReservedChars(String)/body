@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isBlank(str)) {
+    return str;
+  }
+  return str.replace(TAB,WHITESPACE).replace(NEWLINE,WHITESPACE);
+}

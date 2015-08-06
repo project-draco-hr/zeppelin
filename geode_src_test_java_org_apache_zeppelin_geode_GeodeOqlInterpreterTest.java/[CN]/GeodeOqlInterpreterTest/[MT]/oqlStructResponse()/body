@@ -1,0 +1,7 @@
+{
+  String[] fields=new String[]{"field1","field2"};
+  Struct s1=new StructImpl(new StructTypeImpl(fields),new String[]{"val11","val12"});
+  Struct s2=new StructImpl(new StructTypeImpl(fields),new String[]{"val21","val22"});
+  testOql(asIterator(s1,s2),"field1\tfield2\t\nval11\tval12\t\nval21\tval22\t\n",10);
+  testOql(asIterator(s1,s2),"field1\tfield2\t\nval11\tval12\t\n",1);
+}

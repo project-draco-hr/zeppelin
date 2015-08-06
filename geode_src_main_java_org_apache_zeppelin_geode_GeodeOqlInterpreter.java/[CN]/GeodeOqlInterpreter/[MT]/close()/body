@@ -1,0 +1,18 @@
+{
+  try {
+    if (clientCache != null) {
+      clientCache.close();
+    }
+    if (queryService != null) {
+      queryService.closeCqs();
+    }
+  }
+ catch (  Exception e) {
+    logger.error("Cannot close connection",e);
+  }
+ finally {
+    clientCache=null;
+    queryService=null;
+    exceptionOnConnect=null;
+  }
+}

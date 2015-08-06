@@ -1,0 +1,35 @@
+{
+  try {
+    if (getExceptionOnConnect() != null) {
+      return new InterpreterResult(Code.ERROR,getExceptionOnConnect().getMessage());
+    }
+    @SuppressWarnings("unchecked") SelectResults<Object> results=(SelectResults<Object>)getQueryService().newQuery(oql).execute();
+    StringBuilder msg=new StringBuilder(TABLE_MAGIC_TAG);
+    boolean isTableHeaderSet=false;
+    Iterator<Object> iterator=results.iterator();
+    int rowDisplayCount=0;
+    while (iterator.hasNext() && (rowDisplayCount < getMaxResult())) {
+      Object entry=iterator.next();
+      rowDisplayCount++;
+      if (entry instanceof Number) {
+        handleNumberEntry(isTableHeaderSet,entry,msg);
+      }
+ else       if (entry instanceof Struct) {
+        handleStructEntry(isTableHeaderSet,entry,msg);
+      }
+ else       if (entry instanceof PdxInstance) {
+        handlePdxInstanceEntry(isTableHeaderSet,entry,msg);
+      }
+ else {
+        handleUnsupportedTypeEntry(isTableHeaderSet,entry,msg);
+      }
+      isTableHeaderSet=true;
+      msg.append(NEWLINE);
+    }
+    return new InterpreterResult(Code.SUCCESS,msg.toString());
+  }
+ catch (  Exception ex) {
+    logger.error("Cannot run " + oql,ex);
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+}

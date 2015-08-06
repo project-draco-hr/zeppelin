@@ -1,0 +1,15 @@
+{
+  logger.info("Geode open connection called!");
+  close();
+  try {
+    maxResult=Integer.valueOf(getProperty(MAX_RESULT));
+    clientCache=getClientCache();
+    queryService=clientCache.getQueryService();
+    exceptionOnConnect=null;
+    logger.info("Successfully created Geode connection");
+  }
+ catch (  Exception e) {
+    logger.error("Cannot open connection",e);
+    exceptionOnConnect=e;
+  }
+}

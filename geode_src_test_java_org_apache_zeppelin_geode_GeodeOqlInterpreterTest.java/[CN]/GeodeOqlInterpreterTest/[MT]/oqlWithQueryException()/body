@@ -1,0 +1,7 @@
+{
+  GeodeOqlInterpreter spyGeodeOqlInterpreter=spy(new GeodeOqlInterpreter(new Properties()));
+  when(spyGeodeOqlInterpreter.getExceptionOnConnect()).thenReturn(new RuntimeException("Test Exception On Connect"));
+  InterpreterResult interpreterResult=spyGeodeOqlInterpreter.interpret(OQL_QUERY,null);
+  assertEquals(Code.ERROR,interpreterResult.code());
+  assertEquals("Test Exception On Connect",interpreterResult.message());
+}

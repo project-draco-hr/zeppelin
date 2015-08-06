@@ -1,0 +1,5 @@
+{
+  String[] fields=new String[]{"fi\teld1","f\nield2"};
+  Struct s1=new StructImpl(new StructTypeImpl(fields),new String[]{"v\nal\t1","val2"});
+  testOql(asIterator(s1),"fi eld1\tf ield2\t\nv al 1\tval2\t\n",10);
+}

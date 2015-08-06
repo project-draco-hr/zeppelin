@@ -1,0 +1,12 @@
+{
+  Struct struct=(Struct)entry;
+  if (!isHeaderSet) {
+    for (    String titleName : struct.getStructType().getFieldNames()) {
+      msg.append(replaceReservedChars(titleName)).append(TAB);
+    }
+    msg.append(NEWLINE);
+  }
+  for (  String titleName : struct.getStructType().getFieldNames()) {
+    msg.append(replaceReservedChars("" + struct.get(titleName))).append(TAB);
+  }
+}

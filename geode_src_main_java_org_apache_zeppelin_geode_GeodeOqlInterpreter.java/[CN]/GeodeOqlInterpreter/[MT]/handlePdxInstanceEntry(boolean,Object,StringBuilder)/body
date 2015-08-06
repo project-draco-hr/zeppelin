@@ -1,0 +1,12 @@
+{
+  PdxInstance pdxEntry=(PdxInstance)entry;
+  if (!isHeaderSet) {
+    for (    String titleName : pdxEntry.getFieldNames()) {
+      msg.append(replaceReservedChars(titleName)).append(TAB);
+    }
+    msg.append(NEWLINE);
+  }
+  for (  String titleName : pdxEntry.getFieldNames()) {
+    msg.append(replaceReservedChars("" + pdxEntry.getField(titleName))).append(TAB);
+  }
+}

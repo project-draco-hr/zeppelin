@@ -1,0 +1,4 @@
+{
+  testOql(asIterator(66,67),"Result\n66\n67\n",10);
+  testOql(asIterator(66,67),"Result\n66\n",1);
+}

@@ -1,0 +1,7 @@
+{
+  GeodeOqlInterpreter spyGeodeOqlInterpreter=spy(new GeodeOqlInterpreter(new Properties()));
+  when(spyGeodeOqlInterpreter.getQueryService()).thenThrow(new RuntimeException("Expected Test Exception!"));
+  InterpreterResult interpreterResult=spyGeodeOqlInterpreter.interpret(OQL_QUERY,null);
+  assertEquals(Code.ERROR,interpreterResult.code());
+  assertEquals("Expected Test Exception!",interpreterResult.message());
+}

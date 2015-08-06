@@ -1,0 +1,4 @@
+{
+  logger.info("Run OQL command '{}'",cmd);
+  return executeOql(cmd);
+}

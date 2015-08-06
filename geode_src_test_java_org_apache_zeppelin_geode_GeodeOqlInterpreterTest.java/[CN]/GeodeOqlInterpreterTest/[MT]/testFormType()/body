@@ -1,0 +1,3 @@
+{
+  assertEquals(FormType.SIMPLE,new GeodeOqlInterpreter(new Properties()).getFormType());
+}

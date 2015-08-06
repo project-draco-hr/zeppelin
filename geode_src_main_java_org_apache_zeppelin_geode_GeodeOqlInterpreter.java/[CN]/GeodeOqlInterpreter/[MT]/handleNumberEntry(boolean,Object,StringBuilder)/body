@@ -1,0 +1,6 @@
+{
+  if (!isHeaderSet) {
+    msg.append("Result").append(NEWLINE);
+  }
+  msg.append((Number)entry);
+}

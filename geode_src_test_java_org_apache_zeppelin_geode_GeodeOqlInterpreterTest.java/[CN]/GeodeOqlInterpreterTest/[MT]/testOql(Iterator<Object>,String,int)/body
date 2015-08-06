@@ -1,0 +1,12 @@
+{
+  GeodeOqlInterpreter spyGeodeOqlInterpreter=spy(new GeodeOqlInterpreter(new Properties()));
+  QueryService mockQueryService=mock(QueryService.class,RETURNS_DEEP_STUBS);
+  when(spyGeodeOqlInterpreter.getQueryService()).thenReturn(mockQueryService);
+  when(spyGeodeOqlInterpreter.getMaxResult()).thenReturn(maxResult);
+  @SuppressWarnings("unchecked") SelectResults<Object> mockResults=mock(SelectResults.class);
+  when(mockQueryService.newQuery(eq(OQL_QUERY)).execute()).thenReturn(mockResults);
+  when(mockResults.iterator()).thenReturn(queryResponseIterator);
+  InterpreterResult interpreterResult=spyGeodeOqlInterpreter.interpret(OQL_QUERY,null);
+  assertEquals(Code.SUCCESS,interpreterResult.code());
+  assertEquals(expectedOutput,interpreterResult.message());
+}

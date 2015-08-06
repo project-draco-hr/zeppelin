@@ -1,0 +1,6 @@
+{
+  String locatorHost=getProperty(LOCATOR_HOST);
+  int locatorPort=Integer.valueOf(getProperty(LOCATOR_PORT));
+  ClientCache clientCache=new ClientCacheFactory().addPoolLocator(locatorHost,locatorPort).create();
+  return clientCache;
+}

@@ -1,0 +1,5 @@
+{
+  DummyUnspportedType unspported1=new DummyUnspportedType();
+  DummyUnspportedType unspported2=new DummyUnspportedType();
+  testOql(asIterator(unspported1,unspported2),"Unsuppoted Type\n" + unspported1.toString() + "\n"+ unspported1.toString()+ "\n",10);
+}

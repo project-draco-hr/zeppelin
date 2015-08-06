@@ -1,0 +1,6 @@
+{
+  if (!isHeaderSet) {
+    msg.append("Unsuppoted Type").append(NEWLINE);
+  }
+  msg.append("" + entry);
+}
