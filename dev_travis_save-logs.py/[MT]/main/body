@@ -1,0 +1,25 @@
+def main(file, cmd):
+    print cmd, 'writing to', file
+    out = open(file, 'w')
+    count = 0
+    process = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
+    start = datetime.now()
+    nextPrint = (datetime.now() + timedelta(seconds=1))
+    pout = process.stdout
+    line = pout.readline()
+    while line:
+        count = (count + 1)
+        if (datetime.now() > nextPrint):
+            diff = (datetime.now() - start)
+            sys.stdout.write(('\r%d seconds %d log lines' % (diff.seconds, count)))
+            sys.stdout.flush()
+            nextPrint = (datetime.now() + timedelta(seconds=10))
+        out.write(line)
+        line = pout.readline()
+    out.close()
+    errcode = process.wait()
+    diff = (datetime.now() - start)
+    sys.stdout.write(('\r%d seconds %d log lines' % (diff.seconds, count)))
+    print 
+    print cmd, 'done', errcode
+    return errcode
