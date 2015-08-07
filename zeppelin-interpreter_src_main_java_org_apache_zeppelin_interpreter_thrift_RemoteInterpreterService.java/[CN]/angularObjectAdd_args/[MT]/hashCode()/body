@@ -1,3 +1,13 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_name=true && (isSetName());
+  list.add(present_name);
+  if (present_name)   list.add(name);
+  boolean present_noteId=true && (isSetNoteId());
+  list.add(present_noteId);
+  if (present_noteId)   list.add(noteId);
+  boolean present_object=true && (isSetObject());
+  list.add(present_object);
+  if (present_object)   list.add(object);
+  return list.hashCode();
 }

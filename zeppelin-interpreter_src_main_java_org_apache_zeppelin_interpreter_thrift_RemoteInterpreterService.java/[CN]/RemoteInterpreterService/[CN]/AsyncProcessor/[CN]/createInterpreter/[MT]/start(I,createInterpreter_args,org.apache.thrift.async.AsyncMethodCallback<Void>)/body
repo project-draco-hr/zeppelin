@@ -1,0 +1,3 @@
+{
+  iface.createInterpreter(args.className,args.properties,resultHandler);
+}

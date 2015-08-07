@@ -1,0 +1,3 @@
+{
+  iface.getProgress(args.className,args.interpreterContext,resultHandler);
+}

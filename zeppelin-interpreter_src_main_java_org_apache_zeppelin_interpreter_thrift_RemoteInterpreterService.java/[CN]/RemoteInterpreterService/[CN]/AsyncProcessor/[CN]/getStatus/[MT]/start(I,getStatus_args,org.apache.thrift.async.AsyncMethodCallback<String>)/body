@@ -1,0 +1,3 @@
+{
+  iface.getStatus(args.jobId,resultHandler);
+}

@@ -3,23 +3,22 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  createInterpreter_args typedOther=(createInterpreter_args)other;
-  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(typedOther.isSetClassName());
+  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(other.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetClassName()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,typedOther.className);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,other.className);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetProperties()).compareTo(typedOther.isSetProperties());
+  lastComparison=Boolean.valueOf(isSetProperties()).compareTo(other.isSetProperties());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetProperties()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.properties,typedOther.properties);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.properties,other.properties);
     if (lastComparison != 0) {
       return lastComparison;
     }

@@ -1,0 +1,3 @@
+{
+  iface.angularObjectRemove(args.name,args.noteId,resultHandler);
+}

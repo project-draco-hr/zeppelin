@@ -1,0 +1,3 @@
+{
+  iface.interpret(args.className,args.st,args.interpreterContext,resultHandler);
+}

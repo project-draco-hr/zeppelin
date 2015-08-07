@@ -1,0 +1,3 @@
+{
+  iface.cancel(args.className,args.interpreterContext,resultHandler);
+}

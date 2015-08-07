@@ -3,13 +3,12 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  getStatus_args typedOther=(getStatus_args)other;
-  lastComparison=Boolean.valueOf(isSetJobId()).compareTo(typedOther.isSetJobId());
+  lastComparison=Boolean.valueOf(isSetJobId()).compareTo(other.isSetJobId());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetJobId()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.jobId,typedOther.jobId);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.jobId,other.jobId);
     if (lastComparison != 0) {
       return lastComparison;
     }

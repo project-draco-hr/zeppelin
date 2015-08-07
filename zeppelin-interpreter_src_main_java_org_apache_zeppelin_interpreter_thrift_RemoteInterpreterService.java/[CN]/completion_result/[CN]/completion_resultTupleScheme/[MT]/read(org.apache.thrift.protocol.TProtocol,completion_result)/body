@@ -5,10 +5,10 @@
 {
       org.apache.thrift.protocol.TList _list15=new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING,iprot.readI32());
       struct.success=new ArrayList<String>(_list15.size);
-      for (int _i16=0; _i16 < _list15.size; ++_i16) {
-        String _elem17;
-        _elem17=iprot.readString();
-        struct.success.add(_elem17);
+      String _elem16;
+      for (int _i17=0; _i17 < _list15.size; ++_i17) {
+        _elem16=iprot.readString();
+        struct.success.add(_elem16);
       }
     }
     struct.setSuccessIsSet(true);

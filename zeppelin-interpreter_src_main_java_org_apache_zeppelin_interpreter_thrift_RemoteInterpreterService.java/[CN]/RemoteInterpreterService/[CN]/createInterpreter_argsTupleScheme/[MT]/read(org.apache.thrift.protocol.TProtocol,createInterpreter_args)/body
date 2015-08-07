@@ -9,12 +9,12 @@
 {
       org.apache.thrift.protocol.TMap _map6=new org.apache.thrift.protocol.TMap(org.apache.thrift.protocol.TType.STRING,org.apache.thrift.protocol.TType.STRING,iprot.readI32());
       struct.properties=new HashMap<String,String>(2 * _map6.size);
-      for (int _i7=0; _i7 < _map6.size; ++_i7) {
-        String _key8;
-        String _val9;
-        _key8=iprot.readString();
-        _val9=iprot.readString();
-        struct.properties.put(_key8,_val9);
+      String _key7;
+      String _val8;
+      for (int _i9=0; _i9 < _map6.size; ++_i9) {
+        _key7=iprot.readString();
+        _val8=iprot.readString();
+        struct.properties.put(_key7,_val8);
       }
     }
     struct.setPropertiesIsSet(true);

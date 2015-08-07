@@ -3,13 +3,12 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  getFormType_args typedOther=(getFormType_args)other;
-  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(typedOther.isSetClassName());
+  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(other.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetClassName()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,typedOther.className);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,other.className);
     if (lastComparison != 0) {
       return lastComparison;
     }

@@ -1,3 +1,13 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_className=true && (isSetClassName());
+  list.add(present_className);
+  if (present_className)   list.add(className);
+  boolean present_buf=true && (isSetBuf());
+  list.add(present_buf);
+  if (present_buf)   list.add(buf);
+  boolean present_cursor=true;
+  list.add(present_cursor);
+  if (present_cursor)   list.add(cursor);
+  return list.hashCode();
 }

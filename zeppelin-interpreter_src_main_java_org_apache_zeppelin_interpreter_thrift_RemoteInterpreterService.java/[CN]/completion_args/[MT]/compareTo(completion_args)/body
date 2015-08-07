@@ -3,33 +3,32 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  completion_args typedOther=(completion_args)other;
-  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(typedOther.isSetClassName());
+  lastComparison=Boolean.valueOf(isSetClassName()).compareTo(other.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetClassName()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,typedOther.className);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.className,other.className);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetBuf()).compareTo(typedOther.isSetBuf());
+  lastComparison=Boolean.valueOf(isSetBuf()).compareTo(other.isSetBuf());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetBuf()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.buf,typedOther.buf);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.buf,other.buf);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetCursor()).compareTo(typedOther.isSetCursor());
+  lastComparison=Boolean.valueOf(isSetCursor()).compareTo(other.isSetCursor());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetCursor()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.cursor,typedOther.cursor);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.cursor,other.cursor);
     if (lastComparison != 0) {
       return lastComparison;
     }

@@ -3,6 +3,5 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  angularObjectAdd_result typedOther=(angularObjectAdd_result)other;
   return 0;
 }

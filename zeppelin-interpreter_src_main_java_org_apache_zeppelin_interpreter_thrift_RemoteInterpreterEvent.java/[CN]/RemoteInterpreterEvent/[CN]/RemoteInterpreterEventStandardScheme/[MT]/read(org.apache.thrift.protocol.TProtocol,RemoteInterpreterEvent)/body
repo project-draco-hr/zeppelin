@@ -9,7 +9,7 @@
 switch (schemeField.id) {
 case 1:
       if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-        struct.type=RemoteInterpreterEventType.findByValue(iprot.readI32());
+        struct.type=org.apache.zeppelin.interpreter.thrift.RemoteInterpreterEventType.findByValue(iprot.readI32());
         struct.setTypeIsSet(true);
       }
  else {

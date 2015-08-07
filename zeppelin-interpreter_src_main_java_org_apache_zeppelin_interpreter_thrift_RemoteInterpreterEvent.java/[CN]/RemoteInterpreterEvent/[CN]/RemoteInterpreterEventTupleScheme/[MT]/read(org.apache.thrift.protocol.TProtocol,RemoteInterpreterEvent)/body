@@ -2,7 +2,7 @@
   TTupleProtocol iprot=(TTupleProtocol)prot;
   BitSet incoming=iprot.readBitSet(2);
   if (incoming.get(0)) {
-    struct.type=RemoteInterpreterEventType.findByValue(iprot.readI32());
+    struct.type=org.apache.zeppelin.interpreter.thrift.RemoteInterpreterEventType.findByValue(iprot.readI32());
     struct.setTypeIsSet(true);
   }
   if (incoming.get(1)) {

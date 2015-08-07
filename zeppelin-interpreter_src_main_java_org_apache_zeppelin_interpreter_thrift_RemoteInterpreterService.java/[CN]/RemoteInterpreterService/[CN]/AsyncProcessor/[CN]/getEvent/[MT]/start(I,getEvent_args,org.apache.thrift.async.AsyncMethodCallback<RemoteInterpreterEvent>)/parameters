@@ -1,0 +1,3 @@
+I iface
+getEvent_args args
+org.apache.thrift.async.AsyncMethodCallback<RemoteInterpreterEvent> resultHandler

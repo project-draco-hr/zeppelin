@@ -1,0 +1,3 @@
+{
+  iface.close(args.className,resultHandler);
+}

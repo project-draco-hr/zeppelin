@@ -3,6 +3,5 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  cancel_result typedOther=(cancel_result)other;
   return 0;
 }

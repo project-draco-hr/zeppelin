@@ -3,73 +3,72 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  RemoteInterpreterContext typedOther=(RemoteInterpreterContext)other;
-  lastComparison=Boolean.valueOf(isSetNoteId()).compareTo(typedOther.isSetNoteId());
+  lastComparison=Boolean.valueOf(isSetNoteId()).compareTo(other.isSetNoteId());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetNoteId()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.noteId,typedOther.noteId);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.noteId,other.noteId);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetParagraphId()).compareTo(typedOther.isSetParagraphId());
+  lastComparison=Boolean.valueOf(isSetParagraphId()).compareTo(other.isSetParagraphId());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetParagraphId()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphId,typedOther.paragraphId);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphId,other.paragraphId);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetParagraphTitle()).compareTo(typedOther.isSetParagraphTitle());
+  lastComparison=Boolean.valueOf(isSetParagraphTitle()).compareTo(other.isSetParagraphTitle());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetParagraphTitle()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphTitle,typedOther.paragraphTitle);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphTitle,other.paragraphTitle);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetParagraphText()).compareTo(typedOther.isSetParagraphText());
+  lastComparison=Boolean.valueOf(isSetParagraphText()).compareTo(other.isSetParagraphText());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetParagraphText()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphText,typedOther.paragraphText);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphText,other.paragraphText);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetConfig()).compareTo(typedOther.isSetConfig());
+  lastComparison=Boolean.valueOf(isSetConfig()).compareTo(other.isSetConfig());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetConfig()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.config,typedOther.config);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.config,other.config);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetGui()).compareTo(typedOther.isSetGui());
+  lastComparison=Boolean.valueOf(isSetGui()).compareTo(other.isSetGui());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetGui()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.gui,typedOther.gui);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.gui,other.gui);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetRunners()).compareTo(typedOther.isSetRunners());
+  lastComparison=Boolean.valueOf(isSetRunners()).compareTo(other.isSetRunners());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetRunners()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.runners,typedOther.runners);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.runners,other.runners);
     if (lastComparison != 0) {
       return lastComparison;
     }

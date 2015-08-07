@@ -1,2 +1,0 @@
-String jobId
-org.apache.thrift.async.AsyncMethodCallback<AsyncClient.getStatus_call> resultHandler

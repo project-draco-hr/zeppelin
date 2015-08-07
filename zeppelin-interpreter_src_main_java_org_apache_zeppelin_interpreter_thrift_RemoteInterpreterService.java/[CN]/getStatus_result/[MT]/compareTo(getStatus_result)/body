@@ -3,13 +3,12 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  getStatus_result typedOther=(getStatus_result)other;
-  lastComparison=Boolean.valueOf(isSetSuccess()).compareTo(typedOther.isSetSuccess());
+  lastComparison=Boolean.valueOf(isSetSuccess()).compareTo(other.isSetSuccess());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetSuccess()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.success,typedOther.success);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.success,other.success);
     if (lastComparison != 0) {
       return lastComparison;
     }

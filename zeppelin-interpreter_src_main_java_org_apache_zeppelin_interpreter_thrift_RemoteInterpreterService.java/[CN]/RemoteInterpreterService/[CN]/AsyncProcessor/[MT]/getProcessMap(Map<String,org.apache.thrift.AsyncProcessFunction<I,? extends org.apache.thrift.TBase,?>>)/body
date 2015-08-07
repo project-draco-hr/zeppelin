@@ -1,0 +1,17 @@
+{
+  processMap.put("createInterpreter",new createInterpreter());
+  processMap.put("open",new open());
+  processMap.put("close",new close());
+  processMap.put("interpret",new interpret());
+  processMap.put("cancel",new cancel());
+  processMap.put("getProgress",new getProgress());
+  processMap.put("getFormType",new getFormType());
+  processMap.put("completion",new completion());
+  processMap.put("shutdown",new shutdown());
+  processMap.put("getStatus",new getStatus());
+  processMap.put("getEvent",new getEvent());
+  processMap.put("angularObjectUpdate",new angularObjectUpdate());
+  processMap.put("angularObjectAdd",new angularObjectAdd());
+  processMap.put("angularObjectRemove",new angularObjectRemove());
+  return processMap;
+}

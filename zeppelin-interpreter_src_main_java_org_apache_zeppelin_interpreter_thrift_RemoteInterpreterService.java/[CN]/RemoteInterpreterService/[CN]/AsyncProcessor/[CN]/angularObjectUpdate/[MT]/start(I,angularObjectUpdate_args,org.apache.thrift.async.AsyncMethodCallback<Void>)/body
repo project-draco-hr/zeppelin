@@ -1,0 +1,3 @@
+{
+  iface.angularObjectUpdate(args.name,args.noteId,args.object,resultHandler);
+}

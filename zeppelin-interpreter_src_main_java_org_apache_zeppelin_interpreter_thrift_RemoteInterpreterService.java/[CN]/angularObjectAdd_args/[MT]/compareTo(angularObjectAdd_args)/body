@@ -3,33 +3,32 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
-  angularObjectAdd_args typedOther=(angularObjectAdd_args)other;
-  lastComparison=Boolean.valueOf(isSetName()).compareTo(typedOther.isSetName());
+  lastComparison=Boolean.valueOf(isSetName()).compareTo(other.isSetName());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetName()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.name,typedOther.name);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.name,other.name);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetNoteId()).compareTo(typedOther.isSetNoteId());
+  lastComparison=Boolean.valueOf(isSetNoteId()).compareTo(other.isSetNoteId());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetNoteId()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.noteId,typedOther.noteId);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.noteId,other.noteId);
     if (lastComparison != 0) {
       return lastComparison;
     }
   }
-  lastComparison=Boolean.valueOf(isSetObject()).compareTo(typedOther.isSetObject());
+  lastComparison=Boolean.valueOf(isSetObject()).compareTo(other.isSetObject());
   if (lastComparison != 0) {
     return lastComparison;
   }
   if (isSetObject()) {
-    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.object,typedOther.object);
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.object,other.object);
     if (lastComparison != 0) {
       return lastComparison;
     }

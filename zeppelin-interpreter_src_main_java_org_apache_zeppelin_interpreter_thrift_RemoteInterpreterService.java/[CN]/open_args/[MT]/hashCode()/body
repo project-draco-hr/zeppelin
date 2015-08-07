@@ -1,3 +1,7 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_className=true && (isSetClassName());
+  list.add(present_className);
+  if (present_className)   list.add(className);
+  return list.hashCode();
 }

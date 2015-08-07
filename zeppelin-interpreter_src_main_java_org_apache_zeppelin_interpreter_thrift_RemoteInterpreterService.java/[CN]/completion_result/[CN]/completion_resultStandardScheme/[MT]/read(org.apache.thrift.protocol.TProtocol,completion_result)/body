@@ -12,10 +12,10 @@ case 0:
 {
           org.apache.thrift.protocol.TList _list10=iprot.readListBegin();
           struct.success=new ArrayList<String>(_list10.size);
-          for (int _i11=0; _i11 < _list10.size; ++_i11) {
-            String _elem12;
-            _elem12=iprot.readString();
-            struct.success.add(_elem12);
+          String _elem11;
+          for (int _i12=0; _i12 < _list10.size; ++_i12) {
+            _elem11=iprot.readString();
+            struct.success.add(_elem11);
           }
           iprot.readListEnd();
         }

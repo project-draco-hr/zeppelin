@@ -1,3 +1,19 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_code=true && (isSetCode());
+  list.add(present_code);
+  if (present_code)   list.add(code);
+  boolean present_type=true && (isSetType());
+  list.add(present_type);
+  if (present_type)   list.add(type);
+  boolean present_msg=true && (isSetMsg());
+  list.add(present_msg);
+  if (present_msg)   list.add(msg);
+  boolean present_config=true && (isSetConfig());
+  list.add(present_config);
+  if (present_config)   list.add(config);
+  boolean present_gui=true && (isSetGui());
+  list.add(present_gui);
+  if (present_gui)   list.add(gui);
+  return list.hashCode();
 }

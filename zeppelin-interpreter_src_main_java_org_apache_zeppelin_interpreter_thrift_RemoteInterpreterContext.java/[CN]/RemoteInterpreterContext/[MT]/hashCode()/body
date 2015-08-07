@@ -1,3 +1,25 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_noteId=true && (isSetNoteId());
+  list.add(present_noteId);
+  if (present_noteId)   list.add(noteId);
+  boolean present_paragraphId=true && (isSetParagraphId());
+  list.add(present_paragraphId);
+  if (present_paragraphId)   list.add(paragraphId);
+  boolean present_paragraphTitle=true && (isSetParagraphTitle());
+  list.add(present_paragraphTitle);
+  if (present_paragraphTitle)   list.add(paragraphTitle);
+  boolean present_paragraphText=true && (isSetParagraphText());
+  list.add(present_paragraphText);
+  if (present_paragraphText)   list.add(paragraphText);
+  boolean present_config=true && (isSetConfig());
+  list.add(present_config);
+  if (present_config)   list.add(config);
+  boolean present_gui=true && (isSetGui());
+  list.add(present_gui);
+  if (present_gui)   list.add(gui);
+  boolean present_runners=true && (isSetRunners());
+  list.add(present_runners);
+  if (present_runners)   list.add(runners);
+  return list.hashCode();
 }

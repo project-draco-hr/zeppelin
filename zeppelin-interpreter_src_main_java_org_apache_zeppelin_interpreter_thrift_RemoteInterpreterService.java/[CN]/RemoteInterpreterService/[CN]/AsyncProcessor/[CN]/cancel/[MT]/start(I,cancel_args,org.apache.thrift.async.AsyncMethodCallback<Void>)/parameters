@@ -1,0 +1,3 @@
+I iface
+cancel_args args
+org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler

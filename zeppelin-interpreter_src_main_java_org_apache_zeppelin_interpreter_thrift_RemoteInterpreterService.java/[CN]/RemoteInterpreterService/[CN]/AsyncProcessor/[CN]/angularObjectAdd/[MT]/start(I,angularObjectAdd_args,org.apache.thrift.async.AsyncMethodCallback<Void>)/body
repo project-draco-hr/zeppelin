@@ -1,0 +1,3 @@
+{
+  iface.angularObjectAdd(args.name,args.noteId,args.object,resultHandler);
+}

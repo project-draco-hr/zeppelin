@@ -1,0 +1,3 @@
+{
+  iface.completion(args.className,args.buf,args.cursor,resultHandler);
+}

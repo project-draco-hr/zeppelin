@@ -1,0 +1,4 @@
+String className
+String st
+RemoteInterpreterContext interpreterContext
+org.apache.thrift.async.AsyncMethodCallback resultHandler

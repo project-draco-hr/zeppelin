@@ -1,3 +1,10 @@
 {
-  return 0;
+  List<Object> list=new ArrayList<Object>();
+  boolean present_type=true && (isSetType());
+  list.add(present_type);
+  if (present_type)   list.add(type.getValue());
+  boolean present_data=true && (isSetData());
+  list.add(present_data);
+  if (present_data)   list.add(data);
+  return list.hashCode();
 }
