@@ -1,0 +1,11 @@
+{
+  Note note=notebook.createNote();
+  note.addParagraph();
+  if (message != null) {
+    String noteName=(String)message.get("name");
+    if (noteName != null && !noteName.isEmpty())     note.setName(noteName);
+  }
+  note.persist();
+  broadcastNote(note);
+  broadcastNoteList();
+}

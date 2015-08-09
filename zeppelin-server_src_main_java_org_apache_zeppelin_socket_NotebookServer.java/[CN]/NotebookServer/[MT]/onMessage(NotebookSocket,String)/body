@@ -11,7 +11,7 @@ case GET_NOTE:
   sendNote(conn,notebook,messagereceived);
 break;
 case NEW_NOTE:
-createNote(conn,notebook);
+createNote(conn,notebook,messagereceived);
 break;
 case DEL_NOTE:
 removeNote(conn,notebook,messagereceived);

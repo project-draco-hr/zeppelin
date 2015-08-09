@@ -1,7 +1,0 @@
-{
-  Note note=notebook.createNote();
-  note.addParagraph();
-  note.persist();
-  broadcastNote(note);
-  broadcastNoteList();
-}
