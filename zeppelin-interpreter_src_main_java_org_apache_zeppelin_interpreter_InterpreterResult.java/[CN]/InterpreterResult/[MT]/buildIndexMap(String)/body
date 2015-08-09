@@ -1,0 +1,12 @@
+{
+  int lastIndexOftypes=0;
+  TreeMap<Integer,Type> typesLastIndexInMsg=new TreeMap<Integer,Type>();
+  Type[] types=Type.values();
+  for (  Type t : types) {
+    lastIndexOftypes=getIndexOfType(msg,t);
+    if (lastIndexOftypes >= 0) {
+      typesLastIndexInMsg.put(lastIndexOftypes,t);
+    }
+  }
+  return typesLastIndexInMsg;
+}

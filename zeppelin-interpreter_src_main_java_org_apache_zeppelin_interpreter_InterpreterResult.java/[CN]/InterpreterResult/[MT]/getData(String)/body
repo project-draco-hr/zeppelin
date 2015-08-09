@@ -2,18 +2,15 @@
   if (msg == null) {
     return null;
   }
-  Type[] types=Type.values();
-  for (  Type t : types) {
-    String magic="%" + t.name().toLowerCase();
-    if (msg.startsWith(magic + " ") || msg.startsWith(magic + "\n")) {
-      int magicLength=magic.length() + 1;
-      if (msg.length() > magicLength) {
-        return msg.substring(magicLength);
-      }
- else {
-        return "";
-      }
-    }
+  Type[] types=type.values();
+  TreeMap<Integer,Type> typesLastIndexInMsg=buildIndexMap(msg);
+  if (typesLastIndexInMsg.size() == 0) {
+    return msg;
   }
-  return msg;
+ else {
+    Map.Entry<Integer,Type> lastType=typesLastIndexInMsg.firstEntry();
+    int magicLength=lastType.getValue().name().length() + 1;
+    int subStringPos=magicLength + lastType.getKey() + 1;
+    return msg.substring(subStringPos);
+  }
 }

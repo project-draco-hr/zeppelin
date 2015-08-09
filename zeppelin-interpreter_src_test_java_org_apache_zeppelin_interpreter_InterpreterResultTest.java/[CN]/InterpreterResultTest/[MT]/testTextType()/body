@@ -1,0 +1,8 @@
+{
+  InterpreterResult result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"this is a TEXT type");
+  assertEquals("No magic",InterpreterResult.Type.TEXT,result.type());
+  result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"%this is a TEXT type");
+  assertEquals("No magic",InterpreterResult.Type.TEXT,result.type());
+  result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"%\n");
+  assertEquals("No magic",InterpreterResult.Type.TEXT,result.type());
+}

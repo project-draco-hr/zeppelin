@@ -1,0 +1,7 @@
+{
+  if (msg == null) {
+    return 0;
+  }
+  String typeString="%" + t.name().toLowerCase();
+  return StringUtils.indexOf(msg,typeString);
+}
