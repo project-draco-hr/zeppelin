@@ -1,0 +1,15 @@
+{
+  String noteId=notebook.getConf().getString(ConfVars.ZEPPELIN_NOTEBOOK_HOMESCREEN);
+  Note note=null;
+  if (noteId != null) {
+    note=notebook.getNote(noteId);
+  }
+  if (note != null) {
+    addConnectionToNote(note.id(),conn);
+    conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+    sendAllAngularObjects(note,conn);
+  }
+ else {
+    conn.send(serializeMessage(new Message(OP.NOTE).put("note",null)));
+  }
+}

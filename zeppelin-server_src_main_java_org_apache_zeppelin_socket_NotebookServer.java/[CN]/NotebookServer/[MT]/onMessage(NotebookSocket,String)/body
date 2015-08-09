@@ -7,8 +7,11 @@ switch (messagereceived.op) {
 case LIST_NOTES:
       broadcastNoteList();
     break;
+case GET_HOME_NOTE:
+  sendHomeNote(conn,notebook);
+break;
 case GET_NOTE:
-  sendNote(conn,notebook,messagereceived);
+sendNote(conn,notebook,messagereceived);
 break;
 case NEW_NOTE:
 createNote(conn,notebook,messagereceived);
