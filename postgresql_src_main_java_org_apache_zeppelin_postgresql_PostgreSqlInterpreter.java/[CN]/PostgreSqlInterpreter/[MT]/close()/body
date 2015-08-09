@@ -1,0 +1,14 @@
+{
+  logger.info("Close psql connection!");
+  try {
+    if (getJdbcConnection() != null) {
+      getJdbcConnection().close();
+    }
+  }
+ catch (  SQLException e) {
+    logger.error("Cannot close connection",e);
+  }
+ finally {
+    exceptionOnConnect=null;
+  }
+}

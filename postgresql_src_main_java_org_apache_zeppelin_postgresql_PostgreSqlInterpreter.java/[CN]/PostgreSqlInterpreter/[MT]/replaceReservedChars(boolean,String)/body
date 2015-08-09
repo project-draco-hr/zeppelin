@@ -1,0 +1,3 @@
+{
+  return (!isTableResponseType) ? str : str.replace(TAB,WhITESPACE).replace(NEWLINE,WhITESPACE);
+}

@@ -1,0 +1,19 @@
+{
+  logger.info("Open psql connection!");
+  close();
+  try {
+    String driverName=getProperty(POSTGRESQL_SERVER_DRIVER_NAME);
+    String url=getProperty(POSTGRESQL_SERVER_URL);
+    String user=getProperty(POSTGRESQL_SERVER_USER);
+    String password=getProperty(POSTGRESQL_SERVER_PASSWORD);
+    maxResult=Integer.valueOf(getProperty(POSTGRESQL_SERVER_MAX_RESULT));
+    Class.forName(driverName);
+    jdbcConnection=DriverManager.getConnection(url,user,password);
+    exceptionOnConnect=null;
+    logger.info("Successfully created psql connection");
+  }
+ catch (  ClassNotFoundException|SQLException e) {
+    logger.error("Cannot open connection",e);
+    exceptionOnConnect=e;
+  }
+}

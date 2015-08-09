@@ -1,0 +1,64 @@
+{
+  try {
+    if (exceptionOnConnect != null) {
+      return new InterpreterResult(Code.ERROR,exceptionOnConnect.getMessage());
+    }
+    currentStatement=getJdbcConnection().createStatement();
+    StringBuilder msg=null;
+    boolean isTableType=false;
+    if (StringUtils.containsIgnoreCase(sql,EXPLAIN_PREDICATE)) {
+      msg=new StringBuilder();
+    }
+ else {
+      msg=new StringBuilder(TABLE_MAGIC_TAG);
+      isTableType=true;
+    }
+    ResultSet resultSet=null;
+    try {
+      boolean isResultSetAvailable=currentStatement.execute(sql);
+      if (isResultSetAvailable) {
+        resultSet=currentStatement.getResultSet();
+        ResultSetMetaData md=resultSet.getMetaData();
+        for (int i=1; i < md.getColumnCount() + 1; i++) {
+          if (i > 1) {
+            msg.append(TAB);
+          }
+          msg.append(replaceReservedChars(isTableType,md.getColumnName(i)));
+        }
+        msg.append(NEWLINE);
+        int displayRowCount=0;
+        while (resultSet.next() && displayRowCount < getMaxResult()) {
+          for (int i=1; i < md.getColumnCount() + 1; i++) {
+            msg.append(replaceReservedChars(isTableType,resultSet.getString(i)));
+            if (i != md.getColumnCount()) {
+              msg.append(TAB);
+            }
+          }
+          msg.append(NEWLINE);
+          displayRowCount++;
+        }
+      }
+ else {
+        int updateCount=currentStatement.getUpdateCount();
+        msg.append(UPDATE_COUNT_HEADER).append(NEWLINE);
+        msg.append(updateCount).append(NEWLINE);
+      }
+    }
+  finally {
+      try {
+        if (resultSet != null) {
+          resultSet.close();
+        }
+        currentStatement.close();
+      }
+  finally {
+        currentStatement=null;
+      }
+    }
+    return new InterpreterResult(Code.SUCCESS,msg.toString());
+  }
+ catch (  SQLException ex) {
+    logger.error("Cannot run " + sql,ex);
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+}
