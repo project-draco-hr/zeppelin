@@ -1,3 +1,4 @@
 {
   this.text=newText;
+  this.dateUpdated=new Date();
 }

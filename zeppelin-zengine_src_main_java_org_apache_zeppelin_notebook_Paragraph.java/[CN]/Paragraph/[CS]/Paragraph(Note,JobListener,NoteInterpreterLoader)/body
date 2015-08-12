@@ -4,6 +4,7 @@
   this.replLoader=replLoader;
   title=null;
   text=null;
+  dateUpdated=null;
   settings=new GUI();
   config=new HashMap<String,Object>();
 }
