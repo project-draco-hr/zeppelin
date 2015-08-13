@@ -1,9 +1,9 @@
 {
   Notebook notebook=notebook();
   List<Note> notes=notebook.getAllNotes();
-  List<Map<String,String>> notesInfo=new LinkedList<Map<String,String>>();
+  List<Map<String,String>> notesInfo=new LinkedList<>();
   for (  Note note : notes) {
-    Map<String,String> info=new HashMap<String,String>();
+    Map<String,String> info=new HashMap<>();
     info.put("id",note.id());
     info.put("name",note.getName());
     notesInfo.add(info);

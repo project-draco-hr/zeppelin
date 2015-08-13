@@ -1,4 +1,3 @@
 {
-  Message m=gson.fromJson(msg,Message.class);
-  return m;
+  return gson.fromJson(msg,Message.class);
 }

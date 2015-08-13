@@ -1,0 +1,4 @@
+{
+  NotebookServer server=new NotebookServer();
+  Assert.assertTrue(server.checkOrigin(new TestHttpServletRequest(),"http://" + java.net.InetAddress.getLocalHost().getHostName() + ":8080"));
+}

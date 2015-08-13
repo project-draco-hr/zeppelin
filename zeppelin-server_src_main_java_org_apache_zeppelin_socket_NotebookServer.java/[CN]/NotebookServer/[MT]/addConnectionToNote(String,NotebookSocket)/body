@@ -3,10 +3,10 @@ synchronized (noteSocketMap) {
     removeConnectionFromAllNote(socket);
     List<NotebookSocket> socketList=noteSocketMap.get(noteId);
     if (socketList == null) {
-      socketList=new LinkedList<NotebookSocket>();
+      socketList=new LinkedList<>();
       noteSocketMap.put(noteId,socketList);
     }
-    if (socketList.contains(socket) == false) {
+    if (!socketList.contains(socket)) {
       socketList.add(socket);
     }
   }

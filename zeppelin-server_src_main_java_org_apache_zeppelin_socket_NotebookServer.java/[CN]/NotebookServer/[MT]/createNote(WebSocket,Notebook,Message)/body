@@ -3,7 +3,9 @@
   note.addParagraph();
   if (message != null) {
     String noteName=(String)message.get("name");
-    if (noteName != null && !noteName.isEmpty())     note.setName(noteName);
+    if (noteName != null && !noteName.isEmpty()) {
+      note.setName(noteName);
+    }
   }
   note.persist();
   broadcastNote(note);

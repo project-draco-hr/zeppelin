@@ -1,0 +1,7 @@
+{
+switch (s) {
+case "Origin":
+    return "http://localhost:8080";
+}
+return null;
+}
