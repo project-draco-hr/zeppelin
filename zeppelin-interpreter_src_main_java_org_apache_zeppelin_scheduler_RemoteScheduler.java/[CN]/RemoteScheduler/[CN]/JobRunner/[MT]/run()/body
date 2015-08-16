@@ -6,6 +6,7 @@ synchronized (queue) {
       running.remove(job);
       queue.notify();
     }
+    jobSubmittedRemotely=true;
     return;
   }
   JobStatusPoller jobStatusPoller=new JobStatusPoller(1500,100,500,job,this);
