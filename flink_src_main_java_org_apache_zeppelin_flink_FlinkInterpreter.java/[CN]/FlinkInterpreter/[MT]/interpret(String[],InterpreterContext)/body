@@ -9,7 +9,15 @@
   out.reset();
   Code r=null;
   String incomplete="";
-  for (  String s : linesToRun) {
+  for (int l=0; l < linesToRun.length; l++) {
+    String s=linesToRun[l];
+    if (l + 1 < linesToRun.length) {
+      String nextLine=linesToRun[l + 1].trim();
+      if (nextLine.startsWith(".") && !nextLine.startsWith("..") && !nextLine.startsWith("./")) {
+        incomplete+=s + "\n";
+        continue;
+      }
+    }
     scala.tools.nsc.interpreter.Results.Result res=null;
     try {
       res=imain.interpret(incomplete + s);
