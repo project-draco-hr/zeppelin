@@ -1,0 +1,8 @@
+{
+  PhoenixInterpreter phoenixInterpreter=spy(new PhoenixInterpreter(new Properties()));
+  when(phoenixInterpreter.getJdbcConnection()).thenReturn(getJDBCMockObjectFactory().getMockConnection());
+  phoenixInterpreter.cancel(null);
+  verifyAllResultSetsClosed();
+  verifyAllStatementsClosed();
+  assertFalse("Cancel operation should not close the connection",phoenixInterpreter.getJdbcConnection().isClosed());
+}

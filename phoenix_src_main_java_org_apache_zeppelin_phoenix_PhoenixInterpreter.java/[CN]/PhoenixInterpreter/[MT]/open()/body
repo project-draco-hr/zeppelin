@@ -1,0 +1,15 @@
+{
+  logger.info("Jdbc open connection called!");
+  close();
+  try {
+    Class.forName(getProperty(PHOENIX_JDBC_DRIVER_NAME));
+    maxResult=Integer.valueOf(getProperty(PHOENIX_MAX_RESULT));
+    jdbcConnection=DriverManager.getConnection(getProperty(PHOENIX_JDBC_URL),getProperty(PHOENIX_JDBC_USER),getProperty(PHOENIX_JDBC_PASSWORD));
+    exceptionOnConnect=null;
+    logger.info("Successfully created Jdbc connection");
+  }
+ catch (  ClassNotFoundException|SQLException e) {
+    logger.error("Cannot open connection",e);
+    exceptionOnConnect=e;
+  }
+}

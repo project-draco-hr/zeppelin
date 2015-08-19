@@ -1,0 +1,13 @@
+{
+  when(phoenixInterpreter.getMaxResult()).thenReturn(1000);
+  String sqlQuery="select * from t";
+  result.addColumn("co\tl1",new String[]{"val11","va\tl1\n2"});
+  result.addColumn("co\nl2",new String[]{"v\nal21","val\t22"});
+  InterpreterResult interpreterResult=phoenixInterpreter.interpret(sqlQuery,null);
+  assertEquals(InterpreterResult.Code.SUCCESS,interpreterResult.code());
+  assertEquals(InterpreterResult.Type.TABLE,interpreterResult.type());
+  assertEquals("co l1\tco l2\nval11\tv al21\nva l1 2\tval 22\n",interpreterResult.message());
+  verifySQLStatementExecuted(sqlQuery);
+  verifyAllResultSetsClosed();
+  verifyAllStatementsClosed();
+}
