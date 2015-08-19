@@ -1,0 +1,19 @@
+{
+  CorsFilter filter=new CorsFilter();
+  HttpServletResponse mockResponse=mock(HttpServletResponse.class);
+  FilterChain mockedFilterChain=mock(FilterChain.class);
+  TestHttpServletRequest mockRequest=mock(TestHttpServletRequest.class);
+  when(mockRequest.getHeader("Origin")).thenReturn("http://localhost:8080");
+  when(mockRequest.getMethod()).thenReturn("Empty");
+  when(mockRequest.getServerName()).thenReturn("localhost");
+  doAnswer(new Answer(){
+    @Override public Object answer(    InvocationOnMock invocationOnMock) throws Throwable {
+      headers[count]=invocationOnMock.getArguments()[1].toString();
+      count++;
+      return null;
+    }
+  }
+).when(mockResponse).addHeader(anyString(),anyString());
+  filter.doFilter(mockRequest,mockResponse,mockedFilterChain);
+  Assert.assertTrue(headers[0].equals("http://localhost:8080"));
+}

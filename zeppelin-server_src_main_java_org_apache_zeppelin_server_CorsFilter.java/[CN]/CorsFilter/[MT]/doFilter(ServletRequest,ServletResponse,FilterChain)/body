@@ -1,12 +1,18 @@
 {
+  String sourceHost=request.getServerName();
+  String currentHost=java.net.InetAddress.getLocalHost().getHostName();
+  String origin="";
+  if (currentHost.equals(sourceHost) || "localhost".equals(sourceHost)) {
+    origin=((HttpServletRequest)request).getHeader("Origin");
+  }
   if (((HttpServletRequest)request).getMethod().equals("OPTIONS")) {
     HttpServletResponse resp=((HttpServletResponse)response);
-    addCorsHeaders(resp);
+    addCorsHeaders(resp,origin);
     return;
   }
   if (response instanceof HttpServletResponse) {
     HttpServletResponse alteredResponse=((HttpServletResponse)response);
-    addCorsHeaders(alteredResponse);
+    addCorsHeaders(alteredResponse,origin);
   }
   filterChain.doFilter(request,response);
 }
