@@ -1,19 +1,12 @@
 {
-  URI sourceUri=null;
-  String currentHost=null;
   try {
-    sourceUri=new URI(origin);
-    currentHost=java.net.InetAddress.getLocalHost().getHostName();
+    return SecurityUtils.isValidOrigin(origin,ZeppelinConfiguration.create());
   }
  catch (  UnknownHostException e) {
     e.printStackTrace();
   }
 catch (  URISyntaxException e) {
     e.printStackTrace();
-  }
-  String sourceHost=sourceUri.getHost();
-  if (currentHost.equals(sourceHost) || "localhost".equals(sourceHost)) {
-    return true;
   }
   return false;
 }

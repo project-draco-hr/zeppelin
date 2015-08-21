@@ -1,0 +1,6 @@
+{
+  ZeppelinConfiguration conf=new ZeppelinConfiguration(this.getClass().getResource("/test-zeppelin-site1.xml"));
+  List<String> origins=conf.getAllowedOrigins();
+  Assert.assertEquals(1,origins.size());
+  Assert.assertEquals("http://onehost:8080",origins.get(0));
+}

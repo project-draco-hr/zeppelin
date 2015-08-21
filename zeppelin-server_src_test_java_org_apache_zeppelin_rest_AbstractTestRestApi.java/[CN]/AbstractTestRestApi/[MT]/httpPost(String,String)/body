@@ -2,6 +2,7 @@
   LOG.info("Connecting to {}",url + path);
   HttpClient httpClient=new HttpClient();
   PostMethod postMethod=new PostMethod(url + path);
+  postMethod.addRequestHeader("Origin","http://localhost:8080");
   RequestEntity entity=new ByteArrayRequestEntity(body.getBytes("UTF-8"));
   postMethod.setRequestEntity(entity);
   httpClient.executeMethod(postMethod);

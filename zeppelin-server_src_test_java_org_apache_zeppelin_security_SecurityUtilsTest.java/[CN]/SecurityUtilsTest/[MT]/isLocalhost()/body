@@ -1,0 +1,3 @@
+{
+  Assert.assertTrue(SecurityUtils.isValidOrigin("http://localhost",ZeppelinConfiguration.create()));
+}

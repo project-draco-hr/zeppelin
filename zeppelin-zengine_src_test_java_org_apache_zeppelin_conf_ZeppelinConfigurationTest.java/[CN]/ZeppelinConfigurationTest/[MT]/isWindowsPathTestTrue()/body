@@ -1,0 +1,5 @@
+{
+  ZeppelinConfiguration conf=new ZeppelinConfiguration(this.getClass().getResource("/zeppelin-site.xml"));
+  Boolean isIt=conf.isWindowsPath("c:\\test\\file.txt");
+  Assert.assertTrue(isIt);
+}

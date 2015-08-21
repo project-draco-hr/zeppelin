@@ -2,6 +2,7 @@
   Note note=ZeppelinServer.notebook.createNote();
   GetMethod get=httpGet("/notebook/interpreter/bind/" + note.id());
   assertThat(get,isAllowed());
+  get.addRequestHeader("Origin","http://localhost");
   Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
   }
 .getType());

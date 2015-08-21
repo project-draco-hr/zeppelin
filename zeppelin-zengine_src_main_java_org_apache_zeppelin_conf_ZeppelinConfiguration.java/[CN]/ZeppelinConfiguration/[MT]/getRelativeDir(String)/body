@@ -1,5 +1,5 @@
 {
-  if (path != null && path.startsWith("/")) {
+  if (path != null && path.startsWith("/") || isWindowsPath(path)) {
     return path;
   }
  else {

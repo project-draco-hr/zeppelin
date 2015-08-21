@@ -1,9 +1,13 @@
 {
-  String sourceHost=request.getServerName();
-  String currentHost=java.net.InetAddress.getLocalHost().getHostName();
+  String sourceHost=((HttpServletRequest)request).getHeader("Origin");
   String origin="";
-  if (currentHost.equals(sourceHost) || "localhost".equals(sourceHost)) {
-    origin=((HttpServletRequest)request).getHeader("Origin");
+  try {
+    if (SecurityUtils.isValidOrigin(sourceHost,ZeppelinConfiguration.create())) {
+      origin=sourceHost;
+    }
+  }
+ catch (  URISyntaxException e) {
+    e.printStackTrace();
   }
   if (((HttpServletRequest)request).getMethod().equals("OPTIONS")) {
     HttpServletResponse resp=((HttpServletResponse)response);

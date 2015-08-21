@@ -6,6 +6,7 @@
   when(mockRequest.getHeader("Origin")).thenReturn("http://localhost:8080");
   when(mockRequest.getMethod()).thenReturn("Empty");
   when(mockRequest.getServerName()).thenReturn("localhost");
+  count=0;
   doAnswer(new Answer(){
     @Override public Object answer(    InvocationOnMock invocationOnMock) throws Throwable {
       headers[count]=invocationOnMock.getArguments()[1].toString();

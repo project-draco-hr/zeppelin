@@ -1,0 +1,3 @@
+{
+  Assert.assertFalse(SecurityUtils.isValidOrigin("http://otherinvalidhost.com",new ZeppelinConfiguration(this.getClass().getResource("/zeppelin-site.xml"))));
+}

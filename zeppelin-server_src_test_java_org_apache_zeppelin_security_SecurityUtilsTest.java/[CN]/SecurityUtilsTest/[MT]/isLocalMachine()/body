@@ -1,0 +1,3 @@
+{
+  Assert.assertTrue(SecurityUtils.isValidOrigin("http://" + java.net.InetAddress.getLocalHost().getHostName(),ZeppelinConfiguration.create()));
+}
