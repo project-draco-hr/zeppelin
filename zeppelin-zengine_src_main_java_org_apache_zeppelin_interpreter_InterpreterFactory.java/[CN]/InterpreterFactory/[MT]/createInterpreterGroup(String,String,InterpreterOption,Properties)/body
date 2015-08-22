@@ -1,4 +1,6 @@
 {
+  if (option == null)   throw new NullArgumentException("option");
+  if (properties == null)   throw new NullArgumentException("properties");
   AngularObjectRegistry angularObjectRegistry;
   InterpreterGroup interpreterGroup=new InterpreterGroup(id);
   if (option.isRemote()) {

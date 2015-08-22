@@ -14,6 +14,7 @@
       }
     }
  catch (    Exception e) {
+      logger.error("exception checking server classloader driver",e);
     }
     URLClassLoader cl;
     if (separateCL == true) {
