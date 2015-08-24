@@ -1,0 +1,19 @@
+{
+  try {
+    ResultSet schemas=meta.getSchemas();
+    try {
+      while (schemas.next()) {
+        String schemaName=schemas.getString("TABLE_SCHEM");
+        if (!isBlank(schemaName)) {
+          names.add(schemaName + ".");
+        }
+      }
+    }
+  finally {
+      schemas.close();
+    }
+  }
+ catch (  Throwable t) {
+    logger.error("Failed to retrieve the column name",t);
+  }
+}

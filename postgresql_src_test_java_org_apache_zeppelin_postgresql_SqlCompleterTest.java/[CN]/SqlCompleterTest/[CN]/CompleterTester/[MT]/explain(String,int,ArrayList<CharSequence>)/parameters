@@ -1,0 +1,3 @@
+String buffer
+int cursor
+ArrayList<CharSequence> candidates

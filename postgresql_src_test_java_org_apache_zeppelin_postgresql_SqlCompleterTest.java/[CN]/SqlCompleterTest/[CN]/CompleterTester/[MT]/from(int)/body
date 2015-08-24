@@ -1,0 +1,4 @@
+{
+  this.fromCursor=fromCursor;
+  return this;
+}

@@ -1,0 +1,5 @@
+{
+  for (int c=fromCursor; c <= toCursor; c++) {
+    expectedCompletions(buffer,c,expectedCompletions);
+  }
+}

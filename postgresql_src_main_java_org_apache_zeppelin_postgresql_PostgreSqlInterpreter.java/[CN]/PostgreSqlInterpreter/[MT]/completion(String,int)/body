@@ -1,3 +1,9 @@
 {
-  return null;
+  List<CharSequence> candidates=new ArrayList<CharSequence>();
+  if (sqlCompleter != null && sqlCompleter.complete(buf,cursor,candidates) >= 0) {
+    return Lists.transform(candidates,sequenceToStringTransformer);
+  }
+ else {
+    return NO_COMPLETION;
+  }
 }

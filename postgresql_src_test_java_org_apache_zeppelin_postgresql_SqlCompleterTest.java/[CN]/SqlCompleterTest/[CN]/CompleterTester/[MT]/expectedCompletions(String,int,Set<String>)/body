@@ -1,0 +1,7 @@
+{
+  ArrayList<CharSequence> candidates=new ArrayList<CharSequence>();
+  completer.complete(buffer,cursor,candidates);
+  String explain=explain(buffer,cursor,candidates);
+  logger.info(explain);
+  assertEquals("Buffer [" + buffer.replace(" ",".") + "] and Cursor["+ cursor+ "] "+ explain,expected,newHashSet(candidates));
+}

@@ -4,9 +4,10 @@
       return new InterpreterResult(Code.ERROR,exceptionOnConnect.getMessage());
     }
     currentStatement=getJdbcConnection().createStatement();
+    currentStatement.setMaxRows(maxResult);
     StringBuilder msg=null;
     boolean isTableType=false;
-    if (StringUtils.containsIgnoreCase(sql,EXPLAIN_PREDICATE)) {
+    if (containsIgnoreCase(sql,EXPLAIN_PREDICATE)) {
       msg=new StringBuilder();
     }
  else {
@@ -42,6 +43,9 @@
         int updateCount=currentStatement.getUpdateCount();
         msg.append(UPDATE_COUNT_HEADER).append(NEWLINE);
         msg.append(updateCount).append(NEWLINE);
+        if (sqlCompleter != null) {
+          sqlCompleter.updateDataModelMetaData(getJdbcConnection());
+        }
       }
     }
   finally {
