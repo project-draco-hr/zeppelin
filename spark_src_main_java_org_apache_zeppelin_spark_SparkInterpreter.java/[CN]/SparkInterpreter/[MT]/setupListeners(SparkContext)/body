@@ -1,5 +1,12 @@
 {
   JobProgressListener pl=new JobProgressListener(context.getConf());
-  context.listenerBus().addListener(pl);
+  try {
+    Object listenerBus=context.getClass().getMethod("listenerBus").invoke(context);
+    Method m=listenerBus.getClass().getMethod("addListener",SparkListener.class);
+    m.invoke(listenerBus,pl);
+  }
+ catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+    e.printStackTrace();
+  }
   return pl;
 }

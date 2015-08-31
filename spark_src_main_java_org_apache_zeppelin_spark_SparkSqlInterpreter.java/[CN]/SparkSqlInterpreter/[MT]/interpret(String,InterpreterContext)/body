@@ -8,7 +8,14 @@
  else {
     sc.setLocalProperty("spark.scheduler.pool",null);
   }
-  Object rdd=sqlc.sql(st);
+  Object rdd=null;
+  try {
+    Method sqlMethod=sqlc.getClass().getMethod("sql",String.class);
+    rdd=sqlMethod.invoke(sqlc,st);
+  }
+ catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+    throw new InterpreterException(e);
+  }
   String msg=ZeppelinContext.showDF(sc,context,rdd,maxResult);
   return new InterpreterResult(Code.SUCCESS,msg);
 }

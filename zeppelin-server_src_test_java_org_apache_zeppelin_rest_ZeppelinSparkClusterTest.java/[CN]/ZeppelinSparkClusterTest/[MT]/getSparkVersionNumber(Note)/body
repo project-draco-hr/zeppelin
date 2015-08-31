@@ -1,6 +1,6 @@
 {
   Paragraph p=note.addParagraph();
-  p.setText("print(sc.version)");
+  p.setText("%spark print(sc.version)");
   note.run(p.getId());
   waitForFinish(p);
   String sparkVersion=p.getResult().message();

@@ -1,6 +1,7 @@
 {
-  int numTasks=stage.numTasks();
+  int numTasks=(int)stage.getClass().getMethod("numTasks").invoke(stage);
   int completedTasks=0;
+  int id=(int)stage.getClass().getMethod("id").invoke(stage);
   try {
     Method stageIdToData=sparkListener.getClass().getMethod("stageIdToData");
     HashMap<Tuple2<Object,Object>,Object> stageIdData=(HashMap<Tuple2<Object,Object>,Object>)stageIdToData.invoke(sparkListener);
@@ -8,7 +9,7 @@
     Method numCompletedTasks=stageUIDataClass.getMethod("numCompleteTasks");
     Set<Tuple2<Object,Object>> keys=JavaConverters.asJavaSetConverter(stageIdData.keySet()).asJava();
     for (    Tuple2<Object,Object> k : keys) {
-      if (stage.id() == (int)k._1()) {
+      if (id == (int)k._1()) {
         Object uiData=stageIdData.get(k).get();
         completedTasks+=(int)numCompletedTasks.invoke(uiData);
       }
@@ -17,9 +18,9 @@
  catch (  Exception e) {
     logger.error("Error on getting progress information",e);
   }
-  List<Stage> parents=JavaConversions.asJavaList(stage.parents());
+  List<Object> parents=JavaConversions.asJavaList((Seq<Object>)stage.getClass().getMethod("parents").invoke(stage));
   if (parents != null) {
-    for (    Stage s : parents) {
+    for (    Object s : parents) {
       int[] p=getProgressFromStage_1_1x(sparkListener,s);
       numTasks+=p[0];
       completedTasks+=p[1];

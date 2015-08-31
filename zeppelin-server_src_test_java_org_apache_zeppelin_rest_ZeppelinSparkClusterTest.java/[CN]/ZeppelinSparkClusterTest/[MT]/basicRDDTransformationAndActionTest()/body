@@ -1,7 +1,7 @@
 {
   Note note=ZeppelinServer.notebook.createNote();
   Paragraph p=note.addParagraph();
-  p.setText("print(sc.parallelize(1 to 10).reduce(_ + _))");
+  p.setText("%spark print(sc.parallelize(1 to 10).reduce(_ + _))");
   note.run(p.getId());
   waitForFinish(p);
   assertEquals("55",p.getResult().message());

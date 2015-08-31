@@ -1,0 +1,19 @@
+{
+  int numTasks=(int)stage.getClass().getMethod("numTasks").invoke(stage);
+  int completedTasks=0;
+  int id=(int)stage.getClass().getMethod("id").invoke(stage);
+  Object completedTaskInfo=null;
+  completedTaskInfo=JavaConversions.asJavaMap((HashMap<Object,Object>)sparkListener.getClass().getMethod("stageIdToTasksComplete").invoke(sparkListener)).get(id);
+  if (completedTaskInfo != null) {
+    completedTasks+=(int)completedTaskInfo;
+  }
+  List<Object> parents=JavaConversions.asJavaList((Seq<Object>)stage.getClass().getMethod("parents").invoke(stage));
+  if (parents != null) {
+    for (    Object s : parents) {
+      int[] p=getProgressFromStage_1_0x(sparkListener,s);
+      numTasks+=p[0];
+      completedTasks+=p[1];
+    }
+  }
+  return new int[]{numTasks,completedTasks};
+}
