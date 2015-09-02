@@ -1,0 +1,3 @@
+{
+  return InterpreterOption.class.equals(arg0);
+}
