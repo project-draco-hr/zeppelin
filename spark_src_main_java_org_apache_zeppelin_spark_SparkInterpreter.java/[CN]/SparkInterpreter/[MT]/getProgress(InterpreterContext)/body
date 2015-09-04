@@ -18,23 +18,11 @@
       int[] progressInfo=null;
       try {
         Object finalStage=job.getClass().getMethod("finalStage").invoke(job);
-        if (sc.version().startsWith("1.0")) {
+        if (sparkVersion.getProgress1_0()) {
           progressInfo=getProgressFromStage_1_0x(sparkListener,finalStage);
         }
- else         if (sc.version().startsWith("1.1")) {
-          progressInfo=getProgressFromStage_1_1x(sparkListener,finalStage);
-        }
- else         if (sc.version().startsWith("1.2")) {
-          progressInfo=getProgressFromStage_1_1x(sparkListener,finalStage);
-        }
- else         if (sc.version().startsWith("1.3")) {
-          progressInfo=getProgressFromStage_1_1x(sparkListener,finalStage);
-        }
- else         if (sc.version().startsWith("1.4")) {
-          progressInfo=getProgressFromStage_1_1x(sparkListener,finalStage);
-        }
  else {
-          continue;
+          progressInfo=getProgressFromStage_1_1x(sparkListener,finalStage);
         }
       }
  catch (      IllegalAccessException|IllegalArgumentException|InvocationTargetException|NoSuchMethodException|SecurityException e) {

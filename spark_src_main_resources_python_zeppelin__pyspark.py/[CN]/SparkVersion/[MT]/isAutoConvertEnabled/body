@@ -1,0 +1,2 @@
+def isAutoConvertEnabled(self):
+    return (self.version >= self.SPARK_1_4_0)

@@ -6,7 +6,7 @@
   CommandLine cmd=CommandLine.parse(getProperty("zeppelin.pyspark.python"));
   cmd.addArgument(scriptPath,false);
   cmd.addArgument(Integer.toString(port),false);
-  cmd.addArgument(getJavaSparkContext().version(),false);
+  cmd.addArgument(Integer.toString(getSparkInterpreter().getSparkVersion().toNumber()),false);
   executor=new DefaultExecutor();
   outputStream=new ByteArrayOutputStream();
   PipedOutputStream ps=new PipedOutputStream();

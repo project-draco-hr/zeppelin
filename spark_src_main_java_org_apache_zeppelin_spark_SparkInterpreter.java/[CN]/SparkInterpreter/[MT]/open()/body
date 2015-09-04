@@ -64,6 +64,7 @@
     Pool pool=new Pool("fair",schedulingMode,minimumShare,weight);
     sc.taskScheduler().rootPool().addSchedulable(pool);
   }
+  sparkVersion=SparkVersion.fromVersionString(sc.version());
   sqlc=getSQLContext();
   dep=getDependencyResolver();
   z=new ZeppelinContext(sc,sqlc,null,dep,printStream,Integer.parseInt(getProperty("zeppelin.spark.maxResult")));
@@ -78,32 +79,20 @@
   intp.interpret("@transient val sqlc = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
   intp.interpret("@transient val sqlContext = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
   intp.interpret("import org.apache.spark.SparkContext._");
-  if (sc.version().startsWith("1.1")) {
+  if (sparkVersion.oldSqlContextImplicits()) {
     intp.interpret("import sqlContext._");
   }
- else   if (sc.version().startsWith("1.2")) {
-    intp.interpret("import sqlContext._");
-  }
- else   if (sc.version().startsWith("1.3")) {
-    intp.interpret("import sqlContext.implicits._");
-    intp.interpret("import sqlContext.sql");
-    intp.interpret("import org.apache.spark.sql.functions._");
-  }
- else   if (sc.version().startsWith("1.4")) {
+ else {
     intp.interpret("import sqlContext.implicits._");
     intp.interpret("import sqlContext.sql");
     intp.interpret("import org.apache.spark.sql.functions._");
   }
   try {
-    if (sc.version().startsWith("1.1") || sc.version().startsWith("1.2")) {
+    if (sparkVersion.oldLoadFilesMethodName()) {
       Method loadFiles=this.interpreter.getClass().getMethod("loadFiles",Settings.class);
       loadFiles.invoke(this.interpreter,settings);
     }
- else     if (sc.version().startsWith("1.3")) {
-      Method loadFiles=this.interpreter.getClass().getMethod("org$apache$spark$repl$SparkILoop$$loadFiles",Settings.class);
-      loadFiles.invoke(this.interpreter,settings);
-    }
- else     if (sc.version().startsWith("1.4")) {
+ else {
       Method loadFiles=this.interpreter.getClass().getMethod("org$apache$spark$repl$SparkILoop$$loadFiles",Settings.class);
       loadFiles.invoke(this.interpreter,settings);
     }

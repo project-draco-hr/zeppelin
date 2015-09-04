@@ -1,0 +1,2 @@
+def isImportAllPackageUnderSparkSql(self):
+    return (self.version >= self.SPARK_1_3_0)
