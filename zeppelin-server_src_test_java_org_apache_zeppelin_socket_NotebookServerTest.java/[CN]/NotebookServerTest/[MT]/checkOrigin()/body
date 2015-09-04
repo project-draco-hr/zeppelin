@@ -1,0 +1,5 @@
+{
+  NotebookServer server=new NotebookServer();
+  String origin="http://" + InetAddress.getLocalHost().getHostName() + ":8080";
+  assertTrue("Origin " + origin + " is not allowed. Please check your hostname.",server.checkOrigin(new TestHttpServletRequest(),origin));
+}

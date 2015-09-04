@@ -1,3 +1,3 @@
 {
-  Assert.assertFalse(SecurityUtils.isValidOrigin("test123",new ZeppelinConfiguration(this.getClass().getResource("/zeppelin-site.xml"))));
+  assertFalse(SecurityUtils.isValidOrigin("test123",new ZeppelinConfiguration(this.getClass().getResource("/zeppelin-site.xml"))));
 }

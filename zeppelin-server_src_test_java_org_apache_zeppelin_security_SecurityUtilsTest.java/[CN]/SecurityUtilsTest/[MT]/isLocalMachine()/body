@@ -1,3 +1,4 @@
 {
-  Assert.assertTrue(SecurityUtils.isValidOrigin("http://" + java.net.InetAddress.getLocalHost().getHostName(),ZeppelinConfiguration.create()));
+  String origin="http://" + InetAddress.getLocalHost().getHostName();
+  assertTrue("Origin " + origin + " is not allowed. Please check your hostname.",SecurityUtils.isValidOrigin(origin,ZeppelinConfiguration.create()));
 }
