@@ -59,7 +59,9 @@
   pythonLibUris.trimToSize();
   if (pythonLibs.length == pythonLibUris.size()) {
     conf.set("spark.yarn.dist.files",Joiner.on(",").join(pythonLibUris));
-    conf.set("spark.files",conf.get("spark.yarn.dist.files"));
+    if (!useSparkSubmit()) {
+      conf.set("spark.files",conf.get("spark.yarn.dist.files"));
+    }
     conf.set("spark.submit.pyArchives",Joiner.on(":").join(pythonLibs));
   }
   SparkContext sparkContext=new SparkContext(conf);
