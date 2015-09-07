@@ -14,6 +14,8 @@
   flinkIloop.settings_$eq(createSettings());
   flinkIloop.createInterpreter();
   imain=flinkIloop.intp();
+  org.apache.flink.api.scala.ExecutionEnvironment env=flinkIloop.scalaEnv();
+  env.getConfig().disableSysoutLogging();
   imain.interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
   binder=(Map<String,Object>)getValue("_binder");
   imain.interpret("import scala.tools.nsc.io._");
@@ -21,5 +23,5 @@
   imain.interpret("import scala.compat.Platform.EOL");
   imain.interpret("import org.apache.flink.api.scala._");
   imain.interpret("import org.apache.flink.api.common.functions._");
-  imain.bindValue("env",flinkIloop.scalaEnv());
+  imain.bindValue("env",env);
 }
