@@ -1,14 +1,14 @@
 {
-  return new TypeSafeMatcher<GetMethod>(){
-    WeakReference<GetMethod> method;
-    @Override public boolean matchesSafely(    GetMethod getMethod){
-      method=(method == null) ? new WeakReference<GetMethod>(getMethod) : method;
-      return getMethod.getStatusCode() == expectedStatusCode;
+  return new TypeSafeMatcher<HttpMethodBase>(){
+    WeakReference<HttpMethodBase> method;
+    @Override public boolean matchesSafely(    HttpMethodBase httpMethodBase){
+      method=(method == null) ? new WeakReference<HttpMethodBase>(httpMethodBase) : method;
+      return httpMethodBase.getStatusCode() == expectedStatusCode;
     }
     @Override public void describeTo(    Description description){
       description.appendText("HTTP response ").appendValue(expectedStatusCode).appendText(" from ").appendText(method.get().getPath());
     }
-    @Override protected void describeMismatchSafely(    GetMethod item,    Description description){
+    @Override protected void describeMismatchSafely(    HttpMethodBase item,    Description description){
       description.appendText("got ").appendValue(item.getStatusCode()).appendText(" ").appendText(item.getStatusText());
     }
   }

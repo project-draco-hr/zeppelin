@@ -1,0 +1,4 @@
+{
+  InterpreterGroup interpreterGroup=ZeppelinServer.notebook.getInterpreterFactory().add(tempName,"newGroup",new InterpreterOption(false),new Properties());
+  return interpreterGroup.getId();
+}

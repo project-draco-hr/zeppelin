@@ -1,0 +1,9 @@
+{
+  LOG.info("Connecting to {}",url + path);
+  HttpClient httpClient=new HttpClient();
+  DeleteMethod deleteMethod=new DeleteMethod(url + path);
+  deleteMethod.addRequestHeader("Origin",url);
+  httpClient.executeMethod(deleteMethod);
+  LOG.info("{} - {}",deleteMethod.getStatusCode(),deleteMethod.getStatusText());
+  return deleteMethod;
+}

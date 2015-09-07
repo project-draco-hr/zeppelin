@@ -1,0 +1,11 @@
+{
+  LOG.info("Connecting to {}",url + path);
+  HttpClient httpClient=new HttpClient();
+  PutMethod putMethod=new PutMethod(url + path);
+  putMethod.addRequestHeader("Origin",url);
+  RequestEntity entity=new ByteArrayRequestEntity(body.getBytes("UTF-8"));
+  putMethod.setRequestEntity(entity);
+  httpClient.executeMethod(putMethod);
+  LOG.info("{} - {}",putMethod.getStatusCode(),putMethod.getStatusText());
+  return putMethod;
+}
