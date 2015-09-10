@@ -2,11 +2,32 @@
   JobProgressListener pl=new JobProgressListener(context.getConf());
   try {
     Object listenerBus=context.getClass().getMethod("listenerBus").invoke(context);
-    Method m=listenerBus.getClass().getMethod("addListener",SparkListener.class);
-    m.invoke(listenerBus,pl);
+    Method[] methods=listenerBus.getClass().getMethods();
+    Method addListenerMethod=null;
+    for (    Method m : methods) {
+      if (!m.getName().equals("addListener")) {
+        continue;
+      }
+      Class<?>[] parameterTypes=m.getParameterTypes();
+      if (parameterTypes.length != 1) {
+        continue;
+      }
+      if (!parameterTypes[0].isAssignableFrom(JobProgressListener.class)) {
+        continue;
+      }
+      addListenerMethod=m;
+      break;
+    }
+    if (addListenerMethod != null) {
+      addListenerMethod.invoke(listenerBus,pl);
+    }
+ else {
+      return null;
+    }
   }
  catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     e.printStackTrace();
+    return null;
   }
   return pl;
 }

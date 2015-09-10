@@ -8,6 +8,7 @@
  else {
     sc.setLocalProperty("spark.scheduler.pool",null);
   }
+  sc.setJobGroup(getJobGroup(context),"Zeppelin",false);
   Object rdd=null;
   try {
     Method sqlMethod=sqlc.getClass().getMethod("sql",String.class);
@@ -17,5 +18,6 @@
     throw new InterpreterException(e);
   }
   String msg=ZeppelinContext.showDF(sc,context,rdd,maxResult);
+  sc.clearJobGroup();
   return new InterpreterResult(Code.SUCCESS,msg);
 }

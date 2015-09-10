@@ -1,0 +1,4 @@
+{
+  SparkContext sc=repl.getSparkContext();
+  assertNotNull(SparkInterpreter.setupListeners(sc));
+}
