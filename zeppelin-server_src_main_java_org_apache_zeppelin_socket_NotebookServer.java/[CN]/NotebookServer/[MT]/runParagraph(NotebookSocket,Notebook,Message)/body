@@ -17,7 +17,6 @@
     note.addParagraph();
   }
   note.persist();
-  broadcastNote(note);
   try {
     note.run(paragraphId);
   }
