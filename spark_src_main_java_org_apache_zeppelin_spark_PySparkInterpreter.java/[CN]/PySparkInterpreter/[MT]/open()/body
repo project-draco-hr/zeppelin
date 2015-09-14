@@ -1,40 +1,35 @@
 {
-  createPythonScript();
-  port=findRandomOpenPortOnAllLocalInterfaces();
-  gatewayServer=new GatewayServer(this,port);
-  gatewayServer.start();
-  CommandLine cmd=CommandLine.parse(getProperty("zeppelin.pyspark.python"));
-  cmd.addArgument(scriptPath,false);
-  cmd.addArgument(Integer.toString(port),false);
-  cmd.addArgument(Integer.toString(getSparkInterpreter().getSparkVersion().toNumber()),false);
-  executor=new DefaultExecutor();
-  outputStream=new ByteArrayOutputStream();
-  PipedOutputStream ps=new PipedOutputStream();
-  in=null;
+  DepInterpreter depInterpreter=getDepInterpreter();
+  URL[] urls=new URL[0];
+  if (depInterpreter != null) {
+    DependencyContext depc=depInterpreter.getDependencyContext();
+    if (depc != null) {
+      List<File> files=depc.getFiles();
+      List<URL> urlList=new LinkedList<URL>();
+      if (files != null) {
+        for (        File f : files) {
+          try {
+            urlList.add(f.toURI().toURL());
+          }
+ catch (          MalformedURLException e) {
+            logger.error("Error",e);
+          }
+        }
+        urls=urlList.toArray(urls);
+      }
+    }
+  }
+  ClassLoader oldCl=Thread.currentThread().getContextClassLoader();
   try {
-    in=new PipedInputStream(ps);
+    URLClassLoader newCl=new URLClassLoader(urls,oldCl);
+    Thread.currentThread().setContextClassLoader(newCl);
+    createGatewayServerAndStartScript();
   }
- catch (  IOException e1) {
-    throw new InterpreterException(e1);
-  }
-  ins=new BufferedWriter(new OutputStreamWriter(ps));
-  input=new ByteArrayOutputStream();
-  PumpStreamHandler streamHandler=new PumpStreamHandler(outputStream,outputStream,in);
-  executor.setStreamHandler(streamHandler);
-  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
-  try {
-    Map env=EnvironmentUtils.getProcEnvironment();
-    executor.execute(cmd,env,this);
-    pythonscriptRunning=true;
-  }
- catch (  IOException e) {
+ catch (  Exception e) {
+    logger.error("Error",e);
     throw new InterpreterException(e);
   }
-  try {
-    input.write("import sys, getopt\n".getBytes());
-    ins.flush();
-  }
- catch (  IOException e) {
-    throw new InterpreterException(e);
+ finally {
+    Thread.currentThread().setContextClassLoader(oldCl);
   }
 }

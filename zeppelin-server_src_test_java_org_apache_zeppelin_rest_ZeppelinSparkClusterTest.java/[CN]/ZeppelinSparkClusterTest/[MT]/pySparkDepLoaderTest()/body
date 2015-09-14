@@ -1,0 +1,23 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  if (isPyspark() && getSparkVersionNumber(note) >= 14) {
+    List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
+    for (    InterpreterSetting setting : settings) {
+      if (setting.getGroup().equals("spark")) {
+        ZeppelinServer.notebook.getInterpreterFactory().restart(setting.id());
+        break;
+      }
+    }
+    Paragraph p0=note.addParagraph();
+    p0.setText("%dep z.load(\"com.databricks:spark-csv_2.11:1.2.0\")");
+    note.run(p0.getId());
+    waitForFinish(p0);
+    File tmpFile=File.createTempFile("test","csv");
+    FileUtils.write(tmpFile,"a,b\n1,2");
+    Paragraph p1=note.addParagraph();
+    p1.setText("%pyspark\n" + "from pyspark.sql import SQLContext\n" + "print(sqlContext.read.format('com.databricks.spark.csv')"+ ".load('" + tmpFile.getAbsolutePath() + "').count())");
+    note.run(p1.getId());
+    waitForFinish(p1);
+    assertEquals("2\n",p1.getResult().message());
+  }
+}

@@ -1,0 +1,40 @@
+{
+  createPythonScript();
+  port=findRandomOpenPortOnAllLocalInterfaces();
+  gatewayServer=new GatewayServer(this,port);
+  gatewayServer.start();
+  CommandLine cmd=CommandLine.parse(getProperty("zeppelin.pyspark.python"));
+  cmd.addArgument(scriptPath,false);
+  cmd.addArgument(Integer.toString(port),false);
+  cmd.addArgument(Integer.toString(getSparkInterpreter().getSparkVersion().toNumber()),false);
+  executor=new DefaultExecutor();
+  outputStream=new ByteArrayOutputStream();
+  PipedOutputStream ps=new PipedOutputStream();
+  in=null;
+  try {
+    in=new PipedInputStream(ps);
+  }
+ catch (  IOException e1) {
+    throw new InterpreterException(e1);
+  }
+  ins=new BufferedWriter(new OutputStreamWriter(ps));
+  input=new ByteArrayOutputStream();
+  PumpStreamHandler streamHandler=new PumpStreamHandler(outputStream,outputStream,in);
+  executor.setStreamHandler(streamHandler);
+  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
+  try {
+    Map env=EnvironmentUtils.getProcEnvironment();
+    executor.execute(cmd,env,this);
+    pythonscriptRunning=true;
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+  try {
+    input.write("import sys, getopt\n".getBytes());
+    ins.flush();
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+}
