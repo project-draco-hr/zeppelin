@@ -1,5 +1,5 @@
 {
-  logger.info("Run shell command '" + cmd + "'");
+  logger.debug("Run shell command '" + cmd + "'");
   long start=System.currentTimeMillis();
   CommandLine cmdLine=CommandLine.parse("bash");
   cmdLine.addArgument("-c",false);

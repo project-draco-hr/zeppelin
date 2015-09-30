@@ -16,7 +16,7 @@
     settings.setForms(inputs);
     script=Input.getSimpleQuery(settings.getParams(),scriptBody);
   }
-  logger().info("RUN : " + script);
+  logger().debug("RUN : " + script);
   InterpreterResult ret=repl.interpret(script,getInterpreterContext());
   return ret;
 }
