@@ -1,0 +1,11 @@
+{
+  logger.info("Delete notebook {} ",notebookId);
+  if (!(notebookId.isEmpty())) {
+    Note note=notebook.getNote(notebookId);
+    if (note != null) {
+      notebook.removeNote(notebookId);
+    }
+  }
+  notebookServer.broadcastNoteList();
+  return new JsonResponse(Status.OK,"").build();
+}

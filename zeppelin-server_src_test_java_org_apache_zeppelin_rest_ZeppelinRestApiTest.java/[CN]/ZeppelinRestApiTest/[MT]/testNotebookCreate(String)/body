@@ -1,0 +1,22 @@
+{
+  String jsonRequest="{\"name\":\"" + noteName + "\"}";
+  PostMethod post=httpPost("/notebook/",jsonRequest);
+  LOG.info("testNotebookCreate \n" + post.getResponseBodyAsString());
+  assertThat("test notebook create method:",post,isCreated());
+  Map<String,Object> resp=gson.fromJson(post.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  String newNotebookId=(String)resp.get("body");
+  LOG.info("newNotebookId:=" + newNotebookId);
+  Note newNote=ZeppelinServer.notebook.getNote(newNotebookId);
+  assertNotNull("Can not find new note by id",newNote);
+  String newNoteName=newNote.getName();
+  LOG.info("new note name is: " + newNoteName);
+  String expectedNoteName=noteName;
+  if (noteName.isEmpty()) {
+    expectedNoteName="Note " + newNotebookId;
+  }
+  assertEquals("compare note name",expectedNoteName,newNoteName);
+  ZeppelinServer.notebook.removeNote(newNotebookId);
+  post.releaseConnection();
+}

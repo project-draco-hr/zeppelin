@@ -1,0 +1,15 @@
+{
+  logger.info("Create new notebook by JSON {}",message);
+  NewNotebookRequest request=gson.fromJson(message,NewNotebookRequest.class);
+  Note note=notebook.createNote();
+  note.addParagraph();
+  String noteName=request.getName();
+  if (noteName.isEmpty()) {
+    noteName="Note " + note.getId();
+  }
+  note.setName(noteName);
+  note.persist();
+  notebookServer.broadcastNote(note);
+  notebookServer.broadcastNoteList();
+  return new JsonResponse(Status.CREATED,"",note.getId()).build();
+}

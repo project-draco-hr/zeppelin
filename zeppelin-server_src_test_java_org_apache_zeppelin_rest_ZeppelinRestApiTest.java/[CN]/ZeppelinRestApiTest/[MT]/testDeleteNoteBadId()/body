@@ -1,0 +1,5 @@
+{
+  LOG.info("testDeleteNoteBadId");
+  testDeleteNotebook("2AZFXEX97");
+  testDeleteNotebook("bad_ID");
+}

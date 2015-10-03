@@ -1,0 +1,4 @@
+{
+  String noteName="Test note name";
+  testNotebookCreate(noteName);
+}
