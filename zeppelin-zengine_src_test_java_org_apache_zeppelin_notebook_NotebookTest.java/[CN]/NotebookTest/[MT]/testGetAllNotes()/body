@@ -1,0 +1,27 @@
+{
+  File srcDir=new File("src/test/resources/2A94M5J1Z");
+  File destDir=new File(notebookDir.getAbsolutePath() + "/2A94M5J1Z");
+  try {
+    FileUtils.copyDirectory(srcDir,destDir);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  Note copiedNote=notebookRepo.get("2A94M5J1Z");
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"false");
+  List<Note> notes=notebook.getAllNotes();
+  assertEquals(notes.size(),0);
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"true");
+  notes=notebook.getAllNotes();
+  assertEquals(notes.size(),1);
+  assertEquals(notes.get(0).id(),copiedNote.id());
+  assertEquals(notes.get(0).getName(),copiedNote.getName());
+  assertEquals(notes.get(0).getParagraphs(),copiedNote.getParagraphs());
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"false");
+  FileUtils.deleteDirectory(destDir);
+  notes=notebook.getAllNotes();
+  assertEquals(notes.size(),1);
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"true");
+  notes=notebook.getAllNotes();
+  assertEquals(notes.size(),0);
+}

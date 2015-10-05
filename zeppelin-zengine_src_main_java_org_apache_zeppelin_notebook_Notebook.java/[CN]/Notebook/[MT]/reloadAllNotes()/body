@@ -1,0 +1,9 @@
+{
+synchronized (notes) {
+    notes.clear();
+  }
+  List<NoteInfo> noteInfos=notebookRepo.list();
+  for (  NoteInfo info : noteInfos) {
+    loadNoteFromRepo(info.getId());
+  }
+}
