@@ -1,3 +1,6 @@
 {
+  if (str == null) {
+    return EMPTY_COLUMN_VALUE;
+  }
   return (!isTableResponseType) ? str : str.replace(TAB,WhITESPACE).replace(NEWLINE,WhITESPACE);
 }
