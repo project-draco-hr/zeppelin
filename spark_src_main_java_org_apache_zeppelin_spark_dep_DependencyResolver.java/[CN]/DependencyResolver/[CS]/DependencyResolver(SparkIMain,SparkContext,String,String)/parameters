@@ -1,3 +1,4 @@
 SparkIMain intp
 SparkContext sc
 String localRepoPath
+String additionalRemoteRepository

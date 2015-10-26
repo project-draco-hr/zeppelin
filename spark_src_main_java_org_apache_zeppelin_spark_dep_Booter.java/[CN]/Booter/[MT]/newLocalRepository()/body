@@ -1,0 +1,3 @@
+{
+  return new RemoteRepository("local","default","file://" + System.getProperty("user.home") + "/.m2/repository");
+}

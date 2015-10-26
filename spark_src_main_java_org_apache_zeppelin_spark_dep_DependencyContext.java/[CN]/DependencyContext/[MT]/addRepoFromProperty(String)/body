@@ -1,0 +1,18 @@
+{
+  if (listOfRepo != null) {
+    String[] repos=listOfRepo.split(";");
+    for (    String repo : repos) {
+      String[] parts=repo.split(",");
+      if (parts.length == 3) {
+        String id=parts[0].trim();
+        String url=parts[1].trim();
+        boolean isSnapshot=Boolean.parseBoolean(parts[2].trim());
+        if (id.length() > 1 && url.length() > 1) {
+          RemoteRepository rr=new RemoteRepository(id,"default",url);
+          rr.setPolicy(isSnapshot,null);
+          additionalRepos.add(rr);
+        }
+      }
+    }
+  }
+}

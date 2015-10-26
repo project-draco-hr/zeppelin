@@ -1,3 +1,4 @@
 {
   session=Booter.newRepositorySystemSession(system,localRepoPath);
+  addRepoFromProperty(additionalRemoteRepository);
 }

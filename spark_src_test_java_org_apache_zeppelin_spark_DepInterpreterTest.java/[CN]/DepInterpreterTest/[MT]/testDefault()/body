@@ -4,4 +4,7 @@
   assertEquals(Code.SUCCESS,ret.code());
   assertEquals(1,dep.getDependencyContext().getFiles().size());
   assertEquals(1,dep.getDependencyContext().getFilesDist().size());
+  ret=dep.interpret("z.load(\"amplab:spark-indexedrdd:0.3\")",context);
+  assertEquals(Code.SUCCESS,ret.code());
+  dep.getDependencyContext().reset();
 }
