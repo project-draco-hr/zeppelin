@@ -40,6 +40,9 @@ break;
 case PARAGRAPH_REMOVE:
 removeParagraph(conn,notebook,messagereceived);
 break;
+case PARAGRAPH_CLEAR_OUTPUT:
+clearParagraphOutput(conn,notebook,messagereceived);
+break;
 case NOTE_UPDATE:
 updateNote(conn,notebook,messagereceived);
 break;
