@@ -1,4 +1,5 @@
 {
+  config=conf;
   String allStorageClassNames=conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE).trim();
   if (allStorageClassNames.isEmpty()) {
     throw new IOException("Empty ZEPPELIN_NOTEBOOK_STORAGE conf parameter");
