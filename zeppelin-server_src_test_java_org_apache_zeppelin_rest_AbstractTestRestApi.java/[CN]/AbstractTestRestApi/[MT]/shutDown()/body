@@ -1,5 +1,9 @@
 {
   if (!wasRunning) {
+    List<String> settingList=ZeppelinServer.notebook.getInterpreterFactory().getDefaultInterpreterSettingList();
+    for (    String setting : settingList) {
+      ZeppelinServer.notebook.getInterpreterFactory().restart(setting);
+    }
     LOG.info("Terminating test Zeppelin...");
     ZeppelinServer.jettyServer.stop();
     executor.shutdown();
