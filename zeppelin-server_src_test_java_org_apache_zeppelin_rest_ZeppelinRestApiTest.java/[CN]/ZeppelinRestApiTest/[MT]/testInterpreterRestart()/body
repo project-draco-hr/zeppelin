@@ -21,4 +21,5 @@
     Thread.sleep(100);
   }
   assertEquals("<p>markdown restarted</p>\n",p.getResult().message());
+  ZeppelinServer.notebook.removeNote(note.getId());
 }

@@ -9,4 +9,5 @@
   List<Map<String,String>> body=(List<Map<String,String>>)resp.get("body");
   assertTrue(0 < body.size());
   get.releaseConnection();
+  ZeppelinServer.notebook.removeNote(note.getId());
 }
