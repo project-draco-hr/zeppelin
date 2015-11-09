@@ -9,6 +9,7 @@
     note.setName(noteName);
   }
   note.persist();
+  addConnectionToNote(note.id(),(NotebookSocket)conn);
   broadcastNote(note);
   broadcastNoteList();
 }

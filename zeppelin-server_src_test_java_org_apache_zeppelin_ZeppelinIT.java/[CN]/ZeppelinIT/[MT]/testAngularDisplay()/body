@@ -2,8 +2,7 @@
   if (!endToEndTestEnabled()) {
     return;
   }
-  String noteName=createNewNoteAndGetName();
-  driver.findElement(By.partialLinkText(noteName)).click();
+  createNewNote();
   waitForParagraph(1,"READY");
   WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
   paragraph1Editor.sendKeys("println" + Keys.chord(Keys.SHIFT,"9") + "\""+ Keys.chord(Keys.SHIFT,"5")+ "angular <div id='angularTestButton' "+ "ng"+ Keys.chord(Keys.SUBTRACT)+ "click='myVar=myVar+1'>"+ "BindingTest_{{myVar}}_</div>\")");
