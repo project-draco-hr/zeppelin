@@ -1,6 +1,6 @@
 {
   Client client=null;
-  while (!shutdown) {
+  while (!shutdown && interpreterProcess.isRunning()) {
     try {
       client=interpreterProcess.getClient();
     }

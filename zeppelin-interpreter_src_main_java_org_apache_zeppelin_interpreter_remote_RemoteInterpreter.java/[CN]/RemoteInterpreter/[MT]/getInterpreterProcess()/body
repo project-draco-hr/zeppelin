@@ -10,7 +10,7 @@ synchronized (interpreterGroupReference) {
       }
     }
  else {
-      throw new InterpreterException("Unexpected error");
+      return null;
     }
   }
 }

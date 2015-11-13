@@ -1,3 +1,16 @@
 {
+  interpreterGroup.close();
+  interpreterGroup.destroy();
   server.stop();
+  long startTime=System.currentTimeMillis();
+  while (System.currentTimeMillis() - startTime < 2000 && server.isServing()) {
+    try {
+      Thread.sleep(300);
+    }
+ catch (    InterruptedException e) {
+    }
+  }
+  if (server.isServing()) {
+    System.exit(0);
+  }
 }

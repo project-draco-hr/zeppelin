@@ -4,14 +4,17 @@ synchronized (referenceCount) {
     if (r == 0) {
       logger.info("shutdown interpreter process");
       remoteInterpreterEventPoller.shutdown();
+      Client client=null;
       try {
-        Client client=getClient();
+        client=getClient();
         client.shutdown();
-        releaseClient(client);
       }
  catch (      Exception e) {
-        logger.error("Error",e);
-        watchdog.destroyProcess();
+      }
+ finally {
+        if (client != null) {
+          releaseClient(client);
+        }
       }
       clientPool.clear();
       clientPool.close();

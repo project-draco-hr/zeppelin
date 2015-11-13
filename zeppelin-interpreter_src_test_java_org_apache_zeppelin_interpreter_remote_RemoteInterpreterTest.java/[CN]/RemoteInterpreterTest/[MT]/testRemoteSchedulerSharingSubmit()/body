@@ -50,5 +50,5 @@
   intpA.close();
   intpB.close();
   RemoteInterpreterProcess process=intpA.getInterpreterProcess();
-  assertFalse(process.isRunning());
+  assertNull(process);
 }
