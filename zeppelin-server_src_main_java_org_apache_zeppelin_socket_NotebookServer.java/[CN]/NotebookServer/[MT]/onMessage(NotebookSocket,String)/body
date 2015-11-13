@@ -2,7 +2,7 @@
   Notebook notebook=notebook();
   try {
     Message messagereceived=deserializeMessage(msg);
-    LOG.info("RECEIVE << " + messagereceived.op);
+    LOG.debug("RECEIVE << " + messagereceived.op);
 switch (messagereceived.op) {
 case LIST_NOTES:
       broadcastNoteList();
