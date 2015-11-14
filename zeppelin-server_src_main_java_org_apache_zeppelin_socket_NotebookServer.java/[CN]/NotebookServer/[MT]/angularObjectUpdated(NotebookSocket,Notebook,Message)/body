@@ -42,12 +42,12 @@
         }
         if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
           AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
-          this.broadcast(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()));
+          this.broadcastExcept(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()),conn);
         }
       }
     }
   }
  else {
-    this.broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()));
+    this.broadcastExcept(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()),conn);
   }
 }

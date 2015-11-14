@@ -1,0 +1,28 @@
+{
+  Note note1=notebook.createNote();
+  InterpreterGroup interpreterGroup=null;
+  List<InterpreterSetting> settings=note1.getNoteReplLoader().getInterpreterSettings();
+  for (  InterpreterSetting setting : settings) {
+    if (setting.getInterpreterGroup() == null) {
+      continue;
+    }
+    interpreterGroup=setting.getInterpreterGroup();
+    break;
+  }
+  interpreterGroup.getAngularObjectRegistry().add("object1","value1",note1.getId());
+  NotebookSocket sock1=createWebSocket();
+  NotebookSocket sock2=createWebSocket();
+  assertEquals(sock1,sock1);
+  assertNotEquals(sock1,sock2);
+  notebookServer.onOpen(sock1);
+  notebookServer.onOpen(sock2);
+  verify(sock1,times(0)).send(anyString());
+  notebookServer.onMessage(sock1,gson.toJson(new Message(OP.GET_NOTE).put("id",note1.getId())));
+  notebookServer.onMessage(sock2,gson.toJson(new Message(OP.GET_NOTE).put("id",note1.getId())));
+  reset(sock1);
+  reset(sock2);
+  notebookServer.onMessage(sock1,gson.toJson(new Message(OP.ANGULAR_OBJECT_UPDATED).put("noteId",note1.getId()).put("name","object1").put("value","value1").put("interpreterGroupId",interpreterGroup.getId())));
+  verify(sock1,times(0)).send(anyString());
+  verify(sock2,times(1)).send(anyString());
+  notebook.removeNote(note1.getId());
+}

@@ -1,0 +1,20 @@
+{
+synchronized (noteSocketMap) {
+    List<NotebookSocket> socketLists=noteSocketMap.get(noteId);
+    if (socketLists == null || socketLists.size() == 0) {
+      return;
+    }
+    LOG.debug("SEND >> " + m.op);
+    for (    NotebookSocket conn : socketLists) {
+      if (exclude.equals(conn)) {
+        continue;
+      }
+      try {
+        conn.send(serializeMessage(m));
+      }
+ catch (      IOException e) {
+        LOG.error("socket error",e);
+      }
+    }
+  }
+}
