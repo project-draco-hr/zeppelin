@@ -1,9 +1,0 @@
-{
-  String sparkHome=getProperty("spark.home");
-  if (sparkHome == null) {
-    throw new InterpreterException("spark.home is undefined");
-  }
- else {
-    return sparkHome;
-  }
-}

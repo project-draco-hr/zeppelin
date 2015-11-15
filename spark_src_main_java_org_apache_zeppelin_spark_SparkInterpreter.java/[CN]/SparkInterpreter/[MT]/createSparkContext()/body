@@ -39,7 +39,7 @@
       conf.set(key,val);
     }
   }
-  String pysparkBasePath=getSystemDefault("SPARK_HOME","spark.home",null);
+  String pysparkBasePath=getSystemDefault("SPARK_HOME",null,null);
   File pysparkPath;
   if (null == pysparkBasePath) {
     pysparkBasePath=getSystemDefault("ZEPPELIN_HOME","zeppelin.home","../");
