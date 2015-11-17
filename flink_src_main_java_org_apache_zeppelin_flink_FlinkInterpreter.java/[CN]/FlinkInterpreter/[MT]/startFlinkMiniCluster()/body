@@ -1,4 +1,9 @@
 {
   localFlinkCluster=new LocalFlinkMiniCluster(flinkConf,false);
-  localFlinkCluster.waitForTaskManagersToBeRegistered();
+  try {
+    localFlinkCluster.start(true);
+  }
+ catch (  Exception e) {
+    throw new RuntimeException("Could not start Flink mini cluster.",e);
+  }
 }

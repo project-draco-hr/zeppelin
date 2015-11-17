@@ -1,6 +1,6 @@
 {
   if (localMode()) {
-    return localFlinkCluster.getJobManagerRPCPort();
+    return localFlinkCluster.getLeaderRPCPort();
   }
  else {
     return Integer.parseInt(getProperty("port"));
