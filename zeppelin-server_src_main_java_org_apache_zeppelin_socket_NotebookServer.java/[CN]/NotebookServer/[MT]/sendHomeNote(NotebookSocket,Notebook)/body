@@ -10,6 +10,7 @@
     sendAllAngularObjects(note,conn);
   }
  else {
+    removeConnectionFromAllNote(conn);
     conn.send(serializeMessage(new Message(OP.NOTE).put("note",null)));
   }
 }
