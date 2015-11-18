@@ -1,0 +1,4 @@
+def select(self, name, options, defaultValue=''):
+    tuples = map((lambda items: self.__tupleToScalaTuple2(items)), options)
+    iterables = gateway.jvm.scala.collection.JavaConversions.collectionAsScalaIterable(tuples)
+    return self.z.select(name, defaultValue, iterables)

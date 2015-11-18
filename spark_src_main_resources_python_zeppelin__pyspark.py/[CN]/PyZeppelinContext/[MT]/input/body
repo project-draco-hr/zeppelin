@@ -1,0 +1,2 @@
+def input(self, name, defaultValue=''):
+    return self.z.input(name, defaultValue)

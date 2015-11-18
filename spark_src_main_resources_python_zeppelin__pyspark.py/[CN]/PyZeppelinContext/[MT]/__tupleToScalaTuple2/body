@@ -1,0 +1,5 @@
+def __tupleToScalaTuple2(self, tuple):
+    if (len(tuple) == 2):
+        return gateway.jvm.scala.Tuple2(tuple[0], tuple[1])
+    else:
+        raise IndexError('options must be a list of tuple of 2')
