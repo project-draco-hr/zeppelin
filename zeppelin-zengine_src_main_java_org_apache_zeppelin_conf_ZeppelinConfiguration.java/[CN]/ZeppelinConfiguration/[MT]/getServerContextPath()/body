@@ -1,0 +1,3 @@
+{
+  return getString(ConfVars.ZEPPELIN_SERVER_CONTEXT_PATH);
+}

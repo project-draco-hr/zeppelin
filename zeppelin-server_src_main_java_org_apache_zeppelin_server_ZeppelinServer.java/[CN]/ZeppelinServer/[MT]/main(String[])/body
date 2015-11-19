@@ -2,7 +2,7 @@
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   conf.setProperty("args",args);
   jettyServer=setupJettyServer(conf);
-  final ServletContextHandler restApi=setupRestApiContextHandler();
+  final ServletContextHandler restApi=setupRestApiContextHandler(conf);
   final ServletContextHandler notebook=setupNotebookServer(conf);
   final WebAppContext webApp=setupWebAppContext(conf);
   ContextHandlerCollection contexts=new ContextHandlerCollection();

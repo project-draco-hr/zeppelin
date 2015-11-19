@@ -1,9 +1,9 @@
 {
   WebAppContext webApp=new WebAppContext();
+  webApp.setContextPath(conf.getServerContextPath());
   File warPath=new File(conf.getString(ConfVars.ZEPPELIN_WAR));
   if (warPath.isDirectory()) {
     webApp.setResourceBase(warPath.getPath());
-    webApp.setContextPath("/");
     webApp.setParentLoaderPriority(true);
   }
  else {

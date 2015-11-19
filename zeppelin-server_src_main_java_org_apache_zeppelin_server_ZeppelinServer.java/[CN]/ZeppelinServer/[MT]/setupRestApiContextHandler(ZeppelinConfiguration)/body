@@ -5,8 +5,8 @@
   cxfServletHolder.setForcedPath("rest");
   final ServletContextHandler cxfContext=new ServletContextHandler();
   cxfContext.setSessionHandler(new SessionHandler());
-  cxfContext.setContextPath("/api");
-  cxfContext.addServlet(cxfServletHolder,"/*");
+  cxfContext.setContextPath(conf.getServerContextPath());
+  cxfContext.addServlet(cxfServletHolder,"/api/*");
   cxfContext.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
   return cxfContext;
 }
