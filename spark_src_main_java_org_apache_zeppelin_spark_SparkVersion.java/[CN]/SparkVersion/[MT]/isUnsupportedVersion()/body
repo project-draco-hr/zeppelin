@@ -1,0 +1,3 @@
+{
+  return olderThan(MIN_SUPPORTED_VERSION) || newerThanEquals(UNSUPPORTED_FUTURE_VERSION);
+}

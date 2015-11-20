@@ -1,0 +1,3 @@
+{
+  return this.newerThanEquals(SPARK_1_2_0);
+}

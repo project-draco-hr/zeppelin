@@ -1,0 +1,15 @@
+{
+  this.versionString=versionString;
+  try {
+    int pos=versionString.indexOf('-');
+    String numberPart=versionString;
+    if (pos > 0) {
+      numberPart=versionString.substring(0,pos);
+    }
+    version=Integer.parseInt(numberPart.replaceAll("\\.",""));
+  }
+ catch (  Exception e) {
+    logger.error("Can not recognize Spark version " + versionString + ". Assume it's a future release",e);
+    version=999;
+  }
+}

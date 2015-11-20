@@ -1,0 +1,3 @@
+{
+  return version == ((SparkVersion)versionToCompare).version;
+}
