@@ -3,6 +3,9 @@
   int sparkVersion=getSparkVersionNumber(note);
   if (isPyspark() && sparkVersion >= 12) {
     Paragraph p=note.addParagraph();
+    Map config=p.getConfig();
+    config.put("enabled",true);
+    p.setConfig(config);
     p.setText("%pyspark print(sc.parallelize(range(1, 11)).reduce(lambda a, b: a + b))");
     note.run(p.getId());
     waitForFinish(p);

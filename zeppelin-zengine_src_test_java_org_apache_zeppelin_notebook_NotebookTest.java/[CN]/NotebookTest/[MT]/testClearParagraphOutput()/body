@@ -1,6 +1,9 @@
 {
   Note note=notebook.createNote();
   Paragraph p1=note.addParagraph();
+  Map config=p1.getConfig();
+  config.put("enabled",true);
+  p1.setConfig(config);
   p1.setText("hello world");
   note.run(p1.getId());
   while (p1.isTerminated() == false || p1.getResult() == null)   Thread.yield();

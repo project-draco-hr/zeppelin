@@ -1,5 +1,8 @@
 {
   Paragraph p=note.addParagraph();
+  Map config=p.getConfig();
+  config.put("enabled",true);
+  p.setConfig(config);
   p.setText("%spark print(sc.version)");
   note.run(p.getId());
   waitForFinish(p);

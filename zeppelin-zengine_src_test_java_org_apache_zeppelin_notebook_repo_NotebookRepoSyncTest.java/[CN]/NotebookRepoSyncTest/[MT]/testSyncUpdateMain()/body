@@ -1,6 +1,9 @@
 {
   Note note=notebookSync.createNote();
   Paragraph p1=note.addParagraph();
+  Map config=p1.getConfig();
+  config.put("enabled",true);
+  p1.setConfig(config);
   p1.setText("hello world");
   assertEquals(1,note.getParagraphs().size());
   assertEquals(0,notebookRepoSync.get(0,notebookRepoSync.list(0).get(0).getId()).getParagraphs().size());

@@ -2,11 +2,15 @@
   Note note=notebook.createNote();
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   Paragraph p1=note.addParagraph();
+  Map config=p1.getConfig();
+  config.put("enabled",true);
+  p1.setConfig(config);
   p1.setText("hello world");
   note.run(p1.getId());
   while (p1.isTerminated() == false || p1.getResult() == null)   Thread.yield();
   assertEquals("repl1: hello world",p1.getResult().message());
   Paragraph p2=note.addParagraph();
+  p2.setConfig(config);
   p2.setText("%mock2 hello world");
   note.run(p2.getId());
   while (p2.isTerminated() == false || p2.getResult() == null)   Thread.yield();

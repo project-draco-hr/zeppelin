@@ -2,6 +2,9 @@
   Note note=ZeppelinServer.notebook.createNote();
   note.addParagraph();
   Paragraph p=note.getLastParagraph();
+  Map config=p.getConfig();
+  config.put("enabled",true);
+  p.setConfig(config);
   p.setText("%md markdown");
   note.run(p.getId());
   while (p.getStatus() != Status.FINISHED) {
@@ -15,6 +18,7 @@
     }
   }
   p=note.addParagraph();
+  p.setConfig(config);
   p.setText("%md markdown restarted");
   note.run(p.getId());
   while (p.getStatus() != Status.FINISHED) {

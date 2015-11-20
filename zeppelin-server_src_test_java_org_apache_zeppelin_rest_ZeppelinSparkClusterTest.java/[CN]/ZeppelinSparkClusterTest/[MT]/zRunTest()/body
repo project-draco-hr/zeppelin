@@ -1,10 +1,19 @@
 {
   Note note=ZeppelinServer.notebook.createNote();
   Paragraph p0=note.addParagraph();
+  Map config0=p0.getConfig();
+  config0.put("enabled",true);
+  p0.setConfig(config0);
   p0.setText("%spark z.run(1)");
   Paragraph p1=note.addParagraph();
+  Map config1=p1.getConfig();
+  config1.put("enabled",true);
+  p1.setConfig(config1);
   p1.setText("%spark val a=10");
   Paragraph p2=note.addParagraph();
+  Map config2=p2.getConfig();
+  config2.put("enabled",true);
+  p2.setConfig(config2);
   p2.setText("%spark print(a)");
   note.run(p0.getId());
   waitForFinish(p0);
