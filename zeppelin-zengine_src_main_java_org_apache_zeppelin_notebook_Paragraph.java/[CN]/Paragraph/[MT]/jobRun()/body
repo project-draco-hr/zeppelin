@@ -18,5 +18,8 @@
   }
   logger().debug("RUN : " + script);
   InterpreterResult ret=repl.interpret(script,getInterpreterContext());
+  if (Code.KEEP_PREVIOUS_RESULT == ret.code()) {
+    return getReturn();
+  }
   return ret;
 }

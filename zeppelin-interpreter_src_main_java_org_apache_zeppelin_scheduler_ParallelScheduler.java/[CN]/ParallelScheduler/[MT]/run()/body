@@ -1,6 +1,7 @@
 {
+  while (terminate == false) {
+    Job job=null;
 synchronized (queue) {
-    while (terminate == false) {
       if (running.size() >= maxConcurrency || queue.isEmpty() == true) {
         try {
           queue.wait(500);
@@ -9,10 +10,10 @@ synchronized (queue) {
         }
         continue;
       }
-      Job job=queue.remove(0);
+      job=queue.remove(0);
       running.add(job);
-      Scheduler scheduler=this;
-      executor.execute(new JobRunner(scheduler,job));
     }
+    Scheduler scheduler=this;
+    executor.execute(new JobRunner(scheduler,job));
   }
 }

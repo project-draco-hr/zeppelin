@@ -1,0 +1,13 @@
+{
+synchronized (queue) {
+    Iterator<Job> it=queue.iterator();
+    while (it.hasNext()) {
+      Job job=it.next();
+      if (job.getId().equals(jobId)) {
+        it.remove();
+        return job;
+      }
+    }
+  }
+  return null;
+}

@@ -20,6 +20,9 @@ synchronized (jobListener) {
   }
  else {
     result=(InterpreterResult)job.getReturn();
+    if (result == null) {
+      result=new InterpreterResult(Code.KEEP_PREVIOUS_RESULT);
+    }
   }
   return convert(result,context.getConfig(),context.getGui());
 }
