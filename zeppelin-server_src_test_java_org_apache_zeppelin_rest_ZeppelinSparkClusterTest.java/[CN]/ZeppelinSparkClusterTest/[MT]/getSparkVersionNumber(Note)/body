@@ -6,6 +6,7 @@
   p.setText("%spark print(sc.version)");
   note.run(p.getId());
   waitForFinish(p);
+  assertEquals(Status.FINISHED,p.getStatus());
   String sparkVersion=p.getResult().message();
   System.out.println("Spark version detected " + sparkVersion);
   String[] split=sparkVersion.split("\\.");

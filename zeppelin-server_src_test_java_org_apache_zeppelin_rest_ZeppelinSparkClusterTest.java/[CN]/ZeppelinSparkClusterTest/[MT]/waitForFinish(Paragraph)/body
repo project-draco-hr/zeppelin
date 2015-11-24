@@ -1,5 +1,5 @@
 {
-  while (p.getStatus() != Status.FINISHED) {
+  while (p.getStatus() != Status.FINISHED && p.getStatus() != Status.ERROR && p.getStatus() != Status.ABORT) {
     try {
       Thread.sleep(100);
     }

@@ -17,8 +17,10 @@
   p2.setText("%spark print(a)");
   note.run(p0.getId());
   waitForFinish(p0);
+  assertEquals(Status.FINISHED,p0.getStatus());
   note.run(p2.getId());
   waitForFinish(p2);
+  assertEquals(Status.FINISHED,p2.getStatus());
   assertEquals("10",p2.getResult().message());
   ZeppelinServer.notebook.removeNote(note.id());
 }

@@ -9,6 +9,7 @@
     p.setText("%pyspark print(sc.parallelize(range(1, 11)).reduce(lambda a, b: a + b))");
     note.run(p.getId());
     waitForFinish(p);
+    assertEquals(Status.FINISHED,p.getStatus());
     assertEquals("55\n",p.getResult().message());
   }
   ZeppelinServer.notebook.removeNote(note.id());
