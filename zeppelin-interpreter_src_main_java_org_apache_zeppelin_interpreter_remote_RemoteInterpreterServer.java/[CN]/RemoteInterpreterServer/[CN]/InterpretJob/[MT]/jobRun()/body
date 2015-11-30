@@ -1,4 +1,10 @@
 {
-  InterpreterResult result=interpreter.interpret(script,context);
-  return result;
+  try {
+    InterpreterContext.set(context);
+    InterpreterResult result=interpreter.interpret(script,context);
+    return result;
+  }
+  finally {
+    InterpreterContext.remove();
+  }
 }
