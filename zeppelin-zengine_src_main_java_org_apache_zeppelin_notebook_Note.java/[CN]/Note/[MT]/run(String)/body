@@ -6,7 +6,7 @@
   if (intp == null) {
     throw new InterpreterException("Interpreter " + p.getRequiredReplName() + " not found");
   }
-  if ((Boolean)p.getConfig().get("enabled")) {
+  if (p.getConfig().get("enabled") == null || (Boolean)p.getConfig().get("enabled")) {
     intp.getScheduler().submit(p);
   }
 }
