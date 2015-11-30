@@ -1,0 +1,6 @@
+{
+  String text="%spark(1234567";
+  assertEquals("(1234567",Paragraph.getScriptBody(text));
+  text="%table 1234567";
+  assertEquals("1234567",Paragraph.getScriptBody(text));
+}

@@ -1,0 +1,4 @@
+{
+  String text="12345678";
+  assertEquals(text,Paragraph.getScriptBody(text));
+}

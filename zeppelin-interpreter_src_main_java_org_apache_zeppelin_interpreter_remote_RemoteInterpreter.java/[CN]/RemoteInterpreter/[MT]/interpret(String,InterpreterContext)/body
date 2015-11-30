@@ -1,4 +1,5 @@
 {
+  logger.debug("st: {}",st);
   FormType form=getFormType();
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   Client client=null;

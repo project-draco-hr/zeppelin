@@ -1,14 +1,15 @@
 {
   try {
-    if (jdbcConnection != null) {
-      jdbcConnection.close();
+    for (    Statement statement : paragraphIdStatementMap.values()) {
+      statement.close();
     }
+    paragraphIdStatementMap.clear();
+    for (    Connection connection : keyConnectionMap.values()) {
+      connection.close();
+    }
+    keyConnectionMap.clear();
   }
  catch (  SQLException e) {
-    logger.error("Cannot close connection",e);
-  }
- finally {
-    jdbcConnection=null;
-    exceptionOnConnect=null;
+    logger.error("Error while closing...",e);
   }
 }

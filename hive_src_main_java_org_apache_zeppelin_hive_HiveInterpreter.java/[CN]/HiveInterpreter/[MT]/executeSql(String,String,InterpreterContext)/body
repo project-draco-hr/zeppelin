@@ -1,0 +1,61 @@
+{
+  String paragraphId=interpreterContext.getParagraphId();
+  try {
+    Statement statement=getStatement(propertyKey,paragraphId);
+    statement.setMaxRows(getMaxResult());
+    StringBuilder msg;
+    if (containsIgnoreCase(sql,EXPLAIN_PREDICATE)) {
+      msg=new StringBuilder();
+    }
+ else {
+      msg=new StringBuilder(TABLE_MAGIC_TAG);
+    }
+    ResultSet resultSet=null;
+    try {
+      boolean isResultSetAvailable=statement.execute(sql);
+      if (isResultSetAvailable) {
+        resultSet=statement.getResultSet();
+        ResultSetMetaData md=resultSet.getMetaData();
+        for (int i=1; i < md.getColumnCount() + 1; i++) {
+          if (i > 1) {
+            msg.append(TAB);
+          }
+          msg.append(md.getColumnName(i));
+        }
+        msg.append(NEWLINE);
+        int displayRowCount=0;
+        while (resultSet.next() && displayRowCount < getMaxResult()) {
+          for (int i=1; i < md.getColumnCount() + 1; i++) {
+            msg.append(resultSet.getString(i));
+            if (i != md.getColumnCount()) {
+              msg.append(TAB);
+            }
+          }
+          msg.append(NEWLINE);
+          displayRowCount++;
+        }
+      }
+ else {
+        int updateCount=statement.getUpdateCount();
+        msg.append(UPDATE_COUNT_HEADER).append(NEWLINE);
+        msg.append(updateCount).append(NEWLINE);
+      }
+    }
+  finally {
+      try {
+        if (resultSet != null) {
+          resultSet.close();
+        }
+        statement.close();
+      }
+  finally {
+        removeStatement(paragraphId);
+      }
+    }
+    return new InterpreterResult(Code.SUCCESS,msg.toString());
+  }
+ catch (  SQLException|ClassNotFoundException ex) {
+    logger.error("Cannot run " + sql,ex);
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+}

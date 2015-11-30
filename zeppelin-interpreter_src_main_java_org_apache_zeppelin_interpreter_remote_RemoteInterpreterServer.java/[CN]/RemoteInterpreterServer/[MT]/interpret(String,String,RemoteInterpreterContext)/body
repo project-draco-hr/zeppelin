@@ -1,4 +1,5 @@
 {
+  logger.debug("st: {}",st);
   Interpreter intp=getInterpreter(className);
   InterpreterContext context=convert(interpreterContext);
   Scheduler scheduler=intp.getScheduler();

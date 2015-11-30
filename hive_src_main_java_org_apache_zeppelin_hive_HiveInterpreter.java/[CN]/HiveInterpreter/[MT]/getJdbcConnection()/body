@@ -1,6 +1,0 @@
-{
-  String url=getProperty(HIVESERVER_URL);
-  String user=getProperty(HIVESERVER_USER);
-  String password=getProperty(HIVESERVER_PASSWORD);
-  return DriverManager.getConnection(url,user,password);
-}

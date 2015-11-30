@@ -1,0 +1,26 @@
+{
+  Connection connection=null;
+  if (keyConnectionMap.containsKey(propertyKey)) {
+    connection=keyConnectionMap.get(propertyKey);
+    if (connection.isClosed() || !connection.isValid(10)) {
+      connection.close();
+      connection=null;
+      keyConnectionMap.remove(propertyKey);
+    }
+  }
+  if (null == connection) {
+    Properties properties=propertiesMap.get(propertyKey);
+    Class.forName(properties.getProperty(DRIVER_KEY));
+    String url=properties.getProperty(URL_KEY);
+    String user=properties.getProperty(USER_KEY);
+    String password=properties.getProperty(PASSWORD_KEY);
+    if (null != user && null != password) {
+      connection=DriverManager.getConnection(url,user,password);
+    }
+ else {
+      connection=DriverManager.getConnection(url,properties);
+    }
+    keyConnectionMap.put(propertyKey,connection);
+  }
+  return connection;
+}

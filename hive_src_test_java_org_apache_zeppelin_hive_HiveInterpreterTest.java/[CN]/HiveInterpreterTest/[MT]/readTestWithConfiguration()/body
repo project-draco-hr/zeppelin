@@ -1,0 +1,16 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty("common.max_count","1000");
+  properties.setProperty("common.max_retry","3");
+  properties.setProperty("default.driver","wrong.Driver");
+  properties.setProperty("default.url",getJdbcConnection());
+  properties.setProperty("default.user","");
+  properties.setProperty("default.password","");
+  properties.setProperty("h2.driver","org.h2.Driver");
+  properties.setProperty("h2.url",getJdbcConnection());
+  properties.setProperty("h2.user","");
+  properties.setProperty("h2.password","");
+  HiveInterpreter t=new HiveInterpreter(properties);
+  t.open();
+  assertEquals("ID\tNAME\na\ta_name\nb\tb_name\n",t.interpret("(h2)\n select * from test_table",new InterpreterContext("","1","","",null,null,null,null)).message());
+}
