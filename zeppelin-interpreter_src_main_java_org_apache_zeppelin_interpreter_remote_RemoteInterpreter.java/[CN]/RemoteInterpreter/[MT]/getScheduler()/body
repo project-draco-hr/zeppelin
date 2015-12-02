@@ -5,6 +5,6 @@
     return null;
   }
  else {
-    return SchedulerFactory.singleton().createOrGetRemoteScheduler("remoteinterpreter_" + interpreterProcess.hashCode(),getInterpreterProcess(),maxConcurrency);
+    return SchedulerFactory.singleton().createOrGetRemoteScheduler("remoteinterpreter_" + interpreterProcess.hashCode(),interpreterProcess,maxConcurrency);
   }
 }
