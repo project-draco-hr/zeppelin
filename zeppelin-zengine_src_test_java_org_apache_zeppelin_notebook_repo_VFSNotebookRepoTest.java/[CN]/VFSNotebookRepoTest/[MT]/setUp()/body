@@ -1,0 +1,7 @@
+{
+  conf=ZeppelinConfiguration.create();
+  this.schedulerFactory=new SchedulerFactory();
+  factory=new InterpreterFactory(conf,new InterpreterOption(false),null);
+  notebookRepo=new VFSNotebookRepo(conf);
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,factory,this);
+}

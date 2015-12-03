@@ -1,0 +1,8 @@
+{
+  try {
+    notebookRepo.save(note);
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}
