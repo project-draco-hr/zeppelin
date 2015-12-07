@@ -49,7 +49,7 @@
         statement.close();
       }
   finally {
-        removeStatement(paragraphId);
+        moveConnectionToUnused(propertyKey,paragraphId);
       }
     }
     return new InterpreterResult(Code.SUCCESS,msg.toString());

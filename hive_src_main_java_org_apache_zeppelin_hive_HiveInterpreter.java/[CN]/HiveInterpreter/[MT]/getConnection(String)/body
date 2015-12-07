@@ -1,11 +1,13 @@
 {
   Connection connection=null;
-  if (keyConnectionMap.containsKey(propertyKey)) {
-    connection=keyConnectionMap.get(propertyKey);
-    if (connection.isClosed() || !connection.isValid(10)) {
-      connection.close();
-      connection=null;
-      keyConnectionMap.remove(propertyKey);
+  if (propertyKeyUnusedConnectionListMap.containsKey(propertyKey)) {
+    ArrayList<Connection> connectionList=propertyKeyUnusedConnectionListMap.get(propertyKey);
+    if (0 != connectionList.size()) {
+      connection=propertyKeyUnusedConnectionListMap.get(propertyKey).remove(0);
+      if (null != connection && connection.isClosed()) {
+        connection.close();
+        connection=null;
+      }
     }
   }
   if (null == connection) {
@@ -20,7 +22,6 @@
  else {
       connection=DriverManager.getConnection(url,properties);
     }
-    keyConnectionMap.put(propertyKey,connection);
   }
   return connection;
 }

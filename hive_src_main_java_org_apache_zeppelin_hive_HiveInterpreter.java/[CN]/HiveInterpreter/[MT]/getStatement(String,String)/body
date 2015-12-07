@@ -1,15 +1,17 @@
 {
-  Statement statement=null;
-  if (paragraphIdStatementMap.containsKey(paragraphId)) {
-    statement=paragraphIdStatementMap.get(paragraphId);
-    if (statement.isClosed()) {
-      statement=null;
-      paragraphIdStatementMap.remove(paragraphId);
-    }
+  Connection connection;
+  if (paragraphIdConnectionMap.containsKey(paragraphId)) {
+    connection=paragraphIdConnectionMap.get(paragraphId);
   }
-  if (null == statement) {
-    statement=getConnection(propertyKey).createStatement();
-    paragraphIdStatementMap.put(paragraphId,statement);
+ else {
+    connection=getConnection(propertyKey);
   }
+  Statement statement=connection.createStatement();
+  if (isStatementClosed(statement)) {
+    connection=getConnection(propertyKey);
+    statement=connection.createStatement();
+  }
+  paragraphIdConnectionMap.put(paragraphId,connection);
+  paragraphIdStatementMap.put(paragraphId,statement);
   return statement;
 }

@@ -1,0 +1,15 @@
+{
+  if (paragraphIdConnectionMap.containsKey(paragraphId)) {
+    Connection connection=paragraphIdConnectionMap.remove(paragraphId);
+    if (null != connection) {
+      if (propertyKeyUnusedConnectionListMap.containsKey(propertyKey)) {
+        propertyKeyUnusedConnectionListMap.get(propertyKey).add(connection);
+      }
+ else {
+        ArrayList<Connection> connectionList=new ArrayList<>();
+        connectionList.add(connection);
+        propertyKeyUnusedConnectionListMap.put(propertyKey,connectionList);
+      }
+    }
+  }
+}

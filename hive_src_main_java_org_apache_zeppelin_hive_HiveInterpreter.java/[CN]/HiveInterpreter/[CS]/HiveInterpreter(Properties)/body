@@ -1,6 +1,7 @@
 {
   super(property);
   propertiesMap=new HashMap<>();
-  keyConnectionMap=new HashMap<>();
+  propertyKeyUnusedConnectionListMap=new HashMap<>();
   paragraphIdStatementMap=new HashMap<>();
+  paragraphIdConnectionMap=new HashMap<>();
 }
