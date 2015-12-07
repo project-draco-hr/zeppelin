@@ -1,0 +1,15 @@
+{
+  List<Rev> history=Lists.newArrayList();
+  LOG.debug("Listing history for {}:",noteId);
+  try {
+    Iterable<RevCommit> logs=git.log().addPath(noteId).call();
+    for (    RevCommit log : logs) {
+      history.add(new Rev(log.getName(),log.getCommitTime()));
+      LOG.debug(" - ({},{})",log.getName(),log.getCommitTime());
+    }
+  }
+ catch (  GitAPIException e) {
+    LOG.error("Failed to get logs for {}",noteId,e);
+  }
+  return history;
+}

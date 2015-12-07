@@ -1,0 +1,12 @@
+{
+  super(conf);
+  localPath=getRootDir().getName().getPath();
+  LOG.info("Opening a git repo at '{}'",localPath);
+  Repository localRepo=new FileRepository(Joiner.on(File.separator).join(localPath,".git"));
+  if (!localRepo.getDirectory().exists()) {
+    LOG.info("Git repo {} does not exist, creating a new one",localRepo.getDirectory());
+    localRepo.create();
+  }
+  git=new Git(localRepo);
+  maybeAddAndCommit(".");
+}

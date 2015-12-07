@@ -1,0 +1,18 @@
+{
+  String zpath=System.getProperty("java.io.tmpdir") + "/ZeppelinTest_" + System.currentTimeMillis();
+  zeppelinDir=new File(zpath);
+  zeppelinDir.mkdirs();
+  new File(zeppelinDir,"conf").mkdirs();
+  notebooksDir=Joiner.on(File.separator).join(zpath,"notebook");
+  File notebookDir=new File(notebooksDir);
+  notebookDir.mkdirs();
+  String testNoteDir=Joiner.on(File.separator).join(notebooksDir,TEST_NOTE_ID);
+  FileUtils.copyDirectory(new File(Joiner.on(File.separator).join("src","test","resources",TEST_NOTE_ID)),new File(testNoteDir));
+  System.setProperty(ConfVars.ZEPPELIN_HOME.getVarName(),zeppelinDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"org.apache.zeppelin.interpreter.mock.MockInterpreter1,org.apache.zeppelin.interpreter.mock.MockInterpreter2");
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),"org.apache.zeppelin.notebook.repo.GitNotebookRepo");
+  MockInterpreter1.register("mock1","org.apache.zeppelin.interpreter.mock.MockInterpreter1");
+  MockInterpreter2.register("mock2","org.apache.zeppelin.interpreter.mock.MockInterpreter2");
+  conf=ZeppelinConfiguration.create();
+}

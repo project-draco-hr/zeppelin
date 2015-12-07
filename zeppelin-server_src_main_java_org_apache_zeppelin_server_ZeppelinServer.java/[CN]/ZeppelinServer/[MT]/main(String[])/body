@@ -23,6 +23,7 @@
       try {
         jettyServer.stop();
         ZeppelinServer.notebook.getInterpreterFactory().close();
+        ZeppelinServer.notebook.close();
       }
  catch (      Exception e) {
         LOG.error("Error while stopping servlet container",e);

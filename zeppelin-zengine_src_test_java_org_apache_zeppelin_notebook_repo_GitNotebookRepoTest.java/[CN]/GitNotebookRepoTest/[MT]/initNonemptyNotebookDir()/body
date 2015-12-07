@@ -1,0 +1,11 @@
+{
+  File dotGit=new File(Joiner.on(File.separator).join(notebooksDir,".git"));
+  assertThat(dotGit.exists()).isEqualTo(false);
+  notebookRepo=new GitNotebookRepo(conf);
+  Git git=notebookRepo.getGit();
+  assertThat(git).isNotNull();
+  assertThat(dotGit.exists()).isEqualTo(true);
+  assertThat(notebookRepo.list()).isNotEmpty();
+  List<DiffEntry> diff=git.diff().call();
+  assertThat(diff).isEmpty();
+}
