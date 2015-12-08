@@ -5,7 +5,7 @@
   Map config=p1.getConfig();
   config.put("enabled",true);
   p1.setConfig(config);
-  p1.setText("%md hello world");
+  p1.setText("%mock1 hello world");
   note.run(p1.getId());
   int timeout=1;
   while (!p1.isTerminated()) {
@@ -17,9 +17,9 @@
   int i=0;
   int TEST_COUNT=10;
   while (i++ < TEST_COUNT) {
-    p1.setText("%md hello zeppelin");
+    p1.setText("%mock1 hello zeppelin");
     new Thread(new NotebookWriter(note)).start();
-    p1.setText("%md hello world");
+    p1.setText("%mock1 hello world");
     new Thread(new NotebookWriter(note)).start();
   }
   note.setName("SaveTest");

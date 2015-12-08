@@ -1,5 +1,18 @@
 {
+  String zpath=System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis();
+  mainZepDir=new File(zpath);
+  mainZepDir.mkdirs();
+  new File(mainZepDir,"conf").mkdirs();
+  String mainNotePath=zpath + "/notebook";
+  mainNotebookDir=new File(mainNotePath);
+  mainNotebookDir.mkdirs();
+  System.setProperty(ConfVars.ZEPPELIN_HOME.getVarName(),mainZepDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),mainNotebookDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"org.apache.zeppelin.interpreter.mock.MockInterpreter1");
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),"org.apache.zeppelin.notebook.repo.VFSNotebookRepo");
   conf=ZeppelinConfiguration.create();
+  this.schedulerFactory=new SchedulerFactory();
+  MockInterpreter1.register("mock1","org.apache.zeppelin.interpreter.mock.MockInterpreter1");
   this.schedulerFactory=new SchedulerFactory();
   factory=new InterpreterFactory(conf,new InterpreterOption(false),null);
   notebookRepo=new VFSNotebookRepo(conf);
