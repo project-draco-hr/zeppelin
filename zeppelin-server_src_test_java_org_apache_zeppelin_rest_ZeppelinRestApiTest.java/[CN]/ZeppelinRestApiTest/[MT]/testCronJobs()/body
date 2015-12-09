@@ -1,0 +1,35 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  note.setName("note for run test");
+  Paragraph paragraph=note.addParagraph();
+  paragraph.setText("%md This is test paragraph.");
+  Map config=paragraph.getConfig();
+  config.put("enabled",true);
+  paragraph.setConfig(config);
+  note.runAll();
+  int timeout=1;
+  while (!paragraph.isTerminated()) {
+    Thread.sleep(1000);
+    if (timeout++ > 10) {
+      LOG.info("testNoteJobs timeout job.");
+      break;
+    }
+  }
+  String jsonRequest="{\"cron\":\"* * * * * ?\" }";
+  PostMethod postCron=httpPost("/notebook/cron/notexistnote",jsonRequest);
+  assertThat("",postCron,isNotFound());
+  postCron.releaseConnection();
+  postCron=httpPost("/notebook/cron/" + note.getId(),jsonRequest);
+  assertThat("",postCron,isAllowed());
+  postCron.releaseConnection();
+  Thread.sleep(1000);
+  jsonRequest="{\"cron\":\"a * * * * ?\" }";
+  postCron=httpPost("/notebook/cron/" + note.getId(),jsonRequest);
+  assertThat("",postCron,isBadRequest());
+  postCron.releaseConnection();
+  Thread.sleep(1000);
+  DeleteMethod deleteCron=httpDelete("/notebook/cron/" + note.getId());
+  assertThat("",deleteCron,isAllowed());
+  deleteCron.releaseConnection();
+  ZeppelinServer.notebook.removeNote(note.getId());
+}

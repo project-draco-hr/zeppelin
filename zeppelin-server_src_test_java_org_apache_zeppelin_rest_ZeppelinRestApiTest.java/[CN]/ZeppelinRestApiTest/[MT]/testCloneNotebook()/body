@@ -1,7 +1,7 @@
 {
   LOG.info("testCloneNotebook");
   Note note=ZeppelinServer.notebook.createNote();
-  assertNotNull("cant create new note",note);
+  assertNotNull("can't create new note",note);
   note.setName("source note for clone");
   Paragraph paragraph=note.addParagraph();
   Map config=paragraph.getConfig();

@@ -1,0 +1,16 @@
+{
+  logger.info("Register cron job note={} request cron msg={}",notebookId,message);
+  CronRequest request=gson.fromJson(message,CronRequest.class);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  if (!CronExpression.isValidExpression(request.getCronString())) {
+    return new JsonResponse(Status.BAD_REQUEST,"wrong cron expressions.").build();
+  }
+  Map<String,Object> config=note.getConfig();
+  config.put("cron",request.getCronString());
+  note.setConfig(config);
+  notebook.refreshCron(note.id());
+  return new JsonResponse(Status.OK).build();
+}

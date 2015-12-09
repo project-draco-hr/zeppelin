@@ -1,0 +1,8 @@
+{
+  logger.info("get notebook job status.");
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  return new JsonResponse(Status.OK,null,note.generateParagraphsInfo()).build();
+}
