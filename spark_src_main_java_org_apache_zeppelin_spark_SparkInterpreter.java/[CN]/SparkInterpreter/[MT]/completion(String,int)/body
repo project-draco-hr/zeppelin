@@ -1,5 +1,13 @@
 {
+  if (buf.length() < cursor) {
+    cursor=buf.length();
+  }
+  String completionText=getCompletionTargetString(buf,cursor);
+  if (completionText == null) {
+    completionText="";
+    cursor=completionText.length();
+  }
   ScalaCompleter c=completor.completer();
-  Candidates ret=c.complete(buf,cursor);
+  Candidates ret=c.complete(completionText,cursor);
   return scala.collection.JavaConversions.asJavaList(ret.candidates());
 }
