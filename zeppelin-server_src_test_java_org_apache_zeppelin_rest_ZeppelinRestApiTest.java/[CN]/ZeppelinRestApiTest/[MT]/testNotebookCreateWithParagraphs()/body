@@ -1,0 +1,31 @@
+{
+  String noteName="test";
+  String jsonRequest="{\"name\":\"" + noteName + "\", \"paragraphs\": ["+ "{\"title\": \"title1\", \"text\": \"text1\"},"+ "{\"title\": \"title2\", \"text\": \"text2\"}"+ "]}";
+  PostMethod post=httpPost("/notebook/",jsonRequest);
+  LOG.info("testNotebookCreate \n" + post.getResponseBodyAsString());
+  assertThat("test notebook create method:",post,isCreated());
+  Map<String,Object> resp=gson.fromJson(post.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  String newNotebookId=(String)resp.get("body");
+  LOG.info("newNotebookId:=" + newNotebookId);
+  Note newNote=ZeppelinServer.notebook.getNote(newNotebookId);
+  assertNotNull("Can not find new note by id",newNote);
+  String newNoteName=newNote.getName();
+  LOG.info("new note name is: " + newNoteName);
+  String expectedNoteName=noteName;
+  if (noteName.isEmpty()) {
+    expectedNoteName="Note " + newNotebookId;
+  }
+  assertEquals("compare note name",expectedNoteName,newNoteName);
+  assertEquals("initial paragraph check failed",3,newNote.getParagraphs().size());
+  for (  Paragraph p : newNote.getParagraphs()) {
+    if (StringUtils.isEmpty(p.getText())) {
+      continue;
+    }
+    assertTrue("paragraph title check failed",p.getTitle().startsWith("title"));
+    assertTrue("paragraph text check failed",p.getText().startsWith("text"));
+  }
+  ZeppelinServer.notebook.removeNote(newNotebookId);
+  post.releaseConnection();
+}

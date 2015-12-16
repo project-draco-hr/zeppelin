@@ -2,6 +2,14 @@
   logger.info("Create new notebook by JSON {}",message);
   NewNotebookRequest request=gson.fromJson(message,NewNotebookRequest.class);
   Note note=notebook.createNote();
+  List<NewParagraphRequest> initialParagraphs=request.getParagraphs();
+  if (initialParagraphs != null) {
+    for (    NewParagraphRequest paragraphRequest : initialParagraphs) {
+      Paragraph p=note.addParagraph();
+      p.setTitle(paragraphRequest.getTitle());
+      p.setText(paragraphRequest.getText());
+    }
+  }
   note.addParagraph();
   String noteName=request.getName();
   if (noteName.isEmpty()) {
