@@ -40,7 +40,7 @@
   driver.get(url);
   while (System.currentTimeMillis() - start < 60 * 1000) {
     try {
-      WebElement element=pollingWait(By.partialLinkText("Create new note"));
+      WebElement element=pollingWait(By.partialLinkText("Create new note"),MAX_BROWSER_TIMEOUT_SEC);
       loaded=element.isDisplayed();
       break;
     }

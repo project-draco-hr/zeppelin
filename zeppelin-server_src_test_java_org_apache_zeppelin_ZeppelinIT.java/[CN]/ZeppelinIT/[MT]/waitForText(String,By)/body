@@ -1,6 +1,6 @@
 {
   try {
-    WebElement element=pollingWait(locator);
+    WebElement element=pollingWait(locator,MAX_BROWSER_TIMEOUT_SEC);
     return txt.equals(element.getText());
   }
  catch (  TimeoutException e) {
