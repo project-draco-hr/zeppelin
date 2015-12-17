@@ -1,5 +1,4 @@
 {
-  WebDriver driver=null;
   if (driver == null) {
     try {
       FirefoxBinary ffox=new FirefoxBinary();
@@ -10,6 +9,7 @@
       driver=new FirefoxDriver(ffox,profile);
     }
  catch (    Exception e) {
+      LOG.error("Starting Firefox failed",e);
     }
   }
   if (driver == null) {
@@ -17,6 +17,7 @@
       driver=new ChromeDriver();
     }
  catch (    Exception e) {
+      LOG.error("Starting Chrome failed",e);
     }
   }
   if (driver == null) {
@@ -24,6 +25,7 @@
       driver=new SafariDriver();
     }
  catch (    Exception e) {
+      LOG.error("Starting Safari failed",e);
     }
   }
   String url;
@@ -38,13 +40,8 @@
   driver.get(url);
   while (System.currentTimeMillis() - start < 60 * 1000) {
     try {
-      (new WebDriverWait(driver,5)).until(new ExpectedCondition<Boolean>(){
-        @Override public Boolean apply(        WebDriver d){
-          return d.findElement(By.partialLinkText("Create new note")).isDisplayed();
-        }
-      }
-);
-      loaded=true;
+      WebElement element=pollingWait(By.partialLinkText("Create new note"));
+      loaded=element.isDisplayed();
       break;
     }
  catch (    TimeoutException e) {
@@ -54,5 +51,4 @@
   if (loaded == false) {
     fail();
   }
-  return driver;
 }

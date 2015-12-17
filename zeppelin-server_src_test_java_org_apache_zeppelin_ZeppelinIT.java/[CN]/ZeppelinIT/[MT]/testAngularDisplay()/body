@@ -2,42 +2,47 @@
   if (!endToEndTestEnabled()) {
     return;
   }
-  createNewNote();
-  waitForParagraph(1,"READY");
-  WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-  paragraph1Editor.sendKeys("println" + Keys.chord(Keys.SHIFT,"9") + "\""+ Keys.chord(Keys.SHIFT,"5")+ "angular <div id='angularTestButton' "+ "ng"+ Keys.chord(Keys.SUBTRACT)+ "click='myVar=myVar+1'>"+ "BindingTest_{{myVar}}_</div>\")");
-  paragraph1Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(1,"FINISHED");
-  waitForText("BindingTest__",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  assertEquals(1,driver.findElements(By.xpath(getParagraphXPath(2) + "//textarea")).size());
-  WebElement paragraph2Editor=driver.findElement(By.xpath(getParagraphXPath(2) + "//textarea"));
-  paragraph2Editor.sendKeys("z.angularBind" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\", 1)");
-  paragraph2Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(2,"FINISHED");
-  waitForText("BindingTest_1_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  WebElement paragraph3Editor=driver.findElement(By.xpath(getParagraphXPath(3) + "//textarea"));
-  paragraph3Editor.sendKeys("print" + Keys.chord(Keys.SHIFT,"9") + "\"myVar=\""+ Keys.chord(Keys.ADD)+ "z.angular"+ Keys.chord(Keys.SHIFT,"9")+ "\"myVar\"))");
-  paragraph3Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(3,"FINISHED");
-  waitForText("myVar=1",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
-  driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
-  waitForText("BindingTest_2_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  WebElement paragraph4Editor=driver.findElement(By.xpath(getParagraphXPath(4) + "//textarea"));
-  paragraph4Editor.sendKeys("z.angularWatch" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\", "+ Keys.chord(Keys.SHIFT,"9")+ "before:Object, after:Object, context:org.apache.zeppelin.interpreter.InterpreterContext)"+ Keys.EQUALS+ ">{ z.run"+ Keys.chord(Keys.SHIFT,"9")+ "2, context)}");
-  paragraph4Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(4,"FINISHED");
-  driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
-  waitForText("BindingTest_3_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  waitForParagraph(3,"FINISHED");
-  waitForText("myVar=3",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
-  WebElement paragraph5Editor=driver.findElement(By.xpath(getParagraphXPath(5) + "//textarea"));
-  paragraph5Editor.sendKeys("z.angularUnbind" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\")");
-  paragraph5Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(5,"FINISHED");
-  waitForText("BindingTest__",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  paragraph2Editor=driver.findElement(By.xpath(getParagraphXPath(2) + "//textarea"));
-  paragraph2Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
-  waitForParagraph(2,"FINISHED");
-  waitForText("BindingTest_1_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
-  System.out.println("testCreateNotebook Test executed");
+  try {
+    createNewNote();
+    waitForParagraph(1,"READY");
+    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
+    paragraph1Editor.sendKeys("println" + Keys.chord(Keys.SHIFT,"9") + "\""+ Keys.chord(Keys.SHIFT,"5")+ "angular <div id='angularTestButton' "+ "ng"+ Keys.chord(Keys.SUBTRACT)+ "click='myVar=myVar+1'>"+ "BindingTest_{{myVar}}_</div>\")");
+    paragraph1Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(1,"FINISHED");
+    waitForText("BindingTest__",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    assertEquals(1,driver.findElements(By.xpath(getParagraphXPath(2) + "//textarea")).size());
+    WebElement paragraph2Editor=driver.findElement(By.xpath(getParagraphXPath(2) + "//textarea"));
+    paragraph2Editor.sendKeys("z.angularBind" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\", 1)");
+    paragraph2Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(2,"FINISHED");
+    waitForText("BindingTest_1_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    WebElement paragraph3Editor=driver.findElement(By.xpath(getParagraphXPath(3) + "//textarea"));
+    paragraph3Editor.sendKeys("print" + Keys.chord(Keys.SHIFT,"9") + "\"myVar=\""+ Keys.chord(Keys.ADD)+ "z.angular"+ Keys.chord(Keys.SHIFT,"9")+ "\"myVar\"))");
+    paragraph3Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(3,"FINISHED");
+    waitForText("myVar=1",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
+    driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
+    waitForText("BindingTest_2_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    WebElement paragraph4Editor=driver.findElement(By.xpath(getParagraphXPath(4) + "//textarea"));
+    paragraph4Editor.sendKeys("z.angularWatch" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\", "+ Keys.chord(Keys.SHIFT,"9")+ "before:Object, after:Object, context:org.apache.zeppelin.interpreter.InterpreterContext)"+ Keys.EQUALS+ ">{ z.run"+ Keys.chord(Keys.SHIFT,"9")+ "2, context)}");
+    paragraph4Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(4,"FINISHED");
+    driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
+    waitForText("BindingTest_3_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    waitForParagraph(3,"FINISHED");
+    waitForText("myVar=3",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
+    WebElement paragraph5Editor=driver.findElement(By.xpath(getParagraphXPath(5) + "//textarea"));
+    paragraph5Editor.sendKeys("z.angularUnbind" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\")");
+    paragraph5Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(5,"FINISHED");
+    waitForText("BindingTest__",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    paragraph2Editor=driver.findElement(By.xpath(getParagraphXPath(2) + "//textarea"));
+    paragraph2Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    waitForParagraph(2,"FINISHED");
+    waitForText("BindingTest_1_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
+    System.out.println("testCreateNotebook Test executed");
+  }
+ catch (  ElementNotVisibleException e) {
+    File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+  }
 }
