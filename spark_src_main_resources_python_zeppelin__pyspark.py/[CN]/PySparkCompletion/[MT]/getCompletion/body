@@ -1,0 +1,15 @@
+def getCompletion(self, text_value):
+    completionList = set()
+    globalCompletionList = self.getGlobalCompletion()
+    if (globalCompletionList != None):
+        for completionItem in list(globalCompletionList):
+            completionList.add(completionItem)
+    if (text_value != None):
+        objectCompletionList = self.getMethodCompletion(text_value)
+        if (objectCompletionList != None):
+            for completionItem in list(objectCompletionList):
+                completionList.add(completionItem)
+    if (len(completionList) <= 0):
+        print ''
+    else:
+        print json.dumps(filter((lambda x: (not re.match('^__.*', x))), list(completionList)))

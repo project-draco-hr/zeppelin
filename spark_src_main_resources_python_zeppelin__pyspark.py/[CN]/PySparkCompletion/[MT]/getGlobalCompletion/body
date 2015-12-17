@@ -1,0 +1,9 @@
+def getGlobalCompletion(self):
+    objectDefList = []
+    try:
+        for completionItem in list(globals().iterkeys()):
+            objectDefList.append(completionItem)
+    except:
+        return None
+    else:
+        return objectDefList

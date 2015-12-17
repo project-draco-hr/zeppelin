@@ -1,0 +1,13 @@
+def getMethodCompletion(self, text_value):
+    objectDefList = []
+    completion_target = text_value
+    try:
+        if (len(completion_target) <= 0):
+            return None
+        if (text_value[(-1)] == '.'):
+            completion_target = text_value[:(-1)]
+        exec ('%s = %s(%s)' % ('objectDefList', 'dir', completion_target))
+    except:
+        return None
+    else:
+        return objectDefList
