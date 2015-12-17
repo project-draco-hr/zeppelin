@@ -1,0 +1,7 @@
+{
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  return new JsonResponse(Status.OK,"",note).build();
+}
