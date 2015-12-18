@@ -1,0 +1,13 @@
+{
+  if (this.errorStream == null) {
+    try {
+      buildOutputAndErrorStreamData();
+    }
+ catch (    Exception e) {
+      throw new RuntimeException("Couldn't retrieve Error Stream data from process: " + this.checked_process.toString(),e);
+    }
+  }
+  this.outPutStream=this.outPutStream.replace("Pseudo-terminal will not be allocated because stdin is not a terminal.","");
+  this.errorStream=this.errorStream.replace("Pseudo-terminal will not be allocated because stdin is not a terminal.","");
+  return this.errorStream;
+}

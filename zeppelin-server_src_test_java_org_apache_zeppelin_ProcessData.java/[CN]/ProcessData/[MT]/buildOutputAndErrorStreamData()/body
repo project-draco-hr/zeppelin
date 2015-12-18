@@ -1,0 +1,81 @@
+{
+  StringBuilder sbInStream=new StringBuilder();
+  StringBuilder sbErrorStream=new StringBuilder();
+  try {
+    InputStream in=this.checked_process.getInputStream();
+    InputStream inErrors=this.checked_process.getErrorStream();
+    BufferedReader inReader=new BufferedReader(new InputStreamReader(in));
+    BufferedReader inReaderErrors=new BufferedReader(new InputStreamReader(inErrors));
+    LOG.trace("Started retrieving data from streams of attached process: " + this.checked_process);
+    long lastStreamDataTime=System.currentTimeMillis();
+    long unconditionalExitTime=System.currentTimeMillis() + TimeUnit.MILLISECONDS.convert(unconditionalExitDelayMinutes,TimeUnit.MINUTES);
+    final int BUFFER_LEN=300;
+    char charBuffer[]=new char[BUFFER_LEN];
+    boolean outputProduced=true;
+    while (isRunning(this.checked_process) || outputProduced) {
+      outputProduced=false;
+      ZeppelinITUtils.sleep(100,false);
+      StringBuilder tempSB=new StringBuilder();
+      while (inReader.ready()) {
+        tempSB.setLength(0);
+        int readCount=inReader.read(charBuffer,0,BUFFER_LEN);
+        if (readCount < 1) {
+          break;
+        }
+        tempSB.append(charBuffer,0,readCount);
+        sbInStream.append(tempSB);
+        if (tempSB.length() > 0) {
+          outputProduced=true;
+        }
+        lastStreamDataTime=System.currentTimeMillis();
+      }
+      tempSB=new StringBuilder();
+      while (inReaderErrors.ready()) {
+        tempSB.setLength(0);
+        int readCount=inReaderErrors.read(charBuffer,0,BUFFER_LEN);
+        if (readCount < 1) {
+          break;
+        }
+        tempSB.append(charBuffer,0,readCount);
+        sbErrorStream.append(tempSB);
+        if (tempSB.length() > 0) {
+          outputProduced=true;
+          String temp=new String(tempSB);
+          temp=temp.replaceAll("Pseudo-terminal will not be allocated because stdin is not a terminal.","");
+          if (printToConsole) {
+            if (!temp.trim().equals("")) {
+              if (temp.toLowerCase().contains("error") || temp.toLowerCase().contains("failed")) {
+                LOG.warn(temp.trim());
+              }
+ else {
+                LOG.debug(temp.trim());
+              }
+            }
+          }
+        }
+        lastStreamDataTime=System.currentTimeMillis();
+      }
+      if ((System.currentTimeMillis() - lastStreamDataTime > silenceTimeout) || (System.currentTimeMillis() > unconditionalExitTime)) {
+        LOG.info("Conditions: " + (System.currentTimeMillis() - lastStreamDataTime > silenceTimeout) + " "+ (System.currentTimeMillis() > unconditionalExitTime));
+        this.checked_process.destroy();
+        try {
+          if ((System.currentTimeMillis() > unconditionalExitTime))           LOG.error("!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Unconditional exit occured@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!\nsome process hag up for more than " + unconditionalExitDelayMinutes + " minutes.");
+          LOG.error("!##################################!");
+          StringWriter sw=new StringWriter();
+          new Exception("Exited from buildOutputAndErrorStreamData by timeout").printStackTrace(new PrintWriter(sw));
+          String exceptionAsString=sw.toString();
+          LOG.error(exceptionAsString);
+        }
+ catch (        Exception ignore) {
+        }
+        break;
+      }
+    }
+    in.close();
+    inErrors.close();
+  }
+  finally {
+    this.outPutStream=sbInStream.toString();
+    this.errorStream=sbErrorStream.toString();
+  }
+}

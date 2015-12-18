@@ -1,0 +1,29 @@
+{
+switch (type) {
+case OUTPUT:
+{
+      return this.getOutPutStream();
+    }
+case ERROR:
+{
+    return this.getErrorStream();
+  }
+case EXIT_CODE:
+{
+  return this.getExitCodeValue();
+}
+case STREAMS_MERGED:
+{
+return this.getOutPutStream() + "\n" + this.getErrorStream();
+}
+case PROCESS_DATA_OBJECT:
+{
+this.getErrorStream();
+return this;
+}
+default :
+{
+throw new IllegalArgumentException("Data Type " + type + " not supported yet!");
+}
+}
+}

@@ -1,0 +1,7 @@
+{
+  StringBuilder result=new StringBuilder();
+  result.append(String.format("[OUTPUT STREAM]\n%s\n",this.outPutStream));
+  result.append(String.format("[ERROR STREAM]\n%s\n",this.errorStream));
+  result.append(String.format("[EXIT CODE]\n%d",this.returnCode));
+  return result.toString();
+}

@@ -1,0 +1,14 @@
+{
+  try {
+    if (!returnCodeRetrieved) {
+      this.checked_process.waitFor();
+      this.returnCode=this.checked_process.exitValue();
+      this.returnCodeRetrieved=true;
+      this.checked_process.destroy();
+    }
+  }
+ catch (  Exception inter) {
+    throw new RuntimeException("Couldn't finish waiting for process " + this.checked_process + " termination",inter);
+  }
+  return this.returnCode;
+}

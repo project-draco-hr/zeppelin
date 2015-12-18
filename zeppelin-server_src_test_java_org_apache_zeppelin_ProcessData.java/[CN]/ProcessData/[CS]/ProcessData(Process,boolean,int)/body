@@ -1,0 +1,5 @@
+{
+  this.checked_process=connected_process;
+  this.printToConsole=printToConsole;
+  this.silenceTimeout=TimeUnit.MILLISECONDS.convert(silenceTimeoutSec,TimeUnit.SECONDS);
+}

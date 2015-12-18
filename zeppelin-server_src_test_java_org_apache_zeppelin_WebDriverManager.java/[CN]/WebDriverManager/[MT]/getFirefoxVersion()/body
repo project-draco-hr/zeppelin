@@ -1,0 +1,14 @@
+{
+  try {
+    String firefoxVersionCmd="firefox -v";
+    if (System.getProperty("os.name").startsWith("Mac OS")) {
+      firefoxVersionCmd="/Applications/Firefox.app/Contents/MacOS/" + firefoxVersionCmd;
+    }
+    String versionString=(String)CommandExecutor.executeCommandLocalHost(firefoxVersionCmd,false,ProcessData.Types_Of_Data.OUTPUT);
+    return Integer.valueOf(versionString.replaceAll("Mozilla Firefox","").trim().substring(0,2));
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    return -1;
+  }
+}

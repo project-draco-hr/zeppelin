@@ -1,0 +1,79 @@
+{
+  WebDriver driver=null;
+  if (driver == null) {
+    try {
+      FirefoxBinary ffox=new FirefoxBinary();
+      if ("true".equals(System.getenv("TRAVIS"))) {
+        ffox.setEnvironmentProperty("DISPLAY",":99");
+      }
+      int firefoxVersion=WebDriverManager.getFirefoxVersion();
+      LOG.info("Firefox version " + firefoxVersion + " detected");
+      downLoadsDir=FileUtils.getTempDirectory().toString();
+      String tempPath=downLoadsDir + "/firebug/";
+      downloadFireBug(firefoxVersion,tempPath);
+      final String firebugPath=tempPath + "firebug.xpi";
+      final String firepathPath=tempPath + "firepath.xpi";
+      FirefoxProfile profile=new FirefoxProfile();
+      profile.setPreference("browser.download.folderList",2);
+      profile.setPreference("browser.download.dir",downLoadsDir);
+      profile.setPreference("browser.helperApps.alwaysAsk.force",false);
+      profile.setPreference("browser.download.manager.showWhenStarting",false);
+      profile.setPreference("browser.download.manager.showAlertOnComplete",false);
+      profile.setPreference("browser.download.manager.closeWhenDone",true);
+      profile.setPreference("app.update.auto",false);
+      profile.setPreference("app.update.enabled",false);
+      profile.setPreference("dom.max_script_run_time",0);
+      profile.setPreference("dom.max_chrome_script_run_time",0);
+      profile.setPreference("browser.helperApps.neverAsk.saveToDisk","application/x-ustar,application/octet-stream,application/zip,text/csv,text/plain");
+      profile.setPreference("network.proxy.type",0);
+      profile.addExtension(new File(firebugPath));
+      profile.addExtension(new File(firepathPath));
+      driver=new FirefoxDriver(ffox,profile);
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (driver == null) {
+    try {
+      driver=new ChromeDriver();
+    }
+ catch (    Exception e) {
+    }
+  }
+  if (driver == null) {
+    try {
+      driver=new SafariDriver();
+    }
+ catch (    Exception e) {
+    }
+  }
+  String url;
+  if (System.getProperty("url") != null) {
+    url=System.getProperty("url");
+  }
+ else {
+    url="http://localhost:8080";
+  }
+  long start=System.currentTimeMillis();
+  boolean loaded=false;
+  driver.get(url);
+  while (System.currentTimeMillis() - start < 60 * 1000) {
+    try {
+      (new WebDriverWait(driver,5)).until(new ExpectedCondition<Boolean>(){
+        @Override public Boolean apply(        WebDriver d){
+          return d.findElement(By.partialLinkText("Create new note")).isDisplayed();
+        }
+      }
+);
+      loaded=true;
+      break;
+    }
+ catch (    TimeoutException e) {
+      driver.navigate().to(url);
+    }
+  }
+  if (loaded == false) {
+    fail();
+  }
+  return driver;
+}

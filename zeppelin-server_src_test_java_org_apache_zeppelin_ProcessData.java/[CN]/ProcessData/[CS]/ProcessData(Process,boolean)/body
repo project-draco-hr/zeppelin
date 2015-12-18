@@ -1,0 +1,4 @@
+{
+  this.checked_process=connected_process;
+  this.printToConsole=printToConsole;
+}

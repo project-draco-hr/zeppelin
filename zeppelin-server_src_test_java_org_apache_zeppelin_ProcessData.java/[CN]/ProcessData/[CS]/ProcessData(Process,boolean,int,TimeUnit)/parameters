@@ -1,0 +1,4 @@
+Process connected_process
+boolean printToConsole
+int silenceTimeout
+TimeUnit timeUnit

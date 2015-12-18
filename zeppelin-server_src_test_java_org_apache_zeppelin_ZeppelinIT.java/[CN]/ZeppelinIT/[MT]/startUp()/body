@@ -2,5 +2,5 @@
   if (!endToEndTestEnabled()) {
     return;
   }
-  setWebDriver();
+  driver=WebDriverManager.getWebDriver();
 }

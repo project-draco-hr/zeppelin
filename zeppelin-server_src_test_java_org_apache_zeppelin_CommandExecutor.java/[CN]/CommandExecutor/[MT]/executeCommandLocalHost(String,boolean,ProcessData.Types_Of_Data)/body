@@ -1,0 +1,3 @@
+{
+  return executeCommandLocalHost(new String[]{"bash","-c",command},printToConsole,type,DEFAULT_BEHAVIOUR_ON_ERRORS);
+}
