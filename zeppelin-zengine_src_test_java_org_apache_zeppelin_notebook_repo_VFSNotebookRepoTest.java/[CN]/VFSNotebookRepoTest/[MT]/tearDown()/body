@@ -1,3 +1,5 @@
 {
-  FileUtils.deleteDirectory(mainZepDir);
+  if (!FileUtils.deleteQuietly(mainZepDir)) {
+    logger.error("Failed to delete {} ",mainZepDir.getName());
+  }
 }
