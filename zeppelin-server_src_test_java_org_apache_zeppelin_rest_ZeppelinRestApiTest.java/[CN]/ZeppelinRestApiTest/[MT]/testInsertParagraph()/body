@@ -1,0 +1,29 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  String jsonRequest="{\"title\": \"title1\", \"text\": \"text1\"}";
+  PostMethod post=httpPost("/notebook/" + note.getId() + "/paragraph",jsonRequest);
+  LOG.info("testInsertParagraph response\n" + post.getResponseBodyAsString());
+  assertThat("Test insert method:",post,isCreated());
+  post.releaseConnection();
+  Map<String,Object> resp=gson.fromJson(post.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  String newParagraphId=(String)resp.get("body");
+  LOG.info("newParagraphId:=" + newParagraphId);
+  Note retrNote=ZeppelinServer.notebook.getNote(note.getId());
+  Paragraph newParagraph=retrNote.getParagraph(newParagraphId);
+  assertNotNull("Can not find new paragraph by id",newParagraph);
+  assertEquals("title1",newParagraph.getTitle());
+  assertEquals("text1",newParagraph.getText());
+  Paragraph lastParagraph=note.getLastParagraph();
+  assertEquals(newParagraph.getId(),lastParagraph.getId());
+  String jsonRequest2="{\"index\": 0, \"title\": \"title2\", \"text\": \"text2\"}";
+  PostMethod post2=httpPost("/notebook/" + note.getId() + "/paragraph",jsonRequest2);
+  LOG.info("testInsertParagraph response2\n" + post2.getResponseBodyAsString());
+  assertThat("Test insert method:",post2,isCreated());
+  post2.releaseConnection();
+  Paragraph paragraphAtIdx0=note.getParagraphs().get(0);
+  assertEquals("title2",paragraphAtIdx0.getTitle());
+  assertEquals("text2",paragraphAtIdx0.getText());
+  ZeppelinServer.notebook.removeNote(note.getId());
+}

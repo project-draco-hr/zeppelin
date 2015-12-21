@@ -1,0 +1,14 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  Paragraph p=note.addParagraph();
+  p.setTitle("title1");
+  p.setText("text1");
+  note.persist();
+  DeleteMethod delete=httpDelete("/notebook/" + note.getId() + "/paragraph/"+ p.getId());
+  assertThat("Test delete method: ",delete,isAllowed());
+  delete.releaseConnection();
+  Note retrNote=ZeppelinServer.notebook.getNote(note.getId());
+  Paragraph retrParagrah=retrNote.getParagraph(p.getId());
+  assertNull("paragraph should be deleted",retrParagrah);
+  ZeppelinServer.notebook.removeNote(note.getId());
+}

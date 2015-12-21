@@ -1,0 +1,22 @@
+{
+  Note note=ZeppelinServer.notebook.createNote();
+  Paragraph p=note.addParagraph();
+  p.setTitle("title1");
+  p.setText("text1");
+  Paragraph p2=note.addParagraph();
+  p2.setTitle("title2");
+  p2.setText("text2");
+  note.persist();
+  PostMethod post=httpPost("/notebook/" + note.getId() + "/paragraph/"+ p2.getId()+ "/move/"+ 0,"");
+  assertThat("Test post method: ",post,isAllowed());
+  post.releaseConnection();
+  Note retrNote=ZeppelinServer.notebook.getNote(note.getId());
+  Paragraph paragraphAtIdx0=retrNote.getParagraphs().get(0);
+  assertEquals(p2.getId(),paragraphAtIdx0.getId());
+  assertEquals(p2.getTitle(),paragraphAtIdx0.getTitle());
+  assertEquals(p2.getText(),paragraphAtIdx0.getText());
+  PostMethod post2=httpPost("/notebook/" + note.getId() + "/paragraph/"+ p2.getId()+ "/move/"+ 10,"");
+  assertThat("Test post method: ",post2,isBadRequest());
+  post.releaseConnection();
+  ZeppelinServer.notebook.removeNote(note.getId());
+}

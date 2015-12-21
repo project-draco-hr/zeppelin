@@ -1,0 +1,20 @@
+{
+  LOG.info("move paragraph {} {} {}",notebookId,paragraphId,newIndex);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  Paragraph p=note.getParagraph(paragraphId);
+  if (p == null) {
+    return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
+  }
+  try {
+    note.moveParagraph(paragraphId,Integer.parseInt(newIndex),true);
+    note.persist();
+    notebookServer.broadcastNote(note);
+    return new JsonResponse(Status.OK,"").build();
+  }
+ catch (  IndexOutOfBoundsException e) {
+    return new JsonResponse(Status.BAD_REQUEST,"paragraph's new index is out of bound").build();
+  }
+}

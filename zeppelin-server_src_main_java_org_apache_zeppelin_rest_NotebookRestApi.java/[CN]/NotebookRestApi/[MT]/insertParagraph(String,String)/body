@@ -1,0 +1,21 @@
+{
+  LOG.info("insert paragraph {} {}",notebookId,message);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  NewParagraphRequest request=gson.fromJson(message,NewParagraphRequest.class);
+  Paragraph p;
+  Double indexDouble=request.getIndex();
+  if (indexDouble == null) {
+    p=note.addParagraph();
+  }
+ else {
+    p=note.insertParagraph(indexDouble.intValue());
+  }
+  p.setTitle(request.getTitle());
+  p.setText(request.getText());
+  note.persist();
+  notebookServer.broadcastNote(note);
+  return new JsonResponse(Status.CREATED,"",p.getId()).build();
+}

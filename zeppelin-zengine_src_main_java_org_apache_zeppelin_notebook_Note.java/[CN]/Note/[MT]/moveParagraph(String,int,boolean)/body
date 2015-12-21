@@ -1,0 +1,26 @@
+{
+synchronized (paragraphs) {
+    int oldIndex;
+    Paragraph p=null;
+    if (index < 0 || index >= paragraphs.size()) {
+      if (throwWhenIndexIsOutOfBound) {
+        throw new IndexOutOfBoundsException("paragraph size is " + paragraphs.size() + " , index is "+ index);
+      }
+ else {
+        return;
+      }
+    }
+    for (int i=0; i < paragraphs.size(); i++) {
+      if (paragraphs.get(i).getId().equals(paragraphId)) {
+        oldIndex=i;
+        if (oldIndex == index) {
+          return;
+        }
+        p=paragraphs.remove(i);
+      }
+    }
+    if (p != null) {
+      paragraphs.add(index,p);
+    }
+  }
+}

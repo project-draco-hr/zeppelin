@@ -1,0 +1,12 @@
+{
+  LOG.info("get paragraph {} {}",notebookId,paragraphId);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  Paragraph p=note.getParagraph(paragraphId);
+  if (p == null) {
+    return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
+  }
+  return new JsonResponse(Status.OK,"",p).build();
+}

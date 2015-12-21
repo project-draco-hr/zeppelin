@@ -1,0 +1,15 @@
+{
+  LOG.info("delete paragraph {} {}",notebookId,paragraphId);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  Paragraph p=note.getParagraph(paragraphId);
+  if (p == null) {
+    return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
+  }
+  note.removeParagraph(paragraphId);
+  note.persist();
+  notebookServer.broadcastNote(note);
+  return new JsonResponse(Status.OK,"").build();
+}
