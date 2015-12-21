@@ -1,0 +1,21 @@
+{
+  logger.info("run paragraph job {} {} {}",notebookId,paragraphId,message);
+  Note note=notebook.getNote(notebookId);
+  if (note == null) {
+    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+  }
+  Paragraph paragraph=note.getParagraph(paragraphId);
+  if (paragraph == null) {
+    return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
+  }
+  if (!StringUtils.isEmpty(message)) {
+    RunParagraphWithParametersRequest request=gson.fromJson(message,RunParagraphWithParametersRequest.class);
+    Map<String,Object> paramsForUpdating=request.getParams();
+    if (paramsForUpdating != null) {
+      paragraph.settings.getParams().putAll(paramsForUpdating);
+      note.persist();
+    }
+  }
+  note.run(paragraph.getId());
+  return new JsonResponse(Status.OK).build();
+}
