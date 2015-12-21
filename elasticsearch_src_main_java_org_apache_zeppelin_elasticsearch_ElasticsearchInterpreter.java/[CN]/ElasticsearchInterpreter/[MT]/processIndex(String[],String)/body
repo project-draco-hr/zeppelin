@@ -1,0 +1,7 @@
+{
+  if (urlItems.length < 2 || urlItems.length > 3) {
+    return new InterpreterResult(InterpreterResult.Code.ERROR,"Bad URL (it should be /index/type or /index/type/id)");
+  }
+  final IndexResponse response=client.prepareIndex(urlItems[0],urlItems[1],urlItems.length == 2 ? null : urlItems[2]).setSource(data).get();
+  return new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TEXT,response.getId());
+}

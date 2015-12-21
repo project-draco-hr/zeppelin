@@ -1,0 +1,10 @@
+{
+  if (urlItems.length != 3 || StringUtils.isEmpty(urlItems[0]) || StringUtils.isEmpty(urlItems[1]) || StringUtils.isEmpty(urlItems[2])) {
+    return new InterpreterResult(InterpreterResult.Code.ERROR,"Bad URL (it should be /index/type/id)");
+  }
+  final DeleteResponse response=client.prepareDelete(urlItems[0],urlItems[1],urlItems[2]).get();
+  if (response.isFound()) {
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TEXT,response.getId());
+  }
+  return new InterpreterResult(InterpreterResult.Code.ERROR,"Document not found");
+}

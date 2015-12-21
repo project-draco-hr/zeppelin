@@ -1,0 +1,6 @@
+{
+  InterpreterResult res=interpreter.interpret("index /logs { \"date\": \"" + new Date() + "\", \"method\": \"PUT\", \"status\": \"500\" }",null);
+  assertEquals(Code.ERROR,res.code());
+  res=interpreter.interpret("index /logs/http { \"date\": \"2015-12-06T14:54:23.368Z\", \"method\": \"PUT\", \"status\": \"500\" }",null);
+  assertEquals(Code.SUCCESS,res.code());
+}

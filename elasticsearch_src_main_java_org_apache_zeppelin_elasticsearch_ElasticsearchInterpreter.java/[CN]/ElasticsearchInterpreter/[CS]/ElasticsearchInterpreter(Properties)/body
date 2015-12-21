@@ -1,0 +1,7 @@
+{
+  super(property);
+  this.host=getProperty(ELASTICSEARCH_HOST);
+  this.port=Integer.parseInt(getProperty(ELASTICSEARCH_PORT));
+  this.clusterName=getProperty(ELASTICSEARCH_CLUSTER_NAME);
+  this.resultSize=Integer.parseInt(getProperty(ELASTICSEARCH_RESULT_SIZE));
+}

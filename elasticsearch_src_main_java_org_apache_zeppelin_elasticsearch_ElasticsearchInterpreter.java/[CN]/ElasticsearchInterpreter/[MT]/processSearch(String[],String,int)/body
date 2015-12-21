@@ -1,0 +1,7 @@
+{
+  if (urlItems.length > 2) {
+    return new InterpreterResult(InterpreterResult.Code.ERROR,"Bad URL (it should be /index1,index2,.../type1,type2,...)");
+  }
+  final SearchResponse response=searchData(urlItems,data,size);
+  return new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TABLE,buildResponseMessage(response.getHits().getHits()));
+}

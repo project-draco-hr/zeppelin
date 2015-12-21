@@ -1,0 +1,12 @@
+{
+  if (interpreter != null) {
+    interpreter.close();
+  }
+  if (elsClient != null) {
+    elsClient.admin().indices().delete(new DeleteIndexRequest("logs")).actionGet();
+    elsClient.close();
+  }
+  if (elsNode != null) {
+    elsNode.close();
+  }
+}

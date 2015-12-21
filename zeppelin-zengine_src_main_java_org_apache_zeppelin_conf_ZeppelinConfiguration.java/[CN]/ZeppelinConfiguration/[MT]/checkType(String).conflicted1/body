@@ -1,2 +1,3 @@
 {
+  Long.valueOf(value);
 }

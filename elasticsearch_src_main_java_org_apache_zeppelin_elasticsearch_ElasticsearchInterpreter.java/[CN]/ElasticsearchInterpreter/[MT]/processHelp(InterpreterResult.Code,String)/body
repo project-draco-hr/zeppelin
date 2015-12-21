@@ -1,0 +1,8 @@
+{
+  final StringBuffer buffer=new StringBuffer();
+  if (additionalMessage != null) {
+    buffer.append(additionalMessage).append("\n");
+  }
+  buffer.append(HELP).append("\n");
+  return new InterpreterResult(code,InterpreterResult.Type.TEXT,buffer.toString());
+}

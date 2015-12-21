@@ -1,0 +1,14 @@
+{
+  final List<String> suggestions=new ArrayList<>();
+  if (StringUtils.isEmpty(s)) {
+    suggestions.addAll(COMMANDS);
+  }
+ else {
+    for (    String cmd : COMMANDS) {
+      if (cmd.toLowerCase().contains(s)) {
+        suggestions.add(cmd);
+      }
+    }
+  }
+  return suggestions;
+}

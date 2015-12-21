@@ -1,0 +1,11 @@
+{
+  if (urlItems.length != 3 || StringUtils.isEmpty(urlItems[0]) || StringUtils.isEmpty(urlItems[1]) || StringUtils.isEmpty(urlItems[2])) {
+    return new InterpreterResult(InterpreterResult.Code.ERROR,"Bad URL (it should be /index/type/id)");
+  }
+  final GetResponse response=client.prepareGet(urlItems[0],urlItems[1],urlItems[2]).get();
+  if (response.isExists()) {
+    final String json=gson.toJson(response.getSource());
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TEXT,json);
+  }
+  return new InterpreterResult(InterpreterResult.Code.ERROR,"Document not found");
+}

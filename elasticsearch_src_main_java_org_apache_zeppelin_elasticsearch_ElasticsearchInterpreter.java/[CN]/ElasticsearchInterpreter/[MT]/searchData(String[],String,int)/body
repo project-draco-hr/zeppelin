@@ -1,0 +1,22 @@
+{
+  final SearchRequestBuilder reqBuilder=new SearchRequestBuilder(client,SearchAction.INSTANCE);
+  reqBuilder.setIndices();
+  if (urlItems.length >= 1) {
+    reqBuilder.setIndices(StringUtils.split(urlItems[0],","));
+  }
+  if (urlItems.length > 1) {
+    reqBuilder.setTypes(StringUtils.split(urlItems[1],","));
+  }
+  if (!StringUtils.isEmpty(query)) {
+    try {
+      final Map source=gson.fromJson(query,Map.class);
+      reqBuilder.setExtraSource(source);
+    }
+ catch (    JsonParseException e) {
+      reqBuilder.setQuery(QueryBuilders.queryStringQuery(query).analyzeWildcard(true));
+    }
+  }
+  reqBuilder.setSize(size);
+  final SearchResponse response=reqBuilder.get();
+  return response;
+}

@@ -1,0 +1,6 @@
+{
+  InterpreterResult res=interpreter.interpret("get /logs/http/unknown",null);
+  assertEquals(Code.ERROR,res.code());
+  res=interpreter.interpret("get /logs/http/10",null);
+  assertEquals(Code.SUCCESS,res.code());
+}

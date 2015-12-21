@@ -1,0 +1,31 @@
+{
+  if (hits == null || hits.length == 0) {
+    return "";
+  }
+  final List<Map<String,Object>> flattenHits=new LinkedList<>();
+  final Set<String> keys=new TreeSet<>();
+  for (  SearchHit hit : hits) {
+    final String json=hit.getSourceAsString();
+    final Map<String,Object> flattenMap=JsonFlattener.flattenAsMap(json);
+    flattenHits.add(flattenMap);
+    for (    String key : flattenMap.keySet()) {
+      keys.add(key);
+    }
+  }
+  final StringBuffer buffer=new StringBuffer();
+  for (  String key : keys) {
+    buffer.append(key).append('\t');
+  }
+  buffer.replace(buffer.lastIndexOf("\t"),buffer.lastIndexOf("\t") + 1,"\n");
+  for (  Map<String,Object> hit : flattenHits) {
+    for (    String key : keys) {
+      final Object val=hit.get(key);
+      if (val != null) {
+        buffer.append(val);
+      }
+      buffer.append('\t');
+    }
+    buffer.replace(buffer.lastIndexOf("\t"),buffer.lastIndexOf("\t") + 1,"\n");
+  }
+  return buffer.toString();
+}

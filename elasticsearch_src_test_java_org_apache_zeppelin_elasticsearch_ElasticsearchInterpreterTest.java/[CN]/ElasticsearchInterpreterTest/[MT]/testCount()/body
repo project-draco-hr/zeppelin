@@ -1,0 +1,6 @@
+{
+  InterpreterResult res=interpreter.interpret("count /unknown",null);
+  assertEquals(Code.ERROR,res.code());
+  res=interpreter.interpret("count /logs",null);
+  assertEquals("50",res.message());
+}
