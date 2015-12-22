@@ -1,8 +1,8 @@
 {
-  Set<Object> singletons=new HashSet<Object>();
+  Set<Object> singletons=new HashSet<>();
   ZeppelinRestApi root=new ZeppelinRestApi();
   singletons.add(root);
-  NotebookRestApi notebookApi=new NotebookRestApi(notebook,notebookServer);
+  NotebookRestApi notebookApi=new NotebookRestApi(notebook,notebookWsServer);
   singletons.add(notebookApi);
   InterpreterRestApi interpreterApi=new InterpreterRestApi(replFactory);
   singletons.add(interpreterApi);

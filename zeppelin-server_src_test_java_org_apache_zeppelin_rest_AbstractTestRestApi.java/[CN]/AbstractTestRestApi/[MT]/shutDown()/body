@@ -5,7 +5,7 @@
       ZeppelinServer.notebook.getInterpreterFactory().restart(setting);
     }
     LOG.info("Terminating test Zeppelin...");
-    ZeppelinServer.jettyServer.stop();
+    ZeppelinServer.jettyWebServer.stop();
     executor.shutdown();
     long s=System.currentTimeMillis();
     boolean started=true;

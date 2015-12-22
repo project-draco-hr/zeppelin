@@ -1,7 +1,5 @@
 {
   LOG.info("Closed connection to {} : {}. ({}) {}",conn.getRequest().getRemoteAddr(),conn.getRequest().getRemotePort(),code,reason);
   removeConnectionFromAllNote(conn);
-synchronized (connectedSockets) {
-    connectedSockets.remove(conn);
-  }
+  connectedSockets.remove(conn);
 }

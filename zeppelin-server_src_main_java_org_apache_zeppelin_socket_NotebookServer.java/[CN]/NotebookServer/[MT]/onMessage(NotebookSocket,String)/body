@@ -53,7 +53,6 @@ case COMPLETION:
 completion(conn,notebook,messagereceived);
 break;
 case PING:
-pong();
 break;
 case ANGULAR_OBJECT_UPDATED:
 angularObjectUpdated(conn,notebook,messagereceived);

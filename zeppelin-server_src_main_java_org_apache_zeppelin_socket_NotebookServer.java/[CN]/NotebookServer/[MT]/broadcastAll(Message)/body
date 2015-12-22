@@ -1,12 +1,10 @@
 {
-synchronized (connectedSockets) {
-    for (    NotebookSocket conn : connectedSockets) {
-      try {
-        conn.send(serializeMessage(m));
-      }
- catch (      IOException e) {
-        LOG.error("socket error",e);
-      }
+  for (  NotebookSocket conn : connectedSockets) {
+    try {
+      conn.send(serializeMessage(m));
+    }
+ catch (    IOException e) {
+      LOG.error("socket error",e);
     }
   }
 }
