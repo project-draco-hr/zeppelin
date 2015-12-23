@@ -1,0 +1,4 @@
+{
+  List<Map<String,String>> result=notebookIndex.query("anything");
+  assertThat(result).isEmpty();
+}

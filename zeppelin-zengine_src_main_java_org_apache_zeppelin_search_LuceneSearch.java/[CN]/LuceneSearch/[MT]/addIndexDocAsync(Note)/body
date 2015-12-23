@@ -1,0 +1,10 @@
+{
+  indexNoteName(writer,note.getId(),note.getName());
+  for (  Paragraph doc : note.getParagraphs()) {
+    if (doc.getText() == null) {
+      LOG.debug("Skipping empty paragraph");
+      continue;
+    }
+    indexDoc(writer,note.getId(),note.getName(),doc);
+  }
+}

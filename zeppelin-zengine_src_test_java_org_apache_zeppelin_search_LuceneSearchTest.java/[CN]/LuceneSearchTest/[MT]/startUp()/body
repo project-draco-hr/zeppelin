@@ -1,0 +1,3 @@
+{
+  notebookIndex=new LuceneSearch();
+}

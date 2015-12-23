@@ -1,0 +1,24 @@
+{
+  if (null == ramDirectory) {
+    throw new IllegalStateException("Something went wrong on instance creation time, index dir is null");
+  }
+  List<Map<String,String>> result=Collections.emptyList();
+  try (IndexReader indexReader=DirectoryReader.open(ramDirectory)){
+    IndexSearcher indexSearcher=new IndexSearcher(indexReader);
+    Analyzer analyzer=new StandardAnalyzer();
+    QueryParser parser=new QueryParser(SEARCH_FIELD,analyzer);
+    Query query=parser.parse(queryStr);
+    LOG.debug("Searching for: " + query.toString(SEARCH_FIELD));
+    SimpleHTMLFormatter htmlFormatter=new SimpleHTMLFormatter();
+    Highlighter highlighter=new Highlighter(htmlFormatter,new QueryScorer(query));
+    result=doSearch(indexSearcher,query,analyzer,highlighter);
+    indexReader.close();
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to open index dir {}, make sure indexing finished OK",ramDirectory,e);
+  }
+catch (  ParseException e) {
+    LOG.error("Failed to parse query " + queryStr,e);
+  }
+  return result;
+}

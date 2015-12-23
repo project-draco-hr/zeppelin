@@ -1,0 +1,12 @@
+{
+  Note note1=newNoteWithParapgraph("Notebook1","test");
+  Note note2=newNoteWithParapgraphs("Notebook2","not test","not test at all");
+  notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
+  Paragraph p2=note2.getLastParagraph();
+  p2.setText("test indeed");
+  notebookIndex.updateIndexDoc(note2);
+  List<Map<String,String>> results=notebookIndex.query("all");
+  assertThat(results).isEmpty();
+  results=notebookIndex.query("indeed");
+  assertThat(results).isNotEmpty();
+}

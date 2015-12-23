@@ -1,0 +1,9 @@
+{
+  try {
+    addIndexDocAsync(note);
+    writer.commit();
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to add note {} to index",note,e);
+  }
+}

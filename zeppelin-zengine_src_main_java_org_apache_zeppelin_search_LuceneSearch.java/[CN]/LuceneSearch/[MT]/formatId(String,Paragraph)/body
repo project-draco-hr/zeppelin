@@ -1,0 +1,7 @@
+{
+  String id=noteId;
+  if (null != p) {
+    id=Joiner.on('/').join(id,PARAGRAPH,p.getId());
+  }
+  return id;
+}

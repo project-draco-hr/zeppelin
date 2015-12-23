@@ -1,0 +1,3 @@
+{
+  return notebookIndex.query(q);
+}

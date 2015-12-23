@@ -1,0 +1,11 @@
+{
+  Note note1=newNoteWithParapgraph("Notebook1","test");
+  Note note2=newNoteWithParapgraphs("Notebook2","not test","not test at all");
+  notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
+  assertThat(resultForQuery("test").size()).isEqualTo(3);
+  note1.setName("NotebookN");
+  note1.persist();
+  assertThat(resultForQuery("Notebook1")).isEmpty();
+  assertThat(resultForQuery("NotebookN")).isNotEmpty();
+  assertThat(resultForQuery("NotebookN").size()).isEqualTo(1);
+}

@@ -1,3 +1,4 @@
 {
   this.notebookRepo.close();
+  this.notebookIndex.close();
 }

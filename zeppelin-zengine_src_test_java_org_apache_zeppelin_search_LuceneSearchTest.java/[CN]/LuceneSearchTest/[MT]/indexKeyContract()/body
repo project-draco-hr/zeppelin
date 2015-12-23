@@ -1,0 +1,6 @@
+{
+  Note note1=newNoteWithParapgraph("Notebook1","test");
+  notebookIndex.addIndexDoc(note1);
+  String id=resultForQuery("test").get(0).get(LuceneSearch.ID_FIELD);
+  assertThat(Splitter.on("/").split(id)).containsAllOf(note1.getId(),LuceneSearch.PARAGRAPH,note1.getLastParagraph().getId());
+}

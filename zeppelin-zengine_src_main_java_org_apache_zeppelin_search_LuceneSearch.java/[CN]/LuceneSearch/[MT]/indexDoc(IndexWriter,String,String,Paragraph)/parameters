@@ -1,0 +1,4 @@
+IndexWriter w
+String noteId
+String noteName
+Paragraph p

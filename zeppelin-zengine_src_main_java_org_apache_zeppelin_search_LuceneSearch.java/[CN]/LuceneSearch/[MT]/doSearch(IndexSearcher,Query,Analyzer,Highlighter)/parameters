@@ -1,0 +1,4 @@
+IndexSearcher searcher
+Query query
+Analyzer analyzer
+Highlighter highlighter

@@ -1,0 +1,5 @@
+{
+  Note note=new Note(notebookRepoMock,replLoaderMock,null,notebookIndex);
+  note.setName(name);
+  return note;
+}

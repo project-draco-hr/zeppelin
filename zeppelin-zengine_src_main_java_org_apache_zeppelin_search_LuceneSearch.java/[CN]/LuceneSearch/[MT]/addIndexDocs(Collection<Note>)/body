@@ -1,0 +1,23 @@
+{
+  int docsIndexed=0;
+  long start=System.nanoTime();
+  try {
+    for (    Note note : collection) {
+      addIndexDocAsync(note);
+      docsIndexed++;
+    }
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to index all Notebooks",e);
+  }
+ finally {
+    try {
+      writer.commit();
+    }
+ catch (    IOException e) {
+      LOG.error("Failed to save index",e);
+    }
+    long end=System.nanoTime();
+    LOG.info("Indexing {} notebooks took {}ms",docsIndexed,TimeUnit.NANOSECONDS.toMillis(end - start));
+  }
+}

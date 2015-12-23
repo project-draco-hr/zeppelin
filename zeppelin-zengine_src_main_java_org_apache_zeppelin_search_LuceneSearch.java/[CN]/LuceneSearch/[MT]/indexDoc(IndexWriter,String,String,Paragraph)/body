@@ -1,0 +1,5 @@
+{
+  String id=formatId(noteId,p);
+  Document doc=newDocument(id,noteName,p);
+  w.addDocument(doc);
+}

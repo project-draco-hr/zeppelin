@@ -1,0 +1,11 @@
+{
+  ramDirectory=new RAMDirectory();
+  analyzer=new StandardAnalyzer();
+  iwc=new IndexWriterConfig(analyzer);
+  try {
+    writer=new IndexWriter(ramDirectory,iwc);
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to reate new IndexWriter",e);
+  }
+}

@@ -1,5 +1,5 @@
 {
-  logger.info("Create new notebook by JSON {}",message);
+  LOG.info("Create new notebook by JSON {}",message);
   NewNotebookRequest request=gson.fromJson(message,NewNotebookRequest.class);
   Note note=notebook.createNote();
   List<NewParagraphRequest> initialParagraphs=request.getParagraphs();
@@ -19,5 +19,5 @@
   note.persist();
   notebookServer.broadcastNote(note);
   notebookServer.broadcastNoteList();
-  return new JsonResponse(Status.CREATED,"",note.getId()).build();
+  return new JsonResponse<>(Status.CREATED,"",note.getId()).build();
 }

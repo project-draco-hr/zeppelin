@@ -1,0 +1,15 @@
+{
+  Document doc=new Document();
+  Field pathField=new StringField(ID_FIELD,id,Field.Store.YES);
+  doc.add(pathField);
+  doc.add(new StringField("title",noteName,Field.Store.YES));
+  if (null != p) {
+    doc.add(new TextField(SEARCH_FIELD,p.getText(),Field.Store.YES));
+    Date date=p.getDateStarted() != null ? p.getDateStarted() : p.getDateCreated();
+    doc.add(new LongField("modified",date.getTime(),Field.Store.NO));
+  }
+ else {
+    doc.add(new TextField(SEARCH_FIELD,noteName,Field.Store.YES));
+  }
+  return doc;
+}

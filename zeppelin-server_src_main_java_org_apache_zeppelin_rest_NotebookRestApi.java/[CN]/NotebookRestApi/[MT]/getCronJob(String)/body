@@ -1,8 +1,8 @@
 {
-  logger.info("Get cron job note {}",notebookId);
+  LOG.info("Get cron job note {}",notebookId);
   Note note=notebook.getNote(notebookId);
   if (note == null) {
-    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+    return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
   }
-  return new JsonResponse(Status.OK,note.getConfig().get("cron")).build();
+  return new JsonResponse<>(Status.OK,note.getConfig().get("cron")).build();
 }

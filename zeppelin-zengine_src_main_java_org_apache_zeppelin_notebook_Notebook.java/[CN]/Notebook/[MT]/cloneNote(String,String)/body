@@ -13,6 +13,7 @@
   for (  Paragraph p : paragraphs) {
     newNote.addCloneParagraph(p);
   }
+  notebookIndex.addIndexDoc(newNote);
   newNote.persist();
   return newNote;
 }

@@ -1,9 +1,8 @@
 {
-  LOG.info("Constructor starteds");
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   this.schedulerFactory=new SchedulerFactory();
   this.replFactory=new InterpreterFactory(conf,notebookWsServer);
   this.notebookRepo=new NotebookRepoSync(conf);
-  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer);
-  LOG.info("Constructor finished");
+  this.notebookIndex=new LuceneSearch();
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex);
 }

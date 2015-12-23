@@ -1,6 +1,6 @@
 {
   if (info == null) {
-    info=new HashMap<String,Object>();
+    info=new HashMap<>();
   }
   return info;
 }

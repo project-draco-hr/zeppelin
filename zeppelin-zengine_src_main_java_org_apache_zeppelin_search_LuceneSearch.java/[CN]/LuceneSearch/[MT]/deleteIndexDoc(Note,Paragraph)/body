@@ -1,0 +1,3 @@
+{
+  deleteDoc(note,p);
+}

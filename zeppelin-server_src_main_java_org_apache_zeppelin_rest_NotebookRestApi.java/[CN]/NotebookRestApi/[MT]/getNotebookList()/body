@@ -1,4 +1,4 @@
 {
   List<Map<String,String>> notesInfo=notebookServer.generateNotebooksInfo();
-  return new JsonResponse(Status.OK,"",notesInfo).build();
+  return new JsonResponse<>(Status.OK,"",notesInfo).build();
 }

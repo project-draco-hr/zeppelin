@@ -1,9 +1,9 @@
 {
-  logger.info("clone notebook by JSON {}",message);
+  LOG.info("clone notebook by JSON {}",message);
   NewNotebookRequest request=gson.fromJson(message,NewNotebookRequest.class);
   String newNoteName=request.getName();
   Note newNote=notebook.cloneNote(notebookId,newNoteName);
   notebookServer.broadcastNote(newNote);
   notebookServer.broadcastNoteList();
-  return new JsonResponse(Status.CREATED,"",newNote.getId()).build();
+  return new JsonResponse<>(Status.CREATED,"",newNote.getId()).build();
 }

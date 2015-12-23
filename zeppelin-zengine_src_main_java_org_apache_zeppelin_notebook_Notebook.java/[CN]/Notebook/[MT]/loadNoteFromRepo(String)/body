@@ -9,12 +9,13 @@
   if (note == null) {
     return null;
   }
-  NoteInterpreterLoader noteInterpreterLoader=new NoteInterpreterLoader(replFactory);
-  note.setReplLoader(noteInterpreterLoader);
-  noteInterpreterLoader.setNoteId(note.id());
+  note.setIndex(this.notebookIndex);
+  NoteInterpreterLoader replLoader=new NoteInterpreterLoader(replFactory);
+  note.setReplLoader(replLoader);
+  replLoader.setNoteId(note.id());
   note.setJobListenerFactory(jobListenerFactory);
   note.setNotebookRepo(notebookRepo);
-  Map<String,SnapshotAngularObject> angularObjectSnapshot=new HashMap<String,SnapshotAngularObject>();
+  Map<String,SnapshotAngularObject> angularObjectSnapshot=new HashMap<>();
   Date lastUpdatedDate=new Date(0);
   for (  Paragraph p : note.getParagraphs()) {
     p.setNote(note);
@@ -26,10 +27,10 @@
   if (savedObjects != null) {
     for (    String intpGroupName : savedObjects.keySet()) {
       List<AngularObject> objectList=savedObjects.get(intpGroupName);
-      for (      AngularObject savedObject : objectList) {
-        SnapshotAngularObject snapshot=angularObjectSnapshot.get(savedObject.getName());
+      for (      AngularObject object : objectList) {
+        SnapshotAngularObject snapshot=angularObjectSnapshot.get(object.getName());
         if (snapshot == null || snapshot.getLastUpdate().before(lastUpdatedDate)) {
-          angularObjectSnapshot.put(savedObject.getName(),new SnapshotAngularObject(intpGroupName,savedObject,lastUpdatedDate));
+          angularObjectSnapshot.put(object.getName(),new SnapshotAngularObject(intpGroupName,object,lastUpdatedDate));
         }
       }
     }

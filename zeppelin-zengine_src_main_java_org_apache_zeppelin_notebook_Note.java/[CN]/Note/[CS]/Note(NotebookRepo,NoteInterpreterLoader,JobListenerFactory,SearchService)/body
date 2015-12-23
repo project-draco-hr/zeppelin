@@ -1,0 +1,7 @@
+{
+  this.repo=repo;
+  this.replLoader=replLoader;
+  this.jobListenerFactory=jlFactory;
+  this.index=noteIndex;
+  generateId();
+}

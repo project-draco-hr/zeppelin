@@ -17,5 +17,5 @@
       settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterGroup(),false));
     }
   }
-  return new JsonResponse(Status.OK,"",settingList).build();
+  return new JsonResponse<>(Status.OK,"",settingList).build();
 }

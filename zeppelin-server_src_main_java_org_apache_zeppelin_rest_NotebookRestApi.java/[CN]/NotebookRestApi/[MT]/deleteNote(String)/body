@@ -1,5 +1,5 @@
 {
-  logger.info("Delete notebook {} ",notebookId);
+  LOG.info("Delete notebook {} ",notebookId);
   if (!(notebookId.isEmpty())) {
     Note note=notebook.getNote(notebookId);
     if (note != null) {
@@ -7,5 +7,5 @@
     }
   }
   notebookServer.broadcastNoteList();
-  return new JsonResponse(Status.OK,"").build();
+  return new JsonResponse<>(Status.OK,"").build();
 }

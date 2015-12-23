@@ -1,12 +1,12 @@
 {
-  logger.info("Remove cron job note {}",notebookId);
+  LOG.info("Remove cron job note {}",notebookId);
   Note note=notebook.getNote(notebookId);
   if (note == null) {
-    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+    return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
   }
   Map<String,Object> config=note.getConfig();
   config.put("cron",null);
   note.setConfig(config);
   notebook.refreshCron(note.id());
-  return new JsonResponse(Status.OK).build();
+  return new JsonResponse<>(Status.OK).build();
 }

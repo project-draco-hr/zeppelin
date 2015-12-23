@@ -1,8 +1,11 @@
 {
+  Note note;
   if (conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_AUTO_INTERPRETER_BINDING)) {
-    return createNote(replFactory.getDefaultInterpreterSettingList());
+    note=createNote(replFactory.getDefaultInterpreterSettingList());
   }
  else {
-    return createNote(null);
+    note=createNote(null);
   }
+  notebookIndex.addIndexDoc(note);
+  return note;
 }

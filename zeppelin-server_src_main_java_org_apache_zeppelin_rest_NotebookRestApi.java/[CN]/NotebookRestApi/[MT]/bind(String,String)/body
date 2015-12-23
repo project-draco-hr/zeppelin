@@ -3,5 +3,5 @@
   }
 .getType());
   notebook.bindInterpretersToNote(noteId,settingIdList);
-  return new JsonResponse(Status.OK).build();
+  return new JsonResponse<>(Status.OK).build();
 }

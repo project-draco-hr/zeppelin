@@ -1,4 +1,0 @@
-{
-  this.notebook=notebook;
-  this.notebookServer=notebookServer;
-}

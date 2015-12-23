@@ -1,4 +1,5 @@
 {
   snapshotAngularObjectRegistry();
+  index.updateIndexDoc(this);
   repo.save(this);
 }

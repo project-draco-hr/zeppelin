@@ -1,0 +1,17 @@
+{
+  Note note1=newNoteWithParapgraph("Notebook1","test");
+  Note note2=newNoteWithParapgraphs("Notebook2","not test","not test at all");
+  notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
+  assertThat(resultForQuery("test").size()).isEqualTo(3);
+  Paragraph p1=note1.getLastParagraph();
+  p1.setText("no no no");
+  note1.persist();
+  assertThat(resultForQuery("Notebook1").size()).isEqualTo(1);
+  List<Map<String,String>> results=resultForQuery("test");
+  assertThat(results).isNotEmpty();
+  assertThat(results.size()).isEqualTo(2);
+  for (  Map<String,String> result : results) {
+    assertThat(result.get("id").startsWith(note1.getId())).isFalse();
+    ;
+  }
+}

@@ -6,6 +6,6 @@
   p1.setConfig(config);
   p1.setText("hello world");
   note.persist();
-  Notebook notebook2=new Notebook(conf,notebookRepo,schedulerFactory,new InterpreterFactory(conf,null),this);
+  Notebook notebook2=new Notebook(conf,notebookRepo,schedulerFactory,new InterpreterFactory(conf,null),this,null);
   assertEquals(1,notebook2.getAllNotes().size());
 }

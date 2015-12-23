@@ -1,0 +1,7 @@
+{
+  if (p.getText() == null) {
+    LOG.debug("Skipping empty paragraph");
+    return;
+  }
+  updateDoc(note.getId(),note.getName(),p);
+}

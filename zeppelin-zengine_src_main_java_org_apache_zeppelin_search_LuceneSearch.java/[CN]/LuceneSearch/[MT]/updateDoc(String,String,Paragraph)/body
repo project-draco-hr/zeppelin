@@ -1,0 +1,11 @@
+{
+  String id=formatId(noteId,p);
+  Document doc=newDocument(id,noteName,p);
+  try {
+    writer.updateDocument(new Term(ID_FIELD,id),doc);
+    writer.commit();
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to updaet index of notebook {}",noteId,e);
+  }
+}

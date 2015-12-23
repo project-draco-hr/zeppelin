@@ -2,7 +2,7 @@
   Note note=notebook.createNote();
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   Paragraph p1=note.addParagraph();
-  Map config=p1.getConfig();
+  Map<String,Object> config=p1.getConfig();
   config.put("enabled",true);
   p1.setConfig(config);
   p1.setText("%mock1 hello world");

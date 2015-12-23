@@ -1,0 +1,6 @@
+{
+  LOG.info("Searching notebooks for: {}",queryTerm);
+  List<Map<String,String>> notebooksFound=notebookIndex.query(queryTerm);
+  LOG.info("{} notbooks found",notebooksFound.size());
+  return new JsonResponse<>(Status.OK,notebooksFound).build();
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    writer.close();
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to .close() the notebook index",e);
+  }
+}

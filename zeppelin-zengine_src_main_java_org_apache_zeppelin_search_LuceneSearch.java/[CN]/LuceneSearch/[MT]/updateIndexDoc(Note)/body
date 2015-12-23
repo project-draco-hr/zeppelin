@@ -1,0 +1,6 @@
+{
+  updateIndexNoteName(note);
+  for (  Paragraph p : note.getParagraphs()) {
+    updateIndexParagraph(note,p);
+  }
+}

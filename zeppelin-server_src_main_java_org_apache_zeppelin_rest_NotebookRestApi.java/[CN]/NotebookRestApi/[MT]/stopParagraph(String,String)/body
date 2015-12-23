@@ -1,13 +1,13 @@
 {
-  logger.info("stop paragraph job {} ",notebookId);
+  LOG.info("stop paragraph job {} ",notebookId);
   Note note=notebook.getNote(notebookId);
   if (note == null) {
-    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+    return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
   }
   Paragraph p=note.getParagraph(paragraphId);
   if (p == null) {
-    return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
+    return new JsonResponse<>(Status.NOT_FOUND,"paragraph not found.").build();
   }
   p.abort();
-  return new JsonResponse(Status.OK).build();
+  return new JsonResponse<>(Status.OK).build();
 }

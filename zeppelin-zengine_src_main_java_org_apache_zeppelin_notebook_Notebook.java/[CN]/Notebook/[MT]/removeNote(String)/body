@@ -3,6 +3,7 @@
 synchronized (notes) {
     note=notes.remove(id);
   }
+  notebookIndex.deleteIndexDocs(note);
   for (  InterpreterSetting settings : replFactory.get()) {
     AngularObjectRegistry registry=settings.getInterpreterGroup().getAngularObjectRegistry();
     if (registry instanceof RemoteAngularObjectRegistry) {

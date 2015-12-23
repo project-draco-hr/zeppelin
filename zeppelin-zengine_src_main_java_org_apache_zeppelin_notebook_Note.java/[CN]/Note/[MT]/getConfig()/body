@@ -1,6 +1,6 @@
 {
   if (config == null) {
-    config=new HashMap<String,Object>();
+    config=new HashMap<>();
   }
   return config;
 }

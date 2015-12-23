@@ -1,0 +1,7 @@
+{
+  Note note1=newNote(noteName);
+  for (  String parText : parTexts) {
+    addParagraphWithText(note1,parText);
+  }
+  return note1;
+}

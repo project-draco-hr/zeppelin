@@ -1,0 +1,8 @@
+{
+  LOG.debug("Indexing Notebook {}, '{}'",noteId,noteName);
+  if (null == noteName || noteName.isEmpty()) {
+    LOG.debug("Skipping empty notebook name");
+    return;
+  }
+  indexDoc(w,noteId,noteName,null);
+}

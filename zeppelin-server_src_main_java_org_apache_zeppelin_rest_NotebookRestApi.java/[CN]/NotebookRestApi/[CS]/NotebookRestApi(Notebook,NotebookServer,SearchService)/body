@@ -1,0 +1,5 @@
+{
+  this.notebook=notebook;
+  this.notebookServer=notebookServer;
+  this.notebookIndex=search;
+}
