@@ -1,0 +1,21 @@
+{
+  final Aggregation agg=aggregations.asList().get(0);
+  InterpreterResult.Type resType=InterpreterResult.Type.TEXT;
+  String resMsg="";
+  if (agg instanceof InternalMetricsAggregation) {
+    resMsg=XContentHelper.toString((InternalMetricsAggregation)agg).toString();
+  }
+ else   if (agg instanceof InternalSingleBucketAggregation) {
+    resMsg=XContentHelper.toString((InternalSingleBucketAggregation)agg).toString();
+  }
+ else   if (agg instanceof InternalMultiBucketAggregation) {
+    final StringBuffer buffer=new StringBuffer("key\tdoc_count");
+    final InternalMultiBucketAggregation multiBucketAgg=(InternalMultiBucketAggregation)agg;
+    for (    MultiBucketsAggregation.Bucket bucket : multiBucketAgg.getBuckets()) {
+      buffer.append("\n").append(bucket.getKeyAsString()).append("\t").append(bucket.getDocCount());
+    }
+    resType=InterpreterResult.Type.TABLE;
+    resMsg=buffer.toString();
+  }
+  return new InterpreterResult(InterpreterResult.Code.SUCCESS,resType,resMsg);
+}

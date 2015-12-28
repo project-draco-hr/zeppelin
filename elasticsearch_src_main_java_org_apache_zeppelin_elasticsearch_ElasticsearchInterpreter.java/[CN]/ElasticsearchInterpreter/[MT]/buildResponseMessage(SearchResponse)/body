@@ -1,0 +1,7 @@
+{
+  final Aggregations aggregations=response.getAggregations();
+  if (aggregations != null && aggregations.asList().size() > 0) {
+    return buildAggResponseMessage(aggregations);
+  }
+  return new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TABLE,buildSearchHitsResponseMessage(response.getHits().getHits()));
+}
