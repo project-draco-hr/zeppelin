@@ -3,24 +3,15 @@
   Client client=null;
   try {
     client=interpreterProcess.getClient();
+    client.close(className);
   }
  catch (  Exception e1) {
     throw new InterpreterException(e1);
   }
-  try {
-    client.close(className);
-  }
- catch (  TException e) {
-    throw new InterpreterException(e);
-  }
  finally {
-    interpreterProcess.releaseClient(client);
-  }
-  int r=interpreterProcess.dereference();
-  if (r == 0) {
-synchronized (interpreterGroupReference) {
-      InterpreterGroup intpGroup=getInterpreterGroup();
-      interpreterGroupReference.remove(getInterpreterGroupKey(intpGroup));
+    if (client != null) {
+      interpreterProcess.releaseClient(client);
     }
+    getInterpreterProcess().dereference();
   }
 }

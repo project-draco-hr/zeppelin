@@ -17,6 +17,4 @@
   assertTrue(end - start >= 1000);
   intpA.close();
   intpB.close();
-  RemoteInterpreterProcess process=intpA.getInterpreterProcess();
-  assertNull(process);
 }

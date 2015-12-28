@@ -2,15 +2,7 @@
   if (initialized == true) {
     return;
   }
-  RemoteInterpreterProcess interpreterProcess=null;
-synchronized (interpreterGroupReference) {
-    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
-      interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
-    }
- else {
-      throw new InterpreterException("Unexpected error");
-    }
-  }
+  RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   int rc=interpreterProcess.reference(getInterpreterGroup());
 synchronized (interpreterProcess) {
     if (rc == 1) {

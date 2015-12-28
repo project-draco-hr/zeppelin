@@ -1,16 +1,13 @@
 {
-synchronized (interpreterGroupReference) {
-    if (interpreterGroupReference.containsKey(getInterpreterGroupKey(getInterpreterGroup()))) {
-      RemoteInterpreterProcess interpreterProcess=interpreterGroupReference.get(getInterpreterGroupKey(getInterpreterGroup()));
-      try {
-        return interpreterProcess;
-      }
- catch (      Exception e) {
-        throw new InterpreterException(e);
-      }
+  InterpreterGroup intpGroup=getInterpreterGroup();
+  if (intpGroup == null) {
+    return null;
+  }
+synchronized (intpGroup) {
+    if (intpGroup.getRemoteInterpreterProcess() == null) {
+      RemoteInterpreterProcess remoteProcess=new RemoteInterpreterProcess(interpreterRunner,interpreterPath,env,connectTimeout);
+      intpGroup.setRemoteInterpreterProcess(remoteProcess);
     }
- else {
-      return null;
-    }
+    return intpGroup.getRemoteInterpreterProcess();
   }
 }

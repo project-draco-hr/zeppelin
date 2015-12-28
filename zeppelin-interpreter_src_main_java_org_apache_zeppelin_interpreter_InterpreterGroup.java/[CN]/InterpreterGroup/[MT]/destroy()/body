@@ -19,4 +19,9 @@
       logger.error("Can't close interpreter",e);
     }
   }
+  if (remoteInterpreterProcess != null) {
+    while (remoteInterpreterProcess.referenceCount() > 0) {
+      remoteInterpreterProcess.dereference();
+    }
+  }
 }

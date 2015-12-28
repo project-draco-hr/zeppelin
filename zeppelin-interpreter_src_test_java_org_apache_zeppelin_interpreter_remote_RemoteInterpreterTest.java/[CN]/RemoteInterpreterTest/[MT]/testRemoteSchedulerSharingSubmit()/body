@@ -49,6 +49,4 @@
   assertEquals("1000",((InterpreterResult)jobB.getReturn()).message());
   intpA.close();
   intpB.close();
-  RemoteInterpreterProcess process=intpA.getInterpreterProcess();
-  assertNull(process);
 }
