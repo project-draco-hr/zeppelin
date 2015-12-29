@@ -1,4 +1,4 @@
 {
-  List<Map<String,String>> notesInfo=generateNotebooksInfo(false);
+  List<Map<String,String>> notesInfo=generateNotebooksInfo(true);
   broadcastAll(new Message(OP.NOTES_INFO).put("notes",notesInfo));
 }

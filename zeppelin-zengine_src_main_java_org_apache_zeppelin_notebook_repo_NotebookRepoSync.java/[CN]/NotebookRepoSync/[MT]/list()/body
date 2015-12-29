@@ -1,6 +1,3 @@
 {
-  if (config.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE) && getRepoCount() > 1) {
-    sync(0,1);
-  }
   return getRepo(0).list();
 }

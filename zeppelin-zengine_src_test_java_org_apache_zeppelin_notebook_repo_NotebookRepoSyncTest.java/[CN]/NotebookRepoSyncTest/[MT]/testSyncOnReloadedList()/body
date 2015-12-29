@@ -12,10 +12,7 @@
   }
   assertEquals(0,notebookRepoSync.list(0).size());
   assertEquals(1,notebookRepoSync.list(1).size());
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"false");
-  assertEquals(0,notebookRepoSync.list().size());
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"true");
-  assertEquals(1,notebookRepoSync.list().size());
+  notebookSync.reloadAllNotes();
   assertEquals(1,notebookRepoSync.list(0).size());
   assertEquals(1,notebookRepoSync.list(1).size());
 }

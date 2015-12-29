@@ -3,6 +3,14 @@
   ZeppelinConfiguration conf=notebook.getConf();
   String homescreenNotebookId=conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_HOMESCREEN);
   boolean hideHomeScreenNotebookFromList=conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_HOMESCREEN_HIDE);
+  if (needsReload) {
+    try {
+      notebook.reloadAllNotes();
+    }
+ catch (    IOException e) {
+      LOG.error("Fail to reload notes from repository");
+    }
+  }
   List<Note> notes=notebook.getAllNotes();
   List<Map<String,String>> notesInfo=new LinkedList<>();
   for (  Note note : notes) {

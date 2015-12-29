@@ -7,21 +7,19 @@
  catch (  IOException e) {
     e.printStackTrace();
   }
-  Note copiedNote=notebookRepo.get("2A94M5J1Z");
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"false");
   List<Note> notes=notebook.getAllNotes();
   assertEquals(notes.size(),0);
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"true");
+  Note copiedNote=notebookRepo.get("2A94M5J1Z");
+  notebook.reloadAllNotes();
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),1);
   assertEquals(notes.get(0).id(),copiedNote.id());
   assertEquals(notes.get(0).getName(),copiedNote.getName());
   assertEquals(notes.get(0).getParagraphs(),copiedNote.getParagraphs());
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"false");
   FileUtils.deleteDirectory(destDir);
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),1);
-  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_RELOAD_FROM_STORAGE.getVarName(),"true");
+  notebook.reloadAllNotes();
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),0);
 }
