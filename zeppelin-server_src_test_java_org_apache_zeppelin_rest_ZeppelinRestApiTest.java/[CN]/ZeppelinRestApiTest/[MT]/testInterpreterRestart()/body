@@ -13,7 +13,9 @@
   assertEquals("<p>markdown</p>\n",p.getResult().message());
   for (  InterpreterSetting setting : note.getNoteReplLoader().getInterpreterSettings()) {
     if (setting.getName().equals("md")) {
-      ZeppelinServer.notebook.getInterpreterFactory().restart(setting.id());
+      PutMethod put=httpPut("/interpreter/setting/restart/" + setting.id(),"");
+      assertThat("test interpreter restart:",put,isAllowed());
+      put.releaseConnection();
       break;
     }
   }
