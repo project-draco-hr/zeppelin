@@ -10,6 +10,6 @@
   }
   note.persist();
   addConnectionToNote(note.id(),(NotebookSocket)conn);
-  broadcastNote(note);
+  conn.send(serializeMessage(new Message(OP.NEW_NOTE).put("note",note)));
   broadcastNoteList();
 }

@@ -3,6 +3,6 @@
   String name=(String)fromMessage.get("name");
   Note newNote=notebook.cloneNote(noteId,name);
   addConnectionToNote(newNote.id(),(NotebookSocket)conn);
-  broadcastNote(newNote);
+  conn.send(serializeMessage(new Message(OP.NEW_NOTE).put("note",newNote)));
   broadcastNoteList();
 }
