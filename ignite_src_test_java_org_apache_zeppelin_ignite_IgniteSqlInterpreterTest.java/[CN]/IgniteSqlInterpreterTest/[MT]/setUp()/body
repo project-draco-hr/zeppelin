@@ -6,6 +6,7 @@
   IgniteConfiguration cfg=new IgniteConfiguration();
   cfg.setDiscoverySpi(discoSpi);
   cfg.setPeerClassLoadingEnabled(true);
+  cfg.setMarshaller(new OptimizedMarshaller());
   cfg.setGridName("test");
   ignite=Ignition.start(cfg);
   Properties props=new Properties();
