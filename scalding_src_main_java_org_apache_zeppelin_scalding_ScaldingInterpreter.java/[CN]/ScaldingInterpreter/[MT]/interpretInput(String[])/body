@@ -1,0 +1,47 @@
+{
+  String[] linesToRun=new String[lines.length + 1];
+  for (int i=0; i < lines.length; i++) {
+    linesToRun[i]=lines[i];
+  }
+  linesToRun[lines.length]="print(\"\")";
+  Console.setOut((java.io.PrintStream)binder.get("out"));
+  out.reset();
+  Code r=null;
+  String incomplete="";
+  for (int l=0; l < linesToRun.length; l++) {
+    String s=linesToRun[l];
+    if (l + 1 < linesToRun.length) {
+      String nextLine=linesToRun[l + 1].trim();
+      if (nextLine.startsWith(".") && !nextLine.startsWith("..") && !nextLine.startsWith("./")) {
+        incomplete+=s + "\n";
+        continue;
+      }
+    }
+    scala.tools.nsc.interpreter.Results.Result res=null;
+    try {
+      res=interpreter.intp().interpret(incomplete + s);
+    }
+ catch (    Exception e) {
+      logger.error("Interpreter exception: ",e);
+      return new InterpreterResult(Code.ERROR,e.getMessage());
+    }
+    r=getResultCode(res);
+    if (r == Code.ERROR) {
+      Console.flush();
+      return new InterpreterResult(r,out.toString());
+    }
+ else     if (r == Code.INCOMPLETE) {
+      incomplete+=s + "\n";
+    }
+ else {
+      incomplete="";
+    }
+  }
+  if (r == Code.INCOMPLETE) {
+    return new InterpreterResult(r,"Incomplete expression");
+  }
+ else {
+    Console.flush();
+    return new InterpreterResult(r,out.toString());
+  }
+}

@@ -1,0 +1,7 @@
+{
+  logger.info("Running Scalding command '" + cmd + "'");
+  if (cmd == null || cmd.trim().length() == 0) {
+    return new InterpreterResult(Code.SUCCESS);
+  }
+  return interpret(cmd.split("\n"),contextInterpreter);
+}

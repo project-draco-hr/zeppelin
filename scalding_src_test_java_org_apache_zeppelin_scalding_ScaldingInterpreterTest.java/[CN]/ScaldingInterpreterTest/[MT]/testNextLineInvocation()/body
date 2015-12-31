@@ -1,0 +1,3 @@
+{
+  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret("\"123\"\n.toInt",context).code());
+}

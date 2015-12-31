@@ -1,0 +1,16 @@
+{
+  List<File> paths=new LinkedList<File>();
+  if (cl == null) {
+    return paths;
+  }
+  if (cl instanceof URLClassLoader) {
+    URLClassLoader ucl=(URLClassLoader)cl;
+    URL[] urls=ucl.getURLs();
+    if (urls != null) {
+      for (      URL url : urls) {
+        paths.add(new File(url.getFile()));
+      }
+    }
+  }
+  return paths;
+}

@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=repl.interpret("def category(min: Int) = {" + "    if (0 <= value) \"error\"" + "}",context);
+  assertEquals(Code.ERROR,result.code());
+}

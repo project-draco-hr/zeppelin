@@ -1,0 +1,4 @@
+{
+  delete(tmpDir);
+  repl.close();
+}

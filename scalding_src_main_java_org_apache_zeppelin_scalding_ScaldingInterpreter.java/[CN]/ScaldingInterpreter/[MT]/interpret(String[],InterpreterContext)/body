@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    InterpreterResult r=interpretInput(lines);
+    return r;
+  }
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret("case class Sale(state: String, name: String, sale: Int)\n" + "val salesList = List(Sale(\"CA\", \"A\", 60), Sale(\"CA\", \"A\", 20), Sale(\"VA\", \"B\", 15))\n" + "val salesPipe = TypedPipe.from(salesList)\n"+ "val results = salesPipe.map{x => (1, Set(x.state), x.sale)}.\n"+ "    groupAll.sum.values.map{ case(count, set, sum) => (count, set.size, sum) }\n"+ "results.dump",context).code());
+}
