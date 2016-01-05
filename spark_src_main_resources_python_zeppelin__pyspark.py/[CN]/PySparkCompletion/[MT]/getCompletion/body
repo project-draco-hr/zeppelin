@@ -12,4 +12,4 @@ def getCompletion(self, text_value):
     if (len(completionList) <= 0):
         print ''
     else:
-        print json.dumps(filter((lambda x: (not re.match('^__.*', x))), list(completionList)))
+        print json.dumps(list(filter((lambda x: (not re.match('^__.*', x))), list(completionList))))

@@ -1,13 +1,15 @@
 def getMethodCompletion(self, text_value):
-    objectDefList = []
+    execResult = locals()
+    if (text_value == None):
+        return None
     completion_target = text_value
     try:
         if (len(completion_target) <= 0):
             return None
         if (text_value[(-1)] == '.'):
             completion_target = text_value[:(-1)]
-        exec ('%s = %s(%s)' % ('objectDefList', 'dir', completion_target))
+        exec '{} = dir({})'.format('objectDefList', completion_target) in globals(), execResult
     except:
         return None
     else:
-        return objectDefList
+        return list(execResult['objectDefList'])
