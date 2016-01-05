@@ -6,6 +6,7 @@
         new JsonParser().parse(body);
       }
  catch (      JsonParseException e) {
+        LOG.error("Exception in AbstractTestRestApi while matchesSafely ",e);
         isValid=false;
       }
       return isValid;

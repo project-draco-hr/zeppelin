@@ -4,6 +4,7 @@
     html=md.process(st);
   }
  catch (  IOException|java.lang.RuntimeException e) {
+    LOGGER.error("Exception in Markdown while interpret ",e);
     return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
   }
   return new InterpreterResult(Code.SUCCESS,"%html " + html);

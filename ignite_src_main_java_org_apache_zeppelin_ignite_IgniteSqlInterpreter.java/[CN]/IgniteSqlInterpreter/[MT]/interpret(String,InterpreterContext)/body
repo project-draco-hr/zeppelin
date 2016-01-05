@@ -26,6 +26,7 @@
     }
    }
  catch (  Exception e) {
+    logger.error("Exception in IgniteSqlInterpreter while InterpreterResult interpret: ",e);
     return IgniteInterpreterUtils.buildErrorResult(e);
   }
  finally {

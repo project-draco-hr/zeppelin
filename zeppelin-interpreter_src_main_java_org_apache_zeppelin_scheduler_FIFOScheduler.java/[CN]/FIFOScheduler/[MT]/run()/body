@@ -7,6 +7,7 @@ synchronized (queue) {
             queue.wait(500);
           }
  catch (          InterruptedException e) {
+            LOGGER.error("Exception in FIFOScheduler while run queue.wait",e);
           }
           continue;
         }

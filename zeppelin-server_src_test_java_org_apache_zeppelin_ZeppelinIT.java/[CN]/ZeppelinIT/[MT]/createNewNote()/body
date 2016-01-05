@@ -14,5 +14,6 @@
     Thread.sleep(500);
   }
  catch (  InterruptedException e) {
+    LOG.error("Exception in ZeppelinIT while createNewNote Thread.sleep",e);
   }
 }

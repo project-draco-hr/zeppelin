@@ -4,6 +4,7 @@
     client=getClient();
   }
  catch (  NullPointerException e) {
+    logger.info("NullPointerException in RemoteInterpreterProcess while " + "updateRemoteAngularObject getClient, remote process not started",e);
     return;
   }
 catch (  Exception e) {

@@ -7,7 +7,7 @@
     }
   }
  catch (  URISyntaxException e) {
-    e.printStackTrace();
+    LOGGER.error("Exception in WebDriverManager while getWebDriver ",e);
   }
   if (((HttpServletRequest)request).getMethod().equals("OPTIONS")) {
     HttpServletResponse resp=((HttpServletResponse)response);

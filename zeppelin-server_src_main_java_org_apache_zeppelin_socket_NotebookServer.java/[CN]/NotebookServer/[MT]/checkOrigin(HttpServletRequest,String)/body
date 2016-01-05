@@ -3,10 +3,10 @@
     return SecurityUtils.isValidOrigin(origin,ZeppelinConfiguration.create());
   }
  catch (  UnknownHostException e) {
-    e.printStackTrace();
+    LOG.error(e.toString(),e);
   }
 catch (  URISyntaxException e) {
-    e.printStackTrace();
+    LOG.error(e.toString(),e);
   }
   return false;
 }

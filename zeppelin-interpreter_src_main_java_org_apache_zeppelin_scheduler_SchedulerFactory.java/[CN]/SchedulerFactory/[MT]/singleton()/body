@@ -6,7 +6,7 @@ synchronized (singletonLock) {
           singleton=new SchedulerFactory();
         }
  catch (        Exception e) {
-          e.printStackTrace();
+          logger.error(e.toString(),e);
         }
       }
     }

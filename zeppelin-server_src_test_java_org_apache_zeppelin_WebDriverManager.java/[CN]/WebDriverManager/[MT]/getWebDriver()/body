@@ -31,6 +31,7 @@
       driver=new FirefoxDriver(ffox,profile);
     }
  catch (    Exception e) {
+      LOG.error("Exception in WebDriverManager while FireFox Driver ",e);
     }
   }
   if (driver == null) {
@@ -38,6 +39,7 @@
       driver=new ChromeDriver();
     }
  catch (    Exception e) {
+      LOG.error("Exception in WebDriverManager while ChromeDriver ",e);
     }
   }
   if (driver == null) {
@@ -45,6 +47,7 @@
       driver=new SafariDriver();
     }
  catch (    Exception e) {
+      LOG.error("Exception in WebDriverManager while SafariDriver ",e);
     }
   }
   String url;
@@ -69,6 +72,7 @@
       break;
     }
  catch (    TimeoutException e) {
+      LOG.info("Exception in WebDriverManager while WebDriverWait ",e);
       driver.navigate().to(url);
     }
   }

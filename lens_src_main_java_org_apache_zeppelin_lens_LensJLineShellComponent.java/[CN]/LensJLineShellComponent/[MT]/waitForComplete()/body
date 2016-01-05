@@ -3,6 +3,6 @@
     shellThread.join();
   }
  catch (  InterruptedException e) {
-    e.printStackTrace();
+    LOGGER.error(e.toString(),e);
   }
 }

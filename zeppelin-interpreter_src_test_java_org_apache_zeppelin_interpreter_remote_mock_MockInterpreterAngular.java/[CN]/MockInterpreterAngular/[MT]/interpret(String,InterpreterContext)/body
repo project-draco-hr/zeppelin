@@ -29,6 +29,7 @@
     Thread.sleep(500);
   }
  catch (  InterruptedException e) {
+    logger.error("Exception in MockInterpreterAngular while interpret Thread.sleep",e);
   }
   String msg=registry.getAll(context.getNoteId()).size() + " " + Integer.toString(numWatch.get());
   return new InterpreterResult(Code.SUCCESS,msg);

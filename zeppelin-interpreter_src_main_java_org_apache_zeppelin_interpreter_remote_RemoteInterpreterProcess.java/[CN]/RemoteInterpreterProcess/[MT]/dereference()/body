@@ -10,6 +10,7 @@ synchronized (referenceCount) {
         client.shutdown();
       }
  catch (      Exception e) {
+        logger.info("Exception in RemoteInterpreterProcess while synchronized dereference, can " + "safely ignore exception while client.shutdown() may terminates remote process",e);
       }
  finally {
         if (client != null) {
@@ -25,6 +26,7 @@ synchronized (referenceCount) {
             Thread.sleep(500);
           }
  catch (          InterruptedException e) {
+            logger.error("Exception in RemoteInterpreterProcess while synchronized dereference " + "Thread.sleep",e);
           }
         }
  else {

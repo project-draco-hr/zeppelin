@@ -4,6 +4,7 @@
     archive=downloadCssAndImages(getWebClient(),(HtmlPage)getCurrentWindow().getEnclosedPage());
   }
  catch (  Exception e) {
+    LOGGER.error("Exception in ScreenCaptureHtmlUnitDriver while getScreenshotAs ",e);
   }
   if (target.equals(OutputType.BASE64)) {
     return target.convertFromBase64Png(new Base64Encoder().encode(archive));

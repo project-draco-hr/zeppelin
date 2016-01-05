@@ -3,7 +3,7 @@
     return InetAddress.getLocalHost().getHostName();
   }
  catch (  UnknownHostException e) {
-    e.printStackTrace();
+    LOG.error("Exception in WebDriverManager while getWebDriver ",e);
     return "localhost";
   }
 }

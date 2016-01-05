@@ -8,6 +8,7 @@
       Thread.sleep(300);
     }
  catch (    InterruptedException e) {
+      logger.info("Exception in RemoteInterpreterServer while shutdown, Thread.sleep",e);
     }
   }
   if (server.isServing()) {

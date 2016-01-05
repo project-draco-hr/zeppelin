@@ -12,6 +12,7 @@
     depc.fetch();
   }
  catch (  MalformedURLException|DependencyResolutionException|ArtifactResolutionException e) {
+    LOGGER.error("Exception in DepInterpreter while interpret ",e);
     return new InterpreterResult(Code.ERROR,e.toString());
   }
   if (code == Code.INCOMPLETE) {

@@ -6,6 +6,7 @@
     note=notebookServer.importNote(null,notebook,messageReceived);
   }
  catch (  NullPointerException e) {
+    LOG.error("Exception in NotebookServerTest while testImportNotebook, failed nothing to " + "worry ",e);
   }
   assertNotEquals(null,notebook.getNote(note.getId()));
   assertEquals("Test Zeppelin notebook import",notebook.getNote(note.getId()).getName());

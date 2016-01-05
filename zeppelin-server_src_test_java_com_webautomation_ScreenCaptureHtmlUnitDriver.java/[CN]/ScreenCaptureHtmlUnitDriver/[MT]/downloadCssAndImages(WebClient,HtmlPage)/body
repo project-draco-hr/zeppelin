@@ -8,6 +8,7 @@
     webClient.getPage(window,new WebRequest(page.getUrl()));
   }
  catch (  Exception e) {
+    LOGGER.error("Exception in ScreenCaptureHtmlUnitDriver while downloadCssAndImages ",e);
     window=webClient.openWindow(page.getUrl(),page.getUrl().toString() + "_screenshot");
   }
   String xPathExpression="//*[name() = 'img' or name() = 'link' and (@type = 'text/css' or @type = 'image/x-icon') or  @type = 'text/javascript']";
@@ -36,6 +37,7 @@
       }
     }
  catch (    Exception e) {
+      LOGGER.error("Exception in ScreenCaptureHtmlUnitDriver while resultList.iterator ",e);
     }
   }
   String pagesrc=replaceRemoteUrlsWithLocal(page.getWebResponse().getContentAsString(),urlMapping);

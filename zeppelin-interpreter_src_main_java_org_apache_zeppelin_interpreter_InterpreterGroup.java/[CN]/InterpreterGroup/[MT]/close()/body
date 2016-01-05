@@ -15,8 +15,7 @@
       t.join();
     }
  catch (    InterruptedException e) {
-      Logger logger=Logger.getLogger(InterpreterGroup.class);
-      logger.error("Can't close interpreter",e);
+      LOGGER.error("Can't close interpreter",e);
     }
   }
 }

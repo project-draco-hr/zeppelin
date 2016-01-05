@@ -18,6 +18,7 @@
       return;
     }
  catch (    Exception e) {
+      logger.info("Exception in RemoteInterpreterServer while angularObjectUpdate, no luck",e);
     }
   }
   if (value == null) {
@@ -27,6 +28,7 @@
 .getType());
     }
  catch (    Exception e) {
+      logger.info("Exception in RemoteInterpreterServer while angularObjectUpdate, no lock",e);
     }
   }
   if (value == null) {

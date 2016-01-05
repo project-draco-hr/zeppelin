@@ -16,6 +16,7 @@
     fail("Exception not catched");
   }
  catch (  Exception e) {
+    LOGGER.info("Exception in SparkSqlInterpreterTest while test ",e);
   }
   assertEquals(InterpreterResult.Code.SUCCESS,sql.interpret("select case when name==\"aa\" then name else name end from test",context).code());
 }

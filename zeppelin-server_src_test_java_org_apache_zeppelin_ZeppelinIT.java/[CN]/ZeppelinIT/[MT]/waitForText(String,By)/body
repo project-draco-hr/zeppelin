@@ -4,6 +4,7 @@
     return txt.equals(element.getText());
   }
  catch (  TimeoutException e) {
+    LOG.error("Exception in ZeppelinIT while waitForText ",e);
     return false;
   }
 }

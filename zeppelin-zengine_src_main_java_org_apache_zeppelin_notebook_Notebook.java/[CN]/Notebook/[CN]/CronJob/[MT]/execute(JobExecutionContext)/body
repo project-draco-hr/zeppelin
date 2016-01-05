@@ -7,7 +7,7 @@
       Thread.sleep(1000);
     }
  catch (    InterruptedException e) {
-      e.printStackTrace();
+      logger.error(e.toString(),e);
     }
   }
   boolean releaseResource=false;
@@ -15,7 +15,7 @@
     releaseResource=(boolean)note.getConfig().get("releaseresource");
   }
  catch (  java.lang.ClassCastException e) {
-    e.printStackTrace();
+    logger.error(e.toString(),e);
   }
   if (releaseResource) {
     for (    InterpreterSetting setting : note.getNoteReplLoader().getInterpreterSettings()) {

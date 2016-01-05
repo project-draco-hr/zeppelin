@@ -4,6 +4,7 @@
     return columnName.getBytes("UTF-8");
   }
  catch (  UnsupportedEncodingException e) {
+    LOGGER.error("Exception in TesterResultSet while getBytes, Impossible. JVMs are required to" + " support UTF-8",e);
     return null;
   }
 }

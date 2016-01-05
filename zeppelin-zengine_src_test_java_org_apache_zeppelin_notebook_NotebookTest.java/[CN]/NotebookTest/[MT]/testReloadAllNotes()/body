@@ -5,7 +5,7 @@
     FileUtils.copyDirectory(srcDir,destDir);
   }
  catch (  IOException e) {
-    e.printStackTrace();
+    logger.error(e.toString(),e);
   }
   List<Note> notes=notebook.getAllNotes();
   assertEquals(notes.size(),0);

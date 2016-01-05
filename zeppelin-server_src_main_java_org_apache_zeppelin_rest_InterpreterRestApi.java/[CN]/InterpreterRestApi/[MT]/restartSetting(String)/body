@@ -4,6 +4,7 @@
     interpreterFactory.restart(settingId);
   }
  catch (  InterpreterException e) {
+    logger.error("Exception in InterpreterRestApi while restartSetting ",e);
     return new JsonResponse(Status.NOT_FOUND,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
   }
   InterpreterSetting setting=interpreterFactory.get(settingId);

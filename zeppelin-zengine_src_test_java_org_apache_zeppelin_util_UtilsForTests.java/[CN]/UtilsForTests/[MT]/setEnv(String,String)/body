@@ -28,10 +28,10 @@
       }
     }
  catch (    Exception e2) {
-      e2.printStackTrace();
+      LOGGER.error(e2.toString(),e2);
     }
   }
 catch (  Exception e1) {
-    e1.printStackTrace();
+    LOGGER.error(e1.toString(),e1);
   }
 }

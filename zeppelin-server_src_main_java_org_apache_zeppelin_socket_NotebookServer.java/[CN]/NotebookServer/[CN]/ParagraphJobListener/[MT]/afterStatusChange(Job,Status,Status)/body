@@ -10,7 +10,7 @@
       note.persist();
     }
  catch (    IOException e) {
-      e.printStackTrace();
+      LOG.error(e.toString(),e);
     }
   }
   notebookServer.broadcastNote(note);

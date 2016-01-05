@@ -11,7 +11,7 @@
     progressUpdator.terminate();
   }
  catch (  NullPointerException e) {
-    logger().error("Job failed",e);
+    LOGGER.error("Job failed",e);
     progressUpdator.terminate();
     this.exception=e;
     result=e.getMessage();
@@ -19,7 +19,7 @@
     dateFinished=new Date();
   }
 catch (  Throwable e) {
-    logger().error("Job failed",e);
+    LOGGER.error("Job failed",e);
     progressUpdator.terminate();
     this.exception=e;
     result=e.getMessage();

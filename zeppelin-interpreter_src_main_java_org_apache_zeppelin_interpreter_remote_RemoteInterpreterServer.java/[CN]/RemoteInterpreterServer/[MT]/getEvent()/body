@@ -5,6 +5,7 @@ synchronized (eventQueue) {
         eventQueue.wait(1000);
       }
  catch (      InterruptedException e) {
+        logger.info("Exception in RemoteInterpreterServer while getEvent, eventQueue.wait",e);
       }
     }
     if (eventQueue.isEmpty()) {

@@ -47,6 +47,7 @@
     System.out.println("testCreateNotebook Test executed");
   }
  catch (  ElementNotVisibleException e) {
+    LOG.error("Exception in ZeppelinIT while testAngularDisplay ",e);
     File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
   }
 }

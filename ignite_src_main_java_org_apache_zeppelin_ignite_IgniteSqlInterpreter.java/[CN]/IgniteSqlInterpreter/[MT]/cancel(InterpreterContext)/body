@@ -4,6 +4,7 @@
       curStmt.cancel();
     }
  catch (    SQLException e) {
+      logger.info("No-op while cancel in IgniteSqlInterpreter",e);
     }
  finally {
       curStmt=null;

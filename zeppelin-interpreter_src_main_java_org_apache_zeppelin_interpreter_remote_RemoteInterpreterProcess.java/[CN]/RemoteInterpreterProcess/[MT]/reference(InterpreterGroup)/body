@@ -36,6 +36,7 @@ synchronized (referenceCount) {
             Thread.sleep(500);
           }
  catch (          InterruptedException e) {
+            logger.error("Exception in RemoteInterpreterProcess while synchronized reference " + "Thread.sleep",e);
           }
         }
       }
