@@ -1,0 +1,7 @@
+{
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),invalidStorageClass);
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  NotebookRepoSync notebookRepoSync=new NotebookRepoSync(conf);
+  assertEquals(notebookRepoSync.getRepoCount(),1);
+  assertTrue(notebookRepoSync.getRepo(0) instanceof VFSNotebookRepo);
+}

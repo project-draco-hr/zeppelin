@@ -1,18 +1,35 @@
 {
+  config=conf;
   String allStorageClassNames=conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE).trim();
   if (allStorageClassNames.isEmpty()) {
-    throw new IOException("Empty ZEPPELIN_NOTEBOOK_STORAGE conf parameter");
+    allStorageClassNames=defaultStorage;
+    LOG.warn("Empty ZEPPELIN_NOTEBOOK_STORAGE conf parameter, using default {}",defaultStorage);
   }
   String[] storageClassNames=allStorageClassNames.split(",");
   if (storageClassNames.length > getMaxRepoNum()) {
-    throw new IOException("Unsupported number of storage classes (" + storageClassNames.length + ") in ZEPPELIN_NOTEBOOK_STORAGE");
+    LOG.warn("Unsupported number {} of storage classes in ZEPPELIN_NOTEBOOK_STORAGE : {}\n" + "first {} will be used",storageClassNames.length,allStorageClassNames,getMaxRepoNum());
   }
-  for (int i=0; i < storageClassNames.length; i++) {
-    @SuppressWarnings("static-access") Class<?> notebookStorageClass=getClass().forName(storageClassNames[i].trim());
-    Constructor<?> constructor=notebookStorageClass.getConstructor(ZeppelinConfiguration.class);
-    repos.add((NotebookRepo)constructor.newInstance(conf));
+  for (int i=0; i < Math.min(storageClassNames.length,getMaxRepoNum()); i++) {
+    @SuppressWarnings("static-access") Class<?> notebookStorageClass;
+    try {
+      notebookStorageClass=getClass().forName(storageClassNames[i].trim());
+      Constructor<?> constructor=notebookStorageClass.getConstructor(ZeppelinConfiguration.class);
+      repos.add((NotebookRepo)constructor.newInstance(conf));
+    }
+ catch (    ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+      LOG.warn("Failed to initialize {} notebook storage class {}",storageClassNames[i],e);
+    }
+  }
+  if (getRepoCount() == 0) {
+    LOG.info("No storages could be initialized, using default {} storage",defaultStorage);
+    initializeDefaultStorage(conf);
   }
   if (getRepoCount() > 1) {
-    sync(0,1);
+    try {
+      sync(0,1);
+    }
+ catch (    IOException e) {
+      LOG.warn("Failed to sync with secondary storage on start {}",e);
+    }
   }
 }

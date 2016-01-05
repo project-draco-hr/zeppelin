@@ -1,0 +1,20 @@
+{
+  String zpath=System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis();
+  File mainZepDir=new File(zpath);
+  mainZepDir.mkdirs();
+  new File(mainZepDir,"conf").mkdirs();
+  String mainNotePath=zpath + "/notebook";
+  String secNotePath=mainNotePath + "_secondary";
+  File mainNotebookDir=new File(mainNotePath);
+  File secNotebookDir=new File(secNotePath);
+  mainNotebookDir.mkdirs();
+  secNotebookDir.mkdirs();
+  System.setProperty(ConfVars.ZEPPELIN_HOME.getVarName(),mainZepDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),mainNotebookDir.getAbsolutePath());
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),validTwoStorageConf);
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  NotebookRepoSync notebookRepoSync=new NotebookRepoSync(conf);
+  assertEquals(notebookRepoSync.getRepoCount(),2);
+  assertTrue(notebookRepoSync.getRepo(0) instanceof VFSNotebookRepo);
+  assertTrue(notebookRepoSync.getRepo(1) instanceof VFSNotebookRepoMock);
+}
