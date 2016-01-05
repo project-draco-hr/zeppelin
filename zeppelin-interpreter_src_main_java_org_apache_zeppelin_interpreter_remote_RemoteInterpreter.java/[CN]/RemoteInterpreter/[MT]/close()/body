@@ -1,16 +1,21 @@
 {
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   Client client=null;
+  boolean broken=false;
   try {
     client=interpreterProcess.getClient();
     client.close(className);
   }
- catch (  Exception e1) {
+ catch (  TException e) {
+    broken=true;
+    throw new InterpreterException(e);
+  }
+catch (  Exception e1) {
     throw new InterpreterException(e1);
   }
  finally {
     if (client != null) {
-      interpreterProcess.releaseClient(client);
+      interpreterProcess.releaseClient(client,broken);
     }
     getInterpreterProcess().dereference();
   }

@@ -4,17 +4,22 @@
     return null;
   }
   Client client=null;
+  boolean broken=false;
   try {
     client=remoteInterpreterProcess.getClient();
     client.angularObjectRemove(name,noteId);
     return super.remove(name,noteId);
   }
- catch (  Exception e) {
+ catch (  TException e) {
+    broken=true;
+    logger.error("Error",e);
+  }
+catch (  Exception e) {
     logger.error("Error",e);
   }
  finally {
     if (client != null) {
-      remoteInterpreterProcess.releaseClient(client);
+      remoteInterpreterProcess.releaseClient(client,broken);
     }
   }
   return null;

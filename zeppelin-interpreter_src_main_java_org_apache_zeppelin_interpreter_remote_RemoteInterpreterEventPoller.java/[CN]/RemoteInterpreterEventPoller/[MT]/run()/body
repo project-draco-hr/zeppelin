@@ -10,15 +10,19 @@
       continue;
     }
     RemoteInterpreterEvent event=null;
+    boolean broken=false;
     try {
       event=client.getEvent();
     }
  catch (    TException e) {
+      broken=true;
       logger.error("Can't get RemoteInterpreterEvent",e);
       waitQuietly();
       continue;
     }
-    interpreterProcess.releaseClient(client);
+ finally {
+      interpreterProcess.releaseClient(client,broken);
+    }
     Gson gson=new Gson();
     AngularObjectRegistry angularObjectRegistry=interpreterGroup.getAngularObjectRegistry();
     try {

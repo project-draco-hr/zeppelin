@@ -11,14 +11,16 @@
  catch (  Exception e1) {
     throw new InterpreterException(e1);
   }
+  boolean broken=false;
   try {
     formType=FormType.valueOf(client.getFormType(className));
     return formType;
   }
  catch (  TException e) {
+    broken=true;
     throw new InterpreterException(e);
   }
  finally {
-    interpreterProcess.releaseClient(client);
+    interpreterProcess.releaseClient(client,broken);
   }
 }

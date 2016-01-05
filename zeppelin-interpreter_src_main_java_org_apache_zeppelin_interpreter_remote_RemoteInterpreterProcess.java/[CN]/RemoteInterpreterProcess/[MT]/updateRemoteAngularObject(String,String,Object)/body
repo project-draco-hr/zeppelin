@@ -9,14 +9,16 @@
 catch (  Exception e) {
     logger.error("Can't update angular object",e);
   }
+  boolean broken=false;
   try {
     Gson gson=new Gson();
     client.angularObjectUpdate(name,noteId,gson.toJson(o));
   }
  catch (  TException e) {
+    broken=true;
     logger.error("Can't update angular object",e);
   }
  finally {
-    releaseClient(client);
+    releaseClient(client,broken);
   }
 }

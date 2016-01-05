@@ -16,6 +16,7 @@
     interpreterContextRunnerPool.clear(noteId);
     interpreterContextRunnerPool.addAll(noteId,runners);
   }
+  boolean broken=false;
   try {
     GUI settings=context.getGui();
     RemoteInterpreterResult remoteResult=client.interpret(className,st,convert(context));
@@ -34,9 +35,10 @@
     return result;
   }
  catch (  TException e) {
+    broken=true;
     throw new InterpreterException(e);
   }
  finally {
-    interpreterProcess.releaseClient(client);
+    interpreterProcess.releaseClient(client,broken);
   }
 }

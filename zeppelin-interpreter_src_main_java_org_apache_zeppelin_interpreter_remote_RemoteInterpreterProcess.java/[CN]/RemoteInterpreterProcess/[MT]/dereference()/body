@@ -13,7 +13,7 @@ synchronized (referenceCount) {
       }
  finally {
         if (client != null) {
-          releaseClient(client);
+          releaseBrokenClient(client);
         }
       }
       clientPool.clear();
