@@ -11,17 +11,17 @@
     sc.clearJobGroup();
     throw new InterpreterException(e);
   }
-  String msg=null;
-  Method queryExecution;
-  QueryExecution qe;
+  List<Attribute> columns=null;
   try {
-    queryExecution=df.getClass().getMethod("queryExecution");
-    qe=(QueryExecution)queryExecution.invoke(df);
+    Object qe=df.getClass().getMethod("queryExecution").invoke(df);
+    Object a=qe.getClass().getMethod("analyzed").invoke(qe);
+    scala.collection.Seq seq=(scala.collection.Seq)a.getClass().getMethod("output").invoke(a);
+    columns=(List<Attribute>)scala.collection.JavaConverters.seqAsJavaListConverter(seq).asJava();
   }
  catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
     throw new InterpreterException(e);
   }
-  List<Attribute> columns=scala.collection.JavaConverters.asJavaListConverter(qe.analyzed().output()).asJava();
+  String msg=null;
   for (  Attribute col : columns) {
     if (msg == null) {
       msg=col.name();
