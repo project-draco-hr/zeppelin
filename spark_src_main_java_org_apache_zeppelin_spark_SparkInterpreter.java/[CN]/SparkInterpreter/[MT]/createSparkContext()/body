@@ -64,6 +64,9 @@
     }
     conf.set("spark.submit.pyArchives",Joiner.on(":").join(pythonLibs));
   }
+  if (getProperty("master").equals("yarn-client")) {
+    conf.set("spark.yarn.isPython","true");
+  }
   SparkContext sparkContext=new SparkContext(conf);
   return sparkContext;
 }
