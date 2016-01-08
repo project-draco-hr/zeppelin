@@ -1,0 +1,11 @@
+{
+  GetMethod get=httpGet("/security/ticket");
+  get.addRequestHeader("Origin","http://localhost");
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  Map<String,String> body=(Map<String,String>)resp.get("body");
+  assertEquals("anonymous",body.get("principal"));
+  assertEquals("anonymous",body.get("ticket"));
+  get.releaseConnection();
+}

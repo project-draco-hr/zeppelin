@@ -1,0 +1,5 @@
+{
+  String ticket=container.getTicket("someuser1");
+  boolean ok=container.isValid("someuser1",ticket);
+  assertTrue(ok);
+}

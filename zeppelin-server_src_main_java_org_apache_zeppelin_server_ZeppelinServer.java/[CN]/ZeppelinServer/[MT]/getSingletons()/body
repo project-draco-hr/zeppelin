@@ -6,5 +6,7 @@
   singletons.add(notebookApi);
   InterpreterRestApi interpreterApi=new InterpreterRestApi(replFactory);
   singletons.add(interpreterApi);
+  SecurityRestApi securityApi=new SecurityRestApi();
+  singletons.add(securityApi);
   return singletons;
 }

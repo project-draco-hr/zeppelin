@@ -1,0 +1,14 @@
+{
+  Entry entry=sessions.get(principal);
+  String ticket;
+  if (entry == null) {
+    if (principal.equals("anonymous"))     ticket="anonymous";
+ else     ticket=UUID.randomUUID().toString();
+  }
+ else {
+    ticket=entry.ticket;
+  }
+  entry=new Entry(ticket);
+  sessions.put(principal,entry);
+  return ticket;
+}

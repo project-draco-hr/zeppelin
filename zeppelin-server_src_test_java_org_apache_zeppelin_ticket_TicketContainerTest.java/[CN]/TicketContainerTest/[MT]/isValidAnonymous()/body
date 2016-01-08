@@ -1,0 +1,4 @@
+{
+  boolean ok=container.isValid("anonymous","anonymous");
+  assertTrue(ok);
+}

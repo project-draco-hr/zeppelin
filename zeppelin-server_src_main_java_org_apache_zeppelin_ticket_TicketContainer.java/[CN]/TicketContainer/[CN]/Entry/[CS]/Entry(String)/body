@@ -1,0 +1,4 @@
+{
+  this.ticket=ticket;
+  this.lastAccessTime=Calendar.getInstance().getTimeInMillis();
+}

@@ -1,0 +1,4 @@
+{
+  boolean ok=container.isValid("unknownuser","someticket");
+  assertFalse(ok);
+}

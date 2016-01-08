@@ -1,0 +1,11 @@
+{
+  Subject subject=org.apache.shiro.SecurityUtils.getSubject();
+  String principal;
+  if (subject.isAuthenticated()) {
+    principal=subject.getPrincipal().toString();
+  }
+ else {
+    principal="anonymous";
+  }
+  return principal;
+}

@@ -3,6 +3,15 @@
   try {
     Message messagereceived=deserializeMessage(msg);
     LOG.debug("RECEIVE << " + messagereceived.op);
+    LOG.debug("RECEIVE PRINCIPAL << " + messagereceived.principal);
+    LOG.debug("RECEIVE TICKET << " + messagereceived.ticket);
+    String ticket=TicketContainer.instance.getTicket(messagereceived.principal);
+    if (ticket != null && !ticket.equals(messagereceived.ticket))     throw new Exception("Invalid ticket " + messagereceived.ticket + " != "+ ticket);
+    ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+    boolean allowAnonymous=conf.getBoolean(ZeppelinConfiguration.ConfVars.ZEPPELIN_ANONYMOUS_ALLOWED);
+    if (!allowAnonymous && messagereceived.principal.equals("anonymous")) {
+      throw new Exception("Anonymous access not allowed ");
+    }
 switch (messagereceived.op) {
 case LIST_NOTES:
       broadcastNoteList();
