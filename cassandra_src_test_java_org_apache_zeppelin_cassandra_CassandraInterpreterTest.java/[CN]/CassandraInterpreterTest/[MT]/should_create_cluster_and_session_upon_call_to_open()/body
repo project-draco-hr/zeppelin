@@ -1,6 +1,6 @@
 {
   assertThat(interpreter.cluster).isNotNull();
-  assertThat(interpreter.cluster.getClusterName()).isEqualTo(resource.getNativeSession().getCluster().getClusterName());
+  assertThat(interpreter.cluster.getClusterName()).isEqualTo(session.getCluster().getClusterName());
   assertThat(interpreter.session).isNotNull();
   assertThat(interpreter.helper).isNotNull();
 }

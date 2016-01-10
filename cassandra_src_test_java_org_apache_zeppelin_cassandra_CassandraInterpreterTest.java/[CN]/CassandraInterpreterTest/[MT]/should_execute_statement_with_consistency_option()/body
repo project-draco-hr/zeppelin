@@ -2,5 +2,5 @@
   String statement="@consistency=THREE\n" + "SELECT * FROM zeppelin.artists LIMIT 1;";
   final InterpreterResult actual=interpreter.interpret(statement,intrContext);
   assertThat(actual.code()).isEqualTo(Code.ERROR);
-  assertThat(actual.message()).contains("Not enough replica available for query at consistency THREE (3 required but only 1 alive)");
+  assertThat(actual.message()).contains("Not enough replicas available for query at consistency THREE (3 required but only 1 alive)");
 }

@@ -1,6 +1,6 @@
 {
   Properties properties=new Properties();
-  final Cluster cluster=resource.getNativeSession().getCluster();
+  final Cluster cluster=session.getCluster();
   properties.setProperty(CASSANDRA_CLUSTER_NAME,cluster.getClusterName());
   properties.setProperty(CASSANDRA_COMPRESSION_PROTOCOL,"NONE");
   properties.setProperty(CASSANDRA_CREDENTIALS_USERNAME,"none");

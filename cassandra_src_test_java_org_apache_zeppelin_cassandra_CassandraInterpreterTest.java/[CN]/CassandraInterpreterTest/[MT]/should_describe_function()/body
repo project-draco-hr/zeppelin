@@ -1,0 +1,13 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty(CASSANDRA_HOSTS,"127.0.0.1");
+  properties.setProperty(CASSANDRA_PORT,"9042");
+  Interpreter interpreter=new CassandraInterpreter(properties);
+  interpreter.open();
+  String createFunction="CREATE FUNCTION zeppelin.maxof(val1 int,val2 int) " + "RETURNS NULL ON NULL INPUT " + "RETURNS int "+ "LANGUAGE java "+ "AS $$"+ "    return Math.max(val1, val2);\n"+ "$$;";
+  interpreter.interpret(createFunction,intrContext);
+  String query="DESCRIBE FUNCTION zeppelin.maxOf;";
+  final InterpreterResult actual=interpreter.interpret(query,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+  assertThat(actual.message()).isEqualTo("xxxxx");
+}
