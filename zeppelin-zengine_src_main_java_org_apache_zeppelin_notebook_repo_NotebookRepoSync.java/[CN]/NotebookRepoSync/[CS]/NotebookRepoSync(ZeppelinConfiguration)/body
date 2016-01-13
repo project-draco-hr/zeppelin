@@ -17,7 +17,7 @@
       repos.add((NotebookRepo)constructor.newInstance(conf));
     }
  catch (    ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
-      LOG.warn("Failed to initialize {} notebook storage class {}",storageClassNames[i],e);
+      LOG.warn("Failed to initialize {} notebook storage class",storageClassNames[i],e);
     }
   }
   if (getRepoCount() == 0) {
