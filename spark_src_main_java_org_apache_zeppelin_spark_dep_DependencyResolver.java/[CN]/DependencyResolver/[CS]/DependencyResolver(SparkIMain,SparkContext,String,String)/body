@@ -1,9 +1,0 @@
-{
-  this.intp=intp;
-  this.global=intp.global();
-  this.sc=sc;
-  session=Booter.newRepositorySystemSession(system,localRepoPath);
-  repos.add(Booter.newCentralRepository());
-  repos.add(Booter.newLocalRepository());
-  addRepoFromProperty(additionalRemoteRepository);
-}

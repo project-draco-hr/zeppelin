@@ -1,0 +1,13 @@
+{
+  String[] version=scala.util.Properties.versionNumberString().split("[.]");
+  String scalaVersion=version[0] + "." + version[1];
+  assertEquals("groupId:artifactId:version",SparkDependencyResolver.inferScalaVersion("groupId:artifactId:version"));
+  assertEquals("groupId:artifactId_" + scalaVersion + ":version",SparkDependencyResolver.inferScalaVersion("groupId::artifactId:version"));
+  assertEquals("groupId:artifactId:version::test",SparkDependencyResolver.inferScalaVersion("groupId:artifactId:version::test"));
+  assertEquals("*",SparkDependencyResolver.inferScalaVersion("*"));
+  assertEquals("groupId:*",SparkDependencyResolver.inferScalaVersion("groupId:*"));
+  assertEquals("groupId:artifactId*",SparkDependencyResolver.inferScalaVersion("groupId:artifactId*"));
+  assertEquals("groupId:artifactId_" + scalaVersion,SparkDependencyResolver.inferScalaVersion("groupId::artifactId"));
+  assertEquals("groupId:artifactId_" + scalaVersion + "*",SparkDependencyResolver.inferScalaVersion("groupId::artifactId*"));
+  assertEquals("groupId:artifactId_" + scalaVersion + ":*",SparkDependencyResolver.inferScalaVersion("groupId::artifactId:*"));
+}

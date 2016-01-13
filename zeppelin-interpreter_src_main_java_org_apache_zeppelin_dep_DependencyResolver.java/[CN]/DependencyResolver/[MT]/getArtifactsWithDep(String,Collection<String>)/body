@@ -1,0 +1,14 @@
+{
+  Artifact artifact=new DefaultArtifact(dependency);
+  DependencyFilter classpathFilter=DependencyFilterUtils.classpathFilter(JavaScopes.COMPILE);
+  PatternExclusionsDependencyFilter exclusionFilter=new PatternExclusionsDependencyFilter(excludes);
+  CollectRequest collectRequest=new CollectRequest();
+  collectRequest.setRoot(new Dependency(artifact,JavaScopes.COMPILE));
+synchronized (repos) {
+    for (    RemoteRepository repo : repos) {
+      collectRequest.addRepository(repo);
+    }
+  }
+  DependencyRequest dependencyRequest=new DependencyRequest(collectRequest,DependencyFilterUtils.andFilter(exclusionFilter,classpathFilter));
+  return system.resolveDependencies(session,dependencyRequest).getArtifactResults();
+}

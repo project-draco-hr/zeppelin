@@ -1,0 +1,12 @@
+{
+  testPath="test-repo";
+  testCopyPath="test-copy-repo";
+  resolver=new DependencyResolver(testPath);
+  home=System.getenv("ZEPPELIN_HOME");
+  if (home == null) {
+    home=System.getProperty("zeppelin.home");
+  }
+  if (home == null) {
+    home="..";
+  }
+}

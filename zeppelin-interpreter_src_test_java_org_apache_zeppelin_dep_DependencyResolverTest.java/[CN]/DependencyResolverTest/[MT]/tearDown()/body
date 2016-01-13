@@ -1,0 +1,4 @@
+{
+  FileUtils.deleteDirectory(new File(home + "/" + testPath));
+  FileUtils.deleteDirectory(new File(home + "/" + testCopyPath));
+}

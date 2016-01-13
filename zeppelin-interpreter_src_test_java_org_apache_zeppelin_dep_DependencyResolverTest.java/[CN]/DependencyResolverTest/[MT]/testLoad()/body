@@ -1,0 +1,5 @@
+{
+  resolver.load("org.apache.commons:commons-lang3:3.4",testCopyPath);
+  assertTrue(new File(home + "/" + testPath+ "/org/apache/commons/commons-lang3/3.4/").exists());
+  assertTrue(new File(home + "/" + testCopyPath+ "/commons-lang3-3.4.jar").exists());
+}

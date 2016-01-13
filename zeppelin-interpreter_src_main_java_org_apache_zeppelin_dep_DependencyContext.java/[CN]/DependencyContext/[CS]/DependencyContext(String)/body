@@ -1,0 +1,3 @@
+{
+  session=Booter.newRepositorySystemSession(system,localRepoPath);
+}

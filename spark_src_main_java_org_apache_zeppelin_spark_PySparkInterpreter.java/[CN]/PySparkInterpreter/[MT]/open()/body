@@ -2,7 +2,7 @@
   DepInterpreter depInterpreter=getDepInterpreter();
   URL[] urls=new URL[0];
   if (depInterpreter != null) {
-    DependencyContext depc=depInterpreter.getDependencyContext();
+    SparkDependencyContext depc=depInterpreter.getDependencyContext();
     if (depc != null) {
       List<File> files=depc.getFiles();
       List<URL> urlList=new LinkedList<URL>();

@@ -1,0 +1,14 @@
+{
+  if (StringUtils.isBlank(artifact)) {
+    throw new RuntimeException("Invalid artifact to load");
+  }
+  int numSplits=artifact.split(":").length;
+  if (numSplits >= 3 && numSplits <= 6) {
+    return loadFromMvn(artifact,excludes);
+  }
+ else {
+    LinkedList<File> libs=new LinkedList<File>();
+    libs.add(new File(artifact));
+    return libs;
+  }
+}

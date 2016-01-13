@@ -1,0 +1,5 @@
+{
+  Repository rep=new Repository(name);
+  repositories.add(rep);
+  return rep;
+}

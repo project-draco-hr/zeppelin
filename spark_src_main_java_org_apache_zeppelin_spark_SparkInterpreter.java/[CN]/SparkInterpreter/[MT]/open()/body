@@ -29,7 +29,7 @@
   }
   DepInterpreter depInterpreter=getDepInterpreter();
   if (depInterpreter != null) {
-    DependencyContext depc=depInterpreter.getDependencyContext();
+    SparkDependencyContext depc=depInterpreter.getDependencyContext();
     if (depc != null) {
       List<File> files=depc.getFiles();
       if (files != null) {
@@ -101,7 +101,7 @@
     throw new InterpreterException(e);
   }
   if (depInterpreter != null) {
-    DependencyContext depc=depInterpreter.getDependencyContext();
+    SparkDependencyContext depc=depInterpreter.getDependencyContext();
     if (depc != null) {
       List<File> files=depc.getFilesDist();
       if (files != null) {
