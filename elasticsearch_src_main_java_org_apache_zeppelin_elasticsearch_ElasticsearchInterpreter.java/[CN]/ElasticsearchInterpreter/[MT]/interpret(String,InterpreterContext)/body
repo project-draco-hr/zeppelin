@@ -1,5 +1,8 @@
 {
   logger.info("Run Elasticsearch command '" + cmd + "'");
+  if (StringUtils.isEmpty(cmd) || StringUtils.isEmpty(cmd.trim())) {
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS);
+  }
   int currentResultSize=resultSize;
   if (client == null) {
     return new InterpreterResult(InterpreterResult.Code.ERROR,"Problem with the Elasticsearch client, please check your configuration (host, port,...)");
