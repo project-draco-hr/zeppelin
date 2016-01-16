@@ -8,6 +8,29 @@
   for (  Paragraph p : note.getParagraphs()) {
     runners.add(new ParagraphRunner(note,note.id(),p.getId()));
   }
-  InterpreterContext interpreterContext=new InterpreterContext(note.id(),getId(),this.getTitle(),this.getText(),this.getConfig(),this.settings,registry,runners);
+  final Paragraph self=this;
+  InterpreterContext interpreterContext=new InterpreterContext(note.id(),getId(),this.getTitle(),this.getText(),this.getConfig(),this.settings,registry,runners,new InterpreterOutput(new InterpreterOutputListener(){
+    @Override public void onAppend(    InterpreterOutput out,    byte[] line){
+      updateParagraphResult(out);
+      ((ParagraphJobListener)getListener()).onOutputAppend(self,out,new String(line));
+    }
+    @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
+      updateParagraphResult(out);
+      ((ParagraphJobListener)getListener()).onOutputUpdate(self,out,new String(output));
+    }
+    private void updateParagraphResult(    InterpreterOutput out){
+      Throwable t=null;
+      String message=null;
+      try {
+        message=new String(out.toByteArray());
+      }
+ catch (      IOException e) {
+        logger().error(e.getMessage(),e);
+        t=e;
+      }
+      setReturn(new InterpreterResult(Code.SUCCESS,out.getType(),message),t);
+    }
+  }
+));
   return interpreterContext;
 }

@@ -1,0 +1,8 @@
+{
+  if ("file".equals(url.getProtocol())) {
+    write(new File(url.getPath()));
+  }
+ else {
+    outList.add(url);
+  }
+}

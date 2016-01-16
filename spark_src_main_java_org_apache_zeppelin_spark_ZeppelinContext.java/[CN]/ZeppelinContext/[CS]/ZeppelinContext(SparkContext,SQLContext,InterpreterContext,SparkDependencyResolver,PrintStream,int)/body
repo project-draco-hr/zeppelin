@@ -1,8 +1,0 @@
-{
-  this.sc=sc;
-  this.sqlContext=sql;
-  this.interpreterContext=interpreterContext;
-  this.dep=dep;
-  this.out=printStream;
-  this.maxResult=maxResult;
-}

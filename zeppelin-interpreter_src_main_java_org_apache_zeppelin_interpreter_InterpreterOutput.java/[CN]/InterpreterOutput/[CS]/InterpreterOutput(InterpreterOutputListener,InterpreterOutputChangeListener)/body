@@ -1,0 +1,6 @@
+{
+  this.flushListener=flushListener;
+  clear();
+  watcher=new InterpreterOutputChangeWatcher(listener);
+  watcher.start();
+}

@@ -1,4 +1,0 @@
-ZeppelinConfiguration conf
-InterpreterOption defaultOption
-AngularObjectRegistryListener angularObjectRegistryListener
-DependencyResolver depResolver

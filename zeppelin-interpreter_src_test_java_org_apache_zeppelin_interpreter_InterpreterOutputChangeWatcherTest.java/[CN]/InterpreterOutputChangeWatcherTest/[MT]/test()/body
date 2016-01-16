@@ -1,0 +1,22 @@
+{
+  assertNull(fileChanged);
+  assertEquals(0,numChanged);
+  Thread.sleep(1000);
+  File file1=new File(tmpDir,"test1");
+  file1.createNewFile();
+  File file2=new File(tmpDir,"test2");
+  file2.createNewFile();
+  watcher.watch(file1);
+  Thread.sleep(1000);
+  FileOutputStream out1=new FileOutputStream(file1);
+  out1.write(1);
+  out1.close();
+  FileOutputStream out2=new FileOutputStream(file2);
+  out2.write(1);
+  out2.close();
+synchronized (this) {
+    wait(30 * 1000);
+  }
+  assertNotNull(fileChanged);
+  assertEquals(1,numChanged);
+}

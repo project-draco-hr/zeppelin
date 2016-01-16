@@ -1,0 +1,12 @@
+{
+synchronized (outList) {
+    buffer.write(b);
+    if (b == NEW_LINE_CHAR) {
+      if (firstWrite) {
+        flushListener.onUpdate(this,new byte[]{});
+        firstWrite=false;
+      }
+      flush();
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  SparkEnv.set(env);
+  String[] linesToRun=new String[lines.length + 1];
+  for (int i=0; i < lines.length; i++) {
+    linesToRun[i]=lines[i];
+  }
+  linesToRun[lines.length]="print(\"\")";
+  Console.setOut(context.out);
+  out.setInterpreterOutput(context.out);
+  context.out.clear();
+  Code r=null;
+  String incomplete="";
+  for (int l=0; l < linesToRun.length; l++) {
+    String s=linesToRun[l];
+    if (l + 1 < linesToRun.length) {
+      String nextLine=linesToRun[l + 1].trim();
+      if (nextLine.startsWith(".") && !nextLine.startsWith("..") && !nextLine.startsWith("./")) {
+        incomplete+=s + "\n";
+        continue;
+      }
+    }
+    scala.tools.nsc.interpreter.Results.Result res=null;
+    try {
+      res=intp.interpret(incomplete + s);
+    }
+ catch (    Exception e) {
+      sc.clearJobGroup();
+      out.setInterpreterOutput(null);
+      logger.info("Interpreter exception",e);
+      return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
+    }
+    r=getResultCode(res);
+    if (r == Code.ERROR) {
+      sc.clearJobGroup();
+      out.setInterpreterOutput(null);
+      return new InterpreterResult(r,"");
+    }
+ else     if (r == Code.INCOMPLETE) {
+      incomplete+=s + "\n";
+    }
+ else {
+      incomplete="";
+    }
+  }
+  if (r == Code.INCOMPLETE) {
+    sc.clearJobGroup();
+    out.setInterpreterOutput(null);
+    return new InterpreterResult(r,"Incomplete expression");
+  }
+ else {
+    sc.clearJobGroup();
+    out.setInterpreterOutput(null);
+    return new InterpreterResult(Code.SUCCESS);
+  }
+}

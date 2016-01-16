@@ -15,10 +15,15 @@
   if (cls == null) {
     throw new InterpreterException("Can not road DataFrame/SchemaRDD class");
   }
-  if (cls.isInstance(o)) {
-    out.print(showDF(sc,interpreterContext,o,maxResult));
-  }
+  try {
+    if (cls.isInstance(o)) {
+      interpreterContext.out.write(showDF(sc,interpreterContext,o,maxResult));
+    }
  else {
-    out.print(o.toString());
+      interpreterContext.out.write(o.toString());
+    }
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
   }
 }

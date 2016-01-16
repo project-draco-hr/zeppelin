@@ -1,0 +1,9 @@
+{
+  RemoteInterpreter intp=createMockInterpreter();
+  InterpreterResult ret=intp.interpret("SUCCESS:streamresult:",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals("streamresult",ret.message());
+  ret=intp.interpret("ERROR:streamresult2:",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.ERROR,ret.code());
+  assertEquals("streamresult2",ret.message());
+}

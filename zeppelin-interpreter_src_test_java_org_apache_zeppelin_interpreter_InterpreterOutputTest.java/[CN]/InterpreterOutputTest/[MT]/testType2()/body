@@ -1,0 +1,4 @@
+{
+  out.write("%html\nHello");
+  assertEquals(InterpreterResult.Type.HTML,out.getType());
+}

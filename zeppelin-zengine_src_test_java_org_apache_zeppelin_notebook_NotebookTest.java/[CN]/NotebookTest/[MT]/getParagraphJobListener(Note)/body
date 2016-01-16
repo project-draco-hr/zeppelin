@@ -1,5 +1,9 @@
 {
-  return new JobListener(){
+  return new ParagraphJobListener(){
+    @Override public void onOutputAppend(    Paragraph paragraph,    InterpreterOutput out,    String output){
+    }
+    @Override public void onOutputUpdate(    Paragraph paragraph,    InterpreterOutput out,    String output){
+    }
     @Override public void onProgressUpdate(    Job job,    int progress){
     }
     @Override public void beforeStatusChange(    Job job,    Status before,    Status after){

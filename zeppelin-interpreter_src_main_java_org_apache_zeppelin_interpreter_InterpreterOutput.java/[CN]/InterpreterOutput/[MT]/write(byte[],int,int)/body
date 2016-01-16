@@ -1,0 +1,7 @@
+{
+synchronized (outList) {
+    for (int i=off; i < len; i++) {
+      write(b[i]);
+    }
+  }
+}

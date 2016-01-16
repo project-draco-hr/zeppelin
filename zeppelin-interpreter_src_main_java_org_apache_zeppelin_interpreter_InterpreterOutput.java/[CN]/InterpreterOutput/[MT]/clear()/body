@@ -1,0 +1,10 @@
+{
+synchronized (outList) {
+    type=InterpreterResult.Type.TEXT;
+    buffer.reset();
+    outList.clear();
+    if (watcher != null) {
+      watcher.clear();
+    }
+  }
+}

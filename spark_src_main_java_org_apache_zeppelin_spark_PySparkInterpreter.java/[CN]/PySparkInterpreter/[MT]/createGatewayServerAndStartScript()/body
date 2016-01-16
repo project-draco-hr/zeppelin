@@ -8,7 +8,7 @@
   cmd.addArgument(Integer.toString(port),false);
   cmd.addArgument(Integer.toString(getSparkInterpreter().getSparkVersion().toNumber()),false);
   executor=new DefaultExecutor();
-  outputStream=new ByteArrayOutputStream();
+  outputStream=new SparkOutputStream();
   PipedOutputStream ps=new PipedOutputStream();
   in=null;
   try {

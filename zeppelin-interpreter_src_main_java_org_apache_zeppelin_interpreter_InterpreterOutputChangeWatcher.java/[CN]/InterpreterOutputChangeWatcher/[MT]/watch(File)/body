@@ -1,0 +1,19 @@
+{
+  String dirString;
+  if (file.isFile()) {
+    dirString=file.getParentFile().getAbsolutePath();
+  }
+ else {
+    throw new IOException(file.getName() + " is not a file");
+  }
+  if (dirString == null) {
+    dirString="/";
+  }
+  Path dir=FileSystems.getDefault().getPath(dirString);
+  logger.info("watch " + dir);
+  WatchKey key=dir.register(watcher,ENTRY_CREATE,ENTRY_DELETE,ENTRY_MODIFY);
+synchronized (watchKeys) {
+    watchKeys.put(key,new File(dirString));
+    watchFiles.add(file);
+  }
+}

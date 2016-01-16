@@ -1,0 +1,4 @@
+{
+  Message msg=new Message(OP.PARAGRAPH_UPDATE_OUTPUT).put("noteId",paragraph.getNote().getId()).put("paragraphId",paragraph.getId()).put("data",output);
+  notebookServer.broadcast(paragraph.getNote().getId(),msg);
+}

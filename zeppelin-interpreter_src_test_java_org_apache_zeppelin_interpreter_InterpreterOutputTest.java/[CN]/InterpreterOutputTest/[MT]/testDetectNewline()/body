@@ -1,0 +1,10 @@
+{
+  out.write("hello\nworld");
+  assertEquals("hello\n",new String(out.toByteArray()));
+  assertEquals(1,numAppendEvent);
+  assertEquals(1,numUpdateEvent);
+  out.write("\n");
+  assertEquals("hello\nworld\n",new String(out.toByteArray()));
+  assertEquals(2,numAppendEvent);
+  assertEquals(1,numUpdateEvent);
+}

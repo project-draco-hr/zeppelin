@@ -1,0 +1,5 @@
+{
+  intpGroup=new InterpreterGroup();
+  env=new HashMap<String,String>();
+  env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
+}

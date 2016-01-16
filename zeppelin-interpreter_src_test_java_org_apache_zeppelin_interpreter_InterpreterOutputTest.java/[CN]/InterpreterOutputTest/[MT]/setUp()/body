@@ -1,0 +1,5 @@
+{
+  out=new InterpreterOutput(this);
+  numAppendEvent=0;
+  numUpdateEvent=0;
+}

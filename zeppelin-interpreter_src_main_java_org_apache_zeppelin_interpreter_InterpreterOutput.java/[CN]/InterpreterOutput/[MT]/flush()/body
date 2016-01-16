@@ -1,0 +1,14 @@
+{
+synchronized (outList) {
+    buffer.flush();
+    byte[] bytes=buffer.toByteArray();
+    bytes=detectTypeFromLine(bytes);
+    if (bytes != null) {
+      outList.add(bytes);
+      if (type == InterpreterResult.Type.TEXT) {
+        flushListener.onAppend(this,bytes);
+      }
+    }
+    buffer.reset();
+  }
+}

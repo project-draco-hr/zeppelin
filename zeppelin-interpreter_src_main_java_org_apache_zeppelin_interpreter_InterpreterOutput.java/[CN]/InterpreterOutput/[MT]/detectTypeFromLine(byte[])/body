@@ -1,0 +1,17 @@
+{
+  String line=new String(byteArray);
+  for (  InterpreterResult.Type t : InterpreterResult.Type.values()) {
+    String typeString='%' + t.name().toLowerCase();
+    if ((typeString + "\n").equals(line)) {
+      setType(t);
+      byteArray=null;
+      break;
+    }
+ else     if (line.startsWith(typeString + " ")) {
+      setType(t);
+      byteArray=line.substring(typeString.length() + 1).getBytes();
+      break;
+    }
+  }
+  return byteArray;
+}

@@ -1,9 +1,9 @@
 {
   Properties p=new Properties();
-  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
+  final RemoteInterpreter intpA=createMockInterpreterA(p);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);
-  final RemoteInterpreter intpB=new RemoteInterpreter(p,MockInterpreterB.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
+  final RemoteInterpreter intpB=createMockInterpreterB(p);
   intpGroup.add(intpB);
   intpB.setInterpreterGroup(intpGroup);
   intpA.open();
@@ -17,7 +17,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      return intpA.interpret("500",new InterpreterContext("note","jobA","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
+      return intpA.interpret("500",new InterpreterContext("note","jobA","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
     }
     @Override protected boolean jobAbort(){
       return false;
@@ -33,7 +33,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      return intpB.interpret("500",new InterpreterContext("note","jobB","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
+      return intpB.interpret("500",new InterpreterContext("note","jobB","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
     }
     @Override protected boolean jobAbort(){
       return false;

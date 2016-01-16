@@ -1,0 +1,9 @@
+{
+synchronized (watchKeys) {
+    for (    WatchKey key : watchKeys.keySet()) {
+      key.cancel();
+    }
+    watchKeys.clear();
+    watchFiles.clear();
+  }
+}

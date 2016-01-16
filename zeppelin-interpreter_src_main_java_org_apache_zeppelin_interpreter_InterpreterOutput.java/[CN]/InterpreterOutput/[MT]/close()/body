@@ -1,0 +1,7 @@
+{
+  flush();
+  if (watcher != null) {
+    watcher.clear();
+    watcher.shutdown();
+  }
+}

@@ -1,0 +1,30 @@
+{
+  ByteArrayOutputStream out=new ByteArrayOutputStream();
+  List<Object> all=new LinkedList<Object>();
+synchronized (outList) {
+    all.addAll(outList);
+  }
+  for (  Object o : all) {
+    if (o instanceof File) {
+      File f=(File)o;
+      FileInputStream fin=new FileInputStream(f);
+      copyStream(fin,out);
+      fin.close();
+    }
+ else     if (o instanceof byte[]) {
+      out.write((byte[])o);
+    }
+ else     if (o instanceof Integer) {
+      out.write((int)o);
+    }
+ else     if (o instanceof URL) {
+      InputStream fin=((URL)o).openStream();
+      copyStream(fin,out);
+      fin.close();
+    }
+ else {
+    }
+  }
+  out.close();
+  return out.toByteArray();
+}

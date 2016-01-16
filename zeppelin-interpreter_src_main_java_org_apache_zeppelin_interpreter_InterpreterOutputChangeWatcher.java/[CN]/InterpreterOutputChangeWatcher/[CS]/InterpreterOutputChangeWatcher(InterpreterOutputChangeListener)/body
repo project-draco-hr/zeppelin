@@ -1,0 +1,4 @@
+{
+  watcher=FileSystems.getDefault().newWatchService();
+  this.listener=listener;
+}

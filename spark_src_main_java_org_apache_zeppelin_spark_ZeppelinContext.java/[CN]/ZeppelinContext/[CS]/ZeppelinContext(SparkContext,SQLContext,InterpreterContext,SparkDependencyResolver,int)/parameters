@@ -1,0 +1,5 @@
+SparkContext sc
+SQLContext sql
+InterpreterContext interpreterContext
+SparkDependencyResolver dep
+int maxResult

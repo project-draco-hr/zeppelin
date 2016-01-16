@@ -1,0 +1,12 @@
+{
+  RemoteInterpreter intp=createMockInterpreter();
+  InterpreterResult ret=intp.interpret("SUCCESS:%html hello:",createInterpreterContext());
+  assertEquals(InterpreterResult.Type.HTML,ret.type());
+  assertEquals("hello",ret.message());
+  ret=intp.interpret("SUCCESS:%html\nhello:",createInterpreterContext());
+  assertEquals(InterpreterResult.Type.HTML,ret.type());
+  assertEquals("hello",ret.message());
+  ret=intp.interpret("SUCCESS:%html hello:%angular world",createInterpreterContext());
+  assertEquals(InterpreterResult.Type.ANGULAR,ret.type());
+  assertEquals("helloworld",ret.message());
+}

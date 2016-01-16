@@ -63,7 +63,7 @@ while True:
             compiledCode = compile(final_code, '<string>', 'exec')
             sc.setJobGroup(jobGroup, 'Zeppelin')
             eval(compiledCode)
-        intp.setStatementsFinished(output.get(), False)
+        intp.setStatementsFinished('', False)
     except Py4JJavaError:
         excInnerError = traceback.format_exc()
         innerErrorStart = excInnerError.find('Py4JJavaError:')

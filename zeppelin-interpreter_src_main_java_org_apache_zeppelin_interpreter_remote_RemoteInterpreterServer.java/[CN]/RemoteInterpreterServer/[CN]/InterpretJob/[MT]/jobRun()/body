@@ -2,7 +2,22 @@
   try {
     InterpreterContext.set(context);
     InterpreterResult result=interpreter.interpret(script,context);
-    return result;
+    String message="";
+    context.out.flush();
+    InterpreterResult.Type outputType=context.out.getType();
+    byte[] interpreterOutput=context.out.toByteArray();
+    context.out.clear();
+    if (interpreterOutput != null && interpreterOutput.length > 0) {
+      message=new String(interpreterOutput);
+    }
+    String interpreterResultMessage=result.message();
+    if (interpreterResultMessage != null && !interpreterResultMessage.isEmpty()) {
+      message+=interpreterResultMessage;
+      return new InterpreterResult(result.code(),result.type(),message);
+    }
+ else {
+      return new InterpreterResult(result.code(),outputType,message);
+    }
   }
   finally {
     InterpreterContext.remove();

@@ -1,0 +1,18 @@
+{
+  out.write("hello\nworld");
+  assertEquals("hello\n",new String(out.toByteArray()));
+  assertEquals(1,numAppendEvent);
+  assertEquals(1,numUpdateEvent);
+  out.flush();
+  assertEquals("hello\nworld",new String(out.toByteArray()));
+  assertEquals(2,numAppendEvent);
+  assertEquals(1,numUpdateEvent);
+  out.clear();
+  out.write("%html div");
+  assertEquals("",new String(out.toByteArray()));
+  assertEquals(InterpreterResult.Type.TEXT,out.getType());
+  out.flush();
+  out.write("%html div");
+  assertEquals("div",new String(out.toByteArray()));
+  assertEquals(InterpreterResult.Type.HTML,out.getType());
+}

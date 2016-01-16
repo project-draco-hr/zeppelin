@@ -1,0 +1,6 @@
+{
+  RemoteInterpreter intp=createMockInterpreter();
+  InterpreterResult ret=intp.interpret("SUCCESS:stream:static",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals("streamstatic",ret.message());
+}

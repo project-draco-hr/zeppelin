@@ -1,0 +1,6 @@
+{
+  outList.add(file);
+  if (watcher != null) {
+    watcher.watch(file);
+  }
+}

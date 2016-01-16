@@ -1,3 +1,0 @@
-{
-  this(intpRunner,intpDir,env,new RemoteInterpreterEventPoller(),connectTimeout);
-}

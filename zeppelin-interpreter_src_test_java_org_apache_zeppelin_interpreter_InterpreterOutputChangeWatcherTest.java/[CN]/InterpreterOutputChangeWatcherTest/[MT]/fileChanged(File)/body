@@ -1,0 +1,7 @@
+{
+  fileChanged=file;
+  numChanged++;
+synchronized (this) {
+    notify();
+  }
+}

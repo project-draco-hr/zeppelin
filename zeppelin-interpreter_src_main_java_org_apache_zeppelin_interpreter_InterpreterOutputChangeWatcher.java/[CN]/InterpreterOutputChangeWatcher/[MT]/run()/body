@@ -1,0 +1,43 @@
+{
+  while (!stop) {
+    WatchKey key=null;
+    try {
+      key=watcher.poll(1,TimeUnit.SECONDS);
+    }
+ catch (    InterruptedException|ClosedWatchServiceException e) {
+      break;
+    }
+    if (key == null) {
+      continue;
+    }
+    for (    WatchEvent<?> event : key.pollEvents()) {
+      WatchEvent.Kind<?> kind=event.kind();
+      if (kind == OVERFLOW) {
+        continue;
+      }
+      WatchEvent<Path> ev=(WatchEvent<Path>)event;
+      Path filename=ev.context();
+synchronized (watchKeys) {
+        for (        File f : watchFiles) {
+          if (f.getName().compareTo(filename.toString()) == 0) {
+            File changedFile;
+            if (filename.isAbsolute()) {
+              changedFile=new File(filename.toString());
+            }
+ else {
+              changedFile=new File(watchKeys.get(key),filename.toString());
+            }
+            logger.info("File change detected " + changedFile.getAbsolutePath());
+            if (listener != null) {
+              listener.fileChanged(changedFile);
+            }
+          }
+        }
+      }
+    }
+    boolean valid=key.reset();
+    if (!valid) {
+      break;
+    }
+  }
+}

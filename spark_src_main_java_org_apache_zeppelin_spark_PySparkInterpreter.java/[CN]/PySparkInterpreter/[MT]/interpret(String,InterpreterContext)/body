@@ -6,7 +6,7 @@
   if (!pythonscriptRunning) {
     return new InterpreterResult(Code.ERROR,"python process not running" + outputStream.toString());
   }
-  outputStream.reset();
+  outputStream.setInterpreterOutput(context.out);
 synchronized (pythonScriptInitializeNotifier) {
     long startTime=System.currentTimeMillis();
     while (pythonScriptInitialized == false && pythonscriptRunning && System.currentTimeMillis() - startTime < 10 * 1000) {
@@ -17,11 +17,19 @@ synchronized (pythonScriptInitializeNotifier) {
       }
     }
   }
+  String errorMessage="";
+  try {
+    context.out.flush();
+    errorMessage=new String(context.out.toByteArray());
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
   if (pythonscriptRunning == false) {
-    return new InterpreterResult(Code.ERROR,"failed to start pyspark" + outputStream.toString());
+    return new InterpreterResult(Code.ERROR,"failed to start pyspark" + errorMessage);
   }
   if (pythonScriptInitialized == false) {
-    return new InterpreterResult(Code.ERROR,"pyspark is not responding " + outputStream.toString());
+    return new InterpreterResult(Code.ERROR,"pyspark is not responding " + errorMessage);
   }
   if (!sparkInterpreter.getSparkVersion().isPysparkSupported()) {
     return new InterpreterResult(Code.ERROR,"pyspark " + sparkInterpreter.getSparkContext().version() + " is not supported");
@@ -48,6 +56,12 @@ synchronized (statementFinishedNotifier) {
     return new InterpreterResult(Code.ERROR,statementOutput);
   }
  else {
-    return new InterpreterResult(Code.SUCCESS,statementOutput);
+    try {
+      context.out.flush();
+    }
+ catch (    IOException e) {
+      throw new InterpreterException(e);
+    }
+    return new InterpreterResult(Code.SUCCESS);
   }
 }

@@ -1,0 +1,4 @@
+{
+  this.flushListener=flushListener;
+  clear();
+}

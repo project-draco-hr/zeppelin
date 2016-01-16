@@ -1,0 +1,5 @@
+{
+  Message msg=new Message(OP.PARAGRAPH_APPEND_OUTPUT).put("noteId",noteId).put("paragraphId",paragraphId).put("data",output);
+  Paragraph paragraph=notebook().getNote(noteId).getParagraph(paragraphId);
+  broadcast(noteId,msg);
+}

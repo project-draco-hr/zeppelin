@@ -8,7 +8,6 @@
   if (sparkInterpreter.getSparkVersion().isUnsupportedVersion() == false && pythonscriptRunning == false) {
     return new LinkedList<String>();
   }
-  outputStream.reset();
   pythonInterpretRequest=new PythonInterpretRequest(completionCommand,"");
   statementOutput=null;
 synchronized (statementSetNotifier) {

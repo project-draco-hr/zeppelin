@@ -1,0 +1,12 @@
+{
+  RemoteInterpreter intp=createMockInterpreter();
+  InterpreterResult ret=intp.interpret("SUCCESS::staticresult",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals("staticresult",ret.message());
+  ret=intp.interpret("SUCCESS::staticresult2",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals("staticresult2",ret.message());
+  ret=intp.interpret("ERROR::staticresult3",createInterpreterContext());
+  assertEquals(InterpreterResult.Code.ERROR,ret.code());
+  assertEquals("staticresult3",ret.message());
+}

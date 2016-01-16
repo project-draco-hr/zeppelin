@@ -1,6 +1,6 @@
 {
   Properties p=new Properties();
-  RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
+  RemoteInterpreter intpA=createMockInterpreterA(p);
   intpA.setInterpreterGroup(intpGroup);
   RemoteInterpreterProcess processA=intpA.getInterpreterProcess();
   intpA.open();

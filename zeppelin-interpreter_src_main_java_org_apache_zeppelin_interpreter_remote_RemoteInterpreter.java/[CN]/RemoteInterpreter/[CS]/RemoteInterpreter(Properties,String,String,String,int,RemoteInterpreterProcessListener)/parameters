@@ -1,0 +1,6 @@
+Properties property
+String className
+String interpreterRunner
+String interpreterPath
+int connectTimeout
+RemoteInterpreterProcessListener remoteInterpreterProcessListener

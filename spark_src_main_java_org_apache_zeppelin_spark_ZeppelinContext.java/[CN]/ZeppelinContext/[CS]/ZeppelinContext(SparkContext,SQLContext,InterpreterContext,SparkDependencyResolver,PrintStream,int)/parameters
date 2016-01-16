@@ -1,6 +1,0 @@
-SparkContext sc
-SQLContext sql
-InterpreterContext interpreterContext
-SparkDependencyResolver dep
-PrintStream printStream
-int maxResult

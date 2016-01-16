@@ -1,6 +1,6 @@
 {
   Properties p=new Properties();
-  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake",env,10 * 1000);
+  final RemoteInterpreter intpA=createMockInterpreterA(p);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
@@ -17,7 +17,7 @@
         return null;
       }
       @Override protected Object jobRun() throws Throwable {
-        InterpreterResult ret=intpA.interpret(getJobName(),new InterpreterContext("note",jobId,"title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>()));
+        InterpreterResult ret=intpA.interpret(getJobName(),new InterpreterContext("note",jobId,"title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
 synchronized (results) {
           results.add(ret.message());
           results.notify();
