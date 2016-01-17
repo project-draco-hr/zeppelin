@@ -1,6 +1,0 @@
-{
-  String buffer="  order.select  ";
-  tester.buffer(buffer).from(4).to(7).expect(newHashSet("order ")).test();
-  tester.buffer(buffer).from(8).to(15).expect(newHashSet("select ")).test();
-  tester.buffer(buffer).from(16).to(17).expect(EMPTY).test();
-}

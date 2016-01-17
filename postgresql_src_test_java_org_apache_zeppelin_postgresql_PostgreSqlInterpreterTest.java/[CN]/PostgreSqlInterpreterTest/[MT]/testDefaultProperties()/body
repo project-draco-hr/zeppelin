@@ -1,8 +1,0 @@
-{
-  PostgreSqlInterpreter psqlInterpreter=new PostgreSqlInterpreter(new Properties());
-  assertEquals(DEFAULT_JDBC_DRIVER_NAME,psqlInterpreter.getProperty(POSTGRESQL_SERVER_DRIVER_NAME));
-  assertEquals(DEFAULT_JDBC_URL,psqlInterpreter.getProperty(POSTGRESQL_SERVER_URL));
-  assertEquals(DEFAULT_JDBC_USER_NAME,psqlInterpreter.getProperty(POSTGRESQL_SERVER_USER));
-  assertEquals(DEFAULT_JDBC_USER_PASSWORD,psqlInterpreter.getProperty(POSTGRESQL_SERVER_PASSWORD));
-  assertEquals(DEFAULT_MAX_RESULT,psqlInterpreter.getProperty(POSTGRESQL_SERVER_MAX_RESULT));
-}

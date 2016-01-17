@@ -1,0 +1,7 @@
+{
+  Class.forName("org.h2.Driver");
+  Connection connection=DriverManager.getConnection(getJdbcConnection());
+  Statement statement=connection.createStatement();
+  statement.execute("DROP TABLE IF EXISTS test_table; " + "CREATE TABLE test_table(id varchar(255), name varchar(255));");
+  statement.execute("insert into test_table(id, name) values ('a', 'a_name'),('b', 'b_name');");
+}

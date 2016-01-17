@@ -1,0 +1,17 @@
+{
+  Connection connection;
+  if (paragraphIdConnectionMap.containsKey(paragraphId)) {
+    connection=paragraphIdConnectionMap.get(paragraphId);
+  }
+ else {
+    connection=getConnection(propertyKey);
+  }
+  Statement statement=connection.createStatement();
+  if (isStatementClosed(statement)) {
+    connection=getConnection(propertyKey);
+    statement=connection.createStatement();
+  }
+  paragraphIdConnectionMap.put(paragraphId,connection);
+  paragraphIdStatementMap.put(paragraphId,statement);
+  return statement;
+}

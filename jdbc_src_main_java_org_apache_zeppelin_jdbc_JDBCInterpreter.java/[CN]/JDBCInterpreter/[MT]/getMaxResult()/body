@@ -1,0 +1,3 @@
+{
+  return Integer.valueOf(propertiesMap.get(COMMON_KEY).getProperty(MAX_LINE_KEY,MAX_LINE_DEFAULT));
+}

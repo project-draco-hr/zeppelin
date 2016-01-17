@@ -1,5 +1,0 @@
-{
-  String buffer="ORDER";
-  tester.buffer(buffer).from(0).to(buffer.length() + 1).expect(newHashSet("ORDER ")).test();
-  tester.buffer(buffer).from(buffer.length() + 2).to(buffer.length() + 5).expect(EMPTY).test();
-}

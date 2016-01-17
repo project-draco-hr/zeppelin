@@ -1,8 +1,0 @@
-{
-  PostgreSqlInterpreter psqlInterpreter=spy(new PostgreSqlInterpreter(new Properties()));
-  when(psqlInterpreter.getJdbcConnection()).thenReturn(getJDBCMockObjectFactory().getMockConnection());
-  psqlInterpreter.close();
-  verifyAllResultSetsClosed();
-  verifyAllStatementsClosed();
-  verifyConnectionClosed();
-}

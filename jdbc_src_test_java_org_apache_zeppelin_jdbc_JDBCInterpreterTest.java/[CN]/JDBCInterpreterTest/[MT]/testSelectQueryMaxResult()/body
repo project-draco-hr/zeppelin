@@ -1,0 +1,16 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty("common.max_count","1");
+  properties.setProperty("common.max_retry","3");
+  properties.setProperty("default.driver","org.h2.Driver");
+  properties.setProperty("default.url",getJdbcConnection());
+  properties.setProperty("default.user","");
+  properties.setProperty("default.password","");
+  JDBCInterpreter t=new JDBCInterpreter(properties);
+  t.open();
+  String sqlQuery="select * from test_table";
+  InterpreterResult interpreterResult=t.interpret(sqlQuery,new InterpreterContext("","1","","",null,null,null,null));
+  assertEquals(InterpreterResult.Code.SUCCESS,interpreterResult.code());
+  assertEquals(InterpreterResult.Type.TABLE,interpreterResult.type());
+  assertEquals("ID\tNAME\na\ta_name\n",interpreterResult.message());
+}

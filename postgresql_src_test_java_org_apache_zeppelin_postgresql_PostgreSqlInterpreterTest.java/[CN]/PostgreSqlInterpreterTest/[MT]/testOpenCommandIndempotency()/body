@@ -1,7 +1,0 @@
-{
-  psqlInterpreter.open();
-  psqlInterpreter.open();
-  psqlInterpreter.open();
-  verify(psqlInterpreter,times(3)).open();
-  verify(psqlInterpreter,times(3)).close();
-}

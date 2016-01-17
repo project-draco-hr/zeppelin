@@ -1,6 +1,0 @@
-{
-  String buffer=" \n SELE \n fro";
-  tester.buffer(buffer).from(0).to(7).expect(newHashSet("SELECT ")).test();
-  tester.buffer(buffer).from(8).to(14).expect(newHashSet("from ")).test();
-  tester.buffer(buffer).from(15).to(17).expect(EMPTY).test();
-}

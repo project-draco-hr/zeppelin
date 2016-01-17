@@ -1,4 +1,0 @@
-{
-  this.toCursor=toCursor;
-  return this;
-}

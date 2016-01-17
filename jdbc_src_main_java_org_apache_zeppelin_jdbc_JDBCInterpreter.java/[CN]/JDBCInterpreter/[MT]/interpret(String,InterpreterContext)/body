@@ -1,0 +1,13 @@
+{
+  logger.info("Run SQL command '{}'",cmd);
+  String propertyKey=getPropertyKey(cmd);
+  if (null != propertyKey) {
+    cmd=cmd.substring(propertyKey.length() + 2);
+  }
+ else {
+    propertyKey=DEFAULT_KEY;
+  }
+  cmd=cmd.trim();
+  logger.info("PropertyKey: {}, SQL command: '{}'",propertyKey,cmd);
+  return executeSql(propertyKey,cmd,contextInterpreter);
+}
