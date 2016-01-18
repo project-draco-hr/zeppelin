@@ -1,0 +1,6 @@
+{
+  assertTrue(sqlCompleter.getSqlDelimiter().isDelimiterChar("r.",1));
+  assertTrue(sqlCompleter.getSqlDelimiter().isDelimiterChar("SS;",2));
+  assertTrue(sqlCompleter.getSqlDelimiter().isDelimiterChar(":",0));
+  assertTrue(sqlCompleter.getSqlDelimiter().isDelimiterChar("ttt,",3));
+}

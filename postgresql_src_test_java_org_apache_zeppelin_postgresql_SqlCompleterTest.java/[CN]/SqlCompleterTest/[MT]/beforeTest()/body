@@ -1,0 +1,6 @@
+{
+  Set<String> keywordsCompletions=SqlCompleter.getSqlKeywordsCompletions(getJDBCMockObjectFactory().getMockConnection());
+  Set<String> dataModelCompletions=SqlCompleter.getDataModelMetadataCompletions(getJDBCMockObjectFactory().getMockConnection());
+  sqlCompleter=new SqlCompleter(Sets.union(keywordsCompletions,dataModelCompletions),dataModelCompletions);
+  tester=new CompleterTester(sqlCompleter);
+}

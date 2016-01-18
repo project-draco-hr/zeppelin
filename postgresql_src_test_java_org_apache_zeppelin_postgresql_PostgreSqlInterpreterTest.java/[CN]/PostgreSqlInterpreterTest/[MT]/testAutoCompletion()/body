@@ -1,0 +1,6 @@
+{
+  psqlInterpreter.open();
+  assertEquals(1,psqlInterpreter.completion("SEL",0).size());
+  assertEquals("SELECT ",psqlInterpreter.completion("SEL",0).iterator().next());
+  assertEquals(0,psqlInterpreter.completion("SEL",100).size());
+}

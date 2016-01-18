@@ -1,0 +1,14 @@
+{
+  MockConnection connection=getJDBCMockObjectFactory().getMockConnection();
+  StatementResultSetHandler statementHandler=connection.getStatementResultSetHandler();
+  result=statementHandler.createResultSet();
+  statementHandler.prepareGlobalResultSet(result);
+  Properties properties=new Properties();
+  properties.put(POSTGRESQL_SERVER_DRIVER_NAME,DEFAULT_JDBC_DRIVER_NAME);
+  properties.put(POSTGRESQL_SERVER_URL,DEFAULT_JDBC_URL);
+  properties.put(POSTGRESQL_SERVER_USER,DEFAULT_JDBC_USER_NAME);
+  properties.put(POSTGRESQL_SERVER_PASSWORD,DEFAULT_JDBC_USER_PASSWORD);
+  properties.put(POSTGRESQL_SERVER_MAX_RESULT,DEFAULT_MAX_RESULT);
+  psqlInterpreter=spy(new PostgreSqlInterpreter(properties));
+  when(psqlInterpreter.getJdbcConnection()).thenReturn(connection);
+}

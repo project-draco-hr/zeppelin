@@ -1,0 +1,13 @@
+{
+  when(psqlInterpreter.getMaxResult()).thenReturn(1);
+  String sqlQuery="select * from t";
+  result.addColumn("col1",new String[]{"val11","val12"});
+  result.addColumn("col2",new String[]{"val21","val22"});
+  InterpreterResult interpreterResult=psqlInterpreter.interpret(sqlQuery,null);
+  assertEquals(InterpreterResult.Code.SUCCESS,interpreterResult.code());
+  assertEquals(InterpreterResult.Type.TABLE,interpreterResult.type());
+  assertEquals("col1\tcol2\nval11\tval21\n",interpreterResult.message());
+  verifySQLStatementExecuted(sqlQuery);
+  verifyAllResultSetsClosed();
+  verifyAllStatementsClosed();
+}

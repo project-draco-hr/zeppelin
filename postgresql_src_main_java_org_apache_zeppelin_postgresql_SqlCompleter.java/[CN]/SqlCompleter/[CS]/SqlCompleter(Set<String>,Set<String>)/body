@@ -1,0 +1,4 @@
+{
+  super(allCompletions);
+  this.modelCompletions=dataModelCompletions;
+}

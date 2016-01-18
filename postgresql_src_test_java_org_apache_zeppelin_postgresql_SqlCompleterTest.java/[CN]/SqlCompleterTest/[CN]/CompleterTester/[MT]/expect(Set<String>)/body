@@ -1,0 +1,4 @@
+{
+  this.expectedCompletions=expectedCompletions;
+  return this;
+}
