@@ -69,6 +69,9 @@ break;
 case ANGULAR_OBJECT_UPDATED:
 angularObjectUpdated(conn,notebook,messagereceived);
 break;
+case LIST_CONFIGURATIONS:
+sendAllConfigurations(conn,notebook);
+break;
 default :
 broadcastNoteList();
 break;

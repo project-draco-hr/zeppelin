@@ -1,0 +1,30 @@
+{
+  Map<String,String> configurations=new HashMap<>();
+  for (  ZeppelinConfiguration.ConfVars v : ZeppelinConfiguration.ConfVars.values()) {
+    String key=v.getVarName();
+    if (!predicate.apply(key)) {
+      continue;
+    }
+    ConfVars.VarType type=v.getType();
+    Object value=null;
+    if (type == ConfVars.VarType.BOOLEAN) {
+      value=conf.getBoolean(v);
+    }
+ else     if (type == ConfVars.VarType.LONG) {
+      value=conf.getLong(v);
+    }
+ else     if (type == ConfVars.VarType.INT) {
+      value=conf.getInt(v);
+    }
+ else     if (type == ConfVars.VarType.FLOAT) {
+      value=conf.getFloat(v);
+    }
+ else     if (type == ConfVars.VarType.STRING) {
+      value=conf.getString(v);
+    }
+    if (value != null) {
+      configurations.put(key,value.toString());
+    }
+  }
+  return configurations;
+}

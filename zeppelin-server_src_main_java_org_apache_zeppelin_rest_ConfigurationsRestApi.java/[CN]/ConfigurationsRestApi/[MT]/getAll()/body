@@ -1,0 +1,10 @@
+{
+  ZeppelinConfiguration conf=notebook.getConf();
+  Map<String,String> configurations=conf.dumpConfigurations(conf,new ZeppelinConfiguration.ConfigurationKeyPredicate(){
+    @Override public boolean apply(    String key){
+      return !key.contains("password");
+    }
+  }
+);
+  return new JsonResponse(Status.OK,"",configurations).build();
+}

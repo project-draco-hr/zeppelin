@@ -1,0 +1,14 @@
+{
+  GetMethod get=httpGet("/configurations/all");
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  Map<String,String> body=(Map<String,String>)resp.get("body");
+  assertTrue(body.size() > 0);
+  assertTrue(Iterators.all(body.keySet().iterator(),new Predicate<String>(){
+    @Override public boolean apply(    String key){
+      return !key.contains("password");
+    }
+  }
+));
+}

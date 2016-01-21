@@ -8,5 +8,7 @@
   singletons.add(interpreterApi);
   SecurityRestApi securityApi=new SecurityRestApi();
   singletons.add(securityApi);
+  ConfigurationsRestApi settingsApi=new ConfigurationsRestApi(notebook);
+  singletons.add(settingsApi);
   return singletons;
 }
