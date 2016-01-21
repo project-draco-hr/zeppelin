@@ -9,17 +9,17 @@
   result=ret.message().split(" ");
   assertEquals("1",result[0]);
   assertEquals("0",result[1]);
-  assertEquals("v1",localRegistry.get("n1","note").get());
+  assertEquals("v1",localRegistry.get("n1","note",null).get());
   ret=intp.interpret("update n1 v11",context);
   result=ret.message().split(" ");
   Thread.sleep(500);
   assertEquals("1",result[0]);
   assertEquals("1",result[1]);
-  assertEquals("v11",localRegistry.get("n1","note").get());
+  assertEquals("v11",localRegistry.get("n1","note",null).get());
   ret=intp.interpret("remove n1",context);
   result=ret.message().split(" ");
   Thread.sleep(500);
   assertEquals("0",result[0]);
   assertEquals("1",result[1]);
-  assertEquals(null,localRegistry.get("n1","note"));
+  assertEquals(null,localRegistry.get("n1","note",null));
 }

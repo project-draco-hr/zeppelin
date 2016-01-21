@@ -6,5 +6,8 @@
   boolean present_noteId=true && (isSetNoteId());
   list.add(present_noteId);
   if (present_noteId)   list.add(noteId);
+  boolean present_paragraphId=true && (isSetParagraphId());
+  list.add(present_paragraphId);
+  if (present_paragraphId)   list.add(paragraphId);
   return list.hashCode();
 }

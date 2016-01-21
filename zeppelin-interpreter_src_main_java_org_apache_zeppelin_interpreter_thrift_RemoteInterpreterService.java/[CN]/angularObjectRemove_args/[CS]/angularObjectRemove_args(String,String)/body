@@ -1,5 +1,0 @@
-{
-  this();
-  this.name=name;
-  this.noteId=noteId;
-}

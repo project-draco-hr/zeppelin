@@ -1,0 +1,9 @@
+{
+synchronized (registry) {
+    String key=getRegistryKey(noteId,paragraphId);
+    if (!registry.containsKey(key)) {
+      registry.put(key,new HashMap<String,AngularObject>());
+    }
+    return registry.get(key);
+  }
+}

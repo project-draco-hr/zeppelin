@@ -3,6 +3,7 @@
   angularObjectRemove_args args=new angularObjectRemove_args();
   args.setName(name);
   args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
   args.write(prot);
   prot.writeMessageEnd();
 }

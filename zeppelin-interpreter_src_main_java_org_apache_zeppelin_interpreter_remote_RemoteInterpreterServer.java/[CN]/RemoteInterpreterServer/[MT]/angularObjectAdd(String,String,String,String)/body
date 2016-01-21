@@ -1,0 +1,21 @@
+{
+  AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
+  AngularObject ao=registry.get(name,noteId,paragraphId);
+  if (ao != null) {
+    angularObjectUpdate(name,noteId,paragraphId,object);
+    return;
+  }
+  Object value=null;
+  try {
+    value=gson.fromJson(object,new TypeToken<Map<String,Object>>(){
+    }
+.getType());
+  }
+ catch (  Exception e) {
+    logger.info("Exception in RemoteInterpreterServer while angularObjectAdd, nolock",e);
+  }
+  if (value == null) {
+    value=gson.fromJson(object,String.class);
+  }
+  registry.add(name,value,noteId,paragraphId,false);
+}

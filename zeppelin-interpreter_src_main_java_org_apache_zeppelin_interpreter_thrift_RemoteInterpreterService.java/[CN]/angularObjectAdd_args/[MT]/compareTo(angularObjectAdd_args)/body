@@ -23,6 +23,16 @@
       return lastComparison;
     }
   }
+  lastComparison=Boolean.valueOf(isSetParagraphId()).compareTo(other.isSetParagraphId());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetParagraphId()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.paragraphId,other.paragraphId);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   lastComparison=Boolean.valueOf(isSetObject()).compareTo(other.isSetObject());
   if (lastComparison != 0) {
     return lastComparison;

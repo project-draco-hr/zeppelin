@@ -5,6 +5,8 @@ case 1:
 case 2:
   return NOTE_ID;
 case 3:
+return PARAGRAPH_ID;
+case 4:
 return OBJECT;
 default :
 return null;

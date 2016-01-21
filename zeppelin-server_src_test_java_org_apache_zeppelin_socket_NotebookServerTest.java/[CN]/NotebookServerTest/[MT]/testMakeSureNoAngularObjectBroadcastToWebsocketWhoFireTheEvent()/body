@@ -9,7 +9,7 @@
     interpreterGroup=setting.getInterpreterGroup();
     break;
   }
-  interpreterGroup.getAngularObjectRegistry().add("object1","value1",note1.getId());
+  interpreterGroup.getAngularObjectRegistry().add("object1","value1",note1.getId(),null);
   NotebookSocket sock1=createWebSocket();
   NotebookSocket sock2=createWebSocket();
   assertEquals(sock1,sock1);

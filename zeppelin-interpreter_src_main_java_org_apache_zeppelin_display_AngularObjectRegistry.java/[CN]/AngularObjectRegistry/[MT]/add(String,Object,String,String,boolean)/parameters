@@ -1,0 +1,5 @@
+String name
+Object o
+String noteId
+String paragraphId
+boolean emit

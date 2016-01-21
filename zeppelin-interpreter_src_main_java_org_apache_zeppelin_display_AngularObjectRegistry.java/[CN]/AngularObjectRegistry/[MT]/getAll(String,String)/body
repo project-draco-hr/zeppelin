@@ -1,0 +1,10 @@
+{
+  List<AngularObject> all=new LinkedList<AngularObject>();
+synchronized (registry) {
+    Map<String,AngularObject> r=getRegistryForKey(noteId,paragraphId);
+    if (r != null) {
+      all.addAll(r.values());
+    }
+  }
+  return all;
+}

@@ -16,5 +16,13 @@ if (value == null) {
   setNoteId((String)value);
 }
 break;
+case PARAGRAPH_ID:
+if (value == null) {
+unsetParagraphId();
+}
+ else {
+setParagraphId((String)value);
+}
+break;
 }
 }

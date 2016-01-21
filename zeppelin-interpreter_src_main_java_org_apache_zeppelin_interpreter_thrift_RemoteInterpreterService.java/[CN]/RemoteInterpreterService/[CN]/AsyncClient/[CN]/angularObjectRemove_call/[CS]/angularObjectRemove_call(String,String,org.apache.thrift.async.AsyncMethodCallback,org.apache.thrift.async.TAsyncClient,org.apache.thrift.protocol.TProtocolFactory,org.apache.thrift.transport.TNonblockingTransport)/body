@@ -1,5 +1,0 @@
-{
-  super(client,protocolFactory,transport,resultHandler,false);
-  this.name=name;
-  this.noteId=noteId;
-}

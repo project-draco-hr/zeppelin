@@ -47,7 +47,8 @@ synchronized (notes) {
       if (intpGroup.getId().equals(snapshot.getIntpGroupId())) {
         AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
         String noteId=snapshot.getAngularObject().getNoteId();
-        registry.add(name,snapshot.getAngularObject().get(),noteId);
+        String paragraphId=snapshot.getAngularObject().getParagraphId();
+        registry.add(name,snapshot.getAngularObject().get(),noteId,paragraphId);
       }
     }
   }

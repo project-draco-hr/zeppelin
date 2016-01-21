@@ -4,6 +4,8 @@ case 1:
     return NAME;
 case 2:
   return NOTE_ID;
+case 3:
+return PARAGRAPH_ID;
 default :
 return null;
 }

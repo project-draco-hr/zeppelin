@@ -18,6 +18,15 @@
     sb.append(this.noteId);
   }
   first=false;
+  if (!first)   sb.append(", ");
+  sb.append("paragraphId:");
+  if (this.paragraphId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.paragraphId);
+  }
+  first=false;
   sb.append(")");
   return sb.toString();
 }

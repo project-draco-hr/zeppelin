@@ -1,0 +1,4 @@
+{
+  send_angularObjectUpdate(name,noteId,paragraphId,object);
+  recv_angularObjectUpdate();
+}

@@ -7,10 +7,10 @@ synchronized (notes) {
   for (  InterpreterSetting settings : replFactory.get()) {
     AngularObjectRegistry registry=settings.getInterpreterGroup().getAngularObjectRegistry();
     if (registry instanceof RemoteAngularObjectRegistry) {
-      ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id);
+      ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,null);
     }
  else {
-      registry.removeAll(id);
+      registry.removeAll(id,null);
     }
   }
   try {

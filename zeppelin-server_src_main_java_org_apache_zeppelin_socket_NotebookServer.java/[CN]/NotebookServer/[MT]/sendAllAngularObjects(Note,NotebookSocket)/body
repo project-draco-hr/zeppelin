@@ -7,7 +7,7 @@
     AngularObjectRegistry registry=intpSetting.getInterpreterGroup().getAngularObjectRegistry();
     List<AngularObject> objects=registry.getAllWithGlobal(note.id());
     for (    AngularObject object : objects) {
-      conn.send(serializeMessage(new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",intpSetting.getInterpreterGroup().getId()).put("noteId",note.id())));
+      conn.send(serializeMessage(new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",intpSetting.getInterpreterGroup().getId()).put("noteId",note.id()).put("paragraphId",object.getParagraphId())));
     }
   }
 }

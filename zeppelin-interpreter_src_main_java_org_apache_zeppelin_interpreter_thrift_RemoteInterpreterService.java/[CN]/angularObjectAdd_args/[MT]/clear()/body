@@ -1,5 +1,6 @@
 {
   this.name=null;
   this.noteId=null;
+  this.paragraphId=null;
   this.object=null;
 }

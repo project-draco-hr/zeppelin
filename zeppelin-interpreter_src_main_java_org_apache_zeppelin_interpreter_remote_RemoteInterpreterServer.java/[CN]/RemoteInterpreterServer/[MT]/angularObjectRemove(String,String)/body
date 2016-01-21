@@ -1,4 +1,0 @@
-{
-  AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
-  registry.remove(name,noteId,false);
-}

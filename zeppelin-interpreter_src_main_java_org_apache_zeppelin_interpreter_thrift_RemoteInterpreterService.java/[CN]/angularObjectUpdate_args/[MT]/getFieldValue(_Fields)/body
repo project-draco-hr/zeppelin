@@ -4,6 +4,8 @@ case NAME:
     return getName();
 case NOTE_ID:
   return getNoteId();
+case PARAGRAPH_ID:
+return getParagraphId();
 case OBJECT:
 return getObject();
 }

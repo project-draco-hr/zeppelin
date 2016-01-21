@@ -1,0 +1,7 @@
+{
+  this.name=name;
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+  this.listener=listener;
+  object=o;
+}

@@ -1,0 +1,4 @@
+String name
+String noteId
+String paragraphId
+org.apache.thrift.async.AsyncMethodCallback resultHandler

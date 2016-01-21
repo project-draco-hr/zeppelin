@@ -1,0 +1,11 @@
+{
+  AngularObject ao=createNewAngularObject(name,o,noteId,paragraphId);
+synchronized (registry) {
+    Map<String,AngularObject> noteLocalRegistry=getRegistryForKey(noteId,paragraphId);
+    noteLocalRegistry.put(name,ao);
+    if (listener != null && emit) {
+      listener.onAdd(interpreterId,ao);
+    }
+  }
+  return ao;
+}

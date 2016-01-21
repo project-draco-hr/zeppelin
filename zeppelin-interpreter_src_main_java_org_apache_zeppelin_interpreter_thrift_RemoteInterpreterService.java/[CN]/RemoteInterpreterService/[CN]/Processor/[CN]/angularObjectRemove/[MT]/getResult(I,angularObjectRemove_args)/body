@@ -1,5 +1,5 @@
 {
   angularObjectRemove_result result=new angularObjectRemove_result();
-  iface.angularObjectRemove(args.name,args.noteId);
+  iface.angularObjectRemove(args.name,args.noteId,args.paragraphId);
   return result;
 }

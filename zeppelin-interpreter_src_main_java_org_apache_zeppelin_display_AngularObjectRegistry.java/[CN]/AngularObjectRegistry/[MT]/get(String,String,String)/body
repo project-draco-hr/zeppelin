@@ -1,0 +1,6 @@
+{
+synchronized (registry) {
+    Map<String,AngularObject> r=getRegistryForKey(noteId,paragraphId);
+    return r.get(name);
+  }
+}

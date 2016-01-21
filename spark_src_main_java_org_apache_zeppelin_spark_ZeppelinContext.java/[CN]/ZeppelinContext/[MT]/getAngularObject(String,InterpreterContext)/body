@@ -1,9 +1,9 @@
 {
   AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
   String noteId=interpreterContext.getNoteId();
-  AngularObject ao=registry.get(name,interpreterContext.getNoteId());
+  AngularObject ao=registry.get(name,interpreterContext.getNoteId(),null);
   if (ao == null) {
-    ao=registry.get(name,null);
+    ao=registry.get(name,null,null);
   }
   return ao;
 }

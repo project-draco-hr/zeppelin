@@ -6,6 +6,9 @@
   boolean present_noteId=true && (isSetNoteId());
   list.add(present_noteId);
   if (present_noteId)   list.add(noteId);
+  boolean present_paragraphId=true && (isSetParagraphId());
+  list.add(present_paragraphId);
+  if (present_paragraphId)   list.add(paragraphId);
   boolean present_object=true && (isSetObject());
   list.add(present_object);
   if (present_object)   list.add(object);

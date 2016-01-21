@@ -1,6 +1,0 @@
-{
-  angularObjectRemove_args args=new angularObjectRemove_args();
-  args.setName(name);
-  args.setNoteId(noteId);
-  sendBase("angularObjectRemove",args);
-}

@@ -19,6 +19,15 @@
   }
   first=false;
   if (!first)   sb.append(", ");
+  sb.append("paragraphId:");
+  if (this.paragraphId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.paragraphId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
   sb.append("object:");
   if (this.object == null) {
     sb.append("null");

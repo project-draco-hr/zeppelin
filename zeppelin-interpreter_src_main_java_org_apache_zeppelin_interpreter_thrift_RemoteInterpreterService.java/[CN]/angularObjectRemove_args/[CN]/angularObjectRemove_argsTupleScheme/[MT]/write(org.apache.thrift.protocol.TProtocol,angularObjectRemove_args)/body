@@ -7,11 +7,17 @@
   if (struct.isSetNoteId()) {
     optionals.set(1);
   }
-  oprot.writeBitSet(optionals,2);
+  if (struct.isSetParagraphId()) {
+    optionals.set(2);
+  }
+  oprot.writeBitSet(optionals,3);
   if (struct.isSetName()) {
     oprot.writeString(struct.name);
   }
   if (struct.isSetNoteId()) {
     oprot.writeString(struct.noteId);
+  }
+  if (struct.isSetParagraphId()) {
+    oprot.writeString(struct.paragraphId);
   }
 }

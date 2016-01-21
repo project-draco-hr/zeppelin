@@ -11,6 +11,11 @@
     oprot.writeString(struct.noteId);
     oprot.writeFieldEnd();
   }
+  if (struct.paragraphId != null) {
+    oprot.writeFieldBegin(PARAGRAPH_ID_FIELD_DESC);
+    oprot.writeString(struct.paragraphId);
+    oprot.writeFieldEnd();
+  }
   oprot.writeFieldStop();
   oprot.writeStructEnd();
 }

@@ -1,6 +1,0 @@
-{
-  List<AngularObject> all=getAll(noteId);
-  for (  AngularObject ao : all) {
-    removeAndNotifyRemoteProcess(ao.getName(),noteId);
-  }
-}

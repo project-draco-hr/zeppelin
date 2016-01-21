@@ -1,0 +1,3 @@
+{
+  return remove(name,noteId,paragraphId,true);
+}

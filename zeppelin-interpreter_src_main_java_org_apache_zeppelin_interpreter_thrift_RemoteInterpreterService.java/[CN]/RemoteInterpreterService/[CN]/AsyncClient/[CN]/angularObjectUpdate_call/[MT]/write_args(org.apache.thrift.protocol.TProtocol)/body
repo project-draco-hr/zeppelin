@@ -3,6 +3,7 @@
   angularObjectUpdate_args args=new angularObjectUpdate_args();
   args.setName(name);
   args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
   args.setObject(object);
   args.write(prot);
   prot.writeMessageEnd();

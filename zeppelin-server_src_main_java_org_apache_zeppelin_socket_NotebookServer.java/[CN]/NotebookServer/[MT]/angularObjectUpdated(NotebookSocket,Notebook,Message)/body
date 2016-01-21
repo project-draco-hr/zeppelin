@@ -1,5 +1,6 @@
 {
   String noteId=(String)fromMessage.get("noteId");
+  String paragraphId=(String)fromMessage.get("paragraphId");
   String interpreterGroupId=(String)fromMessage.get("interpreterGroupId");
   String varName=(String)fromMessage.get("name");
   Object varValue=fromMessage.get("value");
@@ -14,15 +15,22 @@
       }
       if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
         AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
-        ao=angularObjectRegistry.get(varName,noteId);
+        ao=angularObjectRegistry.get(varName,noteId,paragraphId);
         if (ao == null) {
-          ao=angularObjectRegistry.get(varName,null);
+          ao=angularObjectRegistry.get(varName,noteId,null);
           if (ao == null) {
-            LOG.warn("Object {} is not binded",varName);
+            ao=angularObjectRegistry.get(varName,null,null);
+            if (ao == null) {
+              LOG.warn("Object {} is not binded",varName);
+            }
+ else {
+              ao.set(varValue,false);
+              global=true;
+            }
           }
  else {
             ao.set(varValue,false);
-            global=true;
+            global=false;
           }
         }
  else {
@@ -42,12 +50,12 @@
         }
         if (interpreterGroupId.equals(setting.getInterpreterGroup().getId())) {
           AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup().getAngularObjectRegistry();
-          this.broadcastExcept(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()),conn);
+          this.broadcastExcept(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()).put("paragraphId",ao.getParagraphId()),conn);
         }
       }
     }
   }
  else {
-    this.broadcastExcept(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()),conn);
+    this.broadcastExcept(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()).put("paragraphId",ao.getParagraphId()),conn);
   }
 }

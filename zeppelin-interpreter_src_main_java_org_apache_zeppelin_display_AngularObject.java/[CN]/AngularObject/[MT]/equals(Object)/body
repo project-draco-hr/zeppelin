@@ -2,7 +2,9 @@
   if (o instanceof AngularObject) {
     AngularObject ao=(AngularObject)o;
     if (noteId == null && ao.noteId == null || (noteId != null && ao.noteId != null && noteId.equals(ao.noteId))) {
-      return name.equals(ao.name);
+      if (paragraphId == null && ao.paragraphId == null || (paragraphId != null && ao.paragraphId != null && paragraphId.equals(ao.paragraphId))) {
+        return name.equals(ao.name);
+      }
     }
   }
   return false;

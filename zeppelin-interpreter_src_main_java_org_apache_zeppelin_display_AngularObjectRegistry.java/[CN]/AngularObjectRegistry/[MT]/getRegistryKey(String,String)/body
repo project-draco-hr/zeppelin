@@ -1,0 +1,13 @@
+{
+  if (noteId == null) {
+    return GLOBAL_KEY;
+  }
+ else {
+    if (paragraphId == null) {
+      return noteId;
+    }
+ else {
+      return noteId + "_" + paragraphId;
+    }
+  }
+}

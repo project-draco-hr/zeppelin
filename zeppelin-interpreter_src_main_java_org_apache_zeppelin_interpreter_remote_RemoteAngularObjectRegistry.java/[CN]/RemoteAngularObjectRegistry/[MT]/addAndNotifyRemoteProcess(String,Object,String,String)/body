@@ -1,0 +1,27 @@
+{
+  Gson gson=new Gson();
+  RemoteInterpreterProcess remoteInterpreterProcess=getRemoteInterpreterProcess();
+  if (!remoteInterpreterProcess.isRunning()) {
+    return null;
+  }
+  Client client=null;
+  boolean broken=false;
+  try {
+    client=remoteInterpreterProcess.getClient();
+    client.angularObjectAdd(name,noteId,paragraphId,gson.toJson(o));
+    return super.add(name,o,noteId,paragraphId,true);
+  }
+ catch (  TException e) {
+    broken=true;
+    logger.error("Error",e);
+  }
+catch (  Exception e) {
+    logger.error("Error",e);
+  }
+ finally {
+    if (client != null) {
+      remoteInterpreterProcess.releaseClient(client,broken);
+    }
+  }
+  return null;
+}

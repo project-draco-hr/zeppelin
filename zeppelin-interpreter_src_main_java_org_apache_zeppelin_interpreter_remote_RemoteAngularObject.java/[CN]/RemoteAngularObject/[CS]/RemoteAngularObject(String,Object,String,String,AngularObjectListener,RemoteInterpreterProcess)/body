@@ -1,4 +1,0 @@
-{
-  super(name,o,noteId,listener);
-  this.remoteInterpreterProcess=remoteInterpreterProcess;
-}

@@ -1,0 +1,13 @@
+{
+  AngularObjectRegistry registry=new AngularObjectRegistry("intpId",null);
+  AngularObject ao1=registry.add("name1","o","noteId1","paragraphId1");
+  AngularObject ao2=registry.add("name2","o","noteId1","paragraphId1");
+  AngularObject ao3=registry.add("name2","o","noteId1","paragraphId2");
+  AngularObject ao4=registry.add("name3","o","noteId1",null);
+  AngularObject ao5=registry.add("name4","o",null,null);
+  assertEquals(2,registry.getAll("noteId1","paragraphId1").size());
+  assertEquals(1,registry.getAll("noteId1","paragraphId2").size());
+  assertEquals(1,registry.getAll("noteId1",null).size());
+  assertEquals(1,registry.getAll(null,null).size());
+  assertEquals(5,registry.getAllWithGlobal("noteId1").size());
+}

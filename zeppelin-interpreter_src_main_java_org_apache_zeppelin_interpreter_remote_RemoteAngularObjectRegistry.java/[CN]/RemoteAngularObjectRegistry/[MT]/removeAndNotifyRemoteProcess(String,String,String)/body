@@ -1,0 +1,26 @@
+{
+  RemoteInterpreterProcess remoteInterpreterProcess=getRemoteInterpreterProcess();
+  if (!remoteInterpreterProcess.isRunning()) {
+    return null;
+  }
+  Client client=null;
+  boolean broken=false;
+  try {
+    client=remoteInterpreterProcess.getClient();
+    client.angularObjectRemove(name,noteId,paragraphId);
+    return super.remove(name,noteId,paragraphId);
+  }
+ catch (  TException e) {
+    broken=true;
+    logger.error("Error",e);
+  }
+catch (  Exception e) {
+    logger.error("Error",e);
+  }
+ finally {
+    if (client != null) {
+      remoteInterpreterProcess.releaseClient(client,broken);
+    }
+  }
+  return null;
+}

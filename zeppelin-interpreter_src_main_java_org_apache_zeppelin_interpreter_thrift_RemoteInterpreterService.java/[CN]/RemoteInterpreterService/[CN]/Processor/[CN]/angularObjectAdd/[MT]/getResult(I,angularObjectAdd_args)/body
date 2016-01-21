@@ -1,5 +1,5 @@
 {
   angularObjectAdd_result result=new angularObjectAdd_result();
-  iface.angularObjectAdd(args.name,args.noteId,args.object);
+  iface.angularObjectAdd(args.name,args.noteId,args.paragraphId,args.object);
   return result;
 }

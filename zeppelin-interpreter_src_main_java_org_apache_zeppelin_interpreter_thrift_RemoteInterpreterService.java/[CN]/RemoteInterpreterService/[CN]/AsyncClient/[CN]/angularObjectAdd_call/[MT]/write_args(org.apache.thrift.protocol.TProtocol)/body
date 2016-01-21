@@ -3,6 +3,7 @@
   angularObjectAdd_args args=new angularObjectAdd_args();
   args.setName(name);
   args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
   args.setObject(object);
   args.write(prot);
   prot.writeMessageEnd();

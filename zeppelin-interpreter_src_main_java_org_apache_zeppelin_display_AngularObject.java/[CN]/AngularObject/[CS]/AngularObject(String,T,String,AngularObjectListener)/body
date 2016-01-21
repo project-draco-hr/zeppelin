@@ -1,6 +1,0 @@
-{
-  this.name=name;
-  this.noteId=noteId;
-  this.listener=listener;
-  object=o;
-}

@@ -1,0 +1,7 @@
+String name
+Object o
+String noteId
+String paragraphId
+String interpreterGroupId
+AngularObjectListener listener
+RemoteInterpreterProcess remoteInterpreterProcess

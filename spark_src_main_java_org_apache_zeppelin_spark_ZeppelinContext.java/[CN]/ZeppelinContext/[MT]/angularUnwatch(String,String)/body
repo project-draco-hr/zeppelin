@@ -1,6 +1,6 @@
 {
   AngularObjectRegistry registry=interpreterContext.getAngularObjectRegistry();
-  if (registry.get(name,noteId) != null) {
-    registry.get(name,noteId).clearAllWatchers();
+  if (registry.get(name,noteId,null) != null) {
+    registry.get(name,noteId,null).clearAllWatchers();
   }
 }
