@@ -1,0 +1,6 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  driver.quit();
+}

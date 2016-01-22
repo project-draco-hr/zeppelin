@@ -1,0 +1,15 @@
+{
+  if (logOutput) {
+    LOG.info("Starting sleeping for " + (millis / 1000) + " seconds...");
+    LOG.info("Caller: " + Thread.currentThread().getStackTrace()[2]);
+  }
+  try {
+    Thread.sleep(millis);
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
+  if (logOutput) {
+    LOG.info("Finished.");
+  }
+}
