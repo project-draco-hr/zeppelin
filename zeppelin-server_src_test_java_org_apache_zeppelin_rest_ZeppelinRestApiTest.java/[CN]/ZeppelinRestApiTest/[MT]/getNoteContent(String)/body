@@ -1,0 +1,12 @@
+{
+  GetMethod get=httpGet("/notebook/export/" + id);
+  assertThat(get,isAllowed());
+  get.addRequestHeader("Origin","http://localhost");
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  assertEquals(200,get.getStatusCode());
+  String body=resp.get("body").toString();
+  get.releaseConnection();
+  return body;
+}

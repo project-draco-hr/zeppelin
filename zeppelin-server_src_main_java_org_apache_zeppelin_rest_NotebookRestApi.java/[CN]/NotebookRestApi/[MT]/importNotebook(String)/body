@@ -1,0 +1,4 @@
+{
+  Note newNote=notebook.importNote(req,null);
+  return new JsonResponse<>(Status.CREATED,"",newNote.getId()).build();
+}
