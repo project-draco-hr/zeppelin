@@ -7,6 +7,11 @@
   for (  InterpreterSetting setting : settings) {
     InterpreterGroup intpGroup=setting.getInterpreterGroup();
     AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
-    registry.removeAll(id,paragraphId);
+    if (registry instanceof RemoteAngularObjectRegistry) {
+      ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,paragraphId);
+    }
+ else {
+      registry.removeAll(id,paragraphId);
+    }
   }
 }
