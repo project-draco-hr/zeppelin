@@ -1,5 +1,5 @@
 {
-  int maxConcurrency=10;
+  int maxConcurrency=maxPoolSize;
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   if (interpreterProcess == null) {
     return null;

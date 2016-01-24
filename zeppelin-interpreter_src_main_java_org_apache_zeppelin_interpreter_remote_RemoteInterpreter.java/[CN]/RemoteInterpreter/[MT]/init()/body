@@ -4,6 +4,7 @@
   }
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
   int rc=interpreterProcess.reference(getInterpreterGroup());
+  interpreterProcess.setMaxPoolSize(this.maxPoolSize);
 synchronized (interpreterProcess) {
     if (rc == 1) {
       Client client=null;

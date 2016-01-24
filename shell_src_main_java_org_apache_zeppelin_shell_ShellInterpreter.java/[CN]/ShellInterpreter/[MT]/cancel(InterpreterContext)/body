@@ -1,2 +1,12 @@
 {
+  Job runningJob=getRunningJob(context.getParagraphId());
+  if (runningJob != null) {
+    Map<String,Object> info=runningJob.info();
+    Object object=info.get(EXECUTOR_KEY);
+    if (object != null) {
+      Executor executor=(Executor)object;
+      ExecuteWatchdog watchdog=executor.getWatchdog();
+      watchdog.destroyProcess();
+    }
+  }
 }

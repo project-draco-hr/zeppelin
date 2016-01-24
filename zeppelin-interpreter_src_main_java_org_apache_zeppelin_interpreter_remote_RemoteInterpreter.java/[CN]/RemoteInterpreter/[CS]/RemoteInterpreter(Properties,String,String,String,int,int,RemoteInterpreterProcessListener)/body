@@ -6,5 +6,6 @@
   this.interpreterPath=interpreterPath;
   env=new HashMap<String,String>();
   this.connectTimeout=connectTimeout;
+  this.maxPoolSize=maxPoolSize;
   this.remoteInterpreterProcessListener=remoteInterpreterProcessListener;
 }

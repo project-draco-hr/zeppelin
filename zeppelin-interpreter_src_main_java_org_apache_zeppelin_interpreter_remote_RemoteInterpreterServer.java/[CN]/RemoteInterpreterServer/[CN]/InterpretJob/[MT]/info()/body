@@ -1,3 +1,6 @@
 {
-  return null;
+  if (infos == null) {
+    infos=new HashMap<>();
+  }
+  return infos;
 }

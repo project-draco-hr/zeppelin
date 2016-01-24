@@ -1,0 +1,5 @@
+{
+  if (clientPool != null) {
+    clientPool.setMaxTotal(size + 2);
+  }
+}

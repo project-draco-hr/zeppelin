@@ -1,3 +1,3 @@
 {
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler(ShellInterpreter.class.getName() + this.hashCode());
+  return SchedulerFactory.singleton().createOrGetParallelScheduler(ShellInterpreter.class.getName() + this.hashCode(),10);
 }

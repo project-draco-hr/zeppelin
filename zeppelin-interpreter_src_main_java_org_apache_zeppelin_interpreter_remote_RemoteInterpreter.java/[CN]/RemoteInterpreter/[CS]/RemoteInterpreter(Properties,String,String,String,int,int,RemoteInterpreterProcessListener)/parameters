@@ -3,4 +3,5 @@ String className
 String interpreterRunner
 String interpreterPath
 int connectTimeout
+int maxPoolSize
 RemoteInterpreterProcessListener remoteInterpreterProcessListener

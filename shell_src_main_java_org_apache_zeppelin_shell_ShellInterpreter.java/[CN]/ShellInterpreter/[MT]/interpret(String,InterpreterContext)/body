@@ -1,20 +1,33 @@
 {
   logger.debug("Run shell command '" + cmd + "'");
-  long start=System.currentTimeMillis();
   CommandLine cmdLine=CommandLine.parse("bash");
   cmdLine.addArgument("-c",false);
   cmdLine.addArgument(cmd,false);
   DefaultExecutor executor=new DefaultExecutor();
   ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-  executor.setStreamHandler(new PumpStreamHandler(outputStream));
+  ByteArrayOutputStream errorStream=new ByteArrayOutputStream();
+  executor.setStreamHandler(new PumpStreamHandler(outputStream,errorStream));
   executor.setWatchdog(new ExecuteWatchdog(commandTimeOut));
+  Job runningJob=getRunningJob(contextInterpreter.getParagraphId());
+  Map<String,Object> info=runningJob.info();
+  info.put(EXECUTOR_KEY,executor);
   try {
-    int exitValue=executor.execute(cmdLine);
+    int exitVal=executor.execute(cmdLine);
+    logger.info("Paragraph " + contextInterpreter.getParagraphId() + "return with exit value: "+ exitVal);
     return new InterpreterResult(InterpreterResult.Code.SUCCESS,outputStream.toString());
   }
  catch (  ExecuteException e) {
+    int exitValue=e.getExitValue();
     logger.error("Can not run " + cmd,e);
-    return new InterpreterResult(Code.ERROR,e.getMessage());
+    Code code=Code.ERROR;
+    String msg=errorStream.toString();
+    if (exitValue == 143) {
+      code=Code.INCOMPLETE;
+      msg=msg + "Paragraph received a SIGTERM.\n";
+      logger.info("The paragraph " + contextInterpreter.getParagraphId() + " stopped executing: "+ msg);
+    }
+    msg+="Exitvalue: " + exitValue;
+    return new InterpreterResult(code,msg);
   }
 catch (  IOException e) {
     logger.error("Can not run " + cmd,e);
