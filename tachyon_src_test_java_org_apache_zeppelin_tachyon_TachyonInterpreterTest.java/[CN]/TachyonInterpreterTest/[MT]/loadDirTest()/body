@@ -1,0 +1,13 @@
+{
+  TachyonFile fileA=TachyonFSTestUtils.createByteFile(mTfs,"/testRoot/testFileA",TachyonStorageType.NO_STORE,UnderStorageType.SYNC_PERSIST,10);
+  TachyonFile fileB=TachyonFSTestUtils.createByteFile(mTfs,"/testRoot/testFileB",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,10);
+  FileInfo fileInfoA=mTfs.getInfo(fileA);
+  FileInfo fileInfoB=mTfs.getInfo(fileB);
+  Assert.assertFalse(fileInfoA.getInMemoryPercentage() == 100);
+  Assert.assertTrue(fileInfoB.getInMemoryPercentage() == 100);
+  tachyonInterpreter.interpret("load /testRoot",null);
+  fileInfoA=mTfs.getInfo(fileA);
+  fileInfoB=mTfs.getInfo(fileB);
+  Assert.assertTrue(fileInfoA.getInMemoryPercentage() == 100);
+  Assert.assertTrue(fileInfoB.getInMemoryPercentage() == 100);
+}

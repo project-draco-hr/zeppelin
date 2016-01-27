@@ -1,0 +1,3 @@
+{
+  return completedCommands * 100 / totalCommands;
+}

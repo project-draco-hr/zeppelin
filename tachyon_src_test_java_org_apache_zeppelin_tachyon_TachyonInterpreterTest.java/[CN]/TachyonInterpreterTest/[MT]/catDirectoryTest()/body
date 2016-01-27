@@ -1,0 +1,6 @@
+{
+  String expected="Successfully created directory /testDir\n\n" + "/testDir is not a file.\n";
+  InterpreterResult output=tachyonInterpreter.interpret("mkdir /testDir" + "\ncat /testDir",null);
+  Assert.assertEquals(Code.ERROR,output.code());
+  Assert.assertEquals(expected,output.message());
+}

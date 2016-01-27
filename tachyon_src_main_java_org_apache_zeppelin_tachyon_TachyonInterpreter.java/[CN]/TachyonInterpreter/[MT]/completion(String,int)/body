@@ -1,0 +1,14 @@
+{
+  String[] words=splitAndRemoveEmpty(splitAndRemoveEmpty(buf,"\n")," ");
+  String lastWord="";
+  if (words.length > 0) {
+    lastWord=words[words.length - 1];
+  }
+  ArrayList<String> voices=new ArrayList<String>();
+  for (  String command : keywords) {
+    if (command.startsWith(lastWord)) {
+      voices.add(command);
+    }
+  }
+  return voices;
+}

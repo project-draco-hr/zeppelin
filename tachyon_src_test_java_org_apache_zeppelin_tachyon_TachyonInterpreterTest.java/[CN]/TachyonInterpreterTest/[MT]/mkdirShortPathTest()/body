@@ -1,0 +1,8 @@
+{
+  InterpreterResult output=tachyonInterpreter.interpret("mkdir /root/testFile1",null);
+  TachyonFile tFile=mTfs.open(new TachyonURI("/root/testFile1"));
+  FileInfo fileInfo=mTfs.getInfo(tFile);
+  Assert.assertNotNull(fileInfo);
+  Assert.assertEquals("Successfully created directory /root/testFile1\n\n",output.message());
+  Assert.assertTrue(fileInfo.isIsFolder());
+}

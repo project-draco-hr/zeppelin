@@ -1,0 +1,10 @@
+{
+  String[] voices=st.split(splitSeparator);
+  ArrayList<String> result=new ArrayList<String>();
+  for (  String voice : voices) {
+    if (!voice.trim().isEmpty()) {
+      result.add(voice);
+    }
+  }
+  return result.toArray(new String[result.size()]);
+}

@@ -1,0 +1,11 @@
+{
+  File testFile=generateFileContent("/srcFileURI",BufferUtils.getIncreasingByteArray(10));
+  String tachyonURI="tachyon://" + mLocalTachyonCluster.getMasterHostname() + ":"+ mLocalTachyonCluster.getMasterPort()+ "/destFileURI";
+  InterpreterResult output=tachyonInterpreter.interpret("copyFromLocal " + testFile.getPath() + " "+ tachyonURI,null);
+  Assert.assertEquals("Copied " + testFile.getPath() + " to "+ tachyonURI+ "\n\n",output.message());
+  TachyonFile file=mTfs.open(new TachyonURI("/destFileURI"));
+  FileInfo fileInfo=mTfs.getInfo(file);
+  Assert.assertEquals(10L,fileInfo.length);
+  byte[] read=readContent(file,10);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(10,read));
+}

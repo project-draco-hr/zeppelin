@@ -1,0 +1,8 @@
+{
+  File testFile=new File(PathUtils.concatPath(mLocalTachyonCluster.getTachyonHome(),fileName));
+  FileInputStream fis=new FileInputStream(testFile);
+  byte[] read=new byte[size];
+  fis.read(read);
+  fis.close();
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(size,read));
+}

@@ -1,0 +1,8 @@
+{
+  TachyonFile file=TachyonFSTestUtils.createByteFile(mTfs,"/testFile",TachyonStorageType.NO_STORE,UnderStorageType.SYNC_PERSIST,10);
+  FileInfo fileInfo=mTfs.getInfo(file);
+  Assert.assertFalse(fileInfo.getInMemoryPercentage() == 100);
+  tachyonInterpreter.interpret("load /testFile",null);
+  fileInfo=mTfs.getInfo(file);
+  Assert.assertTrue(fileInfo.getInMemoryPercentage() == 100);
+}

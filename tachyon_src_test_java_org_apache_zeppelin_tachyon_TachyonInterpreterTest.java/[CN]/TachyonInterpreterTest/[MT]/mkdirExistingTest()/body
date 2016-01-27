@@ -1,0 +1,5 @@
+{
+  String command="mkdir /festFile1";
+  Assert.assertEquals(Code.SUCCESS,tachyonInterpreter.interpret(command,null).code());
+  Assert.assertEquals(Code.SUCCESS,tachyonInterpreter.interpret(command,null).code());
+}

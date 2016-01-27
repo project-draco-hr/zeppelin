@@ -1,0 +1,12 @@
+{
+  TachyonFSTestUtils.createByteFile(mTfs,"/testRoot/testFileA",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,10);
+  TachyonFSTestUtils.createByteFile(mTfs,"/testRoot/testDir/testFileB",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,20);
+  TachyonFSTestUtils.createByteFile(mTfs,"/testRoot/testFileB",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,30);
+  InterpreterResult output=tachyonInterpreter.interpret("count /testRoot",null);
+  String expected="";
+  String format="%-25s%-25s%-15s\n";
+  expected+=String.format(format,"File Count","Folder Count","Total Bytes");
+  expected+=String.format(format,3,2,60);
+  expected+="\n";
+  Assert.assertEquals(expected,output.message());
+}

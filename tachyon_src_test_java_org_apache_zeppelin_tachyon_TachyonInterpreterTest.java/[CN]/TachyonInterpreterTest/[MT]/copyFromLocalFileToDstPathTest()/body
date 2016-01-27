@@ -1,0 +1,14 @@
+{
+  String dataString="copyFromLocalFileToDstPathTest";
+  byte[] data=dataString.getBytes();
+  File localDir=new File(mLocalTachyonCluster.getTachyonHome() + "/localDir");
+  localDir.mkdir();
+  File localFile=generateFileContent("/localDir/testFile",data);
+  tachyonInterpreter.interpret("mkdir /dstDir",null);
+  tachyonInterpreter.interpret("copyFromLocal " + localFile.getPath() + " /dstDir",null);
+  TachyonFile file=mTfs.open(new TachyonURI("/dstDir/testFile"));
+  FileInfo fileInfo=mTfs.getInfo(file);
+  Assert.assertNotNull(fileInfo);
+  byte[] read=readContent(file,data.length);
+  Assert.assertEquals(new String(read),dataString);
+}

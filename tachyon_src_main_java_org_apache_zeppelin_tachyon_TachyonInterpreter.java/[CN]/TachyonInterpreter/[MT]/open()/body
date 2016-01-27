@@ -1,0 +1,6 @@
+{
+  logger.info("Starting Tachyon shell to connect to " + tachyonMasterHostname + " on port "+ tachyonMasterPort);
+  System.setProperty(TACHYON_MASTER_HOSTNAME,tachyonMasterHostname);
+  System.setProperty(TACHYON_MASTER_PORT,tachyonMasterPort);
+  tfs=new TfsShell(new TachyonConf());
+}

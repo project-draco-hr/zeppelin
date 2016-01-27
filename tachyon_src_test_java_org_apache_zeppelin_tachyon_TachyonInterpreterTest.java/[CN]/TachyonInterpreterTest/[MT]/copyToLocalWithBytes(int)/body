@@ -1,0 +1,6 @@
+{
+  TachyonFSTestUtils.createByteFile(mTfs,"/testFile",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,bytes);
+  InterpreterResult output=tachyonInterpreter.interpret("copyToLocal /testFile " + mLocalTachyonCluster.getTachyonHome() + "/testFile",null);
+  Assert.assertEquals("Copied /testFile to " + mLocalTachyonCluster.getTachyonHome() + "/testFile\n\n",output.message());
+  fileReadTest("/testFile",10);
+}

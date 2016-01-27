@@ -1,0 +1,19 @@
+{
+  File testFile=new File(mLocalTachyonCluster.getTachyonHome() + "/testFile");
+  testFile.createNewFile();
+  FileOutputStream fos=new FileOutputStream(testFile);
+  byte[] toWrite=BufferUtils.getIncreasingByteArray(SIZE_BYTES);
+  fos.write(toWrite);
+  fos.close();
+  InterpreterResult output=tachyonInterpreter.interpret("copyFromLocal " + testFile.getAbsolutePath() + " /testFile",null);
+  Assert.assertEquals("Copied " + testFile.getAbsolutePath() + " to /testFile\n\n",output.message());
+  TachyonFile tFile=mTfs.open(new TachyonURI("/testFile"));
+  FileInfo fileInfo=mTfs.getInfo(tFile);
+  Assert.assertNotNull(fileInfo);
+  Assert.assertEquals(SIZE_BYTES,fileInfo.length);
+  InStreamOptions options=new InStreamOptions.Builder(new TachyonConf()).setTachyonStorageType(TachyonStorageType.NO_STORE).build();
+  FileInStream tfis=mTfs.getInStream(tFile,options);
+  byte[] read=new byte[SIZE_BYTES];
+  tfis.read(read);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(SIZE_BYTES,read));
+}

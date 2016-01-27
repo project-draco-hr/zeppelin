@@ -1,0 +1,5 @@
+{
+  InterpreterResult output=tachyonInterpreter.interpret("location /NotExistFile",null);
+  Assert.assertEquals(ExceptionMessage.PATH_DOES_NOT_EXIST.getMessage("/NotExistFile") + "\n",output.message());
+  Assert.assertEquals(Code.ERROR,output.code());
+}

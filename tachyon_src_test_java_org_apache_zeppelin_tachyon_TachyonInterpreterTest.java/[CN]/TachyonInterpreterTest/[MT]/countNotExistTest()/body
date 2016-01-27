@@ -1,0 +1,5 @@
+{
+  InterpreterResult output=tachyonInterpreter.interpret("count /NotExistFile",null);
+  Assert.assertEquals(Code.ERROR,output.code());
+  Assert.assertEquals(ExceptionMessage.PATH_DOES_NOT_EXIST.getMessage("/NotExistFile") + "\n",output.message());
+}

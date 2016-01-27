@@ -1,0 +1,3 @@
+{
+  copyToLocalWithBytes(10);
+}
