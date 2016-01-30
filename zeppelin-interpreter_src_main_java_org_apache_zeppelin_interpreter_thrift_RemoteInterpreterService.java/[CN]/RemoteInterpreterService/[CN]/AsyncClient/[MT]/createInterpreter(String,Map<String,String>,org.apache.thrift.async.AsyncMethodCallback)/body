@@ -1,6 +1,0 @@
-{
-  checkReady();
-  createInterpreter_call method_call=new createInterpreter_call(className,properties,resultHandler,this,___protocolFactory,___transport);
-  this.___currentMethod=method_call;
-  ___manager.call(method_call);
-}

@@ -1,0 +1,5 @@
+{
+  resourcePoolResponseGetAll_args args=new resourcePoolResponseGetAll_args();
+  args.setResources(resources);
+  sendBase("resourcePoolResponseGetAll",args);
+}

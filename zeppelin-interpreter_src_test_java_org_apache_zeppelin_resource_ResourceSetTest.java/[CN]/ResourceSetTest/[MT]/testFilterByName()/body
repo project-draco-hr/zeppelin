@@ -1,0 +1,10 @@
+{
+  ResourceSet set=new ResourceSet();
+  set.add(new Resource(new ResourceId("poo1","resource1"),"value1"));
+  set.add(new Resource(new ResourceId("poo1","resource2"),new Integer(2)));
+  assertEquals(2,set.filterByNameRegex(".*").size());
+  assertEquals(1,set.filterByNameRegex("resource1").size());
+  assertEquals(1,set.filterByNameRegex("resource2").size());
+  assertEquals(0,set.filterByNameRegex("res").size());
+  assertEquals(2,set.filterByNameRegex("res.*").size());
+}

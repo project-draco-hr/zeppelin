@@ -1,0 +1,15 @@
+{
+  sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.RESOURCE_POOL_GET_ALL,null));
+synchronized (getAllResourceResponse) {
+    while (getAllResourceResponse.isEmpty()) {
+      try {
+        getAllResourceResponse.wait();
+      }
+ catch (      InterruptedException e) {
+        logger.warn(e.getMessage(),e);
+      }
+    }
+    ResourceSet resourceSet=getAllResourceResponse.remove(0);
+    return resourceSet;
+  }
+}

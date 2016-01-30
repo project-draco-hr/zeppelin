@@ -17,7 +17,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      return intpA.interpret("500",new InterpreterContext("note","jobA","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
+      return intpA.interpret("500",new InterpreterContext("note","jobA","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));
     }
     @Override protected boolean jobAbort(){
       return false;
@@ -33,7 +33,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      return intpB.interpret("500",new InterpreterContext("note","jobB","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
+      return intpB.interpret("500",new InterpreterContext("note","jobB","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));
     }
     @Override protected boolean jobAbort(){
       return false;

@@ -1,19 +1,27 @@
 {
 switch (field) {
-case CLASS_NAME:
+case INTP_GROUP_ID:
     if (value == null) {
-      unsetClassName();
+      unsetIntpGroupId();
     }
  else {
-      setClassName((String)value);
+      setIntpGroupId((String)value);
     }
   break;
-case PROPERTIES:
+case CLASS_NAME:
 if (value == null) {
-  unsetProperties();
+  unsetClassName();
 }
  else {
-  setProperties((Map<String,String>)value);
+  setClassName((String)value);
+}
+break;
+case PROPERTIES:
+if (value == null) {
+unsetProperties();
+}
+ else {
+setProperties((Map<String,String>)value);
 }
 break;
 }

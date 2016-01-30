@@ -1,0 +1,5 @@
+{
+  resourceResponseGet_result result=new resourceResponseGet_result();
+  receiveBase(result,"resourceResponseGet");
+  return;
+}

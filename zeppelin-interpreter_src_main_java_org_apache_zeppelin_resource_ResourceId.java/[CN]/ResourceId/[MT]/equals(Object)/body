@@ -1,0 +1,9 @@
+{
+  if (o instanceof ResourceId) {
+    ResourceId r=(ResourceId)o;
+    return (r.name.equals(name) && r.resourcePoolId.equals(resourcePoolId));
+  }
+ else {
+    return false;
+  }
+}

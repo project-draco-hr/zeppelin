@@ -1,0 +1,10 @@
+{
+switch (fieldId) {
+case 1:
+    return RESOURCE_ID;
+case 2:
+  return OBJECT;
+default :
+return null;
+}
+}

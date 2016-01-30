@@ -1,0 +1,8 @@
+{
+  if (isLocal() || isSerializable()) {
+    return r;
+  }
+ else {
+    return null;
+  }
+}

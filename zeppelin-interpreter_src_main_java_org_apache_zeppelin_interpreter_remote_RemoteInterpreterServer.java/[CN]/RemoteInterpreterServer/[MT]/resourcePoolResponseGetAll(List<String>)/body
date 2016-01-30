@@ -1,0 +1,3 @@
+{
+  eventClient.putResponseGetAllResources(resources);
+}

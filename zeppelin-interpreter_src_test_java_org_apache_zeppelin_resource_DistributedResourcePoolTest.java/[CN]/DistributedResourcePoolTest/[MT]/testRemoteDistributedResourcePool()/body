@@ -1,0 +1,14 @@
+{
+  Gson gson=new Gson();
+  InterpreterResult ret;
+  intp1.interpret("put key1 value1",context);
+  intp2.interpret("put key2 value2",context);
+  ret=intp1.interpret("getAll",context);
+  assertEquals(2,gson.fromJson(ret.message(),ResourceSet.class).size());
+  ret=intp2.interpret("getAll",context);
+  assertEquals(2,gson.fromJson(ret.message(),ResourceSet.class).size());
+  ret=intp1.interpret("get key1",context);
+  assertEquals("value1",gson.fromJson(ret.message(),String.class));
+  ret=intp1.interpret("get key2",context);
+  assertEquals("value2",gson.fromJson(ret.message(),String.class));
+}

@@ -1,0 +1,4 @@
+{
+  send_resourcePoolResponseGetAll(resources);
+  recv_resourcePoolResponseGetAll();
+}

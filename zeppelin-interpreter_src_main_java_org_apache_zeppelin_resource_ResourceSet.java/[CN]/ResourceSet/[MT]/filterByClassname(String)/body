@@ -1,0 +1,9 @@
+{
+  ResourceSet result=new ResourceSet();
+  for (  Resource r : this) {
+    if (r.getClassName().equals(className)) {
+      result.add(r);
+    }
+  }
+  return result;
+}

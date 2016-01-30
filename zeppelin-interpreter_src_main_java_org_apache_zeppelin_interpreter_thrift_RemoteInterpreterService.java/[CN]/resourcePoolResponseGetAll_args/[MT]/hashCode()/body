@@ -1,0 +1,7 @@
+{
+  List<Object> list=new ArrayList<Object>();
+  boolean present_resources=true && (isSetResources());
+  list.add(present_resources);
+  if (present_resources)   list.add(resources);
+  return list.hashCode();
+}

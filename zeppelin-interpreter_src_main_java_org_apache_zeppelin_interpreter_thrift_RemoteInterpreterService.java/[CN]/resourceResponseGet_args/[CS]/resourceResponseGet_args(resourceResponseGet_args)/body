@@ -1,0 +1,8 @@
+{
+  if (other.isSetResourceId()) {
+    this.resourceId=other.resourceId;
+  }
+  if (other.isSetObject()) {
+    this.object=org.apache.thrift.TBaseHelper.copyBinary(other.object);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  TTupleProtocol oprot=(TTupleProtocol)prot;
+  BitSet optionals=new BitSet();
+  if (struct.isSetResources()) {
+    optionals.set(0);
+  }
+  oprot.writeBitSet(optionals,1);
+  if (struct.isSetResources()) {
+{
+      oprot.writeI32(struct.resources.size());
+      for (      String _iter22 : struct.resources) {
+        oprot.writeString(_iter22);
+      }
+    }
+  }
+}

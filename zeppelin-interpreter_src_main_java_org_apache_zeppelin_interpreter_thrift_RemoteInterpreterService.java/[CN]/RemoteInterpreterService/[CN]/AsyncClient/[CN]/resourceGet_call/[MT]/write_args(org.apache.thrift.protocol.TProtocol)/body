@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("resourceGet",org.apache.thrift.protocol.TMessageType.CALL,0));
+  resourceGet_args args=new resourceGet_args();
+  args.setResourceName(resourceName);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

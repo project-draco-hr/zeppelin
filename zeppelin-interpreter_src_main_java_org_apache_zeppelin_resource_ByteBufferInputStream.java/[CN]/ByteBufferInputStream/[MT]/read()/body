@@ -1,0 +1,6 @@
+{
+  if (!buf.hasRemaining()) {
+    return -1;
+  }
+  return buf.get() & 0xFF;
+}

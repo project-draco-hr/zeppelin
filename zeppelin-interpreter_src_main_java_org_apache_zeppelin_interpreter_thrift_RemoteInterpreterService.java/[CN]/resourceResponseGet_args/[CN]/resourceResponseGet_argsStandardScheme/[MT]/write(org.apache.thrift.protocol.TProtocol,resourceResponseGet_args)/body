@@ -1,0 +1,16 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.resourceId != null) {
+    oprot.writeFieldBegin(RESOURCE_ID_FIELD_DESC);
+    oprot.writeString(struct.resourceId);
+    oprot.writeFieldEnd();
+  }
+  if (struct.object != null) {
+    oprot.writeFieldBegin(OBJECT_FIELD_DESC);
+    oprot.writeBinary(struct.object);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

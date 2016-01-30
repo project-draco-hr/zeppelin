@@ -1,0 +1,14 @@
+{
+  StringBuilder sb=new StringBuilder("resourceGet_result(");
+  boolean first=true;
+  sb.append("success:");
+  if (this.success == null) {
+    sb.append("null");
+  }
+ else {
+    org.apache.thrift.TBaseHelper.toString(this.success,sb);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

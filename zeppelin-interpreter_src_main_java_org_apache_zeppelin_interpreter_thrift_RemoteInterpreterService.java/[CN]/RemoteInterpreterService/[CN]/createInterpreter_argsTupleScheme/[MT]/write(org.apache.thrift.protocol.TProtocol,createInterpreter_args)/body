@@ -1,13 +1,19 @@
 {
   TTupleProtocol oprot=(TTupleProtocol)prot;
   BitSet optionals=new BitSet();
-  if (struct.isSetClassName()) {
+  if (struct.isSetIntpGroupId()) {
     optionals.set(0);
   }
-  if (struct.isSetProperties()) {
+  if (struct.isSetClassName()) {
     optionals.set(1);
   }
-  oprot.writeBitSet(optionals,2);
+  if (struct.isSetProperties()) {
+    optionals.set(2);
+  }
+  oprot.writeBitSet(optionals,3);
+  if (struct.isSetIntpGroupId()) {
+    oprot.writeString(struct.intpGroupId);
+  }
   if (struct.isSetClassName()) {
     oprot.writeString(struct.className);
   }

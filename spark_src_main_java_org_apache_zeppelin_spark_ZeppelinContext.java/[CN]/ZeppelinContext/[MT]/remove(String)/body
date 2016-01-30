@@ -1,0 +1,4 @@
+{
+  ResourcePool resourcePool=interpreterContext.getResourcePool();
+  resourcePool.remove(name);
+}

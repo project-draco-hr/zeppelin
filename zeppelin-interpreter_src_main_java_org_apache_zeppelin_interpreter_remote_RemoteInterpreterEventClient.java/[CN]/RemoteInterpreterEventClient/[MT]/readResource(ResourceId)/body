@@ -1,0 +1,26 @@
+{
+  logger.debug("Request Read Resource {} from ZeppelinServer",resourceId.getName());
+synchronized (getResourceResponse) {
+    while (getResourceResponse.containsKey(resourceId)) {
+      try {
+        getResourceResponse.wait();
+      }
+ catch (      InterruptedException e) {
+        logger.warn(e.getMessage(),e);
+      }
+    }
+    Gson gson=new Gson();
+    sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.RESOURCE_GET,gson.toJson(resourceId)));
+    while (!getResourceResponse.containsKey(resourceId)) {
+      try {
+        getResourceResponse.wait();
+      }
+ catch (      InterruptedException e) {
+        logger.warn(e.getMessage(),e);
+      }
+    }
+    Object o=getResourceResponse.remove(resourceId);
+    getResourceResponse.notifyAll();
+    return o;
+  }
+}

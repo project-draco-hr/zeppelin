@@ -1,0 +1,37 @@
+{
+  ResourceSet resourceSet=new ResourceSet();
+  for (  InterpreterGroup intpGroup : InterpreterGroup.getAll()) {
+    if (intpGroup.getId().equals(interpreterGroup.getId())) {
+      continue;
+    }
+    RemoteInterpreterProcess remoteInterpreterProcess=intpGroup.getRemoteInterpreterProcess();
+    if (remoteInterpreterProcess == null) {
+      ResourcePool localPool=intpGroup.getResourcePool();
+      if (localPool != null) {
+        resourceSet.addAll(localPool.getAll());
+      }
+    }
+ else     if (interpreterProcess.isRunning()) {
+      Client client=null;
+      boolean broken=false;
+      try {
+        client=remoteInterpreterProcess.getClient();
+        List<String> resourceList=client.resoucePoolGetAll();
+        Gson gson=new Gson();
+        for (        String res : resourceList) {
+          resourceSet.add(gson.fromJson(res,Resource.class));
+        }
+      }
+ catch (      Exception e) {
+        logger.error(e.getMessage(),e);
+        broken=true;
+      }
+ finally {
+        if (client != null) {
+          intpGroup.getRemoteInterpreterProcess().releaseClient(client,broken);
+        }
+      }
+    }
+  }
+  return resourceSet;
+}

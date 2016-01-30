@@ -1,0 +1,4 @@
+{
+  send_resourceGet(resourceName);
+  return recv_resourceGet();
+}

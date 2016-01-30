@@ -1,0 +1,6 @@
+{
+  this();
+  this.intpGroupId=intpGroupId;
+  this.className=className;
+  this.properties=properties;
+}

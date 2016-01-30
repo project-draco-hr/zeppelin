@@ -1,0 +1,33 @@
+{
+  String[] stmt=st.split(" ");
+  String cmd=stmt[0];
+  String name=null;
+  if (stmt.length >= 2) {
+    name=stmt[1];
+  }
+  String value=null;
+  if (stmt.length == 3) {
+    value=stmt[2];
+  }
+  ResourcePool resourcePool=context.getResourcePool();
+  Object ret=null;
+  if (cmd.equals("put")) {
+    resourcePool.put(name,value);
+  }
+ else   if (cmd.equalsIgnoreCase("get")) {
+    ret=resourcePool.get(name).get();
+  }
+ else   if (cmd.equals("remove")) {
+    ret=resourcePool.remove(name);
+  }
+ else   if (cmd.equals("getAll")) {
+    ret=resourcePool.getAll();
+  }
+  try {
+    Thread.sleep(500);
+  }
+ catch (  InterruptedException e) {
+  }
+  Gson gson=new Gson();
+  return new InterpreterResult(Code.SUCCESS,gson.toJson(ret));
+}

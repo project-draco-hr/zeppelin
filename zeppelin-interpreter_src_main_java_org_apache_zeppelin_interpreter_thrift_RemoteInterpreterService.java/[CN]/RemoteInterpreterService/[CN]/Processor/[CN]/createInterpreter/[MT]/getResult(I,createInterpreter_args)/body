@@ -1,5 +1,5 @@
 {
   createInterpreter_result result=new createInterpreter_result();
-  iface.createInterpreter(args.className,args.properties);
+  iface.createInterpreter(args.intpGroupId,args.className,args.properties);
   return result;
 }

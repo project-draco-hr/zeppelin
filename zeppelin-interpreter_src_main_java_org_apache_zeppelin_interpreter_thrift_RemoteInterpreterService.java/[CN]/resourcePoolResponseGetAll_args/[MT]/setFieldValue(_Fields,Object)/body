@@ -1,0 +1,12 @@
+{
+switch (field) {
+case RESOURCES:
+    if (value == null) {
+      unsetResources();
+    }
+ else {
+      setResources((List<String>)value);
+    }
+  break;
+}
+}

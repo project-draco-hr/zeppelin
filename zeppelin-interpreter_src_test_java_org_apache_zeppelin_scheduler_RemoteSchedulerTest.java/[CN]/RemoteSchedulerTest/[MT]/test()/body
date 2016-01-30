@@ -3,7 +3,7 @@
   final InterpreterGroup intpGroup=new InterpreterGroup();
   Map<String,String> env=new HashMap<String,String>();
   env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
-  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+  final RemoteInterpreter intpA=new RemoteInterpreter(p,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,this);
   intpGroup.add(intpA);
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
@@ -16,7 +16,7 @@
       return null;
     }
     @Override protected Object jobRun() throws Throwable {
-      intpA.interpret("1000",new InterpreterContext("note","jobId","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
+      intpA.interpret("1000",new InterpreterContext("note","jobId","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));
       return "1000";
     }
     @Override protected boolean jobAbort(){

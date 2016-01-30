@@ -1,4 +1,7 @@
 {
+  if (other.isSetIntpGroupId()) {
+    this.intpGroupId=other.intpGroupId;
+  }
   if (other.isSetClassName()) {
     this.className=other.className;
   }

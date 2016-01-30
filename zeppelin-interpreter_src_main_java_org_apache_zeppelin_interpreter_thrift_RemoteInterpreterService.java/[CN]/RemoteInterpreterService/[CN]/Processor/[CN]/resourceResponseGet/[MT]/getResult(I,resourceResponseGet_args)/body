@@ -1,0 +1,5 @@
+{
+  resourceResponseGet_result result=new resourceResponseGet_result();
+  iface.resourceResponseGet(args.resourceId,args.object);
+  return result;
+}

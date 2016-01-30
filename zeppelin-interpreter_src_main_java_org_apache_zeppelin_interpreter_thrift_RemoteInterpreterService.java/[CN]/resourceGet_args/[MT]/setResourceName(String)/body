@@ -1,0 +1,4 @@
+{
+  this.resourceName=resourceName;
+  return this;
+}

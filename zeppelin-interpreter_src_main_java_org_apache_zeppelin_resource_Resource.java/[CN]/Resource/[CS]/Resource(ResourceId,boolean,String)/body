@@ -1,0 +1,6 @@
+{
+  this.r=null;
+  this.resourceId=resourceId;
+  this.serializable=serializable;
+  this.className=className;
+}

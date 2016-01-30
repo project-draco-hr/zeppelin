@@ -1,0 +1,7 @@
+{
+  createInterpreter_args args=new createInterpreter_args();
+  args.setIntpGroupId(intpGroupId);
+  args.setClassName(className);
+  args.setProperties(properties);
+  sendBase("createInterpreter",args);
+}

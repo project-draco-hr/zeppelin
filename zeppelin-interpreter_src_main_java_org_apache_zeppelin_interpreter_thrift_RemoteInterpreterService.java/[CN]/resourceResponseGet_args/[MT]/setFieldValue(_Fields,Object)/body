@@ -1,0 +1,20 @@
+{
+switch (field) {
+case RESOURCE_ID:
+    if (value == null) {
+      unsetResourceId();
+    }
+ else {
+      setResourceId((String)value);
+    }
+  break;
+case OBJECT:
+if (value == null) {
+  unsetObject();
+}
+ else {
+  setObject((ByteBuffer)value);
+}
+break;
+}
+}

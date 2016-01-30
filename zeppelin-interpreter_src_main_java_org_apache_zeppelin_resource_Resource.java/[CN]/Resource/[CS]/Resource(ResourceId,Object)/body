@@ -1,0 +1,6 @@
+{
+  this.r=r;
+  this.resourceId=resourceId;
+  this.serializable=r instanceof Serializable;
+  this.className=r.getClass().getName();
+}

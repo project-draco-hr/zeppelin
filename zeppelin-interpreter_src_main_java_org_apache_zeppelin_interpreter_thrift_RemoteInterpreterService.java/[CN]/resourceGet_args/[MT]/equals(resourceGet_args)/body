@@ -1,0 +1,10 @@
+{
+  if (that == null)   return false;
+  boolean this_present_resourceName=true && this.isSetResourceName();
+  boolean that_present_resourceName=true && that.isSetResourceName();
+  if (this_present_resourceName || that_present_resourceName) {
+    if (!(this_present_resourceName && that_present_resourceName))     return false;
+    if (!this.resourceName.equals(that.resourceName))     return false;
+  }
+  return true;
+}

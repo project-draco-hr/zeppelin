@@ -1,0 +1,16 @@
+{
+  if (that == null)   return false;
+  boolean this_present_resourceId=true && this.isSetResourceId();
+  boolean that_present_resourceId=true && that.isSetResourceId();
+  if (this_present_resourceId || that_present_resourceId) {
+    if (!(this_present_resourceId && that_present_resourceId))     return false;
+    if (!this.resourceId.equals(that.resourceId))     return false;
+  }
+  boolean this_present_object=true && this.isSetObject();
+  boolean that_present_object=true && that.isSetObject();
+  if (this_present_object || that_present_object) {
+    if (!(this_present_object && that_present_object))     return false;
+    if (!this.object.equals(that.object))     return false;
+  }
+  return true;
+}

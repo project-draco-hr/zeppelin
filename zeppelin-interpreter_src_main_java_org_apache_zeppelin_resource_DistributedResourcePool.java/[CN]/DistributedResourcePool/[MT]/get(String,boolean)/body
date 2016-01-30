@@ -1,0 +1,18 @@
+{
+  Resource resource=super.get(name);
+  if (resource != null) {
+    return resource;
+  }
+  if (remote) {
+    ResourceSet resources=connector.getAllResources().filterByName(name);
+    if (resources.isEmpty()) {
+      return null;
+    }
+ else {
+      return resources.get(0);
+    }
+  }
+ else {
+    return null;
+  }
+}

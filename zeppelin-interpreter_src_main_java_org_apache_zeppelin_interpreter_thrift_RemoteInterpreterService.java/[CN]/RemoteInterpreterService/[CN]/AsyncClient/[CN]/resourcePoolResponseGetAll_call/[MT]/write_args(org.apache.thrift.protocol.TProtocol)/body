@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("resourcePoolResponseGetAll",org.apache.thrift.protocol.TMessageType.CALL,0));
+  resourcePoolResponseGetAll_args args=new resourcePoolResponseGetAll_args();
+  args.setResources(resources);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

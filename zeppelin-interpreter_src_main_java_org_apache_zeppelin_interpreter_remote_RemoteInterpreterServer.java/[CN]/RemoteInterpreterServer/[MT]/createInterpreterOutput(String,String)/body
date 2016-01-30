@@ -1,20 +1,10 @@
 {
   return new InterpreterOutput(new InterpreterOutputListener(){
     @Override public void onAppend(    InterpreterOutput out,    byte[] line){
-      Map<String,String> appendOutput=new HashMap<String,String>();
-      appendOutput.put("noteId",noteId);
-      appendOutput.put("paragraphId",paragraphId);
-      appendOutput.put("data",new String(line));
-      Gson gson=new Gson();
-      sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.OUTPUT_APPEND,gson.toJson(appendOutput)));
+      eventClient.onInterpreterOutputAppend(noteId,paragraphId,new String(line));
     }
     @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
-      Map<String,String> appendOutput=new HashMap<String,String>();
-      appendOutput.put("noteId",noteId);
-      appendOutput.put("paragraphId",paragraphId);
-      appendOutput.put("data",new String(output));
-      Gson gson=new Gson();
-      sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.OUTPUT_UPDATE,gson.toJson(appendOutput)));
+      eventClient.onInterpreterOutputUpdate(noteId,paragraphId,new String(output));
     }
   }
 );

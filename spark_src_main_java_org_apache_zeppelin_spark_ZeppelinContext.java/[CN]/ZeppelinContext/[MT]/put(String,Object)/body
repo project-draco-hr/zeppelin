@@ -1,0 +1,4 @@
+{
+  ResourcePool resourcePool=interpreterContext.getResourcePool();
+  resourcePool.put(name,value);
+}

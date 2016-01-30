@@ -1,6 +1,11 @@
 {
   struct.validate();
   oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.intpGroupId != null) {
+    oprot.writeFieldBegin(INTP_GROUP_ID_FIELD_DESC);
+    oprot.writeString(struct.intpGroupId);
+    oprot.writeFieldEnd();
+  }
   if (struct.className != null) {
     oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
     oprot.writeString(struct.className);

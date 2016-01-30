@@ -1,3 +1,6 @@
 {
+  if (clientPool == null || clientPool.isClosed()) {
+    return null;
+  }
   return clientPool.borrowObject();
 }

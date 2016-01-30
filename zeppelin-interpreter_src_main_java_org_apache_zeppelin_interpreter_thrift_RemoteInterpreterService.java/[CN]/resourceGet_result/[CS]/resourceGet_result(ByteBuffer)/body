@@ -1,0 +1,4 @@
+{
+  this();
+  this.success=org.apache.thrift.TBaseHelper.copyBinary(success);
+}

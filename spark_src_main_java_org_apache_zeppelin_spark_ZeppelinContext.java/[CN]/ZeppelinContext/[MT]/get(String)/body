@@ -1,0 +1,10 @@
+{
+  ResourcePool resourcePool=interpreterContext.getResourcePool();
+  Resource resource=resourcePool.get(name);
+  if (resource != null) {
+    return resource.get();
+  }
+ else {
+    return null;
+  }
+}

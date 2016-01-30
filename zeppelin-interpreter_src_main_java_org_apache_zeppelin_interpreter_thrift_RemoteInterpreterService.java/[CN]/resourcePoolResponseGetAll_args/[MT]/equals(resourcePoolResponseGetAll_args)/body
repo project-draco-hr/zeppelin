@@ -1,0 +1,10 @@
+{
+  if (that == null)   return false;
+  boolean this_present_resources=true && this.isSetResources();
+  boolean that_present_resources=true && that.isSetResources();
+  if (this_present_resources || that_present_resources) {
+    if (!(this_present_resources && that_present_resources))     return false;
+    if (!this.resources.equals(that.resources))     return false;
+  }
+  return true;
+}

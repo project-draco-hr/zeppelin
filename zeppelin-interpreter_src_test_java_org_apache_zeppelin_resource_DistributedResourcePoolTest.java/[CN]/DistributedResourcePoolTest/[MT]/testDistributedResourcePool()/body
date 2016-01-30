@@ -1,0 +1,38 @@
+{
+  final LocalResourcePool pool2=new LocalResourcePool("pool2");
+  final LocalResourcePool pool3=new LocalResourcePool("pool3");
+  DistributedResourcePool pool1=new DistributedResourcePool("pool1",new ResourcePoolConnector(){
+    @Override public ResourceSet getAllResources(){
+      ResourceSet set=pool2.getAll();
+      set.addAll(pool3.getAll());
+      ResourceSet remoteSet=new ResourceSet();
+      Gson gson=new Gson();
+      for (      Resource s : set) {
+        RemoteResource remoteResource=gson.fromJson(gson.toJson(s),RemoteResource.class);
+        remoteResource.setResourcePoolConnector(this);
+        remoteSet.add(remoteResource);
+      }
+      return remoteSet;
+    }
+    @Override public Object readResource(    ResourceId id){
+      if (id.getResourcePoolId().equals(pool2.id())) {
+        return pool2.get(id.getName()).get();
+      }
+      if (id.getResourcePoolId().equals(pool3.id())) {
+        return pool3.get(id.getName()).get();
+      }
+      return null;
+    }
+  }
+);
+  assertEquals(0,pool1.getAll().size());
+  pool2.put("object1","value2");
+  assertEquals(1,pool1.getAll().size());
+  assertTrue(pool1.get("object1").isRemote());
+  assertEquals("value2",pool1.get("object1").get());
+  pool1.put("object1","value1");
+  assertEquals(1,pool2.getAll().size());
+  assertEquals("value1",pool1.get("object1").get());
+  assertEquals("value1",pool1.getAll().get(0).get());
+  assertEquals("value2",pool1.getAll().get(1).get());
+}

@@ -1,0 +1,4 @@
+{
+  this.resourceId=null;
+  this.object=null;
+}

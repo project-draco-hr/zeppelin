@@ -1,0 +1,2 @@
+List<String> resources
+org.apache.thrift.async.AsyncMethodCallback resultHandler

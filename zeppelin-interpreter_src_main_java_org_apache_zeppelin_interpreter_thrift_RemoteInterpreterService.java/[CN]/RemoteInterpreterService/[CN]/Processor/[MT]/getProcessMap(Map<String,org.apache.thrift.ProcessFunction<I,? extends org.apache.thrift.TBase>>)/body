@@ -10,6 +10,10 @@
   processMap.put("shutdown",new shutdown());
   processMap.put("getStatus",new getStatus());
   processMap.put("getEvent",new getEvent());
+  processMap.put("resourcePoolResponseGetAll",new resourcePoolResponseGetAll());
+  processMap.put("resourceResponseGet",new resourceResponseGet());
+  processMap.put("resoucePoolGetAll",new resoucePoolGetAll());
+  processMap.put("resourceGet",new resourceGet());
   processMap.put("angularObjectUpdate",new angularObjectUpdate());
   processMap.put("angularObjectAdd",new angularObjectAdd());
   processMap.put("angularObjectRemove",new angularObjectRemove());

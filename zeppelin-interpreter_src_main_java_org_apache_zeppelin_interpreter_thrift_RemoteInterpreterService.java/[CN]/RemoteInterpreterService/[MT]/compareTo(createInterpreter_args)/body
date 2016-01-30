@@ -3,6 +3,16 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
+  lastComparison=Boolean.valueOf(isSetIntpGroupId()).compareTo(other.isSetIntpGroupId());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetIntpGroupId()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.intpGroupId,other.intpGroupId);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   lastComparison=Boolean.valueOf(isSetClassName()).compareTo(other.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;

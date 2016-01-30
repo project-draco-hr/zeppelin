@@ -1,0 +1,3 @@
+{
+  iface.resourcePoolResponseGetAll(args.resources,resultHandler);
+}

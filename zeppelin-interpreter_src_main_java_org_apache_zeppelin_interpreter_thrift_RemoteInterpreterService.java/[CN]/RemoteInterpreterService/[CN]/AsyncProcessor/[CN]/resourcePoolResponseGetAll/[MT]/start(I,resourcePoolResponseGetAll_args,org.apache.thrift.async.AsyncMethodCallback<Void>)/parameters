@@ -1,0 +1,3 @@
+I iface
+resourcePoolResponseGetAll_args args
+org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler

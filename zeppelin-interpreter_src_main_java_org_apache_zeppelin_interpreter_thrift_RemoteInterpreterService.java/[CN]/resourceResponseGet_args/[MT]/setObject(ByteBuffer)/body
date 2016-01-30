@@ -1,0 +1,4 @@
+{
+  this.object=org.apache.thrift.TBaseHelper.copyBinary(object);
+  return this;
+}

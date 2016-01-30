@@ -1,0 +1,3 @@
+ResourceId resourceId
+boolean serializable
+String className

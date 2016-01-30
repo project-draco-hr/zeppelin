@@ -8,5 +8,5 @@
   }
   return new InterpreterContext(ric.getNoteId(),ric.getParagraphId(),ric.getParagraphTitle(),ric.getParagraphText(),(Map<String,Object>)gson.fromJson(ric.getConfig(),new TypeToken<Map<String,Object>>(){
   }
-.getType()),gson.fromJson(ric.getGui(),GUI.class),interpreterGroup.getAngularObjectRegistry(),contextRunners,createInterpreterOutput(ric.getNoteId(),ric.getParagraphId()));
+.getType()),gson.fromJson(ric.getGui(),GUI.class),interpreterGroup.getAngularObjectRegistry(),interpreterGroup.getResourcePool(),contextRunners,createInterpreterOutput(ric.getNoteId(),ric.getParagraphId()));
 }

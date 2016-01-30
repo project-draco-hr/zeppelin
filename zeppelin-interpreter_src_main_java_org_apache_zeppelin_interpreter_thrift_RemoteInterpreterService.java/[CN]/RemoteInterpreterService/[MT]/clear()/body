@@ -1,4 +1,5 @@
 {
+  this.intpGroupId=null;
   this.className=null;
   this.properties=null;
 }

@@ -1,0 +1,4 @@
+{
+  this.intpGroupId=intpGroupId;
+  return this;
+}

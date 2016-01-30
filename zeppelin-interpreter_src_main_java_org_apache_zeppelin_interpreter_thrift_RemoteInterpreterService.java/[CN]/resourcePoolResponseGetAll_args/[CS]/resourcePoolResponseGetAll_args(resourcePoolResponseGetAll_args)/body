@@ -1,0 +1,6 @@
+{
+  if (other.isSetResources()) {
+    List<String> __this__resources=new ArrayList<String>(other.resources);
+    this.resources=__this__resources;
+  }
+}

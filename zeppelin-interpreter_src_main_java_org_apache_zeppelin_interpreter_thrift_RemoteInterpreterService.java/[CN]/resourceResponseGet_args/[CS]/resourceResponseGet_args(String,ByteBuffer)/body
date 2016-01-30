@@ -1,0 +1,5 @@
+{
+  this();
+  this.resourceId=resourceId;
+  this.object=org.apache.thrift.TBaseHelper.copyBinary(object);
+}

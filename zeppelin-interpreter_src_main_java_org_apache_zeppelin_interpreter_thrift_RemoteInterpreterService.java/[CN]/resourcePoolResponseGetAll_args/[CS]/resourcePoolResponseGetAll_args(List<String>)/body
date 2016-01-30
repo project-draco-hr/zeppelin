@@ -1,0 +1,4 @@
+{
+  this();
+  this.resources=resources;
+}

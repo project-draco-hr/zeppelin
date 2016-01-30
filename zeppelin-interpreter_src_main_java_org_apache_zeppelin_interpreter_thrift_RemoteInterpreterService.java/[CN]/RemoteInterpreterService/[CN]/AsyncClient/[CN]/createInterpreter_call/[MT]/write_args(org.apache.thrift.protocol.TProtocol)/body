@@ -1,6 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("createInterpreter",org.apache.thrift.protocol.TMessageType.CALL,0));
   createInterpreter_args args=new createInterpreter_args();
+  args.setIntpGroupId(intpGroupId);
   args.setClassName(className);
   args.setProperties(properties);
   args.write(prot);

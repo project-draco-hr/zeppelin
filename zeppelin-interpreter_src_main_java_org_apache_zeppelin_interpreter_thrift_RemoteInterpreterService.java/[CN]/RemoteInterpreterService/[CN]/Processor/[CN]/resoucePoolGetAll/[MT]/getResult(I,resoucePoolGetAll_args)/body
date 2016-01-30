@@ -1,0 +1,5 @@
+{
+  resoucePoolGetAll_result result=new resoucePoolGetAll_result();
+  result.success=iface.resoucePoolGetAll();
+  return result;
+}

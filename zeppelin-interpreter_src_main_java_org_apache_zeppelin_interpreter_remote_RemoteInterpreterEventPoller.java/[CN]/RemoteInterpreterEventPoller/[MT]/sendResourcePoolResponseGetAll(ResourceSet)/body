@@ -1,0 +1,22 @@
+{
+  Client client=null;
+  boolean broken=false;
+  try {
+    client=interpreterProcess.getClient();
+    List<String> resourceList=new LinkedList<String>();
+    Gson gson=new Gson();
+    for (    Resource r : resourceSet) {
+      resourceList.add(gson.toJson(r));
+    }
+    client.resourcePoolResponseGetAll(resourceList);
+  }
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
+    broken=true;
+  }
+ finally {
+    if (client != null) {
+      interpreterProcess.releaseClient(client,broken);
+    }
+  }
+}

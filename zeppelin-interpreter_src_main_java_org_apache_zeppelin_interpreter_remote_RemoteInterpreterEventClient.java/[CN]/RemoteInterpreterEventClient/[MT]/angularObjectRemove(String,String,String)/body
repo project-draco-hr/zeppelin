@@ -1,0 +1,7 @@
+{
+  Map<String,String> removeObject=new HashMap<String,String>();
+  removeObject.put("name",name);
+  removeObject.put("noteId",noteId);
+  removeObject.put("paragraphId",paragraphId);
+  sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.ANGULAR_OBJECT_REMOVE,gson.toJson(removeObject)));
+}

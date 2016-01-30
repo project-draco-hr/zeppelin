@@ -1,0 +1,13 @@
+{
+  if (buf == null) {
+    return null;
+  }
+  InputStream ins=ByteBufferInputStream.get(buf);
+  ObjectInputStream oin;
+  Object object=null;
+  oin=new ObjectInputStream(ins);
+  object=oin.readObject();
+  oin.close();
+  ins.close();
+  return object;
+}

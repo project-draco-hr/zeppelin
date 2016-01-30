@@ -1,0 +1,4 @@
+{
+  this.object=object == null ? (ByteBuffer)null : ByteBuffer.wrap(Arrays.copyOf(object,object.length));
+  return this;
+}

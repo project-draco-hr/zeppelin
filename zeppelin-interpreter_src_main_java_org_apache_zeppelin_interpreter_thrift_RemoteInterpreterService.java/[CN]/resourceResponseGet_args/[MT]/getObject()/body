@@ -1,0 +1,4 @@
+{
+  setObject(org.apache.thrift.TBaseHelper.rightSize(object));
+  return object == null ? null : object.array();
+}

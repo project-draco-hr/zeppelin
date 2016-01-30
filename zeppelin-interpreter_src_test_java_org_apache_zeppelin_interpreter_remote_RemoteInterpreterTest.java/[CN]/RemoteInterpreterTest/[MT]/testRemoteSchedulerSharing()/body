@@ -9,9 +9,9 @@
   intpA.open();
   intpB.open();
   long start=System.currentTimeMillis();
-  InterpreterResult ret=intpA.interpret("500",new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
+  InterpreterResult ret=intpA.interpret("500",new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));
   assertEquals("500",ret.message());
-  ret=intpB.interpret("500",new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null));
+  ret=intpB.interpret("500",new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));
   assertEquals("1000",ret.message());
   long end=System.currentTimeMillis();
   assertTrue(end - start >= 1000);

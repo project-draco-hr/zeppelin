@@ -51,6 +51,17 @@
         InterpreterContextRunner runnerFromRemote=gson.fromJson(event.getData(),RemoteInterpreterContextRunner.class);
         interpreterProcess.getInterpreterContextRunnerPool().run(runnerFromRemote.getNoteId(),runnerFromRemote.getParagraphId());
       }
+ else       if (event.getType() == RemoteInterpreterEventType.RESOURCE_POOL_GET_ALL) {
+        ResourceSet resourceSet=getAllResourcePoolExcept();
+        sendResourcePoolResponseGetAll(resourceSet);
+      }
+ else       if (event.getType() == RemoteInterpreterEventType.RESOURCE_GET) {
+        String resourceIdString=event.getData();
+        ResourceId resourceId=gson.fromJson(resourceIdString,ResourceId.class);
+        logger.debug("RESOURCE_GET {} {}",resourceId.getResourcePoolId(),resourceId.getName());
+        Object o=getResource(resourceId);
+        sendResourceResponseGet(resourceId,o);
+      }
  else       if (event.getType() == RemoteInterpreterEventType.OUTPUT_APPEND) {
         Map<String,String> outputAppend=gson.fromJson(event.getData(),new TypeToken<Map<String,String>>(){
         }

@@ -1,0 +1,14 @@
+{
+  StringBuilder sb=new StringBuilder("resourceGet_args(");
+  boolean first=true;
+  sb.append("resourceName:");
+  if (this.resourceName == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.resourceName);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

@@ -1,0 +1,9 @@
+{
+  if (isSerializable()) {
+    Object o=resourcePoolConnector.readResource(getResourceId());
+    return o;
+  }
+ else {
+    return null;
+  }
+}

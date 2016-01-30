@@ -1,0 +1,35 @@
+{
+  org.apache.thrift.protocol.TField schemeField;
+  iprot.readStructBegin();
+  while (true) {
+    schemeField=iprot.readFieldBegin();
+    if (schemeField.type == org.apache.thrift.protocol.TType.STOP) {
+      break;
+    }
+switch (schemeField.id) {
+case 1:
+      if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
+{
+          org.apache.thrift.protocol.TList _list18=iprot.readListBegin();
+          struct.resources=new ArrayList<String>(_list18.size);
+          String _elem19;
+          for (int _i20=0; _i20 < _list18.size; ++_i20) {
+            _elem19=iprot.readString();
+            struct.resources.add(_elem19);
+          }
+          iprot.readListEnd();
+        }
+        struct.setResourcesIsSet(true);
+      }
+ else {
+        org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+      }
+    break;
+default :
+  org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+iprot.readFieldEnd();
+}
+iprot.readStructEnd();
+struct.validate();
+}

@@ -1,0 +1,4 @@
+{
+  send_resourceResponseGet(resourceId,object);
+  recv_resourceResponseGet();
+}

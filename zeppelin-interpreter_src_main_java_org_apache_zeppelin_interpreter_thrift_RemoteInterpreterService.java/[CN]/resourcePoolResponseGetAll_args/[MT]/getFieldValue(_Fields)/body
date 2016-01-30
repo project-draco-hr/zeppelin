@@ -1,0 +1,7 @@
+{
+switch (field) {
+case RESOURCES:
+    return getResources();
+}
+throw new IllegalStateException();
+}

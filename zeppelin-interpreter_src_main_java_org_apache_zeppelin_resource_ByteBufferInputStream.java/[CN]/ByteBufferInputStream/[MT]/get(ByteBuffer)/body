@@ -1,0 +1,8 @@
+{
+  if (buf.hasArray()) {
+    return new ByteArrayInputStream(buf.array());
+  }
+ else {
+    return new ByteBufferInputStream(buf);
+  }
+}

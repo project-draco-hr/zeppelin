@@ -1,0 +1,10 @@
+String noteId
+String paragraphId
+String paragraphTitle
+String paragraphText
+Map<String,Object> config
+GUI gui
+AngularObjectRegistry angularObjectRegistry
+ResourcePool resourcePool
+List<InterpreterContextRunner> runners
+InterpreterOutput out

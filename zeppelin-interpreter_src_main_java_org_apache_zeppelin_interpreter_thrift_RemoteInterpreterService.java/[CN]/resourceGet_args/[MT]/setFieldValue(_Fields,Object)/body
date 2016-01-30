@@ -1,0 +1,12 @@
+{
+switch (field) {
+case RESOURCE_NAME:
+    if (value == null) {
+      unsetResourceName();
+    }
+ else {
+      setResourceName((String)value);
+    }
+  break;
+}
+}

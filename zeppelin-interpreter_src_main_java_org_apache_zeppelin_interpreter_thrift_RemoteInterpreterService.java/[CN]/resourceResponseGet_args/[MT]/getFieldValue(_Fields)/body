@@ -1,0 +1,9 @@
+{
+switch (field) {
+case RESOURCE_ID:
+    return getResourceId();
+case OBJECT:
+  return getObject();
+}
+throw new IllegalStateException();
+}

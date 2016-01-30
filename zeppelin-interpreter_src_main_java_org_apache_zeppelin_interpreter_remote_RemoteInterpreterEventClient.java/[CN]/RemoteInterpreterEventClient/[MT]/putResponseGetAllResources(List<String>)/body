@@ -1,0 +1,13 @@
+{
+  logger.debug("ResourceSet from ZeppelinServer");
+  ResourceSet resourceSet=new ResourceSet();
+  for (  String res : resources) {
+    RemoteResource resource=gson.fromJson(res,RemoteResource.class);
+    resource.setResourcePoolConnector(this);
+    resourceSet.add(resource);
+  }
+synchronized (getAllResourceResponse) {
+    getAllResourceResponse.add(resourceSet);
+    getAllResourceResponse.notify();
+  }
+}

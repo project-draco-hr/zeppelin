@@ -1,0 +1,6 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("resoucePoolGetAll",org.apache.thrift.protocol.TMessageType.CALL,0));
+  resoucePoolGetAll_args args=new resoucePoolGetAll_args();
+  args.write(prot);
+  prot.writeMessageEnd();
+}

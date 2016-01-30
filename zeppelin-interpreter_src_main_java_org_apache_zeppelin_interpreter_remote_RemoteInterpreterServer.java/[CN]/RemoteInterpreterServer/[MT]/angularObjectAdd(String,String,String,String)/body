@@ -12,7 +12,7 @@
 .getType());
   }
  catch (  Exception e) {
-    logger.info("Exception in RemoteInterpreterServer while angularObjectAdd, nolock",e);
+    logger.debug(e.getMessage(),e);
   }
   if (value == null) {
     value=gson.fromJson(object,String.class);

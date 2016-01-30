@@ -1,0 +1,5 @@
+{
+  if (other.isSetResourceName()) {
+    this.resourceName=other.resourceName;
+  }
+}

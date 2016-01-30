@@ -1,0 +1,12 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case RESOURCE_ID:
+    return isSetResourceId();
+case OBJECT:
+  return isSetObject();
+}
+throw new IllegalStateException();
+}

@@ -3,10 +3,12 @@
     throw new IllegalArgumentException();
   }
 switch (field) {
+case INTP_GROUP_ID:
+    return isSetIntpGroupId();
 case CLASS_NAME:
-    return isSetClassName();
+  return isSetClassName();
 case PROPERTIES:
-  return isSetProperties();
+return isSetProperties();
 }
 throw new IllegalStateException();
 }

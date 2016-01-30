@@ -1,9 +1,11 @@
 {
 switch (field) {
+case INTP_GROUP_ID:
+    return getIntpGroupId();
 case CLASS_NAME:
-    return getClassName();
+  return getClassName();
 case PROPERTIES:
-  return getProperties();
+return getProperties();
 }
 throw new IllegalStateException();
 }

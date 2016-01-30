@@ -1,0 +1,4 @@
+{
+  this.resourcePoolId=resourcePoolId;
+  this.name=name;
+}

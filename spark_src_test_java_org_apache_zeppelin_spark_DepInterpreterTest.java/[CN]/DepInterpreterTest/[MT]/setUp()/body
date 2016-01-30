@@ -9,5 +9,5 @@
   intpGroup.add(new SparkInterpreter(p));
   intpGroup.add(dep);
   dep.setInterpreterGroup(intpGroup);
-  context=new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LinkedList<InterpreterContextRunner>(),null);
+  context=new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),null,new LinkedList<InterpreterContextRunner>(),null);
 }

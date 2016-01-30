@@ -1,3 +1,3 @@
 {
-  sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.ANGULAR_OBJECT_ADD,gson.toJson(object)));
+  eventClient.angularObjectAdd(object);
 }

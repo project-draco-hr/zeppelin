@@ -23,4 +23,5 @@
       remoteInterpreterProcess.dereference();
     }
   }
+  allInterpreterGroups.remove(id);
 }

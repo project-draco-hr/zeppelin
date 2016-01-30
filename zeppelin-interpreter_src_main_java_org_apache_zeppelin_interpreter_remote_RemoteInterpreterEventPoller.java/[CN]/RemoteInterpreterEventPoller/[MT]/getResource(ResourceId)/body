@@ -1,0 +1,33 @@
+{
+  InterpreterGroup intpGroup=InterpreterGroup.get(resourceId.getResourcePoolId());
+  if (intpGroup == null) {
+    return null;
+  }
+  RemoteInterpreterProcess remoteInterpreterProcess=intpGroup.getRemoteInterpreterProcess();
+  if (remoteInterpreterProcess == null) {
+    ResourcePool localPool=intpGroup.getResourcePool();
+    if (localPool != null) {
+      return localPool.get(resourceId.getName());
+    }
+  }
+ else   if (interpreterProcess.isRunning()) {
+    Client client=null;
+    boolean broken=false;
+    try {
+      client=remoteInterpreterProcess.getClient();
+      ByteBuffer res=client.resourceGet(resourceId.getName());
+      Object o=Resource.deserializeObject(res);
+      return o;
+    }
+ catch (    Exception e) {
+      logger.error(e.getMessage(),e);
+      broken=true;
+    }
+ finally {
+      if (client != null) {
+        intpGroup.getRemoteInterpreterProcess().releaseClient(client,broken);
+      }
+    }
+  }
+  return null;
+}

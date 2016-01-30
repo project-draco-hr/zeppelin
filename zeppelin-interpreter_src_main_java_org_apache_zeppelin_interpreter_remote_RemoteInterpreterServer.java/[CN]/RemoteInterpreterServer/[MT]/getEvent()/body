@@ -1,18 +1,3 @@
 {
-synchronized (eventQueue) {
-    if (eventQueue.isEmpty()) {
-      try {
-        eventQueue.wait(1000);
-      }
- catch (      InterruptedException e) {
-        logger.info("Exception in RemoteInterpreterServer while getEvent, eventQueue.wait",e);
-      }
-    }
-    if (eventQueue.isEmpty()) {
-      return new RemoteInterpreterEvent(RemoteInterpreterEventType.NO_OP,"");
-    }
- else {
-      return eventQueue.remove(0);
-    }
-  }
+  return eventClient.pollEvent();
 }

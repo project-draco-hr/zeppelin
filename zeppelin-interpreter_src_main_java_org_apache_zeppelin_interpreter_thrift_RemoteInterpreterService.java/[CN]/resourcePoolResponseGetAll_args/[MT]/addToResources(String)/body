@@ -1,0 +1,6 @@
+{
+  if (this.resources == null) {
+    this.resources=new ArrayList<String>();
+  }
+  this.resources.add(elem);
+}

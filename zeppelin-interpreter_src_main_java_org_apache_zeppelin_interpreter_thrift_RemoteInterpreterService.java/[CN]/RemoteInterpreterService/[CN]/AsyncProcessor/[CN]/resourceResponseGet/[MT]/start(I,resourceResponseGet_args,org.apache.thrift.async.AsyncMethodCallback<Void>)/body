@@ -1,0 +1,3 @@
+{
+  iface.resourceResponseGet(args.resourceId,args.object,resultHandler);
+}

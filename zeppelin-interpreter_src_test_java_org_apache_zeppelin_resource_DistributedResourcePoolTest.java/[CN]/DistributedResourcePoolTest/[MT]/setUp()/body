@@ -1,0 +1,24 @@
+{
+  env=new HashMap<String,String>();
+  env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
+  Properties p=new Properties();
+  intp1=new RemoteInterpreter(p,MockInterpreterResourcePool.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+  intpGroup1=new InterpreterGroup("intpGroup1");
+  intpGroup1.add(intp1);
+  intp1.setInterpreterGroup(intpGroup1);
+  intp2=new RemoteInterpreter(p,MockInterpreterResourcePool.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+  intpGroup2=new InterpreterGroup("intpGroup2");
+  intpGroup2.add(intp2);
+  intp2.setInterpreterGroup(intpGroup2);
+  context=new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),null,null,new LinkedList<InterpreterContextRunner>(),null);
+  intp1.open();
+  intp2.open();
+  eventPoller1=new RemoteInterpreterEventPoller(null);
+  eventPoller1.setInterpreterGroup(intpGroup1);
+  eventPoller1.setInterpreterProcess(intpGroup1.getRemoteInterpreterProcess());
+  eventPoller2=new RemoteInterpreterEventPoller(null);
+  eventPoller2.setInterpreterGroup(intpGroup2);
+  eventPoller2.setInterpreterProcess(intpGroup2.getRemoteInterpreterProcess());
+  eventPoller1.start();
+  eventPoller2.start();
+}

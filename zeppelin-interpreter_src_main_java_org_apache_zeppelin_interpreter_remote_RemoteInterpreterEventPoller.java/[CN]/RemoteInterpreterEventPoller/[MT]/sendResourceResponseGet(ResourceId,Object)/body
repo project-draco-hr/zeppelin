@@ -1,0 +1,26 @@
+{
+  Client client=null;
+  boolean broken=false;
+  try {
+    client=interpreterProcess.getClient();
+    Gson gson=new Gson();
+    String rid=gson.toJson(resourceId);
+    ByteBuffer obj;
+    if (o == null) {
+      obj=ByteBuffer.allocate(0);
+    }
+ else {
+      obj=Resource.serializeObject(o);
+    }
+    client.resourceResponseGet(rid,obj);
+  }
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
+    broken=true;
+  }
+ finally {
+    if (client != null) {
+      interpreterProcess.releaseClient(client,broken);
+    }
+  }
+}

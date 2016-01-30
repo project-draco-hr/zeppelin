@@ -19,7 +19,7 @@ synchronized (interpreterProcess) {
         for (        Interpreter intp : this.getInterpreterGroup()) {
           logger.info("Create remote interpreter {}",intp.getClassName());
           property.put("zeppelin.interpreter.localRepo",localRepoPath);
-          client.createInterpreter(intp.getClassName(),(Map)property);
+          client.createInterpreter(getInterpreterGroup().getId(),intp.getClassName(),(Map)property);
         }
       }
  catch (      TException e) {

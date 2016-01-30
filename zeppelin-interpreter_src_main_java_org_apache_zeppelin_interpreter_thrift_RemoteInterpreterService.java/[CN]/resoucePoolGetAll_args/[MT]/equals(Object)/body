@@ -1,0 +1,5 @@
+{
+  if (that == null)   return false;
+  if (that instanceof resoucePoolGetAll_args)   return this.equals((resoucePoolGetAll_args)that);
+  return false;
+}

@@ -7,7 +7,7 @@
     return true;
   }
  catch (  IOException e) {
-    LOGGER.info("Exception in RemoteInterpreterUtils while checkIfRemoteEndpointAccessible",e);
+    LOGGER.debug(e.getMessage(),e);
     return false;
   }
 }

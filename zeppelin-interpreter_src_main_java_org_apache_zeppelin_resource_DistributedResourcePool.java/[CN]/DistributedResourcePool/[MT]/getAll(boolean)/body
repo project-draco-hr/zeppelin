@@ -1,0 +1,7 @@
+{
+  ResourceSet all=super.getAll();
+  if (remote) {
+    all.addAll(connector.getAllResources());
+  }
+  return all;
+}

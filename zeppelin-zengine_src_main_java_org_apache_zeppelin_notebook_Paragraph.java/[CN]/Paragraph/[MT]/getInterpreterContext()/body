@@ -1,15 +1,17 @@
 {
   AngularObjectRegistry registry=null;
+  ResourcePool resourcePool=null;
   if (!getNoteReplLoader().getInterpreterSettings().isEmpty()) {
     InterpreterSetting intpGroup=getNoteReplLoader().getInterpreterSettings().get(0);
     registry=intpGroup.getInterpreterGroup().getAngularObjectRegistry();
+    resourcePool=intpGroup.getInterpreterGroup().getResourcePool();
   }
   List<InterpreterContextRunner> runners=new LinkedList<InterpreterContextRunner>();
   for (  Paragraph p : note.getParagraphs()) {
     runners.add(new ParagraphRunner(note,note.id(),p.getId()));
   }
   final Paragraph self=this;
-  InterpreterContext interpreterContext=new InterpreterContext(note.id(),getId(),this.getTitle(),this.getText(),this.getConfig(),this.settings,registry,runners,new InterpreterOutput(new InterpreterOutputListener(){
+  InterpreterContext interpreterContext=new InterpreterContext(note.id(),getId(),this.getTitle(),this.getText(),this.getConfig(),this.settings,registry,resourcePool,runners,new InterpreterOutput(new InterpreterOutputListener(){
     @Override public void onAppend(    InterpreterOutput out,    byte[] line){
       updateParagraphResult(out);
       ((ParagraphJobListener)getListener()).onOutputAppend(self,out,new String(line));

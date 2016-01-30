@@ -1,5 +1,8 @@
 {
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
+  if (interpreterProcess == null || !interpreterProcess.isRunning()) {
+    return 0;
+  }
   Client client=null;
   try {
     client=interpreterProcess.getClient();

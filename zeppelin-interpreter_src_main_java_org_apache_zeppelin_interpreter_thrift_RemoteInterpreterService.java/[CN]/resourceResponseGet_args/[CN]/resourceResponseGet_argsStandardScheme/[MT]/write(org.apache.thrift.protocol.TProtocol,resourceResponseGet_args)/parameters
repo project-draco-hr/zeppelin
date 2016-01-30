@@ -1,0 +1,2 @@
+org.apache.thrift.protocol.TProtocol oprot
+resourceResponseGet_args struct

@@ -1,4 +1,7 @@
 {
+  if (interpreterGroup == null) {
+    return "Unknown";
+  }
 synchronized (interpreterGroup) {
     for (    Interpreter intp : interpreterGroup) {
       for (      Job job : intp.getScheduler().getJobsRunning()) {

@@ -2,7 +2,7 @@
   AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
   AngularObject ao=registry.get(name,noteId,paragraphId);
   if (ao == null) {
-    logger.error("Angular object {} not exists",name);
+    logger.debug("Angular object {} not exists",name);
     return;
   }
   if (object == null) {
@@ -18,7 +18,7 @@
       return;
     }
  catch (    Exception e) {
-      logger.info("Exception in RemoteInterpreterServer while angularObjectUpdate, no luck",e);
+      logger.debug(e.getMessage(),e);
     }
   }
   if (value == null) {
@@ -28,7 +28,7 @@
 .getType());
     }
  catch (    Exception e) {
-      logger.info("Exception in RemoteInterpreterServer while angularObjectUpdate, no lock",e);
+      logger.debug(e.getMessage(),e);
     }
   }
   if (value == null) {

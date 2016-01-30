@@ -1,0 +1,10 @@
+{
+  logger.debug("Request getAll from ZeppelinServer");
+  ResourceSet resourceSet=resourcePool.getAll(false);
+  List<String> result=new LinkedList<String>();
+  Gson gson=new Gson();
+  for (  Resource r : resourceSet) {
+    result.add(gson.toJson(r));
+  }
+  return result;
+}

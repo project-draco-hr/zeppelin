@@ -1,0 +1,3 @@
+String intpGroupId
+String className
+Map<String,String> properties

@@ -1,0 +1,5 @@
+{
+  resourcePoolResponseGetAll_result result=new resourcePoolResponseGetAll_result();
+  receiveBase(result,"resourcePoolResponseGetAll");
+  return;
+}

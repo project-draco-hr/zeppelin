@@ -1,3 +1,4 @@
 {
   getId();
+  allInterpreterGroups.put(id,this);
 }

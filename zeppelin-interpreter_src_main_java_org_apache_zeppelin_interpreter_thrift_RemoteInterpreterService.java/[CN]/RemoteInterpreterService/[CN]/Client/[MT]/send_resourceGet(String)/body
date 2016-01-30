@@ -1,0 +1,5 @@
+{
+  resourceGet_args args=new resourceGet_args();
+  args.setResourceName(resourceName);
+  sendBase("resourceGet",args);
+}
