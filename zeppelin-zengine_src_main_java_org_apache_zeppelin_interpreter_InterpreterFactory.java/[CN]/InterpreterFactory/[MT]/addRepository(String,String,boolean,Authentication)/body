@@ -1,0 +1,4 @@
+{
+  depResolver.addRepo(id,url,snapshot,auth);
+  saveToFile();
+}

@@ -1,7 +1,7 @@
 {
 synchronized (repos) {
     Iterator<RemoteRepository> it=repos.iterator();
-    if (it.hasNext()) {
+    while (it.hasNext()) {
       RemoteRepository repo=it.next();
       if (repo.getId().equals(id)) {
         it.remove();

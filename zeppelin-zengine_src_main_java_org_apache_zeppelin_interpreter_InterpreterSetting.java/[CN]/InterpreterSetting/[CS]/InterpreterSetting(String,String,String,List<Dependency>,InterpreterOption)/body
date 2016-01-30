@@ -1,0 +1,7 @@
+{
+  this.id=id;
+  this.name=name;
+  this.group=group;
+  this.dependencies=dependencies;
+  this.option=option;
+}

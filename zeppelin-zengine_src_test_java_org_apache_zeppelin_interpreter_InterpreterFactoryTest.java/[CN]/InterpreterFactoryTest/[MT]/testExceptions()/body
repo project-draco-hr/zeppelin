@@ -1,13 +1,13 @@
 {
   List<String> all=factory.getDefaultInterpreterSettingList();
   try {
-    factory.add("a mock","mock2",null,new Properties());
+    factory.add("a mock","mock2",new LinkedList<Dependency>(),null,new Properties());
   }
  catch (  NullArgumentException e) {
     assertEquals("Test null option",e.getMessage(),new NullArgumentException("option").getMessage());
   }
   try {
-    factory.add("a mock","mock2",new InterpreterOption(false),null);
+    factory.add("a mock","mock2",new LinkedList<Dependency>(),new InterpreterOption(false),null);
   }
  catch (  NullArgumentException e) {
     assertEquals("Test null properties",e.getMessage(),new NullArgumentException("properties").getMessage());

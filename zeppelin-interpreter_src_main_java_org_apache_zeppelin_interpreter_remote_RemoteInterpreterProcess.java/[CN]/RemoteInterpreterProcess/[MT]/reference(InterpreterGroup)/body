@@ -12,6 +12,8 @@ synchronized (referenceCount) {
       cmdLine.addArgument(interpreterDir,false);
       cmdLine.addArgument("-p",false);
       cmdLine.addArgument(Integer.toString(port),false);
+      cmdLine.addArgument("-l",false);
+      cmdLine.addArgument(localRepoDir,false);
       executor=new DefaultExecutor();
       watchdog=new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT);
       executor.setWatchdog(watchdog);

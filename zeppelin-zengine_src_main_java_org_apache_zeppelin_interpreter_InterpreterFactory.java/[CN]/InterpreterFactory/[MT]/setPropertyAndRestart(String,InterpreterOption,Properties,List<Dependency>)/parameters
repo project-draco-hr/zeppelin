@@ -1,0 +1,4 @@
+String id
+InterpreterOption option
+Properties properties
+List<Dependency> dependencies

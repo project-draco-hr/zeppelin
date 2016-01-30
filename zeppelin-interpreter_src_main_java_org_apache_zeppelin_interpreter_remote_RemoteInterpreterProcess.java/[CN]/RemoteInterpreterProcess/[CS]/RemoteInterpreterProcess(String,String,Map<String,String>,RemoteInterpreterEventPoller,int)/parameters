@@ -1,5 +1,0 @@
-String intpRunner
-String intpDir
-Map<String,String> env
-RemoteInterpreterEventPoller remoteInterpreterEventPoller
-int connectTimeout

@@ -1,0 +1,13 @@
+{
+synchronized (interpreterSettings) {
+    InterpreterSetting intpSetting=new InterpreterSetting(name,groupName,dependencies,option);
+    if (dependencies.size() > 0) {
+      loadInterpreterDependencies(intpSetting);
+    }
+    InterpreterGroup interpreterGroup=createInterpreterGroup(intpSetting.id(),groupName,option,properties);
+    intpSetting.setInterpreterGroup(interpreterGroup);
+    interpreterSettings.put(intpSetting.id(),intpSetting);
+    saveToFile();
+    return interpreterGroup;
+  }
+}

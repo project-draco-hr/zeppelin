@@ -1,0 +1,4 @@
+{
+  depResolver.delRepo(id);
+  saveToFile();
+}

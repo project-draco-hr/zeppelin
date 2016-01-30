@@ -1,0 +1,5 @@
+String name
+String groupName
+List<Dependency> dependencies
+InterpreterOption option
+Properties properties

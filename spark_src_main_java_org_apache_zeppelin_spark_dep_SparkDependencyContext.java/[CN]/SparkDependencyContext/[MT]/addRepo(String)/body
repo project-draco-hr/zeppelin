@@ -1,4 +1,5 @@
 {
+  Console.println("DepInterpreter(%dep) deprecated. " + "Add repository through GUI interpreter menu instead.");
   Repository rep=new Repository(name);
   repositories.add(rep);
   return rep;

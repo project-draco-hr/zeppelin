@@ -1,0 +1,17 @@
+{
+  File localRepoDir=new File(conf.getInterpreterLocalRepoPath() + "/" + intSetting.id());
+  if (localRepoDir.exists()) {
+    FileUtils.cleanDirectory(localRepoDir);
+  }
+  List<Dependency> deps=intSetting.getDependencies();
+  if (deps != null) {
+    for (    Dependency d : deps) {
+      if (d.getExclusions() != null) {
+        depResolver.load(d.getGroupArtifactVersion(),d.getExclusions(),conf.getString(ConfVars.ZEPPELIN_DEP_LOCALREPO) + "/" + intSetting.id());
+      }
+ else {
+        depResolver.load(d.getGroupArtifactVersion(),conf.getString(ConfVars.ZEPPELIN_DEP_LOCALREPO) + "/" + intSetting.id());
+      }
+    }
+  }
+}

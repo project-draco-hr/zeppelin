@@ -1,0 +1,4 @@
+String interpreterPath
+String className
+Properties property
+String interpreterId

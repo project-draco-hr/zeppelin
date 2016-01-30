@@ -1,3 +1,0 @@
-{
-  this(generateId(),name,group,option);
-}

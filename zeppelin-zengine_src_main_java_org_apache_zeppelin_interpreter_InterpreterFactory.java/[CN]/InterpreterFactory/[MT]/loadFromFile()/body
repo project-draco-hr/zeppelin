@@ -22,10 +22,17 @@
   for (  String k : info.interpreterSettings.keySet()) {
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
-    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getOption());
+    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getDependencies(),setting.getOption());
     InterpreterGroup interpreterGroup=createInterpreterGroup(setting.id(),setting.getGroup(),setting.getOption(),setting.getProperties());
     intpSetting.setInterpreterGroup(interpreterGroup);
     interpreterSettings.put(k,intpSetting);
   }
   this.interpreterBindings=info.interpreterBindings;
+  if (info.interpreterRepositories != null) {
+    for (    RemoteRepository repo : info.interpreterRepositories) {
+      if (!depResolver.getRepos().contains(repo)) {
+        this.interpreterRepositories.add(repo);
+      }
+    }
+  }
 }

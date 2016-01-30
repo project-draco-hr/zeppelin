@@ -1,11 +1,11 @@
 {
   DepInterpreter depInterpreter=getDepInterpreter();
   URL[] urls=new URL[0];
+  List<URL> urlList=new LinkedList<URL>();
   if (depInterpreter != null) {
     SparkDependencyContext depc=depInterpreter.getDependencyContext();
     if (depc != null) {
       List<File> files=depc.getFiles();
-      List<URL> urlList=new LinkedList<URL>();
       if (files != null) {
         for (        File f : files) {
           try {
@@ -15,10 +15,27 @@
             logger.error("Error",e);
           }
         }
-        urls=urlList.toArray(urls);
       }
     }
   }
+  String localRepo=getProperty("zeppelin.interpreter.localRepo");
+  if (localRepo != null) {
+    File localRepoDir=new File(localRepo);
+    if (localRepoDir.exists()) {
+      File[] files=localRepoDir.listFiles();
+      if (files != null) {
+        for (        File f : files) {
+          try {
+            urlList.add(f.toURI().toURL());
+          }
+ catch (          MalformedURLException e) {
+            logger.error("Error",e);
+          }
+        }
+      }
+    }
+  }
+  urls=urlList.toArray(urls);
   ClassLoader oldCl=Thread.currentThread().getContextClassLoader();
   try {
     URLClassLoader newCl=new URLClassLoader(urls,oldCl);

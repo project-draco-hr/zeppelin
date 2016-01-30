@@ -1,0 +1,5 @@
+{
+  GetMethod get=httpGet("/interpreter/repository");
+  assertThat(get,isAllowed());
+  get.releaseConnection();
+}

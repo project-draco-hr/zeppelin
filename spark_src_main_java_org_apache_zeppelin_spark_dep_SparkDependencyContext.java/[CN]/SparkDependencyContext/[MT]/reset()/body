@@ -1,4 +1,5 @@
 {
+  Console.println("DepInterpreter(%dep) deprecated. " + "Remove dependencies and repositories through GUI interpreter menu instead.");
   dependencies=new LinkedList<Dependency>();
   repositories=new LinkedList<Repository>();
   files=new LinkedList<File>();

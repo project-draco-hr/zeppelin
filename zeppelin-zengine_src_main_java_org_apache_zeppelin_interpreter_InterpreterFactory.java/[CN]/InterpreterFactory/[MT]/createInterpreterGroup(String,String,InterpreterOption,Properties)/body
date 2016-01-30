@@ -17,7 +17,7 @@
       if (info.getClassName().equals(className) && info.getGroup().equals(groupName)) {
         Interpreter intp;
         if (option.isRemote()) {
-          intp=createRemoteRepl(info.getPath(),info.getClassName(),properties);
+          intp=createRemoteRepl(info.getPath(),info.getClassName(),properties,interpreterGroup.id);
         }
  else {
           intp=createRepl(info.getPath(),info.getClassName(),properties);

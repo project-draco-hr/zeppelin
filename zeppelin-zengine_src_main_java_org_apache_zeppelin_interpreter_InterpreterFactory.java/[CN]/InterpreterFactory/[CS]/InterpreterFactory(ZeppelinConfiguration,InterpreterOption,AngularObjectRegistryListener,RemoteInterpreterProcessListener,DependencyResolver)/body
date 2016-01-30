@@ -3,6 +3,7 @@
   this.defaultOption=defaultOption;
   this.angularObjectRegistryListener=angularObjectRegistryListener;
   this.depResolver=depResolver;
+  this.interpreterRepositories=depResolver.getRepos();
   this.remoteInterpreterProcessListener=remoteInterpreterProcessListener;
   String replsConf=conf.getString(ConfVars.ZEPPELIN_INTERPRETERS);
   interpreterClassList=replsConf.split(",");

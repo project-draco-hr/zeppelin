@@ -1,4 +1,5 @@
 {
+  Console.println("DepInterpreter(%dep) deprecated. " + "Load dependency through GUI interpreter menu instead.");
   Dependency dep=new Dependency(lib);
   if (dependencies.contains(dep)) {
     dependencies.remove(dep);

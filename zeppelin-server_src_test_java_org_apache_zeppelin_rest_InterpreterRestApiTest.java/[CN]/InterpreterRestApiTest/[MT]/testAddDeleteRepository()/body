@@ -1,0 +1,10 @@
+{
+  String repoId="securecentral";
+  String jsonRequest="{\"id\":\"" + repoId + "\",\"url\":\"https://repo1.maven.org/maven2\",\"snapshot\":\"false\"}";
+  PostMethod post=httpPost("/interpreter/repository/",jsonRequest);
+  assertThat("Test create method:",post,isCreated());
+  post.releaseConnection();
+  DeleteMethod delete=httpDelete("/interpreter/repository/" + repoId);
+  assertThat("Test delete method:",delete,isAllowed());
+  delete.releaseConnection();
+}

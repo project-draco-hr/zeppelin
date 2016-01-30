@@ -18,6 +18,7 @@ synchronized (interpreterProcess) {
       try {
         for (        Interpreter intp : this.getInterpreterGroup()) {
           logger.info("Create remote interpreter {}",intp.getClassName());
+          property.put("zeppelin.interpreter.localRepo",localRepoPath);
           client.createInterpreter(intp.getClassName(),(Map)property);
         }
       }

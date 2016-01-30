@@ -17,4 +17,6 @@ synchronized (interpreterSettings) {
       saveToFile();
     }
   }
+  File localRepoDir=new File(conf.getInterpreterLocalRepoPath() + "/" + id);
+  FileUtils.deleteDirectory(localRepoDir);
 }

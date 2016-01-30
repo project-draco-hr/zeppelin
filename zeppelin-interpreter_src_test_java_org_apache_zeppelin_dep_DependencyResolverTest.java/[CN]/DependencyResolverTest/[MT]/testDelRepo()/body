@@ -1,0 +1,6 @@
+{
+  int reposCnt=resolver.getRepos().size();
+  resolver.delRepo("securecentral");
+  resolver.delRepo("badId");
+  assertEquals(reposCnt - 1,resolver.getRepos().size());
+}

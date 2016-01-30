@@ -4,6 +4,7 @@ synchronized (interpreterSettings) {
     InterpreterInfoSaving info=new InterpreterInfoSaving();
     info.interpreterBindings=interpreterBindings;
     info.interpreterSettings=interpreterSettings;
+    info.interpreterRepositories=interpreterRepositories;
     jsonString=gson.toJson(info);
   }
   File settingFile=new File(conf.getInterpreterSettingPath());

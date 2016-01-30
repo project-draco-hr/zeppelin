@@ -1,0 +1,27 @@
+{
+  WebElement interpreterLink=driver.findElement(By.linkText("Interpreter"));
+  interpreterLink.click();
+  WebElement sparkEditBtn=pollingWait(By.xpath("//div[h3[text()[contains(.,'spark')]]]//button[contains(.,'edit')]"),MAX_BROWSER_TIMEOUT_SEC);
+  sparkEditBtn.click();
+  WebElement depArtifact=driver.findElement(By.xpath("//input[@ng-model='setting.depArtifact']"));
+  String artifact="org.apache.commons:commons-csv:1.1";
+  depArtifact.sendKeys(artifact);
+  driver.findElement(By.xpath("//button[contains(.,'Save')]")).submit();
+  driver.switchTo().alert().accept();
+  driver.navigate().back();
+  createNewNote();
+  waitForParagraph(1,"READY");
+  WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
+  paragraph1Editor.sendKeys("import org.apache.commons.csv.CSVFormat");
+  paragraph1Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+  waitForParagraph(1,"FINISHED");
+  assertTrue(waitForText("import org.apache.commons.csv.CSVFormat",By.xpath(getParagraphXPath(1) + "//div[starts-with(@id, 'p') and contains(@id, 'text')]/div")));
+  interpreterLink.click();
+  sparkEditBtn=pollingWait(By.xpath("//div[h3[text()[contains(.,'spark')]]]//button[contains(.,'edit')]"),MAX_BROWSER_TIMEOUT_SEC);
+  sparkEditBtn.click();
+  WebElement testDepRemoveBtn=driver.findElement(By.xpath("//tr[descendant::text()[contains(.,'" + artifact + "')]]/td[3]/div"));
+  sleep(5000,true);
+  testDepRemoveBtn.click();
+  driver.findElement(By.xpath("//button[contains(.,'Save')]")).submit();
+  driver.switchTo().alert().accept();
+}
