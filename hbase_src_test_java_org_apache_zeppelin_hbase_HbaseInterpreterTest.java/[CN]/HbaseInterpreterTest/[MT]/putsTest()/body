@@ -1,0 +1,6 @@
+{
+  InterpreterResult result=hbaseInterpreter.interpret("puts \"Hello World\"",null);
+  assertEquals(InterpreterResult.Code.SUCCESS,result.code());
+  assertEquals(result.type(),InterpreterResult.Type.TEXT);
+  assertEquals("Hello World\n",result.message());
+}

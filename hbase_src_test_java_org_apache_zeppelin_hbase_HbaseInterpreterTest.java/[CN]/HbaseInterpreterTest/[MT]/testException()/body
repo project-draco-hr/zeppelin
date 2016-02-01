@@ -1,0 +1,5 @@
+{
+  InterpreterResult result=hbaseInterpreter.interpret("plot practical joke",null);
+  assertEquals(InterpreterResult.Code.ERROR,result.code());
+  assertEquals("(NameError) undefined local variable or method `joke' for main:Object",result.message());
+}

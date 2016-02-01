@@ -1,0 +1,6 @@
+{
+  InterpreterResult result=hbaseInterpreter.interpret("require 'two_power'; puts twoToThePowerOf(4)",null);
+  assertEquals(InterpreterResult.Code.SUCCESS,result.code());
+  assertEquals(result.type(),InterpreterResult.Type.TEXT);
+  assertEquals("16\n",result.message());
+}

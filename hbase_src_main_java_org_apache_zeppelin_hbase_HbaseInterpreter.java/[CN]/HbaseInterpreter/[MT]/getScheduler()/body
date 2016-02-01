@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetFIFOScheduler(HbaseInterpreter.class.getName() + this.hashCode());
+}

@@ -1,0 +1,28 @@
+{
+  this.scriptingContainer=new ScriptingContainer(LocalContextScope.SINGLETON);
+  this.writer=new StringWriter();
+  scriptingContainer.setOutput(this.writer);
+  if (!Boolean.parseBoolean(getProperty("hbase.test.mode"))) {
+    String hbase_home=getProperty("hbase.home");
+    String ruby_src=getProperty("hbase.ruby.sources");
+    Path abs_ruby_src=Paths.get(hbase_home,ruby_src).toAbsolutePath();
+    logger.info("Home:" + hbase_home);
+    logger.info("Ruby Src:" + ruby_src);
+    File f=abs_ruby_src.toFile();
+    if (!f.exists() || !f.isDirectory()) {
+      throw new InterpreterException("hbase ruby sources is not available at '" + abs_ruby_src + "'");
+    }
+    logger.info("Absolute Ruby Source:" + abs_ruby_src.toString());
+    Properties sysProps=System.getProperties();
+    sysProps.setProperty("hbase.ruby.sources",abs_ruby_src.toString());
+    Path abs_hirb_path=Paths.get(hbase_home,"bin/hirb.rb");
+    try {
+      FileInputStream fis=new FileInputStream(abs_hirb_path.toFile());
+      this.scriptingContainer.runScriptlet(fis,"hirb.rb");
+      fis.close();
+    }
+ catch (    IOException e) {
+      throw new InterpreterException(e.getCause());
+    }
+  }
+}
