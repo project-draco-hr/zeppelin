@@ -6,7 +6,7 @@
   DefaultExecutor executor=new DefaultExecutor();
   ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
   ByteArrayOutputStream errorStream=new ByteArrayOutputStream();
-  executor.setStreamHandler(new PumpStreamHandler(outputStream,errorStream));
+  executor.setStreamHandler(new PumpStreamHandler(contextInterpreter.out,errorStream));
   executor.setWatchdog(new ExecuteWatchdog(commandTimeOut));
   Job runningJob=getRunningJob(contextInterpreter.getParagraphId());
   Map<String,Object> info=runningJob.info();
@@ -14,7 +14,7 @@
   try {
     int exitVal=executor.execute(cmdLine);
     logger.info("Paragraph " + contextInterpreter.getParagraphId() + "return with exit value: "+ exitVal);
-    return new InterpreterResult(InterpreterResult.Code.SUCCESS,outputStream.toString());
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS,null);
   }
  catch (  ExecuteException e) {
     int exitValue=e.getExitValue();
@@ -26,7 +26,7 @@
       msg=msg + "Paragraph received a SIGTERM.\n";
       logger.info("The paragraph " + contextInterpreter.getParagraphId() + " stopped executing: "+ msg);
     }
-    msg+="Exitvalue: " + exitValue;
+    msg+="ExitValue: " + exitValue;
     return new InterpreterResult(code,msg);
   }
 catch (  IOException e) {
