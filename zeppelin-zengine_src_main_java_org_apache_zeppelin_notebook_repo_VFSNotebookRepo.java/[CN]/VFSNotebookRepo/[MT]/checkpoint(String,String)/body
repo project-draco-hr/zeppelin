@@ -1,0 +1,3 @@
+{
+  logger.info("Checkpoint feature isn't suported in {}",this.getClass().toString());
+}

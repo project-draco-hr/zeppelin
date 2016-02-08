@@ -8,5 +8,4 @@
     localRepo.create();
   }
   git=new Git(localRepo);
-  maybeAddAndCommit(".");
 }

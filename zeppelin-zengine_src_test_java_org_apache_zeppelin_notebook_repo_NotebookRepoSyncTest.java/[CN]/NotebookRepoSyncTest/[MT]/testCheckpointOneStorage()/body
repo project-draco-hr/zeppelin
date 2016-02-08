@@ -1,0 +1,24 @@
+{
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),"org.apache.zeppelin.notebook.repo.GitNotebookRepo");
+  ZeppelinConfiguration vConf=ZeppelinConfiguration.create();
+  NotebookRepoSync vRepoSync=new NotebookRepoSync(vConf);
+  Notebook vNotebookSync=new Notebook(vConf,vRepoSync,schedulerFactory,factory,this,search);
+  assertThat(vRepoSync.getRepoCount()).isEqualTo(1);
+  assertThat(vRepoSync.getRepo(0)).isInstanceOf(GitNotebookRepo.class);
+  GitNotebookRepo gitRepo=(GitNotebookRepo)vRepoSync.getRepo(0);
+  assertThat(vRepoSync.list().size()).isEqualTo(0);
+  Note note=vNotebookSync.createNote();
+  assertThat(vRepoSync.list().size()).isEqualTo(1);
+  String noteId=vRepoSync.list().get(0).getId();
+  vRepoSync.checkpoint(noteId,"checkpoint message");
+  int vCount=gitRepo.history(noteId).size();
+  assertThat(vCount).isEqualTo(1);
+  Paragraph p=note.addParagraph();
+  Map<String,Object> config=p.getConfig();
+  config.put("enabled",true);
+  p.setConfig(config);
+  p.setText("%md checkpoint test");
+  vRepoSync.save(note);
+  vRepoSync.checkpoint(noteId,"checkpoint message 2");
+  assertThat(gitRepo.history(noteId).size()).isEqualTo(vCount + 1);
+}

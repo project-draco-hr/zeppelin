@@ -72,6 +72,9 @@ break;
 case LIST_CONFIGURATIONS:
 sendAllConfigurations(conn,notebook);
 break;
+case CHECKPOINT_NOTEBOOK:
+checkpointNotebook(conn,notebook,messagereceived);
+break;
 default :
 broadcastNoteList();
 break;

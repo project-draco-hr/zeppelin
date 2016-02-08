@@ -5,10 +5,13 @@
     Iterable<RevCommit> logs=git.log().addPath(noteId).call();
     for (    RevCommit log : logs) {
       history.add(new Rev(log.getName(),log.getCommitTime()));
-      LOG.debug(" - ({},{})",log.getName(),log.getCommitTime());
+      LOG.debug(" - ({},{},{})",log.getName(),log.getCommitTime(),log.getFullMessage());
     }
   }
- catch (  GitAPIException e) {
+ catch (  NoHeadException e) {
+    LOG.warn("No Head found for {}, {}",noteId,e.getMessage());
+  }
+catch (  GitAPIException e) {
     LOG.error("Failed to get logs for {}",noteId,e);
   }
   return history;

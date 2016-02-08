@@ -7,5 +7,5 @@
   assertThat(dotGit.exists()).isEqualTo(true);
   assertThat(notebookRepo.list()).isNotEmpty();
   List<DiffEntry> diff=git.diff().call();
-  assertThat(diff).isEmpty();
+  assertThat(diff).isNotEmpty();
 }

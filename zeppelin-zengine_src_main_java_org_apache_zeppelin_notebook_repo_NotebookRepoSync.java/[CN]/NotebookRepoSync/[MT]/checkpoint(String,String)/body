@@ -1,0 +1,18 @@
+{
+  int repoCount=getRepoCount();
+  int errorCount=0;
+  String errorMessage="";
+  for (int i=0; i < Math.min(repoCount,getMaxRepoNum()); i++) {
+    try {
+      getRepo(i).checkpoint(noteId,checkPointName);
+    }
+ catch (    IOException e) {
+      LOG.warn("Couldn't checkpoint in {} storage with index {} for note {}",getRepo(i).getClass().toString(),i,noteId);
+      errorMessage+="Error on storage class " + getRepo(i).getClass().toString() + " with index "+ i+ " : "+ e.getMessage()+ "\n";
+      errorCount++;
+    }
+  }
+  if (errorCount == Math.min(repoCount,getMaxRepoNum())) {
+    throw new IOException(errorMessage);
+  }
+}

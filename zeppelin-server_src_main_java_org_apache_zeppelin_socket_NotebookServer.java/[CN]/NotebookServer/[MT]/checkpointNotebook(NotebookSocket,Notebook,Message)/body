@@ -1,0 +1,5 @@
+{
+  String noteId=(String)fromMessage.get("noteId");
+  String commitMessage=(String)fromMessage.get("commitMessage");
+  notebook.checkpointNote(noteId,commitMessage);
+}

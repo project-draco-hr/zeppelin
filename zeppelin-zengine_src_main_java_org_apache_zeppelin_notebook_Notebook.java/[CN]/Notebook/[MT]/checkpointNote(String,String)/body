@@ -1,0 +1,3 @@
+{
+  notebookRepo.checkpoint(noteId,checkpointMessage);
+}

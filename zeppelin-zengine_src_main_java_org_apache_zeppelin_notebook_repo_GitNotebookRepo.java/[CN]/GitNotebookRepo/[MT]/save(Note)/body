@@ -1,4 +1,3 @@
 {
   super.save(note);
-  maybeAddAndCommit(note.getId());
 }
