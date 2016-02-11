@@ -1,0 +1,11 @@
+{
+  try {
+    CloudFileDirectory dir=rootDir.getDirectoryReference(noteId);
+    delete(dir);
+  }
+ catch (  URISyntaxException|StorageException e) {
+    String msg=String.format("Error deleting notebook %s from Azure storage",noteId);
+    LOG.error(msg,e);
+    throw new IOException(msg,e);
+  }
+}

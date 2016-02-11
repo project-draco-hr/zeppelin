@@ -1,0 +1,23 @@
+{
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  Gson gson=gsonBuilder.create();
+  String json=gson.toJson(note);
+  ByteArrayOutputStream output=new ByteArrayOutputStream();
+  Writer writer=new OutputStreamWriter(output);
+  writer.write(json);
+  writer.close();
+  output.close();
+  byte[] buffer=output.toByteArray();
+  try {
+    CloudFileDirectory dir=rootDir.getDirectoryReference(note.getId());
+    dir.createIfNotExists();
+    CloudFile cloudFile=dir.getFileReference("note.json");
+    cloudFile.uploadFromByteArray(buffer,0,buffer.length);
+  }
+ catch (  URISyntaxException|StorageException e) {
+    String msg=String.format("Error saving notebook %s to Azure storage",note.getId());
+    LOG.error(msg,e);
+    throw new IOException(msg,e);
+  }
+}

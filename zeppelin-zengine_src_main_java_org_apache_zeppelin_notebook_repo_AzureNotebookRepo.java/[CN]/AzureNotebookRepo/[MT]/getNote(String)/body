@@ -1,0 +1,25 @@
+{
+  InputStream ins=null;
+  try {
+    CloudFileDirectory dir=rootDir.getDirectoryReference(noteId);
+    CloudFile file=dir.getFileReference("note.json");
+    ins=file.openRead();
+  }
+ catch (  URISyntaxException|StorageException e) {
+    String msg=String.format("Error reading notebook %s from Azure storage",noteId);
+    LOG.error(msg,e);
+    throw new IOException(msg,e);
+  }
+  String json=IOUtils.toString(ins,conf.getString(ZeppelinConfiguration.ConfVars.ZEPPELIN_ENCODING));
+  ins.close();
+  GsonBuilder gsonBuilder=new GsonBuilder();
+  gsonBuilder.setPrettyPrinting();
+  Gson gson=gsonBuilder.create();
+  Note note=gson.fromJson(json,Note.class);
+  for (  Paragraph p : note.getParagraphs()) {
+    if (p.getStatus() == Job.Status.PENDING || p.getStatus() == Job.Status.RUNNING) {
+      p.setStatus(Job.Status.ABORT);
+    }
+  }
+  return note;
+}

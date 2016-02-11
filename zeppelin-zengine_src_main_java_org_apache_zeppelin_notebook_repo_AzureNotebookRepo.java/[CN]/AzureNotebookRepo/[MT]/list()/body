@@ -1,0 +1,23 @@
+{
+  List<NoteInfo> infos=new LinkedList<NoteInfo>();
+  NoteInfo info=null;
+  for (  ListFileItem item : rootDir.listFilesAndDirectories()) {
+    if (item.getClass() == CloudFileDirectory.class) {
+      CloudFileDirectory dir=(CloudFileDirectory)item;
+      try {
+        if (dir.getFileReference("note.json").exists()) {
+          info=new NoteInfo(getNote(dir.getName()));
+          if (info != null) {
+            infos.add(info);
+          }
+        }
+      }
+ catch (      StorageException|URISyntaxException e) {
+        String msg="Error enumerating notebooks from Azure storage";
+        LOG.error(msg,e);
+        throw new IOException(msg,e);
+      }
+    }
+  }
+  return infos;
+}

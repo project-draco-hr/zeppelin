@@ -1,0 +1,13 @@
+{
+  this.conf=conf;
+  user=conf.getString(ZeppelinConfiguration.ConfVars.ZEPPELIN_NOTEBOOK_AZURE_USER);
+  shareName=conf.getString(ZeppelinConfiguration.ConfVars.ZEPPELIN_NOTEBOOK_AZURE_SHARE);
+  CloudStorageAccount account=CloudStorageAccount.parse(conf.getString(ZeppelinConfiguration.ConfVars.ZEPPELIN_NOTEBOOK_AZURE_CONNECTION_STRING));
+  CloudFileClient client=account.createCloudFileClient();
+  CloudFileShare share=client.getShareReference(shareName);
+  share.createIfNotExists();
+  CloudFileDirectory userDir=StringUtils.isBlank(user) ? share.getRootDirectoryReference() : share.getRootDirectoryReference().getDirectoryReference(user);
+  userDir.createIfNotExists();
+  rootDir=userDir.getDirectoryReference("notebook");
+  rootDir.createIfNotExists();
+}
