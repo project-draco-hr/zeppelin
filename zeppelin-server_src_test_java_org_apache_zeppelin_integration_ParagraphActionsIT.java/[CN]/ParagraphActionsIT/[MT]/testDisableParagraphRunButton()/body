@@ -17,7 +17,9 @@
     collector.checkThat("Paragraph status is ",getParagraphStatus(1),CoreMatchers.equalTo("READY"));
     deleteTestNotebook(driver);
   }
- catch (  ElementNotVisibleException e) {
+ catch (  Exception e) {
+    LOG.error("Exception in ParagraphActionsIT while testDisableParagraphRunButton ",e);
     File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+    throw e;
   }
 }
