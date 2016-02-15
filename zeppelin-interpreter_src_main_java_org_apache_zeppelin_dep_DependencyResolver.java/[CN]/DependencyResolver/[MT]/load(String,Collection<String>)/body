@@ -1,6 +1,6 @@
 {
   if (StringUtils.isBlank(artifact)) {
-    throw new RuntimeException("Invalid artifact to load");
+    return new LinkedList<File>();
   }
   int numSplits=artifact.split(":").length;
   if (numSplits >= 3 && numSplits <= 6) {
