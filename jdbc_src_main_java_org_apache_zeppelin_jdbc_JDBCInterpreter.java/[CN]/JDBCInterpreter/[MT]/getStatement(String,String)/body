@@ -6,6 +6,9 @@
  else {
     connection=getConnection(propertyKey);
   }
+  if (connection == null) {
+    return null;
+  }
   Statement statement=connection.createStatement();
   if (isStatementClosed(statement)) {
     connection=getConnection(propertyKey);

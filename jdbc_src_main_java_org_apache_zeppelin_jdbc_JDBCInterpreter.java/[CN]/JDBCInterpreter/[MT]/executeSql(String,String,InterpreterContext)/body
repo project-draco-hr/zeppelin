@@ -2,6 +2,9 @@
   String paragraphId=interpreterContext.getParagraphId();
   try {
     Statement statement=getStatement(propertyKey,paragraphId);
+    if (statement == null) {
+      return new InterpreterResult(Code.ERROR,"Prefix not found.");
+    }
     statement.setMaxRows(getMaxResult());
     StringBuilder msg=null;
     boolean isTableType=false;

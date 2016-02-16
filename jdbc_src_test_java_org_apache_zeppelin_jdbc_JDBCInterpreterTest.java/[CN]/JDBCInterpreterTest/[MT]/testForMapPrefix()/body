@@ -1,0 +1,15 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty("common.max_count","1000");
+  properties.setProperty("common.max_retry","3");
+  properties.setProperty("default.driver","org.h2.Driver");
+  properties.setProperty("default.url",getJdbcConnection());
+  properties.setProperty("default.user","");
+  properties.setProperty("default.password","");
+  JDBCInterpreter t=new JDBCInterpreter(properties);
+  t.open();
+  String sqlQuery="(fake) select * from test_table";
+  InterpreterResult interpreterResult=t.interpret(sqlQuery,new InterpreterContext("","1","","",null,null,null,null,null,null));
+  assertEquals(InterpreterResult.Code.ERROR,interpreterResult.code());
+  assertEquals("Prefix not found.",interpreterResult.message());
+}
