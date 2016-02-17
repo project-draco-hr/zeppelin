@@ -1,0 +1,9 @@
+{
+  HiveInterpreter t=new HiveInterpreter(new Properties());
+  assertEquals(t.getPropertyKey("(fake) select max(cant) from test_table where id >= 2452640"),"fake");
+  assertEquals(t.getPropertyKey("() select max(cant) from test_table where id >= 2452640"),"");
+  assertEquals(t.getPropertyKey(")fake( select max(cant) from test_table where id >= 2452640"),"default");
+  assertEquals(t.getPropertyKey("(prefix1)\n select max(cant) from test_table where id >= 2452640"),"prefix1");
+  assertEquals(t.getPropertyKey("(prefix2) select max(cant) from test_table where id >= 2452640"),"prefix2");
+  assertEquals(t.getPropertyKey("select max(cant) from test_table where id >= 2452640"),"default");
+}

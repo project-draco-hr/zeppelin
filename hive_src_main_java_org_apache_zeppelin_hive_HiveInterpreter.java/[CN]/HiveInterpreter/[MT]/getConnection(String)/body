@@ -1,5 +1,8 @@
 {
   Connection connection=null;
+  if (propertyKey == null || propertiesMap.get(propertyKey) == null) {
+    return null;
+  }
   if (propertyKeyUnusedConnectionListMap.containsKey(propertyKey)) {
     ArrayList<Connection> connectionList=propertyKeyUnusedConnectionListMap.get(propertyKey);
     if (0 != connectionList.size()) {
