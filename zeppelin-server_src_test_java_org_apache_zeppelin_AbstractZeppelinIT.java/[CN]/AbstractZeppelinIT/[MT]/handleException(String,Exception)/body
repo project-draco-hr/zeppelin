@@ -1,0 +1,5 @@
+{
+  LOG.error(message,e);
+  File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+  throw e;
+}

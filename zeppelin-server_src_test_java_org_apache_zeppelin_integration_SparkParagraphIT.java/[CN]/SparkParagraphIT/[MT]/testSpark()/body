@@ -1,0 +1,29 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
+    paragraph1Editor.sendKeys("sc.version");
+    paragraph1Editor.sendKeys(SHIFT_ENTER);
+    waitForParagraph(1,"FINISHED");
+    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]"));
+    Float sparkVersion=Float.parseFloat(paragraph1Result.getText().split("= ")[1].substring(0,3));
+    WebElement paragraph2Editor=driver.findElement(By.xpath(getParagraphXPath(2) + "//textarea"));
+    paragraph2Editor.sendKeys("import org.apache.commons.io.IOUtils" + ENTER + "import java.net.URL"+ ENTER+ "import java.nio.charset.Charset"+ ENTER+ "val bankText = sc.parallelize"+ OPEN_PARENTHESIS+ "IOUtils.toString"+ OPEN_PARENTHESIS+ "new URL"+ OPEN_PARENTHESIS+ "\"https://s3.amazonaws.com/apache"+ SUBTRACT+ "zeppelin/tutorial/bank/bank."+ "csv\"),Charset.forName"+ OPEN_PARENTHESIS+ "\"utf8\"))"+ ".split"+ OPEN_PARENTHESIS+ "\"\\n\"))"+ ENTER+ "case class Bank"+ OPEN_PARENTHESIS+ "age: Integer, job: String, marital: String, education: String, balance: Integer)"+ ENTER+ ENTER+ "val bank = bankText.map"+ OPEN_PARENTHESIS+ "s => s.split"+ OPEN_PARENTHESIS+ "\";\")).filter"+ OPEN_PARENTHESIS+ "s => s"+ OPEN_PARENTHESIS+ "0) "+ EXCLAMATION+ "= \"\\\"age\\\"\").map"+ OPEN_PARENTHESIS+ "s => Bank"+ OPEN_PARENTHESIS+ "s"+ OPEN_PARENTHESIS+ "0).toInt,s"+ OPEN_PARENTHESIS+ "1).replaceAll"+ OPEN_PARENTHESIS+ "\"\\\"\", \"\"),"+ "s"+ OPEN_PARENTHESIS+ "2).replaceAll"+ OPEN_PARENTHESIS+ "\"\\\"\", \"\"),"+ "s"+ OPEN_PARENTHESIS+ "3).replaceAll"+ OPEN_PARENTHESIS+ "\"\\\"\", \"\"),"+ "s"+ OPEN_PARENTHESIS+ "5).replaceAll"+ OPEN_PARENTHESIS+ "\"\\\"\", \"\").toInt"+ ")"+ ")"+ (sparkVersion < 1.3f ? "" : ".toDF" + OPEN_PARENTHESIS + ")")+ ENTER+ "bank.registerTempTable"+ OPEN_PARENTHESIS+ "\"bank\")");
+    paragraph2Editor.sendKeys("" + END + BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE+ BACK_SPACE);
+    paragraph2Editor.sendKeys(SHIFT_ENTER);
+    try {
+      waitForParagraph(2,"FINISHED");
+    }
+ catch (    TimeoutException e) {
+      waitForParagraph(2,"ERROR");
+      collector.checkThat("2nd Paragraph from SparkParagraphIT of testSpark status:","ERROR",CoreMatchers.equalTo("FINISHED"));
+    }
+    WebElement paragraph2Result=driver.findElement(By.xpath(getParagraphXPath(2) + "//div[@class=\"tableDisplay\"]"));
+    collector.checkThat("2nd Paragraph from SparkParagraphIT of testSpark result: ",paragraph2Result.getText().toString(),CoreMatchers.containsString("import org.apache.commons.io.IOUtils"));
+  }
+ catch (  Exception e) {
+    handleException("Exception in SparkParagraphIT while testSpark",e);
+  }
+}

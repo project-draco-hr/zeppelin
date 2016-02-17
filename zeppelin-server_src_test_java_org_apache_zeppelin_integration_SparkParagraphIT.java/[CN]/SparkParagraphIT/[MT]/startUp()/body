@@ -1,0 +1,8 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  driver=WebDriverManager.getWebDriver();
+  createNewNote();
+  waitForParagraph(1,"READY");
+}

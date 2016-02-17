@@ -1,0 +1,22 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
+    paragraph1Editor.sendKeys(PERCENTAGE + "pyspark" + ENTER+ "for x in range"+ OPEN_PARENTHESIS+ "0, 3):"+ ENTER+ "    print \"test loop "+ PERCENTAGE+ "d\" "+ PERCENTAGE+ " "+ OPEN_PARENTHESIS+ "x)"+ ENTER);
+    paragraph1Editor.sendKeys(SHIFT_ENTER);
+    try {
+      waitForParagraph(1,"FINISHED");
+    }
+ catch (    TimeoutException e) {
+      waitForParagraph(1,"ERROR");
+      collector.checkThat("Paragraph from SparkParagraphIT of testPySpark status: ","ERROR",CoreMatchers.equalTo("FINISHED"));
+    }
+    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]"));
+    collector.checkThat("Paragraph from SparkParagraphIT of testPySpark result: ",paragraph1Result.getText().toString(),CoreMatchers.equalTo("test loop 0\ntest loop 1\ntest loop 2"));
+  }
+ catch (  Exception e) {
+    handleException("Exception in SparkParagraphIT while testPySpark",e);
+  }
+}

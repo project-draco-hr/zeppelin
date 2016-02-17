@@ -1,0 +1,8 @@
+{
+  if (start == 0 && end == 1) {
+    return String.valueOf(this.keyCode);
+  }
+ else {
+    throw new IndexOutOfBoundsException();
+  }
+}

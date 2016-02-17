@@ -1,0 +1,22 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
+    paragraph1Editor.sendKeys(PERCENTAGE + "sql" + ENTER+ "select * from bank limit 1");
+    paragraph1Editor.sendKeys(SHIFT_ENTER);
+    try {
+      waitForParagraph(1,"FINISHED");
+    }
+ catch (    TimeoutException e) {
+      waitForParagraph(1,"ERROR");
+      collector.checkThat("Paragraph from SparkParagraphIT of testSqlSpark status: ","ERROR",CoreMatchers.equalTo("FINISHED"));
+    }
+    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]"));
+    collector.checkThat("Paragraph from SparkParagraphIT of testSqlSpark result: ",paragraph1Result.getText().toString(),CoreMatchers.equalTo("age job marital education balance\n" + "30 unemployed married primary 1,787"));
+  }
+ catch (  Exception e) {
+    handleException("Exception in SparkParagraphIT while testSqlSpark",e);
+  }
+}
