@@ -1,0 +1,4 @@
+{
+  Boolean enabled=(Boolean)config.get("enabled");
+  return enabled == null || enabled.booleanValue();
+}
