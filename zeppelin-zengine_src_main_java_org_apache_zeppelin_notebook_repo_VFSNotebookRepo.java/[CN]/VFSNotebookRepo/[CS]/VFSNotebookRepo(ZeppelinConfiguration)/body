@@ -18,4 +18,9 @@
     this.filesystemRoot=filesystemRoot;
   }
   fsManager=VFS.getManager();
+  FileObject file=fsManager.resolveFile(filesystemRoot.getPath());
+  if (!file.exists()) {
+    logger.info("Notebook dir doesn't exist, create.");
+    file.createFolder();
+  }
 }

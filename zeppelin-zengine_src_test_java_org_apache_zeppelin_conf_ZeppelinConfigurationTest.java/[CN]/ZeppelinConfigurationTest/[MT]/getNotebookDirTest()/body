@@ -1,0 +1,5 @@
+{
+  ZeppelinConfiguration conf=new ZeppelinConfiguration(this.getClass().getResource("/zeppelin-site.xml"));
+  String notebookLocation=conf.getNotebookDir();
+  Assert.assertEquals("notebook",notebookLocation);
+}
