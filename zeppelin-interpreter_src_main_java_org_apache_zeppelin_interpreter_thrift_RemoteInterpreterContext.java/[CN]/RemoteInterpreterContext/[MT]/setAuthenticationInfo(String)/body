@@ -1,0 +1,4 @@
+{
+  this.authenticationInfo=authenticationInfo;
+  return this;
+}

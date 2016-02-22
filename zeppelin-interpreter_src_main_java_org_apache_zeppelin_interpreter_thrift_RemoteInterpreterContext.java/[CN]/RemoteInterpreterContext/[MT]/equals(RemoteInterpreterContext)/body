@@ -24,6 +24,12 @@
     if (!(this_present_paragraphText && that_present_paragraphText))     return false;
     if (!this.paragraphText.equals(that.paragraphText))     return false;
   }
+  boolean this_present_authenticationInfo=true && this.isSetAuthenticationInfo();
+  boolean that_present_authenticationInfo=true && that.isSetAuthenticationInfo();
+  if (this_present_authenticationInfo || that_present_authenticationInfo) {
+    if (!(this_present_authenticationInfo && that_present_authenticationInfo))     return false;
+    if (!this.authenticationInfo.equals(that.authenticationInfo))     return false;
+  }
   boolean this_present_config=true && this.isSetConfig();
   boolean that_present_config=true && that.isSetConfig();
   if (this_present_config || that_present_config) {

@@ -21,6 +21,11 @@
     oprot.writeString(struct.paragraphText);
     oprot.writeFieldEnd();
   }
+  if (struct.authenticationInfo != null) {
+    oprot.writeFieldBegin(AUTHENTICATION_INFO_FIELD_DESC);
+    oprot.writeString(struct.authenticationInfo);
+    oprot.writeFieldEnd();
+  }
   if (struct.config != null) {
     oprot.writeFieldBegin(CONFIG_FIELD_DESC);
     oprot.writeString(struct.config);

@@ -1,0 +1,4 @@
+{
+  this.user=user;
+  this.ticket=ticket;
+}

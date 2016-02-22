@@ -12,6 +12,9 @@
   boolean present_paragraphText=true && (isSetParagraphText());
   list.add(present_paragraphText);
   if (present_paragraphText)   list.add(paragraphText);
+  boolean present_authenticationInfo=true && (isSetAuthenticationInfo());
+  list.add(present_authenticationInfo);
+  if (present_authenticationInfo)   list.add(authenticationInfo);
   boolean present_config=true && (isSetConfig());
   list.add(present_config);
   if (present_config)   list.add(config);

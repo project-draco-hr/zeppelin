@@ -8,6 +8,8 @@ case PARAGRAPH_TITLE:
 return getParagraphTitle();
 case PARAGRAPH_TEXT:
 return getParagraphText();
+case AUTHENTICATION_INFO:
+return getAuthenticationInfo();
 case CONFIG:
 return getConfig();
 case GUI:

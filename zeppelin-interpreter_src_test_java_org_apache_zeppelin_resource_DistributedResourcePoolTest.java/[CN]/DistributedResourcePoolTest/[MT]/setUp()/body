@@ -10,7 +10,7 @@
   intpGroup2=new InterpreterGroup("intpGroup2");
   intpGroup2.add(intp2);
   intp2.setInterpreterGroup(intpGroup2);
-  context=new InterpreterContext("note","id","title","text",new HashMap<String,Object>(),new GUI(),null,null,new LinkedList<InterpreterContextRunner>(),null);
+  context=new InterpreterContext("note","id","title","text",new AuthenticationInfo(),new HashMap<String,Object>(),new GUI(),null,null,new LinkedList<InterpreterContextRunner>(),null);
   intp1.open();
   intp2.open();
   eventPoller1=new RemoteInterpreterEventPoller(null);

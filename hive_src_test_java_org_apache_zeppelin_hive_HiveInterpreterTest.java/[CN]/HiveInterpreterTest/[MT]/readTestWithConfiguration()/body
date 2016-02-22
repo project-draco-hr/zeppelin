@@ -12,5 +12,5 @@
   properties.setProperty("h2.password","");
   HiveInterpreter t=new HiveInterpreter(properties);
   t.open();
-  assertEquals("ID\tNAME\na\ta_name\nb\tb_name\n",t.interpret("(h2)\n select * from test_table",new InterpreterContext("","1","","",null,null,null,null,null,null)).message());
+  assertEquals("ID\tNAME\na\ta_name\nb\tb_name\n",t.interpret("(h2)\n select * from test_table",new InterpreterContext("","1","","",null,null,null,null,null,null,null)).message());
 }

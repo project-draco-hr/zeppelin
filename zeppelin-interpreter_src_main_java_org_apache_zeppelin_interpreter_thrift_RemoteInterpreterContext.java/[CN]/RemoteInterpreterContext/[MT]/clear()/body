@@ -3,6 +3,7 @@
   this.paragraphId=null;
   this.paragraphTitle=null;
   this.paragraphText=null;
+  this.authenticationInfo=null;
   this.config=null;
   this.gui=null;
   this.runners=null;

@@ -45,6 +45,15 @@ org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 break;
 case 5:
 if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.authenticationInfo=iprot.readString();
+struct.setAuthenticationInfoIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+break;
+case 6:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
 struct.config=iprot.readString();
 struct.setConfigIsSet(true);
 }
@@ -52,7 +61,7 @@ struct.setConfigIsSet(true);
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }
 break;
-case 6:
+case 7:
 if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
 struct.gui=iprot.readString();
 struct.setGuiIsSet(true);
@@ -61,7 +70,7 @@ struct.setGuiIsSet(true);
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
 }
 break;
-case 7:
+case 8:
 if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
 struct.runners=iprot.readString();
 struct.setRunnersIsSet(true);

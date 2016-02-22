@@ -6,7 +6,7 @@
   for (  InterpreterContextRunner r : runners) {
     contextRunners.add(new ParagraphRunner(this,r.getNoteId(),r.getParagraphId()));
   }
-  return new InterpreterContext(ric.getNoteId(),ric.getParagraphId(),ric.getParagraphTitle(),ric.getParagraphText(),(Map<String,Object>)gson.fromJson(ric.getConfig(),new TypeToken<Map<String,Object>>(){
+  return new InterpreterContext(ric.getNoteId(),ric.getParagraphId(),ric.getParagraphTitle(),ric.getParagraphText(),gson.fromJson(ric.getAuthenticationInfo(),AuthenticationInfo.class),(Map<String,Object>)gson.fromJson(ric.getConfig(),new TypeToken<Map<String,Object>>(){
   }
 .getType()),gson.fromJson(ric.getGui(),GUI.class),interpreterGroup.getAngularObjectRegistry(),interpreterGroup.getResourcePool(),contextRunners,createInterpreterOutput(ric.getNoteId(),ric.getParagraphId()));
 }

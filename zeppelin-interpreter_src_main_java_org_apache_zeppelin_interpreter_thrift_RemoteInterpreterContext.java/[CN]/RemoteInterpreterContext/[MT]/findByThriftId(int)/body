@@ -9,10 +9,12 @@ return PARAGRAPH_TITLE;
 case 4:
 return PARAGRAPH_TEXT;
 case 5:
-return CONFIG;
+return AUTHENTICATION_INFO;
 case 6:
-return GUI;
+return CONFIG;
 case 7:
+return GUI;
+case 8:
 return RUNNERS;
 default :
 return null;

@@ -32,6 +32,14 @@ unsetParagraphText();
 setParagraphText((String)value);
 }
 break;
+case AUTHENTICATION_INFO:
+if (value == null) {
+unsetAuthenticationInfo();
+}
+ else {
+setAuthenticationInfo((String)value);
+}
+break;
 case CONFIG:
 if (value == null) {
 unsetConfig();

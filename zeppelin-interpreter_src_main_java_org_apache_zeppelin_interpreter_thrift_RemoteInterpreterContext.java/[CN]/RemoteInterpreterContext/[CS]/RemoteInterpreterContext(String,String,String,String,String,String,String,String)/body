@@ -1,12 +1,11 @@
 {
+  this();
   this.noteId=noteId;
   this.paragraphId=paragraphId;
   this.paragraphTitle=paragraphTitle;
   this.paragraphText=paragraphText;
+  this.authenticationInfo=authenticationInfo;
   this.config=config;
   this.gui=gui;
-  this.angularObjectRegistry=angularObjectRegistry;
-  this.resourcePool=resourcePool;
   this.runners=runners;
-  this.out=out;
 }

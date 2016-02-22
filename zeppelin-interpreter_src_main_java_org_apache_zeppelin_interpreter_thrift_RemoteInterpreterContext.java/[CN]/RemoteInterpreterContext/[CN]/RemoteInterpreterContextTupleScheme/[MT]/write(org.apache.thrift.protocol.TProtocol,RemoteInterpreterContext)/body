@@ -13,16 +13,19 @@
   if (struct.isSetParagraphText()) {
     optionals.set(3);
   }
-  if (struct.isSetConfig()) {
+  if (struct.isSetAuthenticationInfo()) {
     optionals.set(4);
   }
-  if (struct.isSetGui()) {
+  if (struct.isSetConfig()) {
     optionals.set(5);
   }
-  if (struct.isSetRunners()) {
+  if (struct.isSetGui()) {
     optionals.set(6);
   }
-  oprot.writeBitSet(optionals,7);
+  if (struct.isSetRunners()) {
+    optionals.set(7);
+  }
+  oprot.writeBitSet(optionals,8);
   if (struct.isSetNoteId()) {
     oprot.writeString(struct.noteId);
   }
@@ -34,6 +37,9 @@
   }
   if (struct.isSetParagraphText()) {
     oprot.writeString(struct.paragraphText);
+  }
+  if (struct.isSetAuthenticationInfo()) {
+    oprot.writeString(struct.authenticationInfo);
   }
   if (struct.isSetConfig()) {
     oprot.writeString(struct.config);

@@ -43,6 +43,16 @@
       return lastComparison;
     }
   }
+  lastComparison=Boolean.valueOf(isSetAuthenticationInfo()).compareTo(other.isSetAuthenticationInfo());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetAuthenticationInfo()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.authenticationInfo,other.authenticationInfo);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   lastComparison=Boolean.valueOf(isSetConfig()).compareTo(other.isSetConfig());
   if (lastComparison != 0) {
     return lastComparison;

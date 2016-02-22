@@ -8,7 +8,7 @@
   properties.setProperty("default.password","");
   HiveInterpreter t=new HiveInterpreter(properties);
   t.open();
-  InterpreterContext interpreterContext=new InterpreterContext(null,"a",null,null,null,null,null,null,null,null);
+  InterpreterContext interpreterContext=new InterpreterContext(null,"a",null,null,null,null,null,null,null,null,null);
   InterpreterResult result=t.interpret("select * from test_table",interpreterContext);
   assertEquals(result.type(),InterpreterResult.Type.TABLE);
   result=t.interpret("explain select * from test_table",interpreterContext);

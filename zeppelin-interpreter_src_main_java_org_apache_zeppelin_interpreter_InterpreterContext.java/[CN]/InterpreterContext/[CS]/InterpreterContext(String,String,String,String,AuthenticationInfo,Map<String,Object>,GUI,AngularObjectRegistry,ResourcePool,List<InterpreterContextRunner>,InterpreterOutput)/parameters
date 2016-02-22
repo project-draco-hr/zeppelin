@@ -2,6 +2,7 @@ String noteId
 String paragraphId
 String paragraphTitle
 String paragraphText
+AuthenticationInfo authenticationInfo
 Map<String,Object> config
 GUI gui
 AngularObjectRegistry angularObjectRegistry

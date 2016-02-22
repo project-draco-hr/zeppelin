@@ -11,6 +11,8 @@ case PARAGRAPH_TITLE:
 return isSetParagraphTitle();
 case PARAGRAPH_TEXT:
 return isSetParagraphText();
+case AUTHENTICATION_INFO:
+return isSetAuthenticationInfo();
 case CONFIG:
 return isSetConfig();
 case GUI:

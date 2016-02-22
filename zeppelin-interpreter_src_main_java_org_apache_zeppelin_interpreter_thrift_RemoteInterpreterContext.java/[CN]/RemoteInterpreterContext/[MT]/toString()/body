@@ -37,6 +37,15 @@
   }
   first=false;
   if (!first)   sb.append(", ");
+  sb.append("authenticationInfo:");
+  if (this.authenticationInfo == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.authenticationInfo);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
   sb.append("config:");
   if (this.config == null) {
     sb.append("null");

@@ -11,6 +11,9 @@
   if (other.isSetParagraphText()) {
     this.paragraphText=other.paragraphText;
   }
+  if (other.isSetAuthenticationInfo()) {
+    this.authenticationInfo=other.authenticationInfo;
+  }
   if (other.isSetConfig()) {
     this.config=other.config;
   }

@@ -5,7 +5,7 @@ case CLASS_NAME:
 case BUF:
   return getBuf();
 case CURSOR:
-return Integer.valueOf(getCursor());
+return getCursor();
 }
 throw new IllegalStateException();
 }

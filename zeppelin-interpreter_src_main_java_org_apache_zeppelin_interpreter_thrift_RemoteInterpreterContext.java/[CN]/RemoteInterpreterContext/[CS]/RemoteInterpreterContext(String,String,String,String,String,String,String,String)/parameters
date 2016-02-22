@@ -2,6 +2,7 @@ String noteId
 String paragraphId
 String paragraphTitle
 String paragraphText
+String authenticationInfo
 String config
 String gui
 String runners

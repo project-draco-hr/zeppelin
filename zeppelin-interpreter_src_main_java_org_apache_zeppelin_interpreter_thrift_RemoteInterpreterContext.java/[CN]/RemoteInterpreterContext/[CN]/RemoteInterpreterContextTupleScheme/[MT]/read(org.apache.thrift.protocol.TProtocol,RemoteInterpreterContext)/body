@@ -1,6 +1,6 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(7);
+  BitSet incoming=iprot.readBitSet(8);
   if (incoming.get(0)) {
     struct.noteId=iprot.readString();
     struct.setNoteIdIsSet(true);
@@ -18,14 +18,18 @@
     struct.setParagraphTextIsSet(true);
   }
   if (incoming.get(4)) {
+    struct.authenticationInfo=iprot.readString();
+    struct.setAuthenticationInfoIsSet(true);
+  }
+  if (incoming.get(5)) {
     struct.config=iprot.readString();
     struct.setConfigIsSet(true);
   }
-  if (incoming.get(5)) {
+  if (incoming.get(6)) {
     struct.gui=iprot.readString();
     struct.setGuiIsSet(true);
   }
-  if (incoming.get(6)) {
+  if (incoming.get(7)) {
     struct.runners=iprot.readString();
     struct.setRunnersIsSet(true);
   }
