@@ -20,7 +20,7 @@
     paragraph3Editor.sendKeys("print" + Keys.chord(Keys.SHIFT,"9") + "\"myVar=\""+ Keys.chord(Keys.ADD)+ "z.angular"+ Keys.chord(Keys.SHIFT,"9")+ "\"myVar\"))");
     paragraph3Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
     waitForParagraph(3,"FINISHED");
-    waitForText("myVar=1",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
+    waitForText("myVar=1",By.xpath(getParagraphXPath(3) + "//div[contains(@id,\"_text\") and @class=\"text\"]"));
     driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
     waitForText("BindingTest_2_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
     WebElement paragraph4Editor=driver.findElement(By.xpath(getParagraphXPath(4) + "//textarea"));
@@ -30,7 +30,7 @@
     driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]")).click();
     waitForText("BindingTest_3_",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularTestButton\"]"));
     waitForParagraph(3,"FINISHED");
-    waitForText("myVar=3",By.xpath(getParagraphXPath(3) + "//div[@ng-bind=\"paragraph.result.msg\"]"));
+    waitForText("myVar=3",By.xpath(getParagraphXPath(3) + "//div[contains(@id,\"_text\") and @class=\"text\"]"));
     WebElement paragraph5Editor=driver.findElement(By.xpath(getParagraphXPath(5) + "//textarea"));
     paragraph5Editor.sendKeys("z.angularUnbind" + Keys.chord(Keys.SHIFT,"9") + "\"myVar\")");
     paragraph5Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
@@ -44,7 +44,7 @@
     sleep(1000,true);
     driver.findElement(By.xpath("//div[@class='modal-dialog'][contains(.,'delete this notebook')]" + "//div[@class='modal-footer']//button[contains(.,'OK')]")).click();
     sleep(100,true);
-    System.out.println("testCreateNotebook Test executed");
+    LOG.info("testCreateNotebook Test executed");
   }
  catch (  Exception e) {
     handleException("Exception in ZeppelinIT while testAngularDisplay ",e);

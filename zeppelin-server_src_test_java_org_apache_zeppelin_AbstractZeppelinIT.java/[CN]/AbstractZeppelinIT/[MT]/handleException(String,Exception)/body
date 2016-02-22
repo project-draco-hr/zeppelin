@@ -1,5 +1,6 @@
 {
   LOG.error(message,e);
   File scrFile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+  LOG.error("ScreenShot::\ndata:image/png;base64," + new String(Base64.encodeBase64(FileUtils.readFileToByteArray(scrFile))));
   throw e;
 }
