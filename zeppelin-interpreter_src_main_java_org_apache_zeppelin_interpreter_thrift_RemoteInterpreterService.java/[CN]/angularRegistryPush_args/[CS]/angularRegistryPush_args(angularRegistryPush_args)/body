@@ -1,0 +1,5 @@
+{
+  if (other.isSetRegistry()) {
+    this.registry=other.registry;
+  }
+}

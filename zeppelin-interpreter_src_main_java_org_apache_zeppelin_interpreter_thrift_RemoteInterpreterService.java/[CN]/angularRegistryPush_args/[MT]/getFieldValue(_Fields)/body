@@ -1,0 +1,7 @@
+{
+switch (field) {
+case REGISTRY:
+    return getRegistry();
+}
+throw new IllegalStateException();
+}

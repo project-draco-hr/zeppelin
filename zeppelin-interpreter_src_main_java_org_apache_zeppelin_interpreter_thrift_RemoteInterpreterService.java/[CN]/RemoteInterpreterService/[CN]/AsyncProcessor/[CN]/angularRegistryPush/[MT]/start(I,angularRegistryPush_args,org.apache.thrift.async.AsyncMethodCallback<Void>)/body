@@ -1,0 +1,3 @@
+{
+  iface.angularRegistryPush(args.registry,resultHandler);
+}

@@ -18,5 +18,6 @@
   processMap.put("angularObjectUpdate",new angularObjectUpdate());
   processMap.put("angularObjectAdd",new angularObjectAdd());
   processMap.put("angularObjectRemove",new angularObjectRemove());
+  processMap.put("angularRegistryPush",new angularRegistryPush());
   return processMap;
 }

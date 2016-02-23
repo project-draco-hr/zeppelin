@@ -1,0 +1,10 @@
+{
+  AngularObject angularObject=registry.get(varName,noteId,paragraphId);
+  if (angularObject == null) {
+    angularObject=registry.add(varName,varValue,noteId,paragraphId);
+  }
+ else {
+    angularObject.set(varValue,true);
+  }
+  this.broadcastExcept(noteId,new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",angularObject).put("interpreterGroupId",interpreterGroupId).put("noteId",noteId).put("paragraphId",paragraphId),conn);
+}

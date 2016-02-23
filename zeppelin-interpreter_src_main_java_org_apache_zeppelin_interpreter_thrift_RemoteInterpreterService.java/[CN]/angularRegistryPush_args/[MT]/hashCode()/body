@@ -1,0 +1,7 @@
+{
+  List<Object> list=new ArrayList<Object>();
+  boolean present_registry=true && (isSetRegistry());
+  list.add(present_registry);
+  if (present_registry)   list.add(registry);
+  return list.hashCode();
+}

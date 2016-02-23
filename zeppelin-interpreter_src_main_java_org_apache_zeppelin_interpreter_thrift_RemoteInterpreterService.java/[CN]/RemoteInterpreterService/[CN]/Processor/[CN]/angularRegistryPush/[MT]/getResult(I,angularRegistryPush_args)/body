@@ -1,0 +1,5 @@
+{
+  angularRegistryPush_result result=new angularRegistryPush_result();
+  iface.angularRegistryPush(args.registry);
+  return result;
+}

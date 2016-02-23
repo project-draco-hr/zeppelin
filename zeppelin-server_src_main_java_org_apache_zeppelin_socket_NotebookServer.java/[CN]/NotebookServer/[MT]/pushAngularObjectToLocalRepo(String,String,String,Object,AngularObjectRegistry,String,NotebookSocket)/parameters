@@ -1,0 +1,7 @@
+String noteId
+String paragraphId
+String varName
+Object varValue
+AngularObjectRegistry registry
+String interpreterGroupId
+NotebookSocket conn

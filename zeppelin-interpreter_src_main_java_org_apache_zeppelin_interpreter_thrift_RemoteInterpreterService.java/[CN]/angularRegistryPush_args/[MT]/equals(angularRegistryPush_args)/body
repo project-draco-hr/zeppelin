@@ -1,0 +1,10 @@
+{
+  if (that == null)   return false;
+  boolean this_present_registry=true && this.isSetRegistry();
+  boolean that_present_registry=true && that.isSetRegistry();
+  if (this_present_registry || that_present_registry) {
+    if (!(this_present_registry && that_present_registry))     return false;
+    if (!this.registry.equals(that.registry))     return false;
+  }
+  return true;
+}

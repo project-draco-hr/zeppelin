@@ -1,0 +1,4 @@
+{
+  send_angularRegistryPush(registry);
+  recv_angularRegistryPush();
+}

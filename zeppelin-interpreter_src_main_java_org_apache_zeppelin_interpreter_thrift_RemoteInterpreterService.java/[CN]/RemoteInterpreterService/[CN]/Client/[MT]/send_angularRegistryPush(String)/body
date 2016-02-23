@@ -1,0 +1,5 @@
+{
+  angularRegistryPush_args args=new angularRegistryPush_args();
+  args.setRegistry(registry);
+  sendBase("angularRegistryPush",args);
+}

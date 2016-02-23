@@ -1,0 +1,17 @@
+{
+  if (!getClass().equals(other.getClass())) {
+    return getClass().getName().compareTo(other.getClass().getName());
+  }
+  int lastComparison=0;
+  lastComparison=Boolean.valueOf(isSetRegistry()).compareTo(other.isSetRegistry());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetRegistry()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.registry,other.registry);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
+  return 0;
+}

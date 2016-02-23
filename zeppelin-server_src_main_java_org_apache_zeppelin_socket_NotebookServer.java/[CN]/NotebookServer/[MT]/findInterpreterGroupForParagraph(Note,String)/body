@@ -1,0 +1,7 @@
+{
+  final Paragraph paragraph=note.getParagraph(paragraphId);
+  if (paragraph == null) {
+    throw new IllegalArgumentException("Unknown paragraph with id : " + paragraphId);
+  }
+  return paragraph.getCurrentRepl().getInterpreterGroup();
+}

@@ -1,0 +1,21 @@
+{
+  String noteId=fromMessage.getType("noteId");
+  String varName=fromMessage.getType("name");
+  Object varValue=fromMessage.get("value");
+  String paragraphId=fromMessage.getType("paragraphId");
+  Note note=notebook.getNote(noteId);
+  if (paragraphId == null) {
+    throw new IllegalArgumentException("target paragraph not specified for " + "angular value bind");
+  }
+  if (note != null) {
+    final InterpreterGroup interpreterGroup=findInterpreterGroupForParagraph(note,paragraphId);
+    final AngularObjectRegistry registry=interpreterGroup.getAngularObjectRegistry();
+    if (registry instanceof RemoteAngularObjectRegistry) {
+      RemoteAngularObjectRegistry remoteRegistry=(RemoteAngularObjectRegistry)registry;
+      pushAngularObjectToRemoteRegistry(noteId,paragraphId,varName,varValue,remoteRegistry,interpreterGroup.getId(),conn);
+    }
+ else {
+      pushAngularObjectToLocalRepo(noteId,paragraphId,varName,varValue,registry,interpreterGroup.getId(),conn);
+    }
+  }
+}

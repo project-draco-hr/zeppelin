@@ -1,0 +1,14 @@
+{
+  StringBuilder sb=new StringBuilder("angularRegistryPush_args(");
+  boolean first=true;
+  sb.append("registry:");
+  if (this.registry == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.registry);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

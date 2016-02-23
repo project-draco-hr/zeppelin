@@ -6,6 +6,9 @@
     LOG.debug("RECEIVE PRINCIPAL << " + messagereceived.principal);
     LOG.debug("RECEIVE TICKET << " + messagereceived.ticket);
     LOG.debug("RECEIVE ROLES << " + messagereceived.roles);
+    if (LOG.isTraceEnabled()) {
+      LOG.trace("RECEIVE MSG = " + messagereceived);
+    }
     String ticket=TicketContainer.instance.getTicket(messagereceived.principal);
     if (ticket != null && !ticket.equals(messagereceived.ticket))     throw new Exception("Invalid ticket " + messagereceived.ticket + " != "+ ticket);
     ZeppelinConfiguration conf=ZeppelinConfiguration.create();
@@ -79,6 +82,9 @@ case PING:
 break;
 case ANGULAR_OBJECT_UPDATED:
 angularObjectUpdated(conn,userAndRoles,notebook,messagereceived);
+break;
+case ANGULAR_OBJECT_CLIENT_BIND:
+angularObjectClientBind(conn,userAndRoles,notebook,messagereceived);
 break;
 case LIST_CONFIGURATIONS:
 sendAllConfigurations(conn,userAndRoles,notebook);

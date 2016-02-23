@@ -1,0 +1,4 @@
+{
+  final AngularObject ao=remoteRegistry.addAndNotifyRemoteProcess(varName,varValue,noteId,paragraphId);
+  this.broadcastExcept(noteId,new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",noteId).put("paragraphId",paragraphId),conn);
+}

@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("angularRegistryPush",org.apache.thrift.protocol.TMessageType.CALL,0));
+  angularRegistryPush_args args=new angularRegistryPush_args();
+  args.setRegistry(registry);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

@@ -1,0 +1,12 @@
+{
+switch (field) {
+case REGISTRY:
+    if (value == null) {
+      unsetRegistry();
+    }
+ else {
+      setRegistry((String)value);
+    }
+  break;
+}
+}

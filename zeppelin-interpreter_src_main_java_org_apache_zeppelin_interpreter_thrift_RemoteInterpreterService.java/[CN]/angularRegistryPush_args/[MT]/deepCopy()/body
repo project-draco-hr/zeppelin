@@ -1,0 +1,3 @@
+{
+  return new angularRegistryPush_args(this);
+}

@@ -1,0 +1,5 @@
+{
+  super(generateId(),null);
+  config=new HashMap<>();
+  settings=new GUI();
+}

@@ -1,0 +1,7 @@
+{
+  final StringBuilder sb=new StringBuilder("Message{");
+  sb.append("data=").append(data);
+  sb.append(", op=").append(op);
+  sb.append('}');
+  return sb.toString();
+}

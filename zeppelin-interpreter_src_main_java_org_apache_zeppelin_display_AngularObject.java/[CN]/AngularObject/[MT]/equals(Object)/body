@@ -1,11 +1,6 @@
 {
-  if (o instanceof AngularObject) {
-    AngularObject ao=(AngularObject)o;
-    if (noteId == null && ao.noteId == null || (noteId != null && ao.noteId != null && noteId.equals(ao.noteId))) {
-      if (paragraphId == null && ao.paragraphId == null || (paragraphId != null && ao.paragraphId != null && paragraphId.equals(ao.paragraphId))) {
-        return name.equals(ao.name);
-      }
-    }
-  }
-  return false;
+  if (this == o)   return true;
+  if (o == null || getClass() != o.getClass())   return false;
+  AngularObject<?> that=(AngularObject<?>)o;
+  return Objects.equals(name,that.name) && Objects.equals(noteId,that.noteId) && Objects.equals(paragraphId,that.paragraphId);
 }

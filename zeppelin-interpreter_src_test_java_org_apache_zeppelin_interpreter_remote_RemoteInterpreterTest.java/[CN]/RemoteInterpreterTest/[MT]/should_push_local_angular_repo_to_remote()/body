@@ -1,0 +1,16 @@
+{
+  final Client client=Mockito.mock(Client.class);
+  final RemoteInterpreter intr=new RemoteInterpreter(new Properties(),"noteId",MockInterpreterA.class.getName(),"runner","path","localRepo",env,10 * 1000,null);
+  final AngularObjectRegistry registry=new AngularObjectRegistry("spark",null);
+  registry.add("name","DuyHai DOAN","nodeId","paragraphId");
+  final InterpreterGroup interpreterGroup=new InterpreterGroup("groupId");
+  interpreterGroup.setAngularObjectRegistry(registry);
+  intr.setInterpreterGroup(interpreterGroup);
+  final java.lang.reflect.Type registryType=new TypeToken<Map<String,Map<String,AngularObject>>>(){
+  }
+.getType();
+  final Gson gson=new Gson();
+  final String expected=gson.toJson(registry.getRegistry(),registryType);
+  intr.pushAngularObjectRegistryToRemote(client);
+  Mockito.verify(client).angularRegistryPush(expected);
+}
