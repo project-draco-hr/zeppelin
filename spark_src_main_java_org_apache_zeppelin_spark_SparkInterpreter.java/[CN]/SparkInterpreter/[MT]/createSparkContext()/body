@@ -57,7 +57,7 @@
     }
   }
   pythonLibUris.trimToSize();
-  if (pythonLibs.length == pythonLibUris.size()) {
+  if (pythonLibUris.size() == 2) {
     try {
       String confValue=conf.get("spark.yarn.dist.files");
       conf.set("spark.yarn.dist.files",confValue + "," + Joiner.on(",").join(pythonLibUris));
