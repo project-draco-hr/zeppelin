@@ -1,6 +1,13 @@
 {
   Interpreter repl=getRepl(getRequiredReplName());
-  Job job=repl.getScheduler().removeFromWaitingQueue(getId());
+  if (repl == null) {
+    return true;
+  }
+  Scheduler scheduler=repl.getScheduler();
+  if (scheduler == null) {
+    return true;
+  }
+  Job job=scheduler.removeFromWaitingQueue(getId());
   if (job != null) {
     job.setStatus(Status.ABORT);
   }

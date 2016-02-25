@@ -1,0 +1,7 @@
+{
+  cancel_args args=new cancel_args();
+  args.setNoteId(noteId);
+  args.setClassName(className);
+  args.setInterpreterContext(interpreterContext);
+  sendBase("cancel",args);
+}

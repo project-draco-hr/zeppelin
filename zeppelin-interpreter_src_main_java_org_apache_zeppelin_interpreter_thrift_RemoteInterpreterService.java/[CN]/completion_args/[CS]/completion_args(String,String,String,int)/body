@@ -1,0 +1,8 @@
+{
+  this();
+  this.noteId=noteId;
+  this.className=className;
+  this.buf=buf;
+  this.cursor=cursor;
+  setCursorIsSet(true);
+}

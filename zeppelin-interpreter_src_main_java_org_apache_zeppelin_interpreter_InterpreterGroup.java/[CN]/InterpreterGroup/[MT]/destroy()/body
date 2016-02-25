@@ -1,23 +1,10 @@
 {
-  List<Thread> destroyThreads=new LinkedList<Thread>();
-  for (  final Interpreter intp : this) {
-    Thread t=new Thread(){
-      public void run(){
-        intp.destroy();
-      }
-    }
-;
-    t.start();
-    destroyThreads.add(t);
+  LOGGER.info("Destroy interpreter group " + getId());
+  List<Interpreter> intpToDestroy=new LinkedList<Interpreter>();
+  for (  List<Interpreter> intpGroupForNote : this.values()) {
+    intpToDestroy.addAll(intpGroupForNote);
   }
-  for (  Thread t : destroyThreads) {
-    try {
-      t.join();
-    }
- catch (    InterruptedException e) {
-      LOGGER.error("Can't close interpreter",e);
-    }
-  }
+  destroy(intpToDestroy);
   if (remoteInterpreterProcess != null) {
     while (remoteInterpreterProcess.referenceCount() > 0) {
       remoteInterpreterProcess.dereference();

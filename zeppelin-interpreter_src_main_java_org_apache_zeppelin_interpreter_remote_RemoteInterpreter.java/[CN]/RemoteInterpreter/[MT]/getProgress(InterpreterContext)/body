@@ -12,7 +12,7 @@
   }
   boolean broken=false;
   try {
-    return client.getProgress(className,convert(context));
+    return client.getProgress(noteId,className,convert(context));
   }
  catch (  TException e) {
     broken=true;

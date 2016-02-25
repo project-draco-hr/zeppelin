@@ -9,22 +9,31 @@
 switch (schemeField.id) {
 case 1:
       if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-        struct.className=iprot.readString();
-        struct.setClassNameIsSet(true);
+        struct.noteId=iprot.readString();
+        struct.setNoteIdIsSet(true);
       }
  else {
         org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
       }
     break;
 case 2:
-  if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-    struct.interpreterContext=new RemoteInterpreterContext();
-    struct.interpreterContext.read(iprot);
-    struct.setInterpreterContextIsSet(true);
+  if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+    struct.className=iprot.readString();
+    struct.setClassNameIsSet(true);
   }
  else {
     org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
   }
+break;
+case 3:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
+struct.interpreterContext=new RemoteInterpreterContext();
+struct.interpreterContext.read(iprot);
+struct.setInterpreterContextIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
 break;
 default :
 org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);

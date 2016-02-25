@@ -6,6 +6,11 @@
     oprot.writeString(struct.intpGroupId);
     oprot.writeFieldEnd();
   }
+  if (struct.noteId != null) {
+    oprot.writeFieldBegin(NOTE_ID_FIELD_DESC);
+    oprot.writeString(struct.noteId);
+    oprot.writeFieldEnd();
+  }
   if (struct.className != null) {
     oprot.writeFieldBegin(CLASS_NAME_FIELD_DESC);
     oprot.writeString(struct.className);

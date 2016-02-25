@@ -15,7 +15,7 @@ synchronized (interpreterSettings) {
             continue;
           }
         }
-        for (        Interpreter intp : setting.getInterpreterGroup()) {
+        for (        InterpreterSetting.InterpreterInfo intp : setting.getInterpreterInfos()) {
           if (className.equals(intp.getClassName())) {
             boolean alreadyAdded=false;
             for (            InterpreterSetting st : orderedSettings) {

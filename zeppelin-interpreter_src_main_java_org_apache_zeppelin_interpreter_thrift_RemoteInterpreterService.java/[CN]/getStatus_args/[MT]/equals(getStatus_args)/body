@@ -1,5 +1,11 @@
 {
   if (that == null)   return false;
+  boolean this_present_noteId=true && this.isSetNoteId();
+  boolean that_present_noteId=true && that.isSetNoteId();
+  if (this_present_noteId || that_present_noteId) {
+    if (!(this_present_noteId && that_present_noteId))     return false;
+    if (!this.noteId.equals(that.noteId))     return false;
+  }
   boolean this_present_jobId=true && this.isSetJobId();
   boolean that_present_jobId=true && that.isSetJobId();
   if (this_present_jobId || that_present_jobId) {

@@ -4,15 +4,21 @@
   if (struct.isSetIntpGroupId()) {
     optionals.set(0);
   }
-  if (struct.isSetClassName()) {
+  if (struct.isSetNoteId()) {
     optionals.set(1);
   }
-  if (struct.isSetProperties()) {
+  if (struct.isSetClassName()) {
     optionals.set(2);
   }
-  oprot.writeBitSet(optionals,3);
+  if (struct.isSetProperties()) {
+    optionals.set(3);
+  }
+  oprot.writeBitSet(optionals,4);
   if (struct.isSetIntpGroupId()) {
     oprot.writeString(struct.intpGroupId);
+  }
+  if (struct.isSetNoteId()) {
+    oprot.writeString(struct.noteId);
   }
   if (struct.isSetClassName()) {
     oprot.writeString(struct.className);

@@ -1,3 +1,4 @@
 {
+  this.noteId=null;
   this.className=null;
 }

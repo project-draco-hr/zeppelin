@@ -1,21 +1,14 @@
 {
-  InterpreterGroup intpGroup=getInterpreterGroup();
   LazyOpenInterpreter lazy=null;
   SparkInterpreter spark=null;
-synchronized (intpGroup) {
-    for (    Interpreter intp : getInterpreterGroup()) {
-      if (intp.getClassName().equals(SparkInterpreter.class.getName())) {
-        Interpreter p=intp;
-        while (p instanceof WrappedInterpreter) {
-          if (p instanceof LazyOpenInterpreter) {
-            lazy=(LazyOpenInterpreter)p;
-          }
-          p=((WrappedInterpreter)p).getInnerInterpreter();
-        }
-        spark=(SparkInterpreter)p;
-      }
+  Interpreter p=getInterpreterInTheSameSessionByClassName(SparkInterpreter.class.getName());
+  while (p instanceof WrappedInterpreter) {
+    if (p instanceof LazyOpenInterpreter) {
+      lazy=(LazyOpenInterpreter)p;
     }
+    p=((WrappedInterpreter)p).getInnerInterpreter();
   }
+  spark=(SparkInterpreter)p;
   if (lazy != null) {
     lazy.open();
   }

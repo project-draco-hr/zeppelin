@@ -1,0 +1,3 @@
+{
+  return new RemoteInterpreter(p,noteId,MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+}

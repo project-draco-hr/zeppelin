@@ -5,7 +5,7 @@
   try {
     client=interpreterProcess.getClient();
     if (client != null) {
-      client.close(className);
+      client.close(noteId,className);
     }
   }
  catch (  TException e) {

@@ -1,0 +1,4 @@
+{
+  send_getFormType(noteId,className);
+  return recv_getFormType();
+}

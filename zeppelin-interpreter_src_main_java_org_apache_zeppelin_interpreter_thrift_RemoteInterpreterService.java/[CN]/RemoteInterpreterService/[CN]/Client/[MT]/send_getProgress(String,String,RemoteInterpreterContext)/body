@@ -1,0 +1,7 @@
+{
+  getProgress_args args=new getProgress_args();
+  args.setNoteId(noteId);
+  args.setClassName(className);
+  args.setInterpreterContext(interpreterContext);
+  sendBase("getProgress",args);
+}

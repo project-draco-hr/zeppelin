@@ -1,3 +1,3 @@
 {
-  iface.getProgress(args.className,args.interpreterContext,resultHandler);
+  iface.getProgress(args.noteId,args.className,args.interpreterContext,resultHandler);
 }

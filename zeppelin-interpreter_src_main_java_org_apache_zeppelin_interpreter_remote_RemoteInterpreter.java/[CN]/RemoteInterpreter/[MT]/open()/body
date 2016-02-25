@@ -1,3 +1,13 @@
 {
-  init();
+  InterpreterGroup interpreterGroup=getInterpreterGroup();
+synchronized (interpreterGroup) {
+    List<Interpreter> interpreters=interpreterGroup.get(noteId);
+    for (    Interpreter intp : interpreters) {
+      Interpreter p=intp;
+      while (p instanceof WrappedInterpreter) {
+        p=((WrappedInterpreter)p).getInnerInterpreter();
+      }
+      ((RemoteInterpreter)p).init();
+    }
+  }
 }

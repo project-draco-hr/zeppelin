@@ -1,0 +1,4 @@
+{
+  send_completion(noteId,className,buf,cursor);
+  return recv_completion();
+}

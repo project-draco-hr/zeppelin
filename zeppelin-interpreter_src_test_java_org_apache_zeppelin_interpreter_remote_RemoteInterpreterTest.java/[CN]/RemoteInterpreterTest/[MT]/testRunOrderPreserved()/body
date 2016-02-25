@@ -1,7 +1,8 @@
 {
   Properties p=new Properties();
+  intpGroup.put("note",new LinkedList<Interpreter>());
   final RemoteInterpreter intpA=createMockInterpreterA(p);
-  intpGroup.add(intpA);
+  intpGroup.get("note").add(intpA);
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
   int concurrency=3;

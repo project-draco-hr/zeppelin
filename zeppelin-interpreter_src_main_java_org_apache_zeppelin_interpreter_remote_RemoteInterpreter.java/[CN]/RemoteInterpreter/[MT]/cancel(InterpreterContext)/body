@@ -9,7 +9,7 @@
   }
   boolean broken=false;
   try {
-    client.cancel(className,convert(context));
+    client.cancel(noteId,className,convert(context));
   }
  catch (  TException e) {
     broken=true;

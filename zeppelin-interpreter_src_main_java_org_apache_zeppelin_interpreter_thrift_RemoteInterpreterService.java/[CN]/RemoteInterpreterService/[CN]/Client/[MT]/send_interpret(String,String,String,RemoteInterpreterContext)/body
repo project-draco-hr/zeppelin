@@ -1,0 +1,8 @@
+{
+  interpret_args args=new interpret_args();
+  args.setNoteId(noteId);
+  args.setClassName(className);
+  args.setSt(st);
+  args.setInterpreterContext(interpreterContext);
+  sendBase("interpret",args);
+}

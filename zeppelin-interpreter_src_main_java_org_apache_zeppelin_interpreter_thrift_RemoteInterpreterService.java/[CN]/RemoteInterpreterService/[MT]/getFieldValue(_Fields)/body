@@ -2,8 +2,10 @@
 switch (field) {
 case INTP_GROUP_ID:
     return getIntpGroupId();
+case NOTE_ID:
+  return getNoteId();
 case CLASS_NAME:
-  return getClassName();
+return getClassName();
 case PROPERTIES:
 return getProperties();
 }

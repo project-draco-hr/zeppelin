@@ -1,0 +1,6 @@
+{
+  getStatus_args args=new getStatus_args();
+  args.setNoteId(noteId);
+  args.setJobId(jobId);
+  sendBase("getStatus",args);
+}

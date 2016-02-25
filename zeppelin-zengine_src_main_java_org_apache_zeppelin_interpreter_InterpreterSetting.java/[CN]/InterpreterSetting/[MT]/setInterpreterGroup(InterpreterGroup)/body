@@ -1,4 +1,3 @@
 {
-  this.interpreterGroup=interpreterGroup;
-  this.properties=interpreterGroup.getProperty();
+  this.interpreterGroupRef=interpreterGroup;
 }

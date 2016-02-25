@@ -1,0 +1,4 @@
+String noteId
+String className
+String st
+RemoteInterpreterContext interpreterContext

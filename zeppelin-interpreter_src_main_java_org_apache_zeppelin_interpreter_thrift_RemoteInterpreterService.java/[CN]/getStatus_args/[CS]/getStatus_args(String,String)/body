@@ -1,0 +1,5 @@
+{
+  this();
+  this.noteId=noteId;
+  this.jobId=jobId;
+}

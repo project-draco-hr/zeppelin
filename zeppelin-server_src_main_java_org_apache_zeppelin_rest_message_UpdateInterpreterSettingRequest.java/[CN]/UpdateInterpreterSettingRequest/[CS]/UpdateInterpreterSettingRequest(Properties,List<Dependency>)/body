@@ -1,4 +1,0 @@
-{
-  this.properties=properties;
-  this.dependencies=dependencies;
-}

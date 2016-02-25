@@ -1,12 +1,20 @@
 {
 switch (field) {
-case JOB_ID:
+case NOTE_ID:
     if (value == null) {
-      unsetJobId();
+      unsetNoteId();
     }
  else {
-      setJobId((String)value);
+      setNoteId((String)value);
     }
   break;
+case JOB_ID:
+if (value == null) {
+  unsetJobId();
+}
+ else {
+  setJobId((String)value);
+}
+break;
 }
 }

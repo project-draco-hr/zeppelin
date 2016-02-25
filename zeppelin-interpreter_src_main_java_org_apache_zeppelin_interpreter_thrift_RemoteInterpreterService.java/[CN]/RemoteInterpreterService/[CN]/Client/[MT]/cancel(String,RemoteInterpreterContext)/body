@@ -1,4 +1,0 @@
-{
-  send_cancel(className,interpreterContext);
-  recv_cancel();
-}

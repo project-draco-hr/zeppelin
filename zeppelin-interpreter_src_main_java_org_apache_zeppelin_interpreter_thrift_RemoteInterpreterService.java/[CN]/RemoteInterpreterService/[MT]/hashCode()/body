@@ -3,6 +3,9 @@
   boolean present_intpGroupId=true && (isSetIntpGroupId());
   list.add(present_intpGroupId);
   if (present_intpGroupId)   list.add(intpGroupId);
+  boolean present_noteId=true && (isSetNoteId());
+  list.add(present_noteId);
+  if (present_noteId)   list.add(noteId);
   boolean present_className=true && (isSetClassName());
   list.add(present_className);
   if (present_className)   list.add(className);

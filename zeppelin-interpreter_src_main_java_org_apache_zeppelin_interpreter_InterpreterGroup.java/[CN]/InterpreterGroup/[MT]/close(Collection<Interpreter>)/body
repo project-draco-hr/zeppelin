@@ -1,0 +1,28 @@
+{
+  if (intpToClose == null) {
+    return;
+  }
+  List<Thread> closeThreads=new LinkedList<Thread>();
+  for (  final Interpreter intp : intpToClose) {
+    Thread t=new Thread(){
+      public void run(){
+        Scheduler scheduler=intp.getScheduler();
+        intp.close();
+        if (scheduler != null) {
+          SchedulerFactory.singleton().removeScheduler(scheduler.getName());
+        }
+      }
+    }
+;
+    t.start();
+    closeThreads.add(t);
+  }
+  for (  Thread t : closeThreads) {
+    try {
+      t.join();
+    }
+ catch (    InterruptedException e) {
+      LOGGER.error("Can't close interpreter",e);
+    }
+  }
+}

@@ -1,6 +1,19 @@
 {
+  List<String> unBindedSettings=new LinkedList<String>();
 synchronized (interpreterSettings) {
+    List<String> oldSettings=interpreterBindings.get(noteId);
+    if (oldSettings != null) {
+      for (      String oldSettingId : oldSettings) {
+        if (!settingList.contains(oldSettingId)) {
+          unBindedSettings.add(oldSettingId);
+        }
+      }
+    }
     interpreterBindings.put(noteId,settingList);
     saveToFile();
+    for (    String settingId : unBindedSettings) {
+      InterpreterSetting setting=get(settingId);
+      removeInterpretersForNote(setting,noteId);
+    }
   }
 }

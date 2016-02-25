@@ -1,0 +1,17 @@
+{
+  if (interpreterGroup == null) {
+    throw new TException(new InterpreterException("Interpreter instance " + className + " not created"));
+  }
+synchronized (interpreterGroup) {
+    List<Interpreter> interpreters=interpreterGroup.get(noteId);
+    if (interpreters == null) {
+      throw new TException(new InterpreterException("Interpreter " + className + " not initialized"));
+    }
+    for (    Interpreter inp : interpreters) {
+      if (inp.getClassName().equals(className)) {
+        return inp;
+      }
+    }
+  }
+  throw new TException(new InterpreterException("Interpreter instance " + className + " not found"));
+}

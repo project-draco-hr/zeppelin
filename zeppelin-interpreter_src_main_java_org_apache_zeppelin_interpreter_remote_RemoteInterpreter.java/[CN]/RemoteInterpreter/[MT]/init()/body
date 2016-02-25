@@ -3,32 +3,28 @@
     return;
   }
   RemoteInterpreterProcess interpreterProcess=getInterpreterProcess();
-  int rc=interpreterProcess.reference(getInterpreterGroup());
-  interpreterProcess.setMaxPoolSize(this.maxPoolSize);
+  interpreterProcess.reference(getInterpreterGroup());
+  interpreterProcess.setMaxPoolSize(Math.max(this.maxPoolSize,interpreterProcess.getMaxPoolSize()));
 synchronized (interpreterProcess) {
-    if (rc == 1) {
-      Client client=null;
-      try {
-        client=interpreterProcess.getClient();
-      }
- catch (      Exception e1) {
-        throw new InterpreterException(e1);
-      }
-      boolean broken=false;
-      try {
-        for (        Interpreter intp : this.getInterpreterGroup()) {
-          logger.info("Create remote interpreter {}",intp.getClassName());
-          property.put("zeppelin.interpreter.localRepo",localRepoPath);
-          client.createInterpreter(getInterpreterGroup().getId(),intp.getClassName(),(Map)property);
-        }
-      }
- catch (      TException e) {
-        broken=true;
-        throw new InterpreterException(e);
-      }
+    Client client=null;
+    try {
+      client=interpreterProcess.getClient();
+    }
+ catch (    Exception e1) {
+      throw new InterpreterException(e1);
+    }
+    boolean broken=false;
+    try {
+      logger.info("Create remote interpreter {}",getClassName());
+      property.put("zeppelin.interpreter.localRepo",localRepoPath);
+      client.createInterpreter(getInterpreterGroup().getId(),noteId,getClassName(),(Map)property);
+    }
+ catch (    TException e) {
+      broken=true;
+      throw new InterpreterException(e);
+    }
  finally {
-        interpreterProcess.releaseClient(client,broken);
-      }
+      interpreterProcess.releaseClient(client,broken);
     }
   }
   initialized=true;

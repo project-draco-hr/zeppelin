@@ -1,0 +1,4 @@
+{
+  send_close(noteId,className);
+  recv_close();
+}

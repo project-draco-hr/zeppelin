@@ -1,10 +1,16 @@
 {
   TTupleProtocol oprot=(TTupleProtocol)prot;
   BitSet optionals=new BitSet();
-  if (struct.isSetJobId()) {
+  if (struct.isSetNoteId()) {
     optionals.set(0);
   }
-  oprot.writeBitSet(optionals,1);
+  if (struct.isSetJobId()) {
+    optionals.set(1);
+  }
+  oprot.writeBitSet(optionals,2);
+  if (struct.isSetNoteId()) {
+    oprot.writeString(struct.noteId);
+  }
   if (struct.isSetJobId()) {
     oprot.writeString(struct.jobId);
   }

@@ -1,7 +1,13 @@
 {
   Properties p=new Properties();
-  for (  Interpreter intp : this) {
-    p.putAll(intp.getProperty());
+  Collection<List<Interpreter>> intpGroupForANote=this.values();
+  if (intpGroupForANote != null && intpGroupForANote.size() > 0) {
+    for (    List<Interpreter> intpGroup : intpGroupForANote) {
+      for (      Interpreter intp : intpGroup) {
+        p.putAll(intp.getProperty());
+      }
+      break;
+    }
   }
   return p;
 }

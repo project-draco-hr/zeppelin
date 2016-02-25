@@ -1,6 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getStatus",org.apache.thrift.protocol.TMessageType.CALL,0));
   getStatus_args args=new getStatus_args();
+  args.setNoteId(noteId);
   args.setJobId(jobId);
   args.write(prot);
   prot.writeMessageEnd();

@@ -1,0 +1,10 @@
+{
+  InterpreterGroup interpreterGroup=setting.getInterpreterGroup();
+synchronized (interpreterGroup) {
+    String key=getInterpreterGroupKey(setting);
+    if (!interpreterGroup.containsKey(key)) {
+      factory.createInterpretersForNote(setting,key);
+    }
+    return interpreterGroup.get(getInterpreterGroupKey(setting));
+  }
+}

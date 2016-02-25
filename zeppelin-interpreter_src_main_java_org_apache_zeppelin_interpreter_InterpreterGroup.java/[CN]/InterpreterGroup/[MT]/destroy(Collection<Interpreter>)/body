@@ -1,0 +1,24 @@
+{
+  if (intpToDestroy == null) {
+    return;
+  }
+  List<Thread> destroyThreads=new LinkedList<Thread>();
+  for (  final Interpreter intp : intpToDestroy) {
+    Thread t=new Thread(){
+      public void run(){
+        intp.destroy();
+      }
+    }
+;
+    t.start();
+    destroyThreads.add(t);
+  }
+  for (  Thread t : destroyThreads) {
+    try {
+      t.join();
+    }
+ catch (    InterruptedException e) {
+      LOGGER.error("Can't close interpreter",e);
+    }
+  }
+}

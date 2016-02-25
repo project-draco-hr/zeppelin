@@ -1,0 +1,8 @@
+{
+  if (clientPool != null) {
+    return clientPool.getMaxTotal();
+  }
+ else {
+    return 0;
+  }
+}

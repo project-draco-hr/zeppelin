@@ -1,6 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getProgress",org.apache.thrift.protocol.TMessageType.CALL,0));
   getProgress_args args=new getProgress_args();
+  args.setNoteId(noteId);
   args.setClassName(className);
   args.setInterpreterContext(interpreterContext);
   args.write(prot);

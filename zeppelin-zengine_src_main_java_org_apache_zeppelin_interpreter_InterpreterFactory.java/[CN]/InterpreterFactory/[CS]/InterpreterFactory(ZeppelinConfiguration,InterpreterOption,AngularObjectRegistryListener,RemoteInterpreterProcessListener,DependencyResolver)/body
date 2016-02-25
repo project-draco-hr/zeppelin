@@ -9,7 +9,7 @@
   interpreterClassList=replsConf.split(",");
   GsonBuilder builder=new GsonBuilder();
   builder.setPrettyPrinting();
-  builder.registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
+  builder.registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());
   gson=builder.create();
   init();
 }

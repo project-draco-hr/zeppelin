@@ -1,3 +1,5 @@
 {
-  return sc != null;
+synchronized (sharedInterpreterLock) {
+    return sc != null;
+  }
 }

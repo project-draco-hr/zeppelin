@@ -1,9 +1,11 @@
 {
 switch (field) {
+case NOTE_ID:
+    return getNoteId();
 case CLASS_NAME:
-    return getClassName();
+  return getClassName();
 case BUF:
-  return getBuf();
+return getBuf();
 case CURSOR:
 return getCursor();
 }

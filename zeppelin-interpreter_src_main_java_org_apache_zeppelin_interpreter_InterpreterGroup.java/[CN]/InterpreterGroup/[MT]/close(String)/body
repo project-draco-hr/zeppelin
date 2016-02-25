@@ -1,0 +1,5 @@
+{
+  LOGGER.info("Close interpreter group " + getId() + " for note "+ noteId);
+  List<Interpreter> intpForNote=this.get(noteId);
+  close(intpForNote);
+}

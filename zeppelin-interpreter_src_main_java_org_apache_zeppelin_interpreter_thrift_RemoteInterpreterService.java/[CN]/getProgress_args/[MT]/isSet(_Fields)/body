@@ -3,10 +3,12 @@
     throw new IllegalArgumentException();
   }
 switch (field) {
+case NOTE_ID:
+    return isSetNoteId();
 case CLASS_NAME:
-    return isSetClassName();
+  return isSetClassName();
 case INTERPRETER_CONTEXT:
-  return isSetInterpreterContext();
+return isSetInterpreterContext();
 }
 throw new IllegalStateException();
 }

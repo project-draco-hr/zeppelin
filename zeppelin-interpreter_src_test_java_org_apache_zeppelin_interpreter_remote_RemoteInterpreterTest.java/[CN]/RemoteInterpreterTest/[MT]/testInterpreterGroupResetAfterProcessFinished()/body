@@ -1,5 +1,6 @@
 {
   Properties p=new Properties();
+  intpGroup.put("note",new LinkedList<Interpreter>());
   RemoteInterpreter intpA=createMockInterpreterA(p);
   intpA.setInterpreterGroup(intpGroup);
   RemoteInterpreterProcess processA=intpA.getInterpreterProcess();

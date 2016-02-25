@@ -3,7 +3,7 @@
     NewInterpreterSettingRequest request=gson.fromJson(message,NewInterpreterSettingRequest.class);
     Properties p=new Properties();
     p.putAll(request.getProperties());
-    InterpreterGroup interpreterGroup=interpreterFactory.add(request.getName(),request.getGroup(),request.getDependencies(),new InterpreterOption(true),p);
+    InterpreterGroup interpreterGroup=interpreterFactory.add(request.getName(),request.getGroup(),request.getDependencies(),request.getOption(),p);
     InterpreterSetting setting=interpreterFactory.get(interpreterGroup.getId());
     logger.info("new setting created with {}",setting.id());
     return new JsonResponse(Status.CREATED,"",setting).build();

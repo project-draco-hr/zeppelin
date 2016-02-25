@@ -1,7 +1,7 @@
 {
   GsonBuilder builder=new GsonBuilder();
   builder.setPrettyPrinting();
-  builder.registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
+  builder.registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());
   Gson gson=builder.create();
   File settingFile=new File(conf.getInterpreterSettingPath());
   if (!settingFile.exists()) {
@@ -22,8 +22,8 @@
   for (  String k : info.interpreterSettings.keySet()) {
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
-    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getDependencies(),setting.getOption());
-    InterpreterGroup interpreterGroup=createInterpreterGroup(setting.id(),setting.getGroup(),setting.getOption(),setting.getProperties());
+    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterInfos(),setting.getProperties(),setting.getDependencies(),setting.getOption());
+    InterpreterGroup interpreterGroup=createInterpreterGroup(setting.id(),setting.getOption());
     intpSetting.setInterpreterGroup(interpreterGroup);
     interpreterSettings.put(k,intpSetting);
   }

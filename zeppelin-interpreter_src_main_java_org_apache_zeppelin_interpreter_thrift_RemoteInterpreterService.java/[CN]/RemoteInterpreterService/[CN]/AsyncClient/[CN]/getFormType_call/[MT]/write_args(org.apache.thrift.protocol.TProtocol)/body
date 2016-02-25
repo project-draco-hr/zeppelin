@@ -1,6 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("getFormType",org.apache.thrift.protocol.TMessageType.CALL,0));
   getFormType_args args=new getFormType_args();
+  args.setNoteId(noteId);
   args.setClassName(className);
   args.write(prot);
   prot.writeMessageEnd();

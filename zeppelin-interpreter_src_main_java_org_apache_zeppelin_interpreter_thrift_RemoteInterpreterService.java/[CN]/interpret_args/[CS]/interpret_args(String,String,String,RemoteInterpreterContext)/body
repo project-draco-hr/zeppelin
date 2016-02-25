@@ -1,0 +1,7 @@
+{
+  this();
+  this.noteId=noteId;
+  this.className=className;
+  this.st=st;
+  this.interpreterContext=interpreterContext;
+}

@@ -8,12 +8,20 @@ case INTP_GROUP_ID:
       setIntpGroupId((String)value);
     }
   break;
-case CLASS_NAME:
+case NOTE_ID:
 if (value == null) {
-  unsetClassName();
+  unsetNoteId();
 }
  else {
-  setClassName((String)value);
+  setNoteId((String)value);
+}
+break;
+case CLASS_NAME:
+if (value == null) {
+unsetClassName();
+}
+ else {
+setClassName((String)value);
 }
 break;
 case PROPERTIES:

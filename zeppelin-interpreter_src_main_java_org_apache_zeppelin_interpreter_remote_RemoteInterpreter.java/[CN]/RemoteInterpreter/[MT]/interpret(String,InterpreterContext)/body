@@ -19,7 +19,7 @@
   boolean broken=false;
   try {
     GUI settings=context.getGui();
-    RemoteInterpreterResult remoteResult=client.interpret(className,st,convert(context));
+    RemoteInterpreterResult remoteResult=client.interpret(noteId,className,st,convert(context));
     Map<String,Object> remoteConfig=(Map<String,Object>)gson.fromJson(remoteResult.getConfig(),new TypeToken<Map<String,Object>>(){
     }
 .getType());

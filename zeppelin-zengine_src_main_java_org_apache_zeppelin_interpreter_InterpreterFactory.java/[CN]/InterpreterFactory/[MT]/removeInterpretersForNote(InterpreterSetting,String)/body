@@ -1,0 +1,13 @@
+{
+  if (!interpreterSetting.getOption().isPerNoteSession()) {
+    return;
+  }
+  InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup();
+  interpreterGroup.close(noteId);
+  interpreterGroup.destroy(noteId);
+synchronized (interpreterGroup) {
+    interpreterGroup.remove(noteId);
+    interpreterGroup.notifyAll();
+  }
+  logger.info("Interpreter instance {} for note {} is removed",interpreterSetting.getName(),noteId);
+}

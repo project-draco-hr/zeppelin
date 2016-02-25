@@ -1,0 +1,12 @@
+{
+  logger.info("cancel {} {}",className,interpreterContext.getParagraphId());
+  Interpreter intp=getInterpreter(noteId,className);
+  String jobId=interpreterContext.getParagraphId();
+  Job job=intp.getScheduler().removeFromWaitingQueue(jobId);
+  if (job != null) {
+    job.setStatus(Status.ABORT);
+  }
+ else {
+    intp.cancel(convert(interpreterContext));
+  }
+}

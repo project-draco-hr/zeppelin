@@ -1,7 +1,0 @@
-{
-  this();
-  this.className=className;
-  this.buf=buf;
-  this.cursor=cursor;
-  setCursorIsSet(true);
-}

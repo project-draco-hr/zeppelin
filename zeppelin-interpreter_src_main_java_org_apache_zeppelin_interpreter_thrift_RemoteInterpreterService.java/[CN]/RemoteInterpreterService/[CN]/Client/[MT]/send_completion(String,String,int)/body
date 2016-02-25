@@ -1,7 +1,0 @@
-{
-  completion_args args=new completion_args();
-  args.setClassName(className);
-  args.setBuf(buf);
-  args.setCursor(cursor);
-  sendBase("completion",args);
-}

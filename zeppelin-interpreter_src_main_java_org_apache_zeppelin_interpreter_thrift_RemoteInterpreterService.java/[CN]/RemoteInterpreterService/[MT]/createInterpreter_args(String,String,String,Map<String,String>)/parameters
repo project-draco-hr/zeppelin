@@ -1,0 +1,4 @@
+String intpGroupId
+String noteId
+String className
+Map<String,String> properties

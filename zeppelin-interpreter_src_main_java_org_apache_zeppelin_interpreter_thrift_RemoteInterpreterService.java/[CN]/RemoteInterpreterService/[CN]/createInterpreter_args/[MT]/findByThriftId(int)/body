@@ -3,8 +3,10 @@ switch (fieldId) {
 case 1:
     return INTP_GROUP_ID;
 case 2:
-  return CLASS_NAME;
+  return NOTE_ID;
 case 3:
+return CLASS_NAME;
+case 4:
 return PROPERTIES;
 default :
 return null;

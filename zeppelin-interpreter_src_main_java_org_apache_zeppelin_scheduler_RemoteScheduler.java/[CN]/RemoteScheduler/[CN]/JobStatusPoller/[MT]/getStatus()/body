@@ -13,7 +13,7 @@
   }
   boolean broken=false;
   try {
-    String statusStr=client.getStatus(job.getId());
+    String statusStr=client.getStatus(noteId,job.getId());
     if ("Unknown".equals(statusStr)) {
       listener.afterStatusChange(job,null,null);
       return job.getStatus();

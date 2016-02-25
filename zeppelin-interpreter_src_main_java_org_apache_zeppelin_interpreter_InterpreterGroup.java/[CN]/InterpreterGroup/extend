@@ -1,1 +1,1 @@
-LinkedList<Interpreter>
+ConcurrentHashMap<String,List<Interpreter>>

@@ -9,8 +9,8 @@
 switch (schemeField.id) {
 case 1:
       if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-        struct.className=iprot.readString();
-        struct.setClassNameIsSet(true);
+        struct.noteId=iprot.readString();
+        struct.setNoteIdIsSet(true);
       }
  else {
         org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
@@ -18,14 +18,23 @@ case 1:
     break;
 case 2:
   if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-    struct.buf=iprot.readString();
-    struct.setBufIsSet(true);
+    struct.className=iprot.readString();
+    struct.setClassNameIsSet(true);
   }
  else {
     org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
   }
 break;
 case 3:
+if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+struct.buf=iprot.readString();
+struct.setBufIsSet(true);
+}
+ else {
+org.apache.thrift.protocol.TProtocolUtil.skip(iprot,schemeField.type);
+}
+break;
+case 4:
 if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
 struct.cursor=iprot.readI32();
 struct.setCursorIsSet(true);

@@ -1,6 +1,0 @@
-{
-  super(client,protocolFactory,transport,resultHandler,false);
-  this.intpGroupId=intpGroupId;
-  this.className=className;
-  this.properties=properties;
-}

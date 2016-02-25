@@ -1,0 +1,19 @@
+{
+  Note note1=notebook.createNote();
+  Paragraph p1=note1.addParagraph();
+  p1.setText("getId");
+  for (  InterpreterSetting setting : note1.getNoteReplLoader().getInterpreterSettings()) {
+    setting.getOption().setPerNoteSession(true);
+    notebook.getInterpreterFactory().restart(setting.id());
+  }
+  note1.run(p1.getId());
+  while (p1.getStatus() != Status.FINISHED)   Thread.yield();
+  InterpreterResult result=p1.getResult();
+  List<String> bindedSettings=notebook.getBindedInterpreterSettingsIds(note1.getId());
+  notebook.bindInterpretersToNote(note1.getId(),new LinkedList<String>());
+  notebook.bindInterpretersToNote(note1.getId(),bindedSettings);
+  note1.run(p1.getId());
+  while (p1.getStatus() != Status.FINISHED)   Thread.yield();
+  assertNotEquals(result.message(),p1.getResult().message());
+  notebook.removeNote(note1.getId());
+}

@@ -1,6 +1,6 @@
 {
-  RemoteInterpreter intp=new RemoteInterpreter(new Properties(),MockInterpreterOutputStream.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,this);
-  intpGroup.add(intp);
+  RemoteInterpreter intp=new RemoteInterpreter(new Properties(),"note",MockInterpreterOutputStream.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,this);
+  intpGroup.get("note").add(intp);
   intp.setInterpreterGroup(intpGroup);
   return intp;
 }

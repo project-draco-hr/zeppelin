@@ -1,0 +1,3 @@
+{
+  this(generateId(),name,group,interpreterInfos,properties,dependencies,option);
+}

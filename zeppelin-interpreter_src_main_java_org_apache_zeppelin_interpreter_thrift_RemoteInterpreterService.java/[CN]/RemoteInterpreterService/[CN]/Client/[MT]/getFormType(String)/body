@@ -1,4 +1,0 @@
-{
-  send_getFormType(className);
-  return recv_getFormType();
-}

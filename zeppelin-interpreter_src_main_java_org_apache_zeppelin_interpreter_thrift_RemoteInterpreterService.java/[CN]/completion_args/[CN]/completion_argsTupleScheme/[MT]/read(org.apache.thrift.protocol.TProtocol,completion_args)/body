@@ -1,15 +1,19 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(3);
+  BitSet incoming=iprot.readBitSet(4);
   if (incoming.get(0)) {
+    struct.noteId=iprot.readString();
+    struct.setNoteIdIsSet(true);
+  }
+  if (incoming.get(1)) {
     struct.className=iprot.readString();
     struct.setClassNameIsSet(true);
   }
-  if (incoming.get(1)) {
+  if (incoming.get(2)) {
     struct.buf=iprot.readString();
     struct.setBufIsSet(true);
   }
-  if (incoming.get(2)) {
+  if (incoming.get(3)) {
     struct.cursor=iprot.readI32();
     struct.setCursorIsSet(true);
   }

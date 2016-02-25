@@ -1,0 +1,4 @@
+String noteId
+String className
+String buf
+int cursor

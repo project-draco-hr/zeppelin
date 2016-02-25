@@ -1,9 +1,11 @@
 {
 switch (field) {
+case NOTE_ID:
+    return getNoteId();
 case CLASS_NAME:
-    return getClassName();
+  return getClassName();
 case ST:
-  return getSt();
+return getSt();
 case INTERPRETER_CONTEXT:
 return getInterpreterContext();
 }

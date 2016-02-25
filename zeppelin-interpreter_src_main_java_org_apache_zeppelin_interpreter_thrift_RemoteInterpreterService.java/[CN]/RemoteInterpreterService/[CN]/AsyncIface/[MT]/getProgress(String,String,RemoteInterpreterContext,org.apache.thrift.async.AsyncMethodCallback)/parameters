@@ -1,0 +1,4 @@
+String noteId
+String className
+RemoteInterpreterContext interpreterContext
+org.apache.thrift.async.AsyncMethodCallback resultHandler

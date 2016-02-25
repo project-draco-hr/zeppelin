@@ -1,4 +1,0 @@
-{
-  send_open(className);
-  recv_open();
-}

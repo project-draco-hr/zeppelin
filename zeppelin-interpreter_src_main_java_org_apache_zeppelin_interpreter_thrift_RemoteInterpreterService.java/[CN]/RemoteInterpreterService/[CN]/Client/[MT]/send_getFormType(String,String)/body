@@ -1,0 +1,6 @@
+{
+  getFormType_args args=new getFormType_args();
+  args.setNoteId(noteId);
+  args.setClassName(className);
+  sendBase("getFormType",args);
+}

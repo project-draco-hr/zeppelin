@@ -4,7 +4,8 @@
     return null;
   }
   if (replName == null || replName.trim().length() == 0) {
-    return settings.get(0).getInterpreterGroup().getFirst();
+    InterpreterSetting defaultSettings=settings.get(0);
+    return createOrGetInterpreterList(defaultSettings).get(0);
   }
   if (Interpreter.registeredInterpreters == null) {
     return null;
@@ -21,34 +22,37 @@
     }
     String interpreterClassName=registeredInterpreter.getClassName();
     for (    InterpreterSetting setting : settings) {
-      InterpreterGroup intpGroup=setting.getInterpreterGroup();
-      for (      Interpreter interpreter : intpGroup) {
-        if (interpreterClassName.equals(interpreter.getClassName())) {
-          return interpreter;
+      if (registeredInterpreter.getGroup().equals(setting.getGroup())) {
+        List<Interpreter> intpGroup=createOrGetInterpreterList(setting);
+        for (        Interpreter interpreter : intpGroup) {
+          if (interpreterClassName.equals(interpreter.getClassName())) {
+            return interpreter;
+          }
         }
       }
     }
+    throw new InterpreterException(replName + " interpreter not found");
   }
  else {
-    InterpreterGroup intpGroup=settings.get(0).getInterpreterGroup();
-    for (    Interpreter interpreter : intpGroup) {
-      RegisteredInterpreter intp=Interpreter.findRegisteredInterpreterByClassName(interpreter.getClassName());
-      if (intp == null) {
-        continue;
+    InterpreterSetting defaultSetting=settings.get(0);
+    Interpreter.RegisteredInterpreter registeredInterpreter=Interpreter.registeredInterpreters.get(defaultSetting.getGroup() + "." + replName);
+    if (registeredInterpreter != null) {
+      List<Interpreter> interpreters=createOrGetInterpreterList(defaultSetting);
+      for (      Interpreter interpreter : interpreters) {
+        RegisteredInterpreter intp=Interpreter.findRegisteredInterpreterByClassName(interpreter.getClassName());
+        if (intp == null) {
+          continue;
+        }
+        if (intp.getName().equals(replName)) {
+          return interpreter;
+        }
       }
-      if (intp.getName().equals(replName)) {
-        return interpreter;
-      }
+      throw new InterpreterException(defaultSetting.getGroup() + "." + replName+ " interpreter not found");
     }
     for (    InterpreterSetting setting : settings) {
-      intpGroup=setting.getInterpreterGroup();
-      Interpreter interpreter=intpGroup.get(0);
-      RegisteredInterpreter intp=Interpreter.findRegisteredInterpreterByClassName(interpreter.getClassName());
-      if (intp == null) {
-        continue;
-      }
-      if (intp.getGroup().equals(replName)) {
-        return interpreter;
+      if (setting.getGroup().equals(replName)) {
+        List<Interpreter> interpreters=createOrGetInterpreterList(setting);
+        return interpreters.get(0);
       }
     }
   }

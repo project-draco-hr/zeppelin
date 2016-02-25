@@ -6,6 +6,12 @@
     if (!(this_present_intpGroupId && that_present_intpGroupId))     return false;
     if (!this.intpGroupId.equals(that.intpGroupId))     return false;
   }
+  boolean this_present_noteId=true && this.isSetNoteId();
+  boolean that_present_noteId=true && that.isSetNoteId();
+  if (this_present_noteId || that_present_noteId) {
+    if (!(this_present_noteId && that_present_noteId))     return false;
+    if (!this.noteId.equals(that.noteId))     return false;
+  }
   boolean this_present_className=true && this.isSetClassName();
   boolean that_present_className=true && that.isSetClassName();
   if (this_present_className || that_present_className) {

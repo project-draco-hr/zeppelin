@@ -1,3 +1,8 @@
 {
-  return new InterpreterResult(InterpreterResult.Code.SUCCESS,"repl1: " + st);
+  if ("getId".equals(st)) {
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS,"" + this.hashCode());
+  }
+ else {
+    return new InterpreterResult(InterpreterResult.Code.SUCCESS,"repl1: " + st);
+  }
 }

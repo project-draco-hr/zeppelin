@@ -1,0 +1,20 @@
+{
+  Note note1=notebook.createNote();
+  Paragraph p1=note1.addParagraph();
+  p1.setText("getId");
+  for (  InterpreterSetting setting : note1.getNoteReplLoader().getInterpreterSettings()) {
+    setting.getOption().setPerNoteSession(true);
+    notebook.getInterpreterFactory().restart(setting.id());
+  }
+  note1.run(p1.getId());
+  while (p1.getStatus() != Status.FINISHED)   Thread.yield();
+  InterpreterResult result=p1.getResult();
+  notebook.removeNote(note1.getId());
+  note1=notebook.createNote();
+  p1=note1.addParagraph();
+  p1.setText("getId");
+  note1.run(p1.getId());
+  while (p1.getStatus() != Status.FINISHED)   Thread.yield();
+  assertNotEquals(p1.getResult().message(),result.message());
+  notebook.removeNote(note1.getId());
+}

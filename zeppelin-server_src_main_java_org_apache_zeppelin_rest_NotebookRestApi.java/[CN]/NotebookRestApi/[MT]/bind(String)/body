@@ -2,7 +2,7 @@
   List<InterpreterSettingListForNoteBind> settingList=new LinkedList<InterpreterSettingListForNoteBind>();
   List<InterpreterSetting> selectedSettings=notebook.getBindedInterpreterSettings(noteId);
   for (  InterpreterSetting setting : selectedSettings) {
-    settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterGroup(),true));
+    settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterInfos(),true));
   }
   List<InterpreterSetting> availableSettings=notebook.getInterpreterFactory().get();
   for (  InterpreterSetting setting : availableSettings) {
@@ -14,7 +14,7 @@
       }
     }
     if (!selected) {
-      settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterGroup(),false));
+      settingList.add(new InterpreterSettingListForNoteBind(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterInfos(),false));
     }
   }
   return new JsonResponse<>(Status.OK,"",settingList).build();

@@ -1,6 +1,0 @@
-{
-  checkReady();
-  cancel_call method_call=new cancel_call(className,interpreterContext,resultHandler,this,___protocolFactory,___transport);
-  this.___currentMethod=method_call;
-  ___manager.call(method_call);
-}

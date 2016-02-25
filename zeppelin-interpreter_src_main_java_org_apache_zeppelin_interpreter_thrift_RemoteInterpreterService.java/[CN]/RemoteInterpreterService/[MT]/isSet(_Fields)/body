@@ -5,8 +5,10 @@
 switch (field) {
 case INTP_GROUP_ID:
     return isSetIntpGroupId();
+case NOTE_ID:
+  return isSetNoteId();
 case CLASS_NAME:
-  return isSetClassName();
+return isSetClassName();
 case PROPERTIES:
 return isSetProperties();
 }

@@ -1,0 +1,13 @@
+{
+  if (option == null)   throw new NullArgumentException("option");
+  AngularObjectRegistry angularObjectRegistry;
+  InterpreterGroup interpreterGroup=new InterpreterGroup(id);
+  if (option.isRemote()) {
+    angularObjectRegistry=new RemoteAngularObjectRegistry(id,angularObjectRegistryListener,interpreterGroup);
+  }
+ else {
+    angularObjectRegistry=new AngularObjectRegistry(id,angularObjectRegistryListener);
+  }
+  interpreterGroup.setAngularObjectRegistry(angularObjectRegistry);
+  return interpreterGroup;
+}

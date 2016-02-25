@@ -1,0 +1,5 @@
+String intpGroupId
+String noteId
+String className
+Map<String,String> properties
+org.apache.thrift.async.AsyncMethodCallback resultHandler

@@ -1,5 +1,5 @@
 {
   getFormType_result result=new getFormType_result();
-  result.success=iface.getFormType(args.className);
+  result.success=iface.getFormType(args.noteId,args.className);
   return result;
 }

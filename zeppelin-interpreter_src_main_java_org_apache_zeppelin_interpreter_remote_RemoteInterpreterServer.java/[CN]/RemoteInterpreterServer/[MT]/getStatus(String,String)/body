@@ -1,0 +1,24 @@
+{
+  if (interpreterGroup == null) {
+    return "Unknown";
+  }
+synchronized (interpreterGroup) {
+    List<Interpreter> interpreters=interpreterGroup.get(noteId);
+    if (interpreters == null) {
+      return "Unknown";
+    }
+    for (    Interpreter intp : interpreters) {
+      for (      Job job : intp.getScheduler().getJobsRunning()) {
+        if (jobId.equals(job.getId())) {
+          return job.getStatus().name();
+        }
+      }
+      for (      Job job : intp.getScheduler().getJobsWaiting()) {
+        if (jobId.equals(job.getId())) {
+          return job.getStatus().name();
+        }
+      }
+    }
+  }
+  return "Unknown";
+}

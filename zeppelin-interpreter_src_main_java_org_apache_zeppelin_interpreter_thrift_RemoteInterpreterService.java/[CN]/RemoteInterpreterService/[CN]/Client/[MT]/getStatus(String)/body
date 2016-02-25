@@ -1,4 +1,0 @@
-{
-  send_getStatus(jobId);
-  return recv_getStatus();
-}

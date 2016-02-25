@@ -1,0 +1,6 @@
+{
+  checkReady();
+  getFormType_call method_call=new getFormType_call(noteId,className,resultHandler,this,___protocolFactory,___transport);
+  this.___currentMethod=method_call;
+  ___manager.call(method_call);
+}

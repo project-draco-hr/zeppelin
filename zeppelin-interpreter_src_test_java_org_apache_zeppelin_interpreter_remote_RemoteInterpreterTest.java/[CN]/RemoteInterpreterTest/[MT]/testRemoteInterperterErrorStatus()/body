@@ -1,7 +1,8 @@
 {
   Properties p=new Properties();
   RemoteInterpreter intpA=createMockInterpreterA(p);
-  intpGroup.add(intpA);
+  intpGroup.put("note",new LinkedList<Interpreter>());
+  intpGroup.get("note").add(intpA);
   intpA.setInterpreterGroup(intpGroup);
   intpA.open();
   InterpreterResult ret=intpA.interpret("non numeric value",new InterpreterContext("noteId","id","title","text",new AuthenticationInfo(),new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("pool1"),new LinkedList<InterpreterContextRunner>(),null));

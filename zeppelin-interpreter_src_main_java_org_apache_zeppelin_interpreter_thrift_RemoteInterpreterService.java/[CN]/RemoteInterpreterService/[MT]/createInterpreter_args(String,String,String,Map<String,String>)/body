@@ -1,0 +1,7 @@
+{
+  this();
+  this.intpGroupId=intpGroupId;
+  this.noteId=noteId;
+  this.className=className;
+  this.properties=properties;
+}

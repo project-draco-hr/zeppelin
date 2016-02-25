@@ -1,6 +1,0 @@
-{
-  super(client,protocolFactory,transport,resultHandler,false);
-  this.className=className;
-  this.buf=buf;
-  this.cursor=cursor;
-}

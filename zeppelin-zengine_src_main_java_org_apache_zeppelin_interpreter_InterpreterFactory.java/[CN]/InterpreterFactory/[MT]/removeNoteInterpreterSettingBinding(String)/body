@@ -1,5 +1,8 @@
 {
 synchronized (interpreterSettings) {
-    interpreterBindings.remove(noteId);
+    List<String> settingIds=interpreterBindings.remove(noteId);
+    for (    String settingId : settingIds) {
+      this.removeInterpretersForNote(get(settingId),noteId);
+    }
   }
 }

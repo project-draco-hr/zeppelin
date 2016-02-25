@@ -1,0 +1,6 @@
+{
+  checkReady();
+  open_call method_call=new open_call(noteId,className,resultHandler,this,___protocolFactory,___transport);
+  this.___currentMethod=method_call;
+  ___manager.call(method_call);
+}

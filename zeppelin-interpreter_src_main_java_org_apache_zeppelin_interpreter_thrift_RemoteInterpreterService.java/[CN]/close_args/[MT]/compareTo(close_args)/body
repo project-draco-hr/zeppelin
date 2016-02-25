@@ -3,6 +3,16 @@
     return getClass().getName().compareTo(other.getClass().getName());
   }
   int lastComparison=0;
+  lastComparison=Boolean.valueOf(isSetNoteId()).compareTo(other.isSetNoteId());
+  if (lastComparison != 0) {
+    return lastComparison;
+  }
+  if (isSetNoteId()) {
+    lastComparison=org.apache.thrift.TBaseHelper.compareTo(this.noteId,other.noteId);
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+  }
   lastComparison=Boolean.valueOf(isSetClassName()).compareTo(other.isSetClassName());
   if (lastComparison != 0) {
     return lastComparison;

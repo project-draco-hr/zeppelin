@@ -1,6 +1,6 @@
 {
   getProgress_result result=new getProgress_result();
-  result.success=iface.getProgress(args.className,args.interpreterContext);
+  result.success=iface.getProgress(args.noteId,args.className,args.interpreterContext);
   result.setSuccessIsSet(true);
   return result;
 }

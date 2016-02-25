@@ -1,0 +1,32 @@
+{
+  if (interpreterGroup == null) {
+    interpreterGroup=new InterpreterGroup(interpreterGroupId);
+    angularObjectRegistry=new AngularObjectRegistry(interpreterGroup.getId(),this);
+    resourcePool=new DistributedResourcePool(interpreterGroup.getId(),eventClient);
+    interpreterGroup.setAngularObjectRegistry(angularObjectRegistry);
+    interpreterGroup.setResourcePool(resourcePool);
+  }
+  try {
+    Class<Interpreter> replClass=(Class<Interpreter>)Object.class.forName(className);
+    Properties p=new Properties();
+    p.putAll(properties);
+    Constructor<Interpreter> constructor=replClass.getConstructor(new Class[]{Properties.class});
+    Interpreter repl=constructor.newInstance(p);
+    ClassLoader cl=ClassLoader.getSystemClassLoader();
+    repl.setClassloaderUrls(new URL[]{});
+synchronized (interpreterGroup) {
+      List<Interpreter> interpreters=interpreterGroup.get(noteId);
+      if (interpreters == null) {
+        interpreters=new LinkedList<Interpreter>();
+        interpreterGroup.put(noteId,interpreters);
+      }
+      interpreters.add(new LazyOpenInterpreter(new ClassloaderInterpreter(repl,cl)));
+    }
+    logger.info("Instantiate interpreter {}",className);
+    repl.setInterpreterGroup(interpreterGroup);
+  }
+ catch (  ClassNotFoundException|NoSuchMethodException|SecurityException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+    logger.error(e.toString(),e);
+    throw new TException(e);
+  }
+}

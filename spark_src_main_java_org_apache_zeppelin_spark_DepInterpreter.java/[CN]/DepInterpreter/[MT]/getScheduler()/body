@@ -1,3 +1,9 @@
 {
-  return getSparkInterpreter().getScheduler();
+  SparkInterpreter sparkInterpreter=getSparkInterpreter();
+  if (sparkInterpreter != null) {
+    return getSparkInterpreter().getScheduler();
+  }
+ else {
+    return null;
+  }
 }

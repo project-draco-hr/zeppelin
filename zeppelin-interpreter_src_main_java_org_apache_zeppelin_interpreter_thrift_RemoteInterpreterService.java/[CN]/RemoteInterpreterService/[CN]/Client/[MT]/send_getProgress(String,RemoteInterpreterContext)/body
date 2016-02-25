@@ -1,6 +1,0 @@
-{
-  getProgress_args args=new getProgress_args();
-  args.setClassName(className);
-  args.setInterpreterContext(interpreterContext);
-  sendBase("getProgress",args);
-}

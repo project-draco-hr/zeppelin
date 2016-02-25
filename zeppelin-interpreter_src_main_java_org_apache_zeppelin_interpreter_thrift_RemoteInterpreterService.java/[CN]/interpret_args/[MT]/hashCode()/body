@@ -1,5 +1,8 @@
 {
   List<Object> list=new ArrayList<Object>();
+  boolean present_noteId=true && (isSetNoteId());
+  list.add(present_noteId);
+  if (present_noteId)   list.add(noteId);
   boolean present_className=true && (isSetClassName());
   list.add(present_className);
   if (present_className)   list.add(className);

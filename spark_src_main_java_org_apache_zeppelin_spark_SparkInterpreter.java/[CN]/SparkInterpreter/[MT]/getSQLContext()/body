@@ -1,20 +1,22 @@
 {
-  if (sqlc == null) {
-    if (useHiveContext()) {
-      String name="org.apache.spark.sql.hive.HiveContext";
-      Constructor<?> hc;
-      try {
-        hc=getClass().getClassLoader().loadClass(name).getConstructor(SparkContext.class);
-        sqlc=(SQLContext)hc.newInstance(getSparkContext());
+synchronized (sharedInterpreterLock) {
+    if (sqlc == null) {
+      if (useHiveContext()) {
+        String name="org.apache.spark.sql.hive.HiveContext";
+        Constructor<?> hc;
+        try {
+          hc=getClass().getClassLoader().loadClass(name).getConstructor(SparkContext.class);
+          sqlc=(SQLContext)hc.newInstance(getSparkContext());
+        }
+ catch (        NoSuchMethodException|SecurityException|ClassNotFoundException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
+          logger.warn("Can't create HiveContext. Fallback to SQLContext",e);
+          sqlc=new SQLContext(getSparkContext());
+        }
       }
- catch (      NoSuchMethodException|SecurityException|ClassNotFoundException|InstantiationException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
-        logger.warn("Can't create HiveContext. Fallback to SQLContext",e);
+ else {
         sqlc=new SQLContext(getSparkContext());
       }
     }
- else {
-      sqlc=new SQLContext(getSparkContext());
-    }
+    return sqlc;
   }
-  return sqlc;
 }

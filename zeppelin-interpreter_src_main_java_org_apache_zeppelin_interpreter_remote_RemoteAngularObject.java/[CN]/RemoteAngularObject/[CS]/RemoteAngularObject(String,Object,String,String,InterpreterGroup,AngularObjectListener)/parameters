@@ -1,0 +1,6 @@
+String name
+Object o
+String noteId
+String paragraphId
+InterpreterGroup interpreterGroup
+AngularObjectListener listener

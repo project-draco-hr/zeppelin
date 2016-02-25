@@ -1,0 +1,4 @@
+{
+  Interpreter intp=getInterpreter(noteId,className);
+  return intp.completion(buf,cursor);
+}

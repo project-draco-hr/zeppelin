@@ -1,5 +1,6 @@
 {
   this.intpGroupId=null;
+  this.noteId=null;
   this.className=null;
   this.properties=null;
 }

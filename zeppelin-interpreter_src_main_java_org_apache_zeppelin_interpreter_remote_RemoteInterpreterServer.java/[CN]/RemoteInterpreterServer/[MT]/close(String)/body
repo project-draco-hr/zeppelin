@@ -1,4 +1,0 @@
-{
-  Interpreter intp=getInterpreter(className);
-  intp.close();
-}

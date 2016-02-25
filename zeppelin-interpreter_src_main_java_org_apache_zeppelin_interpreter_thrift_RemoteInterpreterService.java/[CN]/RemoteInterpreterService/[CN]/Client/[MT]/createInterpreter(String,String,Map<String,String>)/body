@@ -1,4 +1,0 @@
-{
-  send_createInterpreter(intpGroupId,className,properties);
-  recv_createInterpreter();
-}

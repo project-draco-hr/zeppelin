@@ -1,6 +1,7 @@
 {
   prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("completion",org.apache.thrift.protocol.TMessageType.CALL,0));
   completion_args args=new completion_args();
+  args.setNoteId(noteId);
   args.setClassName(className);
   args.setBuf(buf);
   args.setCursor(cursor);

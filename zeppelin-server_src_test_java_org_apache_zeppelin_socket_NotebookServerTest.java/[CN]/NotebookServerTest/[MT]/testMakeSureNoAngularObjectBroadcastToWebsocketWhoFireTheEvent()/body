@@ -3,12 +3,14 @@
   InterpreterGroup interpreterGroup=null;
   List<InterpreterSetting> settings=note1.getNoteReplLoader().getInterpreterSettings();
   for (  InterpreterSetting setting : settings) {
-    if (setting.getInterpreterGroup() == null) {
-      continue;
+    if (setting.getName().equals("md")) {
+      interpreterGroup=setting.getInterpreterGroup();
+      break;
     }
-    interpreterGroup=setting.getInterpreterGroup();
-    break;
   }
+  Paragraph p1=note1.addParagraph();
+  p1.setText("%md start remote interpreter process");
+  note1.run(p1.getId());
   interpreterGroup.getAngularObjectRegistry().add("object1","value1",note1.getId(),null);
   NotebookSocket sock1=createWebSocket();
   NotebookSocket sock2=createWebSocket();

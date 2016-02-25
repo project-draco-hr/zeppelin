@@ -1,8 +1,10 @@
 {
 switch (fieldId) {
 case 1:
-    return JOB_ID;
+    return NOTE_ID;
+case 2:
+  return JOB_ID;
 default :
-  return null;
+return null;
 }
 }

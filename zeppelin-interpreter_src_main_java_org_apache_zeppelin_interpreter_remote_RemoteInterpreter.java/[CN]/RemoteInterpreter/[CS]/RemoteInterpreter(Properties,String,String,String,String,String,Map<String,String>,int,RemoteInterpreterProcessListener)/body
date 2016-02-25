@@ -1,0 +1,12 @@
+{
+  super(property);
+  this.className=className;
+  this.noteId=noteId;
+  this.interpreterRunner=interpreterRunner;
+  this.interpreterPath=interpreterPath;
+  this.localRepoPath=localRepoPath;
+  this.env=env;
+  this.connectTimeout=connectTimeout;
+  this.maxPoolSize=10;
+  this.remoteInterpreterProcessListener=remoteInterpreterProcessListener;
+}

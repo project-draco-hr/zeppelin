@@ -1,5 +1,0 @@
-String id
-String name
-String group
-List<Interpreter> interpreters
-boolean selected

@@ -1,0 +1,6 @@
+{
+  JsonObject jsonObject=json.getAsJsonObject();
+  String className=jsonObject.get("class").getAsString();
+  String name=jsonObject.get("name").getAsString();
+  return new InterpreterSetting.InterpreterInfo(className,name);
+}

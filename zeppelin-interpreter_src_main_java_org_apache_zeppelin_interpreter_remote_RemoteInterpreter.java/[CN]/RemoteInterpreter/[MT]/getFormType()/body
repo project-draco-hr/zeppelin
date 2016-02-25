@@ -13,7 +13,7 @@
   }
   boolean broken=false;
   try {
-    formType=FormType.valueOf(client.getFormType(className));
+    formType=FormType.valueOf(client.getFormType(noteId,className));
     return formType;
   }
  catch (  TException e) {

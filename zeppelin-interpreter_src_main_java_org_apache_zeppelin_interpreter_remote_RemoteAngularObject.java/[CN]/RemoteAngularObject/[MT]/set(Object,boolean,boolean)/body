@@ -1,6 +1,6 @@
 {
   super.set(o,emitWeb);
   if (emitRemoteProcess) {
-    remoteInterpreterProcess.updateRemoteAngularObject(getName(),getNoteId(),getParagraphId(),o);
+    interpreterGroup.getRemoteInterpreterProcess().updateRemoteAngularObject(getName(),getNoteId(),getParagraphId(),o);
   }
 }

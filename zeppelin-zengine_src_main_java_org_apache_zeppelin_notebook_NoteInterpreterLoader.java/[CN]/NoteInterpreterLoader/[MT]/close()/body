@@ -1,0 +1,9 @@
+{
+  List<InterpreterSetting> settings=this.getInterpreterSettings();
+  if (settings == null || settings.size() == 0) {
+    return;
+  }
+  for (  InterpreterSetting setting : settings) {
+    factory.removeInterpretersForNote(setting,noteId);
+  }
+}

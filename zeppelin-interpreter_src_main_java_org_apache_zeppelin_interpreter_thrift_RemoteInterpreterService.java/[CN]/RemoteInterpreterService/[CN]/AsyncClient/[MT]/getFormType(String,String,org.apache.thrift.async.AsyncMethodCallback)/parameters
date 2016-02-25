@@ -1,0 +1,3 @@
+String noteId
+String className
+org.apache.thrift.async.AsyncMethodCallback resultHandler

@@ -5,7 +5,7 @@ synchronized (interpreterSettings) {
       stopJobAllInterpreter(intpsetting);
       intpsetting.getInterpreterGroup().close();
       intpsetting.getInterpreterGroup().destroy();
-      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.id(),intpsetting.getGroup(),intpsetting.getOption(),intpsetting.getProperties());
+      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.id(),intpsetting.getOption());
       intpsetting.setInterpreterGroup(interpreterGroup);
     }
  else {

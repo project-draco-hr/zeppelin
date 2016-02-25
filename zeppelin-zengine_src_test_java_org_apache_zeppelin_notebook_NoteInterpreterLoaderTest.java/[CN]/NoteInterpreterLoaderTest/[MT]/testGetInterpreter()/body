@@ -11,4 +11,5 @@
   assertEquals("org.apache.zeppelin.interpreter.mock.MockInterpreter1",loader.get("group1.mock1").getClassName());
   assertEquals("org.apache.zeppelin.interpreter.mock.MockInterpreter11",loader.get("group1.mock11").getClassName());
   assertEquals("org.apache.zeppelin.interpreter.mock.MockInterpreter2",loader.get("group2.mock2").getClassName());
+  loader.close();
 }

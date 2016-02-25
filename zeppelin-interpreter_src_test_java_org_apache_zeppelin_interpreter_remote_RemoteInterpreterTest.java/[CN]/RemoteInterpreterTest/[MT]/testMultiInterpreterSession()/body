@@ -1,0 +1,24 @@
+{
+  Properties p=new Properties();
+  intpGroup.put("sessionA",new LinkedList<Interpreter>());
+  intpGroup.put("sessionB",new LinkedList<Interpreter>());
+  RemoteInterpreter intpAsessionA=createMockInterpreterA(p,"sessionA");
+  intpGroup.get("sessionA").add(intpAsessionA);
+  intpAsessionA.setInterpreterGroup(intpGroup);
+  RemoteInterpreter intpBsessionA=createMockInterpreterB(p,"sessionA");
+  intpGroup.get("sessionA").add(intpBsessionA);
+  intpBsessionA.setInterpreterGroup(intpGroup);
+  intpAsessionA.open();
+  intpBsessionA.open();
+  assertEquals(intpAsessionA.getScheduler(),intpBsessionA.getScheduler());
+  RemoteInterpreter intpAsessionB=createMockInterpreterA(p,"sessionB");
+  intpGroup.get("sessionB").add(intpAsessionB);
+  intpAsessionB.setInterpreterGroup(intpGroup);
+  RemoteInterpreter intpBsessionB=createMockInterpreterB(p,"sessionB");
+  intpGroup.get("sessionB").add(intpBsessionB);
+  intpBsessionB.setInterpreterGroup(intpGroup);
+  intpAsessionB.open();
+  intpBsessionB.open();
+  assertEquals(intpAsessionB.getScheduler(),intpBsessionB.getScheduler());
+  assertNotEquals(intpAsessionA.getScheduler(),intpAsessionB.getScheduler());
+}

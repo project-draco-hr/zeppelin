@@ -1,4 +1,0 @@
-String className
-String buf
-int cursor
-org.apache.thrift.async.AsyncMethodCallback resultHandler

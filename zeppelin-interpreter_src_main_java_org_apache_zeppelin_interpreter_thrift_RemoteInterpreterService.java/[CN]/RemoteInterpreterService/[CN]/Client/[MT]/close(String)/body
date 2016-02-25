@@ -1,4 +1,0 @@
-{
-  send_close(className);
-  recv_close();
-}

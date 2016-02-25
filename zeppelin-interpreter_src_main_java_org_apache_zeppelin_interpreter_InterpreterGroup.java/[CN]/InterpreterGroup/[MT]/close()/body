@@ -1,21 +1,8 @@
 {
-  List<Thread> closeThreads=new LinkedList<Thread>();
-  for (  final Interpreter intp : this) {
-    Thread t=new Thread(){
-      public void run(){
-        intp.close();
-      }
-    }
-;
-    t.start();
-    closeThreads.add(t);
+  LOGGER.info("Close interpreter group " + getId());
+  List<Interpreter> intpToClose=new LinkedList<Interpreter>();
+  for (  List<Interpreter> intpGroupForNote : this.values()) {
+    intpToClose.addAll(intpGroupForNote);
   }
-  for (  Thread t : closeThreads) {
-    try {
-      t.join();
-    }
- catch (    InterruptedException e) {
-      LOGGER.error("Can't close interpreter",e);
-    }
-  }
+  close(intpToClose);
 }

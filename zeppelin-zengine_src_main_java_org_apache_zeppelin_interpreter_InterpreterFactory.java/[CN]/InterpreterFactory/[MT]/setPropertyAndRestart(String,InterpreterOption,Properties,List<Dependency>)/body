@@ -7,7 +7,7 @@ synchronized (interpreterSettings) {
       intpsetting.getInterpreterGroup().destroy();
       intpsetting.setOption(option);
       intpsetting.setDependencies(dependencies);
-      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.id(),intpsetting.getGroup(),option,properties);
+      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.id(),option);
       intpsetting.setInterpreterGroup(interpreterGroup);
       loadInterpreterDependencies(intpsetting);
       saveToFile();

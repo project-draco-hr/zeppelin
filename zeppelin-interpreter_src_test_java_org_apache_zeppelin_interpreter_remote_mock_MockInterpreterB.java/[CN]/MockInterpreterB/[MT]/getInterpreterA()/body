@@ -1,12 +1,28 @@
 {
   InterpreterGroup interpreterGroup=getInterpreterGroup();
-  for (  Interpreter intp : interpreterGroup) {
-    if (intp.getClassName().equals(MockInterpreterA.class.getName())) {
-      Interpreter p=intp;
-      while (p instanceof WrappedInterpreter) {
-        p=((WrappedInterpreter)p).getInnerInterpreter();
+synchronized (interpreterGroup) {
+    for (    List<Interpreter> interpreters : interpreterGroup.values()) {
+      boolean belongsToSameNoteGroup=false;
+      MockInterpreterA a=null;
+      for (      Interpreter intp : interpreters) {
+        if (intp.getClassName().equals(MockInterpreterA.class.getName())) {
+          Interpreter p=intp;
+          while (p instanceof WrappedInterpreter) {
+            p=((WrappedInterpreter)p).getInnerInterpreter();
+          }
+          a=(MockInterpreterA)p;
+        }
+        Interpreter p=intp;
+        while (p instanceof WrappedInterpreter) {
+          p=((WrappedInterpreter)p).getInnerInterpreter();
+        }
+        if (this == p) {
+          belongsToSameNoteGroup=true;
+        }
       }
-      return (MockInterpreterA)p;
+      if (belongsToSameNoteGroup) {
+        return a;
+      }
     }
   }
   return null;

@@ -9,7 +9,7 @@
   }
   boolean broken=false;
   try {
-    return client.completion(className,buf,cursor);
+    return client.completion(noteId,className,buf,cursor);
   }
  catch (  TException e) {
     broken=true;

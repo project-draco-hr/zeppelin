@@ -1,0 +1,4 @@
+String interpreterGroupId
+String noteId
+String className
+Map<String,String> properties

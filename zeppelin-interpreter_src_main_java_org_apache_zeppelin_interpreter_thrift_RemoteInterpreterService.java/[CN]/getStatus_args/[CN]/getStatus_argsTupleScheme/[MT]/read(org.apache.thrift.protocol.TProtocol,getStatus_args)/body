@@ -1,7 +1,11 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(1);
+  BitSet incoming=iprot.readBitSet(2);
   if (incoming.get(0)) {
+    struct.noteId=iprot.readString();
+    struct.setNoteIdIsSet(true);
+  }
+  if (incoming.get(1)) {
     struct.jobId=iprot.readString();
     struct.setJobIdIsSet(true);
   }

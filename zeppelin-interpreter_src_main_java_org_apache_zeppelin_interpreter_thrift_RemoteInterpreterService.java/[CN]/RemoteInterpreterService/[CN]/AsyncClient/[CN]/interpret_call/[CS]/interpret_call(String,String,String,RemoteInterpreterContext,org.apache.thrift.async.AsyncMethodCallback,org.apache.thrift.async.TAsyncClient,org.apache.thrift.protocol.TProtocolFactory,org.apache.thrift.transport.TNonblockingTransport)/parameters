@@ -1,0 +1,8 @@
+String noteId
+String className
+String st
+RemoteInterpreterContext interpreterContext
+org.apache.thrift.async.AsyncMethodCallback resultHandler
+org.apache.thrift.async.TAsyncClient client
+org.apache.thrift.protocol.TProtocolFactory protocolFactory
+org.apache.thrift.transport.TNonblockingTransport transport

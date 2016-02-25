@@ -10,6 +10,15 @@
   }
   first=false;
   if (!first)   sb.append(", ");
+  sb.append("noteId:");
+  if (this.noteId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.noteId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
   sb.append("className:");
   if (this.className == null) {
     sb.append("null");

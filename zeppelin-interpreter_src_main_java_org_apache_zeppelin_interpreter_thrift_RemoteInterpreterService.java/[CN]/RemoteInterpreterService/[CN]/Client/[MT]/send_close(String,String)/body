@@ -1,0 +1,6 @@
+{
+  close_args args=new close_args();
+  args.setNoteId(noteId);
+  args.setClassName(className);
+  sendBase("close",args);
+}

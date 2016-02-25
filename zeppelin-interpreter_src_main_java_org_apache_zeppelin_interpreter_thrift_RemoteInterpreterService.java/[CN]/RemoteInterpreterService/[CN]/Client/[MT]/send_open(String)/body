@@ -1,5 +1,0 @@
-{
-  open_args args=new open_args();
-  args.setClassName(className);
-  sendBase("open",args);
-}

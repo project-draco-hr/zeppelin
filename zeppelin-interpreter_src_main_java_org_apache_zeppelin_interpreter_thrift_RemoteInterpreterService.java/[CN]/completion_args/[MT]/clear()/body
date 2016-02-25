@@ -1,4 +1,5 @@
 {
+  this.noteId=null;
   this.className=null;
   this.buf=null;
   setCursorIsSet(false);

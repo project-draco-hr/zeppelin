@@ -1,15 +1,19 @@
 {
   TTupleProtocol iprot=(TTupleProtocol)prot;
-  BitSet incoming=iprot.readBitSet(3);
+  BitSet incoming=iprot.readBitSet(4);
   if (incoming.get(0)) {
+    struct.noteId=iprot.readString();
+    struct.setNoteIdIsSet(true);
+  }
+  if (incoming.get(1)) {
     struct.className=iprot.readString();
     struct.setClassNameIsSet(true);
   }
-  if (incoming.get(1)) {
+  if (incoming.get(2)) {
     struct.st=iprot.readString();
     struct.setStIsSet(true);
   }
-  if (incoming.get(2)) {
+  if (incoming.get(3)) {
     struct.interpreterContext=new RemoteInterpreterContext();
     struct.interpreterContext.read(iprot);
     struct.setInterpreterContextIsSet(true);

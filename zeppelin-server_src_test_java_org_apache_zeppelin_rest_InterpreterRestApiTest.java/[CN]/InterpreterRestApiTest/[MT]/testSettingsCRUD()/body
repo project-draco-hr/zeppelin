@@ -1,5 +1,5 @@
 {
-  String jsonRequest="{\"name\":\"md2\",\"group\":\"md\",\"properties\":{\"propname\":\"propvalue\"}," + "\"interpreterGroup\":[{\"class\":\"org.apache.zeppelin.markdown.Markdown\",\"name\":\"md\"}]," + "\"dependencies\":[]}";
+  String jsonRequest="{\"name\":\"md2\",\"group\":\"md\",\"properties\":{\"propname\":\"propvalue\"}," + "\"interpreterGroup\":[{\"class\":\"org.apache.zeppelin.markdown.Markdown\",\"name\":\"md\"}]," + "\"dependencies\":[],"+ "\"option\": { \"remote\": true, \"perNoteSession\": false }}";
   PostMethod post=httpPost("/interpreter/setting/",jsonRequest);
   LOG.info("testSettingCRUD create response\n" + post.getResponseBodyAsString());
   assertThat("test create method:",post,isCreated());
@@ -9,7 +9,7 @@
   Map<String,Object> body=(Map<String,Object>)resp.get("body");
   String newSettingId=body.toString().split(",")[0].split("=")[1];
   post.releaseConnection();
-  jsonRequest="{\"name\":\"md2\",\"group\":\"md\",\"properties\":{\"propname\":\"Otherpropvalue\"}," + "\"interpreterGroup\":[{\"class\":\"org.apache.zeppelin.markdown.Markdown\",\"name\":\"md\"}]," + "\"dependencies\":[]}";
+  jsonRequest="{\"name\":\"md2\",\"group\":\"md\",\"properties\":{\"propname\":\"Otherpropvalue\"}," + "\"interpreterGroup\":[{\"class\":\"org.apache.zeppelin.markdown.Markdown\",\"name\":\"md\"}]," + "\"dependencies\":[],"+ "\"option\": { \"remote\": true, \"perNoteSession\": false }}";
   PutMethod put=httpPut("/interpreter/setting/" + newSettingId,jsonRequest);
   LOG.info("testSettingCRUD update response\n" + put.getResponseBodyAsString());
   assertThat("test update method:",put,isAllowed());

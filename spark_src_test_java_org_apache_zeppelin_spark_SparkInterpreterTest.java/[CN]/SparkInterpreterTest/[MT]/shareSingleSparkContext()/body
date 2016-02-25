@@ -1,0 +1,10 @@
+{
+  Properties p=new Properties();
+  SparkInterpreter repl2=new SparkInterpreter(p);
+  repl2.setInterpreterGroup(intpGroup);
+  intpGroup.get("note").add(repl2);
+  repl2.open();
+  assertEquals(Code.SUCCESS,repl.interpret("print(sc.parallelize(1 to 10).count())",context).code());
+  assertEquals(Code.SUCCESS,repl2.interpret("print(sc.parallelize(1 to 10).count())",context).code());
+  repl2.close();
+}

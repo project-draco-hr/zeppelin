@@ -3,8 +3,10 @@
     throw new IllegalArgumentException();
   }
 switch (field) {
+case NOTE_ID:
+    return isSetNoteId();
 case JOB_ID:
-    return isSetJobId();
+  return isSetJobId();
 }
 throw new IllegalStateException();
 }

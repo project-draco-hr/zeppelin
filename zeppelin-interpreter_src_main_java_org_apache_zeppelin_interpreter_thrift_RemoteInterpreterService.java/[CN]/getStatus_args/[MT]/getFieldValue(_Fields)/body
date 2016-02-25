@@ -1,7 +1,9 @@
 {
 switch (field) {
+case NOTE_ID:
+    return getNoteId();
 case JOB_ID:
-    return getJobId();
+  return getJobId();
 }
 throw new IllegalStateException();
 }

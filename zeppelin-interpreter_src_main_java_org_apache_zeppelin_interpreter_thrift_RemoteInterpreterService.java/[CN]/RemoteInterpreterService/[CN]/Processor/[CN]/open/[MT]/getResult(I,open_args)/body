@@ -1,5 +1,5 @@
 {
   open_result result=new open_result();
-  iface.open(args.className);
+  iface.open(args.noteId,args.className);
   return result;
 }

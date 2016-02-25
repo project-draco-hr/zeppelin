@@ -1,0 +1,4 @@
+{
+  send_getStatus(noteId,jobId);
+  return recv_getStatus();
+}

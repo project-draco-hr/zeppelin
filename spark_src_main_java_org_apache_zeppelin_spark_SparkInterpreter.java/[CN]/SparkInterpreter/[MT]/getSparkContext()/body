@@ -1,8 +1,10 @@
 {
-  if (sc == null) {
-    sc=createSparkContext();
-    env=SparkEnv.get();
-    sparkListener=setupListeners(sc);
+synchronized (sharedInterpreterLock) {
+    if (sc == null) {
+      sc=createSparkContext();
+      env=SparkEnv.get();
+      sparkListener=setupListeners(sc);
+    }
+    return sc;
   }
-  return sc;
 }

@@ -1,5 +1,5 @@
 {
-  GsonBuilder gsonBuilder=new GsonBuilder().registerTypeAdapter(Interpreter.class,new InterpreterSerializer());
+  GsonBuilder gsonBuilder=new GsonBuilder().registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());
   if (pretty) {
     gsonBuilder.setPrettyPrinting();
   }
