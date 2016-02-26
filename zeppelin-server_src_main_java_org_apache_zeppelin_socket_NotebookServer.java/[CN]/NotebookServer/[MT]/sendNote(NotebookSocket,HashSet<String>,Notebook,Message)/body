@@ -1,0 +1,18 @@
+{
+  LOG.info("New operation from {} : {} : {} : {} : {}",conn.getRequest().getRemoteAddr(),conn.getRequest().getRemotePort(),fromMessage.principal,fromMessage.op,fromMessage.get("id"));
+  String noteId=(String)fromMessage.get("id");
+  if (noteId == null) {
+    return;
+  }
+  Note note=notebook.getNote(noteId);
+  if (note != null) {
+    if (!note.isReader(userAndRoles)) {
+      permissionError(conn,"read",userAndRoles,note.getReaders());
+      broadcastNoteList();
+      return;
+    }
+    addConnectionToNote(note.id(),conn);
+    conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
+    sendAllAngularObjects(note,conn);
+  }
+}

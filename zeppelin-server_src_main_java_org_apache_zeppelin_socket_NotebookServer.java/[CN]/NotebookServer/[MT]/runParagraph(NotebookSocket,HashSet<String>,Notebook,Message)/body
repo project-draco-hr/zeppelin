@@ -1,0 +1,41 @@
+{
+  final String paragraphId=(String)fromMessage.get("id");
+  if (paragraphId == null) {
+    return;
+  }
+  final Note note=notebook.getNote(getOpenNoteId(conn));
+  if (!note.isWriter(userAndRoles)) {
+    permissionError(conn,"write",userAndRoles,note.getWriters());
+    return;
+  }
+  Paragraph p=note.getParagraph(paragraphId);
+  String text=(String)fromMessage.get("paragraph");
+  p.setText(text);
+  p.setTitle((String)fromMessage.get("title"));
+  if (!fromMessage.principal.equals("anonymous")) {
+    AuthenticationInfo authenticationInfo=new AuthenticationInfo(fromMessage.principal,fromMessage.ticket);
+    p.setAuthenticationInfo(authenticationInfo);
+  }
+ else {
+    p.setAuthenticationInfo(new AuthenticationInfo());
+  }
+  Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
+  p.settings.setParams(params);
+  Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
+  p.setConfig(config);
+  boolean isTheLastParagraph=note.getLastParagraph().getId().equals(p.getId());
+  if (!Strings.isNullOrEmpty(text) && isTheLastParagraph) {
+    note.addParagraph();
+  }
+  note.persist();
+  try {
+    note.run(paragraphId);
+  }
+ catch (  Exception ex) {
+    LOG.error("Exception from run",ex);
+    if (p != null) {
+      p.setReturn(new InterpreterResult(InterpreterResult.Code.ERROR,ex.getMessage()),ex);
+      p.setStatus(Status.ERROR);
+    }
+  }
+}

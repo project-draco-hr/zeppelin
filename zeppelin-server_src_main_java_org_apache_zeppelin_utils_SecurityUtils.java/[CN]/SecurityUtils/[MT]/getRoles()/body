@@ -1,0 +1,12 @@
+{
+  Subject subject=org.apache.shiro.SecurityUtils.getSubject();
+  HashSet<String> roles=new HashSet<>();
+  if (subject.isAuthenticated()) {
+    for (    String role : Arrays.asList("role1","role2","role3")) {
+      if (subject.hasRole(role)) {
+        roles.add(role);
+      }
+    }
+  }
+  return roles;
+}

@@ -1,0 +1,16 @@
+{
+  Note note=notebook.createNote();
+  assertEquals(note.isOwner(new HashSet<String>(Arrays.asList("user2"))),true);
+  assertEquals(note.isReader(new HashSet<String>(Arrays.asList("user2"))),true);
+  assertEquals(note.isWriter(new HashSet<String>(Arrays.asList("user2"))),true);
+  note.setOwners(new HashSet<String>(Arrays.asList("user1")));
+  note.setReaders(new HashSet<String>(Arrays.asList("user1","user2")));
+  note.setWriters(new HashSet<String>(Arrays.asList("user1")));
+  assertEquals(note.isOwner(new HashSet<String>(Arrays.asList("user2"))),false);
+  assertEquals(note.isOwner(new HashSet<String>(Arrays.asList("user1"))),true);
+  assertEquals(note.isReader(new HashSet<String>(Arrays.asList("user3"))),false);
+  assertEquals(note.isReader(new HashSet<String>(Arrays.asList("user2"))),true);
+  assertEquals(note.isWriter(new HashSet<String>(Arrays.asList("user2"))),false);
+  assertEquals(note.isWriter(new HashSet<String>(Arrays.asList("user1"))),true);
+  notebook.removeNote(note.id());
+}

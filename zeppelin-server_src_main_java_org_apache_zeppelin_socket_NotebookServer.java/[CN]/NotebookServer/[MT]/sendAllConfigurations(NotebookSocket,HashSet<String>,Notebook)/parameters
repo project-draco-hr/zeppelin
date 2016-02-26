@@ -1,0 +1,3 @@
+NotebookSocket conn
+HashSet<String> userAndRoles
+Notebook notebook

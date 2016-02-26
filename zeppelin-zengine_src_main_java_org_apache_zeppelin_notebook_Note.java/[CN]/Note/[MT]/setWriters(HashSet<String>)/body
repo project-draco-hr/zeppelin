@@ -1,0 +1,3 @@
+{
+  this.writers=new HashSet<String>(writers);
+}

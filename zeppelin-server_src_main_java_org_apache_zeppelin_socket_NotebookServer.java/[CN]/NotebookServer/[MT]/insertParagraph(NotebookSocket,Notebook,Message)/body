@@ -1,7 +1,0 @@
-{
-  final int index=(int)Double.parseDouble(fromMessage.get("index").toString());
-  final Note note=notebook.getNote(getOpenNoteId(conn));
-  note.insertParagraph(index);
-  note.persist();
-  broadcastNote(note);
-}

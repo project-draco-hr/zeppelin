@@ -1,0 +1,3 @@
+{
+  this.readers=new HashSet<String>(readers);
+}

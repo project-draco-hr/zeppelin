@@ -1,9 +1,0 @@
-{
-  final String paragraphId=(String)fromMessage.get("id");
-  if (paragraphId == null) {
-    return;
-  }
-  final Note note=notebook.getNote(getOpenNoteId(conn));
-  note.clearParagraphOutput(paragraphId);
-  broadcastNote(note);
-}

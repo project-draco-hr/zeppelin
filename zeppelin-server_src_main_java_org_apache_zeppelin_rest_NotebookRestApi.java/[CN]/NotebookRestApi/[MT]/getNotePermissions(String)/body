@@ -1,0 +1,8 @@
+{
+  Note note=notebook.getNote(noteId);
+  HashMap<String,HashSet> permissionsMap=new HashMap<String,HashSet>();
+  permissionsMap.put("owners",note.getOwners());
+  permissionsMap.put("readers",note.getReaders());
+  permissionsMap.put("writers",note.getWriters());
+  return new JsonResponse<>(Status.OK,"",permissionsMap).build();
+}

@@ -1,0 +1,5 @@
+{
+  Set<String> intersection=new HashSet<String>(b);
+  intersection.retainAll(a);
+  return (b.isEmpty() || (intersection.size() > 0));
+}

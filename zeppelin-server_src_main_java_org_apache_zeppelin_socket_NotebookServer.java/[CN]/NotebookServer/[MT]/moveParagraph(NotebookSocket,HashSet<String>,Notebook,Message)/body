@@ -1,0 +1,15 @@
+{
+  final String paragraphId=(String)fromMessage.get("id");
+  if (paragraphId == null) {
+    return;
+  }
+  final int newIndex=(int)Double.parseDouble(fromMessage.get("index").toString());
+  final Note note=notebook.getNote(getOpenNoteId(conn));
+  if (!note.isWriter(userAndRoles)) {
+    permissionError(conn,"write",userAndRoles,note.getWriters());
+    return;
+  }
+  note.moveParagraph(paragraphId,newIndex);
+  note.persist();
+  broadcastNote(note);
+}

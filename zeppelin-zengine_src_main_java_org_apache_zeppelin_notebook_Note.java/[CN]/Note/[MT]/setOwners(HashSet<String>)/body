@@ -1,0 +1,3 @@
+{
+  this.owners=new HashSet<String>(owners);
+}

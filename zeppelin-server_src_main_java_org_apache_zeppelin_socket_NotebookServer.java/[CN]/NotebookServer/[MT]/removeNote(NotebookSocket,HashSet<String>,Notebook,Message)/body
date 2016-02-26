@@ -1,0 +1,14 @@
+{
+  String noteId=(String)fromMessage.get("id");
+  if (noteId == null) {
+    return;
+  }
+  Note note=notebook.getNote(noteId);
+  if (!note.isOwner(userAndRoles)) {
+    permissionError(conn,"remove",userAndRoles,note.getOwners());
+    return;
+  }
+  notebook.removeNote(noteId);
+  removeNote(noteId);
+  broadcastNoteList();
+}

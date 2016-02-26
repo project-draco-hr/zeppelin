@@ -1,0 +1,4 @@
+{
+  LOG.info("Cannot {}. Connection readers {}. Allowed readers {}",op,current,allowed);
+  conn.send(serializeMessage(new Message(OP.AUTH_INFO).put("info","Insufficient privileges to " + op + " note.\n\n"+ "Allowed users or roles: "+ allowed.toString()+ "\n\n"+ "User belongs to: "+ current.toString())));
+}

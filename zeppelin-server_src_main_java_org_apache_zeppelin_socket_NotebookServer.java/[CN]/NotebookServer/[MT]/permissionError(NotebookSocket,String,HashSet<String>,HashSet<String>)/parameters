@@ -1,0 +1,4 @@
+NotebookSocket conn
+String op
+HashSet<String> current
+HashSet<String> allowed
