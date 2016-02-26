@@ -1,0 +1,4 @@
+String name
+Object defaultValue
+String type
+ParamOption[] options

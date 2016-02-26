@@ -1,0 +1,8 @@
+{
+  for (  ParamOption option : options) {
+    if (o.equals(option.getValue())) {
+      return true;
+    }
+  }
+  return false;
+}

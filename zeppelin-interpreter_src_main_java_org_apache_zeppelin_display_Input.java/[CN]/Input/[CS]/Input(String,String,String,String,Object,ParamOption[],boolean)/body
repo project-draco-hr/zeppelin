@@ -2,6 +2,7 @@
   super();
   this.name=name;
   this.displayName=displayName;
+  this.argument=argument;
   this.type=type;
   this.defaultValue=defaultValue;
   this.options=options;

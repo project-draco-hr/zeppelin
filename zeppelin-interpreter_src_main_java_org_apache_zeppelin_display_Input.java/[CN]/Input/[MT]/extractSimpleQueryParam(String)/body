@@ -4,71 +4,10 @@
     return params;
   }
   String replaced=script;
-  Pattern pattern=Pattern.compile("([_])?[$][{]([^=}]*([=][^}]*)?)[}]");
-  Matcher match=pattern.matcher(replaced);
+  Matcher match=VAR_PTN.matcher(replaced);
   while (match.find()) {
-    String hiddenPart=match.group(1);
-    boolean hidden=false;
-    if ("_".equals(hiddenPart)) {
-      hidden=true;
-    }
-    String m=match.group(2);
-    String namePart;
-    String valuePart;
-    int p=m.indexOf('=');
-    if (p > 0) {
-      namePart=m.substring(0,p);
-      valuePart=m.substring(p + 1);
-    }
- else {
-      namePart=m;
-      valuePart=null;
-    }
-    String varName;
-    String displayName=null;
-    String type=null;
-    String defaultValue="";
-    ParamOption[] paramOptions=null;
-    String varNamePart;
-    String[] typeArray=getType(namePart);
-    if (typeArray != null) {
-      type=typeArray[0];
-      varNamePart=typeArray[1];
-    }
- else {
-      varNamePart=namePart;
-    }
-    String[] varNameArray=getNameAndDisplayName(varNamePart);
-    if (varNameArray != null) {
-      varName=varNameArray[0];
-      displayName=varNameArray[1];
-    }
- else {
-      varName=varNamePart.trim();
-    }
-    if (valuePart != null) {
-      int optionP=valuePart.indexOf(",");
-      if (optionP > 0) {
-        defaultValue=valuePart.substring(0,optionP);
-        String optionPart=valuePart.substring(optionP + 1);
-        String[] options=Input.splitPipe(optionPart);
-        paramOptions=new ParamOption[options.length];
-        for (int i=0; i < options.length; i++) {
-          String[] optNameArray=getNameAndDisplayName(options[i]);
-          if (optNameArray != null) {
-            paramOptions[i]=new ParamOption(optNameArray[0],optNameArray[1]);
-          }
- else {
-            paramOptions[i]=new ParamOption(options[i],null);
-          }
-        }
-      }
- else {
-        defaultValue=valuePart;
-      }
-    }
-    Input param=new Input(varName,displayName,type,defaultValue,paramOptions,hidden);
-    params.put(varName,param);
+    Input param=getInputForm(match);
+    params.put(param.name,param);
   }
   params.remove("pql");
   return params;

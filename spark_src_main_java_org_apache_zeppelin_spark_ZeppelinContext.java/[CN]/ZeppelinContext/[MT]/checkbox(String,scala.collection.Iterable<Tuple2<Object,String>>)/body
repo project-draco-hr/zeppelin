@@ -1,0 +1,7 @@
+{
+  List<Object> allChecked=new LinkedList<Object>();
+  for (  Tuple2<Object,String> option : asJavaIterable(options)) {
+    allChecked.add(option._1());
+  }
+  return checkbox(name,asScalaIterable(allChecked),options);
+}

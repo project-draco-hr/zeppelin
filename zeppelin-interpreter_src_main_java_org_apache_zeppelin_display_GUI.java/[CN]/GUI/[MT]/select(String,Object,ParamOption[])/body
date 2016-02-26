@@ -3,6 +3,6 @@
   if (value == null) {
     value=defaultValue;
   }
-  forms.put(id,new Input(id,defaultValue,options));
+  forms.put(id,new Input(id,defaultValue,"select",options));
   return value;
 }

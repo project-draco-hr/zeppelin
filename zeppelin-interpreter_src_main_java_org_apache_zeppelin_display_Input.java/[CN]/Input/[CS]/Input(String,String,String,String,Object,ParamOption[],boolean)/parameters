@@ -1,6 +1,7 @@
 String name
 String displayName
 String type
+String argument
 Object defaultValue
 ParamOption[] options
 boolean hidden

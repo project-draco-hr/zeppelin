@@ -1,0 +1,3 @@
+String id
+Collection<Object> defaultChecked
+ParamOption[] options

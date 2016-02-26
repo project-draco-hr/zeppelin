@@ -2,4 +2,6 @@
   this.name=name;
   this.displayName=name;
   this.defaultValue=defaultValue;
+  this.type=type;
+  this.options=options;
 }

@@ -1,0 +1,7 @@
+{
+  if (this == o)   return true;
+  if (o == null || getClass() != o.getClass())   return false;
+  ParamOption that=(ParamOption)o;
+  if (value != null ? !value.equals(that.value) : that.value != null)   return false;
+  return displayName != null ? displayName.equals(that.displayName) : that.displayName == null;
+}

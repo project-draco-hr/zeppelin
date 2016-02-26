@@ -1,0 +1,5 @@
+{
+  int result=value != null ? value.hashCode() : 0;
+  result=31 * result + (displayName != null ? displayName.hashCode() : 0);
+  return result;
+}

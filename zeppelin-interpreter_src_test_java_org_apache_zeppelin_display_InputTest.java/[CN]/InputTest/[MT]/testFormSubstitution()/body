@@ -1,0 +1,15 @@
+{
+  String script="INPUT=${input_form=}SELECTED=${select_form(Selection Form)=,s_op1|s_op2|s_op3}\n" + "CHECKED=${checkbox:checkbox_form=c_op1|c_op2,c_op1|c_op2|c_op3}";
+  Map<String,Object> params=new HashMap<String,Object>();
+  params.put("input_form","some_input");
+  params.put("select_form","s_op2");
+  params.put("checkbox_form",new String[]{"c_op1","c_op3"});
+  String replaced=Input.getSimpleQuery(params,script);
+  assertEquals("INPUT=some_inputSELECTED=s_op2\nCHECKED=c_op1,c_op3",replaced);
+  script="INPUT=${input_form=}SELECTED=${select_form(Selection Form)=,s_op1|s_op2|s_op3}\n" + "CHECKED=${checkbox:checkbox_form=c_op1|c_op2,c_op1|c_op2|c_op3}\n" + "NEW_CHECKED=${checkbox( and ):new_check=nc_a|nc_c,nc_a|nc_b|nc_c}";
+  replaced=Input.getSimpleQuery(params,script);
+  assertEquals("INPUT=some_inputSELECTED=s_op2\nCHECKED=c_op1,c_op3\n" + "NEW_CHECKED=nc_a and nc_c",replaced);
+  script="INPUT=${input_form=}SELECTED=${select_form(Selection Form)=,s_op1|s_op2|s_op3}\n" + "CHECKED=${checkbox:checkbox_form=c_op1|c_op2,c_op1|c_op2|c_op3_new}\n" + "NEW_CHECKED=${checkbox( and ):new_check=nc_a|nc_c,nc_a|nc_b|nc_c}";
+  replaced=Input.getSimpleQuery(params,script);
+  assertEquals("INPUT=some_inputSELECTED=s_op2\nCHECKED=c_op1\n" + "NEW_CHECKED=nc_a and nc_c",replaced);
+}
