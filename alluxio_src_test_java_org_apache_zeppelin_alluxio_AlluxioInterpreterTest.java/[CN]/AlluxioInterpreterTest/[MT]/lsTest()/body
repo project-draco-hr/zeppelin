@@ -1,0 +1,18 @@
+{
+  URIStatus[] files=new URIStatus[3];
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileA",WriteType.MUST_CACHE,10,10);
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testDir/testFileB",WriteType.MUST_CACHE,20,20);
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileC",WriteType.THROUGH,30,30);
+  files[0]=fs.getStatus(new AlluxioURI("/testRoot/testFileA"));
+  files[1]=fs.getStatus(new AlluxioURI("/testRoot/testDir"));
+  files[2]=fs.getStatus(new AlluxioURI("/testRoot/testFileC"));
+  InterpreterResult output=alluxioInterpreter.interpret("ls /testRoot",null);
+  String expected="";
+  String format="%-10s%-25s%-15s%-5s\n";
+  expected+=String.format(format,FormatUtils.getSizeFromBytes(10),CommandUtils.convertMsToDate(files[0].getCreationTimeMs()),"In Memory","/testRoot/testFileA");
+  expected+=String.format(format,FormatUtils.getSizeFromBytes(0),CommandUtils.convertMsToDate(files[1].getCreationTimeMs()),"","/testRoot/testDir");
+  expected+=String.format(format,FormatUtils.getSizeFromBytes(30),CommandUtils.convertMsToDate(files[2].getCreationTimeMs()),"Not In Memory","/testRoot/testFileC");
+  expected+="\n";
+  Assert.assertEquals(Code.SUCCESS,output.code());
+  Assert.assertEquals(expected,output.message());
+}

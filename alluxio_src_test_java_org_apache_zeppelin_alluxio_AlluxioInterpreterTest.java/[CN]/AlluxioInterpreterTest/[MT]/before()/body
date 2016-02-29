@@ -1,0 +1,10 @@
+{
+  mLocalAlluxioCluster=new LocalAlluxioCluster(SIZE_BYTES,1000);
+  mLocalAlluxioCluster.start();
+  fs=mLocalAlluxioCluster.getClient();
+  final Properties props=new Properties();
+  props.put(AlluxioInterpreter.ALLUXIO_MASTER_HOSTNAME,mLocalAlluxioCluster.getMasterHostname());
+  props.put(AlluxioInterpreter.ALLUXIO_MASTER_PORT,mLocalAlluxioCluster.getMasterPort() + "");
+  alluxioInterpreter=new AlluxioInterpreter(props);
+  alluxioInterpreter.open();
+}

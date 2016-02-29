@@ -1,0 +1,6 @@
+{
+  if (alluxioInterpreter != null) {
+    alluxioInterpreter.close();
+  }
+  mLocalAlluxioCluster.stop();
+}

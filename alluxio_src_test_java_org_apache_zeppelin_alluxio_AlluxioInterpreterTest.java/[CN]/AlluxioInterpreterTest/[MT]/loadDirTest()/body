@@ -1,0 +1,13 @@
+{
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileA",WriteType.CACHE_THROUGH,10,10);
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileB",WriteType.MUST_CACHE,10,10);
+  int memPercentageA=fs.getStatus(new AlluxioURI("/testRoot/testFileA")).getInMemoryPercentage();
+  int memPercentageB=fs.getStatus(new AlluxioURI("/testRoot/testFileB")).getInMemoryPercentage();
+  Assert.assertFalse(memPercentageA == 0);
+  Assert.assertTrue(memPercentageB == 100);
+  alluxioInterpreter.interpret("load /testRoot",null);
+  memPercentageA=fs.getStatus(new AlluxioURI("/testRoot/testFileA")).getInMemoryPercentage();
+  memPercentageB=fs.getStatus(new AlluxioURI("/testRoot/testFileB")).getInMemoryPercentage();
+  Assert.assertTrue(memPercentageA == 100);
+  Assert.assertTrue(memPercentageB == 100);
+}

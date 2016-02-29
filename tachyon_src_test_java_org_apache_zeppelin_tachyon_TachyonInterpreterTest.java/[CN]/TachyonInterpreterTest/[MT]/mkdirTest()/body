@@ -1,9 +1,0 @@
-{
-  String qualifiedPath="tachyon://" + mLocalTachyonCluster.getMasterHostname() + ":"+ mLocalTachyonCluster.getMasterPort()+ "/root/testFile1";
-  InterpreterResult output=tachyonInterpreter.interpret("mkdir " + qualifiedPath,null);
-  TachyonFile tFile=mTfs.open(new TachyonURI("/root/testFile1"));
-  FileInfo fileInfo=mTfs.getInfo(tFile);
-  Assert.assertNotNull(fileInfo);
-  Assert.assertEquals("Successfully created directory " + qualifiedPath + "\n\n",output.message());
-  Assert.assertTrue(fileInfo.isIsFolder());
-}

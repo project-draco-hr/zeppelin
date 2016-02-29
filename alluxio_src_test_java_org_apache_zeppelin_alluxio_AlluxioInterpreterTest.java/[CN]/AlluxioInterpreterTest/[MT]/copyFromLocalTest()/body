@@ -1,0 +1,22 @@
+{
+  File testDir=new File(mLocalAlluxioCluster.getAlluxioHome() + "/testDir");
+  testDir.mkdir();
+  File testDirInner=new File(mLocalAlluxioCluster.getAlluxioHome() + "/testDir/testDirInner");
+  testDirInner.mkdir();
+  File testFile=generateFileContent("/testDir/testFile",BufferUtils.getIncreasingByteArray(10));
+  generateFileContent("/testDir/testDirInner/testFile2",BufferUtils.getIncreasingByteArray(10,20));
+  InterpreterResult output=alluxioInterpreter.interpret("copyFromLocal " + testFile.getParent() + " /testDir",null);
+  Assert.assertEquals("Copied " + testFile.getParent() + " to /testDir\n\n",output.message());
+  long fileLength1=fs.getStatus(new AlluxioURI("/testDir/testFile")).getLength();
+  long fileLength2=fs.getStatus(new AlluxioURI("/testDir/testDirInner/testFile2")).getLength();
+  Assert.assertEquals(10,fileLength1);
+  Assert.assertEquals(20,fileLength2);
+  FileInStream fStream1=fs.openFile(new AlluxioURI("/testDir/testFile"));
+  FileInStream fStream2=fs.openFile(new AlluxioURI("/testDir/testDirInner/testFile2"));
+  byte[] read=new byte[10];
+  fStream1.read(read);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(10,read));
+  read=new byte[20];
+  fStream2.read(read);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(10,20,read));
+}

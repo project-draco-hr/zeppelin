@@ -1,0 +1,6 @@
+{
+  InterpreterResult output=alluxioInterpreter.interpret("mkdir /root/testFile1",null);
+  boolean existsDir=fs.exists(new AlluxioURI("/root/testFile1"));
+  Assert.assertEquals("Successfully created directory /root/testFile1\n\n",output.message());
+  Assert.assertTrue(existsDir);
+}

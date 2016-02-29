@@ -1,0 +1,9 @@
+{
+  logger.info("Closing Alluxio shell");
+  try {
+    fs.close();
+  }
+ catch (  IOException e) {
+    logger.error("Cannot close connection",e);
+  }
+}

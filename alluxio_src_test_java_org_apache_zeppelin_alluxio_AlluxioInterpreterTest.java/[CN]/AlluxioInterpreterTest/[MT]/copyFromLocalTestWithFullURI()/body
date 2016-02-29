@@ -1,0 +1,12 @@
+{
+  File testFile=generateFileContent("/srcFileURI",BufferUtils.getIncreasingByteArray(10));
+  String uri="tachyon://" + mLocalAlluxioCluster.getMasterHostname() + ":"+ mLocalAlluxioCluster.getMasterPort()+ "/destFileURI";
+  InterpreterResult output=alluxioInterpreter.interpret("copyFromLocal " + testFile.getPath() + " "+ uri,null);
+  Assert.assertEquals("Copied " + testFile.getPath() + " to "+ uri+ "\n\n",output.message());
+  long fileLength=fs.getStatus(new AlluxioURI("/destFileURI")).getLength();
+  Assert.assertEquals(10L,fileLength);
+  FileInStream fStream=fs.openFile(new AlluxioURI("/destFileURI"));
+  byte[] read=new byte[10];
+  fStream.read(read);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(10,read));
+}

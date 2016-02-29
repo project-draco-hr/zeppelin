@@ -1,0 +1,7 @@
+{
+  String qualifiedPath="tachyon://" + mLocalAlluxioCluster.getMasterHostname() + ":"+ mLocalAlluxioCluster.getMasterPort()+ "/root/testFile1";
+  InterpreterResult output=alluxioInterpreter.interpret("mkdir " + qualifiedPath,null);
+  boolean existsDir=fs.exists(new AlluxioURI("/root/testFile1"));
+  Assert.assertEquals("Successfully created directory " + qualifiedPath + "\n\n",output.message());
+  Assert.assertTrue(existsDir);
+}

@@ -1,0 +1,3 @@
+{
+  Assert.assertEquals(Code.ERROR,alluxioInterpreter.interpret("mkdir /test File Invalid Path",null).code());
+}

@@ -1,5 +1,0 @@
-{
-  super(property);
-  tachyonMasterHostname=property.getProperty(TACHYON_MASTER_HOSTNAME);
-  tachyonMasterPort=property.getProperty(TACHYON_MASTER_PORT);
-}

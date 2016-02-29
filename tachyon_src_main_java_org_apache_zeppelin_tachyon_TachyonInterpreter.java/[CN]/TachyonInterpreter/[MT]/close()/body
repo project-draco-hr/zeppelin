@@ -1,9 +1,0 @@
-{
-  logger.info("Closing Tachyon shell");
-  try {
-    tfs.close();
-  }
- catch (  IOException e) {
-    logger.error("Cannot close connection",e);
-  }
-}

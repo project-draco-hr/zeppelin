@@ -1,0 +1,12 @@
+{
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileA",WriteType.CACHE_THROUGH,10,10);
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testDir/testFileB",WriteType.CACHE_THROUGH,20,20);
+  FileSystemTestUtils.createByteFile(fs,"/testRoot/testFileB",WriteType.CACHE_THROUGH,30,30);
+  InterpreterResult output=alluxioInterpreter.interpret("count /testRoot",null);
+  String expected="";
+  String format="%-25s%-25s%-15s\n";
+  expected+=String.format(format,"File Count","Folder Count","Total Bytes");
+  expected+=String.format(format,3,2,60);
+  expected+="\n";
+  Assert.assertEquals(expected,output.message());
+}

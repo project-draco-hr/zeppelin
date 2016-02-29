@@ -1,0 +1,8 @@
+{
+  FileSystemTestUtils.createByteFile(fs,"/testFile",WriteType.CACHE_THROUGH,10,10);
+  int memPercentage=fs.getStatus(new AlluxioURI("/testFile")).getInMemoryPercentage();
+  Assert.assertFalse(memPercentage == 0);
+  alluxioInterpreter.interpret("load /testFile",null);
+  memPercentage=fs.getStatus(new AlluxioURI("/testFile")).getInMemoryPercentage();
+  Assert.assertTrue(memPercentage == 100);
+}

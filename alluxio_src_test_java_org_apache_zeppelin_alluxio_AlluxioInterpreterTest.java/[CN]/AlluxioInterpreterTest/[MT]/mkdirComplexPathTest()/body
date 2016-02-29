@@ -1,0 +1,6 @@
+{
+  InterpreterResult output=alluxioInterpreter.interpret("mkdir /Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File",null);
+  boolean existsDir=fs.exists(new AlluxioURI("/Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File"));
+  Assert.assertEquals("Successfully created directory /Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File\n\n",output.message());
+  Assert.assertTrue(existsDir);
+}

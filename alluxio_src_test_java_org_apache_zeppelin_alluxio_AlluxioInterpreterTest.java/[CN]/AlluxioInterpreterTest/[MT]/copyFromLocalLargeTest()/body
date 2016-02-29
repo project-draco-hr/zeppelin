@@ -1,0 +1,16 @@
+{
+  File testFile=new File(mLocalAlluxioCluster.getAlluxioHome() + "/testFile");
+  testFile.createNewFile();
+  FileOutputStream fos=new FileOutputStream(testFile);
+  byte[] toWrite=BufferUtils.getIncreasingByteArray(SIZE_BYTES);
+  fos.write(toWrite);
+  fos.close();
+  InterpreterResult output=alluxioInterpreter.interpret("copyFromLocal " + testFile.getAbsolutePath() + " /testFile",null);
+  Assert.assertEquals("Copied " + testFile.getAbsolutePath() + " to /testFile\n\n",output.message());
+  long fileLength=fs.getStatus(new AlluxioURI("/testFile")).getLength();
+  Assert.assertEquals(SIZE_BYTES,fileLength);
+  FileInStream fStream=fs.openFile(new AlluxioURI("/testFile"));
+  byte[] read=new byte[SIZE_BYTES];
+  fStream.read(read);
+  Assert.assertTrue(BufferUtils.equalIncreasingByteArray(SIZE_BYTES,read));
+}

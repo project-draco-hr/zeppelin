@@ -1,7 +1,0 @@
-{
-  InStreamOptions options=new InStreamOptions.Builder(new TachyonConf()).setTachyonStorageType(TachyonStorageType.NO_STORE).build();
-  FileInStream tfis=mTfs.getInStream(tFile,options);
-  byte[] read=new byte[length];
-  tfis.read(read);
-  return read;
-}

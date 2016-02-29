@@ -1,7 +1,0 @@
-{
-  TachyonFSTestUtils.createByteFile(mTfs,"/testFile",TachyonStorageType.STORE,UnderStorageType.NO_PERSIST,10);
-  InterpreterResult output=tachyonInterpreter.interpret("cat /testFile",null);
-  byte[] expected=BufferUtils.getIncreasingByteArray(10);
-  Assert.assertEquals(Code.SUCCESS,output.code());
-  Assert.assertArrayEquals(expected,output.message().substring(0,output.message().length() - 1).getBytes());
-}

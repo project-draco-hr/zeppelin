@@ -1,0 +1,5 @@
+{
+  super(property);
+  alluxioMasterHostname=property.getProperty(ALLUXIO_MASTER_HOSTNAME);
+  alluxioMasterPort=property.getProperty(ALLUXIO_MASTER_PORT);
+}

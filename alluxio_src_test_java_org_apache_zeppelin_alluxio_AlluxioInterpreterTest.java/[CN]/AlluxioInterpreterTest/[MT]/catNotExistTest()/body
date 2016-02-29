@@ -1,0 +1,4 @@
+{
+  InterpreterResult output=alluxioInterpreter.interpret("cat /testFile",null);
+  Assert.assertEquals(Code.ERROR,output.code());
+}

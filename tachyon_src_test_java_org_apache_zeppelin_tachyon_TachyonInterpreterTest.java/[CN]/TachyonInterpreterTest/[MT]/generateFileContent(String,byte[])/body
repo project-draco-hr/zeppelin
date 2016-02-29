@@ -1,8 +1,0 @@
-{
-  File testFile=new File(mLocalTachyonCluster.getTachyonHome() + path);
-  testFile.createNewFile();
-  FileOutputStream fos=new FileOutputStream(testFile);
-  fos.write(toWrite);
-  fos.close();
-  return testFile;
-}

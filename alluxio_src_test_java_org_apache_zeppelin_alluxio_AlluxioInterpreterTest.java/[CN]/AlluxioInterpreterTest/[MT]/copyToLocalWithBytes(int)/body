@@ -1,0 +1,6 @@
+{
+  FileSystemTestUtils.createByteFile(fs,"/testFile",WriteType.MUST_CACHE,10,10);
+  InterpreterResult output=alluxioInterpreter.interpret("copyToLocal /testFile " + mLocalAlluxioCluster.getAlluxioHome() + "/testFile",null);
+  Assert.assertEquals("Copied /testFile to " + mLocalAlluxioCluster.getAlluxioHome() + "/testFile\n\n",output.message());
+  fileReadTest("/testFile",10);
+}

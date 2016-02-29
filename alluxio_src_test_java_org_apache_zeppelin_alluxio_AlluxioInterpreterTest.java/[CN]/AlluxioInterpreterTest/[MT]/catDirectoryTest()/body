@@ -1,0 +1,6 @@
+{
+  String expected="Successfully created directory /testDir\n\n" + "Path /testDir must be a file\n";
+  InterpreterResult output=alluxioInterpreter.interpret("mkdir /testDir" + "\ncat /testDir",null);
+  Assert.assertEquals(Code.ERROR,output.code());
+  Assert.assertEquals(expected,output.message());
+}

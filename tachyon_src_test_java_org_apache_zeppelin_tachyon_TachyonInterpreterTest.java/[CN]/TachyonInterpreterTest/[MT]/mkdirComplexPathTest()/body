@@ -1,8 +1,0 @@
-{
-  InterpreterResult output=tachyonInterpreter.interpret("mkdir /Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File",null);
-  TachyonFile tFile=mTfs.open(new TachyonURI("/Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File"));
-  FileInfo fileInfo=mTfs.getInfo(tFile);
-  Assert.assertNotNull(fileInfo);
-  Assert.assertEquals("Successfully created directory /Complex!@#$%^&*()-_=+[]{};\"'<>,.?/File\n\n",output.message());
-  Assert.assertTrue(fileInfo.isIsFolder());
-}

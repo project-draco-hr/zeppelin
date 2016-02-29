@@ -1,0 +1,8 @@
+{
+  File testFile=new File(mLocalAlluxioCluster.getAlluxioHome() + path);
+  testFile.createNewFile();
+  FileOutputStream fos=new FileOutputStream(testFile);
+  fos.write(toWrite);
+  fos.close();
+  return testFile;
+}

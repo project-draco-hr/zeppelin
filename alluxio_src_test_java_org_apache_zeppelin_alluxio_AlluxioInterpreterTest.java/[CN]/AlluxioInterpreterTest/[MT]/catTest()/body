@@ -1,0 +1,7 @@
+{
+  FileSystemTestUtils.createByteFile(fs,"/testFile",WriteType.MUST_CACHE,10,10);
+  InterpreterResult output=alluxioInterpreter.interpret("cat /testFile",null);
+  byte[] expected=BufferUtils.getIncreasingByteArray(10);
+  Assert.assertEquals(Code.SUCCESS,output.code());
+  Assert.assertArrayEquals(expected,output.message().substring(0,output.message().length() - 1).getBytes());
+}

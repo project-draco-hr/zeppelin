@@ -1,6 +1,0 @@
-{
-  if (tachyonInterpreter != null) {
-    tachyonInterpreter.close();
-  }
-  mLocalTachyonCluster.stop();
-}

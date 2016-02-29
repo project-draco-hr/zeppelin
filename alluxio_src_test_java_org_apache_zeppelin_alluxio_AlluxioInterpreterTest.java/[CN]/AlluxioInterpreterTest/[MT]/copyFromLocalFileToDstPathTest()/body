@@ -1,0 +1,14 @@
+{
+  String dataString="copyFromLocalFileToDstPathTest";
+  byte[] data=dataString.getBytes();
+  File localDir=new File(mLocalAlluxioCluster.getAlluxioHome() + "/localDir");
+  localDir.mkdir();
+  File localFile=generateFileContent("/localDir/testFile",data);
+  alluxioInterpreter.interpret("mkdir /dstDir",null);
+  alluxioInterpreter.interpret("copyFromLocal " + localFile.getPath() + " /dstDir",null);
+  FileInStream fStream=fs.openFile(new AlluxioURI("/dstDir/testFile"));
+  long fileLength=fs.getStatus(new AlluxioURI("/dstDir/testFile")).getLength();
+  byte[] read=new byte[(int)fileLength];
+  fStream.read(read);
+  Assert.assertEquals(new String(read),dataString);
+}

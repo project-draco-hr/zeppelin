@@ -1,3 +1,0 @@
-{
-  Assert.assertEquals(Code.ERROR,tachyonInterpreter.interpret("mkdir /test File Invalid Path",null).code());
-}
