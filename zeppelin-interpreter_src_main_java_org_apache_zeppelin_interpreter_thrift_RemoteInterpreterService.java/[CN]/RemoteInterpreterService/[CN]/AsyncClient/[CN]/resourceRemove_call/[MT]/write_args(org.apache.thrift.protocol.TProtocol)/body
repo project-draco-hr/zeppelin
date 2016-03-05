@@ -1,0 +1,9 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("resourceRemove",org.apache.thrift.protocol.TMessageType.CALL,0));
+  resourceRemove_args args=new resourceRemove_args();
+  args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
+  args.setResourceName(resourceName);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

@@ -1,0 +1,4 @@
+{
+  send_resourceGet(noteId,paragraphId,resourceName);
+  return recv_resourceGet();
+}

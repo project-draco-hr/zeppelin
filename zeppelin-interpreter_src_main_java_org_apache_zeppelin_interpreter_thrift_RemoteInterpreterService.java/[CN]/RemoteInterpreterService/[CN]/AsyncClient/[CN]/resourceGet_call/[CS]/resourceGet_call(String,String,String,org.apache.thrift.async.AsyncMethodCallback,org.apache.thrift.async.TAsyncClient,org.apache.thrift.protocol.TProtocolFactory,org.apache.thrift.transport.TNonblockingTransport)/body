@@ -1,0 +1,6 @@
+{
+  super(client,protocolFactory,transport,resultHandler,false);
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+  this.resourceName=resourceName;
+}

@@ -1,0 +1,6 @@
+{
+  resourceRemove_result result=new resourceRemove_result();
+  result.success=iface.resourceRemove(args.noteId,args.paragraphId,args.resourceName);
+  result.setSuccessIsSet(true);
+  return result;
+}

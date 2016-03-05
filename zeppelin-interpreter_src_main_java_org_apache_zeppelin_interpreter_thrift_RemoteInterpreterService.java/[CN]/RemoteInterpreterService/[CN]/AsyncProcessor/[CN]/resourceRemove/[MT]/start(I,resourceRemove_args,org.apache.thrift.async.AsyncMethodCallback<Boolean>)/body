@@ -1,0 +1,3 @@
+{
+  iface.resourceRemove(args.noteId,args.paragraphId,args.resourceName,resultHandler);
+}

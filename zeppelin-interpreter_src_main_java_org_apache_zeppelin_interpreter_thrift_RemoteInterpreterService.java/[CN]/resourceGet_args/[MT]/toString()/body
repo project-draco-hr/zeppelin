@@ -1,6 +1,24 @@
 {
   StringBuilder sb=new StringBuilder("resourceGet_args(");
   boolean first=true;
+  sb.append("noteId:");
+  if (this.noteId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.noteId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("paragraphId:");
+  if (this.paragraphId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.paragraphId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
   sb.append("resourceName:");
   if (this.resourceName == null) {
     sb.append("null");

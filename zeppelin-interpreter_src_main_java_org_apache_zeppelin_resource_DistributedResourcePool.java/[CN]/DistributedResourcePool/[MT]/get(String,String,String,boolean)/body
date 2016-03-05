@@ -1,0 +1,18 @@
+{
+  Resource resource=super.get(noteId,paragraphId,name);
+  if (resource != null) {
+    return resource;
+  }
+  if (remote) {
+    ResourceSet resources=connector.getAllResources().filterByNoteId(noteId).filterByParagraphId(paragraphId).filterByName(name);
+    if (resources.isEmpty()) {
+      return null;
+    }
+ else {
+      return resources.get(0);
+    }
+  }
+ else {
+    return null;
+  }
+}

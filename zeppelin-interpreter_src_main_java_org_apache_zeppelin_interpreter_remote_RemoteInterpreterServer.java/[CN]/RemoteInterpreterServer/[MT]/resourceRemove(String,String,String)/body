@@ -1,0 +1,4 @@
+{
+  Resource resource=resourcePool.remove(noteId,paragraphId,resourceName);
+  return resource != null;
+}

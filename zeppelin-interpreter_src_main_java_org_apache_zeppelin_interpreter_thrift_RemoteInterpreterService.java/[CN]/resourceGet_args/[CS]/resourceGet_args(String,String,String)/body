@@ -1,0 +1,6 @@
+{
+  this();
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+  this.resourceName=resourceName;
+}

@@ -1,0 +1,6 @@
+{
+  checkReady();
+  resourceRemove_call method_call=new resourceRemove_call(noteId,paragraphId,resourceName,resultHandler,this,___protocolFactory,___transport);
+  this.___currentMethod=method_call;
+  ___manager.call(method_call);
+}

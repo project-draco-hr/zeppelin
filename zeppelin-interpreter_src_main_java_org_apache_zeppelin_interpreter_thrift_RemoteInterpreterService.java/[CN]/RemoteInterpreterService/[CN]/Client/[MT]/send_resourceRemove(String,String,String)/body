@@ -1,0 +1,7 @@
+{
+  resourceRemove_args args=new resourceRemove_args();
+  args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
+  args.setResourceName(resourceName);
+  sendBase("resourceRemove",args);
+}

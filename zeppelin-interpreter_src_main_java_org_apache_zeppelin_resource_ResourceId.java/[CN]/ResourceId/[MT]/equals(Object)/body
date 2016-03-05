@@ -1,7 +1,7 @@
 {
   if (o instanceof ResourceId) {
     ResourceId r=(ResourceId)o;
-    return (r.name.equals(name) && r.resourcePoolId.equals(resourcePoolId));
+    return equals(r.name,name) && equals(r.resourcePoolId,resourcePoolId) && equals(r.noteId,noteId)&& equals(r.paragraphId,paragraphId);
   }
  else {
     return false;

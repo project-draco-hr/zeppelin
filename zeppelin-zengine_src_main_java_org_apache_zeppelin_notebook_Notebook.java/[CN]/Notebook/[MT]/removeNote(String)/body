@@ -21,6 +21,7 @@ synchronized (notes) {
       registry.removeAll(id,null);
     }
   }
+  ResourcePoolUtils.removeResourcesBelongsToNote(id);
   try {
     note.unpersist();
   }

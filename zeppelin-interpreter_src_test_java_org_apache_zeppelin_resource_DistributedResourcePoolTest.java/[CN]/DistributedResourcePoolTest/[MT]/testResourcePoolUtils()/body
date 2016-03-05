@@ -1,0 +1,17 @@
+{
+  Gson gson=new Gson();
+  InterpreterResult ret;
+  intp1.interpret("put note1:paragraph1:key1 value1",context);
+  intp1.interpret("put note1:paragraph2:key1 value2",context);
+  intp2.interpret("put note2:paragraph1:key1 value1",context);
+  intp2.interpret("put note2:paragraph2:key2 value2",context);
+  int numInterpreterResult=2;
+  assertEquals(numInterpreterResult + 4,ResourcePoolUtils.getAllResources().size());
+  ResourcePoolUtils.removeResourcesBelongsToNote("note1");
+  assertEquals(numInterpreterResult + 2,ResourcePoolUtils.getAllResources().size());
+  assertEquals("",gson.fromJson(intp1.interpret("get note1:paragraph1:key1",context).message(),String.class));
+  assertEquals("",gson.fromJson(intp1.interpret("get note1:paragraph2:key1",context).message(),String.class));
+  ResourcePoolUtils.removeResourcesBelongsToParagraph("note2","paragraph1");
+  assertEquals(numInterpreterResult + 1,ResourcePoolUtils.getAllResources().size());
+  assertEquals("value2",gson.fromJson(intp1.interpret("get note2:paragraph2:key2",context).message(),String.class));
+}

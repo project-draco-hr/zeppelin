@@ -1,0 +1,51 @@
+{
+  for (  InterpreterGroup intpGroup : InterpreterGroup.getAll()) {
+    ResourceSet resourceSet=new ResourceSet();
+    RemoteInterpreterProcess remoteInterpreterProcess=intpGroup.getRemoteInterpreterProcess();
+    if (remoteInterpreterProcess == null) {
+      ResourcePool localPool=intpGroup.getResourcePool();
+      if (localPool != null) {
+        resourceSet.addAll(localPool.getAll());
+      }
+      if (noteId != null) {
+        resourceSet=resourceSet.filterByNoteId(noteId);
+      }
+      if (paragraphId != null) {
+        resourceSet=resourceSet.filterByParagraphId(paragraphId);
+      }
+      for (      Resource r : resourceSet) {
+        localPool.remove(r.getResourceId().getNoteId(),r.getResourceId().getParagraphId(),r.getResourceId().getName());
+      }
+    }
+ else     if (remoteInterpreterProcess.isRunning()) {
+      RemoteInterpreterService.Client client=null;
+      boolean broken=false;
+      try {
+        client=remoteInterpreterProcess.getClient();
+        List<String> resourceList=client.resoucePoolGetAll();
+        Gson gson=new Gson();
+        for (        String res : resourceList) {
+          resourceSet.add(gson.fromJson(res,Resource.class));
+        }
+        if (noteId != null) {
+          resourceSet=resourceSet.filterByNoteId(noteId);
+        }
+        if (paragraphId != null) {
+          resourceSet=resourceSet.filterByParagraphId(paragraphId);
+        }
+        for (        Resource r : resourceSet) {
+          client.resourceRemove(r.getResourceId().getNoteId(),r.getResourceId().getParagraphId(),r.getResourceId().getName());
+        }
+      }
+ catch (      Exception e) {
+        logger.error(e.getMessage(),e);
+        broken=true;
+      }
+ finally {
+        if (client != null) {
+          intpGroup.getRemoteInterpreterProcess().releaseClient(client,broken);
+        }
+      }
+    }
+  }
+}

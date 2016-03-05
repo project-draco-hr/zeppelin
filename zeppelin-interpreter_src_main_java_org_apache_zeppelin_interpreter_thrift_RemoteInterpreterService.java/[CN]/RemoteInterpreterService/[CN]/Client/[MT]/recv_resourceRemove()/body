@@ -1,0 +1,8 @@
+{
+  resourceRemove_result result=new resourceRemove_result();
+  receiveBase(result,"resourceRemove");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"resourceRemove failed: unknown result");
+}

@@ -1,0 +1,7 @@
+{
+  resourceGet_args args=new resourceGet_args();
+  args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
+  args.setResourceName(resourceName);
+  sendBase("resourceGet",args);
+}

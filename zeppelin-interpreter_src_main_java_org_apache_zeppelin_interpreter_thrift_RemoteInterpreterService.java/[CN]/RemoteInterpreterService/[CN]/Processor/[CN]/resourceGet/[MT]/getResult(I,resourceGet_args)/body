@@ -1,5 +1,5 @@
 {
   resourceGet_result result=new resourceGet_result();
-  result.success=iface.resourceGet(args.resourceName);
+  result.success=iface.resourceGet(args.noteId,args.paragraphId,args.resourceName);
   return result;
 }

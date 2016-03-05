@@ -1,0 +1,4 @@
+{
+  send_resourceRemove(noteId,paragraphId,resourceName);
+  return recv_resourceRemove();
+}

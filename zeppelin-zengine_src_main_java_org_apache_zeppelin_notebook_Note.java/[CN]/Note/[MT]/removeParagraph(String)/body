@@ -1,4 +1,6 @@
 {
+  removeAllAngularObjectInParagraph(paragraphId);
+  ResourcePoolUtils.removeResourcesBelongsToParagraph(id(),paragraphId);
 synchronized (paragraphs) {
     Iterator<Paragraph> i=paragraphs.iterator();
     while (i.hasNext()) {
@@ -10,6 +12,5 @@ synchronized (paragraphs) {
       }
     }
   }
-  removeAllAngularObjectInParagraph(paragraphId);
   return null;
 }

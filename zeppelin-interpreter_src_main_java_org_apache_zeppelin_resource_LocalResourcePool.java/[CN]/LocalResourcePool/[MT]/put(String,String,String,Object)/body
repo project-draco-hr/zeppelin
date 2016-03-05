@@ -1,0 +1,5 @@
+{
+  ResourceId resourceId=new ResourceId(resourcePoolId,noteId,paragraphId,name);
+  Resource resource=new Resource(resourceId,object);
+  resources.put(resourceId,resource);
+}

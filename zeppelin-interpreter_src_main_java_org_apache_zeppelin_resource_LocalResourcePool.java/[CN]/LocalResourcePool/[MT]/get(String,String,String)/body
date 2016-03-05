@@ -1,0 +1,4 @@
+{
+  ResourceId resourceId=new ResourceId(resourcePoolId,noteId,paragraphId,name);
+  return resources.get(resourceId);
+}

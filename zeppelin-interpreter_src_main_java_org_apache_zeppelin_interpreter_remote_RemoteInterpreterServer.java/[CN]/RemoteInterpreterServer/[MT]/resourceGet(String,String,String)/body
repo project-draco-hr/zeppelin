@@ -1,0 +1,16 @@
+{
+  logger.debug("Request resourceGet {} from ZeppelinServer",resourceName);
+  Resource resource=resourcePool.get(noteId,paragraphId,resourceName,false);
+  if (resource == null || resource.get() == null || !resource.isSerializable()) {
+    return ByteBuffer.allocate(0);
+  }
+ else {
+    try {
+      return Resource.serializeObject(resource.get());
+    }
+ catch (    IOException e) {
+      logger.error(e.getMessage(),e);
+      return ByteBuffer.allocate(0);
+    }
+  }
+}

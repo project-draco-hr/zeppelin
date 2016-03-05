@@ -1,0 +1,36 @@
+{
+  final org.apache.thrift.AsyncProcessFunction fcall=this;
+  return new AsyncMethodCallback<Boolean>(){
+    public void onComplete(    Boolean o){
+      resourceRemove_result result=new resourceRemove_result();
+      result.success=o;
+      result.setSuccessIsSet(true);
+      try {
+        fcall.sendResponse(fb,result,org.apache.thrift.protocol.TMessageType.REPLY,seqid);
+        return;
+      }
+ catch (      Exception e) {
+        LOGGER.error("Exception writing to internal frame buffer",e);
+      }
+      fb.close();
+    }
+    public void onError(    Exception e){
+      byte msgType=org.apache.thrift.protocol.TMessageType.REPLY;
+      org.apache.thrift.TBase msg;
+      resourceRemove_result result=new resourceRemove_result();
+{
+        msgType=org.apache.thrift.protocol.TMessageType.EXCEPTION;
+        msg=(org.apache.thrift.TBase)new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.INTERNAL_ERROR,e.getMessage());
+      }
+      try {
+        fcall.sendResponse(fb,msg,msgType,seqid);
+        return;
+      }
+ catch (      Exception ex) {
+        LOGGER.error("Exception writing to internal frame buffer",ex);
+      }
+      fb.close();
+    }
+  }
+;
+}

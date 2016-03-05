@@ -1,0 +1,9 @@
+{
+  ResourceSet result=new ResourceSet();
+  for (  Resource r : this) {
+    if (equals(r.getResourceId().getParagraphId(),paragraphId)) {
+      result.add(r);
+    }
+  }
+  return result;
+}

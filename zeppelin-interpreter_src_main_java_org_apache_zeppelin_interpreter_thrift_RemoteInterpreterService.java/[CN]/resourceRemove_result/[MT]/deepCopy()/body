@@ -1,0 +1,3 @@
+{
+  return new resourceRemove_result(this);
+}
