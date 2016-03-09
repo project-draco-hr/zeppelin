@@ -65,7 +65,12 @@
   settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
   System.setProperty("scala.repl.name.line","line" + this.hashCode() + "$");
 synchronized (sharedInterpreterLock) {
-    this.interpreter=new SparkILoop(null,new PrintWriter(out));
+    if (printREPLOutput()) {
+      this.interpreter=new SparkILoop(null,new PrintWriter(out));
+    }
+ else {
+      this.interpreter=new SparkILoop(null,new PrintWriter(Console.out(),false));
+    }
     interpreter.settings_$eq(settings);
     interpreter.createInterpreter();
     intp=interpreter.intp();

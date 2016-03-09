@@ -1,0 +1,3 @@
+{
+  return java.lang.Boolean.parseBoolean(getProperty("zeppelin.spark.printREPLOutput"));
+}
