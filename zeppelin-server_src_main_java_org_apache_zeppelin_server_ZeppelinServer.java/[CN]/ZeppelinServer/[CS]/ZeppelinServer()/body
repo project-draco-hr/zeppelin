@@ -5,5 +5,6 @@
   this.replFactory=new InterpreterFactory(conf,notebookWsServer,notebookWsServer,depResolver);
   this.notebookRepo=new NotebookRepoSync(conf);
   this.notebookIndex=new LuceneSearch();
-  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex);
+  this.notebookAuthorization=new NotebookAuthorization(conf);
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex,notebookAuthorization);
 }

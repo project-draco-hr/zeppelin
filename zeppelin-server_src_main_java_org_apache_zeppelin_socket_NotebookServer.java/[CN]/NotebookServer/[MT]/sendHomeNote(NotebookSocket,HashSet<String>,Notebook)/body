@@ -5,8 +5,9 @@
     note=notebook.getNote(noteId);
   }
   if (note != null) {
-    if (!note.isReader(userAndRoles)) {
-      permissionError(conn,"read",userAndRoles,note.getReaders());
+    NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+    if (!notebookAuthorization.isReader(noteId,userAndRoles)) {
+      permissionError(conn,"read",userAndRoles,notebookAuthorization.getReaders(noteId));
       broadcastNoteList();
       return;
     }

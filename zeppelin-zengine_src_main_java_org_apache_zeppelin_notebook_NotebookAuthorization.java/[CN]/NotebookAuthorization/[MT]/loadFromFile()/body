@@ -1,0 +1,20 @@
+{
+  File settingFile=new File(filePath);
+  LOG.info(settingFile.getAbsolutePath());
+  if (!settingFile.exists()) {
+    return;
+  }
+  FileInputStream fis=new FileInputStream(settingFile);
+  InputStreamReader isr=new InputStreamReader(fis);
+  BufferedReader bufferedReader=new BufferedReader(isr);
+  StringBuilder sb=new StringBuilder();
+  String line;
+  while ((line=bufferedReader.readLine()) != null) {
+    sb.append(line);
+  }
+  isr.close();
+  fis.close();
+  String json=sb.toString();
+  NotebookAuthorizationInfoSaving info=gson.fromJson(json,NotebookAuthorizationInfoSaving.class);
+  this.authInfo=info.authInfo;
+}

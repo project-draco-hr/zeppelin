@@ -5,6 +5,7 @@ synchronized (notes) {
   }
   replFactory.removeNoteInterpreterSettingBinding(id);
   notebookIndex.deleteIndexDocs(note);
+  notebookAuthorization.removeNote(id);
   for (  InterpreterSetting settings : replFactory.get()) {
     AngularObjectRegistry registry=settings.getInterpreterGroup().getAngularObjectRegistry();
     if (registry instanceof RemoteAngularObjectRegistry) {

@@ -1,3 +1,0 @@
-{
-  return isMember(entities,this.readers) || isMember(entities,this.owners) || isMember(entities,this.writers);
-}

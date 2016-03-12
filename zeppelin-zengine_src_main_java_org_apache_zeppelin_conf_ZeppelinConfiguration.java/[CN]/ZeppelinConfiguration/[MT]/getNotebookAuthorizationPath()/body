@@ -1,0 +1,3 @@
+{
+  return getRelativeDir(String.format("%s/notebook-authorization.json",getConfDir()));
+}

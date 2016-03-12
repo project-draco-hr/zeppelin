@@ -5,9 +5,11 @@
   }
   Map<String,Object> params=(Map<String,Object>)fromMessage.get("params");
   Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
-  final Note note=notebook.getNote(getOpenNoteId(conn));
-  if (!note.isWriter(userAndRoles)) {
-    permissionError(conn,"write",userAndRoles,note.getWriters());
+  String noteId=getOpenNoteId(conn);
+  final Note note=notebook.getNote(noteId);
+  NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
+    permissionError(conn,"write",userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
   }
   Paragraph p=note.getParagraph(paragraphId);

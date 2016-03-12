@@ -1,0 +1,14 @@
+{
+  this.conf=conf;
+  filePath=conf.getNotebookAuthorizationPath();
+  GsonBuilder builder=new GsonBuilder();
+  builder.setPrettyPrinting();
+  gson=builder.create();
+  try {
+    loadFromFile();
+  }
+ catch (  IOException e) {
+    LOG.error("Error loading NotebookAuthorization");
+    e.printStackTrace();
+  }
+}

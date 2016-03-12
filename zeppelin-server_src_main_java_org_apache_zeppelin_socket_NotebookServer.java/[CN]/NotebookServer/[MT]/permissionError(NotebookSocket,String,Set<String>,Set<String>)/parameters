@@ -1,0 +1,4 @@
+NotebookSocket conn
+String op
+Set<String> current
+Set<String> allowed

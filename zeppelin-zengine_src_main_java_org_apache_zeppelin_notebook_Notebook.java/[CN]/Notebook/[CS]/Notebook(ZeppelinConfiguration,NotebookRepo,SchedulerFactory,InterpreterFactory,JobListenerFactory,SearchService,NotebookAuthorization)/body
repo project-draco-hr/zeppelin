@@ -1,0 +1,20 @@
+{
+  this.conf=conf;
+  this.notebookRepo=notebookRepo;
+  this.schedulerFactory=schedulerFactory;
+  this.replFactory=replFactory;
+  this.jobListenerFactory=jobListenerFactory;
+  this.notebookIndex=notebookIndex;
+  this.notebookAuthorization=notebookAuthorization;
+  quertzSchedFact=new org.quartz.impl.StdSchedulerFactory();
+  quartzSched=quertzSchedFact.getScheduler();
+  quartzSched.start();
+  CronJob.notebook=this;
+  loadAllNotes();
+  if (this.notebookIndex != null) {
+    long start=System.nanoTime();
+    logger.info("Notebook indexing started...");
+    notebookIndex.addIndexDocs(notes.values());
+    logger.info("Notebook indexing finished: {} indexed in {}s",notes.size(),TimeUnit.NANOSECONDS.toSeconds(start - System.nanoTime()));
+  }
+}

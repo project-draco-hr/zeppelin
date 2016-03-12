@@ -1,0 +1,2 @@
+String noteId
+Set<String> entities

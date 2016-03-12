@@ -1,0 +1,3 @@
+{
+  return isMember(entities,getReaders(noteId)) || isMember(entities,getOwners(noteId)) || isMember(entities,getWriters(noteId));
+}

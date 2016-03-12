@@ -1,0 +1,20 @@
+{
+  Map<String,Set<String>> noteAuthInfo=authInfo.get(noteId);
+  if (noteAuthInfo == null) {
+    noteAuthInfo=new LinkedHashMap();
+    noteAuthInfo.put("owners",new LinkedHashSet(entities));
+    noteAuthInfo.put("readers",new LinkedHashSet());
+    noteAuthInfo.put("writers",new LinkedHashSet());
+    authInfo.put(noteId,noteAuthInfo);
+  }
+ else {
+    Set<String> existingEntities=noteAuthInfo.get("owners");
+    if (existingEntities == null) {
+      noteAuthInfo.put("owners",new LinkedHashSet(entities));
+    }
+ else {
+      existingEntities.addAll(entities);
+    }
+  }
+  saveToFile();
+}

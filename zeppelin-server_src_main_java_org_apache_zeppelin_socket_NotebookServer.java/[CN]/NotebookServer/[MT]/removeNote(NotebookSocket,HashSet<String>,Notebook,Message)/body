@@ -4,8 +4,9 @@
     return;
   }
   Note note=notebook.getNote(noteId);
-  if (!note.isOwner(userAndRoles)) {
-    permissionError(conn,"remove",userAndRoles,note.getOwners());
+  NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  if (!notebookAuthorization.isOwner(noteId,userAndRoles)) {
+    permissionError(conn,"remove",userAndRoles,notebookAuthorization.getOwners(noteId));
     return;
   }
   notebook.removeNote(noteId);

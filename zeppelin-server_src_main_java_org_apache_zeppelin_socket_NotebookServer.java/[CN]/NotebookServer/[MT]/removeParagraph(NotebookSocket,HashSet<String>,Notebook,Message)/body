@@ -3,9 +3,11 @@
   if (paragraphId == null) {
     return;
   }
-  final Note note=notebook.getNote(getOpenNoteId(conn));
-  if (!note.isWriter(userAndRoles)) {
-    permissionError(conn,"write",userAndRoles,note.getWriters());
+  String noteId=getOpenNoteId(conn);
+  final Note note=notebook.getNote(noteId);
+  NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
+    permissionError(conn,"write",userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
   }
   if (!note.isLastParagraph(paragraphId)) {

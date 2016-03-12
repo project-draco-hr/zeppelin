@@ -23,5 +23,6 @@
   factory=new InterpreterFactory(conf,new InterpreterOption(false),null,null,depResolver);
   search=mock(SearchService.class);
   notebookRepoSync=new NotebookRepoSync(conf);
-  notebookSync=new Notebook(conf,notebookRepoSync,schedulerFactory,factory,this,search);
+  notebookAuthorization=new NotebookAuthorization(conf);
+  notebookSync=new Notebook(conf,notebookRepoSync,schedulerFactory,factory,this,search,notebookAuthorization);
 }

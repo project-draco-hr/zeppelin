@@ -9,13 +9,13 @@
   HashSet<String> userAndRoles=new HashSet<String>();
   userAndRoles.add(principal);
   userAndRoles.addAll(roles);
-  if (!note.isOwner(userAndRoles)) {
-    return new JsonResponse<>(Status.FORBIDDEN,ownerPermissionError(userAndRoles,note.getOwners())).build();
+  if (!notebookAuthorization.isOwner(noteId,userAndRoles)) {
+    return new JsonResponse<>(Status.FORBIDDEN,ownerPermissionError(userAndRoles,notebookAuthorization.getOwners(noteId))).build();
   }
-  note.setOwners(permMap.get("owners"));
-  note.setReaders(permMap.get("readers"));
-  note.setWriters(permMap.get("writers"));
-  LOG.debug("After set permissions {} {} {}",note.getOwners(),note.getReaders(),note.getWriters());
+  notebookAuthorization.setOwners(noteId,permMap.get("owners"));
+  notebookAuthorization.setReaders(noteId,permMap.get("readers"));
+  notebookAuthorization.setWriters(noteId,permMap.get("writers"));
+  LOG.debug("After set permissions {} {} {}",notebookAuthorization.getOwners(noteId),notebookAuthorization.getReaders(noteId),notebookAuthorization.getWriters(noteId));
   note.persist();
   notebookServer.broadcastNote(note);
   return new JsonResponse<>(Status.OK).build();

@@ -1,0 +1,14 @@
+{
+  Map<String,Set<String>> noteAuthInfo=authInfo.get(noteId);
+  Set<String> entities=null;
+  if (noteAuthInfo == null) {
+    entities=new HashSet<String>();
+  }
+ else {
+    entities=noteAuthInfo.get("readers");
+    if (entities == null) {
+      entities=new HashSet<String>();
+    }
+  }
+  return entities;
+}
