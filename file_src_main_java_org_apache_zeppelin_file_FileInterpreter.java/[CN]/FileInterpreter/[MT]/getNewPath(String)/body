@@ -1,0 +1,5 @@
+{
+  Path arg=Paths.get(argument);
+  Path ret=arg.isAbsolute() ? arg : Paths.get(currentDir,argument);
+  return ret.normalize().toString();
+}

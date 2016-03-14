@@ -1,0 +1,53 @@
+{
+  logger.info("Completion request at position\t" + cursor + " in string "+ buf);
+  final List<String> suggestions=new ArrayList<>();
+  if (StringUtils.isEmpty(buf)) {
+    suggestions.add("ls");
+    suggestions.add("cd");
+    suggestions.add("pwd");
+    return suggestions;
+  }
+  if (buf.split(" ").length == 1) {
+    if ("cd".contains(buf))     suggestions.add("cd");
+    if ("ls".contains(buf))     suggestions.add("ls");
+    if ("pwd".contains(buf))     suggestions.add("pwd");
+    return suggestions;
+  }
+  String lastToken=buf.substring(buf.lastIndexOf(" ") + 1);
+  if (lastToken.startsWith("-")) {
+    return null;
+  }
+  String localPath="";
+  String unfinished=lastToken;
+  if (lastToken.contains("/")) {
+    localPath=lastToken.substring(0,lastToken.lastIndexOf('/') + 1);
+    unfinished=lastToken.substring(lastToken.lastIndexOf('/') + 1);
+  }
+  String globalPath=getNewPath(localPath);
+  if (isDirectory(globalPath)) {
+    try {
+      String fileStatusString=listDir(globalPath);
+      if (fileStatusString != null) {
+        AllFileStatus allFiles=gson.fromJson(fileStatusString,AllFileStatus.class);
+        if (allFiles != null && allFiles.FileStatuses != null && allFiles.FileStatuses.FileStatus != null) {
+          for (          OneFileStatus fs : allFiles.FileStatuses.FileStatus) {
+            if (fs.pathSuffix.contains(unfinished)) {
+              String beforeLastPeriod=unfinished.substring(0,unfinished.lastIndexOf('.') + 1);
+              String suggestedFinish=fs.pathSuffix.substring(beforeLastPeriod.length());
+              suggestions.add(suggestedFinish);
+            }
+          }
+          return suggestions;
+        }
+      }
+    }
+ catch (    Exception e) {
+      logger.error("listall: listDir " + globalPath,e);
+      return null;
+    }
+  }
+ else {
+    logger.info("path is not a directory.  No values suggested.");
+  }
+  return null;
+}

@@ -1,0 +1,7 @@
+{
+  super();
+  this.url=url;
+  this.user=user;
+  this.maxLength=maxLength;
+  this.logger=logger;
+}

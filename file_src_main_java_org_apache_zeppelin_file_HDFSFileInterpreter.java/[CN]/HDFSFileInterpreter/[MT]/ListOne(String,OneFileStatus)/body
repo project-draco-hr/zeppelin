@@ -1,0 +1,19 @@
+{
+  if (args.flags.contains(new Character('l'))) {
+    StringBuilder sb=new StringBuilder();
+    sb.append(listPermission(fs) + "\t");
+    sb.append(((fs.replication == 0) ? "-" : fs.replication) + "\t ");
+    sb.append(fs.owner + "\t");
+    sb.append(fs.group + "\t");
+    if (args.flags.contains(new Character('h'))) {
+      sb.append(humanReadableByteCount(fs.length) + "\t\t");
+    }
+ else {
+      sb.append(fs.length + "\t");
+    }
+    sb.append(listDate(fs) + "GMT\t");
+    sb.append((path.length() == 1) ? path + fs.pathSuffix : path + '/' + fs.pathSuffix);
+    return sb.toString();
+  }
+  return fs.pathSuffix;
+}

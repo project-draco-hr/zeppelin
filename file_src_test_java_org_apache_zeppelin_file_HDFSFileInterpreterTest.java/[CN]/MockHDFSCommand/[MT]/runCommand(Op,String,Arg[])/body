@@ -1,0 +1,11 @@
+{
+  String error=checkArgs(op,path,args);
+  assertNull(error);
+  String c=path + "?op=" + op.op;
+  if (args != null) {
+    for (    Arg a : args) {
+      c+="&" + a.key + "="+ a.value;
+    }
+  }
+  return fs.get(c);
+}

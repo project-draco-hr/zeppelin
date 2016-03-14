@@ -1,0 +1,5 @@
+{
+  input=cmd;
+  args=new ArrayList();
+  flags=new HashSet();
+}

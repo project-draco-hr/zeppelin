@@ -1,0 +1,10 @@
+{
+  if (op == null || path == null || (op.minArgs > 0 && (args == null || args.length != op.minArgs))) {
+    String a="";
+    a=(op != null) ? a + op.op + "\n" : a;
+    a=(path != null) ? a + path + "\n" : a;
+    a=(args != null) ? a + args + "\n" : a;
+    return a;
+  }
+  return null;
+}

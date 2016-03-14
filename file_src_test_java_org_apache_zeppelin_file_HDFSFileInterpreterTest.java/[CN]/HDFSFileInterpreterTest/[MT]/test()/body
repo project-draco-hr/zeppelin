@@ -1,0 +1,35 @@
+{
+  HDFSFileInterpreter t=new MockHDFSFileInterpreter(new Properties());
+  t.open();
+  InterpreterResult result1=t.interpret("ls -l /",null);
+  assertEquals(result1.type(),InterpreterResult.Type.TEXT);
+  InterpreterResult result2=t.interpret("ls -l /./user/..",null);
+  assertEquals(result2.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result1.message(),result2.message());
+  InterpreterResult result3=t.interpret("cd user",null);
+  assertEquals(result3.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result3.message(),"OK");
+  InterpreterResult result4=t.interpret("ls",null);
+  assertEquals(result4.type(),InterpreterResult.Type.TEXT);
+  InterpreterResult result5=t.interpret("ls /user",null);
+  assertEquals(result5.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result4.message(),result5.message());
+  InterpreterResult result6=t.interpret("pwd",null);
+  assertEquals(result6.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result6.message(),"/user");
+  InterpreterResult result7=t.interpret("cd ../mr-history/done",null);
+  assertEquals(result7.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result7.message(),"OK");
+  InterpreterResult result8=t.interpret("ls -l ",null);
+  assertEquals(result8.type(),InterpreterResult.Type.TEXT);
+  InterpreterResult result9=t.interpret("ls -l /mr-history/done",null);
+  assertEquals(result9.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result8.message(),result9.message());
+  InterpreterResult result10=t.interpret("cd ../..",null);
+  assertEquals(result10.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result7.message(),"OK");
+  InterpreterResult result11=t.interpret("ls -l ",null);
+  assertEquals(result11.type(),InterpreterResult.Type.TEXT);
+  assertEquals(result1.message(),result11.message());
+  t.close();
+}

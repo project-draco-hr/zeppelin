@@ -1,0 +1,4 @@
+String url
+String user
+Logger logger
+int maxLength

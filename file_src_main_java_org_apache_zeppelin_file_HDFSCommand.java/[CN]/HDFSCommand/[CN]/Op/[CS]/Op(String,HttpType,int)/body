@@ -1,0 +1,5 @@
+{
+  this.op=op;
+  this.cmd=cmd;
+  this.minArgs=minArgs;
+}

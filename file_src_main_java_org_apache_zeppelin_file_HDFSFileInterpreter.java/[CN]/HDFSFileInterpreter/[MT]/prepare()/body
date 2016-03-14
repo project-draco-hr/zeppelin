@@ -1,0 +1,7 @@
+{
+  String userName=getProperty(HDFS_USER);
+  String hdfsUrl=getProperty(HDFS_URL);
+  int i=Integer.parseInt(getProperty(HDFS_MAXLENGTH));
+  cmd=new HDFSCommand(hdfsUrl,userName,logger,i);
+  gson=new Gson();
+}

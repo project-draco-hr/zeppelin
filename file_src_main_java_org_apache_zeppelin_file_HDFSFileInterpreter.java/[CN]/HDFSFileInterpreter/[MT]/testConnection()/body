@@ -1,0 +1,9 @@
+{
+  try {
+    if (isDirectory("/"))     logger.info("Successfully created WebHDFS connection");
+  }
+ catch (  Exception e) {
+    logger.error("testConnection: Cannot open WebHDFS connection. Bad URL: " + "/",e);
+    exceptionOnConnect=e;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  boolean ret=false;
+  if (exceptionOnConnect != null)   return ret;
+  try {
+    String str=cmd.runCommand(cmd.getFileStatus,path,null);
+    SingleFileStatus sfs=gson.fromJson(str,SingleFileStatus.class);
+    if (sfs != null)     return sfs.FileStatus.type.equals("DIRECTORY");
+  }
+ catch (  Exception e) {
+    logger.error("IsDirectory: " + path,e);
+    return false;
+  }
+  return ret;
+}

@@ -1,0 +1,13 @@
+{
+  try {
+    String str=cmd.runCommand(cmd.getFileStatus,filePath,null);
+    SingleFileStatus sfs=gson.fromJson(str,SingleFileStatus.class);
+    if (sfs != null) {
+      return ListOne(filePath,sfs.FileStatus);
+    }
+  }
+ catch (  Exception e) {
+    logger.error("listFile: " + filePath,e);
+  }
+  return "No such File or directory";
+}

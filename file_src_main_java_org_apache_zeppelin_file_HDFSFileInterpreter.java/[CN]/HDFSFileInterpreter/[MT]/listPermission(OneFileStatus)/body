@@ -1,0 +1,15 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append(fs.type.equalsIgnoreCase("Directory") ? 'd' : '-');
+  int p=Integer.parseInt(fs.permission,16);
+  sb.append(((p & 0x400) == 0) ? '-' : 'r');
+  sb.append(((p & 0x200) == 0) ? '-' : 'w');
+  sb.append(((p & 0x100) == 0) ? '-' : 'x');
+  sb.append(((p & 0x40) == 0) ? '-' : 'r');
+  sb.append(((p & 0x20) == 0) ? '-' : 'w');
+  sb.append(((p & 0x10) == 0) ? '-' : 'x');
+  sb.append(((p & 0x4) == 0) ? '-' : 'r');
+  sb.append(((p & 0x2) == 0) ? '-' : 'w');
+  sb.append(((p & 0x1) == 0) ? '-' : 'x');
+  return sb.toString();
+}

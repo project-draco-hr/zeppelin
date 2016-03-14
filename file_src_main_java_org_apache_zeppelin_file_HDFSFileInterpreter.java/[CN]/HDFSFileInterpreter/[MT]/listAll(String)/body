@@ -1,0 +1,23 @@
+{
+  String all="";
+  if (exceptionOnConnect != null)   return "Error connecting to provided endpoint.";
+  try {
+    if (isDirectory(path)) {
+      String sfs=listDir(path);
+      if (sfs != null) {
+        AllFileStatus allFiles=gson.fromJson(sfs,AllFileStatus.class);
+        if (allFiles != null && allFiles.FileStatuses != null && allFiles.FileStatuses.FileStatus != null) {
+          for (          OneFileStatus fs : allFiles.FileStatuses.FileStatus)           all=all + ListOne(path,fs) + '\n';
+        }
+      }
+      return all;
+    }
+ else {
+      return listFile(path);
+    }
+  }
+ catch (  Exception e) {
+    logger.error("listall: listDir " + path,e);
+    throw new InterpreterException("Could not find file or directory:\t" + path);
+  }
+}

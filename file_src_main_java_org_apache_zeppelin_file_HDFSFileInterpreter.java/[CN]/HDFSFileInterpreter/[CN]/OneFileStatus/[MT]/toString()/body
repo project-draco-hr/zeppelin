@@ -1,0 +1,17 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("\nAccessTime = " + accessTime);
+  sb.append("\nBlockSize = " + blockSize);
+  sb.append("\nChildrenNum = " + childrenNum);
+  sb.append("\nFileId = " + fileId);
+  sb.append("\nGroup = " + group);
+  sb.append("\nLength = " + length);
+  sb.append("\nModificationTime = " + modificationTime);
+  sb.append("\nOwner = " + owner);
+  sb.append("\nPathSuffix = " + pathSuffix);
+  sb.append("\nPermission = " + permission);
+  sb.append("\nReplication = " + replication);
+  sb.append("\nStoragePolicy = " + storagePolicy);
+  sb.append("\nType = " + type);
+  return sb.toString();
+}

@@ -1,0 +1,11 @@
+{
+  if (arg.charAt(0) == '-') {
+    for (int i=0; i < arg.length(); i++) {
+      Character c=arg.charAt(i);
+      flags.add(c);
+    }
+  }
+ else {
+    args.add(arg);
+  }
+}

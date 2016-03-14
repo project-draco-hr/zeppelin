@@ -1,0 +1,4 @@
+{
+  cmd=new MockHDFSCommand("","",logger);
+  gson=new Gson();
+}

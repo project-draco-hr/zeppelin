@@ -1,0 +1,4 @@
+{
+  super(property);
+  currentDir=new String("/");
+}

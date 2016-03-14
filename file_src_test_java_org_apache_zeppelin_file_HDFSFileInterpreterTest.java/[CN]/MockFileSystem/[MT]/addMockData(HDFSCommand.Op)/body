@@ -1,0 +1,8 @@
+{
+  if (op.op.equals("LISTSTATUS")) {
+    addListStatusData();
+  }
+ else   if (op.op.equals("GETFILESTATUS")) {
+    addGetFileStatusData();
+  }
+}

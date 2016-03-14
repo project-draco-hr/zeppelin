@@ -1,0 +1,6 @@
+{
+  super(url,user,logger,1000);
+  fs=new MockFileSystem();
+  fs.addMockData(getFileStatus);
+  fs.addMockData(listStatus);
+}

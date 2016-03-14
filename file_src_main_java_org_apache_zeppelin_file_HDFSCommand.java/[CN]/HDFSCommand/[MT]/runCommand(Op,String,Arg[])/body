@@ -1,0 +1,34 @@
+{
+  String error=checkArgs(op,path,args);
+  if (error != null) {
+    logger.error("Bad arguments to command: " + error);
+    return "ERROR: BAD ARGS";
+  }
+  UriBuilder builder=UriBuilder.fromPath(url).path(path).queryParam("op",op.op);
+  if (args != null) {
+    for (    Arg a : args) {
+      builder=builder.queryParam(a.key,a.value);
+    }
+  }
+  java.net.URI uri=builder.build();
+  URL hdfsUrl=uri.toURL();
+  HttpURLConnection con=(HttpURLConnection)hdfsUrl.openConnection();
+  if (op.cmd == HttpType.GET) {
+    con.setRequestMethod("GET");
+    int responseCode=con.getResponseCode();
+    logger.info("Sending 'GET' request to URL : " + hdfsUrl);
+    logger.info("Response Code : " + responseCode);
+    BufferedReader in=new BufferedReader(new InputStreamReader(con.getInputStream()));
+    String inputLine;
+    StringBuffer response=new StringBuffer();
+    int i=0;
+    while ((inputLine=in.readLine()) != null) {
+      if (inputLine.length() < maxLength)       response.append(inputLine);
+      i++;
+      if (i >= maxLength)       break;
+    }
+    in.close();
+    return response.toString();
+  }
+  return null;
+}

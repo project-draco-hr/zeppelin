@@ -1,0 +1,32 @@
+{
+  logger.info("Run File command '" + cmd + "'");
+  args=new CommandArgs(cmd);
+  args.parseArgs();
+  if (args.command == null) {
+    logger.info("Error: No command");
+    return new InterpreterResult(Code.ERROR,Type.TEXT,"No command");
+  }
+  if (args.command.equals("cd")) {
+    String newPath=!args.args.isEmpty() ? getNewPath(args.args.get(0)) : currentDir;
+    if (!isDirectory(newPath))     return new InterpreterResult(Code.ERROR,Type.TEXT,newPath + ": No such directory");
+    currentDir=newPath;
+    return new InterpreterResult(Code.SUCCESS,Type.TEXT,"OK");
+  }
+ else   if (args.command.equals("ls")) {
+    String newPath=!args.args.isEmpty() ? getNewPath(args.args.get(0)) : currentDir;
+    try {
+      String results=listAll(newPath);
+      return new InterpreterResult(Code.SUCCESS,Type.TEXT,results);
+    }
+ catch (    Exception e) {
+      logger.error("Error listing files in path " + newPath,e);
+      return new InterpreterResult(Code.ERROR,Type.TEXT,e.getMessage());
+    }
+  }
+ else   if (args.command.equals("pwd")) {
+    return new InterpreterResult(Code.SUCCESS,Type.TEXT,currentDir);
+  }
+ else {
+    return new InterpreterResult(Code.ERROR,Type.TEXT,"Unknown command");
+  }
+}

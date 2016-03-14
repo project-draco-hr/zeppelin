@@ -1,0 +1,8 @@
+{
+  if (input == null)   return;
+  StringTokenizer st=new StringTokenizer(input);
+  if (st.hasMoreTokens()) {
+    command=st.nextToken();
+    while (st.hasMoreTokens())     parseArg(st.nextToken());
+  }
+}
