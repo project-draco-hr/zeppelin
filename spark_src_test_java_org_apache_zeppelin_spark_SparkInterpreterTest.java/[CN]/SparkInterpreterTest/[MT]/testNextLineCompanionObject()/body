@@ -1,0 +1,4 @@
+{
+  String code="class Counter {\nvar value: Long = 0\n}\n // comment\n\n object Counter {\n def apply(x: Long) = new Counter()\n}";
+  assertEquals(InterpreterResult.Code.SUCCESS,repl.interpret(code,context).code());
+}
