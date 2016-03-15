@@ -1,10 +1,10 @@
 {
   Properties p=new Properties();
   intpGroup.put("note",new LinkedList<Interpreter>());
-  RemoteInterpreter intpA=new RemoteInterpreter(p,"note",MockInterpreterA.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+  RemoteInterpreter intpA=new RemoteInterpreter(p,"note",MockInterpreterA.class.getName(),new File(INTERPRETER_SCRIPT).getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
   intpGroup.get("note").add(intpA);
   intpA.setInterpreterGroup(intpGroup);
-  RemoteInterpreter intpB=new RemoteInterpreter(p,"note",MockInterpreterB.class.getName(),new File("../bin/interpreter.sh").getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
+  RemoteInterpreter intpB=new RemoteInterpreter(p,"note",MockInterpreterB.class.getName(),new File(INTERPRETER_SCRIPT).getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,null);
   intpGroup.get("note").add(intpB);
   intpB.setInterpreterGroup(intpGroup);
   intpA.open();

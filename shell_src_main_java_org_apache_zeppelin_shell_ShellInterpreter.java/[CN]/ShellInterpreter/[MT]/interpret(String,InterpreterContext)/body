@@ -1,10 +1,12 @@
 {
   logger.debug("Run shell command '" + cmd + "'");
-  CommandLine cmdLine=CommandLine.parse("bash");
-  cmdLine.addArgument("-c",false);
+  CommandLine cmdLine=CommandLine.parse(shell);
+  if (isWindows) {
+    String[] lines=StringUtils.split(cmd,"\n");
+    cmd=StringUtils.join(lines," && ");
+  }
   cmdLine.addArgument(cmd,false);
   DefaultExecutor executor=new DefaultExecutor();
-  ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
   ByteArrayOutputStream errorStream=new ByteArrayOutputStream();
   executor.setStreamHandler(new PumpStreamHandler(contextInterpreter.out,errorStream));
   executor.setWatchdog(new ExecuteWatchdog(commandTimeOut));
