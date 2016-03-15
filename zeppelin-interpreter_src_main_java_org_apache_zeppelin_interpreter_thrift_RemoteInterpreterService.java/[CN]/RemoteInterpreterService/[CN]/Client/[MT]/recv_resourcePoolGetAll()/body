@@ -1,0 +1,8 @@
+{
+  resourcePoolGetAll_result result=new resourcePoolGetAll_result();
+  receiveBase(result,"resourcePoolGetAll");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"resourcePoolGetAll failed: unknown result");
+}

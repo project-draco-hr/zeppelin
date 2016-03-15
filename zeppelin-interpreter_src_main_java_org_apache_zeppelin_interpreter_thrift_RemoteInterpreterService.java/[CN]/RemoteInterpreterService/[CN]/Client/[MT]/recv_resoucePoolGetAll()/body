@@ -1,8 +1,0 @@
-{
-  resoucePoolGetAll_result result=new resoucePoolGetAll_result();
-  receiveBase(result,"resoucePoolGetAll");
-  if (result.isSetSuccess()) {
-    return result.success;
-  }
-  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"resoucePoolGetAll failed: unknown result");
-}

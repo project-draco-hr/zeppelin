@@ -1,0 +1,4 @@
+{
+  resourcePoolGetAll_args args=new resourcePoolGetAll_args();
+  sendBase("resourcePoolGetAll",args);
+}

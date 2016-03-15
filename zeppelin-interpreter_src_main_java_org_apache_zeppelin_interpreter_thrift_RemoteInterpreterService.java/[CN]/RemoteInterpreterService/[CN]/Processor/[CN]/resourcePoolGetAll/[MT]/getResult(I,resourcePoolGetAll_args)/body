@@ -1,0 +1,5 @@
+{
+  resourcePoolGetAll_result result=new resourcePoolGetAll_result();
+  result.success=iface.resourcePoolGetAll();
+  return result;
+}

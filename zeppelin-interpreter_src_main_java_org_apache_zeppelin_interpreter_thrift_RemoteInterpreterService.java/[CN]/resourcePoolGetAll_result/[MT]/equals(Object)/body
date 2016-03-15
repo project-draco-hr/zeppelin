@@ -1,0 +1,5 @@
+{
+  if (that == null)   return false;
+  if (that instanceof resourcePoolGetAll_result)   return this.equals((resourcePoolGetAll_result)that);
+  return false;
+}

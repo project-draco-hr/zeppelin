@@ -12,7 +12,7 @@
   processMap.put("getEvent",new getEvent());
   processMap.put("resourcePoolResponseGetAll",new resourcePoolResponseGetAll());
   processMap.put("resourceResponseGet",new resourceResponseGet());
-  processMap.put("resoucePoolGetAll",new resoucePoolGetAll());
+  processMap.put("resourcePoolGetAll",new resourcePoolGetAll());
   processMap.put("resourceGet",new resourceGet());
   processMap.put("resourceRemove",new resourceRemove());
   processMap.put("angularObjectUpdate",new angularObjectUpdate());
