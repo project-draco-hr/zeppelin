@@ -86,6 +86,9 @@ break;
 case ANGULAR_OBJECT_CLIENT_BIND:
 angularObjectClientBind(conn,userAndRoles,notebook,messagereceived);
 break;
+case ANGULAR_OBJECT_CLIENT_UNBIND:
+angularObjectClientUnbind(conn,userAndRoles,notebook,messagereceived);
+break;
 case LIST_CONFIGURATIONS:
 sendAllConfigurations(conn,userAndRoles,notebook);
 break;
