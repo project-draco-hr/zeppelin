@@ -3,9 +3,8 @@
     return;
   }
   try {
-    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-    paragraph1Editor.sendKeys(PERCENTAGE + "sql" + ENTER+ "select * from bank limit 1");
-    paragraph1Editor.sendKeys(SHIFT_ENTER);
+    setTextOfParagraph(1,"%sql\\n" + "select * from bank limit 1");
+    runParagraph(1);
     try {
       waitForParagraph(1,"FINISHED");
     }

@@ -1,0 +1,9 @@
+{
+  String editorId=driver.findElement(By.xpath(getParagraphXPath(paragraphNo) + "//div[contains(@class, 'editor')]")).getAttribute("id");
+  if (driver instanceof JavascriptExecutor) {
+    ((JavascriptExecutor)driver).executeScript("ace.edit('" + editorId + "'). setValue('"+ text+ "')");
+  }
+ else {
+    throw new IllegalStateException("This driver does not support JavaScript!");
+  }
+}

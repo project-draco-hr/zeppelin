@@ -15,11 +15,11 @@
     driver.navigate().back();
     createNewNote();
     waitForParagraph(1,"READY");
-    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-    paragraph1Editor.sendKeys("import org.apache.commons.csv.CSVFormat");
-    paragraph1Editor.sendKeys(Keys.chord(Keys.SHIFT,Keys.ENTER));
+    setTextOfParagraph(1,"import org.apache.commons.csv.CSVFormat");
+    runParagraph(1);
     waitForParagraph(1,"FINISHED");
-    assertTrue(waitForText("import org.apache.commons.csv.CSVFormat",By.xpath(getParagraphXPath(1) + "//div[starts-with(@id, 'p') and contains(@id, 'text')]/div")));
+    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]"));
+    collector.checkThat("Paragraph from ZeppelinIT of testSparkInterpreterDependencyLoading result: ",paragraph1Result.getText().toString(),CoreMatchers.containsString("import org.apache.commons.csv.CSVFormat"));
     deleteTestNotebook(driver);
     sleep(1000,true);
     interpreterLink.click();

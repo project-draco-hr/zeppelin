@@ -1,0 +1,3 @@
+{
+  driver.findElement(By.xpath(getParagraphXPath(paragraphNo) + "//span[@class='icon-control-play']")).click();
+}

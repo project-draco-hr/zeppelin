@@ -59,6 +59,7 @@
   }
   long start=System.currentTimeMillis();
   boolean loaded=false;
+  driver.manage().timeouts().implicitlyWait(AbstractZeppelinIT.MAX_IMPLICIT_WAIT,TimeUnit.SECONDS);
   driver.get(url);
   while (System.currentTimeMillis() - start < 60 * 1000) {
     try {

@@ -3,9 +3,8 @@
     return;
   }
   try {
-    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-    paragraph1Editor.sendKeys(PERCENTAGE + "pyspark" + ENTER+ "for x in range"+ OPEN_PARENTHESIS+ "0, 3):"+ ENTER+ "    print \"test loop "+ PERCENTAGE+ "d\" "+ PERCENTAGE+ " "+ OPEN_PARENTHESIS+ "x)"+ ENTER);
-    paragraph1Editor.sendKeys(SHIFT_ENTER);
+    setTextOfParagraph(1,"%pyspark\\n" + "for x in range(0, 3):\\n" + "    print \"test loop %d\" % (x)");
+    runParagraph(1);
     try {
       waitForParagraph(1,"FINISHED");
     }

@@ -6,8 +6,7 @@
     createNewNote();
     waitForParagraph(1,"READY");
     String xpathToOutputField=getParagraphXPath(1) + "//div[contains(@ng-if,'getResultType()')]";
-    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-    paragraph1Editor.sendKeys("println" + Keys.chord(Keys.SHIFT,"9") + "\""+ "abcd\")");
+    setTextOfParagraph(1,"println (\"abcd\")");
     collector.checkThat("Before Run Output field contains ",driver.findElement(By.xpath(xpathToOutputField)).getText(),CoreMatchers.equalTo(""));
     driver.findElement(By.xpath(getParagraphXPath(1) + "//span[@ng-click='runParagraph(getEditorValue())']")).click();
     waitForParagraph(1,"FINISHED");

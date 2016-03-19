@@ -5,8 +5,7 @@
   try {
     createNewNote();
     waitForParagraph(1,"READY");
-    WebElement paragraph1Editor=driver.findElement(By.xpath(getParagraphXPath(1) + "//textarea"));
-    paragraph1Editor.sendKeys("println" + Keys.chord(Keys.SHIFT,"9") + "\""+ "abcd\")");
+    setTextOfParagraph(1,"println (\"abcd\")");
     driver.findElement(By.xpath(getParagraphXPath(1) + "//span[@class='icon-settings']")).click();
     driver.findElement(By.xpath(getParagraphXPath(1) + "//ul/li/a[@ng-click='toggleEnableDisable()']")).click();
     collector.checkThat("The play button class was ",driver.findElement(By.xpath(getParagraphXPath(1) + "//span[@class='icon-control-play']")).isDisplayed(),CoreMatchers.equalTo(false));
