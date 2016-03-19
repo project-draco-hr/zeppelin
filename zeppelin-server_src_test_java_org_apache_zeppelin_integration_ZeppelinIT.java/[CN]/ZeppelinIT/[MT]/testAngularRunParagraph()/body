@@ -1,0 +1,31 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    createNewNote();
+    waitForParagraph(1,"READY");
+    setTextOfParagraph(1,"%angular <div id=\\'angularRunParagraph\\'>Run second paragraph</div>");
+    runParagraph(1);
+    waitForParagraph(1,"FINISHED");
+    waitForText("Run second paragraph",By.xpath(getParagraphXPath(1) + "//div[@id=\"angularRunParagraph\"]"));
+    setTextOfParagraph(2,"%sh echo TEST");
+    runParagraph(2);
+    waitForParagraph(2,"FINISHED");
+    final String secondParagraphId=driver.findElement(By.xpath(getParagraphXPath(2) + "//div[@class=\"control ng-scope\"]//ul[@class=\"dropdown-menu\"]/li[1]")).getAttribute("textContent");
+    assertTrue("Cannot find paragraph id for the 2nd paragraph",isNotBlank(secondParagraphId));
+    setTextOfParagraph(1,"%angular <div id=\\'angularRunParagraph\\' ng-click=\\'z.runParagraph(\"" + secondParagraphId.trim() + "\")\\'>Run second paragraph</div>");
+    runParagraph(1);
+    waitForParagraph(1,"FINISHED");
+    setTextOfParagraph(2,"%sh echo NEW_VALUE");
+    driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@id=\"angularRunParagraph\"]")).click();
+    waitForParagraph(2,"FINISHED");
+    waitForText("NEW_VALUE",By.xpath(getParagraphXPath(2) + "//div[contains(@id,\"_text\") and @class=\"text\"]"));
+    deleteTestNotebook(driver);
+    sleep(1000,true);
+    LOG.info("testAngularRunParagraph Test executed");
+  }
+ catch (  Exception e) {
+    handleException("Exception in ZeppelinIT while testAngularRunParagraph",e);
+  }
+}
