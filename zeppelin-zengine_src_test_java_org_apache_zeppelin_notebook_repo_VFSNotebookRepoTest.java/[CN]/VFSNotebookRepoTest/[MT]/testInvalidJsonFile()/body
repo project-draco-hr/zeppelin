@@ -1,0 +1,7 @@
+{
+  int numNotes=notebookRepo.list().size();
+  File testNoteDir=new File(mainNotebookDir,"test");
+  testNoteDir.mkdir();
+  FileUtils.writeStringToFile(new File(testNoteDir,"note.json"),"");
+  assertEquals(numNotes,notebookRepo.list().size());
+}

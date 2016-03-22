@@ -14,7 +14,7 @@
               infos.add(info);
             }
           }
- catch (          IOException e) {
+ catch (          Exception e) {
             LOG.error("Can't read note ",e);
           }
         }
