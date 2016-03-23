@@ -1,5 +1,7 @@
 {
   this.conf=conf;
-  user=conf.getUser();
   bucketName=conf.getBucketName();
+  endpoint=conf.getEndpoint();
+  user=conf.getUser();
+  s3client.setEndpoint(endpoint);
 }
