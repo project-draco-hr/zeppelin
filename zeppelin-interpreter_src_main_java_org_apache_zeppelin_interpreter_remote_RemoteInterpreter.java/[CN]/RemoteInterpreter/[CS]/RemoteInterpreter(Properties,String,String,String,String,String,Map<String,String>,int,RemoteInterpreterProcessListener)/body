@@ -5,6 +5,7 @@
   this.interpreterRunner=interpreterRunner;
   this.interpreterPath=interpreterPath;
   this.localRepoPath=localRepoPath;
+  env.putAll(getEnvFromInterpreterProperty(property));
   this.env=env;
   this.connectTimeout=connectTimeout;
   this.maxPoolSize=10;

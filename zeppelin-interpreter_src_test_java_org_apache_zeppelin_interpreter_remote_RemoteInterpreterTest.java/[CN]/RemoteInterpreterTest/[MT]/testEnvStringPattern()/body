@@ -1,0 +1,9 @@
+{
+  assertFalse(RemoteInterpreter.isEnvString(null));
+  assertFalse(RemoteInterpreter.isEnvString(""));
+  assertFalse(RemoteInterpreter.isEnvString("abcDEF"));
+  assertFalse(RemoteInterpreter.isEnvString("ABC-DEF"));
+  assertTrue(RemoteInterpreter.isEnvString("ABCDEF"));
+  assertTrue(RemoteInterpreter.isEnvString("ABC_DEF"));
+  assertTrue(RemoteInterpreter.isEnvString("ABC_DEF123"));
+}
