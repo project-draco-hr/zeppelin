@@ -1,0 +1,5 @@
+{
+  String version=Util.getVersion();
+  assertNotNull(version);
+  System.out.println(version);
+}
