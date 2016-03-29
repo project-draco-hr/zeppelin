@@ -1,0 +1,37 @@
+{
+  JsonResponse response=null;
+  Subject currentUser=org.apache.shiro.SecurityUtils.getSubject();
+  if (!currentUser.isAuthenticated()) {
+    try {
+      UsernamePasswordToken token=new UsernamePasswordToken(userName,password);
+      currentUser.login(token);
+      HashSet<String> roles=SecurityUtils.getRoles();
+      String principal=SecurityUtils.getPrincipal();
+      String ticket;
+      if ("anonymous".equals(principal))       ticket="anonymous";
+ else       ticket=TicketContainer.instance.getTicket(principal);
+      Map<String,String> data=new HashMap<>();
+      data.put("principal",principal);
+      data.put("roles",roles.toString());
+      data.put("ticket",ticket);
+      response=new JsonResponse(Response.Status.OK,"",data);
+    }
+ catch (    UnknownAccountException uae) {
+      LOG.error("Exception in login: ",uae);
+    }
+catch (    IncorrectCredentialsException ice) {
+      LOG.error("Exception in login: ",ice);
+    }
+catch (    LockedAccountException lae) {
+      LOG.error("Exception in login: ",lae);
+    }
+catch (    AuthenticationException ae) {
+      LOG.error("Exception in login: ",ae);
+    }
+  }
+  if (response == null) {
+    response=new JsonResponse(Response.Status.FORBIDDEN,"","");
+  }
+  LOG.warn(response.toString());
+  return response.build();
+}
