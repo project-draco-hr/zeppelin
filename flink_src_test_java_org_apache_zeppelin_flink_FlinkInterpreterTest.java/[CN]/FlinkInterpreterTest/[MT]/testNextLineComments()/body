@@ -1,0 +1,3 @@
+{
+  assertEquals(InterpreterResult.Code.SUCCESS,flink.interpret("\"123\"\n/*comment here\n*/.toInt",context).code());
+}

@@ -1,4 +1,0 @@
-{
-  InterpreterResult result=flink.interpret("\"123\"\n  .toInt",context);
-  assertEquals("res0: Int = 123\n",result.message());
-}
