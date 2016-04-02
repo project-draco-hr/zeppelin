@@ -9,5 +9,5 @@
   }
   ScalaCompleter c=completor.completer();
   Candidates ret=c.complete(completionText,cursor);
-  return scala.collection.JavaConversions.asJavaList(ret.candidates());
+  return scala.collection.JavaConversions.seqAsJavaList(ret.candidates());
 }

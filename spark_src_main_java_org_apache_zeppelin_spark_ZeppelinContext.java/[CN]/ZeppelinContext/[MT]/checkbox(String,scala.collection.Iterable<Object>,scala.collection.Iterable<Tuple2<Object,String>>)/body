@@ -1,3 +1,3 @@
 {
-  return asScalaIterable(gui.checkbox(name,asJavaCollection(defaultChecked),tuplesToParamOptions(options)));
+  return collectionAsScalaIterable(gui.checkbox(name,asJavaCollection(defaultChecked),tuplesToParamOptions(options)));
 }

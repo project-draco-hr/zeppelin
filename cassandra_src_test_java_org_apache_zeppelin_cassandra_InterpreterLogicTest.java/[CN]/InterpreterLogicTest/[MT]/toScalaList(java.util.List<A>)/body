@@ -1,3 +1,3 @@
 {
-  return scala.collection.JavaConversions.asScalaIterable(list).toList();
+  return scala.collection.JavaConversions.collectionAsScalaIterable(list).toList();
 }

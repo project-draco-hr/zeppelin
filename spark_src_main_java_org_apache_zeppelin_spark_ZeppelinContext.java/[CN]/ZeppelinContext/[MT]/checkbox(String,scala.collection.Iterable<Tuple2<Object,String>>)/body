@@ -3,5 +3,5 @@
   for (  Tuple2<Object,String> option : asJavaIterable(options)) {
     allChecked.add(option._1());
   }
-  return checkbox(name,asScalaIterable(allChecked),options);
+  return checkbox(name,collectionAsScalaIterable(allChecked),options);
 }
