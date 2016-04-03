@@ -13,6 +13,8 @@
  else   if (repl.getFormType() == FormType.SIMPLE) {
     String scriptBody=getScriptBody();
     Map<String,Input> inputs=Input.extractSimpleQueryParam(scriptBody);
+    final AngularObjectRegistry angularRegistry=repl.getInterpreterGroup().getAngularObjectRegistry();
+    scriptBody=extractVariablesFromAngularRegistry(scriptBody,inputs,angularRegistry);
     settings.setForms(inputs);
     script=Input.getSimpleQuery(settings.getParams(),scriptBody);
   }

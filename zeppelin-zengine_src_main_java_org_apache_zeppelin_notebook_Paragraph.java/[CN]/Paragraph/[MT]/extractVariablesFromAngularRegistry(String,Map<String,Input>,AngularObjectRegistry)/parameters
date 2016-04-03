@@ -1,0 +1,3 @@
+String scriptBody
+Map<String,Input> inputs
+AngularObjectRegistry angularRegistry
