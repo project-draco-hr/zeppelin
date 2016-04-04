@@ -1,0 +1,6 @@
+{
+  this.rCmdPath=rCmdPath;
+  this.libPath=libPath;
+  this.port=sparkRBackendPort;
+  scriptPath=System.getProperty("java.io.tmpdir") + "/zeppelin_sparkr.R";
+}

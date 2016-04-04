@@ -1,0 +1,6 @@
+{
+synchronized (rScriptInitializeNotifier) {
+    rScriptInitialized=true;
+    rScriptInitializeNotifier.notifyAll();
+  }
+}

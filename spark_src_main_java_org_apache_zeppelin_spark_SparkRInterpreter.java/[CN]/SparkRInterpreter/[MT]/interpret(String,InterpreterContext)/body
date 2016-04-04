@@ -1,0 +1,44 @@
+{
+  String imageWidth=getProperty("zeppelin.R.image.width");
+  String[] sl=lines.split("\n");
+  if (sl[0].contains("{") && sl[0].contains("}")) {
+    String jsonConfig=sl[0].substring(sl[0].indexOf("{"),sl[0].indexOf("}") + 1);
+    ObjectMapper m=new ObjectMapper();
+    try {
+      JsonNode rootNode=m.readTree(jsonConfig);
+      JsonNode imageWidthNode=rootNode.path("imageWidth");
+      if (!imageWidthNode.isMissingNode())       imageWidth=imageWidthNode.textValue();
+    }
+ catch (    Exception e) {
+      logger.warn("Can not parse json config: " + jsonConfig,e);
+    }
+ finally {
+      lines=lines.replace(jsonConfig,"");
+    }
+  }
+  try {
+    if (useKnitr()) {
+      zeppelinR.setInterpreterOutput(null);
+      zeppelinR.set(".zcmd","\n```{r " + renderOptions + "}\n"+ lines+ "\n```");
+      zeppelinR.eval(".zres <- knit2html(text=.zcmd)");
+      String html=zeppelinR.getS0(".zres");
+      RDisplay rDisplay=render(html,imageWidth);
+      return new InterpreterResult(rDisplay.code(),rDisplay.type(),rDisplay.content());
+    }
+ else {
+      zeppelinR.setInterpreterOutput(interpreterContext.out);
+      zeppelinR.eval(lines);
+      return new InterpreterResult(InterpreterResult.Code.SUCCESS,"");
+    }
+  }
+ catch (  Exception e) {
+    logger.error("Exception while connecting to R",e);
+    return new InterpreterResult(InterpreterResult.Code.ERROR,e.getMessage());
+  }
+ finally {
+    try {
+    }
+ catch (    Exception e) {
+    }
+  }
+}

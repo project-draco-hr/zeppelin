@@ -1,0 +1,31 @@
+{
+  if (!rScriptRunning) {
+    throw new RuntimeException("r repl is not running");
+  }
+  if (!rScriptInitialized) {
+    waitForRScriptInitialized();
+  }
+  rResponseValue=null;
+synchronized (rRequestNotifier) {
+    rRequestNotifier.notify();
+  }
+  Object respValue=null;
+synchronized (rResponseNotifier) {
+    while (rResponseValue == null && rScriptRunning) {
+      try {
+        rResponseNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+    respValue=rResponseValue;
+    rResponseValue=null;
+  }
+  if (rResponseError) {
+    throw new RuntimeException(respValue.toString());
+  }
+ else {
+    return respValue;
+  }
+}

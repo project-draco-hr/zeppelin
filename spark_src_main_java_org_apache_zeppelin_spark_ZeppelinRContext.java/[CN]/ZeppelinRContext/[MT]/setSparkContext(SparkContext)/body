@@ -1,0 +1,3 @@
+{
+  ZeppelinRContext.sparkContext=sparkContext;
+}

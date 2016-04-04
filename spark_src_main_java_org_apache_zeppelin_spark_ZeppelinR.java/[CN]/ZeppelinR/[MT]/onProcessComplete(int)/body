@@ -1,0 +1,4 @@
+{
+  logger.info("process complete {}",i);
+  rScriptRunning=false;
+}

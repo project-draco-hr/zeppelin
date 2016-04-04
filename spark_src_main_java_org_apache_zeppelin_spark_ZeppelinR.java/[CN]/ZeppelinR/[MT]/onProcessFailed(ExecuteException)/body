@@ -1,0 +1,4 @@
+{
+  logger.error(e.getMessage(),e);
+  rScriptRunning=false;
+}

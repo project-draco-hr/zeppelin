@@ -1,0 +1,5 @@
+{
+  executor.getWatchdog().destroyProcess();
+  new File(scriptPath).delete();
+  zeppelinR.remove(hashCode());
+}

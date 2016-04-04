@@ -1,0 +1,7 @@
+{
+synchronized (rResponseNotifier) {
+    rResponseValue=value;
+    rResponseError=error;
+    rResponseNotifier.notify();
+  }
+}

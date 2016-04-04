@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    rRequestObject=new Request("set",key,value);
+    request();
+  }
+}

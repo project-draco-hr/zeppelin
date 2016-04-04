@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    rRequestObject=new Request("eval",expr,null);
+    return request();
+  }
+}

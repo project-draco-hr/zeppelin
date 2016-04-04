@@ -1,0 +1,6 @@
+{
+synchronized (this) {
+    rRequestObject=new Request("getS",key,null);
+    return (String)request();
+  }
+}

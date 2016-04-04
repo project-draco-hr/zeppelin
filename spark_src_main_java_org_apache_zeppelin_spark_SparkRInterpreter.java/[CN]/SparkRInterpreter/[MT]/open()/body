@@ -1,0 +1,34 @@
+{
+  String rCmdPath=getProperty("zeppelin.R.cmd");
+  String sparkRLibPath;
+  if (System.getenv("SPARK_HOME") != null) {
+    sparkRLibPath=System.getenv("SPARK_HOME") + "/R/lib";
+  }
+ else {
+    sparkRLibPath=System.getenv("ZEPPELIN_HOME") + "/interpreter/spark/R/lib";
+    System.setProperty("spark.test.home",System.getenv("ZEPPELIN_HOME") + "/interpreter/spark");
+  }
+synchronized (SparkRBackend.backend()) {
+    if (!SparkRBackend.isStarted()) {
+      SparkRBackend.init();
+      SparkRBackend.start();
+    }
+  }
+  int port=SparkRBackend.port();
+  SparkInterpreter sparkInterpreter=getSparkInterpreter();
+  ZeppelinRContext.setSparkContext(sparkInterpreter.getSparkContext());
+  ZeppelinRContext.setSqlContext(sparkInterpreter.getSQLContext());
+  ZeppelinRContext.setZepplinContext(sparkInterpreter.getZeppelinContext());
+  zeppelinR=new ZeppelinR(rCmdPath,sparkRLibPath,port);
+  try {
+    zeppelinR.open();
+  }
+ catch (  IOException e) {
+    logger.error("Exception while opening SparkRInterpreter",e);
+    throw new InterpreterException(e);
+  }
+  if (useKnitr()) {
+    zeppelinR.eval("library('knitr')");
+  }
+  renderOptions=getProperty("zeppelin.R.render.options");
+}

@@ -26,6 +26,7 @@
       sparkIntpSetting.getProperties().setProperty("master","spark://" + getHostname() + ":7071");
       sparkIntpSetting.getProperties().setProperty("spark.home",getSparkHome());
       pySpark=true;
+      sparkR=true;
       ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
     }
  else {
@@ -39,6 +40,7 @@
       if (sparkHome != null) {
         sparkIntpSetting.getProperties().setProperty("spark.home",sparkHome);
         pySpark=true;
+        sparkR=true;
       }
       ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
     }

@@ -1,0 +1,16 @@
+{
+  ClassLoader classLoader=getClass().getClassLoader();
+  File out=new File(scriptPath);
+  if (out.exists() && out.isDirectory()) {
+    throw new InterpreterException("Can't create r script " + out.getAbsolutePath());
+  }
+  try {
+    FileOutputStream outStream=new FileOutputStream(out);
+    IOUtils.copy(classLoader.getResourceAsStream("R/zeppelin_sparkr.R"),outStream);
+    outStream.close();
+  }
+ catch (  IOException e) {
+    throw new InterpreterException(e);
+  }
+  logger.info("File {} created",scriptPath);
+}

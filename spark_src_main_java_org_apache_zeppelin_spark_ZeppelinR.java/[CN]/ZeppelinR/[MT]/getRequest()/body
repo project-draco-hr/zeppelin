@@ -1,0 +1,15 @@
+{
+synchronized (rRequestNotifier) {
+    while (rRequestObject == null) {
+      try {
+        rRequestNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+    Request req=rRequestObject;
+    rRequestObject=null;
+    return req;
+  }
+}

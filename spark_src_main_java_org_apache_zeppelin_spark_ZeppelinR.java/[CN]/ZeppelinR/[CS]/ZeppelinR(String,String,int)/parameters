@@ -1,0 +1,3 @@
+String rCmdPath
+String libPath
+int sparkRBackendPort

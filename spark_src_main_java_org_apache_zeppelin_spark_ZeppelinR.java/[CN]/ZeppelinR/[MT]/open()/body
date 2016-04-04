@@ -1,0 +1,33 @@
+{
+  createRScript();
+  zeppelinR.put(hashCode(),this);
+  CommandLine cmd=CommandLine.parse(rCmdPath);
+  cmd.addArgument("--no-save");
+  cmd.addArgument("--no-restore");
+  cmd.addArgument("-f");
+  cmd.addArgument(scriptPath);
+  cmd.addArgument("--args");
+  cmd.addArgument(Integer.toString(hashCode()));
+  cmd.addArgument(Integer.toString(port));
+  cmd.addArgument(libPath);
+  executor=new DefaultExecutor();
+  outputStream=new SparkOutputStream();
+  input=new PipedOutputStream();
+  PipedInputStream in=new PipedInputStream(input);
+  PumpStreamHandler streamHandler=new PumpStreamHandler(outputStream,outputStream,in);
+  executor.setWatchdog(new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT));
+  executor.setStreamHandler(streamHandler);
+  Map env=EnvironmentUtils.getProcEnvironment();
+  initialOutput=new InterpreterOutput(new InterpreterOutputListener(){
+    @Override public void onAppend(    InterpreterOutput out,    byte[] line){
+      logger.debug(new String(line));
+    }
+    @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
+    }
+  }
+);
+  outputStream.setInterpreterOutput(initialOutput);
+  executor.execute(cmd,env,this);
+  rScriptRunning=true;
+  eval("cat('')");
+}

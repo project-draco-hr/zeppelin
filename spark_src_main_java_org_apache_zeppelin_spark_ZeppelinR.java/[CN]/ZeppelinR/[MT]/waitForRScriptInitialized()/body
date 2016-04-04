@@ -1,0 +1,24 @@
+{
+synchronized (rScriptInitializeNotifier) {
+    long startTime=System.nanoTime();
+    while (rScriptInitialized == false && rScriptRunning && System.nanoTime() - startTime < 10L * 1000 * 1000000) {
+      try {
+        rScriptInitializeNotifier.wait(1000);
+      }
+ catch (      InterruptedException e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+  }
+  String errorMessage="";
+  try {
+    initialOutput.flush();
+    errorMessage=new String(initialOutput.toByteArray());
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  if (rScriptInitialized == false) {
+    throw new InterpreterException("sparkr is not responding " + errorMessage);
+  }
+}

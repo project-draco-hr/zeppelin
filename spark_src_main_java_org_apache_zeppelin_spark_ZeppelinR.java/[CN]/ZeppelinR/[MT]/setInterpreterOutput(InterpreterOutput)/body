@@ -1,0 +1,3 @@
+{
+  outputStream.setInterpreterOutput(out);
+}

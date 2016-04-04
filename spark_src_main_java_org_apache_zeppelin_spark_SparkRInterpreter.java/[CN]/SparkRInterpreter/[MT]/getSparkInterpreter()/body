@@ -1,0 +1,16 @@
+{
+  LazyOpenInterpreter lazy=null;
+  SparkInterpreter spark=null;
+  Interpreter p=getInterpreterInTheSameSessionByClassName(SparkInterpreter.class.getName());
+  while (p instanceof WrappedInterpreter) {
+    if (p instanceof LazyOpenInterpreter) {
+      lazy=(LazyOpenInterpreter)p;
+    }
+    p=((WrappedInterpreter)p).getInnerInterpreter();
+  }
+  spark=(SparkInterpreter)p;
+  if (lazy != null) {
+    lazy.open();
+  }
+  return spark;
+}
