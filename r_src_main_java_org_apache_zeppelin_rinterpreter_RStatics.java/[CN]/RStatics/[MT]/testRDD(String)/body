@@ -1,0 +1,4 @@
+{
+  Object x=z.get(name);
+  return (x instanceof org.apache.spark.api.java.JavaRDD);
+}

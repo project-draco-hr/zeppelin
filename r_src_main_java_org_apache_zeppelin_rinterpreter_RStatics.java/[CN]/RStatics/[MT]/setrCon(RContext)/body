@@ -1,0 +1,4 @@
+{
+  rCon=newrCon;
+  return rCon;
+}

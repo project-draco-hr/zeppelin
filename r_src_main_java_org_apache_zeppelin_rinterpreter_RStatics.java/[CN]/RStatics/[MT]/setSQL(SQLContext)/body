@@ -1,0 +1,4 @@
+{
+  sql=newSQL;
+  return sql;
+}

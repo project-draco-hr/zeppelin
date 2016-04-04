@@ -1,5 +1,6 @@
 {
   Note note=ZeppelinServer.notebook.createNote();
+  note.setName("note");
   int sparkVersion=getSparkVersionNumber(note);
   if (isPyspark() && sparkVersion >= 12) {
     Paragraph p=note.addParagraph();

@@ -1,0 +1,4 @@
+{
+  super.setProperty(property);
+  intp.setProperty(property);
+}
