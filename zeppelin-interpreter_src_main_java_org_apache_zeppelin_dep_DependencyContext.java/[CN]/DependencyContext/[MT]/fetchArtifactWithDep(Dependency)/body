@@ -1,6 +1,6 @@
 {
   Artifact artifact=new DefaultArtifact(dep.getGroupArtifactVersion());
-  DependencyFilter classpathFlter=DependencyFilterUtils.classpathFilter(JavaScopes.COMPILE);
+  DependencyFilter classpathFilter=DependencyFilterUtils.classpathFilter(JavaScopes.COMPILE);
   PatternExclusionsDependencyFilter exclusionFilter=new PatternExclusionsDependencyFilter(dep.getExclusions());
   CollectRequest collectRequest=new CollectRequest();
   collectRequest.setRoot(new org.sonatype.aether.graph.Dependency(artifact,JavaScopes.COMPILE));
@@ -11,6 +11,6 @@
     rr.setPolicy(repo.isSnapshot(),null);
     collectRequest.addRepository(rr);
   }
-  DependencyRequest dependencyRequest=new DependencyRequest(collectRequest,DependencyFilterUtils.andFilter(exclusionFilter,classpathFlter));
+  DependencyRequest dependencyRequest=new DependencyRequest(collectRequest,DependencyFilterUtils.andFilter(exclusionFilter,classpathFilter));
   return system.resolveDependencies(session,dependencyRequest).getArtifactResults();
 }
