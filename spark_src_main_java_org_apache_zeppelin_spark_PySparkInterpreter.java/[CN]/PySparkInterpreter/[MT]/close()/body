@@ -1,4 +1,5 @@
 {
   executor.getWatchdog().destroyProcess();
+  new File(scriptPath).delete();
   gatewayServer.shutdown();
 }
