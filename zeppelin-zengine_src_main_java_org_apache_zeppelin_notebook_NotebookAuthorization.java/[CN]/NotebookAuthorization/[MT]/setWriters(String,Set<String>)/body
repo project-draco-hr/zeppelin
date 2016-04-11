@@ -13,6 +13,7 @@
       noteAuthInfo.put("writers",new LinkedHashSet(entities));
     }
  else {
+      existingEntities.clear();
       existingEntities.addAll(entities);
     }
   }

@@ -13,6 +13,7 @@
       noteAuthInfo.put("owners",new LinkedHashSet(entities));
     }
  else {
+      existingEntities.clear();
       existingEntities.addAll(entities);
     }
   }
