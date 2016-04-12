@@ -2,6 +2,7 @@
   this.jobName=jobName;
   this.listener=listener;
   this.progressUpdateIntervalMs=progressUpdateIntervalMs;
+  dateCreated=new Date();
   id=jobId;
   setStatus(Status.READY);
 }

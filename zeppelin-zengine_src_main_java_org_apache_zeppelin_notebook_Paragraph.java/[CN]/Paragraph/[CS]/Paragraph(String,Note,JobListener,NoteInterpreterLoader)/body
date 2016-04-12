@@ -1,0 +1,11 @@
+{
+  super(paragraphId,generateId(),listener);
+  this.note=note;
+  this.replLoader=replLoader;
+  title=null;
+  text=null;
+  authenticationInfo=null;
+  dateUpdated=null;
+  settings=new GUI();
+  config=new HashMap<String,Object>();
+}

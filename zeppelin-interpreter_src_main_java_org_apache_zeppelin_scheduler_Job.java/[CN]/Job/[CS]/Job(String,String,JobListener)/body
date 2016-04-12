@@ -1,0 +1,3 @@
+{
+  this(jobId,jobName,listener,JobProgressPoller.DEFAULT_INTERVAL_MSEC);
+}
