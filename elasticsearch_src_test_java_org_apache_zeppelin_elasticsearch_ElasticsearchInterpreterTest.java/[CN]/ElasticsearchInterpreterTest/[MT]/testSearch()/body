@@ -7,4 +7,6 @@
   assertEquals(Code.SUCCESS,res.code());
   res=interpreter.interpret("search /logs status:404",null);
   assertEquals(Code.SUCCESS,res.code());
+  res=interpreter.interpret("search /logs { \"fields\": [ \"date\", \"request.headers\" ], \"query\": { \"match\": { \"status\": 500 } } }",null);
+  assertEquals(Code.SUCCESS,res.code());
 }

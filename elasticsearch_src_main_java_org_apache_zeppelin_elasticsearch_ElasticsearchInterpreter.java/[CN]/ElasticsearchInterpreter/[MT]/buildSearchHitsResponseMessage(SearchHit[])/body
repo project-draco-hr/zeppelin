@@ -2,11 +2,30 @@
   if (hits == null || hits.length == 0) {
     return "";
   }
+  final Map<String,Object> hitFields=new HashMap<>();
   final List<Map<String,Object>> flattenHits=new LinkedList<>();
   final Set<String> keys=new TreeSet<>();
   for (  SearchHit hit : hits) {
-    final String json=hit.getSourceAsString();
-    final Map<String,Object> flattenMap=JsonFlattener.flattenAsMap(json);
+    String json=hit.getSourceAsString();
+    if (json == null) {
+      hitFields.clear();
+      for (      SearchHitField hitField : hit.getFields().values()) {
+        hitFields.put(hitField.getName(),hitField.getValues());
+      }
+      json=gson.toJson(hitFields);
+    }
+    final Map<String,Object> flattenJsonMap=JsonFlattener.flattenAsMap(json);
+    final Map<String,Object> flattenMap=new HashMap<>();
+    for (Iterator<String> iter=flattenJsonMap.keySet().iterator(); iter.hasNext(); ) {
+      final String fieldName=iter.next();
+      final Matcher fieldNameMatcher=FIELD_NAME_PATTERN.matcher(fieldName);
+      if (fieldNameMatcher.matches()) {
+        flattenMap.put(fieldNameMatcher.group(1) + fieldNameMatcher.group(2),flattenJsonMap.get(fieldName));
+      }
+ else {
+        flattenMap.put(fieldName,flattenJsonMap.get(fieldName));
+      }
+    }
     flattenHits.add(flattenMap);
     for (    String key : flattenMap.keySet()) {
       keys.add(key);
