@@ -1,0 +1,3 @@
+{
+  factory.setCreator(new NotebookWebSocketCreator(this));
+}

@@ -1,10 +1,10 @@
 {
   SslContextFactory sslContextFactory=new SslContextFactory();
-  sslContextFactory.setKeyStore(conf.getKeyStorePath());
+  sslContextFactory.setKeyStorePath(conf.getKeyStorePath());
   sslContextFactory.setKeyStoreType(conf.getKeyStoreType());
   sslContextFactory.setKeyStorePassword(conf.getKeyStorePassword());
   sslContextFactory.setKeyManagerPassword(conf.getKeyManagerPassword());
-  sslContextFactory.setTrustStore(conf.getTrustStorePath());
+  sslContextFactory.setTrustStorePath(conf.getTrustStorePath());
   sslContextFactory.setTrustStoreType(conf.getTrustStoreType());
   sslContextFactory.setTrustStorePassword(conf.getTrustStorePassword());
   sslContextFactory.setNeedClientAuth(conf.useClientAuth());

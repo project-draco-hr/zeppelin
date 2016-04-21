@@ -14,5 +14,6 @@
     webApp.setTempDirectory(warTempDirectory);
   }
   webApp.addServlet(new ServletHolder(new DefaultServlet()),"/*");
+  contexts.addHandler(webApp);
   return webApp;
 }

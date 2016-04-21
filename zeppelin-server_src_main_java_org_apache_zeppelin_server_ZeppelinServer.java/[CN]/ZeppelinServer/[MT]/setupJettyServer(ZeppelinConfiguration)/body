@@ -1,17 +1,24 @@
 {
-  AbstractConnector connector;
+  final Server server=new Server();
+  ServerConnector connector;
   if (conf.useSsl()) {
-    connector=new SslSelectChannelConnector(getSslContextFactory(conf));
+    HttpConfiguration httpConfig=new HttpConfiguration();
+    httpConfig.setSecureScheme("https");
+    httpConfig.setSecurePort(conf.getServerPort());
+    httpConfig.setOutputBufferSize(32768);
+    HttpConfiguration httpsConfig=new HttpConfiguration(httpConfig);
+    SecureRequestCustomizer src=new SecureRequestCustomizer();
+    httpsConfig.addCustomizer(src);
+    connector=new ServerConnector(server,new SslConnectionFactory(getSslContextFactory(conf),HttpVersion.HTTP_1_1.asString()),new HttpConnectionFactory(httpsConfig));
   }
  else {
-    connector=new SelectChannelConnector();
+    connector=new ServerConnector(server);
   }
   int timeout=1000 * 30;
-  connector.setMaxIdleTime(timeout);
+  connector.setIdleTimeout(timeout);
   connector.setSoLingerTime(-1);
   connector.setHost(conf.getServerAddress());
   connector.setPort(conf.getServerPort());
-  final Server server=new Server();
   server.addConnector(connector);
   return server;
 }

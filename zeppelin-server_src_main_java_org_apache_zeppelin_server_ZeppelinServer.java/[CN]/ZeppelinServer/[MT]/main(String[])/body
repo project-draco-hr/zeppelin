@@ -1,13 +1,12 @@
 {
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   conf.setProperty("args",args);
-  final ServletContextHandler restApiContext=setupRestApiContextHandler(conf);
-  final ServletContextHandler notebookContext=setupNotebookServer(conf);
-  final WebAppContext webApp=setupWebAppContext(conf);
-  ContextHandlerCollection contexts=new ContextHandlerCollection();
-  contexts.setHandlers(new Handler[]{restApiContext,notebookContext,webApp});
   jettyWebServer=setupJettyServer(conf);
+  ContextHandlerCollection contexts=new ContextHandlerCollection();
   jettyWebServer.setHandler(contexts);
+  final WebAppContext webApp=setupWebAppContext(contexts,conf);
+  setupRestApiContextHandler(webApp,conf);
+  setupNotebookServer(webApp,conf);
   LOG.info("Starting zeppelin server");
   try {
     jettyWebServer.start();

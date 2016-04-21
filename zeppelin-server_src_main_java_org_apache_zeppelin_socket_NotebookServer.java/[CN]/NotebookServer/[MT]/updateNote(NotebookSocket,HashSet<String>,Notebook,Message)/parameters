@@ -1,4 +1,4 @@
-WebSocket conn
+NotebookSocket conn
 HashSet<String> userAndRoles
 Notebook notebook
 Message fromMessage

@@ -4,9 +4,6 @@
   final ServletHolder servletHolder=new ServletHolder(notebookWsServer);
   servletHolder.setInitParameter("maxTextMessageSize",maxTextMessageSize);
   final ServletContextHandler cxfContext=new ServletContextHandler(ServletContextHandler.SESSIONS);
-  cxfContext.setSessionHandler(new SessionHandler());
-  cxfContext.setContextPath(conf.getServerContextPath());
-  cxfContext.addServlet(servletHolder,"/ws/*");
-  cxfContext.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
-  return cxfContext;
+  webapp.addServlet(servletHolder,"/ws/*");
+  webapp.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
 }
