@@ -13,5 +13,8 @@
   assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user2"))),true);
   assertEquals(notebookAuthorization.isWriter(note.id(),new HashSet<String>(Arrays.asList("user2"))),false);
   assertEquals(notebookAuthorization.isWriter(note.id(),new HashSet<String>(Arrays.asList("user1"))),true);
+  notebookAuthorization.setReaders(note.id(),Sets.<String>newHashSet());
+  assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user2"))),true);
+  assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user3"))),true);
   notebook.removeNote(note.id());
 }

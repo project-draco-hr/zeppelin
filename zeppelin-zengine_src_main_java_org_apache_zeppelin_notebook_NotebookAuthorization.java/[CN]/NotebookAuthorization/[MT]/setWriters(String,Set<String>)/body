@@ -5,17 +5,10 @@
     noteAuthInfo.put("owners",new LinkedHashSet());
     noteAuthInfo.put("readers",new LinkedHashSet());
     noteAuthInfo.put("writers",new LinkedHashSet(entities));
-    authInfo.put(noteId,noteAuthInfo);
   }
  else {
-    Set<String> existingEntities=noteAuthInfo.get("writers");
-    if (existingEntities == null) {
-      noteAuthInfo.put("writers",new LinkedHashSet(entities));
-    }
- else {
-      existingEntities.clear();
-      existingEntities.addAll(entities);
-    }
+    noteAuthInfo.put("writers",new LinkedHashSet(entities));
   }
+  authInfo.put(noteId,noteAuthInfo);
   saveToFile();
 }
