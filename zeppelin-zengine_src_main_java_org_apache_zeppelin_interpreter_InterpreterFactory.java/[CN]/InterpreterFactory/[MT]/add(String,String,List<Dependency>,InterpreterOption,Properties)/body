@@ -14,10 +14,9 @@ synchronized (interpreterSettings) {
     if (dependencies.size() > 0) {
       loadInterpreterDependencies(intpSetting);
     }
-    InterpreterGroup interpreterGroup=createInterpreterGroup(intpSetting.id(),option);
-    intpSetting.setInterpreterGroup(interpreterGroup);
+    intpSetting.setInterpreterGroupFactory(this);
     interpreterSettings.put(intpSetting.id(),intpSetting);
     saveToFile();
-    return interpreterGroup;
+    return intpSetting;
   }
 }

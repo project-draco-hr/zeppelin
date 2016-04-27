@@ -1,13 +1,15 @@
 {
-  if (!interpreterSetting.getOption().isPerNoteSession()) {
-    return;
+  if (interpreterSetting.getOption().isPerNoteProcess()) {
+    interpreterSetting.closeAndRemoveInterpreterGroup(noteId);
   }
-  InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup();
-  interpreterGroup.close(noteId);
-  interpreterGroup.destroy(noteId);
+ else   if (interpreterSetting.getOption().isPerNoteSession()) {
+    InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup(noteId);
+    interpreterGroup.close(noteId);
+    interpreterGroup.destroy(noteId);
 synchronized (interpreterGroup) {
-    interpreterGroup.remove(noteId);
-    interpreterGroup.notifyAll();
+      interpreterGroup.remove(noteId);
+      interpreterGroup.notifyAll();
+    }
+    logger.info("Interpreter instance {} for note {} is removed",interpreterSetting.getName(),noteId);
   }
-  logger.info("Interpreter instance {} for note {} is removed",interpreterSetting.getName(),noteId);
 }

@@ -1,0 +1,11 @@
+{
+  String key=getInterpreterProcessKey(noteId);
+  InterpreterGroup groupToRemove;
+synchronized (interpreterGroupRef) {
+    groupToRemove=interpreterGroupRef.remove(key);
+  }
+  if (groupToRemove != null) {
+    groupToRemove.close();
+    groupToRemove.destroy();
+  }
+}

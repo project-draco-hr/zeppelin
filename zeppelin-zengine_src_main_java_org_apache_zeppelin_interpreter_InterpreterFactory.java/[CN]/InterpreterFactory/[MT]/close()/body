@@ -5,8 +5,7 @@ synchronized (interpreterSettings) {
     for (    final InterpreterSetting intpsetting : intpsettings) {
       Thread t=new Thread(){
         public void run(){
-          intpsetting.getInterpreterGroup().close();
-          intpsetting.getInterpreterGroup().destroy();
+          intpsetting.closeAndRmoveAllInterpreterGroups();
         }
       }
 ;

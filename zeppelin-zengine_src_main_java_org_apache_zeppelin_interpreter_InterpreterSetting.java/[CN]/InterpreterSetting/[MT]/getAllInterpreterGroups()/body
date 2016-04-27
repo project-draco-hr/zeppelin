@@ -1,0 +1,5 @@
+{
+synchronized (interpreterGroupRef) {
+    return new LinkedList<InterpreterGroup>(interpreterGroupRef.values());
+  }
+}

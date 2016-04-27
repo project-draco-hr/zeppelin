@@ -1,8 +1,0 @@
-{
-  if (!setting.getOption().isPerNoteSession()) {
-    return SHARED_SESSION;
-  }
- else {
-    return noteId;
-  }
-}

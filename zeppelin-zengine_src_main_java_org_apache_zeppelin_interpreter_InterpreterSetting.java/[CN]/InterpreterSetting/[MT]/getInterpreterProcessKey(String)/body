@@ -1,0 +1,8 @@
+{
+  if (getOption().isPerNoteProcess()) {
+    return noteId;
+  }
+ else {
+    return SHARED_PROCESS;
+  }
+}

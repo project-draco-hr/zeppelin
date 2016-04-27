@@ -1,13 +1,13 @@
 {
-  InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup();
+  InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup(noteId);
   String groupName=interpreterSetting.getGroup();
   InterpreterOption option=interpreterSetting.getOption();
   Properties properties=interpreterSetting.getProperties();
 synchronized (interpreterGroup) {
     long interpreterRemovalWaitStart=System.nanoTime();
-    long minTimeout=10 * 1000 * 1000000;
-    long interpreterRemovalWaitTimeout=Math.max(minTimeout,conf.getInt(ConfVars.ZEPPELIN_INTERPRETER_CONNECT_TIMEOUT) * 2);
-    while (interpreterGroup.containsKey(noteId)) {
+    long minTimeout=10L * 1000 * 1000000;
+    long interpreterRemovalWaitTimeout=Math.max(minTimeout,conf.getInt(ConfVars.ZEPPELIN_INTERPRETER_CONNECT_TIMEOUT) * 1000000L * 2);
+    while (interpreterGroup.containsKey(key)) {
       if (System.nanoTime() - interpreterRemovalWaitStart > interpreterRemovalWaitTimeout) {
         throw new InterpreterException("Can not create interpreter");
       }
@@ -27,16 +27,16 @@ synchronized (interpreterGroup) {
       if (info.getClassName().equals(className) && info.getGroup().equals(groupName)) {
         Interpreter intp;
         if (option.isRemote()) {
-          intp=createRemoteRepl(info.getPath(),noteId,info.getClassName(),properties,interpreterGroup.id);
+          intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
         }
  else {
           intp=createRepl(info.getPath(),info.getClassName(),properties);
         }
 synchronized (interpreterGroup) {
-          List<Interpreter> interpreters=interpreterGroup.get(noteId);
+          List<Interpreter> interpreters=interpreterGroup.get(key);
           if (interpreters == null) {
             interpreters=new LinkedList<Interpreter>();
-            interpreterGroup.put(noteId,interpreters);
+            interpreterGroup.put(key,interpreters);
           }
           interpreters.add(intp);
         }

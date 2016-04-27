@@ -3,6 +3,7 @@
   if (settings == null || settings.size() == 0) {
     return;
   }
+  System.err.println("close");
   for (  InterpreterSetting setting : settings) {
     factory.removeInterpretersForNote(setting,noteId);
   }

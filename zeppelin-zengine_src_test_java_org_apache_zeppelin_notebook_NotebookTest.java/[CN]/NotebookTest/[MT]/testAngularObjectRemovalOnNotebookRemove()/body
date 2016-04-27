@@ -1,7 +1,7 @@
 {
   Note note=notebook.createNote();
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
-  AngularObjectRegistry registry=note.getNoteReplLoader().getInterpreterSettings().get(0).getInterpreterGroup().getAngularObjectRegistry();
+  AngularObjectRegistry registry=note.getNoteReplLoader().getInterpreterSettings().get(0).getInterpreterGroup("sharedProcess").getAngularObjectRegistry();
   Paragraph p1=note.addParagraph();
   registry.add("o1","object1",note.id(),p1.getId());
   registry.add("o2","object2",note.id(),null);

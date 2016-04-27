@@ -1,0 +1,21 @@
+{
+  NoteInterpreterLoader loaderA=new NoteInterpreterLoader(factory);
+  loaderA.setNoteId("noteA");
+  loaderA.setInterpreters(factory.getDefaultInterpreterSettingList());
+  loaderA.getInterpreterSettings().get(0).getOption().setPerNoteProcess(true);
+  NoteInterpreterLoader loaderB=new NoteInterpreterLoader(factory);
+  loaderB.setNoteId("noteB");
+  loaderB.setInterpreters(factory.getDefaultInterpreterSettingList());
+  loaderB.getInterpreterSettings().get(0).getOption().setPerNoteProcess(true);
+  assertNull(loaderA.getInterpreterSettings().get(0).getInterpreterGroup("noteA").get("noteA"));
+  assertNull(loaderB.getInterpreterSettings().get(0).getInterpreterGroup("noteB").get("noteB"));
+  loaderA.get(null).open();
+  loaderB.get(null).open();
+  assertFalse(loaderA.get(null).getInterpreterGroup().getId().equals(loaderB.get(null).getInterpreterGroup().getId()));
+  assertNotNull(loaderA.getInterpreterSettings().get(0).getInterpreterGroup("noteA").get("noteA"));
+  assertNotNull(loaderB.getInterpreterSettings().get(0).getInterpreterGroup("noteB").get("noteB"));
+  loaderA.close();
+  loaderB.close();
+  assertNull(loaderA.getInterpreterSettings().get(0).getInterpreterGroup("noteA").get("noteA"));
+  assertNull(loaderB.getInterpreterSettings().get(0).getInterpreterGroup("noteB").get("noteB"));
+}

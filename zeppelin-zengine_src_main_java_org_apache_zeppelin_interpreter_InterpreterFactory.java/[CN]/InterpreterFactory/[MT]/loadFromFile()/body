@@ -23,8 +23,7 @@
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
     InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterInfos(),setting.getProperties(),setting.getDependencies(),setting.getOption());
-    InterpreterGroup interpreterGroup=createInterpreterGroup(setting.id(),setting.getOption());
-    intpSetting.setInterpreterGroup(interpreterGroup);
+    intpSetting.setInterpreterGroupFactory(this);
     interpreterSettings.put(k,intpSetting);
   }
   this.interpreterBindings=info.interpreterBindings;

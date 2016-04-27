@@ -11,7 +11,7 @@
     List<InterpreterSetting> intpSettings=note.getNoteReplLoader().getInterpreterSettings();
     if (intpSettings.isEmpty())     continue;
     for (    InterpreterSetting setting : intpSettings) {
-      if (setting.getInterpreterGroup().getId().equals(interpreterGroupId)) {
+      if (setting.getInterpreterGroup(note.id()).getId().equals(interpreterGroupId)) {
         broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()).put("paragraphId",object.getParagraphId()));
       }
     }

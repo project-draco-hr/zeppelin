@@ -43,7 +43,7 @@ synchronized (notes) {
     SnapshotAngularObject snapshot=angularObjectSnapshot.get(name);
     List<InterpreterSetting> settings=replFactory.get();
     for (    InterpreterSetting setting : settings) {
-      InterpreterGroup intpGroup=setting.getInterpreterGroup();
+      InterpreterGroup intpGroup=setting.getInterpreterGroup(note.id());
       if (intpGroup.getId().equals(snapshot.getIntpGroupId())) {
         AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
         String noteId=snapshot.getAngularObject().getNoteId();

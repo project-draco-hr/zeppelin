@@ -1,0 +1,11 @@
+{
+  String key=getInterpreterProcessKey(noteId);
+synchronized (interpreterGroupRef) {
+    if (!interpreterGroupRef.containsKey(key)) {
+      String interpreterGroupId=id() + ":" + key;
+      InterpreterGroup intpGroup=interpreterGroupFactory.createInterpreterGroup(interpreterGroupId,getOption());
+      interpreterGroupRef.put(key,intpGroup);
+    }
+    return interpreterGroupRef.get(key);
+  }
+}

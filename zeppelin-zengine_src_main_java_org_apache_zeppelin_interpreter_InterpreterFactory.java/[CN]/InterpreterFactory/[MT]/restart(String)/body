@@ -3,10 +3,7 @@ synchronized (interpreterSettings) {
     InterpreterSetting intpsetting=interpreterSettings.get(id);
     if (intpsetting != null) {
       stopJobAllInterpreter(intpsetting);
-      intpsetting.getInterpreterGroup().close();
-      intpsetting.getInterpreterGroup().destroy();
-      InterpreterGroup interpreterGroup=createInterpreterGroup(intpsetting.id(),intpsetting.getOption());
-      intpsetting.setInterpreterGroup(interpreterGroup);
+      intpsetting.closeAndRmoveAllInterpreterGroups();
     }
  else {
       throw new InterpreterException("Interpreter setting id " + id + " not found");

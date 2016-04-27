@@ -5,7 +5,7 @@
     return;
   }
   for (  InterpreterSetting setting : settings) {
-    InterpreterGroup intpGroup=setting.getInterpreterGroup();
+    InterpreterGroup intpGroup=setting.getInterpreterGroup(id);
     AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
     if (registry instanceof RemoteAngularObjectRegistry) {
       ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,paragraphId);
