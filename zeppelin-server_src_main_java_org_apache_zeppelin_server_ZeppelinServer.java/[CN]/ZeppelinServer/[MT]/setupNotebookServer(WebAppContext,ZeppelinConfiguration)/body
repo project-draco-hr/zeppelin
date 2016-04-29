@@ -5,5 +5,4 @@
   servletHolder.setInitParameter("maxTextMessageSize",maxTextMessageSize);
   final ServletContextHandler cxfContext=new ServletContextHandler(ServletContextHandler.SESSIONS);
   webapp.addServlet(servletHolder,"/ws/*");
-  webapp.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
 }
