@@ -8,7 +8,6 @@
     NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
     if (!notebookAuthorization.isReader(noteId,userAndRoles)) {
       permissionError(conn,"read",userAndRoles,notebookAuthorization.getReaders(noteId));
-      broadcastNoteList();
       return;
     }
     addConnectionToNote(note.id(),conn);

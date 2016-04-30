@@ -8,6 +8,11 @@
   if (config == null) {
     return;
   }
+  NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
+    permissionError(conn,"update",userAndRoles,notebookAuthorization.getWriters(noteId));
+    return;
+  }
   Note note=notebook.getNote(noteId);
   if (note != null) {
     boolean cronUpdated=isCronUpdated(config,note.getConfig());
