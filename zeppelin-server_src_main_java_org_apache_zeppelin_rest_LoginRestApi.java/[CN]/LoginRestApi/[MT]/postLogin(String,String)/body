@@ -1,6 +1,9 @@
 {
   JsonResponse response=null;
   Subject currentUser=org.apache.shiro.SecurityUtils.getSubject();
+  if (currentUser.isAuthenticated()) {
+    currentUser.logout();
+  }
   if (!currentUser.isAuthenticated()) {
     try {
       UsernamePasswordToken token=new UsernamePasswordToken(userName,password);
