@@ -14,17 +14,29 @@
         if (title != null) {
           LOG.debug("   Title: {}",doc.get("title"));
         }
-        String text=doc.get(SEARCH_FIELD);
-        TokenStream tokenStream=TokenSources.getTokenStream(searcher.getIndexReader(),id,SEARCH_FIELD,analyzer);
-        TextFragment[] frag=highlighter.getBestTextFragments(tokenStream,text,true,3);
-        LOG.debug("    {} fragments found for query '{}'",frag.length,query);
-        for (int j=0; j < frag.length; j++) {
-          if ((frag[j] != null) && (frag[j].getScore() > 0)) {
-            LOG.debug("    Fragment: {}",frag[j].toString());
+        String text=doc.get(SEARCH_FIELD_TEXT);
+        String header=doc.get(SEARCH_FIELD_TITLE);
+        String fragment="";
+        if (text != null) {
+          TokenStream tokenStream=TokenSources.getTokenStream(searcher.getIndexReader(),id,SEARCH_FIELD_TEXT,analyzer);
+          TextFragment[] frag=highlighter.getBestTextFragments(tokenStream,text,true,3);
+          LOG.debug("    {} fragments found for query '{}'",frag.length,query);
+          for (int j=0; j < frag.length; j++) {
+            if ((frag[j] != null) && (frag[j].getScore() > 0)) {
+              LOG.debug("    Fragment: {}",frag[j].toString());
+            }
           }
+          fragment=(frag != null && frag.length > 0) ? frag[0].toString() : "";
         }
-        String fragment=(frag != null && frag.length > 0) ? frag[0].toString() : "";
-        matchingParagraphs.add(ImmutableMap.of("id",path,"name",title,"snippet",fragment,"text",text));
+        if (header != null) {
+          TokenStream tokenTitle=TokenSources.getTokenStream(searcher.getIndexReader(),id,SEARCH_FIELD_TITLE,analyzer);
+          TextFragment[] frgTitle=highlighter.getBestTextFragments(tokenTitle,header,true,3);
+          header=(frgTitle != null && frgTitle.length > 0) ? frgTitle[0].toString() : "";
+        }
+ else {
+          header="";
+        }
+        matchingParagraphs.add(ImmutableMap.of("id",path,"name",title,"snippet",fragment,"text",text,"header",header));
       }
  else {
         LOG.info("{}. No {} for this document",i + 1,ID_FIELD);

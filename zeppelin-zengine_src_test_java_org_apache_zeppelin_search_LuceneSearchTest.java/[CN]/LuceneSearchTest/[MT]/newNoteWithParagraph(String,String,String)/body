@@ -1,0 +1,5 @@
+{
+  Note note=newNote(noteName);
+  addParagraphWithTextAndTitle(note,parText,title);
+  return note;
+}

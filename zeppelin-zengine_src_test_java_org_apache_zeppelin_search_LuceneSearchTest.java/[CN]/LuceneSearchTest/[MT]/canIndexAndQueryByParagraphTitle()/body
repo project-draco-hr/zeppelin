@@ -1,0 +1,15 @@
+{
+  Note note1=newNoteWithParagraph("Notebook1","test","testingTitleSearch");
+  Note note2=newNoteWithParagraph("Notebook2","not test","notTestingTitleSearch");
+  notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
+  List<Map<String,String>> results=notebookIndex.query("testingTitleSearch");
+  assertThat(results).isNotEmpty();
+  assertThat(results.size()).isAtLeast(1);
+  int TitleHits=0;
+  for (  Map<String,String> res : results) {
+    if (res.get("header").contains("testingTitleSearch")) {
+      TitleHits++;
+    }
+  }
+  assertThat(TitleHits).isAtLeast(1);
+}

@@ -6,9 +6,9 @@
   try (IndexReader indexReader=DirectoryReader.open(ramDirectory)){
     IndexSearcher indexSearcher=new IndexSearcher(indexReader);
     Analyzer analyzer=new StandardAnalyzer();
-    QueryParser parser=new QueryParser(SEARCH_FIELD,analyzer);
+    MultiFieldQueryParser parser=new MultiFieldQueryParser(new String[]{SEARCH_FIELD_TEXT,SEARCH_FIELD_TITLE},analyzer);
     Query query=parser.parse(queryStr);
-    LOG.debug("Searching for: " + query.toString(SEARCH_FIELD));
+    LOG.debug("Searching for: " + query.toString(SEARCH_FIELD_TEXT));
     SimpleHTMLFormatter htmlFormatter=new SimpleHTMLFormatter();
     Highlighter highlighter=new Highlighter(htmlFormatter,new QueryScorer(query));
     result=doSearch(indexSearcher,query,analyzer,highlighter);

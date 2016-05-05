@@ -1,0 +1,6 @@
+{
+  Paragraph p=note.addParagraph();
+  p.setText(text);
+  p.setTitle(title);
+  return p;
+}

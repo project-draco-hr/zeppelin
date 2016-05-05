@@ -1,6 +1,6 @@
 {
-  Note note1=newNoteWithParapgraph("Notebook1","test");
-  Note note2=newNoteWithParapgraphs("Notebook2","not test","not test at all");
+  Note note1=newNoteWithParagraph("Notebook1","test");
+  Note note2=newNoteWithParagraphs("Notebook2","not test","not test at all");
   notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
   List<Map<String,String>> results=notebookIndex.query("Notebook1");
   assertThat(results).isNotEmpty();

@@ -1,6 +1,6 @@
 {
-  Note note1=newNoteWithParapgraph("Notebook1","test");
-  Note note2=newNoteWithParapgraph("Notebook2","not test");
+  Note note1=newNoteWithParagraph("Notebook1","test");
+  Note note2=newNoteWithParagraph("Notebook2","not test");
   List<Note> notebook=Arrays.asList(note1,note2);
   notebookIndex.addIndexDocs(notebook);
 }

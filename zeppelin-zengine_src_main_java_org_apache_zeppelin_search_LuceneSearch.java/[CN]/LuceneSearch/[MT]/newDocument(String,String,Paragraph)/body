@@ -4,12 +4,15 @@
   doc.add(pathField);
   doc.add(new StringField("title",noteName,Field.Store.YES));
   if (null != p) {
-    doc.add(new TextField(SEARCH_FIELD,p.getText(),Field.Store.YES));
+    doc.add(new TextField(SEARCH_FIELD_TEXT,p.getText(),Field.Store.YES));
+    if (p.getTitle() != null) {
+      doc.add(new TextField(SEARCH_FIELD_TITLE,p.getTitle(),Field.Store.YES));
+    }
     Date date=p.getDateStarted() != null ? p.getDateStarted() : p.getDateCreated();
     doc.add(new LongField("modified",date.getTime(),Field.Store.NO));
   }
  else {
-    doc.add(new TextField(SEARCH_FIELD,noteName,Field.Store.YES));
+    doc.add(new TextField(SEARCH_FIELD_TEXT,noteName,Field.Store.YES));
   }
   return doc;
 }
