@@ -38,6 +38,7 @@
     if (p != null) {
       p.setReturn(new InterpreterResult(InterpreterResult.Code.ERROR,ex.getMessage()),ex);
       p.setStatus(Status.ERROR);
+      broadcast(note.id(),new Message(OP.PARAGRAPH).put("paragraph",p));
     }
   }
 }
