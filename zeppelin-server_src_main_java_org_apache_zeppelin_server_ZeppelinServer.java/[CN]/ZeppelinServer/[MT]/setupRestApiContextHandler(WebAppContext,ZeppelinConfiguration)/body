@@ -5,7 +5,6 @@
   cxfServletHolder.setForcedPath("rest");
   webapp.setSessionHandler(new SessionHandler());
   webapp.addServlet(cxfServletHolder,"/api/*");
-  webapp.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
   webapp.setInitParameter("shiroConfigLocations",new File(conf.getShiroPath()).toURI().toString());
   webapp.addFilter(org.apache.shiro.web.servlet.ShiroFilter.class,"/api/*",EnumSet.allOf(DispatcherType.class));
   webapp.addEventListener(new org.apache.shiro.web.env.EnvironmentLoaderListener());

@@ -15,5 +15,6 @@
   }
   webApp.addServlet(new ServletHolder(new DefaultServlet()),"/*");
   contexts.addHandler(webApp);
+  webApp.addFilter(new FilterHolder(CorsFilter.class),"/*",EnumSet.allOf(DispatcherType.class));
   return webApp;
 }
