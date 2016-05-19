@@ -1,0 +1,26 @@
+{
+  if (jsonMap.get("state").equals("available")) {
+    if (((Map)jsonMap.get("output")).get("status").equals("error")) {
+      StringBuilder errorMessage=new StringBuilder((String)((Map)jsonMap.get("output")).get("evalue"));
+      if (errorMessage.toString().equals("incomplete statement") || errorMessage.toString().contains("EOF")) {
+        return new InterpreterResult(Code.INCOMPLETE,"");
+      }
+      String traceback=gson.toJson(((Map)jsonMap.get("output")).get("traceback"));
+      if (!traceback.equals("[]")) {
+        errorMessage.append("\n").append("traceback: \n").append(traceback);
+      }
+      return new InterpreterResult(Code.ERROR,errorMessage.toString());
+    }
+    if (((Map)jsonMap.get("output")).get("status").equals("ok")) {
+      String result=(String)((Map)((Map)jsonMap.get("output")).get("data")).get("text/plain");
+      if (result != null) {
+        result=result.trim();
+        if (result.startsWith("<link") || result.startsWith("<script") || result.startsWith("<style")|| result.startsWith("<div")) {
+          result="%html " + result;
+        }
+      }
+      return new InterpreterResult(Code.SUCCESS,result);
+    }
+  }
+  return null;
+}

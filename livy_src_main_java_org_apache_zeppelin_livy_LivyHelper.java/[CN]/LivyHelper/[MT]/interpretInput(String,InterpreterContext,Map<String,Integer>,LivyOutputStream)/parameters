@@ -1,0 +1,4 @@
+String stringLines
+InterpreterContext context
+Map<String,Integer> userSessionMap
+LivyOutputStream out

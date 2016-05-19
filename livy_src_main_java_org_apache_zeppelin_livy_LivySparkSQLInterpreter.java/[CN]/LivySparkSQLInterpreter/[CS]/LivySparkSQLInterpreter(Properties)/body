@@ -1,0 +1,5 @@
+{
+  super(property);
+  livyHelper=new LivyHelper(property);
+  userSessionMap=LivySparkInterpreter.getUserSessionMap();
+}

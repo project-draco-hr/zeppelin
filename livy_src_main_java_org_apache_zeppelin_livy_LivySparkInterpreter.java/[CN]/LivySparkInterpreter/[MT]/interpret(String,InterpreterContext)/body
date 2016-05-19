@@ -1,0 +1,22 @@
+{
+  try {
+    if (userSessionMap.get(interpreterContext.getAuthenticationInfo().getUser()) == null) {
+      try {
+        userSessionMap.put(interpreterContext.getAuthenticationInfo().getUser(),livyHelper.createSession(interpreterContext,"spark"));
+        livyHelper.initializeSpark(interpreterContext,userSessionMap);
+      }
+ catch (      Exception e) {
+        LOGGER.error("Exception in LivySparkInterpreter while interpret ",e);
+        return new InterpreterResult(InterpreterResult.Code.ERROR,e.getMessage());
+      }
+    }
+    if (line == null || line.trim().length() == 0) {
+      return new InterpreterResult(InterpreterResult.Code.SUCCESS,"");
+    }
+    return livyHelper.interpretInput(line,interpreterContext,userSessionMap,out);
+  }
+ catch (  Exception e) {
+    LOGGER.error("Exception in LivySparkInterpreter while interpret ",e);
+    return new InterpreterResult(InterpreterResult.Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
+  }
+}

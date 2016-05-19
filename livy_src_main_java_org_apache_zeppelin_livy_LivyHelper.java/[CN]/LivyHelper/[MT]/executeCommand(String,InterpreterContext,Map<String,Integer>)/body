@@ -1,0 +1,16 @@
+{
+  String json=executeHTTP(property.get("zeppelin.livy.url") + "/sessions/" + userSessionMap.get(context.getAuthenticationInfo().getUser())+ "/statements","POST","{\"code\": \"" + lines + "\" }",context.getParagraphId());
+  if (json.matches("^(\")?Session (\'[0-9]\' )?not found(.?\"?)$")) {
+    throw new Exception("Exception: Session not found, Livy server would have restarted, " + "or lost session.");
+  }
+  try {
+    Map jsonMap=gson.fromJson(json,new TypeToken<Map>(){
+    }
+.getType());
+    return jsonMap;
+  }
+ catch (  Exception e) {
+    LOGGER.error("Error executeCommand",e);
+    throw e;
+  }
+}

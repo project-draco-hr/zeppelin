@@ -1,0 +1,37 @@
+{
+  HttpClient client=HttpClientBuilder.create().build();
+  HttpResponse response=null;
+  if (method.equals("POST")) {
+    HttpPost request=new HttpPost(targetURL);
+    request.addHeader("Content-Type","application/json");
+    StringEntity se=new StringEntity(jsonData);
+    request.setEntity(se);
+    response=client.execute(request);
+    paragraphHttpMap.put(paragraphId,request);
+  }
+ else   if (method.equals("GET")) {
+    HttpGet request=new HttpGet(targetURL);
+    request.addHeader("Content-Type","application/json");
+    response=client.execute(request);
+    paragraphHttpMap.put(paragraphId,request);
+  }
+ else   if (method.equals("DELETE")) {
+    HttpDelete request=new HttpDelete(targetURL);
+    request.addHeader("Content-Type","application/json");
+    response=client.execute(request);
+  }
+  if (response == null) {
+    return null;
+  }
+  if (response.getStatusLine().getStatusCode() == 200 || response.getStatusLine().getStatusCode() == 201 || response.getStatusLine().getStatusCode() == 404) {
+    return getResponse(response);
+  }
+ else {
+    String responseString=getResponse(response);
+    if (responseString.contains("CreateInteractiveRequest[\\\"master\\\"]")) {
+      return responseString;
+    }
+    LOGGER.error(String.format("Error with %s StatusCode: %s",response.getStatusLine().getStatusCode(),responseString));
+    throw new Exception(String.format("Error with %s StatusCode: %s",response.getStatusLine().getStatusCode(),responseString));
+  }
+}

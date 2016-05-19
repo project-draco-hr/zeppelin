@@ -1,0 +1,3 @@
+{
+  collector.checkThat("Check that, if userSessionMap is made: ",interpreter.userSessionMap,CoreMatchers.notNullValue());
+}

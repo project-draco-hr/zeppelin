@@ -1,0 +1,8 @@
+{
+  interpreter=new LivyPySparkInterpreter(new Properties());
+  interpreter.userSessionMap=new HashMap<>();
+  interpreter.userSessionMap.put(null,0);
+  interpreter.livyHelper=Mockito.mock(LivyHelper.class);
+  interpreter.open();
+  doReturn(new InterpreterResult(InterpreterResult.Code.SUCCESS)).when(interpreter.livyHelper).interpret("print \"x is 1.\"",interpreterContext,interpreter.userSessionMap);
+}

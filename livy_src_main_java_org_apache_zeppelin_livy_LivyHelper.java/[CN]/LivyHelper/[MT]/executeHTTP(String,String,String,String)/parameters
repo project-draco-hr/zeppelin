@@ -1,0 +1,4 @@
+String targetURL
+String method
+String jsonData
+String paragraphId

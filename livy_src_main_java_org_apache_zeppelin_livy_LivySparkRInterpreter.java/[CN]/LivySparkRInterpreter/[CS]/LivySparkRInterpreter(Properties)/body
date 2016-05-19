@@ -1,0 +1,5 @@
+{
+  super(property);
+  userSessionMap=new HashMap<>();
+  livyHelper=new LivyHelper(property);
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    Integer sessionId=livyHelper.createSession(interpreterContext,"spark");
+    collector.checkThat("check sessionId",1,CoreMatchers.equalTo(sessionId));
+  }
+ catch (  Exception e) {
+    collector.addError(e);
+  }
+}

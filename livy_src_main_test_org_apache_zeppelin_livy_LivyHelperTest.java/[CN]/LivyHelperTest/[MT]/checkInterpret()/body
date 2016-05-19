@@ -1,0 +1,9 @@
+{
+  try {
+    InterpreterResult result=livyHelper.interpret("print(1)",interpreterContext,interpreter.userSessionMap);
+    collector.checkThat("check sessionId",InterpreterResult.Code.SUCCESS,CoreMatchers.equalTo(result.code()));
+  }
+ catch (  Exception e) {
+    collector.addError(e);
+  }
+}

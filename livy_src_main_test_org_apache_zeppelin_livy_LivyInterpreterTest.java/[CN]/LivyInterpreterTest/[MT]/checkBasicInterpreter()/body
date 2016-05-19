@@ -1,0 +1,6 @@
+{
+  String paragraphString="print \"x is 1.\"";
+  final InterpreterResult actual=interpreter.interpret(paragraphString,interpreterContext);
+  collector.checkThat("Check that, result is computed: ",actual.code(),CoreMatchers.equalTo(InterpreterResult.Code.SUCCESS));
+  assertThat(actual).isNotNull();
+}

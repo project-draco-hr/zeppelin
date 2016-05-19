@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetFIFOScheduler(LivySparkInterpreter.class.getName() + this.hashCode());
+}
