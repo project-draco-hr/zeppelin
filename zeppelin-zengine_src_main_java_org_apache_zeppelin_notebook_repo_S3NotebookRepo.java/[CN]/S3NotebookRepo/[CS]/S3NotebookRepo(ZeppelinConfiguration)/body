@@ -1,7 +1,19 @@
 {
   this.conf=conf;
   bucketName=conf.getBucketName();
-  endpoint=conf.getEndpoint();
   user=conf.getUser();
-  s3client.setEndpoint(endpoint);
+  AWSCredentialsProvider credentialsProvider=new DefaultAWSCredentialsProviderChain();
+  String kmsKeyID=conf.getS3KMSKeyID();
+  if (kmsKeyID != null) {
+    KMSEncryptionMaterialsProvider emp=new KMSEncryptionMaterialsProvider(kmsKeyID);
+    this.s3client=new AmazonS3EncryptionClient(credentialsProvider,emp);
+  }
+ else   if (conf.getS3EncryptionMaterialsProviderClass() != null) {
+    EncryptionMaterialsProvider emp=createCustomProvider(conf);
+    this.s3client=new AmazonS3EncryptionClient(credentialsProvider,emp);
+  }
+ else {
+    this.s3client=new AmazonS3Client(credentialsProvider);
+  }
+  s3client.setEndpoint(conf.getEndpoint());
 }

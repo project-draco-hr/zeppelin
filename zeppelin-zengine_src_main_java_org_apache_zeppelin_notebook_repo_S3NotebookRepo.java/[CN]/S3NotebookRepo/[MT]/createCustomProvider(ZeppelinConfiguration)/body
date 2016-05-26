@@ -1,0 +1,17 @@
+{
+  String empClassname=conf.getS3EncryptionMaterialsProviderClass();
+  EncryptionMaterialsProvider emp;
+  try {
+    Object empInstance=Class.forName(empClassname).newInstance();
+    if (empInstance instanceof EncryptionMaterialsProvider) {
+      emp=(EncryptionMaterialsProvider)empInstance;
+    }
+ else {
+      throw new IOException("Class " + empClassname + " does not implement "+ EncryptionMaterialsProvider.class.getName());
+    }
+  }
+ catch (  Exception e) {
+    throw new IOException("Unable to instantiate encryption materials provider class " + empClassname + ": "+ e,e);
+  }
+  return emp;
+}

@@ -1,12 +1,17 @@
 {
   String key=user + "/" + "notebook"+ "/"+ noteId;
   final ListObjectsRequest listObjectsRequest=new ListObjectsRequest().withBucketName(bucketName).withPrefix(key);
-  ObjectListing objects=s3client.listObjects(listObjectsRequest);
-  do {
-    for (    S3ObjectSummary objectSummary : objects.getObjectSummaries()) {
-      s3client.deleteObject(bucketName,objectSummary.getKey());
+  try {
+    ObjectListing objects=s3client.listObjects(listObjectsRequest);
+    do {
+      for (      S3ObjectSummary objectSummary : objects.getObjectSummaries()) {
+        s3client.deleteObject(bucketName,objectSummary.getKey());
+      }
+      objects=s3client.listNextBatchOfObjects(objects);
     }
-    objects=s3client.listNextBatchOfObjects(objects);
-  }
  while (objects.isTruncated());
+  }
+ catch (  AmazonClientException ace) {
+    throw new IOException("Unable to remove note in S3: " + ace,ace);
+  }
 }

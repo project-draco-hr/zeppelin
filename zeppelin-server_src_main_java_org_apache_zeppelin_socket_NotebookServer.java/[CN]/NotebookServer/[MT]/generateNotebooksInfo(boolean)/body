@@ -8,7 +8,7 @@
       notebook.reloadAllNotes();
     }
  catch (    IOException e) {
-      LOG.error("Fail to reload notes from repository");
+      LOG.error("Fail to reload notes from repository",e);
     }
   }
   List<Note> notes=notebook.getAllNotes();
