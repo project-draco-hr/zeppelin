@@ -1,0 +1,10 @@
+{
+  ZeppelinhubClient client1=ZeppelinhubClient.getInstance();
+  if (client1 == null) {
+    client1=ZeppelinhubClient.initialize(validWebsocketUrl,"TOKEN");
+  }
+  assertNotNull(client1);
+  ZeppelinhubClient client2=ZeppelinhubClient.getInstance();
+  assertNotNull(client2);
+  assertEquals(client1,client2);
+}

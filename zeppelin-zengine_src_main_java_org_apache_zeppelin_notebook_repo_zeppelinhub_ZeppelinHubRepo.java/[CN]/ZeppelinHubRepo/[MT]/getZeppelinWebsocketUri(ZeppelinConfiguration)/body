@@ -1,0 +1,8 @@
+{
+  int port=conf.getServerPort();
+  if (port <= 0) {
+    port=80;
+  }
+  String ws=conf.useSsl() ? "wss" : "ws";
+  return ws + "://localhost:" + port+ "/ws";
+}

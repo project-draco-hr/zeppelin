@@ -1,0 +1,5 @@
+{
+  this.op=op;
+  this.data=data;
+  this.meta=meta;
+}

@@ -1,0 +1,10 @@
+{
+  for (  Map.Entry<String,Session> entry : zeppelinConnectionMap.entrySet()) {
+    if (isSessionOpen(entry.getValue())) {
+      send(new Message(OP.PING),entry.getKey());
+    }
+ else {
+      zeppelinConnectionMap.remove(entry.getKey());
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return ((zeppelinHubSession != null) && (zeppelinHubSession.isOpen())) ? true : false;
+}

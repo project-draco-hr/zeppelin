@@ -1,0 +1,9 @@
+{
+  for (  Map.Entry<String,Session> entry : zeppelinConnectionMap.entrySet()) {
+    if (isSessionOpen(entry.getValue())) {
+      entry.getValue().close();
+    }
+    zeppelinConnectionMap.remove(entry.getKey());
+  }
+  LOG.info("Removed all Zeppelin ws connections");
+}

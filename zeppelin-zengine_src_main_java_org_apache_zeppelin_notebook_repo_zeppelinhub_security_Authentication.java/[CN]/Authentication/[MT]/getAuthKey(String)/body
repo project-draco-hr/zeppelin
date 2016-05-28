@@ -1,0 +1,9 @@
+{
+  LOG.debug("Encrypted user key is {}",userKey);
+  if (StringUtils.isBlank(userKey)) {
+    LOG.warn("ZEPPELINHUB_USER_KEY is blank");
+    return StringUtils.EMPTY;
+  }
+  String hashedToken=Integer.toString(token.hashCode());
+  return decrypt(userKey,hashedToken);
+}

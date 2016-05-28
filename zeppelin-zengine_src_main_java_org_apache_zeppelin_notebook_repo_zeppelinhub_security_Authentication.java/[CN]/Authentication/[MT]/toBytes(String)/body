@@ -1,0 +1,11 @@
+{
+  byte[] bytes;
+  try {
+    bytes=value.getBytes("UTF-8");
+  }
+ catch (  UnsupportedEncodingException e) {
+    LOG.warn("UTF-8 isn't supported ",e);
+    bytes=value.getBytes();
+  }
+  return bytes;
+}

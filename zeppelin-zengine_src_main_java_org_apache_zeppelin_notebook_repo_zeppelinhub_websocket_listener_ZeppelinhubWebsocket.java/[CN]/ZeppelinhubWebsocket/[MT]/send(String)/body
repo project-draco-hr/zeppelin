@@ -1,0 +1,5 @@
+{
+  if (isSessionOpen()) {
+    zeppelinHubSession.getRemote().sendStringByFuture(msg);
+  }
+}

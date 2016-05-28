@@ -1,0 +1,24 @@
+{
+  ClientUpgradeRequest request=new ClientUpgradeRequest();
+  ZeppelinWebsocket socket=new ZeppelinWebsocket(noteId);
+  Future<Session> future=null;
+  Session session=null;
+  try {
+    future=wsClient.connect(socket,zeppelinWebsocketUrl,request);
+    session=future.get();
+  }
+ catch (  IOException|InterruptedException|ExecutionException e) {
+    LOG.error("Couldn't establish websocket connection to Zeppelin ",e);
+    return session;
+  }
+  if (zeppelinConnectionMap.containsKey(noteId)) {
+    session.close();
+    session=zeppelinConnectionMap.get(noteId);
+  }
+ else {
+    String getNote=serialize(zeppelinGetNoteMsg(noteId));
+    session.getRemote().sendStringByFuture(getNote);
+    zeppelinConnectionMap.put(noteId,session);
+  }
+  return session;
+}

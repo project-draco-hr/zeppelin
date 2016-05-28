@@ -1,0 +1,8 @@
+{
+  try {
+    client.stop();
+  }
+ catch (  Exception e) {
+    LOG.info("Couldn't stop ZeppelinHub client properly",e);
+  }
+}

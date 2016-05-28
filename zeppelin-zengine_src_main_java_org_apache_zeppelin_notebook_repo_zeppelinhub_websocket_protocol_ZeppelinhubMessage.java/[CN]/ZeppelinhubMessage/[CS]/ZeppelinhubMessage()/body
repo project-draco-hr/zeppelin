@@ -1,0 +1,4 @@
+{
+  this.op=OP.LIST_NOTES;
+  this.data=null;
+}

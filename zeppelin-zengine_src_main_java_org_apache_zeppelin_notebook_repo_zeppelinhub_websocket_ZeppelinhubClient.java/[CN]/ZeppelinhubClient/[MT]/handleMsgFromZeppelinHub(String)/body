@@ -1,0 +1,21 @@
+{
+  ZeppelinhubMessage hubMsg=ZeppelinhubMessage.deserialize(message);
+  if (hubMsg.equals(ZeppelinhubMessage.EMPTY)) {
+    LOG.error("Cannot handle ZeppelinHub message is empty");
+    return;
+  }
+  String op=StringUtils.EMPTY;
+  if (hubMsg.op instanceof String) {
+    op=(String)hubMsg.op;
+  }
+ else {
+    LOG.error("Message OP from ZeppelinHub isn't string {}",hubMsg.op);
+    return;
+  }
+  if (ZeppelinhubUtils.isZeppelinHubOp(op)) {
+    handleZeppelinHubOpMsg(ZeppelinhubUtils.toZeppelinHubOp(op),hubMsg,message);
+  }
+ else   if (ZeppelinhubUtils.isZeppelinOp(op)) {
+    forwardToZeppelin(ZeppelinhubUtils.toZeppelinOp(op),hubMsg);
+  }
+}

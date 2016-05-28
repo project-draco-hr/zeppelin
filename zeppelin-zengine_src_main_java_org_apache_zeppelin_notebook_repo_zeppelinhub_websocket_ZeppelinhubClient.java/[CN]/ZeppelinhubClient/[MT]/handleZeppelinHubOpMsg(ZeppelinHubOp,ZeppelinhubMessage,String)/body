@@ -1,0 +1,14 @@
+{
+  if (op == null || msg.equals(ZeppelinhubMessage.EMPTY)) {
+    LOG.error("Cannot handle empty op or msg");
+    return;
+  }
+switch (op) {
+case RUN_NOTEBOOK:
+    runAllParagraph(hubMsg.meta.get("noteId"),msg);
+  break;
+default :
+LOG.warn("Received {} from ZeppelinHub, not handled",op);
+break;
+}
+}

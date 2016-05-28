@@ -1,0 +1,11 @@
+{
+  if (StringUtils.isBlank(msg)) {
+    LOG.error("Cannot send event to Zeppelinhub, msg is empty");
+  }
+  if (isSessionOpen()) {
+    session.getRemote().sendStringByFuture(msg);
+  }
+ else {
+    LOG.error("Cannot send event to Zeppelinhub, session is close");
+  }
+}

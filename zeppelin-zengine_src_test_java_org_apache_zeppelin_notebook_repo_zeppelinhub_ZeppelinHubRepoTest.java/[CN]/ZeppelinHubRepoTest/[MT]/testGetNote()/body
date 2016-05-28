@@ -1,0 +1,5 @@
+{
+  Note notebook=repo.get("AAAAA");
+  assertThat(notebook).isNotNull();
+  assertThat(notebook.id()).isEqualTo("2A94M5J1Z");
+}

@@ -1,0 +1,6 @@
+{
+  ZeppelinhubClient client=ZeppelinhubClient.getInstance();
+  if (client != null) {
+    client.handleMsgFromZeppelinHub(message);
+  }
+}

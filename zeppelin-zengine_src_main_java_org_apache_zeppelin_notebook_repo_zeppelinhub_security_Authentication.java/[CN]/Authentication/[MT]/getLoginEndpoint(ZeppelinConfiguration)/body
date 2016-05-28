@@ -1,0 +1,12 @@
+{
+  int port=conf.getInt("ZEPPELIN_PORT","zeppelin.server.port",8080);
+  if (port <= 0) {
+    port=8080;
+  }
+  String scheme="http";
+  if (conf.useSsl()) {
+    scheme="https";
+  }
+  String endpoint=scheme + "://localhost:" + port+ "/api/login";
+  return endpoint;
+}

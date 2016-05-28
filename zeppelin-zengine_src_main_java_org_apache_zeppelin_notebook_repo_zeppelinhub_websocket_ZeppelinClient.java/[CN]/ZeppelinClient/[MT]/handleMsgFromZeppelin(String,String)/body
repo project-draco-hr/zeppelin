@@ -1,0 +1,16 @@
+{
+  Map<String,String> meta=new HashMap<String,String>();
+  meta.put("token",zeppelinhubToken);
+  meta.put("noteId",noteId);
+  Message zeppelinMsg=deserialize(message);
+  if (zeppelinMsg == null) {
+    return;
+  }
+  ZeppelinhubMessage hubMsg=ZeppelinhubMessage.newMessage(zeppelinMsg,meta);
+  Client client=Client.getInstance();
+  if (client == null) {
+    LOG.warn("Client isn't initialized yet");
+    return;
+  }
+  client.relayToZeppelinHub(hubMsg.serialize());
+}

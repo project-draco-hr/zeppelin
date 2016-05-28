@@ -1,0 +1,4 @@
+{
+  super.onWebSocketClose(statusCode,reason);
+  LOG.info("Socket Closed: [{}] {}",statusCode,reason);
+}

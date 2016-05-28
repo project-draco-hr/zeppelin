@@ -1,0 +1,20 @@
+{
+  if (StringUtils.isBlank(argument)) {
+    LOG.error("Cannot delete empty note from ZeppelinHub");
+    return;
+  }
+  client.newRequest(zepelinhubUrl + argument).method(HttpMethod.DELETE).header(ZEPPELIN_TOKEN_HEADER,token).send(new BufferingResponseListener(){
+    @Override public void onComplete(    Result res){
+      if (!res.isFailed() && res.getResponse().getStatus() == 200) {
+        LOG.info("Successfully removed note from ZeppelinHub with {}",res.getResponse().getStatus());
+      }
+ else {
+        LOG.warn("Failed to remove note from ZeppelinHub with HttpStatus {}",res.getResponse().getStatus());
+      }
+    }
+    @Override public void onFailure(    Response response,    Throwable failure){
+      LOG.error("Failed to remove note from ZeppelinHub: {}",response.getReason(),failure);
+    }
+  }
+);
+}

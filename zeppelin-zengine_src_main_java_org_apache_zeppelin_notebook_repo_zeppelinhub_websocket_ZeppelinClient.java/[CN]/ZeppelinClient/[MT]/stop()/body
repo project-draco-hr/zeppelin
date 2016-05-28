@@ -1,0 +1,14 @@
+{
+  try {
+    if (wsClient != null) {
+      removeAllZeppelinConnections();
+      wsClient.stop();
+    }
+ else {
+      LOG.warn("Cannot stop zeppelin websocket client - isn't initialized");
+    }
+  }
+ catch (  Exception e) {
+    LOG.error("Cannot stop Zeppelin websocket client",e);
+  }
+}

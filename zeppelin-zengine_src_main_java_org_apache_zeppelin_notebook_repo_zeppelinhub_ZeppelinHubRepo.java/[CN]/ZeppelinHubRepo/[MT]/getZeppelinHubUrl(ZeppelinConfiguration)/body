@@ -1,0 +1,28 @@
+{
+  if (conf == null) {
+    LOG.error("Invalid configuration, cannot be null. Using default address {}",DEFAULT_SERVER);
+    return DEFAULT_SERVER;
+  }
+  URI apiRoot;
+  String zeppelinhubUrl;
+  try {
+    String url=conf.getString("ZEPPELINHUB_API_ADDRESS",ZEPPELIN_CONF_PROP_NAME_SERVER,DEFAULT_SERVER);
+    apiRoot=new URI(url);
+  }
+ catch (  URISyntaxException e) {
+    LOG.error("Invalid zeppelinhub url, using default address {}",DEFAULT_SERVER,e);
+    return DEFAULT_SERVER;
+  }
+  String scheme=apiRoot.getScheme();
+  if (scheme == null) {
+    LOG.info("{} is not a valid zeppelinhub server address. proceed with default address {}",apiRoot,DEFAULT_SERVER);
+    zeppelinhubUrl=DEFAULT_SERVER;
+  }
+ else {
+    zeppelinhubUrl=scheme + "://" + apiRoot.getHost();
+    if (apiRoot.getPort() > 0) {
+      zeppelinhubUrl+=":" + apiRoot.getPort();
+    }
+  }
+  return zeppelinhubUrl;
+}

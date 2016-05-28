@@ -1,0 +1,5 @@
+{
+  List<NoteInfo> notebooks=repo.list();
+  assertThat(notebooks).isNotEmpty();
+  assertThat(notebooks.size()).isEqualTo(3);
+}

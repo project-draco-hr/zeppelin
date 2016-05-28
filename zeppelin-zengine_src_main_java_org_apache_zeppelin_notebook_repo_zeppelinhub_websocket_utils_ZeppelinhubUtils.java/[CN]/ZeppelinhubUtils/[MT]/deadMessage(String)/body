@@ -1,0 +1,9 @@
+{
+  if (StringUtils.isBlank(token)) {
+    LOG.error("Cannot create Dead message: token is null or empty");
+    return ZeppelinhubMessage.EMPTY.serialize();
+  }
+  HashMap<String,Object> data=new HashMap<String,Object>();
+  data.put("token",token);
+  return ZeppelinhubMessage.newMessage(ZeppelinHubOp.DEAD,data,new HashMap<String,String>()).serialize();
+}

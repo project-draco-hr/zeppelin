@@ -1,0 +1,4 @@
+{
+  LOG.debug("Sending PING to zeppelinhub");
+  client.send(ZeppelinhubUtils.pingMessage(client.getToken()));
+}

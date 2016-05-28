@@ -1,0 +1,7 @@
+{
+  SslContextFactory sslContextFactory=new SslContextFactory();
+  HttpClient httpClient=new HttpClient(sslContextFactory);
+  httpClient.setFollowRedirects(false);
+  httpClient.setMaxConnectionsPerDestination(100);
+  return httpClient;
+}

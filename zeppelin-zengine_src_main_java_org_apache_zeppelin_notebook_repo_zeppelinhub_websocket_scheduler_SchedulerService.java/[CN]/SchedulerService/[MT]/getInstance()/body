@@ -1,0 +1,6 @@
+{
+  if (instance == null) {
+    instance=new SchedulerService(2);
+  }
+  return instance;
+}

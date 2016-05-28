@@ -1,0 +1,9 @@
+{
+  if (credentialsAvailable()) {
+    zeppelinMsg.principal=authModule.getPrincipal();
+    zeppelinMsg.ticket=authModule.getTicket();
+    zeppelinMsg.roles=authModule.getRoles();
+  }
+  String msg=gson.toJson(zeppelinMsg);
+  return msg;
+}

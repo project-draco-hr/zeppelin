@@ -1,0 +1,11 @@
+{
+  LOG.info("Stopping Zeppelinhub websocket client");
+  try {
+    zeppelinhubSession.close();
+    schedulerService.close();
+    client.stop();
+  }
+ catch (  Exception e) {
+    LOG.error("Cannot stop zeppelinhub websocket client",e);
+  }
+}

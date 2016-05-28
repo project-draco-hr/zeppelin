@@ -1,0 +1,6 @@
+{
+  SslContextFactory sslContextFactory=new SslContextFactory();
+  WebSocketClient client=new WebSocketClient(sslContextFactory);
+  client.setMaxIdleTimeout(5 * min * 1000);
+  return client;
+}

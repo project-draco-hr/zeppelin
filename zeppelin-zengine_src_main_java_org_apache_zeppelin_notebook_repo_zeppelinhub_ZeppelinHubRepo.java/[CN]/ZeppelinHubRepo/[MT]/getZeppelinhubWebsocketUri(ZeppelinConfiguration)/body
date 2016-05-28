@@ -1,0 +1,10 @@
+{
+  String zeppelinHubUri=StringUtils.EMPTY;
+  try {
+    zeppelinHubUri=getZeppelinHubWsUri(new URI(conf.getString("ZEPPELINHUB_API_ADDRESS",ZEPPELIN_CONF_PROP_NAME_SERVER,DEFAULT_SERVER)));
+  }
+ catch (  URISyntaxException e) {
+    LOG.error("Cannot get ZeppelinHub URI",e);
+  }
+  return zeppelinHubUri;
+}

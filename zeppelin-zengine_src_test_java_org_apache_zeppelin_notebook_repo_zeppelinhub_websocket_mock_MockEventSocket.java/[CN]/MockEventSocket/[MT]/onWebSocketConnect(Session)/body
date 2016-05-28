@@ -1,0 +1,5 @@
+{
+  super.onWebSocketConnect(session);
+  this.session=session;
+  LOG.info("Socket Connected: " + session);
+}

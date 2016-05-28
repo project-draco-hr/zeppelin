@@ -1,0 +1,3 @@
+{
+  schedulerService.add(ZeppelinHeartbeat.newInstance(this),15,4 * min);
+}

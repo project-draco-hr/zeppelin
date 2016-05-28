@@ -1,0 +1,8 @@
+{
+  if (note == null) {
+    throw new IOException("Zeppelinhub failed to save empty note");
+  }
+  String notebook=GSON.toJson(note);
+  restApiClient.asyncPut(notebook);
+  LOG.info("ZeppelinHub REST API saving note {} ",note.id());
+}

@@ -1,0 +1,3 @@
+{
+  zeppelinClient.send(message,noteId);
+}

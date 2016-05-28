@@ -1,0 +1,6 @@
+{
+  byte[] ivFromBytes=toBytes(ivString);
+  byte[] iv16ToBytes=new byte[ivSize];
+  System.arraycopy(ivFromBytes,0,iv16ToBytes,0,Math.min(ivFromBytes.length,ivSize));
+  return new IvParameterSpec(iv16ToBytes);
+}

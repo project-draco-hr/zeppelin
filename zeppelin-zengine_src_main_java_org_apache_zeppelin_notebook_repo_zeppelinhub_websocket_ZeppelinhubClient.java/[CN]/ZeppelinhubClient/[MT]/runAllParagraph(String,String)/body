@@ -1,0 +1,33 @@
+{
+  LOG.info("Running paragraph with noteId {}",noteId);
+  try {
+    JSONObject data=new JSONObject(hubMsg);
+    if (data.equals(JSONObject.NULL) || !(data.get("data") instanceof JSONArray)) {
+      LOG.error("Wrong \"data\" format for RUN_NOTEBOOK");
+      return false;
+    }
+    Client client=Client.getInstance();
+    if (client == null) {
+      LOG.warn("Base client isn't initialized, returning");
+      return false;
+    }
+    Message zeppelinMsg=new Message(OP.RUN_PARAGRAPH);
+    JSONArray paragraphs=data.getJSONArray("data");
+    for (int i=0; i < paragraphs.length(); i++) {
+      if (!(paragraphs.get(i) instanceof JSONObject)) {
+        LOG.warn("Wrong \"paragraph\" format for RUN_NOTEBOOK");
+        continue;
+      }
+      zeppelinMsg.data=gson.fromJson(paragraphs.getString(i),new TypeToken<Map<String,Object>>(){
+      }
+.getType());
+      client.relayToZeppelin(zeppelinMsg,noteId);
+      LOG.info("\nSending RUN_PARAGRAPH message to Zeppelin ");
+    }
+  }
+ catch (  JSONException e) {
+    LOG.error("Failed to parse RUN_NOTEBOOK message from ZeppelinHub ",e);
+    return false;
+  }
+  return true;
+}

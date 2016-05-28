@@ -1,0 +1,4 @@
+{
+  LOG.debug("Sending PING to all connected Zeppelin notes");
+  client.pingAllNotes();
+}

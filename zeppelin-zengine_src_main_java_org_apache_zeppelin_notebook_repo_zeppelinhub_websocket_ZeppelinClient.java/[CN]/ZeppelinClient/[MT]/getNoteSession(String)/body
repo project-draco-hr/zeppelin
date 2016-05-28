@@ -1,0 +1,9 @@
+{
+  Session session=zeppelinConnectionMap.get(noteId);
+  if (session == null || !session.isOpen()) {
+    LOG.info("Not connection to {}",noteId);
+    zeppelinConnectionMap.remove(noteId);
+    session=openNoteSession(noteId);
+  }
+  return session;
+}

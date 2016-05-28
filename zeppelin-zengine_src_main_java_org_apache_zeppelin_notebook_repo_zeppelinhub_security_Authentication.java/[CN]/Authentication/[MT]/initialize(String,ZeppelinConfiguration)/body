@@ -1,0 +1,6 @@
+{
+  if (instance == null && conf != null) {
+    instance=new Authentication(token,conf);
+  }
+  return instance;
+}

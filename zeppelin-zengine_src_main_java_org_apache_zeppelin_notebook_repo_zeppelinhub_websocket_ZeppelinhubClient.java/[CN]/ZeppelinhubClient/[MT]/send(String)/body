@@ -1,0 +1,11 @@
+{
+  if (!isConnectedToZeppelinhub()) {
+    LOG.info("Zeppelinhub connection is not open, opening it");
+    zeppelinhubSession=connect();
+    if (zeppelinhubSession == ZeppelinhubSession.EMPTY) {
+      LOG.warn("While connecting to ZeppelinHub received empty session, cannot send the message");
+      return;
+    }
+  }
+  zeppelinhubSession.sendByFuture(msg);
+}

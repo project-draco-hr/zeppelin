@@ -1,0 +1,14 @@
+{
+  Message zeppelinMsg=new Message(op);
+  if (!(hubMsg.data instanceof Map)) {
+    LOG.error("Data field of message from ZeppelinHub isn't in correct Map format");
+    return;
+  }
+  zeppelinMsg.data=(Map<String,Object>)hubMsg.data;
+  Client client=Client.getInstance();
+  if (client == null) {
+    LOG.warn("Base client isn't initialized, returning");
+    return;
+  }
+  client.relayToZeppelin(zeppelinMsg,hubMsg.meta.get("noteId"));
+}

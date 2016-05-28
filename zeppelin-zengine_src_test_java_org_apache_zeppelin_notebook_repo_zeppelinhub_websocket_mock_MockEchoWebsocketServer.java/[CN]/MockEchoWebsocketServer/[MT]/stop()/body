@@ -1,0 +1,4 @@
+{
+  LOG.info("Stopping mock echo websocket server");
+  server.stop();
+}

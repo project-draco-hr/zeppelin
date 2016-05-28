@@ -1,0 +1,4 @@
+String zeppelinUri
+String zeppelinhubUri
+String token
+ZeppelinConfiguration conf

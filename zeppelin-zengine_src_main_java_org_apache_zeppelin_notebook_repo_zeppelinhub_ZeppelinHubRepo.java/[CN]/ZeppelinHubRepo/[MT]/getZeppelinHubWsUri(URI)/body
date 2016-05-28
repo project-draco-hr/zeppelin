@@ -1,0 +1,19 @@
+{
+  URI apiRoot=api;
+  String scheme=apiRoot.getScheme();
+  int port=apiRoot.getPort();
+  if (port <= 0) {
+    port=(scheme != null && scheme.equals("https")) ? 443 : 80;
+  }
+  if (scheme == null) {
+    LOG.info("{} is not a valid zeppelinhub server address. proceed with default address {}",apiRoot,DEFAULT_SERVER);
+    apiRoot=new URI(DEFAULT_SERVER);
+    scheme=apiRoot.getScheme();
+    port=apiRoot.getPort();
+    if (port <= 0) {
+      port=(scheme != null && scheme.equals("https")) ? 443 : 80;
+    }
+  }
+  String ws=scheme.equals("https") ? "wss://" : "ws://";
+  return ws + apiRoot.getHost() + ":"+ port+ "/async";
+}

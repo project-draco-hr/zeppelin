@@ -1,0 +1,5 @@
+{
+  super.onWebSocketText(message);
+  session.getRemote().sendStringByFuture(message);
+  LOG.info("Received TEXT message: {}",message);
+}

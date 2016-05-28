@@ -1,0 +1,6 @@
+{
+  if (instance == null) {
+    instance=new ZeppelinhubClient(zeppelinhubUrl,token);
+  }
+  return instance;
+}

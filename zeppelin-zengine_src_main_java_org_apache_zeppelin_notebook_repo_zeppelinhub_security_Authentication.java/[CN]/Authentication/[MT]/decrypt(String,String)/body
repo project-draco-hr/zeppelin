@@ -1,0 +1,20 @@
+{
+  LOG.debug("IV is {}, IV length is {}",initVector,initVector.length());
+  if (StringUtils.isBlank(value) || StringUtils.isBlank(initVector)) {
+    LOG.error("String to decode or salt is not provided");
+    return StringUtils.EMPTY;
+  }
+  try {
+    IvParameterSpec iv=generateIV(initVector);
+    Key key=generateKey();
+    Cipher cipher=Cipher.getInstance(CIPHER_MODE);
+    cipher.init(Cipher.DECRYPT_MODE,key,iv);
+    byte[] decryptedString=Base64.decodeBase64(toBytes(value));
+    decryptedString=cipher.doFinal(decryptedString);
+    return new String(decryptedString);
+  }
+ catch (  GeneralSecurityException e) {
+    LOG.error("Error when decrypting",e);
+    return StringUtils.EMPTY;
+  }
+}

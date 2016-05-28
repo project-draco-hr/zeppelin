@@ -1,0 +1,3 @@
+{
+  return Authentication.getInstance() != null && Authentication.getInstance().isAuthenticated();
+}

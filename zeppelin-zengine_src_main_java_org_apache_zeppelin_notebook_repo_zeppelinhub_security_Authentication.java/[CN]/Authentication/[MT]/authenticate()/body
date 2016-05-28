@@ -1,0 +1,20 @@
+{
+  if (authEnabled) {
+    if (!StringUtils.isEmpty(userKey)) {
+      String authKey=getAuthKey(userKey);
+      Map<String,String> authCredentials=login(authKey,loginEndpoint);
+      if (isEmptyMap(authCredentials)) {
+        return false;
+      }
+      principal=authCredentials.containsKey("principal") ? authCredentials.get("principal") : principal;
+      ticket=authCredentials.containsKey("ticket") ? authCredentials.get("ticket") : ticket;
+      roles=authCredentials.containsKey("roles") ? authCredentials.get("roles") : roles;
+      LOG.info("Authenticated into Zeppelin as {} and roles {}",principal,roles);
+      return true;
+    }
+ else {
+      LOG.warn("ZEPPELINHUB_USER_KEY isn't provided. Please provide your credentials" + "for your instance in ZeppelinHub website and generate your key.");
+    }
+  }
+  return false;
+}

@@ -1,0 +1,27 @@
+{
+  try {
+    Thread.sleep(2000);
+  }
+ catch (  InterruptedException e) {
+    LOG.warn("Cannot wait for websocket server to start, returning");
+    return;
+  }
+  ZeppelinClient client=ZeppelinClient.initialize(validWebsocketUrl,"dummy token",null);
+  client.start();
+  LOG.info("Zeppelin websocket client started");
+  Session connectionA=client.getZeppelinConnection("AAAA");
+  assertNotNull(connectionA);
+  assertTrue(connectionA.isOpen());
+  assertEquals(client.countConnectedNotes(),1);
+  assertEquals(connectionA,client.getZeppelinConnection("AAAA"));
+  Session connectionB=client.getZeppelinConnection("BBBB");
+  assertNotNull(connectionB);
+  assertTrue(connectionB.isOpen());
+  assertEquals(client.countConnectedNotes(),2);
+  assertEquals(connectionB,client.getZeppelinConnection("BBBB"));
+  client.removeZeppelinConnection("AAAA");
+  assertEquals(client.countConnectedNotes(),1);
+  assertNotEquals(connectionA,client.getZeppelinConnection("AAAA"));
+  assertEquals(client.countConnectedNotes(),2);
+  client.stop();
+}

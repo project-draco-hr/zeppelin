@@ -1,0 +1,10 @@
+{
+  Client.initialize(validWebsocketUrl,validWebsocketUrl,"TOKEN",null);
+  Client.getInstance().start();
+  ZeppelinhubClient zeppelinhubClient=ZeppelinhubClient.getInstance();
+  boolean runStatus=zeppelinhubClient.runAllParagraph("2AB7SY361",runNotebookMsg);
+  assertTrue(runStatus);
+  runStatus=zeppelinhubClient.runAllParagraph("2AB7SY361",invalidRunNotebookMsg);
+  assertFalse(runStatus);
+  Client.getInstance().stop();
+}

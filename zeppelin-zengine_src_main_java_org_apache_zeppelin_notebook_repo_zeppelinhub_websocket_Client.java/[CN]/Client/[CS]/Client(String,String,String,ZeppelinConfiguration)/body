@@ -1,0 +1,5 @@
+{
+  LOG.debug("Init Client");
+  zeppelinhubClient=ZeppelinhubClient.initialize(zeppelinhubUri,token);
+  zeppelinClient=ZeppelinClient.initialize(zeppelinUri,token,conf);
+}

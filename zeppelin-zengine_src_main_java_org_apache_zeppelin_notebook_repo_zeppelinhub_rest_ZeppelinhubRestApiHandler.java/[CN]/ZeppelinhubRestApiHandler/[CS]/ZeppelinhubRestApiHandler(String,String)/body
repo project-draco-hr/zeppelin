@@ -1,0 +1,11 @@
+{
+  this.zepelinhubUrl=zeppelinhubUrl + DEFAULT_API_PATH + "/";
+  this.token=token;
+  client=getAsyncClient();
+  try {
+    client.start();
+  }
+ catch (  Exception e) {
+    LOG.error("Cannot initialize ZeppelinHub REST async client",e);
+  }
+}

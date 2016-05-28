@@ -1,0 +1,6 @@
+{
+  if (zeppelinMsg == null) {
+    return EMPTY;
+  }
+  return new ZeppelinhubMessage(zeppelinMsg.op,zeppelinMsg.data,meta);
+}

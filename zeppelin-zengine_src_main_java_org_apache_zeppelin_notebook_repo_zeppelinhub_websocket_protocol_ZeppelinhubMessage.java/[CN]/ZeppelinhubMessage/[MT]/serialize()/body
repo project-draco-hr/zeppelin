@@ -1,0 +1,3 @@
+{
+  return gson.toJson(this,ZeppelinhubMessage.class);
+}

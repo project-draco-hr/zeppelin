@@ -1,0 +1,5 @@
+{
+  LOG.info("Starting mock echo websocket server");
+  server.start();
+  server.join();
+}

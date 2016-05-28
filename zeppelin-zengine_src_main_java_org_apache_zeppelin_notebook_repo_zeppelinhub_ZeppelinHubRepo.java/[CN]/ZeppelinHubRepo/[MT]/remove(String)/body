@@ -1,0 +1,4 @@
+{
+  restApiClient.asyncDel(noteId);
+  LOG.info("ZeppelinHub REST API removing note {} ",noteId);
+}

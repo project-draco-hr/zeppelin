@@ -1,0 +1,11 @@
+{
+  String response=restApiClient.asyncGet("");
+  List<NoteInfo> notes=GSON.fromJson(response,new TypeToken<List<NoteInfo>>(){
+  }
+.getType());
+  if (notes == null) {
+    return Collections.emptyList();
+  }
+  LOG.info("ZeppelinHub REST API listing notes ");
+  return notes;
+}

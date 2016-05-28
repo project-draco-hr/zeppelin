@@ -1,0 +1,9 @@
+{
+  zeppelinhubWebsocketUrl=URI.create(url);
+  client=createNewWebsocketClient();
+  conectionRequest=setConnectionrequest(token);
+  zeppelinhubToken=token;
+  schedulerService=SchedulerService.create(10);
+  gson=new Gson();
+  LOG.info("Initialized ZeppelinHub websocket client on {}",zeppelinhubWebsocketUrl);
+}

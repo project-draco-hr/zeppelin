@@ -1,0 +1,4 @@
+{
+  assertEquals(ZeppelinhubMessage.EMPTY,ZeppelinhubMessage.deserialize(""));
+  assertEquals(ZeppelinhubMessage.EMPTY,ZeppelinhubMessage.deserialize("dwfewewrewr"));
+}

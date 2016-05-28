@@ -1,0 +1,13 @@
+{
+  Message msg=new Message(OP.LIST_NOTES);
+  msg.data=Maps.newHashMap();
+  msg.data.put("key","value");
+  ZeppelinClient client=ZeppelinClient.initialize(validWebsocketUrl,"TOKEN",null);
+  String serializedMsg=client.serialize(msg);
+  Message deserializedMsg=client.deserialize(serializedMsg);
+  assertEquals(msg.op,deserializedMsg.op);
+  assertEquals(msg.data.get("key"),deserializedMsg.data.get("key"));
+  String invalidMsg="random text";
+  deserializedMsg=client.deserialize(invalidMsg);
+  assertNull(deserializedMsg);
+}

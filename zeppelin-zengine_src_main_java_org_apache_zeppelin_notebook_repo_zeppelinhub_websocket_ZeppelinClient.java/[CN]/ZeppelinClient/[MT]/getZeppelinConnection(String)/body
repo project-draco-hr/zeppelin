@@ -1,0 +1,12 @@
+{
+  if (StringUtils.isBlank(noteId)) {
+    LOG.warn("Cannot return websocket connection for blank noteId");
+    return null;
+  }
+  if (zeppelinConnectionMap.containsKey(noteId)) {
+    LOG.info("Connection for {} exists in map",noteId);
+    return getNoteSession(noteId);
+  }
+  LOG.info("Creating Zeppelin websocket connection {} {}",zeppelinWebsocketUrl,noteId);
+  return openNoteSession(noteId);
+}

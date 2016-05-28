@@ -1,0 +1,3 @@
+{
+  LOG.info("Zeppelin connection closed with code: {}, message: {}",code,message);
+}

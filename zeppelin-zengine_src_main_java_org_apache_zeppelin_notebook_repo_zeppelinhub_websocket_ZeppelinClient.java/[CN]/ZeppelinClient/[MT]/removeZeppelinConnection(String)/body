@@ -1,0 +1,10 @@
+{
+  if (zeppelinConnectionMap.containsKey(noteId)) {
+    Session conn=zeppelinConnectionMap.get(noteId);
+    if (conn.isOpen()) {
+      conn.close();
+    }
+    zeppelinConnectionMap.remove(noteId);
+  }
+  LOG.info("Removed Zeppelin ws connection for the following note {}",noteId);
+}

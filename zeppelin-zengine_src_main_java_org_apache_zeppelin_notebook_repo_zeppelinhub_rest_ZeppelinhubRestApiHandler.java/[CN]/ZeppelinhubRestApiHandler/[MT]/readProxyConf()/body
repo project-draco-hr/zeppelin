@@ -1,0 +1,21 @@
+{
+  String proxyHostString=StringUtils.isBlank(System.getenv("http_proxy")) ? System.getenv("HTTP_PROXY") : System.getenv("http_proxy");
+  if (StringUtils.isBlank(proxyHostString)) {
+    proxyHostString=StringUtils.isBlank(System.getenv("https_proxy")) ? System.getenv("HTTPS_PROXY") : System.getenv("https_proxy");
+  }
+  if (StringUtils.isBlank(proxyHostString)) {
+    PROXY_ON=false;
+  }
+ else {
+    String[] parts=proxyHostString.replaceAll("/","").split(":");
+    if (parts.length != 3) {
+      LOG.warn("Proxy host format is incorrect {}, e.g. http://domain:port/",proxyHostString);
+      PROXY_ON=false;
+      return;
+    }
+    PROXY_HOST=parts[1];
+    PROXY_PORT=Integer.parseInt(parts[2]);
+    LOG.info("Proxy protocol: {}, domain: {}, port: {}",parts[0],parts[1],parts[2]);
+    PROXY_ON=true;
+  }
+}

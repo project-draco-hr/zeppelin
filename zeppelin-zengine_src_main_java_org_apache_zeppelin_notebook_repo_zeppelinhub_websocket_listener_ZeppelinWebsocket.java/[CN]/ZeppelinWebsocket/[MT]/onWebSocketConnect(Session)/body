@@ -1,0 +1,4 @@
+{
+  LOG.info("Zeppelin connection opened");
+  this.connection=session;
+}

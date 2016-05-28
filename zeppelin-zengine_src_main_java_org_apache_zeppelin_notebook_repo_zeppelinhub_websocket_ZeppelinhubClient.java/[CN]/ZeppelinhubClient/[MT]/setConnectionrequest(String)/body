@@ -1,0 +1,5 @@
+{
+  ClientUpgradeRequest request=new ClientUpgradeRequest();
+  request.setCookies(Lists.newArrayList(new HttpCookie(ZeppelinHubRepo.TOKEN_HEADER,token)));
+  return request;
+}

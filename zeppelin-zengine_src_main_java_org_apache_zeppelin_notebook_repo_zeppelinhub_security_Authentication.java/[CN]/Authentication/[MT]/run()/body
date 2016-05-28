@@ -1,0 +1,4 @@
+{
+  authenticated=authenticate();
+  LOG.info("Scheduled authentication status is {}",authenticated);
+}

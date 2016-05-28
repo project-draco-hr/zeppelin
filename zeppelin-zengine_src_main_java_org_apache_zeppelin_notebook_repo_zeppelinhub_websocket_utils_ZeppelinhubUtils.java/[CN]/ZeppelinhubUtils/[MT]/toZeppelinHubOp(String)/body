@@ -1,0 +1,9 @@
+{
+  ZeppelinHubOp hubOp=null;
+  try {
+    hubOp=ZeppelinHubOp.valueOf(text);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  return hubOp;
+}

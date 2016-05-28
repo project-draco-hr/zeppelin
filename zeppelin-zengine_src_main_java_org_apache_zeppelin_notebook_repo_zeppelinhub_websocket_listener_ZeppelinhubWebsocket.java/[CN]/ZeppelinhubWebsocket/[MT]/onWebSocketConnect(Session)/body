@@ -1,0 +1,5 @@
+{
+  LOG.info("Opening a new session to Zeppelinhub {}",session.hashCode());
+  this.zeppelinHubSession=session;
+  send(ZeppelinhubUtils.liveMessage(token));
+}

@@ -1,0 +1,7 @@
+{
+  SslContextFactory sslContextFactory=new SslContextFactory();
+  WebSocketClient client=new WebSocketClient(sslContextFactory);
+  client.setMaxTextMessageBufferSize(MAXIMUN_TEXT_SIZE);
+  client.setMaxIdleTimeout(CONNECTION_IDLE_TIME);
+  return client;
+}

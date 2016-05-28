@@ -1,0 +1,7 @@
+{
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_SERVER,testAddr);
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_TOKEN,"AAA-BBB-CCC-00");
+  ZeppelinConfiguration conf=new ZeppelinConfiguration();
+  repo=new ZeppelinHubRepo(conf);
+  repo.setZeppelinhubRestApiHandler(getMockedZeppelinHandler());
+}

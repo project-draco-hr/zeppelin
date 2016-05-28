@@ -1,0 +1,18 @@
+{
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_SERVER,testAddr);
+  ZeppelinConfiguration config=new ZeppelinConfiguration();
+  ZeppelinHubRepo repository=new ZeppelinHubRepo(config);
+  assertThat(repository.getZeppelinHubUrl(config)).isEqualTo("http://zeppelinhub.ltd");
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_SERVER,"yolow");
+  config=new ZeppelinConfiguration();
+  repository=new ZeppelinHubRepo(config);
+  assertThat(repository.getZeppelinHubUrl(config)).isEqualTo("https://www.zeppelinhub.com");
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_SERVER,"http://zeppelinhub.ltd:4242");
+  config=new ZeppelinConfiguration();
+  repository=new ZeppelinHubRepo(config);
+  assertThat(repository.getZeppelinHubUrl(config)).isEqualTo("http://zeppelinhub.ltd:4242");
+  System.setProperty(ZeppelinHubRepo.ZEPPELIN_CONF_PROP_NAME_SERVER,"http://zeppelinhub.ltd:0");
+  config=new ZeppelinConfiguration();
+  repository=new ZeppelinHubRepo(config);
+  assertThat(repository.getZeppelinHubUrl(config)).isEqualTo("http://zeppelinhub.ltd");
+}

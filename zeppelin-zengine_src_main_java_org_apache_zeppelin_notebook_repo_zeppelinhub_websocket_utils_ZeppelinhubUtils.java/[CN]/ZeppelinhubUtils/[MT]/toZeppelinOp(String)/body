@@ -1,0 +1,9 @@
+{
+  Message.OP zeppelinOp=null;
+  try {
+    zeppelinOp=Message.OP.valueOf(text);
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  return zeppelinOp;
+}

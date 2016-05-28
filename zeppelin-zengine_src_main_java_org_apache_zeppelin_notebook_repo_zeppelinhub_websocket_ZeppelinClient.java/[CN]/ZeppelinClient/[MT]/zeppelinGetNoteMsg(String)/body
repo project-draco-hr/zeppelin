@@ -1,0 +1,7 @@
+{
+  Message getNoteMsg=new Message(Message.OP.GET_NOTE);
+  HashMap<String,Object> data=new HashMap<String,Object>();
+  data.put("id",noteId);
+  getNoteMsg.data=data;
+  return getNoteMsg;
+}

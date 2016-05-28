@@ -1,0 +1,8 @@
+{
+  Session noteSession=getZeppelinConnection(noteId);
+  if (!isSessionOpen(noteSession)) {
+    LOG.error("Cannot open websocket connection to Zeppelin note {}",noteId);
+    return;
+  }
+  noteSession.getRemote().sendStringByFuture(serialize(msg));
+}

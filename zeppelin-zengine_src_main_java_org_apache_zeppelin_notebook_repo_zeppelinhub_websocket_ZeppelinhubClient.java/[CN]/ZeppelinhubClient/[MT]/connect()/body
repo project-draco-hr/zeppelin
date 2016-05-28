@@ -1,0 +1,14 @@
+{
+  ZeppelinhubSession zeppelinSession;
+  try {
+    ZeppelinhubWebsocket ws=ZeppelinhubWebsocket.newInstance(zeppelinhubToken);
+    Future<Session> future=client.connect(ws,zeppelinhubWebsocketUrl,conectionRequest);
+    Session session=future.get();
+    zeppelinSession=ZeppelinhubSession.createInstance(session,zeppelinhubToken);
+  }
+ catch (  IOException|InterruptedException|ExecutionException e) {
+    LOG.info("Couldnt connect to zeppelinhub",e);
+    zeppelinSession=ZeppelinhubSession.EMPTY;
+  }
+  return zeppelinSession;
+}

@@ -1,0 +1,29 @@
+{
+  String[] credentials=authKey.split(":");
+  if (credentials.length != 2) {
+    return Collections.emptyMap();
+  }
+  PostMethod post=new PostMethod(endpoint);
+  post.addRequestHeader("Origin","http://localhost");
+  post.addParameter(new NameValuePair("userName",credentials[0]));
+  post.addParameter(new NameValuePair("password",credentials[1]));
+  try {
+    int code=client.executeMethod(post);
+    if (code == HttpStatus.SC_OK) {
+      String content=post.getResponseBodyAsString();
+      Map<String,Object> resp=gson.fromJson(content,new TypeToken<Map<String,Object>>(){
+      }
+.getType());
+      LOG.info("Received from Zeppelin LoginRestApi : " + content);
+      return (Map<String,String>)resp.get("body");
+    }
+ else {
+      LOG.error("Failed Zeppelin login {}, status code {}",endpoint,code);
+      return Collections.emptyMap();
+    }
+  }
+ catch (  IOException e) {
+    LOG.error("Cannot login into Zeppelin",e);
+    return Collections.emptyMap();
+  }
+}

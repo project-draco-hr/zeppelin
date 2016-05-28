@@ -1,0 +1,3 @@
+{
+  LOG.warn("Zeppelin socket connection error ",e);
+}

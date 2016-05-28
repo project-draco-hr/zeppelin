@@ -1,0 +1,14 @@
+{
+  if (StringUtils.isBlank(zeppelinMessage)) {
+    return null;
+  }
+  Message msg;
+  try {
+    msg=gson.fromJson(zeppelinMessage,Message.class);
+  }
+ catch (  JsonSyntaxException ex) {
+    LOG.error("Cannot deserialize zeppelin message",ex);
+    msg=null;
+  }
+  return msg;
+}

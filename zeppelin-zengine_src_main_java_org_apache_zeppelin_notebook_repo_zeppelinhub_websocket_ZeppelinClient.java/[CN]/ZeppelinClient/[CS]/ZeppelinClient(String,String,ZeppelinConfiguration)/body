@@ -1,0 +1,13 @@
+{
+  zeppelinWebsocketUrl=URI.create(zeppelinUrl);
+  zeppelinhubToken=token;
+  wsClient=createNewWebsocketClient();
+  gson=new Gson();
+  zeppelinConnectionMap=new ConcurrentHashMap<>();
+  schedulerService=SchedulerService.getInstance();
+  authModule=Authentication.initialize(token,conf);
+  if (authModule != null) {
+    SchedulerService.getInstance().addOnce(authModule,10);
+  }
+  LOG.info("Initialized Zeppelin websocket client on {}",zeppelinWebsocketUrl);
+}

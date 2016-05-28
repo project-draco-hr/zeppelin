@@ -1,0 +1,8 @@
+{
+  if (zeppelinhubClient != null) {
+    zeppelinhubClient.stop();
+  }
+  if (zeppelinClient != null) {
+    zeppelinClient.stop();
+  }
+}

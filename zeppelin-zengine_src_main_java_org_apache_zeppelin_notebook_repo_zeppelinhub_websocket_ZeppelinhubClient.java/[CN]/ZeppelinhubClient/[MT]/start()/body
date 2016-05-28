@@ -1,0 +1,10 @@
+{
+  try {
+    client.start();
+    zeppelinhubSession=connect();
+    addRoutines();
+  }
+ catch (  Exception e) {
+    LOG.error("Cannot connect to zeppelinhub via websocket",e);
+  }
+}

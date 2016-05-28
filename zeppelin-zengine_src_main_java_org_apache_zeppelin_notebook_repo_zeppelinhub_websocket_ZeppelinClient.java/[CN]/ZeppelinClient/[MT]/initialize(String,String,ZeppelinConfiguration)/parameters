@@ -1,0 +1,3 @@
+String zeppelinUrl
+String token
+ZeppelinConfiguration conf

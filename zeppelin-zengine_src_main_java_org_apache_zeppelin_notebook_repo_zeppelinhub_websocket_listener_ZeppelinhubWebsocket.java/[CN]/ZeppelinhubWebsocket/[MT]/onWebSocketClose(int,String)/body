@@ -1,0 +1,5 @@
+{
+  LOG.info("Closing websocket connection [{}] : {}",statusCode,reason);
+  send(ZeppelinhubUtils.deadMessage(token));
+  this.zeppelinHubSession=null;
+}
