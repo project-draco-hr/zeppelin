@@ -1,0 +1,10 @@
+{
+  for (  RegisteredInterpreter registeredInterpreter : registeredInterpreters) {
+    String className=registeredInterpreter.getClassName();
+    if (validateRegisterInterpreter(registeredInterpreter) && null == Interpreter.findRegisteredInterpreterByClassName(className)) {
+      registeredInterpreter.setPath(absolutePath);
+      Interpreter.register(registeredInterpreter);
+      logger.debug("Registered. key: {}, className: {}, path: {}",registeredInterpreter.getInterpreterKey(),registeredInterpreter.getClassName(),registeredInterpreter.getProperties());
+    }
+  }
+}

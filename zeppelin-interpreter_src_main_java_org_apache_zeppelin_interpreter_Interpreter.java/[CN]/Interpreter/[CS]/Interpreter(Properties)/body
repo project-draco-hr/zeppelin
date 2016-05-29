@@ -1,3 +1,4 @@
 {
+  logger.debug("Properties: {}",property);
   this.property=property;
 }

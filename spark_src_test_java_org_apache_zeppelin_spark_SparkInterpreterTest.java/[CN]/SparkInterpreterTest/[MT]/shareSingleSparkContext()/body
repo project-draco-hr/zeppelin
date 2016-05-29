@@ -1,6 +1,5 @@
 {
-  Properties p=new Properties();
-  SparkInterpreter repl2=new SparkInterpreter(p);
+  SparkInterpreter repl2=new SparkInterpreter(getSparkTestProperties());
   repl2.setInterpreterGroup(intpGroup);
   intpGroup.get("note").add(repl2);
   repl2.open();

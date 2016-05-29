@@ -1,0 +1,10 @@
+{
+  URL[] urls=recursiveBuildLibList(new File(interpreterDir));
+  ClassLoader tempClassLoader=new URLClassLoader(urls,cl);
+  InputStream inputStream=tempClassLoader.getResourceAsStream(interpreterJson);
+  if (null != inputStream) {
+    logger.debug("Reading {} from resources in {}",interpreterJson,interpreterDir);
+    List<RegisteredInterpreter> registeredInterpreterList=getInterpreterListFromJson(inputStream);
+    registerInterpreters(registeredInterpreterList,interpreterDir);
+  }
+}

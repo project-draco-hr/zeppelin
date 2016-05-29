@@ -1,0 +1,6 @@
+{
+  Properties p=new Properties();
+  p.setProperty("zeppelin.dep.localrepo","local-repo");
+  p.setProperty("zeppelin.dep.additionalRemoteRepository","spark-packages,http://dl.bintray.com/spark-packages/maven,false;");
+  return p;
+}

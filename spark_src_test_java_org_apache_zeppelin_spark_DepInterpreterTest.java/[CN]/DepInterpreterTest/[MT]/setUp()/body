@@ -2,7 +2,7 @@
   tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
   System.setProperty("zeppelin.dep.localrepo",tmpDir.getAbsolutePath() + "/local-repo");
   tmpDir.mkdirs();
-  Properties p=new Properties();
+  Properties p=getTestProperties();
   dep=new DepInterpreter(p);
   dep.open();
   InterpreterGroup intpGroup=new InterpreterGroup();

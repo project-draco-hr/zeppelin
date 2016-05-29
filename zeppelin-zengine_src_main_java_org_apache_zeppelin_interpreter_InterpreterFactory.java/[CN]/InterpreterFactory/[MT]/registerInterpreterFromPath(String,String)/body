@@ -1,0 +1,8 @@
+{
+  Path interpreterJsonPath=Paths.get(interpreterDir,interpreterJson);
+  if (Files.exists(interpreterJsonPath)) {
+    logger.debug("Reading {}",interpreterJsonPath);
+    List<RegisteredInterpreter> registeredInterpreterList=getInterpreterListFromJson(interpreterJsonPath);
+    registerInterpreters(registeredInterpreterList,interpreterDir);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  return null != registeredInterpreter.getGroup() && null != registeredInterpreter.getName() && null != registeredInterpreter.getClassName();
+}

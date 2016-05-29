@@ -1,0 +1,3 @@
+{
+  return getInterpreterListFromJson(new FileInputStream(filename.toFile()));
+}

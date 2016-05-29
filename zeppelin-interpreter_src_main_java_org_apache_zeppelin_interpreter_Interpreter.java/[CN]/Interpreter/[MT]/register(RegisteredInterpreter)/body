@@ -1,0 +1,6 @@
+{
+  String interpreterKey=registeredInterpreter.getInterpreterKey();
+  if (!registeredInterpreters.containsKey(interpreterKey)) {
+    registeredInterpreters.put(interpreterKey,registeredInterpreter);
+  }
+}

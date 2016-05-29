@@ -1,10 +1,4 @@
 {
-  if (property.containsKey(key)) {
-    return property.getProperty(key);
-  }
-  Map<String,InterpreterProperty> defaultProperties=Interpreter.findRegisteredInterpreterByClassName(getClassName()).getProperties();
-  if (defaultProperties.containsKey(key)) {
-    return defaultProperties.get(key).getDefaultValue();
-  }
-  return null;
+  logger.debug("key: {}, value: {}",key,getProperty().getProperty(key));
+  return getProperty().getProperty(key);
 }

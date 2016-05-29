@@ -2,12 +2,18 @@
   InterpreterGroup interpreterGroup=getInterpreterGroup();
 synchronized (interpreterGroup) {
     List<Interpreter> interpreters=interpreterGroup.get(noteId);
-    for (    Interpreter intp : interpreters) {
+    for (    Interpreter intp : new ArrayList<>(interpreters)) {
       Interpreter p=intp;
       while (p instanceof WrappedInterpreter) {
         p=((WrappedInterpreter)p).getInnerInterpreter();
       }
-      ((RemoteInterpreter)p).init();
+      try {
+        ((RemoteInterpreter)p).init();
+      }
+ catch (      InterpreterException e) {
+        logger.error("Failed to initialize interpreter: {}. Remove it from interpreterGroup",p.getClassName());
+        interpreters.remove(p);
+      }
     }
   }
 }

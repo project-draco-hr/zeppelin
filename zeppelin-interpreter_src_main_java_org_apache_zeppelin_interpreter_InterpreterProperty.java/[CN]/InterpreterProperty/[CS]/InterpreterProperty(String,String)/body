@@ -1,5 +1,3 @@
 {
-  super();
-  this.defaultValue=defaultValue;
-  this.description=description;
+  this(null,null,defaultValue,description);
 }

@@ -26,7 +26,7 @@ synchronized (interpreterProcess) {
       }
     }
  catch (    TException e) {
-      broken=true;
+      logger.error("Failed to create interpreter: {}",getClassName());
       throw new InterpreterException(e);
     }
  finally {

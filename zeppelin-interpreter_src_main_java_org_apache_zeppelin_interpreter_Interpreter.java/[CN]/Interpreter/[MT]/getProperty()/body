@@ -1,12 +1,15 @@
 {
   Properties p=new Properties();
   p.putAll(property);
-  Map<String,InterpreterProperty> defaultProperties=Interpreter.findRegisteredInterpreterByClassName(getClassName()).getProperties();
-  for (  String k : defaultProperties.keySet()) {
-    if (!p.containsKey(k)) {
-      String value=defaultProperties.get(k).getDefaultValue();
-      if (value != null) {
-        p.put(k,defaultProperties.get(k).getDefaultValue());
+  RegisteredInterpreter registeredInterpreter=Interpreter.findRegisteredInterpreterByClassName(getClassName());
+  if (null != registeredInterpreter) {
+    Map<String,InterpreterProperty> defaultProperties=registeredInterpreter.getProperties();
+    for (    String k : defaultProperties.keySet()) {
+      if (!p.containsKey(k)) {
+        String value=defaultProperties.get(k).getValue();
+        if (value != null) {
+          p.put(k,defaultProperties.get(k).getValue());
+        }
       }
     }
   }

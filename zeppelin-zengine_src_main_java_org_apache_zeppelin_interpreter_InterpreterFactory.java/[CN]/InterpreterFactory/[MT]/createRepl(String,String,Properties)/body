@@ -1,5 +1,6 @@
 {
   logger.info("Create repl {} from {}",className,dirName);
+  updatePropertiesFromRegisteredInterpreter(property,className);
   ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
   try {
     URLClassLoader ccl=cleanCl.get(dirName);

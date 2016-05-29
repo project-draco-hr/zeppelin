@@ -1,26 +1,27 @@
 {
-  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
-  File[] interpreterDirs=new File(conf.getInterpreterDir()).listFiles();
-  if (interpreterDirs != null) {
-    for (    File path : interpreterDirs) {
-      logger.info("Reading " + path.getAbsolutePath());
-      URL[] urls=null;
-      try {
-        urls=recursiveBuildLibList(path);
+  String interpreterJson=conf.getInterpreterJson();
+  ClassLoader cl=Thread.currentThread().getContextClassLoader();
+  Path interpretersDir=Paths.get(conf.getInterpreterDir());
+  if (Files.exists(interpretersDir)) {
+    for (    Path interpreterDir : Files.newDirectoryStream(interpretersDir,new DirectoryStream.Filter<Path>(){
+      @Override public boolean accept(      Path entry) throws IOException {
+        return Files.exists(entry) && Files.isDirectory(entry);
       }
- catch (      MalformedURLException e1) {
-        logger.error("Can't load jars ",e1);
-      }
-      URLClassLoader ccl=new URLClassLoader(urls,oldcl);
+    }
+)) {
+      String interpreterDirString=interpreterDir.toString();
+      registerInterpreterFromPath(interpreterDirString,interpreterJson);
+      registerInterpreterFromResource(cl,interpreterDirString,interpreterJson);
+      URLClassLoader ccl=new URLClassLoader(recursiveBuildLibList(interpreterDir.toFile()),cl);
       for (      String className : interpreterClassList) {
         try {
           Class.forName(className,true,ccl);
-          Set<String> keys=Interpreter.registeredInterpreters.keySet();
-          for (          String intName : keys) {
-            if (className.equals(Interpreter.registeredInterpreters.get(intName).getClassName())) {
-              Interpreter.registeredInterpreters.get(intName).setPath(path.getAbsolutePath());
-              logger.info("Interpreter " + intName + " found. class="+ className);
-              cleanCl.put(path.getAbsolutePath(),ccl);
+          Set<String> interpreterKeys=Interpreter.registeredInterpreters.keySet();
+          for (          String interpreterKey : interpreterKeys) {
+            if (className.equals(Interpreter.registeredInterpreters.get(interpreterKey).getClassName())) {
+              Interpreter.registeredInterpreters.get(interpreterKey).setPath(interpreterDirString);
+              logger.info("Interpreter " + interpreterKey + " found. class="+ className);
+              cleanCl.put(interpreterDirString,ccl);
             }
           }
         }
@@ -29,10 +30,13 @@
       }
     }
   }
+  for (  RegisteredInterpreter registeredInterpreter : Interpreter.registeredInterpreters.values()) {
+    logger.debug("Registered: {} -> {}. Properties: {}",registeredInterpreter.getInterpreterKey(),registeredInterpreter.getClassName(),registeredInterpreter.getProperties());
+  }
   loadFromFile();
 synchronized (interpreterSettings) {
     if (interpreterSettings.size() == 0) {
-      HashMap<String,List<RegisteredInterpreter>> groupClassNameMap=new HashMap<String,List<RegisteredInterpreter>>();
+      HashMap<String,List<RegisteredInterpreter>> groupClassNameMap=new HashMap<>();
       for (      String k : Interpreter.registeredInterpreters.keySet()) {
         RegisteredInterpreter info=Interpreter.registeredInterpreters.get(k);
         if (!groupClassNameMap.containsKey(info.getGroup())) {
@@ -50,7 +54,7 @@ synchronized (interpreterSettings) {
               found=true;
             }
             for (            String k : info.getProperties().keySet()) {
-              p.put(k,info.getProperties().get(k).getDefaultValue());
+              p.put(k,info.getProperties().get(k).getValue());
             }
           }
           if (found) {

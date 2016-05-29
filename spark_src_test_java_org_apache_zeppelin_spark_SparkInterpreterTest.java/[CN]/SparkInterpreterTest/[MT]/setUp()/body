@@ -3,10 +3,9 @@
   System.setProperty("zeppelin.dep.localrepo",tmpDir.getAbsolutePath() + "/local-repo");
   tmpDir.mkdirs();
   if (repl == null) {
-    Properties p=new Properties();
     intpGroup=new InterpreterGroup();
     intpGroup.put("note",new LinkedList<Interpreter>());
-    repl=new SparkInterpreter(p);
+    repl=new SparkInterpreter(getSparkTestProperties());
     repl.setInterpreterGroup(intpGroup);
     intpGroup.get("note").add(repl);
     repl.open();

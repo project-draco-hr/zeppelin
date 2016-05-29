@@ -1,0 +1,6 @@
+{
+  this.envName=envName;
+  this.propertyName=propertyName;
+  this.defaultValue=defaultValue;
+  this.description=description;
+}
