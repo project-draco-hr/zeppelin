@@ -1,0 +1,2 @@
+def input(self, name, defaultValue=''):
+    print self.errorMsg

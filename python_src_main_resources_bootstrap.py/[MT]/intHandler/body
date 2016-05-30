@@ -1,0 +1,3 @@
+def intHandler(signum, frame):
+    print 'Paragraph interrupted'
+    raise KeyboardInterrupt()

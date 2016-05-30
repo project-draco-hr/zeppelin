@@ -1,0 +1,7 @@
+{
+  pythonInterpreter.open();
+  cmdHistory="";
+  InterpreterResult result=pythonInterpreter.interpret("print a",null);
+  assertEquals(InterpreterResult.Code.SUCCESS,result.code());
+  assertEquals("%text print a",result.toString());
+}

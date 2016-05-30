@@ -1,0 +1,9 @@
+import sys
+import signal
+try:
+    import StringIO as io
+except ImportError:
+    import io as io
+sys.displayhook = (lambda x: None)
+signal.signal(signal.SIGINT, intHandler)
+z = PyZeppelinContext('')

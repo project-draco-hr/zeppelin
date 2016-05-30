@@ -1,0 +1,8 @@
+{
+  try {
+    process.interrupt();
+  }
+ catch (  IOException e) {
+    logger.error("Can't interrupt the python interpreter",e);
+  }
+}

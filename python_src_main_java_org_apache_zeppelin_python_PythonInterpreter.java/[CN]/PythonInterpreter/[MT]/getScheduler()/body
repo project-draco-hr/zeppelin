@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetParallelScheduler(PythonInterpreter.class.getName() + this.hashCode(),10);
+}

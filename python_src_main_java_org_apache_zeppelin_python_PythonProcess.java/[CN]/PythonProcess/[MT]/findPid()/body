@@ -1,0 +1,10 @@
+{
+  long pid=-1;
+  if (process.getClass().getName().equals("java.lang.UNIXProcess")) {
+    Field f=process.getClass().getDeclaredField("pid");
+    f.setAccessible(true);
+    pid=f.getLong(process);
+    f.setAccessible(false);
+  }
+  return pid;
+}

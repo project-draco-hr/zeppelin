@@ -1,0 +1,12 @@
+def zeppelin_show(p, width='0', height='0'):
+    img = io.StringIO()
+    p.savefig(img, format='svg')
+    img.seek(0)
+    style = ''
+    if (width != '0'):
+        style += ('width:' + width)
+    if (height != '0'):
+        if (len(style) != 0):
+            style += ','
+            style += ('height:' + height)
+    print (((("%html <div style='" + style) + "'>") + img.read()) + '<div>')

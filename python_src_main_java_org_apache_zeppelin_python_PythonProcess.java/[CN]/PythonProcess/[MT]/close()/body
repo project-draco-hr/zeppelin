@@ -1,0 +1,7 @@
+{
+  process.destroy();
+  reader.close();
+  writer.close();
+  stdin.close();
+  stdout.close();
+}

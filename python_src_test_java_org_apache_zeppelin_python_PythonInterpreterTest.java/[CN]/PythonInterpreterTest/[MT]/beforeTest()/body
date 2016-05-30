@@ -1,0 +1,26 @@
+{
+  cmdHistory="";
+  mockPythonProcess=mock(PythonProcess.class);
+  when(mockPythonProcess.getPid()).thenReturn((long)1);
+  try {
+    when(mockPythonProcess.sendAndGetResult(anyString())).thenAnswer(new Answer<String>(){
+      @Override public String answer(      InvocationOnMock invocationOnMock) throws Throwable {
+        return answerFromPythonMock(invocationOnMock);
+      }
+    }
+);
+  }
+ catch (  IOException e) {
+    logger.error("Can't initiate python process",e);
+  }
+  Properties properties=new Properties();
+  properties.put(ZEPPELIN_PYTHON,DEFAULT_ZEPPELIN_PYTHON);
+  pythonInterpreter=spy(new PythonInterpreter(properties));
+  when(pythonInterpreter.getPythonProcess()).thenReturn(mockPythonProcess);
+  try {
+    when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn("ImportError");
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+}

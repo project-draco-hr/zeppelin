@@ -1,0 +1,10 @@
+{
+  logger.info("closing Python interpreter .....");
+  try {
+    process.close();
+    gatewayServer.shutdown();
+  }
+ catch (  IOException e) {
+    logger.error("Can't close the interpreter",e);
+  }
+}

@@ -1,0 +1,2 @@
+def select(self, name, options, defaultValue=''):
+    print self.errorMsg

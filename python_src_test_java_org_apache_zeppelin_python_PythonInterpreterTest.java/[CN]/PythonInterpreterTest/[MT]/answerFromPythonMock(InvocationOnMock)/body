@@ -1,0 +1,16 @@
+{
+  Object[] inputs=invocationOnMock.getArguments();
+  String cmdToExecute=(String)inputs[0];
+  if (cmdToExecute != null) {
+    cmdHistory+=cmdToExecute;
+    String[] lines=cmdToExecute.split("\\n");
+    String output="";
+    for (int i=0; i < lines.length; i++) {
+      output+=">>>" + lines[i];
+    }
+    return output;
+  }
+ else {
+    return ">>>";
+  }
+}

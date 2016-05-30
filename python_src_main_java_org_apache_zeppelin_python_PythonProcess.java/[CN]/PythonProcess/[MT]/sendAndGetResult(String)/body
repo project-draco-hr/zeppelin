@@ -1,0 +1,17 @@
+{
+  writer.write(cmd + "\n\n");
+  writer.write("print (\"*!?flush reader!?*\")\n\n");
+  writer.flush();
+  String output="";
+  String line;
+  while (!(line=reader.readLine()).contains("*!?flush reader!?*")) {
+    logger.debug("Readed line from python shell : " + line);
+    if (line.equals("...")) {
+      logger.warn("Syntax error ! ");
+      output+="Syntax error ! ";
+      break;
+    }
+    output+="\r" + line + "\n";
+  }
+  return output;
+}

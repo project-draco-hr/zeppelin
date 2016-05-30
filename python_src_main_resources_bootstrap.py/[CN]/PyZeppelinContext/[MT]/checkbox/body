@@ -1,0 +1,2 @@
+def checkbox(self, name, options, defaultChecked=[]):
+    print self.errorMsg

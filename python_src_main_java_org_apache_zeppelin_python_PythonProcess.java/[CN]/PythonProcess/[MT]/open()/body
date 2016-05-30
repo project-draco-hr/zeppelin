@@ -1,0 +1,16 @@
+{
+  ProcessBuilder builder=new ProcessBuilder(binPath,"-iu");
+  builder.redirectErrorStream(true);
+  process=builder.start();
+  stdout=process.getInputStream();
+  stdin=process.getOutputStream();
+  writer=new BufferedWriter(new OutputStreamWriter(stdin));
+  reader=new BufferedReader(new InputStreamReader(stdout));
+  try {
+    pid=findPid();
+  }
+ catch (  Exception e) {
+    logger.warn("Can't find python pid process",e);
+    pid=-1;
+  }
+}

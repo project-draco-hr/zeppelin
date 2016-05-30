@@ -1,0 +1,4 @@
+{
+  pythonInterpreter.open();
+  assertEquals(pythonInterpreter.getPythonProcess().getPid(),1);
+}

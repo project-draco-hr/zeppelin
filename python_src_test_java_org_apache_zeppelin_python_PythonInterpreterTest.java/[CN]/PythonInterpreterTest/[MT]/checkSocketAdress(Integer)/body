@@ -1,0 +1,21 @@
+{
+  Socket s=new Socket();
+  SocketAddress sa=new InetSocketAddress("localhost",py4jPort);
+  Boolean working=null;
+  try {
+    s.connect(sa,10000);
+  }
+ catch (  IOException e) {
+    working=false;
+  }
+  if (working == null) {
+    working=s.isConnected();
+    try {
+      s.close();
+    }
+ catch (    IOException e) {
+      logger.error("Can't close connection to localhost:" + py4jPort,e);
+    }
+  }
+  return working;
+}

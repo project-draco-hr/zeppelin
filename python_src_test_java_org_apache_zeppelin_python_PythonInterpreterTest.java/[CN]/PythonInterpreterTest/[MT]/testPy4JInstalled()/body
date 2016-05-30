@@ -1,0 +1,18 @@
+{
+  try {
+    when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  pythonInterpreter.open();
+  Integer py4jPort=pythonInterpreter.getPy4JPort();
+  assertNotNull(py4jPort);
+  assertTrue(cmdHistory.contains("def help()"));
+  assertTrue(cmdHistory.contains("class PyZeppelinContext():"));
+  assertTrue(cmdHistory.contains("z = PyZeppelinContext"));
+  assertTrue(cmdHistory.contains("def zeppelin_show"));
+  assertTrue(cmdHistory.contains("GatewayClient(port=" + py4jPort + ")"));
+  assertTrue(cmdHistory.contains("org.apache.zeppelin.display.Input"));
+  assertTrue(checkSocketAdress(py4jPort));
+}

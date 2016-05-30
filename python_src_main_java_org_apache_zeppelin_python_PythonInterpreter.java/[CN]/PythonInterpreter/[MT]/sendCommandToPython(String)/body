@@ -1,0 +1,11 @@
+{
+  String output="";
+  logger.info("Sending : \n " + cmd);
+  try {
+    output=process.sendAndGetResult(cmd);
+  }
+ catch (  IOException e) {
+    logger.error("Error when sending commands to python process",e);
+  }
+  return output;
+}

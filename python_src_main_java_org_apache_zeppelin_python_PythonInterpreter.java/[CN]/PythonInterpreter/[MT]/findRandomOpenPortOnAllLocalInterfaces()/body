@@ -1,0 +1,11 @@
+{
+  Integer port=-1;
+  try (ServerSocket socket=new ServerSocket(0)){
+    port=socket.getLocalPort();
+    socket.close();
+  }
+ catch (  IOException e) {
+    logger.error("Can't find an open port",e);
+  }
+  return port;
+}
