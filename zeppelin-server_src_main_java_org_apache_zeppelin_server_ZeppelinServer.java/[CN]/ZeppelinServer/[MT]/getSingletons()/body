@@ -6,6 +6,8 @@
   singletons.add(notebookApi);
   InterpreterRestApi interpreterApi=new InterpreterRestApi(replFactory);
   singletons.add(interpreterApi);
+  CredentialRestApi credentialApi=new CredentialRestApi(credentials);
+  singletons.add(credentialApi);
   SecurityRestApi securityApi=new SecurityRestApi();
   singletons.add(securityApi);
   LoginRestApi loginRestApi=new LoginRestApi();

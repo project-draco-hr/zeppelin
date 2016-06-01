@@ -1,0 +1,3 @@
+{
+  return getRelativeDir(String.format("%s/credentials.json",getConfDir()));
+}

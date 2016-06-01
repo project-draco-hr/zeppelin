@@ -1,0 +1,3 @@
+{
+  return getBoolean(ConfVars.ZEPPELIN_CREDENTIALS_PERSIST);
+}

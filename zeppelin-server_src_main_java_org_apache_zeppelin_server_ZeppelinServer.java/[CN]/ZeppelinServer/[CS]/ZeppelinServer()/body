@@ -6,5 +6,6 @@
   this.notebookRepo=new NotebookRepoSync(conf);
   this.notebookIndex=new LuceneSearch();
   this.notebookAuthorization=new NotebookAuthorization(conf);
-  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex,notebookAuthorization);
+  this.credentials=new Credentials(conf.credentialsPersist(),conf.getCredentialsPath());
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex,notebookAuthorization,credentials);
 }

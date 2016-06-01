@@ -1,3 +1,4 @@
 {
   this.authenticationInfo=authenticationInfo;
+  this.user=authenticationInfo.getUser();
 }

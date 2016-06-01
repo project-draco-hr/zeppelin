@@ -15,6 +15,7 @@
   factory=new InterpreterFactory(conf,new InterpreterOption(false),null,null,depResolver);
   SearchService search=mock(SearchService.class);
   notebookRepo=new VFSNotebookRepo(conf);
-  NotebookAuthorization notebookAuthorization=new NotebookAuthorization(conf);
-  notebook=new Notebook(conf,notebookRepo,schedulerFactory,factory,this,search,notebookAuthorization);
+  notebookAuthorization=new NotebookAuthorization(conf);
+  credentials=new Credentials(conf.credentialsPersist(),conf.getCredentialsPath());
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,factory,this,search,notebookAuthorization,credentials);
 }

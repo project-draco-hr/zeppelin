@@ -5,3 +5,4 @@ InterpreterFactory replFactory
 JobListenerFactory jobListenerFactory
 SearchService notebookIndex
 NotebookAuthorization notebookAuthorization
+Credentials credentials

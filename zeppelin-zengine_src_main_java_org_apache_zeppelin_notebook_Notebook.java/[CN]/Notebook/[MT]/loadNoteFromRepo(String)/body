@@ -10,6 +10,7 @@
     return null;
   }
   note.setIndex(this.notebookIndex);
+  note.setCredentials(this.credentials);
   NoteInterpreterLoader replLoader=new NoteInterpreterLoader(replFactory);
   note.setReplLoader(replLoader);
   replLoader.setNoteId(note.id());

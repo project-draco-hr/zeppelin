@@ -2,3 +2,4 @@ NotebookRepo repo
 NoteInterpreterLoader replLoader
 JobListenerFactory jlFactory
 SearchService noteIndex
+Credentials credentials

@@ -6,6 +6,7 @@
   this.jobListenerFactory=jobListenerFactory;
   this.notebookIndex=notebookIndex;
   this.notebookAuthorization=notebookAuthorization;
+  this.credentials=credentials;
   quertzSchedFact=new org.quartz.impl.StdSchedulerFactory();
   quartzSched=quertzSchedFact.getScheduler();
   quartzSched.start();

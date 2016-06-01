@@ -5,6 +5,7 @@
   title=null;
   text=null;
   authenticationInfo=null;
+  user=null;
   dateUpdated=null;
   settings=new GUI();
   config=new HashMap<String,Object>();

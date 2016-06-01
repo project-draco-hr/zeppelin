@@ -1,0 +1,14 @@
+{
+  Map<String,String> messageMap=gson.fromJson(message,new TypeToken<Map<String,String>>(){
+  }
+.getType());
+  String entity=messageMap.get("entity");
+  String username=messageMap.get("username");
+  String password=messageMap.get("password");
+  String user=SecurityUtils.getPrincipal();
+  logger.info("Update credentials for user {} entity {}",user,entity);
+  UserCredentials uc=credentials.getUserCredentials(user);
+  uc.putUsernamePassword(entity,new UsernamePassword(username,password));
+  credentials.putUserCredentials(user,uc);
+  return new JsonResponse(Status.OK,"","").build();
+}

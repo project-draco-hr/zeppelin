@@ -2,7 +2,7 @@
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),"org.apache.zeppelin.notebook.repo.GitNotebookRepo");
   ZeppelinConfiguration vConf=ZeppelinConfiguration.create();
   NotebookRepoSync vRepoSync=new NotebookRepoSync(vConf);
-  Notebook vNotebookSync=new Notebook(vConf,vRepoSync,schedulerFactory,factory,this,search,null);
+  Notebook vNotebookSync=new Notebook(vConf,vRepoSync,schedulerFactory,factory,this,search,notebookAuthorization,credentials);
   assertThat(vRepoSync.getRepoCount()).isEqualTo(1);
   assertThat(vRepoSync.getRepo(0)).isInstanceOf(GitNotebookRepo.class);
   GitNotebookRepo gitRepo=(GitNotebookRepo)vRepoSync.getRepo(0);
