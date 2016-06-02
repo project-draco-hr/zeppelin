@@ -1,0 +1,9 @@
+{
+  Properties p=new Properties();
+  p.setProperty("default.driver","org.postgresql.Driver");
+  p.setProperty("default.url","jdbc:postgresql://localhost:5432/");
+  p.setProperty("default.user","gpadmin");
+  p.setProperty("default.password","");
+  p.setProperty("common.max_count","1000");
+  return p;
+}

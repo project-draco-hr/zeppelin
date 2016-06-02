@@ -1,5 +1,5 @@
 {
-  JDBCInterpreter jdbcInterpreter=new JDBCInterpreter(new Properties());
+  JDBCInterpreter jdbcInterpreter=new JDBCInterpreter(getJDBCTestProperties());
   assertEquals("org.postgresql.Driver",jdbcInterpreter.getProperty(DEFAULT_DRIVER));
   assertEquals("jdbc:postgresql://localhost:5432/",jdbcInterpreter.getProperty(DEFAULT_URL));
   assertEquals("gpadmin",jdbcInterpreter.getProperty(DEFAULT_USER));
