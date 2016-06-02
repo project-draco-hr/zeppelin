@@ -10,7 +10,7 @@
       p.setEffectiveText(pText);
     }
  else {
-      String intpExceptionMsg=String.format("%s",p.getJobName() + "'s Interpreter " + requiredReplName+ " not found");
+      String intpExceptionMsg=format("%s",p.getJobName() + "'s Interpreter " + requiredReplName+ " not found");
       InterpreterException intpException=new InterpreterException(intpExceptionMsg);
       InterpreterResult intpResult=new InterpreterResult(InterpreterResult.Code.ERROR,intpException.getMessage());
       p.setReturn(intpResult,intpException);

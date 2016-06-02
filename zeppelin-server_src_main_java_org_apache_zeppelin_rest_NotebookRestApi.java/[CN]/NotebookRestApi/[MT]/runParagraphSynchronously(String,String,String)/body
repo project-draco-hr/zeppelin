@@ -1,0 +1,23 @@
+{
+  LOG.info("run paragraph synchronously {} {} {}",noteId,paragraphId,message);
+  Note note=notebook.getNote(noteId);
+  if (note == null) {
+    return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
+  }
+  Paragraph paragraph=note.getParagraph(paragraphId);
+  if (paragraph == null) {
+    return new JsonResponse<>(Status.NOT_FOUND,"paragraph not found.").build();
+  }
+  handleParagraphParams(message,note,paragraph);
+  if (paragraph.getListener() == null) {
+    note.initializeJobListenerForParagraph(paragraph);
+  }
+  paragraph.run();
+  final InterpreterResult result=paragraph.getResult();
+  if (result.code() == InterpreterResult.Code.SUCCESS) {
+    return new JsonResponse<>(Status.OK,result).build();
+  }
+ else {
+    return new JsonResponse<>(Status.INTERNAL_SERVER_ERROR,result).build();
+  }
+}

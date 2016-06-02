@@ -1,5 +1,5 @@
 {
-  LOG.info("run paragraph job {} {} {}",notebookId,paragraphId,message);
+  LOG.info("run paragraph job asynchronously {} {} {}",notebookId,paragraphId,message);
   Note note=notebook.getNote(notebookId);
   if (note == null) {
     return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
@@ -8,16 +8,7 @@
   if (paragraph == null) {
     return new JsonResponse<>(Status.NOT_FOUND,"paragraph not found.").build();
   }
-  if (!StringUtils.isEmpty(message)) {
-    RunParagraphWithParametersRequest request=gson.fromJson(message,RunParagraphWithParametersRequest.class);
-    Map<String,Object> paramsForUpdating=request.getParams();
-    if (paramsForUpdating != null) {
-      paragraph.settings.getParams().putAll(paramsForUpdating);
-      AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
-      note.setLastReplName(paragraph.getId());
-      note.persist(subject);
-    }
-  }
+  handleParagraphParams(message,note,paragraph);
   note.run(paragraph.getId());
   return new JsonResponse<>(Status.OK).build();
 }
