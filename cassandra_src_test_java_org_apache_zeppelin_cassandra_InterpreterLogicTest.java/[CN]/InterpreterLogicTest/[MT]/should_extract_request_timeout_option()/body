@@ -1,0 +1,5 @@
+{
+  List<QueryParameters> options=Arrays.<QueryParameters>asList(new RequestTimeOut(100));
+  final CassandraQueryOptions actual=helper.extractQueryOptions(toScalaList(options));
+  assertThat(actual.requestTimeOut().get()).isEqualTo(100);
+}

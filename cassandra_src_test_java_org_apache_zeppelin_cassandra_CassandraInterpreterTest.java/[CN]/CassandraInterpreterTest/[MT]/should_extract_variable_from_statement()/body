@@ -1,4 +1,6 @@
 {
+  AngularObjectRegistry angularObjectRegistry=new AngularObjectRegistry("cassandra",null);
+  when(intrContext.getAngularObjectRegistry()).thenReturn(angularObjectRegistry);
   when(intrContext.getGui().input("login","hsue")).thenReturn("hsue");
   when(intrContext.getGui().input("age","27")).thenReturn("27");
   String queries="@prepare[test_insert_with_variable]=" + "INSERT INTO zeppelin.users(login,firstname,lastname,age) VALUES(?,?,?,?)\n" + "@bind[test_insert_with_variable]='{{login=hsue}}','Helen','SUE',{{age=27}}\n"+ "SELECT firstname,lastname,age FROM zeppelin.users WHERE login='hsue';";

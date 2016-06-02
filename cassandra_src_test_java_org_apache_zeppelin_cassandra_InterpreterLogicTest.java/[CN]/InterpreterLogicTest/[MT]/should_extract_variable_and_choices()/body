@@ -1,4 +1,6 @@
 {
+  AngularObjectRegistry angularObjectRegistry=new AngularObjectRegistry("cassandra",null);
+  when(intrContext.getAngularObjectRegistry()).thenReturn(angularObjectRegistry);
   when(intrContext.getGui().select(eq("name"),eq("'Paul'"),optionsCaptor.capture())).thenReturn("'Jack'");
   final String actual=helper.maybeExtractVariables("SELECT * FROM zeppelin.artists WHERE name={{name='Paul'|'Jack'|'Smith'}}",intrContext);
   assertThat(actual).isEqualTo("SELECT * FROM zeppelin.artists WHERE name='Jack'");

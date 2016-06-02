@@ -2,7 +2,7 @@
   Statement st1=new SimpleStatement("SELECT * FROM users LIMIT 10;");
   Statement st2=new SimpleStatement("INSERT INTO users(id) VALUES(10);");
   Statement st3=new SimpleStatement("UPDATE users SET name = 'John DOE' WHERE id=10;");
-  CassandraQueryOptions options=new CassandraQueryOptions(Option.apply(QUORUM),Option.<ConsistencyLevel>empty(),Option.empty(),Option.<RetryPolicy>empty(),Option.empty());
+  CassandraQueryOptions options=new CassandraQueryOptions(Option.apply(QUORUM),Option.<ConsistencyLevel>empty(),Option.empty(),Option.<RetryPolicy>empty(),Option.empty(),Option.empty());
   BatchStatement actual=helper.generateBatchStatement(UNLOGGED,options,toScalaList(asList(st1,st2,st3)));
   assertThat(actual).isNotNull();
   final List<Statement> statements=new ArrayList<>(actual.getStatements());

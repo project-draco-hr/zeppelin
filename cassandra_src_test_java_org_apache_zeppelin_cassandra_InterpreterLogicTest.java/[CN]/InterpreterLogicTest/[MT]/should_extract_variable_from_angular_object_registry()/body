@@ -1,0 +1,10 @@
+{
+  AngularObjectRegistry angularObjectRegistry=new AngularObjectRegistry("cassandra",null);
+  angularObjectRegistry.add("id","from_angular_registry","noteId","paragraphId");
+  when(intrContext.getAngularObjectRegistry()).thenReturn(angularObjectRegistry);
+  when(intrContext.getNoteId()).thenReturn("noteId");
+  when(intrContext.getParagraphId()).thenReturn("paragraphId");
+  final String actual=helper.maybeExtractVariables("SELECT * FROM zeppelin.demo WHERE id='{{id=John}}'",intrContext);
+  assertThat(actual).isEqualTo("SELECT * FROM zeppelin.demo WHERE id='from_angular_registry'");
+  verify(intrContext,never()).getGui();
+}

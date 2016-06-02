@@ -1,0 +1,5 @@
+{
+  String statement="@requestTimeOut=10000000\n" + "SELECT * FROM zeppelin.artists;";
+  final InterpreterResult actual=interpreter.interpret(statement,intrContext);
+  assertThat(actual.code()).isEqualTo(Code.SUCCESS);
+}
