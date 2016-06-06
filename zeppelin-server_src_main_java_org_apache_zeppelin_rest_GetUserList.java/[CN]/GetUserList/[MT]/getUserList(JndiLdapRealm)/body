@@ -1,0 +1,27 @@
+{
+  List<String> userList=new ArrayList<>();
+  String userDnTemplate=r.getUserDnTemplate();
+  String userDn[]=userDnTemplate.split(",",2);
+  String userDnPrefix=userDn[0].split("=")[0];
+  String userDnSuffix=userDn[1];
+  JndiLdapContextFactory CF=(JndiLdapContextFactory)r.getContextFactory();
+  try {
+    LdapContext ctx=CF.getSystemLdapContext();
+    SearchControls constraints=new SearchControls();
+    constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
+    String[] attrIDs={userDnPrefix};
+    constraints.setReturningAttributes(attrIDs);
+    NamingEnumeration result=ctx.search(userDnSuffix,"(objectclass=*)",constraints);
+    while (result.hasMore()) {
+      Attributes attrs=((SearchResult)result.next()).getAttributes();
+      if (attrs.get(userDnPrefix) != null) {
+        String currentUser=attrs.get(userDnPrefix).toString();
+        userList.add(currentUser.split(":")[1]);
+      }
+    }
+  }
+ catch (  Exception e) {
+    LOG.error("Error retrieving User list from Ldap Realm",e);
+  }
+  return userList;
+}
