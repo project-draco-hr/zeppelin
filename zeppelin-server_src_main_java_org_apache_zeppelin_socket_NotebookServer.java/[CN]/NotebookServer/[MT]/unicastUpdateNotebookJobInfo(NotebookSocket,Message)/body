@@ -1,0 +1,10 @@
+{
+  double lastUpdateUnixTimeRaw=(double)fromMessage.get("lastUpdateUnixTime");
+  long lastUpdateUnixTime=new Double(lastUpdateUnixTimeRaw).longValue();
+  List<Map<String,Object>> notebookJobs;
+  notebookJobs=notebook().getJobListforNotebook(false,lastUpdateUnixTime);
+  Map<String,Object> response=new HashMap<>();
+  response.put("lastResponseUnixTime",System.currentTimeMillis());
+  response.put("jobs",notebookJobs);
+  conn.send(serializeMessage(new Message(OP.LIST_UPDATE_NOTEBOOK_JOBS).put("notebookRunningJobs",response)));
+}

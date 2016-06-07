@@ -1,0 +1,9 @@
+{
+  LOG.info("Get updated notebook jobs lastUpdateTime {}",lastUpdateUnixTime);
+  List<Map<String,Object>> notebookJobs;
+  notebookJobs=notebook.getJobListforNotebook(false,lastUpdateUnixTime);
+  Map<String,Object> response=new HashMap<>();
+  response.put("lastResponseUnixTime",System.currentTimeMillis());
+  response.put("jobs",notebookJobs);
+  return new JsonResponse<>(Status.OK,response).build();
+}

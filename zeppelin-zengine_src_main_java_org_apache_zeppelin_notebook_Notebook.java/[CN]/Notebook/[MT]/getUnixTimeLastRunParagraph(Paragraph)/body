@@ -1,0 +1,19 @@
+{
+  Date lastRunningDate=null;
+  long lastRunningUnixTime=0;
+  Date paragaraphDate=paragraph.getDateStarted();
+  if (paragaraphDate == null) {
+    paragaraphDate=paragraph.getDateFinished();
+  }
+ else {
+    if (paragraph.getDateFinished() != null && paragraph.getDateFinished().after(paragaraphDate)) {
+      paragaraphDate=paragraph.getDateFinished();
+    }
+  }
+  if (paragaraphDate == null) {
+    paragaraphDate=paragraph.getDateCreated();
+  }
+  lastRunningDate=paragaraphDate;
+  lastRunningUnixTime=lastRunningDate.getTime();
+  return lastRunningUnixTime;
+}

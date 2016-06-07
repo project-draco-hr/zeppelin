@@ -1,0 +1,13 @@
+{
+  Map<String,Object> paragraphItem=new HashMap<>();
+  paragraphItem.put("id",paragraph.getId());
+  String paragraphName=paragraph.getTitle();
+  if (paragraphName != null) {
+    paragraphItem.put("name",paragraphName);
+  }
+ else {
+    paragraphItem.put("name",paragraph.getId());
+  }
+  paragraphItem.put("status",paragraph.getStatus().toString());
+  return paragraphItem;
+}

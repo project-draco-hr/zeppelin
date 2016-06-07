@@ -1,0 +1,2 @@
+boolean needsReload
+long lastUpdateServerUnixTime
