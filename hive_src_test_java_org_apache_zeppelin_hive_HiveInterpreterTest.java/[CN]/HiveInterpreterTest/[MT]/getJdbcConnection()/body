@@ -1,8 +1,0 @@
-{
-  if (null == jdbcConnection) {
-    Path tmpDir=Files.createTempDirectory("h2-test-");
-    tmpDir.toFile().deleteOnExit();
-    jdbcConnection=format("jdbc:h2:%s",tmpDir);
-  }
-  return jdbcConnection;
-}

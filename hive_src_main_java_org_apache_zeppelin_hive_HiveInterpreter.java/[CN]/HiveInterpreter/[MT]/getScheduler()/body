@@ -1,3 +1,0 @@
-{
-  return SchedulerFactory.singleton().createOrGetParallelScheduler(HiveInterpreter.class.getName() + this.hashCode(),10);
-}

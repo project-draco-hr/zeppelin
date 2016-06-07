@@ -1,9 +1,0 @@
-{
-  HiveInterpreter hi=new HiveInterpreter(new Properties());
-  hi.open();
-  String testCommand="(default)\nshow tables";
-  assertEquals("get key of default","default",hi.getPropertyKey(testCommand));
-  testCommand="(default) show tables";
-  assertEquals("get key of default","default",hi.getPropertyKey(testCommand));
-  hi.close();
-}

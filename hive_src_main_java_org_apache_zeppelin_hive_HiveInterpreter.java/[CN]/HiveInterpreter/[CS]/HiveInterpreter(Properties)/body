@@ -1,7 +1,0 @@
-{
-  super(property);
-  propertiesMap=new HashMap<>();
-  propertyKeyUnusedConnectionListMap=new HashMap<>();
-  paragraphIdStatementMap=new HashMap<>();
-  paragraphIdConnectionMap=new HashMap<>();
-}
