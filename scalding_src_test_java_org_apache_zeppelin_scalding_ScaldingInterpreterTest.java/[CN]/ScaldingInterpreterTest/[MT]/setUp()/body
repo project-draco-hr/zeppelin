@@ -4,6 +4,7 @@
   tmpDir.mkdirs();
   if (repl == null) {
     Properties p=new Properties();
+    p.setProperty(ScaldingInterpreter.ARGS_STRING,"--local --repl");
     repl=new ScaldingInterpreter(p);
     repl.open();
   }

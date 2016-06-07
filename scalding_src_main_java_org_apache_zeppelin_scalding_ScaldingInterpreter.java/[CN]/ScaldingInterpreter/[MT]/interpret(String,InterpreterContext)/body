@@ -1,7 +1,41 @@
 {
-  logger.info("Running Scalding command '" + cmd + "'");
+  String user=contextInterpreter.getAuthenticationInfo().getUser();
+  logger.info("Running Scalding command: user: {} cmd: '{}'",user,cmd);
+  if (interpreter == null) {
+    logger.error("interpreter == null, open may not have been called because max.open.instances reached");
+    return new InterpreterResult(Code.ERROR,"interpreter == null\n" + "open may not have been called because max.open.instances reached");
+  }
   if (cmd == null || cmd.trim().length() == 0) {
     return new InterpreterResult(Code.SUCCESS);
   }
-  return interpret(cmd.split("\n"),contextInterpreter);
+  InterpreterResult interpreterResult=new InterpreterResult(Code.ERROR);
+  if (property.getProperty(ARGS_STRING).contains("hdfs")) {
+    UserGroupInformation ugi=null;
+    try {
+      ugi=UserGroupInformation.createProxyUser(user,UserGroupInformation.getLoginUser());
+    }
+ catch (    IOException e) {
+      logger.error("Error creating UserGroupInformation",e);
+      return new InterpreterResult(Code.ERROR,e.getMessage());
+    }
+    try {
+      final String cmd1=cmd;
+      final InterpreterContext contextInterpreter1=contextInterpreter;
+      PrivilegedExceptionAction<InterpreterResult> action=new PrivilegedExceptionAction<InterpreterResult>(){
+        public InterpreterResult run() throws Exception {
+          return interpret(cmd1.split("\n"),contextInterpreter1);
+        }
+      }
+;
+      interpreterResult=ugi.doAs(action);
+    }
+ catch (    Exception e) {
+      logger.error("Error running command with ugi.doAs",e);
+      return new InterpreterResult(Code.ERROR,e.getMessage());
+    }
+  }
+ else {
+    interpreterResult=interpret(cmd.split("\n"),contextInterpreter);
+  }
+  return interpreterResult;
 }

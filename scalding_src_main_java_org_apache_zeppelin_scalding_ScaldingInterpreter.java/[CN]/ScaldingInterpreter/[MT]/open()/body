@@ -1,34 +1,30 @@
 {
-  URL[] urls=getClassloaderUrls();
-  Settings settings=new Settings();
-  PathSetting pathSettings=settings.classpath();
-  String classpath="";
-  List<File> paths=currentClassPath();
-  for (  File f : paths) {
-    if (classpath.length() > 0) {
-      classpath+=File.pathSeparator;
-    }
-    classpath+=f.getAbsolutePath();
+  numOpenInstances=numOpenInstances + 1;
+  String maxOpenInstancesStr=property.getProperty(MAX_OPEN_INSTANCES,MAX_OPEN_INSTANCES_DEFAULT);
+  int maxOpenInstances=50;
+  try {
+    maxOpenInstances=Integer.valueOf(maxOpenInstancesStr);
   }
-  if (urls != null) {
-    for (    URL u : urls) {
-      if (classpath.length() > 0) {
-        classpath+=File.pathSeparator;
-      }
-      classpath+=u.getFile();
-    }
+ catch (  Exception e) {
+    logger.error("Error reading max.open.instances",e);
   }
-  pathSettings.v_$eq(classpath);
-  settings.scala$tools$nsc$settings$ScalaSettings$_setter_$classpath_$eq(pathSettings);
-  settings.explicitParentLoader_$eq(new Some<ClassLoader>(Thread.currentThread().getContextClassLoader()));
-  BooleanSetting b=(BooleanSetting)settings.usejavacp();
-  b.v_$eq(true);
-  settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
-  PrintStream printStream=new PrintStream(out);
-  interpreter=new ScaldingILoop(null,new PrintWriter(out));
-  interpreter.settings_$eq(settings);
+  logger.info("max.open.instances = {}",maxOpenInstances);
+  if (numOpenInstances > maxOpenInstances) {
+    logger.error("Reached maximum number of open instances");
+    return;
+  }
+  logger.info("Opening instance {}",numOpenInstances);
+  logger.info("property: {}",property);
+  String argsString=property.getProperty(ARGS_STRING,ARGS_STRING_DEFAULT);
+  String[] args;
+  if (argsString == null) {
+    args=new String[0];
+  }
+ else {
+    args=argsString.split(" ");
+  }
+  logger.info("{}",Arrays.toString(args));
+  PrintWriter printWriter=new PrintWriter(out,true);
+  interpreter=ZeppelinScaldingShell.getRepl(args,printWriter);
   interpreter.createInterpreter();
-  interpreter.intp().interpret("@transient var _binder = new java.util.HashMap[String, Object]()");
-  binder=(Map<String,Object>)getValue("_binder");
-  binder.put("out",printStream);
 }

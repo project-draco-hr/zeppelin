@@ -4,8 +4,9 @@
     linesToRun[i]=lines[i];
   }
   linesToRun[lines.length]="print(\"\")";
-  Console.setOut((java.io.PrintStream)binder.get("out"));
   out.reset();
+  PrintStream printStream=new PrintStream(out,true);
+  Console.setOut(printStream);
   Code r=null;
   String incomplete="";
   boolean inComment=false;
