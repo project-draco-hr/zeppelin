@@ -1,7 +1,0 @@
-{
-  phoenixInterpreter.open();
-  phoenixInterpreter.open();
-  phoenixInterpreter.open();
-  verify(phoenixInterpreter,times(3)).open();
-  verify(phoenixInterpreter,times(3)).close();
-}

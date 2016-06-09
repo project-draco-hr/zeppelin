@@ -1,3 +1,0 @@
-{
-  return (isExplain || str == null) ? str : str.replace(TAB,WS).replace(NEWLINE,WS);
-}

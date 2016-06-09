@@ -1,3 +1,0 @@
-{
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler(PhoenixInterpreter.class.getName() + this.hashCode());
-}

@@ -1,8 +1,0 @@
-{
-  PhoenixInterpreter phoenixInterpreter=new PhoenixInterpreter(new Properties());
-  assertEquals(DEFAULT_JDBC_DRIVER_NAME,phoenixInterpreter.getProperty(PHOENIX_JDBC_DRIVER_NAME));
-  assertEquals(DEFAULT_JDBC_URL,phoenixInterpreter.getProperty(PHOENIX_JDBC_URL));
-  assertEquals(DEFAULT_JDBC_USER,phoenixInterpreter.getProperty(PHOENIX_JDBC_USER));
-  assertEquals(DEFAULT_JDBC_PASSWORD,phoenixInterpreter.getProperty(PHOENIX_JDBC_PASSWORD));
-  assertEquals(DEFAULT_MAX_RESULT,phoenixInterpreter.getProperty(PHOENIX_MAX_RESULT));
-}
