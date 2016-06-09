@@ -1,0 +1,8 @@
+{
+  Set<String> completions=new TreeSet<>();
+  if (null != connection) {
+    getColumnNames(connection.getMetaData(),completions);
+    getSchemaNames(connection.getMetaData(),completions);
+  }
+  return completions;
+}

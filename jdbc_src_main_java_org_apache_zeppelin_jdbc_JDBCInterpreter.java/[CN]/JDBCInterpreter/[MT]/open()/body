@@ -29,4 +29,16 @@
     propertiesMap.remove(key);
   }
   logger.debug("propertiesMap: {}",propertiesMap);
+  Connection connection=null;
+  SqlCompleter sqlCompleter=null;
+  for (  String propertyKey : propertiesMap.keySet()) {
+    try {
+      connection=getConnection(propertyKey);
+      sqlCompleter=createSqlCompleter(connection);
+    }
+ catch (    Exception e) {
+      sqlCompleter=createSqlCompleter(null);
+    }
+    propertyKeySqlCompleterMap.put(propertyKey,sqlCompleter);
+  }
 }

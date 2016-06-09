@@ -1,0 +1,19 @@
+{
+  if (isBlank(buffer) || (cursor > buffer.length() + 1)) {
+    return -1;
+  }
+  ArgumentList argumentList=sqlDelimiter.delimit(buffer,cursor);
+  String argument=argumentList.getCursorArgument();
+  int argumentPosition=argumentList.getArgumentPosition();
+  if (isBlank(argument)) {
+    int argumentsCount=argumentList.getArguments().length;
+    if (argumentsCount <= 0 || ((buffer.length() + 2) < cursor) || sqlDelimiter.isDelimiterChar(buffer,cursor - 2)) {
+      return -1;
+    }
+    argument=argumentList.getArguments()[argumentsCount - 1];
+    argumentPosition=argument.length();
+  }
+  int complete=super.complete(argument,argumentPosition,candidates);
+  logger.debug("complete:" + complete + ", size:"+ candidates.size());
+  return complete;
+}

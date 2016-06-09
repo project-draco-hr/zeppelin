@@ -1,3 +1,10 @@
 {
-  return null;
+  List<CharSequence> candidates=new ArrayList<>();
+  SqlCompleter sqlCompleter=propertyKeySqlCompleterMap.get(getPropertyKey(buf));
+  if (sqlCompleter != null && sqlCompleter.complete(buf,cursor,candidates) >= 0) {
+    return Lists.transform(candidates,sequenceToStringTransformer);
+  }
+ else {
+    return NO_COMPLETION;
+  }
 }

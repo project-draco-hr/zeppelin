@@ -4,4 +4,5 @@
   propertyKeyUnusedConnectionListMap=new HashMap<>();
   paragraphIdStatementMap=new HashMap<>();
   paragraphIdConnectionMap=new HashMap<>();
+  propertyKeySqlCompleterMap=new HashMap<>();
 }
