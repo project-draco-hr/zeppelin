@@ -1,5 +1,8 @@
 {
-  if (setting.getOption().isPerNoteSession() || setting.getOption().isPerNoteProcess()) {
+  if (setting.getOption().isExistingProcess()) {
+    return Constants.EXISTING_PROCESS;
+  }
+ else   if (setting.getOption().isPerNoteSession() || setting.getOption().isPerNoteProcess()) {
     return noteId;
   }
  else {
