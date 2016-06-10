@@ -10,6 +10,7 @@ def getCompletion(self, text_value):
             for completionItem in list(objectCompletionList):
                 completionList.add(completionItem)
     if (len(completionList) <= 0):
-        print ''
+        self.interpreterObject.setStatementsFinished('', False)
     else:
-        print json.dumps(list(filter((lambda x: (not re.match('^__.*', x))), list(completionList))))
+        result = json.dumps(list(filter((lambda x: (not re.match('^__.*', x))), list(completionList))))
+        self.interpreterObject.setStatementsFinished(result, False)
