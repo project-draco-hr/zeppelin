@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  return _catalog;
-}

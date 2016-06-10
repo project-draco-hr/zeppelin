@@ -1,6 +1,0 @@
-{
-  checkOpen();
-  if (isReadOnly()) {
-    throw new SQLException("Cannot rollback a readonly connection");
-  }
-}

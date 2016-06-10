@@ -1,4 +1,0 @@
-{
-  logger.info("Run SQL command '" + cmd + "'");
-  return executeSql(cmd);
-}

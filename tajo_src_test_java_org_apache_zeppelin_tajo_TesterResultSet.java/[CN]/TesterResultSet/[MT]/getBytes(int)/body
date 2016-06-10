@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  return new byte[]{(byte)columnIndex};
-}

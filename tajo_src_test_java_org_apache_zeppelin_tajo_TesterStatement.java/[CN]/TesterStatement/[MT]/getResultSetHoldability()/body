@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  throw new SQLFeatureNotSupportedException("Not supported.");
-}

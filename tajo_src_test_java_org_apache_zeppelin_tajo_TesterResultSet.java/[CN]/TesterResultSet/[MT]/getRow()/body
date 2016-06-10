@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  return 3 - _rowsLeft;
-}

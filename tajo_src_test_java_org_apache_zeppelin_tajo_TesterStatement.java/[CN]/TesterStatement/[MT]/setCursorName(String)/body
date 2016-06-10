@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  _cursorName=name;
-}

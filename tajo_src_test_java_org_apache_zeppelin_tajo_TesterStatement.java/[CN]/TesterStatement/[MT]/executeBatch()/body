@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  return new int[0];
-}

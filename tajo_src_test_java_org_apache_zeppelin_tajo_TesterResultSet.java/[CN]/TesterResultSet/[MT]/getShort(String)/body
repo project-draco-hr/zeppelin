@@ -1,4 +1,0 @@
-{
-  checkOpen();
-  return (short)columnName.hashCode();
-}

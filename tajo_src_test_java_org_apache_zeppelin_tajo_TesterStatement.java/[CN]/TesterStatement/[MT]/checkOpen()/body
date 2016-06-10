@@ -1,5 +1,0 @@
-{
-  if (!_open) {
-    throw new SQLException("Connection is closed.");
-  }
-}

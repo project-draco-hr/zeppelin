@@ -1,6 +1,0 @@
-{
-  _statement=stmt;
-  _data=null;
-  _type=type;
-  _concurrency=concurrency;
-}
