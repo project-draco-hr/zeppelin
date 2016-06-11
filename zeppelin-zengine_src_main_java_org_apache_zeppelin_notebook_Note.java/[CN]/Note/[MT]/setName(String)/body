@@ -1,3 +1,6 @@
 {
+  if (name.indexOf('/') >= 0 || name.indexOf('\\') >= 0) {
+    name=normalizeNoteName(name);
+  }
   this.name=name;
 }
