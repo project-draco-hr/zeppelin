@@ -1,0 +1,8 @@
+{
+  if (other.isSetName()) {
+    this.name=other.name;
+  }
+  if (other.isSetValue()) {
+    this.value=other.value;
+  }
+}

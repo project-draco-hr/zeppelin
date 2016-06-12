@@ -6,7 +6,7 @@
   String completionCommand="completion.getCompletion('" + completionString + "')";
   SparkInterpreter sparkInterpreter=getSparkInterpreter();
   if (sparkInterpreter.getSparkVersion().isUnsupportedVersion() == false && pythonscriptRunning == false) {
-    return new LinkedList<String>();
+    return new LinkedList<>();
   }
   pythonInterpretRequest=new PythonInterpretRequest(completionCommand,"");
   statementOutput=null;
@@ -20,12 +20,12 @@ synchronized (statementFinishedNotifier) {
       }
  catch (      InterruptedException e) {
         logger.info("wait drop");
-        return new LinkedList<String>();
+        return new LinkedList<>();
       }
     }
   }
   if (statementError) {
-    return new LinkedList<String>();
+    return new LinkedList<>();
   }
   InterpreterResult completionResult=new InterpreterResult(Code.SUCCESS,statementOutput);
   Gson gson=new Gson();

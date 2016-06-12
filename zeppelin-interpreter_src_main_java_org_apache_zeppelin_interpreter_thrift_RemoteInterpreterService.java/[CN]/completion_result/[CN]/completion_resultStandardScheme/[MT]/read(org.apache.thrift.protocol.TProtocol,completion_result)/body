@@ -11,10 +11,11 @@ case 0:
       if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
 {
           org.apache.thrift.protocol.TList _list10=iprot.readListBegin();
-          struct.success=new ArrayList<String>(_list10.size);
-          String _elem11;
+          struct.success=new ArrayList<InterpreterCompletion>(_list10.size);
+          InterpreterCompletion _elem11;
           for (int _i12=0; _i12 < _list10.size; ++_i12) {
-            _elem11=iprot.readString();
+            _elem11=new InterpreterCompletion();
+            _elem11.read(iprot);
             struct.success.add(_elem11);
           }
           iprot.readListEnd();

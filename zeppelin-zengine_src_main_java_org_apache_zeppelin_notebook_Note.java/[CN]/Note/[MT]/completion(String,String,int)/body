@@ -2,5 +2,6 @@
   Paragraph p=getParagraph(paragraphId);
   p.setNoteReplLoader(replLoader);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
-  return p.completion(buffer,cursor);
+  List completion=p.completion(buffer,cursor);
+  return completion;
 }

@@ -1,3 +1,0 @@
-I iface
-completion_args args
-org.apache.thrift.async.AsyncMethodCallback<List<String>> resultHandler

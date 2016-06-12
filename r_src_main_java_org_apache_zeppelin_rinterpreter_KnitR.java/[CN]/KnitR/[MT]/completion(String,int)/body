@@ -1,3 +1,4 @@
 {
-  return intp.completion(s,i);
+  List completion=intp.completion(s,i);
+  return completion;
 }

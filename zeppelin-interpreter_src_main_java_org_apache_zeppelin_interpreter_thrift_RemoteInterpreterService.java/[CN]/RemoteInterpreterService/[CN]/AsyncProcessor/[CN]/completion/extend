@@ -1,1 +1,1 @@
-org.apache.thrift.AsyncProcessFunction<I,completion_args,List<String>>
+org.apache.thrift.AsyncProcessFunction<I,completion_args,List<InterpreterCompletion>>

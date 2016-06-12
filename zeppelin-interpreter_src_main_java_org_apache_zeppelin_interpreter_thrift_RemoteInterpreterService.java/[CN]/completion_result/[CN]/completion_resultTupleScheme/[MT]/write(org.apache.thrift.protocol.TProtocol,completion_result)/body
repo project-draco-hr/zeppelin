@@ -8,8 +8,8 @@
   if (struct.isSetSuccess()) {
 {
       oprot.writeI32(struct.success.size());
-      for (      String _iter14 : struct.success) {
-        oprot.writeString(_iter14);
+      for (      InterpreterCompletion _iter14 : struct.success) {
+        _iter14.write(oprot);
       }
     }
   }

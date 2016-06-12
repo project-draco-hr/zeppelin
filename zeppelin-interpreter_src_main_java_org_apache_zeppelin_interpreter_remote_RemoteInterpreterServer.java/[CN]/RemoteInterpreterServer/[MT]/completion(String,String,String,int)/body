@@ -1,4 +1,5 @@
 {
   Interpreter intp=getInterpreter(noteId,className);
-  return intp.completion(buf,cursor);
+  List completion=intp.completion(buf,cursor);
+  return completion;
 }

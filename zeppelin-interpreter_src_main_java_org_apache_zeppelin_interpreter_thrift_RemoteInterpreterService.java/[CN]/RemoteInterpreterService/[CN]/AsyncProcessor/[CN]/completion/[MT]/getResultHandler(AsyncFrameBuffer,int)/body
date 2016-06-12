@@ -1,7 +1,7 @@
 {
   final org.apache.thrift.AsyncProcessFunction fcall=this;
-  return new AsyncMethodCallback<List<String>>(){
-    public void onComplete(    List<String> o){
+  return new AsyncMethodCallback<List<InterpreterCompletion>>(){
+    public void onComplete(    List<InterpreterCompletion> o){
       completion_result result=new completion_result();
       result.success=o;
       try {

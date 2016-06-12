@@ -9,5 +9,10 @@
   }
   ScalaCompleter c=completor.completer();
   Candidates ret=c.complete(completionText,cursor);
-  return scala.collection.JavaConversions.seqAsJavaList(ret.candidates());
+  List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
+  List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
+  for (  String candidate : candidates) {
+    completions.add(new InterpreterCompletion(candidate,candidate));
+  }
+  return completions;
 }

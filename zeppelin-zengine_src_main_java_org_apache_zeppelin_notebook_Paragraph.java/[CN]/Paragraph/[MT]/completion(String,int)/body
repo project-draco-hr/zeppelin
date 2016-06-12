@@ -8,5 +8,6 @@
   if (repl == null) {
     return null;
   }
-  return repl.completion(body,cursor);
+  List completion=repl.completion(body,cursor);
+  return completion;
 }

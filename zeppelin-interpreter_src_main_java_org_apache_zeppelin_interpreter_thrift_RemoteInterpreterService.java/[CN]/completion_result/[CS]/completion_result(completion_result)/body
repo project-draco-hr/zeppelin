@@ -1,6 +1,9 @@
 {
   if (other.isSetSuccess()) {
-    List<String> __this__success=new ArrayList<String>(other.success);
+    List<InterpreterCompletion> __this__success=new ArrayList<InterpreterCompletion>(other.success.size());
+    for (    InterpreterCompletion other_element : other.success) {
+      __this__success.add(new InterpreterCompletion(other_element));
+    }
     this.success=__this__success;
   }
 }

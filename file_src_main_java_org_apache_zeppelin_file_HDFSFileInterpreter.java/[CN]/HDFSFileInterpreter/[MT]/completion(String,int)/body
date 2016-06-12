@@ -1,6 +1,6 @@
 {
   logger.info("Completion request at position\t" + cursor + " in string "+ buf);
-  final List<String> suggestions=new ArrayList<>();
+  final List suggestions=new ArrayList<>();
   if (StringUtils.isEmpty(buf)) {
     suggestions.add("ls");
     suggestions.add("cd");

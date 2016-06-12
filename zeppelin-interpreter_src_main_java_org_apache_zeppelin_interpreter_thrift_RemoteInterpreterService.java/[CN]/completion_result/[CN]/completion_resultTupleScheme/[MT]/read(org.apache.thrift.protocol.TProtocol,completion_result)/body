@@ -3,11 +3,12 @@
   BitSet incoming=iprot.readBitSet(1);
   if (incoming.get(0)) {
 {
-      org.apache.thrift.protocol.TList _list15=new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRING,iprot.readI32());
-      struct.success=new ArrayList<String>(_list15.size);
-      String _elem16;
+      org.apache.thrift.protocol.TList _list15=new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT,iprot.readI32());
+      struct.success=new ArrayList<InterpreterCompletion>(_list15.size);
+      InterpreterCompletion _elem16;
       for (int _i17=0; _i17 < _list15.size; ++_i17) {
-        _elem16=iprot.readString();
+        _elem16=new InterpreterCompletion();
+        _elem16.read(iprot);
         struct.success.add(_elem16);
       }
     }

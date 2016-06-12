@@ -8,7 +8,7 @@
     return;
   }
   final Note note=notebook.getNote(getOpenNoteId(conn));
-  List<String> candidates=note.completion(paragraphId,buffer,cursor);
+  List<InterpreterCompletion> candidates=note.completion(paragraphId,buffer,cursor);
   resp.put("completions",candidates);
   conn.send(serializeMessage(resp));
 }

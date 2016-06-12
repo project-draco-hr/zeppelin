@@ -5,7 +5,7 @@ case SUCCESS:
       unsetSuccess();
     }
  else {
-      setSuccess((List<String>)value);
+      setSuccess((List<InterpreterCompletion>)value);
     }
   break;
 }
