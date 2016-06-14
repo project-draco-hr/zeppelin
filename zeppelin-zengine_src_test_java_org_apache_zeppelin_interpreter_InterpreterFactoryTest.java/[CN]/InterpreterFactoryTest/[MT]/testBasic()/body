@@ -3,10 +3,7 @@
   InterpreterSetting setting=factory.get(all.get(0));
   InterpreterGroup interpreterGroup=setting.getInterpreterGroup("sharedProcess");
   factory.createInterpretersForNote(setting,"sharedProcess","session");
-  Interpreter repl1=interpreterGroup.get("session").get(0);
-  assertFalse(((LazyOpenInterpreter)repl1).isOpen());
-  repl1.interpret("repl1",context);
-  assertTrue(((LazyOpenInterpreter)repl1).isOpen());
+  assertNotNull("get Interpreter",interpreterGroup.get("session").get(0));
   assertNull(factory.get("unknown"));
   factory.restart(all.get(0));
   assertNull(setting.getInterpreterGroup("sharedProcess").get("session"));
