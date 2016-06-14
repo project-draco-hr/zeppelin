@@ -56,5 +56,5 @@
       }
     }
   }
-  throw new InterpreterException(replName + " interpreter not found");
+  return null;
 }

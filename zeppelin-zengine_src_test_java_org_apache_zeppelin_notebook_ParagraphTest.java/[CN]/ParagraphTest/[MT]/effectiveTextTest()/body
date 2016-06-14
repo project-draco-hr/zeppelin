@@ -1,0 +1,18 @@
+{
+  NoteInterpreterLoader noteInterpreterLoader=mock(NoteInterpreterLoader.class);
+  Interpreter interpreter=mock(Interpreter.class);
+  Paragraph p=new Paragraph(null,null,null,noteInterpreterLoader);
+  p.setText("%h2 show databases");
+  p.setEffectiveText("%jdbc(h2) show databases");
+  assertEquals("Get right replName","jdbc",p.getRequiredReplName());
+  assertEquals("Get right scriptBody","(h2) show databases",p.getScriptBody());
+  when(noteInterpreterLoader.get("jdbc")).thenReturn(interpreter);
+  when(interpreter.getFormType()).thenReturn(Interpreter.FormType.NATIVE);
+  try {
+    p.jobRun();
+  }
+ catch (  Throwable throwable) {
+  }
+  assertEquals("Erase effective Text","h2",p.getRequiredReplName());
+  assertEquals("Erase effective Text","show databases",p.getScriptBody());
+}

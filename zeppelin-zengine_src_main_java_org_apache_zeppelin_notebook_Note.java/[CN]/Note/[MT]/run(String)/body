@@ -2,9 +2,17 @@
   Paragraph p=getParagraph(paragraphId);
   p.setNoteReplLoader(replLoader);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
-  Interpreter intp=replLoader.get(p.getRequiredReplName());
+  String requiredReplName=p.getRequiredReplName();
+  Interpreter intp=replLoader.get(requiredReplName);
   if (intp == null) {
-    throw new InterpreterException("Interpreter " + p.getRequiredReplName() + " not found");
+    if (conf.getUseJdbcAlias() && null != (intp=replLoader.get("jdbc"))) {
+      String pText=p.getText().replaceFirst(requiredReplName,"jdbc(" + requiredReplName + ")");
+      logger.debug("New paragraph: {}",pText);
+      p.setEffectiveText(pText);
+    }
+ else {
+      throw new InterpreterException("Interpreter " + requiredReplName + " not found");
+    }
   }
   if (p.getConfig().get("enabled") == null || (Boolean)p.getConfig().get("enabled")) {
     intp.getScheduler().submit(p);

@@ -1,3 +1,3 @@
 {
-  return getRequiredReplName(text);
+  return getRequiredReplName(null != effectiveText ? effectiveText : text);
 }
