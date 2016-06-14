@@ -1,10 +1,10 @@
 {
-  List<Rev> history=Lists.newArrayList();
+  List<Revision> history=Lists.newArrayList();
   LOG.debug("Listing history for {}:",noteId);
   try {
     Iterable<RevCommit> logs=git.log().addPath(noteId).call();
     for (    RevCommit log : logs) {
-      history.add(new Rev(log.getName(),log.getCommitTime()));
+      history.add(new Revision(log.getName(),log.getShortMessage(),log.getCommitTime()));
       LOG.debug(" - ({},{},{})",log.getName(),log.getCommitTime(),log.getFullMessage());
     }
   }
