@@ -1,0 +1,22 @@
+{
+  String jsonInvalidRequestEntityNull="{\"entity\" : null, \"username\" : \"test\", \"password\" : \"testpass\"}";
+  String jsonInvalidRequestNameNull="{\"entity\" : \"test\", \"username\" : null, \"password\" : \"testpass\"}";
+  String jsonInvalidRequestPasswordNull="{\"entity\" : \"test\", \"username\" : \"test\", \"password\" : null}";
+  String jsonInvalidRequestAllNull="{\"entity\" : null, \"username\" : null, \"password\" : null}";
+  PutMethod entityNullPut=httpPut("/credential",jsonInvalidRequestEntityNull);
+  entityNullPut.addRequestHeader("Origin","http://localhost");
+  assertThat(entityNullPut,isBadRequest());
+  entityNullPut.releaseConnection();
+  PutMethod nameNullPut=httpPut("/credential",jsonInvalidRequestNameNull);
+  nameNullPut.addRequestHeader("Origin","http://localhost");
+  assertThat(nameNullPut,isBadRequest());
+  nameNullPut.releaseConnection();
+  PutMethod passwordNullPut=httpPut("/credential",jsonInvalidRequestPasswordNull);
+  passwordNullPut.addRequestHeader("Origin","http://localhost");
+  assertThat(passwordNullPut,isBadRequest());
+  passwordNullPut.releaseConnection();
+  PutMethod allNullPut=httpPut("/credential",jsonInvalidRequestAllNull);
+  allNullPut.addRequestHeader("Origin","http://localhost");
+  assertThat(allNullPut,isBadRequest());
+  allNullPut.releaseConnection();
+}
