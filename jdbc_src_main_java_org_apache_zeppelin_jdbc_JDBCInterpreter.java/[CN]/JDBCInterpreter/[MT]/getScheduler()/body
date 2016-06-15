@@ -1,3 +1,4 @@
 {
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler(JDBCInterpreter.class.getName() + this.hashCode());
+  String schedulerName=JDBCInterpreter.class.getName() + this.hashCode();
+  return isConcurrentExecution() ? SchedulerFactory.singleton().createOrGetParallelScheduler(schedulerName,10) : SchedulerFactory.singleton().createOrGetFIFOScheduler(schedulerName);
 }

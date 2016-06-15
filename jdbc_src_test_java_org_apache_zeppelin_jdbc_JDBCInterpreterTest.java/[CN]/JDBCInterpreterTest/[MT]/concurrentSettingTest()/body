@@ -1,0 +1,16 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty("zeppelin.jdbc.concurrent.use","true");
+  properties.setProperty("zeppelin.jdbc.concurrent.max_connection","10");
+  JDBCInterpreter jdbcInterpreter=new JDBCInterpreter(properties);
+  assertTrue(jdbcInterpreter.isConcurrentExecution());
+  assertEquals(10,jdbcInterpreter.getMaxConcurrentConnection());
+  Scheduler scheduler=jdbcInterpreter.getScheduler();
+  assertTrue(scheduler instanceof ParallelScheduler);
+  properties.clear();
+  properties.setProperty("zeppelin.jdbc.concurrent.use","false");
+  jdbcInterpreter=new JDBCInterpreter(properties);
+  assertFalse(jdbcInterpreter.isConcurrentExecution());
+  scheduler=jdbcInterpreter.getScheduler();
+  assertTrue(scheduler instanceof FIFOScheduler);
+}

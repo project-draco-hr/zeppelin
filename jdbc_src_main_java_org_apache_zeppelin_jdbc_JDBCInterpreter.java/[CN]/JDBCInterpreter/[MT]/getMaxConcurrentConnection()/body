@@ -1,0 +1,8 @@
+{
+  try {
+    return Integer.valueOf(getProperty(CONCURRENT_EXECUTION_COUNT));
+  }
+ catch (  Exception e) {
+    return 10;
+  }
+}
