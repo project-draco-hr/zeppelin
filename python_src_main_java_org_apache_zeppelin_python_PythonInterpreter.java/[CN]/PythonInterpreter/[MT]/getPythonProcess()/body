@@ -1,4 +1,8 @@
 {
-  if (process == null)   return new PythonProcess(getProperty(ZEPPELIN_PYTHON));
- else   return process;
+  if (process == null) {
+    return new PythonProcess(getProperty(ZEPPELIN_PYTHON));
+  }
+ else {
+    return process;
+  }
 }

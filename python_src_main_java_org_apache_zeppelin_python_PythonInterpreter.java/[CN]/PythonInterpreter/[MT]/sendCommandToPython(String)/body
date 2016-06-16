@@ -1,6 +1,6 @@
 {
   String output="";
-  logger.info("Sending : \n " + cmd);
+  logger.info("Sending : \n" + (cmd.length() > 200 ? cmd.substring(0,120) + "..." : cmd));
   try {
     output=process.sendAndGetResult(cmd);
   }

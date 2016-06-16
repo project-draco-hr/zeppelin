@@ -1,5 +1,9 @@
 {
   String output=sendCommandToPython("\n\nimport py4j\n");
-  if (output.contains("ImportError"))   return false;
- else   return true;
+  if (output.contains("ImportError")) {
+    return false;
+  }
+ else {
+    return true;
+  }
 }
