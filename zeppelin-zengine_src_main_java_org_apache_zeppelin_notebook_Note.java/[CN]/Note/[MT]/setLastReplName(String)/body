@@ -1,0 +1,3 @@
+{
+  setLastReplName(getParagraph(paragraphId));
+}

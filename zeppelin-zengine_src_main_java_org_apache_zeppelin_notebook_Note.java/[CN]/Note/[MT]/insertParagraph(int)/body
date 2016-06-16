@@ -1,5 +1,6 @@
 {
   Paragraph p=new Paragraph(this,this,replLoader);
+  addLastReplNameIfEmptyText(p);
 synchronized (paragraphs) {
     paragraphs.add(index,p);
   }

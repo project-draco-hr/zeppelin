@@ -1,0 +1,9 @@
+{
+  String paragraphId="HelloWorld";
+  Note note=Mockito.spy(new Note(repo,replLoader,jobListenerFactory,index,credentials));
+  Paragraph mockParagraph=Mockito.mock(Paragraph.class);
+  when(note.getParagraph(paragraphId)).thenReturn(mockParagraph);
+  when(mockParagraph.getRequiredReplName()).thenReturn("spark");
+  note.setLastReplName(paragraphId);
+  assertEquals("spark",note.getLastReplName());
+}

@@ -4,7 +4,7 @@
     return null;
   }
   if (replName == null || replName.trim().length() == 0) {
-    InterpreterSetting defaultSettings=settings.get(0);
+    InterpreterSetting defaultSettings=getDefaultInterpreterSetting(settings).get();
     return createOrGetInterpreterList(defaultSettings).get(0);
   }
   if (Interpreter.registeredInterpreters == null) {
@@ -34,7 +34,7 @@
     throw new InterpreterException(replName + " interpreter not found");
   }
  else {
-    InterpreterSetting defaultSetting=settings.get(0);
+    InterpreterSetting defaultSetting=getDefaultInterpreterSetting(settings).get();
     Interpreter.RegisteredInterpreter registeredInterpreter=Interpreter.registeredInterpreters.get(defaultSetting.getGroup() + "." + replName);
     if (registeredInterpreter != null) {
       List<Interpreter> interpreters=createOrGetInterpreterList(defaultSetting);

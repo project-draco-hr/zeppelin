@@ -1,0 +1,5 @@
+{
+  String defaultInterpreterName=getDefaultInterpreterName();
+  logger.info("defaultInterpreterName is '{}'",defaultInterpreterName);
+  lastReplName.set(defaultInterpreterName);
+}

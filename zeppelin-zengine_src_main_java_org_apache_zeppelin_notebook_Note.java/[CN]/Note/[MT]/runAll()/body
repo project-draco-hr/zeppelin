@@ -1,6 +1,9 @@
 {
   String cronExecutingUser=(String)getConfig().get("cronExecutingUser");
 synchronized (paragraphs) {
+    if (!paragraphs.isEmpty()) {
+      setLastReplName(paragraphs.get(paragraphs.size() - 1));
+    }
     for (    Paragraph p : paragraphs) {
       if (!p.isEnabled()) {
         continue;

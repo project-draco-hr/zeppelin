@@ -1,0 +1,9 @@
+{
+  InterpreterSetting interpreterSetting=Mockito.mock(InterpreterSetting.class);
+  when(interpreterSetting.getName()).thenReturn("spark");
+  when(replLoader.getDefaultInterpreterSetting()).thenReturn(Optional.of(interpreterSetting));
+  Note note=new Note(repo,replLoader,jobListenerFactory,index,credentials);
+  note.putDefaultReplName();
+  Paragraph p=note.addParagraph();
+  assertEquals("%spark ",p.getText());
+}

@@ -1,0 +1,4 @@
+{
+  Optional<InterpreterSetting> settingOptional=replLoader.getDefaultInterpreterSetting();
+  return settingOptional.isPresent() ? settingOptional.get().getName() : StringUtils.EMPTY;
+}

@@ -1,0 +1,6 @@
+{
+  String replName=lastReplName.get();
+  if (StringUtils.isEmpty(p.getText()) && StringUtils.isNotEmpty(replName)) {
+    p.setText(getInterpreterName(replName) + " ");
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (StringUtils.isNotEmpty(lastParagraphStarted.getRequiredReplName())) {
+    lastReplName.set(lastParagraphStarted.getRequiredReplName());
+  }
+}

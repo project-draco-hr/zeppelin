@@ -1,0 +1,7 @@
+{
+  when(replLoader.getDefaultInterpreterSetting()).thenReturn(Optional.<InterpreterSetting>absent());
+  Note note=new Note(repo,replLoader,jobListenerFactory,index,credentials);
+  note.putDefaultReplName();
+  assertEquals(StringUtils.EMPTY,note.getLastReplName());
+  assertEquals(StringUtils.EMPTY,note.getLastInterpreterName());
+}

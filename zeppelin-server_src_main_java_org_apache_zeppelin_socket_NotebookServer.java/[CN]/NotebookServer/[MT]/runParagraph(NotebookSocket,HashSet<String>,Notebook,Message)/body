@@ -26,6 +26,7 @@
   Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
   p.setConfig(config);
   boolean isTheLastParagraph=note.getLastParagraph().getId().equals(p.getId());
+  note.setLastReplName(paragraphId);
   if (!Strings.isNullOrEmpty(text) && isTheLastParagraph) {
     note.addParagraph();
   }

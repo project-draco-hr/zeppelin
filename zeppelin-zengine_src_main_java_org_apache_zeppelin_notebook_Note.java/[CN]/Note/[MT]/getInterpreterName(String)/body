@@ -1,0 +1,3 @@
+{
+  return StringUtils.isBlank(replName) ? StringUtils.EMPTY : "%" + replName;
+}
