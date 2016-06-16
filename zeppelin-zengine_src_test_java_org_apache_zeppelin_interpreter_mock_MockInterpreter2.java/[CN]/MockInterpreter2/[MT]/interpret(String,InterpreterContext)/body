@@ -3,6 +3,14 @@
   if ("getId".equals(st)) {
     result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"" + this.hashCode());
   }
+ else   if (st.startsWith("sleep")) {
+    try {
+      Thread.sleep(Integer.parseInt(st.split(" ")[1]));
+    }
+ catch (    InterruptedException e) {
+    }
+    result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"repl2: " + st);
+  }
  else {
     result=new InterpreterResult(InterpreterResult.Code.SUCCESS,"repl2: " + st);
   }
