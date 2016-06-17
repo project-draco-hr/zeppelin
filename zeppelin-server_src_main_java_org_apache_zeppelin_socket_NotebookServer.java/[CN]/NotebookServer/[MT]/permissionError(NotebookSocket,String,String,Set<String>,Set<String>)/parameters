@@ -1,4 +1,5 @@
 NotebookSocket conn
 String op
+String userName
 Set<String> userAndRoles
 Set<String> allowed

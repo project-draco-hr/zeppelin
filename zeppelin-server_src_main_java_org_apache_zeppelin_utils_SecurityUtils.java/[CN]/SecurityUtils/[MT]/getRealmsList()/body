@@ -1,0 +1,7 @@
+{
+  DefaultWebSecurityManager defaultWebSecurityManager;
+  String key=ThreadContext.SECURITY_MANAGER_KEY;
+  defaultWebSecurityManager=(DefaultWebSecurityManager)ThreadContext.get(key);
+  Collection<Realm> realms=defaultWebSecurityManager.getRealms();
+  return realms;
+}

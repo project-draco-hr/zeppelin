@@ -1,0 +1,6 @@
+{
+  String username=(String)getAvailablePrincipal(principals);
+  LdapContext ldapContext=ldapContextFactory.getSystemLdapContext();
+  Set<String> roleNames=getRoleNamesForUser(username,ldapContext,getUserDnTemplate());
+  return new SimpleAuthorizationInfo(roleNames);
+}

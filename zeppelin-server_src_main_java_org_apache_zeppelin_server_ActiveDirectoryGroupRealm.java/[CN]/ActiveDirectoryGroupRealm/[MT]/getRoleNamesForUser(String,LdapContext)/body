@@ -1,0 +1,34 @@
+{
+  Set<String> roleNames=new LinkedHashSet<>();
+  SearchControls searchCtls=new SearchControls();
+  searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+  String userPrincipalName=username;
+  if (principalSuffix != null) {
+    userPrincipalName+=principalSuffix;
+  }
+  String searchFilter="(&(objectClass=*)(userPrincipalName=" + userPrincipalName + "))";
+  Object[] searchArguments=new Object[]{userPrincipalName};
+  NamingEnumeration answer=ldapContext.search(searchBase,searchFilter,searchArguments,searchCtls);
+  while (answer.hasMoreElements()) {
+    SearchResult sr=(SearchResult)answer.next();
+    if (log.isDebugEnabled()) {
+      log.debug("Retrieving group names for user [" + sr.getName() + "]");
+    }
+    Attributes attrs=sr.getAttributes();
+    if (attrs != null) {
+      NamingEnumeration ae=attrs.getAll();
+      while (ae.hasMore()) {
+        Attribute attr=(Attribute)ae.next();
+        if (attr.getID().equals("memberOf")) {
+          Collection<String> groupNames=LdapUtils.getAllAttributeValues(attr);
+          if (log.isDebugEnabled()) {
+            log.debug("Groups found for user [" + username + "]: "+ groupNames);
+          }
+          Collection<String> rolesForGroups=getRoleNamesForGroups(groupNames);
+          roleNames.addAll(rolesForGroups);
+        }
+      }
+    }
+  }
+  return roleNames;
+}

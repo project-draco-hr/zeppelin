@@ -1,0 +1,28 @@
+{
+  try {
+    Set<String> roleNames=new LinkedHashSet<String>();
+    SearchControls searchCtls=new SearchControls();
+    searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+    String searchFilter="(&(objectClass=groupOfNames)(member=" + userDnTemplate + "))";
+    Object[] searchArguments=new Object[]{username};
+    NamingEnumeration<?> answer=ldapContext.search(String.valueOf(ldapContext.getEnvironment().get("ldap.searchBase")),searchFilter,searchArguments,searchCtls);
+    while (answer.hasMoreElements()) {
+      SearchResult sr=(SearchResult)answer.next();
+      Attributes attrs=sr.getAttributes();
+      if (attrs != null) {
+        NamingEnumeration<?> ae=attrs.getAll();
+        while (ae.hasMore()) {
+          Attribute attr=(Attribute)ae.next();
+          if (attr.getID().equals("cn")) {
+            roleNames.add((String)attr.get());
+          }
+        }
+      }
+    }
+    return roleNames;
+  }
+ catch (  Exception e) {
+    LOG.error("Error",e);
+  }
+  return new HashSet<>();
+}

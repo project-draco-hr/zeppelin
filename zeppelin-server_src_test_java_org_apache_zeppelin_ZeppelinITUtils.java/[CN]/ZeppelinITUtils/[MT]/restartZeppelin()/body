@@ -1,0 +1,4 @@
+{
+  CommandExecutor.executeCommandLocalHost("../bin/zeppelin-daemon.sh restart",false,ProcessData.Types_Of_Data.OUTPUT);
+  sleep(5000,false);
+}

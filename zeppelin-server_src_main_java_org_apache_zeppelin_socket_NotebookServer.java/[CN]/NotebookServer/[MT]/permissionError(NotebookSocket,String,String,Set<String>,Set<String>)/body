@@ -1,5 +1,4 @@
 {
   LOG.info("Cannot {}. Connection readers {}. Allowed readers {}",op,userAndRoles,allowed);
-  String userName=userAndRoles.iterator().next();
   conn.send(serializeMessage(new Message(OP.AUTH_INFO).put("info","Insufficient privileges to " + op + " notebook.\n\n"+ "Allowed users or roles: "+ allowed.toString()+ "\n\n"+ "But the user "+ userName+ " belongs to: "+ userAndRoles.toString())));
 }

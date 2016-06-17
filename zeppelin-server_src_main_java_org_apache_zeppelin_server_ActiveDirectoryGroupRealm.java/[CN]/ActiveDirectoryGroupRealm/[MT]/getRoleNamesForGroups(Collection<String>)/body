@@ -1,0 +1,17 @@
+{
+  Set<String> roleNames=new HashSet<String>(groupNames.size());
+  if (groupRolesMap != null) {
+    for (    String groupName : groupNames) {
+      String strRoleNames=groupRolesMap.get(groupName);
+      if (strRoleNames != null) {
+        for (        String roleName : strRoleNames.split(ROLE_NAMES_DELIMETER)) {
+          if (log.isDebugEnabled()) {
+            log.debug("User is member of group [" + groupName + "] so adding role ["+ roleName+ "]");
+          }
+          roleNames.add(roleName);
+        }
+      }
+    }
+  }
+  return roleNames;
+}

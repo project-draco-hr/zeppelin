@@ -6,7 +6,7 @@
   Note note=notebook.getNote(noteId);
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
   if (!notebookAuthorization.isOwner(noteId,userAndRoles)) {
-    permissionError(conn,"remove",userAndRoles,notebookAuthorization.getOwners(noteId));
+    permissionError(conn,"remove",fromMessage.principal,userAndRoles,notebookAuthorization.getOwners(noteId));
     return;
   }
   notebook.removeNote(noteId);

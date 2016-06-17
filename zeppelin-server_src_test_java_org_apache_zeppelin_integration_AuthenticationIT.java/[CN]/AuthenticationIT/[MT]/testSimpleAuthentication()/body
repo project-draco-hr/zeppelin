@@ -1,0 +1,14 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    AuthenticationIT authenticationIT=new AuthenticationIT();
+    authenticationIT.authenticationUser("admin","password1");
+    collector.checkThat("Check is user logged in",true,CoreMatchers.equalTo(driver.findElement(By.partialLinkText("Create new note")).isDisplayed()));
+    authenticationIT.logoutUser("admin");
+  }
+ catch (  Exception e) {
+    handleException("Exception in ParagraphActionsIT while testCreateNewButton ",e);
+  }
+}

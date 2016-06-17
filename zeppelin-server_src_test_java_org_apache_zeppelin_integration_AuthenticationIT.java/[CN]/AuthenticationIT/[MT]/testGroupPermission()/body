@@ -1,0 +1,33 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    AuthenticationIT authenticationIT=new AuthenticationIT();
+    authenticationIT.authenticationUser("finance1","finance1");
+    createNewNote();
+    String noteId=driver.getCurrentUrl().substring(driver.getCurrentUrl().lastIndexOf("/") + 1);
+    pollingWait(By.xpath("//button[@tooltip='Note permissions']"),MAX_BROWSER_TIMEOUT_SEC).sendKeys(Keys.ENTER);
+    pollingWait(By.xpath("//input[@ng-model='permissions.owners']"),MAX_BROWSER_TIMEOUT_SEC).sendKeys("finance");
+    pollingWait(By.xpath("//input[@ng-model='permissions.readers']"),MAX_BROWSER_TIMEOUT_SEC).sendKeys("finance");
+    pollingWait(By.xpath("//input[@ng-model='permissions.writers']"),MAX_BROWSER_TIMEOUT_SEC).sendKeys("finance");
+    pollingWait(By.xpath("//button[@ng-click='savePermissions()']"),MAX_BROWSER_TIMEOUT_SEC).sendKeys(Keys.ENTER);
+    pollingWait(By.xpath("//div[@class='modal-dialog'][contains(.,'Permissions Saved ')]" + "//div[@class='modal-footer']//button[contains(.,'OK')]"),MAX_BROWSER_TIMEOUT_SEC).click();
+    authenticationIT.logoutUser("finance1");
+    authenticationIT.authenticationUser("hr1","hr1");
+    pollingWait(By.xpath("//*[@id='notebook-names']//a[contains(@href, '" + noteId + "')]"),MAX_BROWSER_TIMEOUT_SEC).click();
+    List<WebElement> privilegesModal=driver.findElements(By.xpath("//div[@class='modal-content']//div[@class='bootstrap-dialog-header']" + "//div[contains(.,'Insufficient privileges')]"));
+    collector.checkThat("Check is user has permission to view this notebook",1,CoreMatchers.equalTo(privilegesModal.size()));
+    driver.findElement(By.xpath("//div[@class='modal-content'][contains(.,'Insufficient privileges')]" + "//div[@class='modal-footer']//button[2]")).click();
+    authenticationIT.logoutUser("hr1");
+    authenticationIT.authenticationUser("finance2","finance2");
+    pollingWait(By.xpath("//*[@id='notebook-names']//a[contains(@href, '" + noteId + "')]"),MAX_BROWSER_TIMEOUT_SEC).click();
+    privilegesModal=driver.findElements(By.xpath("//div[@class='modal-content']//div[@class='bootstrap-dialog-header']" + "//div[contains(.,'Insufficient privileges')]"));
+    collector.checkThat("Check is user has permission to view this notebook",0,CoreMatchers.equalTo(privilegesModal.size()));
+    deleteTestNotebook(driver);
+    authenticationIT.logoutUser("finance2");
+  }
+ catch (  Exception e) {
+    handleException("Exception in ParagraphActionsIT while testGroupPermission ",e);
+  }
+}

@@ -34,7 +34,7 @@ case RELOAD_NOTES_FROM_REPO:
   broadcastReloadedNoteList();
 break;
 case GET_HOME_NOTE:
-sendHomeNote(conn,userAndRoles,notebook);
+sendHomeNote(conn,userAndRoles,notebook,messagereceived);
 break;
 case GET_NOTE:
 sendNote(conn,userAndRoles,notebook,messagereceived);

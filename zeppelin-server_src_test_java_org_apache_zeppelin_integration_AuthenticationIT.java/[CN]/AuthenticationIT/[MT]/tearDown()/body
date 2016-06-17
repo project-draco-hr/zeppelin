@@ -1,0 +1,15 @@
+{
+  if (!endToEndTestEnabled()) {
+    return;
+  }
+  try {
+    ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+    File file=new File(conf.getShiroPath());
+    FileUtils.write(file,originalShiro,"UTF-8");
+  }
+ catch (  IOException e) {
+    LOG.error("Error in AuthenticationIT tearDown::",e);
+  }
+  ZeppelinITUtils.restartZeppelin();
+  driver.quit();
+}

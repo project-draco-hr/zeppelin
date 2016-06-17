@@ -1,0 +1,12 @@
+{
+  String username=(String)getAvailablePrincipal(principals);
+  LdapContext ldapContext=ldapContextFactory.getSystemLdapContext();
+  Set<String> roleNames;
+  try {
+    roleNames=getRoleNamesForUser(username,ldapContext);
+  }
+  finally {
+    LdapUtils.closeContext(ldapContext);
+  }
+  return buildAuthorizationInfo(roleNames);
+}

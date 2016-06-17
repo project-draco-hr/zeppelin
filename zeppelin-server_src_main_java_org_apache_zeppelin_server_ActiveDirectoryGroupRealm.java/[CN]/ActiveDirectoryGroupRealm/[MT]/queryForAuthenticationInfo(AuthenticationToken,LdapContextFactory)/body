@@ -1,0 +1,18 @@
+{
+  UsernamePasswordToken upToken=(UsernamePasswordToken)token;
+  LdapContext ctx=null;
+  try {
+    String userPrincipalName=upToken.getUsername();
+    if (userPrincipalName == null) {
+      return null;
+    }
+    if (this.principalSuffix != null) {
+      userPrincipalName=upToken.getUsername() + this.principalSuffix;
+    }
+    ctx=ldapContextFactory.getLdapContext(userPrincipalName,upToken.getPassword());
+  }
+  finally {
+    LdapUtils.closeContext(ctx);
+  }
+  return buildAuthenticationInfo(upToken.getUsername(),upToken.getPassword());
+}

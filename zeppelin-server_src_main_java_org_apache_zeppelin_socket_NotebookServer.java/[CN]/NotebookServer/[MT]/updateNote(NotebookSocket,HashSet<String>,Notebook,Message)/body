@@ -10,7 +10,7 @@
   }
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
   if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
-    permissionError(conn,"update",userAndRoles,notebookAuthorization.getWriters(noteId));
+    permissionError(conn,"update",fromMessage.principal,userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
   }
   Note note=notebook.getNote(noteId);

@@ -7,7 +7,7 @@
   final Note note=notebook.getNote(noteId);
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
   if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
-    permissionError(conn,"write",userAndRoles,notebookAuthorization.getWriters(noteId));
+    permissionError(conn,"write",fromMessage.principal,userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
   }
   Paragraph p=note.getParagraph(paragraphId);
