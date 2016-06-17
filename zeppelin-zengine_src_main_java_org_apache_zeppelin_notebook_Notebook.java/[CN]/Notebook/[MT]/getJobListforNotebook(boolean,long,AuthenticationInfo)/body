@@ -1,0 +1,59 @@
+{
+  final String CRON_TYPE_NOTEBOOK_KEYWORD="cron";
+  if (needsReload) {
+    try {
+      reloadAllNotes(subject);
+    }
+ catch (    IOException e) {
+      logger.error("Fail to reload notes from repository");
+    }
+  }
+  List<Note> notes=getAllNotes();
+  List<Map<String,Object>> notesInfo=new LinkedList<>();
+  for (  Note note : notes) {
+    boolean isNotebookRunning=false;
+    boolean isUpdateNotebook=false;
+    long lastRunningUnixTime=0;
+    Map<String,Object> info=new HashMap<>();
+    info.put("notebookId",note.id());
+    String notebookName=note.getName();
+    if (notebookName != null) {
+      info.put("notebookName",note.getName());
+    }
+ else {
+      info.put("notebookName","Note " + note.id());
+    }
+    if (note.getConfig().containsKey(CRON_TYPE_NOTEBOOK_KEYWORD) == true && !note.getConfig().get(CRON_TYPE_NOTEBOOK_KEYWORD).equals("")) {
+      info.put("notebookType","cron");
+    }
+ else {
+      info.put("notebookType","normal");
+    }
+    List<Map<String,Object>> paragraphsInfo=new LinkedList<>();
+    for (    Paragraph paragraph : note.getParagraphs()) {
+      if (paragraph.getStatus().isRunning() == true) {
+        isNotebookRunning=true;
+        isUpdateNotebook=true;
+      }
+      Map<String,Object> paragraphItem=getParagraphForJobManagerItem(paragraph);
+      lastRunningUnixTime=getUnixTimeLastRunParagraph(paragraph);
+      if (lastRunningUnixTime > lastUpdateServerUnixTime) {
+        paragraphsInfo.add(paragraphItem);
+        isUpdateNotebook=true;
+      }
+    }
+    String interpreterGroupName=null;
+    if (note.getNoteReplLoader().getInterpreterSettings() != null && note.getNoteReplLoader().getInterpreterSettings().size() >= 1) {
+      interpreterGroupName=note.getNoteReplLoader().getInterpreterSettings().get(0).getGroup();
+    }
+    if (isUpdateNotebook == false && isNotebookRunning == false) {
+      continue;
+    }
+    info.put("interpreter",interpreterGroupName);
+    info.put("isRunningJob",isNotebookRunning);
+    info.put("unixTimeLastRun",lastRunningUnixTime);
+    info.put("paragraphs",paragraphsInfo);
+    notesInfo.add(info);
+  }
+  return notesInfo;
+}

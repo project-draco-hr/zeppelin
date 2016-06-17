@@ -13,7 +13,8 @@
     Map<String,Object> paramsForUpdating=request.getParams();
     if (paramsForUpdating != null) {
       paragraph.settings.getParams().putAll(paramsForUpdating);
-      note.persist();
+      AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+      note.persist(subject);
     }
   }
   note.run(paragraph.getId());

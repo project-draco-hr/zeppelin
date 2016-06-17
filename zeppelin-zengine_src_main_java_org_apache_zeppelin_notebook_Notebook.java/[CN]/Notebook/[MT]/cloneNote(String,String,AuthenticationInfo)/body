@@ -1,0 +1,19 @@
+{
+  Note sourceNote=getNote(sourceNoteID);
+  if (sourceNote == null) {
+    throw new IllegalArgumentException(sourceNoteID + "not found");
+  }
+  Note newNote=createNote(subject);
+  if (newNoteName != null) {
+    newNote.setName(newNoteName);
+  }
+  List<String> boundInterpreterSettingsIds=getBindedInterpreterSettingsIds(sourceNote.id());
+  bindInterpretersToNote(newNote.id(),boundInterpreterSettingsIds);
+  List<Paragraph> paragraphs=sourceNote.getParagraphs();
+  for (  Paragraph p : paragraphs) {
+    newNote.addCloneParagraph(p);
+  }
+  notebookIndex.addIndexDoc(newNote);
+  newNote.persist(subject);
+  return newNote;
+}

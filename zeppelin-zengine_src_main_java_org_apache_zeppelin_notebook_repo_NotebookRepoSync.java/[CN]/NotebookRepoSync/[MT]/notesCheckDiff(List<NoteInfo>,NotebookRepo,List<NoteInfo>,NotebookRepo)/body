@@ -6,8 +6,8 @@
   for (  NoteInfo snote : sourceNotes) {
     dnote=containsID(destNotes,snote.getId());
     if (dnote != null) {
-      sdate=lastModificationDate(sourceRepo.get(snote.getId()));
-      ddate=lastModificationDate(destRepo.get(dnote.getId()));
+      sdate=lastModificationDate(sourceRepo.get(snote.getId(),null));
+      ddate=lastModificationDate(destRepo.get(dnote.getId(),null));
       if (sdate.after(ddate)) {
         pushIDs.add(snote.getId());
         LOG.info("Modified note is added to push list : " + sdate);

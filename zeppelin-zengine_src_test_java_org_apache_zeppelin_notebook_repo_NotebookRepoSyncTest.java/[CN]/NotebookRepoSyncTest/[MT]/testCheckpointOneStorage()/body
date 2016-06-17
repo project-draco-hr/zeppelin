@@ -6,19 +6,19 @@
   assertThat(vRepoSync.getRepoCount()).isEqualTo(1);
   assertThat(vRepoSync.getRepo(0)).isInstanceOf(GitNotebookRepo.class);
   GitNotebookRepo gitRepo=(GitNotebookRepo)vRepoSync.getRepo(0);
-  assertThat(vRepoSync.list().size()).isEqualTo(0);
-  Note note=vNotebookSync.createNote();
-  assertThat(vRepoSync.list().size()).isEqualTo(1);
-  String noteId=vRepoSync.list().get(0).getId();
-  vRepoSync.checkpoint(noteId,"checkpoint message");
-  int vCount=gitRepo.revisionHistory(noteId).size();
+  assertThat(vRepoSync.list(null).size()).isEqualTo(0);
+  Note note=vNotebookSync.createNote(null);
+  assertThat(vRepoSync.list(null).size()).isEqualTo(1);
+  String noteId=vRepoSync.list(null).get(0).getId();
+  vRepoSync.checkpoint(noteId,"checkpoint message",null);
+  int vCount=gitRepo.revisionHistory(noteId,null).size();
   assertThat(vCount).isEqualTo(1);
   Paragraph p=note.addParagraph();
   Map<String,Object> config=p.getConfig();
   config.put("enabled",true);
   p.setConfig(config);
   p.setText("%md checkpoint test");
-  vRepoSync.save(note);
-  vRepoSync.checkpoint(noteId,"checkpoint message 2");
-  assertThat(gitRepo.revisionHistory(noteId).size()).isEqualTo(vCount + 1);
+  vRepoSync.save(note,null);
+  vRepoSync.checkpoint(noteId,"checkpoint message 2",null);
+  assertThat(gitRepo.revisionHistory(noteId,null).size()).isEqualTo(vCount + 1);
 }

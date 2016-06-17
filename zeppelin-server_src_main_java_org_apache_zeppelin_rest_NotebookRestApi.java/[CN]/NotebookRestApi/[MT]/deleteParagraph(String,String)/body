@@ -8,8 +8,9 @@
   if (p == null) {
     return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
   }
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
   note.removeParagraph(paragraphId);
-  note.persist();
+  note.persist(subject);
   notebookServer.broadcastNote(note);
   return new JsonResponse(Status.OK,"").build();
 }

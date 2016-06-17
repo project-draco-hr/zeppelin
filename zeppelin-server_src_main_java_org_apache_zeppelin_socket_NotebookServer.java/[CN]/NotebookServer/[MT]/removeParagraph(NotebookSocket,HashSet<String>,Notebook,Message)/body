@@ -6,13 +6,14 @@
   String noteId=getOpenNoteId(conn);
   final Note note=notebook.getNote(noteId);
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
   if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
     permissionError(conn,"write",fromMessage.principal,userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
   }
   if (!note.isLastParagraph(paragraphId)) {
     note.removeParagraph(paragraphId);
-    note.persist();
+    note.persist(subject);
     broadcastNote(note);
   }
 }

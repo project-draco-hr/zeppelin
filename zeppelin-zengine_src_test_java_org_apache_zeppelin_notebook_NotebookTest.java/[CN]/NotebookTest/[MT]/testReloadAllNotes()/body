@@ -9,8 +9,8 @@
   }
   List<Note> notes=notebook.getAllNotes();
   assertEquals(notes.size(),0);
-  Note copiedNote=notebookRepo.get("2A94M5J1Z");
-  notebook.reloadAllNotes();
+  Note copiedNote=notebookRepo.get("2A94M5J1Z",null);
+  notebook.reloadAllNotes(null);
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),1);
   assertEquals(notes.get(0).id(),copiedNote.id());
@@ -19,7 +19,7 @@
   FileUtils.deleteDirectory(destDir);
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),1);
-  notebook.reloadAllNotes();
+  notebook.reloadAllNotes(null);
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),0);
 }

@@ -4,7 +4,7 @@
   notebookIndex.addIndexDocs(Arrays.asList(note1,note2));
   assertThat(resultForQuery("test").size()).isEqualTo(3);
   note1.setName("NotebookN");
-  note1.persist();
+  note1.persist(null);
   assertThat(resultForQuery("Notebook1")).isEmpty();
   assertThat(resultForQuery("NotebookN")).isNotEmpty();
   assertThat(resultForQuery("NotebookN").size()).isEqualTo(1);

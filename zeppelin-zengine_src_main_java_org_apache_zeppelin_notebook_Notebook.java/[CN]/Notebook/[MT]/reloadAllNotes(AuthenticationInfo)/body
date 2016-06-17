@@ -1,0 +1,15 @@
+{
+synchronized (notes) {
+    notes.clear();
+  }
+  if (notebookRepo instanceof NotebookRepoSync) {
+    NotebookRepoSync mainRepo=(NotebookRepoSync)notebookRepo;
+    if (mainRepo.getRepoCount() > 1) {
+      mainRepo.sync();
+    }
+  }
+  List<NoteInfo> noteInfos=notebookRepo.list(subject);
+  for (  NoteInfo info : noteInfos) {
+    loadNoteFromRepo(info.getId(),subject);
+  }
+}

@@ -1,6 +1,6 @@
 {
   notebookRepo=new GitNotebookRepo(conf);
-  assertThat(notebookRepo.list()).isNotEmpty();
-  List<Revision> testNotebookHistory=notebookRepo.revisionHistory(TEST_NOTE_ID);
+  assertThat(notebookRepo.list(null)).isNotEmpty();
+  List<Revision> testNotebookHistory=notebookRepo.revisionHistory(TEST_NOTE_ID,null);
   assertThat(testNotebookHistory).isEmpty();
 }

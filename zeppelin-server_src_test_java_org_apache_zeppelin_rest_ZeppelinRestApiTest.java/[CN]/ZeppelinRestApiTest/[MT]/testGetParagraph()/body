@@ -1,9 +1,9 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   Paragraph p=note.addParagraph();
   p.setTitle("hello");
   p.setText("world");
-  note.persist();
+  note.persist(null);
   GetMethod get=httpGet("/notebook/" + note.getId() + "/paragraph/"+ p.getId());
   LOG.info("testGetParagraph response\n" + get.getResponseBodyAsString());
   assertThat("Test get method: ",get,isAllowed());
@@ -17,5 +17,5 @@
   assertEquals(p.getId(),body.get("id"));
   assertEquals("hello",body.get("title"));
   assertEquals("world",body.get("text"));
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

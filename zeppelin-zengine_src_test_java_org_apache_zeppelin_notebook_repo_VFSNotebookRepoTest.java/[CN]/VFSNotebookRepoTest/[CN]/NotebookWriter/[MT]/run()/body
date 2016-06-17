@@ -1,6 +1,6 @@
 {
   try {
-    notebookRepo.save(note);
+    notebookRepo.save(note,null);
   }
  catch (  IOException e) {
     LOG.error(e.toString(),e);

@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   Paragraph p1=note.addParagraph();
   Map<String,Object> config=p1.getConfig();
@@ -23,6 +23,6 @@
     new Thread(new NotebookWriter(note)).start();
   }
   note.setName("SaveTest");
-  notebookRepo.save(note);
+  notebookRepo.save(note,null);
   assertEquals(note.getName(),"SaveTest");
 }

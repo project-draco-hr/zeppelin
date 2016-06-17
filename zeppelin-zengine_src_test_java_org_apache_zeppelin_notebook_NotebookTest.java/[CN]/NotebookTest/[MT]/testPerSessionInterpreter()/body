@@ -1,7 +1,7 @@
 {
-  Note note1=notebook.createNote();
+  Note note1=notebook.createNote(null);
   Paragraph p1=note1.addParagraph();
-  Note note2=notebook.createNote();
+  Note note2=notebook.createNote(null);
   Paragraph p2=note2.addParagraph();
   p1.setText("getId");
   p2.setText("getId");
@@ -19,6 +19,6 @@
   while (p1.getStatus() != Status.FINISHED)   Thread.yield();
   while (p2.getStatus() != Status.FINISHED)   Thread.yield();
   assertNotEquals(p1.getResult().message(),p2.getResult().message());
-  notebook.removeNote(note1.getId());
-  notebook.removeNote(note2.getId());
+  notebook.removeNote(note1.getId(),null);
+  notebook.removeNote(note2.getId(),null);
 }

@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   GetMethod get=httpGet("/notebook/interpreter/bind/" + note.id());
   assertThat(get,isAllowed());
   get.addRequestHeader("Origin","http://localhost");
@@ -9,5 +9,5 @@
   List<Map<String,String>> body=(List<Map<String,String>>)resp.get("body");
   assertTrue(0 < body.size());
   get.releaseConnection();
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

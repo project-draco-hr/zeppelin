@@ -11,5 +11,5 @@
   assertNotEquals(null,notebook.getNote(note.getId()));
   assertEquals("Test Zeppelin notebook import",notebook.getNote(note.getId()).getName());
   assertEquals("Test paragraphs import",notebook.getNote(note.getId()).getParagraphs().get(0).getText());
-  notebook.removeNote(note.getId());
+  notebook.removeNote(note.getId(),null);
 }

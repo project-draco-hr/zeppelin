@@ -1,9 +1,9 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   note.setName("note for run test");
   Paragraph paragraph=note.addParagraph();
   paragraph.setText("%spark\nval param = z.input(\"param\").toString\nprintln(param)");
-  note.persist();
+  note.persist(null);
   GetMethod getNoteJobs=httpGet("/notebook/job/" + note.getId());
   assertThat("test notebook jobs run:",getNoteJobs,isAllowed());
   Map<String,Object> resp=gson.fromJson(getNoteJobs.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
@@ -13,5 +13,5 @@
   assertFalse(body.get(0).containsKey("started"));
   assertFalse(body.get(0).containsKey("finished"));
   getNoteJobs.releaseConnection();
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

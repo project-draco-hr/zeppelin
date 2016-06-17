@@ -26,6 +26,6 @@
     assertTrue("paragraph title check failed",p.getTitle().startsWith("title"));
     assertTrue("paragraph text check failed",p.getText().startsWith("text"));
   }
-  ZeppelinServer.notebook.removeNote(newNotebookId);
+  ZeppelinServer.notebook.removeNote(newNotebookId,null);
   post.releaseConnection();
 }

@@ -1,0 +1,5 @@
+{
+  for (  NotebookRepo repo : repos) {
+    repo.remove(noteId,subject);
+  }
+}

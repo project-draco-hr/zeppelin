@@ -1,4 +1,5 @@
 {
-  List<Map<String,String>> notesInfo=notebookServer.generateNotebooksInfo(false);
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  List<Map<String,String>> notesInfo=notebookServer.generateNotebooksInfo(false,subject);
   return new JsonResponse<>(Status.OK,"",notesInfo).build();
 }

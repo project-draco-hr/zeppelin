@@ -1,3 +1,0 @@
-{
-  return getRepo(repoIndex).get(noteId);
-}

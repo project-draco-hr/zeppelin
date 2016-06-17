@@ -1,6 +1,6 @@
 {
   LOG.info("testCloneNotebook");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("source note for clone");
   Paragraph paragraph=note.addParagraph();
@@ -8,7 +8,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%md This is my new paragraph in my new note");
-  note.persist();
+  note.persist(null);
   String sourceNoteID=note.getId();
   String noteName="clone Note Name";
   String jsonRequest="{\"name\":\"" + noteName + "\"}";
@@ -24,7 +24,7 @@
   assertNotNull("Can not find new note by id",newNote);
   assertEquals("Compare note names",noteName,newNote.getName());
   assertEquals("Compare paragraphs count",note.getParagraphs().size(),newNote.getParagraphs().size());
-  ZeppelinServer.notebook.removeNote(note.getId());
-  ZeppelinServer.notebook.removeNote(newNote.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
+  ZeppelinServer.notebook.removeNote(newNote.getId(),null);
   post.releaseConnection();
 }

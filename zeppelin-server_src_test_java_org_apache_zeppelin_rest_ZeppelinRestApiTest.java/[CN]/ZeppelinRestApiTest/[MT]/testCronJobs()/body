@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   note.setName("note for run test");
   Paragraph paragraph=note.addParagraph();
   paragraph.setText("%md This is test paragraph.");
@@ -31,5 +31,5 @@
   DeleteMethod deleteCron=httpDelete("/notebook/cron/" + note.getId());
   assertThat("",deleteCron,isAllowed());
   deleteCron.releaseConnection();
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

@@ -17,6 +17,6 @@
     expectedNoteName="Note " + newNotebookId;
   }
   assertEquals("compare note name",expectedNoteName,newNoteName);
-  ZeppelinServer.notebook.removeNote(newNotebookId);
+  ZeppelinServer.notebook.removeNote(newNotebookId,null);
   post.releaseConnection();
 }

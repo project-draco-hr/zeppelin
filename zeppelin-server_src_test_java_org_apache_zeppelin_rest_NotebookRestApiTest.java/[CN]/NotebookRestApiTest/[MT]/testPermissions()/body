@@ -1,5 +1,5 @@
 {
-  Note note1=ZeppelinServer.notebook.createNote();
+  Note note1=ZeppelinServer.notebook.createNote(null);
   String jsonRequest="{\"readers\":[\"admin-team\"],\"owners\":[]," + "\"writers\":[]}";
   PutMethod put=httpPut("/notebook/" + note1.getId() + "/permissions/",jsonRequest);
   LOG.info("testPermissions response\n" + put.getResponseBodyAsString());
@@ -15,7 +15,7 @@
   assertEquals(authInfo.get("owners"),Lists.newArrayList("anonymous"));
   assertEquals(authInfo.get("writers"),Lists.newArrayList("anonymous"));
   get.releaseConnection();
-  Note note2=ZeppelinServer.notebook.createNote();
+  Note note2=ZeppelinServer.notebook.createNote(null);
   jsonRequest="{\"readers\":[],\"owners\":[]," + "\"writers\":[\"admin-team\"]}";
   put=httpPut("/notebook/" + note2.getId() + "/permissions/",jsonRequest);
   assertThat("test update method:",put,isAllowed());
@@ -42,6 +42,6 @@
   assertEquals(authInfo.get("writers"),Lists.newArrayList());
   assertEquals(authInfo.get("owners"),Lists.newArrayList());
   get.releaseConnection();
-  ZeppelinServer.notebook.removeNote(note1.getId());
-  ZeppelinServer.notebook.removeNote(note2.getId());
+  ZeppelinServer.notebook.removeNote(note1.getId(),null);
+  ZeppelinServer.notebook.removeNote(note2.getId(),null);
 }

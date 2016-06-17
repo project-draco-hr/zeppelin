@@ -1,7 +1,7 @@
 {
   assertTrue(notebookRepoSync.getRepoCount() > 1);
-  assertEquals(0,notebookRepoSync.list(0).size());
-  assertEquals(0,notebookRepoSync.list(1).size());
+  assertEquals(0,notebookRepoSync.list(0,null).size());
+  assertEquals(0,notebookRepoSync.list(1,null).size());
   File srcDir=new File("src/test/resources/2A94M5J1Z");
   File destDir=new File(secNotebookDir + "/2A94M5J1Z");
   try {
@@ -10,9 +10,9 @@
  catch (  IOException e) {
     LOG.error(e.toString(),e);
   }
-  assertEquals(0,notebookRepoSync.list(0).size());
-  assertEquals(1,notebookRepoSync.list(1).size());
-  notebookSync.reloadAllNotes();
-  assertEquals(1,notebookRepoSync.list(0).size());
-  assertEquals(1,notebookRepoSync.list(1).size());
+  assertEquals(0,notebookRepoSync.list(0,null).size());
+  assertEquals(1,notebookRepoSync.list(1,null).size());
+  notebookSync.reloadAllNotes(null);
+  assertEquals(1,notebookRepoSync.list(0,null).size());
+  assertEquals(1,notebookRepoSync.list(1,null).size());
 }

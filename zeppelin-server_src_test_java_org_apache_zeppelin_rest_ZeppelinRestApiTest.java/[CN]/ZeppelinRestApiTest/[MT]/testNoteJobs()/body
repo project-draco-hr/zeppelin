@@ -1,6 +1,6 @@
 {
   LOG.info("testNoteJobs");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("note for run test");
   Paragraph paragraph=note.addParagraph();
@@ -8,7 +8,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%md This is test paragraph.");
-  note.persist();
+  note.persist(null);
   String noteID=note.getId();
   note.runAll();
   int timeout=1;
@@ -34,5 +34,5 @@
   assertThat("test paragraph stop:",deleteParagraph,isAllowed());
   deleteParagraph.releaseConnection();
   Thread.sleep(1000);
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

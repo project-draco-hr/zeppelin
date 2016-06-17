@@ -1,0 +1,3 @@
+int repoIndex
+String noteId
+AuthenticationInfo subject

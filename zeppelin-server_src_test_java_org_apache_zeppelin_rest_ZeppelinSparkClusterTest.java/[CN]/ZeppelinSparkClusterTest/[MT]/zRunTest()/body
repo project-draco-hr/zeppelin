@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   Paragraph p0=note.addParagraph();
   Map config0=p0.getConfig();
   config0.put("enabled",true);
@@ -22,5 +22,5 @@
   waitForFinish(p2);
   assertEquals(Status.FINISHED,p2.getStatus());
   assertEquals("10",p2.getResult().message());
-  ZeppelinServer.notebook.removeNote(note.id());
+  ZeppelinServer.notebook.removeNote(note.id(),null);
 }

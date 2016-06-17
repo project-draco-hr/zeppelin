@@ -1,0 +1,14 @@
+{
+  NoteInterpreterLoader intpLoader=new NoteInterpreterLoader(replFactory);
+  Note note=new Note(notebookRepo,intpLoader,jobListenerFactory,notebookIndex,credentials);
+  intpLoader.setNoteId(note.id());
+synchronized (notes) {
+    notes.put(note.id(),note);
+  }
+  if (interpreterIds != null) {
+    bindInterpretersToNote(note.id(),interpreterIds);
+  }
+  notebookIndex.addIndexDoc(note);
+  note.persist(subject);
+  return note;
+}

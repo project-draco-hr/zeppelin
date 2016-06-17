@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   Paragraph p1=note.addParagraph();
   Map config=p1.getConfig();
   config.put("enabled",true);

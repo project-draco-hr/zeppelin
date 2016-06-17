@@ -7,7 +7,7 @@
   if (job.isTerminated()) {
     LOG.info("Job {} is finished",job.getId());
     try {
-      note.persist();
+      note.persist(null);
     }
  catch (    IOException e) {
       LOG.error(e.toString(),e);

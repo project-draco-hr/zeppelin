@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   note.setName("note");
   int sparkVersion=getSparkVersionNumber(note);
   if (isPyspark() && sparkVersion >= 14) {
@@ -13,5 +13,5 @@
     assertEquals(Status.FINISHED,p.getStatus());
     assertEquals("10\n",p.getResult().message());
   }
-  ZeppelinServer.notebook.removeNote(note.id());
+  ZeppelinServer.notebook.removeNote(note.id(),null);
 }

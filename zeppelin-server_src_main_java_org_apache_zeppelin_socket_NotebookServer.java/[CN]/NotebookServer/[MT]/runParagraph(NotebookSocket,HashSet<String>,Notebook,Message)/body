@@ -29,7 +29,8 @@
   if (!Strings.isNullOrEmpty(text) && isTheLastParagraph) {
     note.addParagraph();
   }
-  note.persist();
+  AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
+  note.persist(subject);
   try {
     note.run(paragraphId);
   }

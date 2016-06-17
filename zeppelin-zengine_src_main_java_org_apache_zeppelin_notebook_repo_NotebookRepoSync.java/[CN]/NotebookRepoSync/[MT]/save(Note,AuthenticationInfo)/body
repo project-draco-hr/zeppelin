@@ -1,0 +1,11 @@
+{
+  getRepo(0).save(note,subject);
+  if (getRepoCount() > 1) {
+    try {
+      getRepo(1).save(note,subject);
+    }
+ catch (    IOException e) {
+      LOG.info(e.getMessage() + ": Failed to write to secondary storage");
+    }
+  }
+}

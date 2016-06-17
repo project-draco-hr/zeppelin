@@ -1,6 +1,6 @@
 {
   LOG.info("testGetNotebookInfo");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("note");
   Paragraph paragraph=note.addParagraph();
@@ -9,7 +9,7 @@
   paragraph.setConfig(config);
   String paragraphText="%md This is my new paragraph in my new note";
   paragraph.setText(paragraphText);
-  note.persist();
+  note.persist(null);
   String sourceNoteID=note.getId();
   GetMethod get=httpGet("/notebook/" + sourceNoteID);
   LOG.info("testGetNotebookInfo \n" + get.getResponseBodyAsString());

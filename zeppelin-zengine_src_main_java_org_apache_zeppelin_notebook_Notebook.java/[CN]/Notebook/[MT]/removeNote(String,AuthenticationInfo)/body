@@ -1,0 +1,31 @@
+{
+  Note note;
+synchronized (notes) {
+    note=notes.remove(id);
+  }
+  replFactory.removeNoteInterpreterSettingBinding(id);
+  notebookIndex.deleteIndexDocs(note);
+  notebookAuthorization.removeNote(id);
+  for (  InterpreterSetting settings : replFactory.get()) {
+    AngularObjectRegistry registry=settings.getInterpreterGroup(id).getAngularObjectRegistry();
+    if (registry instanceof RemoteAngularObjectRegistry) {
+      for (      Paragraph p : note.getParagraphs()) {
+        ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,p.getId());
+      }
+      ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,null);
+    }
+ else {
+      for (      Paragraph p : note.getParagraphs()) {
+        registry.removeAll(id,p.getId());
+      }
+      registry.removeAll(id,null);
+    }
+  }
+  ResourcePoolUtils.removeResourcesBelongsToNote(id);
+  try {
+    note.unpersist(subject);
+  }
+ catch (  IOException e) {
+    logger.error(e.toString(),e);
+  }
+}

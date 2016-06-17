@@ -1,20 +1,20 @@
 {
   notebookRepo=new GitNotebookRepo(conf);
-  assertThat(notebookRepo.list()).isNotEmpty();
-  assertThat(containsNote(notebookRepo.list(),TEST_NOTE_ID)).isTrue();
-  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID)).isEmpty();
-  notebookRepo.checkpoint(TEST_NOTE_ID,"first commit");
-  List<Revision> notebookHistoryBefore=notebookRepo.revisionHistory(TEST_NOTE_ID);
-  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID)).isNotEmpty();
+  assertThat(notebookRepo.list(null)).isNotEmpty();
+  assertThat(containsNote(notebookRepo.list(null),TEST_NOTE_ID)).isTrue();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null)).isEmpty();
+  notebookRepo.checkpoint(TEST_NOTE_ID,"first commit",null);
+  List<Revision> notebookHistoryBefore=notebookRepo.revisionHistory(TEST_NOTE_ID,null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null)).isNotEmpty();
   int initialCount=notebookHistoryBefore.size();
-  Note note=notebookRepo.get(TEST_NOTE_ID);
+  Note note=notebookRepo.get(TEST_NOTE_ID,null);
   Paragraph p=note.addParagraph();
   Map<String,Object> config=p.getConfig();
   config.put("enabled",true);
   p.setConfig(config);
   p.setText("%md checkpoint test text");
-  notebookRepo.save(note);
-  notebookRepo.checkpoint(TEST_NOTE_ID,"second commit");
-  List<Revision> notebookHistoryAfter=notebookRepo.revisionHistory(TEST_NOTE_ID);
+  notebookRepo.save(note,null);
+  notebookRepo.checkpoint(TEST_NOTE_ID,"second commit",null);
+  List<Revision> notebookHistoryAfter=notebookRepo.revisionHistory(TEST_NOTE_ID,null);
   assertThat(notebookHistoryAfter.size()).isEqualTo(initialCount + 1);
 }

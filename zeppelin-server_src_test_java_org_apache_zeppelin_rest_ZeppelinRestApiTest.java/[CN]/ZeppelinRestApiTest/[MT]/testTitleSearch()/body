@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   String jsonRequest="{\"title\": \"testTitleSearchOfParagraph\", \"text\": \"ThisIsToTestSearchMethodWithTitle \"}";
   PostMethod postNotebookText=httpPost("/notebook/" + note.getId() + "/paragraph",jsonRequest);
   postNotebookText.releaseConnection();
@@ -18,5 +18,5 @@
   }
   assertEquals("Paragraph title hits must be at-least one",true,numberOfTitleHits >= 1);
   searchNotebook.releaseConnection();
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

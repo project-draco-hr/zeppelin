@@ -1,5 +1,5 @@
 {
-  Note note1=notebook.createNote();
+  Note note1=notebook.createNote(null);
   Paragraph p1=note1.addParagraph();
   p1.setText("getId");
   for (  InterpreterSetting setting : note1.getNoteReplLoader().getInterpreterSettings()) {
@@ -15,5 +15,5 @@
   note1.run(p1.getId());
   while (p1.getStatus() != Status.FINISHED)   Thread.yield();
   assertNotEquals(result.message(),p1.getResult().message());
-  notebook.removeNote(note1.getId());
+  notebook.removeNote(note1.getId(),null);
 }

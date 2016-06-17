@@ -1,0 +1,3 @@
+{
+  startDelayedPersistTimer(maxDelaySec,subject);
+}

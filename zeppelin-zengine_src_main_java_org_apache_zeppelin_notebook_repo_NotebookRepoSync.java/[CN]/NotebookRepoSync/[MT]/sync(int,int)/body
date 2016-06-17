@@ -2,8 +2,8 @@
   LOG.info("Sync started");
   NotebookRepo srcRepo=getRepo(sourceRepoIndex);
   NotebookRepo dstRepo=getRepo(destRepoIndex);
-  List<NoteInfo> srcNotes=srcRepo.list();
-  List<NoteInfo> dstNotes=dstRepo.list();
+  List<NoteInfo> srcNotes=srcRepo.list(null);
+  List<NoteInfo> dstNotes=dstRepo.list(null);
   Map<String,List<String>> noteIDs=notesCheckDiff(srcNotes,srcRepo,dstNotes,dstRepo);
   List<String> pushNoteIDs=noteIDs.get(pushKey);
   List<String> pullNoteIDs=noteIDs.get(pullKey);

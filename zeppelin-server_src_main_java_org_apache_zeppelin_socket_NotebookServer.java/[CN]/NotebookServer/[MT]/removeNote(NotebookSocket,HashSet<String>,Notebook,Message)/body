@@ -9,7 +9,8 @@
     permissionError(conn,"remove",fromMessage.principal,userAndRoles,notebookAuthorization.getOwners(noteId));
     return;
   }
-  notebook.removeNote(noteId);
+  AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
+  notebook.removeNote(noteId,subject);
   removeNote(noteId);
-  broadcastNoteList();
+  broadcastNoteList(subject);
 }

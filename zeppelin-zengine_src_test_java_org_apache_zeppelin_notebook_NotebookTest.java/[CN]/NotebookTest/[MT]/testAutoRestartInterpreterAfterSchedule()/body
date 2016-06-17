@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   Paragraph p=note.addParagraph();
   Map config=new HashMap<String,Object>();

@@ -26,12 +26,13 @@
         userAndRoles.addAll(roles);
       }
     }
+    AuthenticationInfo subject=new AuthenticationInfo(messagereceived.principal);
 switch (messagereceived.op) {
 case LIST_NOTES:
-      unicastNoteList(conn);
+      unicastNoteList(conn,subject);
     break;
 case RELOAD_NOTES_FROM_REPO:
-  broadcastReloadedNoteList();
+  broadcastReloadedNoteList(subject);
 break;
 case GET_HOME_NOTE:
 sendHomeNote(conn,userAndRoles,notebook,messagereceived);
@@ -96,7 +97,7 @@ case CHECKPOINT_NOTEBOOK:
 checkpointNotebook(conn,notebook,messagereceived);
 break;
 case LIST_NOTEBOOK_JOBS:
-unicastNotebookJobInfo(conn);
+unicastNotebookJobInfo(conn,messagereceived);
 break;
 case LIST_UPDATE_NOTEBOOK_JOBS:
 unicastUpdateNotebookJobInfo(conn,messagereceived);

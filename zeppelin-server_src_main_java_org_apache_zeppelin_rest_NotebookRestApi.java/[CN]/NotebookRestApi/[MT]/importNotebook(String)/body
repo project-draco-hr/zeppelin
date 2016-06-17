@@ -1,4 +1,5 @@
 {
-  Note newNote=notebook.importNote(req,null);
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  Note newNote=notebook.importNote(req,null,subject);
   return new JsonResponse<>(Status.CREATED,"",newNote.getId()).build();
 }

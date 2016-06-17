@@ -1,7 +1,8 @@
 {
   LOG.info("Get updated notebook jobs lastUpdateTime {}",lastUpdateUnixTime);
   List<Map<String,Object>> notebookJobs;
-  notebookJobs=notebook.getJobListforNotebook(false,lastUpdateUnixTime);
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  notebookJobs=notebook.getJobListforNotebook(false,lastUpdateUnixTime,subject);
   Map<String,Object> response=new HashMap<>();
   response.put("lastResponseUnixTime",System.currentTimeMillis());
   response.put("jobs",notebookJobs);

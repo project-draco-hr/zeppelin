@@ -1,6 +1,6 @@
 {
-  List<NoteInfo> noteInfos=notebookRepo.list();
+  List<NoteInfo> noteInfos=notebookRepo.list(null);
   for (  NoteInfo info : noteInfos) {
-    loadNoteFromRepo(info.getId());
+    loadNoteFromRepo(info.getId(),null);
   }
 }

@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   if (isPyspark() && getSparkVersionNumber(note) >= 14) {
     List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
     for (    InterpreterSetting setting : settings) {

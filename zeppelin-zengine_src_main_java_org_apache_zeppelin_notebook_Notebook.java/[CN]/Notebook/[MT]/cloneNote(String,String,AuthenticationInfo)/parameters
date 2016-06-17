@@ -1,0 +1,3 @@
+String sourceNoteID
+String newNoteName
+AuthenticationInfo subject

@@ -1,6 +1,6 @@
 {
   LOG.info("testExportNotebook");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("source note for export");
   Paragraph paragraph=note.addParagraph();
@@ -8,7 +8,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%md This is my new paragraph in my new note");
-  note.persist();
+  note.persist(null);
   String sourceNoteID=note.getId();
   GetMethod get=httpGet("/notebook/export/" + sourceNoteID);
   LOG.info("testNotebookExport \n" + get.getResponseBodyAsString());
@@ -19,6 +19,6 @@
   String exportJSON=(String)resp.get("body");
   assertNotNull("Can not find new notejson",exportJSON);
   LOG.info("export JSON:=" + exportJSON);
-  ZeppelinServer.notebook.removeNote(sourceNoteID);
+  ZeppelinServer.notebook.removeNote(sourceNoteID,null);
   get.releaseConnection();
 }

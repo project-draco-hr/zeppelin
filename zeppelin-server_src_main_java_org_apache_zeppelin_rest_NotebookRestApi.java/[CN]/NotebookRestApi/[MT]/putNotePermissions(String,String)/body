@@ -32,7 +32,8 @@
   notebookAuthorization.setWriters(noteId,writers);
   notebookAuthorization.setOwners(noteId,owners);
   LOG.debug("After set permissions {} {} {}",notebookAuthorization.getOwners(noteId),notebookAuthorization.getReaders(noteId),notebookAuthorization.getWriters(noteId));
-  note.persist();
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  note.persist(subject);
   notebookServer.broadcastNote(note);
   return new JsonResponse<>(Status.OK).build();
 }

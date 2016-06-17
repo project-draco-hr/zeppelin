@@ -2,7 +2,7 @@
   Map<String,Object> resp;
   String noteName="source note for import";
   LOG.info("testImortNotebook");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName(noteName);
   Paragraph paragraph=note.addParagraph();
@@ -10,7 +10,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%md This is my new paragraph in my new note");
-  note.persist();
+  note.persist(null);
   String sourceNoteID=note.getId();
   String oldJson=getNoteContent(sourceNoteID);
   PostMethod importPost=httpPost("/notebook/import/",oldJson);
@@ -23,7 +23,7 @@
   Note newNote=ZeppelinServer.notebook.getNote(importId);
   assertEquals("Compare note names",noteName,newNote.getName());
   assertEquals("Compare paragraphs count",note.getParagraphs().size(),newNote.getParagraphs().size());
-  ZeppelinServer.notebook.removeNote(note.getId());
-  ZeppelinServer.notebook.removeNote(newNote.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
+  ZeppelinServer.notebook.removeNote(newNote.getId(),null);
   importPost.releaseConnection();
 }

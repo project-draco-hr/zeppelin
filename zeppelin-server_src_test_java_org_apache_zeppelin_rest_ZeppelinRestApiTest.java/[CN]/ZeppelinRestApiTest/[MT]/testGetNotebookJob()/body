@@ -1,6 +1,6 @@
 {
   LOG.info("testGetNotebookJob");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("note for run test");
   Paragraph paragraph=note.addParagraph();
@@ -8,7 +8,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%sh sleep 1");
-  note.persist();
+  note.persist(null);
   String noteID=note.getId();
   note.runAll();
   while (!paragraph.getStatus().isRunning()) {
@@ -35,5 +35,5 @@
       break;
     }
   }
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

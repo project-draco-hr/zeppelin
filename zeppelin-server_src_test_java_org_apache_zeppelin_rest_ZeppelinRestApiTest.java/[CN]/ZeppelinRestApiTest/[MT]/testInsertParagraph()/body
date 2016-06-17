@@ -1,5 +1,5 @@
 {
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   String jsonRequest="{\"title\": \"title1\", \"text\": \"text1\"}";
   PostMethod post=httpPost("/notebook/" + note.getId() + "/paragraph",jsonRequest);
   LOG.info("testInsertParagraph response\n" + post.getResponseBodyAsString());
@@ -25,5 +25,5 @@
   Paragraph paragraphAtIdx0=note.getParagraphs().get(0);
   assertEquals("title2",paragraphAtIdx0.getTitle());
   assertEquals("text2",paragraphAtIdx0.getText());
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

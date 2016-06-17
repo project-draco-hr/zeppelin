@@ -21,8 +21,9 @@
     if (cronUpdated) {
       notebook.refreshCron(note.id());
     }
-    note.persist();
+    AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
+    note.persist(subject);
     broadcastNote(note);
-    broadcastNoteList();
+    broadcastNoteList(subject);
   }
 }

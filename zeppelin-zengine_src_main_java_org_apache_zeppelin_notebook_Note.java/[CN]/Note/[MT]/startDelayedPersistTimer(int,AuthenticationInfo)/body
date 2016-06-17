@@ -1,0 +1,18 @@
+{
+synchronized (this) {
+    if (delayedPersist != null) {
+      return;
+    }
+    delayedPersist=delayedPersistThreadPool.schedule(new Runnable(){
+      @Override public void run(){
+        try {
+          persist(subject);
+        }
+ catch (        IOException e) {
+          logger.error(e.getMessage(),e);
+        }
+      }
+    }
+,maxDelaySec,TimeUnit.SECONDS);
+  }
+}

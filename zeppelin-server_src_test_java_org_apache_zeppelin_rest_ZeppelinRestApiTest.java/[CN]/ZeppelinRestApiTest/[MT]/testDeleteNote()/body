@@ -1,6 +1,6 @@
 {
   LOG.info("testDeleteNote");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   String noteId=note.getId();
   testDeleteNotebook(noteId);
 }

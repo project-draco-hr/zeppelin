@@ -15,7 +15,8 @@
   }
   p.setTitle(request.getTitle());
   p.setText(request.getText());
-  note.persist();
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  note.persist(subject);
   notebookServer.broadcastNote(note);
   return new JsonResponse(Status.CREATED,"",p.getId()).build();
 }

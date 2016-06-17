@@ -8,6 +8,7 @@
   String noteId=getOpenNoteId(conn);
   final Note note=notebook.getNote(noteId);
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
+  AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
   if (!notebookAuthorization.isWriter(noteId,userAndRoles)) {
     permissionError(conn,"write",fromMessage.principal,userAndRoles,notebookAuthorization.getWriters(noteId));
     return;
@@ -17,6 +18,6 @@
   p.setConfig(config);
   p.setTitle((String)fromMessage.get("title"));
   p.setText((String)fromMessage.get("paragraph"));
-  note.persist();
+  note.persist(subject);
   broadcast(note.id(),new Message(OP.PARAGRAPH).put("paragraph",p));
 }

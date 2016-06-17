@@ -1,11 +1,11 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   Paragraph p1=note.addParagraph();
   Map config=p1.getConfig();
   config.put("enabled",true);
   p1.setConfig(config);
   p1.setText("hello world");
-  note.persist();
+  note.persist(null);
   Notebook notebook2=new Notebook(conf,notebookRepo,schedulerFactory,new InterpreterFactory(conf,null,null,null,depResolver),this,null,null,null);
   assertEquals(1,notebook2.getAllNotes().size());
 }

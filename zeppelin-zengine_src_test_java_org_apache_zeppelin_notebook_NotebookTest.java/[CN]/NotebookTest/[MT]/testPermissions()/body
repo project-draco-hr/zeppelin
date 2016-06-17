@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   NotebookAuthorization notebookAuthorization=notebook.getNotebookAuthorization();
   assertEquals(notebookAuthorization.isOwner(note.id(),new HashSet<String>(Arrays.asList("user2"))),true);
   assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user2"))),true);
@@ -16,5 +16,5 @@
   notebookAuthorization.setReaders(note.id(),Sets.<String>newHashSet());
   assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user2"))),true);
   assertEquals(notebookAuthorization.isReader(note.id(),new HashSet<String>(Arrays.asList("user3"))),true);
-  notebook.removeNote(note.id());
+  notebook.removeNote(note.id(),null);
 }

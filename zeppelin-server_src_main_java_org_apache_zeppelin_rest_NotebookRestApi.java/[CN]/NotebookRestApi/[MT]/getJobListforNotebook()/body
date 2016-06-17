@@ -1,6 +1,7 @@
 {
   LOG.info("Get notebook jobs for job manager");
-  List<Map<String,Object>> notebookJobs=notebook.getJobListforNotebook(false,0);
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
+  List<Map<String,Object>> notebookJobs=notebook.getJobListforNotebook(false,0,subject);
   Map<String,Object> response=new HashMap<>();
   response.put("lastResponseUnixTime",System.currentTimeMillis());
   response.put("jobs",notebookJobs);

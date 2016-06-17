@@ -5,7 +5,7 @@
   assertThat(resultForQuery("test").size()).isEqualTo(3);
   Paragraph p1=note1.getLastParagraph();
   p1.setText("no no no");
-  note1.persist();
+  note1.persist(null);
   assertThat(resultForQuery("Notebook1").size()).isEqualTo(1);
   List<Map<String,String>> results=resultForQuery("test");
   assertThat(results).isNotEmpty();

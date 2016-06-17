@@ -1,5 +1,6 @@
 {
-  Note note=notebook.createNote();
+  AuthenticationInfo subject=new AuthenticationInfo(message.principal);
+  Note note=notebook.createNote(subject);
   note.addParagraph();
   if (message != null) {
     String noteName=(String)message.get("name");
@@ -8,8 +9,8 @@
     }
     note.setName(noteName);
   }
-  note.persist();
+  note.persist(subject);
   addConnectionToNote(note.id(),(NotebookSocket)conn);
   conn.send(serializeMessage(new Message(OP.NEW_NOTE).put("note",note)));
-  broadcastNoteList();
+  broadcastNoteList(subject);
 }

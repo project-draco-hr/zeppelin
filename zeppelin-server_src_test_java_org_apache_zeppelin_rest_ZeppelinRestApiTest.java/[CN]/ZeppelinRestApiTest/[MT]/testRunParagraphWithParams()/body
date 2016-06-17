@@ -1,6 +1,6 @@
 {
   LOG.info("testRunParagraphWithParams");
-  Note note=ZeppelinServer.notebook.createNote();
+  Note note=ZeppelinServer.notebook.createNote(null);
   assertNotNull("can't create new note",note);
   note.setName("note for run test");
   Paragraph paragraph=note.addParagraph();
@@ -8,7 +8,7 @@
   config.put("enabled",true);
   paragraph.setConfig(config);
   paragraph.setText("%spark\nval param = z.input(\"param\").toString\nprintln(param)");
-  note.persist();
+  note.persist(null);
   String noteID=note.getId();
   note.runAll();
   int timeout=1;
@@ -28,5 +28,5 @@
   Map<String,Object> params=retrParagraph.settings.getParams();
   assertEquals("hello",params.get("param"));
   assertEquals("world",params.get("param2"));
-  ZeppelinServer.notebook.removeNote(note.getId());
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

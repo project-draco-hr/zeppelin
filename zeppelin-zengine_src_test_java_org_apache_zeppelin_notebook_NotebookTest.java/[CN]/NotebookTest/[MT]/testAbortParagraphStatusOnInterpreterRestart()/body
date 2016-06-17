@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   ArrayList<Paragraph> paragraphs=new ArrayList<>();
   for (int i=0; i < 100; i++) {

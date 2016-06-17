@@ -3,10 +3,11 @@
   if (fromMessage != null) {
     String noteName=(String)((Map)fromMessage.get("notebook")).get("name");
     String noteJson=gson.toJson(fromMessage.get("notebook"));
-    note=notebook.importNote(noteJson,noteName);
-    note.persist();
+    AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
+    note=notebook.importNote(noteJson,noteName,subject);
+    note.persist(subject);
     broadcastNote(note);
-    broadcastNoteList();
+    broadcastNoteList(subject);
   }
   return note;
 }

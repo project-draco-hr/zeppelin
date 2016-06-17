@@ -1,11 +1,12 @@
 {
   LOG.info("Delete notebook {} ",notebookId);
+  AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
   if (!(notebookId.isEmpty())) {
     Note note=notebook.getNote(notebookId);
     if (note != null) {
-      notebook.removeNote(notebookId);
+      notebook.removeNote(notebookId,subject);
     }
   }
-  notebookServer.broadcastNoteList();
+  notebookServer.broadcastNoteList(subject);
   return new JsonResponse<>(Status.OK,"").build();
 }
