@@ -7,7 +7,7 @@
       if (pair.getKey().toString().startsWith("livy.spark.") && !pair.getValue().toString().isEmpty())       conf.put(pair.getKey().toString().substring(5),pair.getValue().toString());
     }
     String confData=gson.toJson(conf);
-    String json=executeHTTP(property.getProperty("zeppelin.livy.url") + "/sessions","POST","{" + "\"kind\": \"" + kind + "\", "+ "\"conf\": "+ confData+ ", "+ "\"proxyUser\": "+ context.getAuthenticationInfo().getUser()+ "}",context.getParagraphId());
+    String json=executeHTTP(property.getProperty("zeppelin.livy.url") + "/sessions","POST","{" + "\"kind\": \"" + kind + "\", "+ "\"conf\": "+ confData+ ", "+ "\"proxyUser\": \""+ context.getAuthenticationInfo().getUser()+ "\"}",context.getParagraphId());
     Map jsonMap=(Map<Object,Object>)gson.fromJson(json,new TypeToken<Map<Object,Object>>(){
     }
 .getType());
