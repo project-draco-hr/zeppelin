@@ -6,6 +6,7 @@
   webapp.setSessionHandler(new SessionHandler());
   webapp.addServlet(cxfServletHolder,"/api/*");
   webapp.setInitParameter("shiroConfigLocations",new File(conf.getShiroPath()).toURI().toString());
+  SecurityUtils.initSecurityManager(conf.getShiroPath());
   webapp.addFilter(org.apache.shiro.web.servlet.ShiroFilter.class,"/api/*",EnumSet.allOf(DispatcherType.class));
   webapp.addEventListener(new org.apache.shiro.web.env.EnvironmentLoaderListener());
 }
