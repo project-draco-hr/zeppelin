@@ -1,0 +1,11 @@
+{
+  Properties p=getSparkTestProperties();
+  p.setProperty("zeppelin.spark.importImplicit","false");
+  SparkInterpreter repl2=new SparkInterpreter(p);
+  repl2.setInterpreterGroup(intpGroup);
+  intpGroup.get("note").add(repl2);
+  repl2.open();
+  String ddl="val df = Seq((1, true), (2, false)).toDF(\"num\", \"bool\")";
+  assertEquals(Code.ERROR,repl2.interpret(ddl,context).code());
+  repl2.close();
+}
