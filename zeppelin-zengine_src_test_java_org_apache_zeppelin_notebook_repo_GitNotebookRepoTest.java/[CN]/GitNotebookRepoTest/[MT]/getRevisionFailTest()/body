@@ -1,0 +1,25 @@
+{
+  notebookRepo=new GitNotebookRepo(conf);
+  assertThat(notebookRepo.list(null)).isNotEmpty();
+  assertThat(containsNote(notebookRepo.list(null),TEST_NOTE_ID)).isTrue();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null)).isEmpty();
+  Revision revision_1=notebookRepo.checkpoint(TEST_NOTE_ID,"first commit",null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(1);
+  int paragraphCount_1=notebookRepo.get(TEST_NOTE_ID,null).getParagraphs().size();
+  Note note=notebookRepo.get(TEST_NOTE_ID,null);
+  assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_1);
+  Paragraph p1=note.addParagraph();
+  Map<String,Object> config=p1.getConfig();
+  config.put("enabled",true);
+  p1.setConfig(config);
+  p1.setText("%md get revision when modified note test text");
+  notebookRepo.save(note,null);
+  int paragraphCount_2=note.getParagraphs().size();
+  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
+  note=notebookRepo.get(TEST_NOTE_ID,null);
+  assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_2);
+  Revision absentRevision=new Revision("absentId",StringUtils.EMPTY,0);
+  note=notebookRepo.get(TEST_NOTE_ID,absentRevision,null);
+  assertThat(note).isNull();
+}

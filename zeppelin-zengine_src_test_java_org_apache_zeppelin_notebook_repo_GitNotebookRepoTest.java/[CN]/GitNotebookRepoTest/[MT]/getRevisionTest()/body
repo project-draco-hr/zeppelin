@@ -1,0 +1,36 @@
+{
+  notebookRepo=new GitNotebookRepo(conf);
+  assertThat(notebookRepo.list(null)).isNotEmpty();
+  assertThat(containsNote(notebookRepo.list(null),TEST_NOTE_ID)).isTrue();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null)).isEmpty();
+  Revision revision_1=notebookRepo.checkpoint(TEST_NOTE_ID,"first commit",null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(1);
+  int paragraphCount_1=notebookRepo.get(TEST_NOTE_ID,null).getParagraphs().size();
+  Note note=notebookRepo.get(TEST_NOTE_ID,null);
+  Paragraph p1=note.addParagraph();
+  Map<String,Object> config=p1.getConfig();
+  config.put("enabled",true);
+  p1.setConfig(config);
+  p1.setText("%md checkpoint test text");
+  notebookRepo.save(note,null);
+  notebookRepo.checkpoint(TEST_NOTE_ID,"second commit",null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(2);
+  int paragraphCount_2=notebookRepo.get(TEST_NOTE_ID,null).getParagraphs().size();
+  assertThat(paragraphCount_2).isEqualTo(paragraphCount_1 + 1);
+  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
+  note=notebookRepo.get(TEST_NOTE_ID,null);
+  assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_2);
+  Paragraph p2=note.addParagraph();
+  config.put("enabled",false);
+  p2.setConfig(config);
+  p2.setText("%md get revision when modified note test text");
+  notebookRepo.save(note,null);
+  note=notebookRepo.get(TEST_NOTE_ID,null);
+  int paragraphCount_3=note.getParagraphs().size();
+  assertThat(paragraphCount_3).isEqualTo(paragraphCount_2 + 1);
+  noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
+  note=notebookRepo.get(TEST_NOTE_ID,null);
+  assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_3);
+}

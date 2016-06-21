@@ -1,3 +1,27 @@
 {
-  return super.get(noteId,subject);
+  Note note=null;
+  RevCommit stash=null;
+  try {
+    List<DiffEntry> gitDiff=git.diff().setPathFilter(PathFilter.create(noteId)).call();
+    boolean modified=!gitDiff.isEmpty();
+    if (modified) {
+      stash=git.stashCreate().call();
+      Collection<RevCommit> stashes=git.stashList().call();
+      LOG.debug("Created stash : {}, stash size : {}",stash,stashes.size());
+    }
+    ObjectId head=git.getRepository().resolve(Constants.HEAD);
+    git.checkout().setStartPoint(rev.id).addPath(noteId).call();
+    note=super.get(noteId,subject);
+    git.checkout().setStartPoint(head.getName()).addPath(noteId).call();
+    if (modified && stash != null) {
+      ObjectId applied=git.stashApply().setStashRef(stash.getName()).call();
+      ObjectId dropped=git.stashDrop().setStashRef(0).call();
+      Collection<RevCommit> stashes=git.stashList().call();
+      LOG.debug("Stash applied as : {}, and dropped : {}, stash size: {}",applied,dropped,stashes.size());
+    }
+  }
+ catch (  GitAPIException e) {
+    LOG.error("Failed to return note from revision \"{}\"",rev.message,e);
+  }
+  return note;
 }
