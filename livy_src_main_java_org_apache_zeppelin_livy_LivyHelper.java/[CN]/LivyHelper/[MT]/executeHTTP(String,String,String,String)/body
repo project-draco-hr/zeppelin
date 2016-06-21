@@ -1,37 +1,34 @@
 {
-  HttpClient client=HttpClientBuilder.create().build();
-  HttpResponse response=null;
+  RestTemplate restTemplate=getRestTemplate();
+  HttpHeaders headers=new HttpHeaders();
+  headers.add("Content-Type","application/json");
+  ResponseEntity<String> response=null;
   if (method.equals("POST")) {
-    HttpPost request=new HttpPost(targetURL);
-    request.addHeader("Content-Type","application/json");
-    StringEntity se=new StringEntity(jsonData);
-    request.setEntity(se);
-    response=client.execute(request);
-    paragraphHttpMap.put(paragraphId,request);
+    HttpEntity<String> entity=new HttpEntity<String>(jsonData,headers);
+    response=restTemplate.exchange(targetURL,HttpMethod.POST,entity,String.class);
+    paragraphHttpMap.put(paragraphId,response);
   }
  else   if (method.equals("GET")) {
-    HttpGet request=new HttpGet(targetURL);
-    request.addHeader("Content-Type","application/json");
-    response=client.execute(request);
-    paragraphHttpMap.put(paragraphId,request);
+    HttpEntity<String> entity=new HttpEntity<String>(headers);
+    response=restTemplate.exchange(targetURL,HttpMethod.GET,entity,String.class);
+    paragraphHttpMap.put(paragraphId,response);
   }
  else   if (method.equals("DELETE")) {
-    HttpDelete request=new HttpDelete(targetURL);
-    request.addHeader("Content-Type","application/json");
-    response=client.execute(request);
+    HttpEntity<String> entity=new HttpEntity<String>(headers);
+    response=restTemplate.exchange(targetURL,HttpMethod.DELETE,entity,String.class);
   }
   if (response == null) {
     return null;
   }
-  if (response.getStatusLine().getStatusCode() == 200 || response.getStatusLine().getStatusCode() == 201 || response.getStatusLine().getStatusCode() == 404) {
-    return getResponse(response);
+  if (response.getStatusCode().value() == 200 || response.getStatusCode().value() == 201 || response.getStatusCode().value() == 404) {
+    return response.getBody();
   }
  else {
-    String responseString=getResponse(response);
+    String responseString=response.getBody();
     if (responseString.contains("CreateInteractiveRequest[\\\"master\\\"]")) {
       return responseString;
     }
-    LOGGER.error(String.format("Error with %s StatusCode: %s",response.getStatusLine().getStatusCode(),responseString));
-    throw new Exception(String.format("Error with %s StatusCode: %s",response.getStatusLine().getStatusCode(),responseString));
+    LOGGER.error(String.format("Error with %s StatusCode: %s",response.getStatusCode().value(),responseString));
+    throw new Exception(String.format("Error with %s StatusCode: %s",response.getStatusCode().value(),responseString));
   }
 }

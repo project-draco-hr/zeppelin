@@ -1,9 +1,3 @@
 {
-  if (paragraphHttpMap.get(paragraphId).getClass().getName().contains("HttpPost")) {
-    ((HttpPost)paragraphHttpMap.get(paragraphId)).abort();
-  }
- else {
-    ((HttpGet)paragraphHttpMap.get(paragraphId)).abort();
-  }
   paragraphHttpMap.put(paragraphId,null);
 }

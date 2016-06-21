@@ -1,0 +1,8 @@
+{
+  String keytabLocation=property.getProperty("zeppelin.livy.keytab");
+  String principal=property.getProperty("zeppelin.livy.principal");
+  if (StringUtils.isNotEmpty(keytabLocation) && StringUtils.isNotEmpty(principal)) {
+    return new KerberosRestTemplate(keytabLocation,principal);
+  }
+  return new RestTemplate();
+}
