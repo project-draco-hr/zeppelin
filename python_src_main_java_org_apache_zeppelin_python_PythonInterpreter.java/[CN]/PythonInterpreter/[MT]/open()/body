@@ -1,6 +1,7 @@
 {
   logger.info("Starting Python interpreter .....");
   logger.info("Python path is set to:" + property.getProperty(ZEPPELIN_PYTHON));
+  maxResult=Integer.valueOf(getProperty(MAX_RESULT));
   process=getPythonProcess();
   try {
     process.open();

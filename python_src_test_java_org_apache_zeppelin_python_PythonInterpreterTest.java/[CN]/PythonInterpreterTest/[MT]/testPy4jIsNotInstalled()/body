@@ -1,6 +1,6 @@
 {
   pythonInterpreter.open();
-  assertNull(pythonInterpreter.getPy4JPort());
+  assertNull(pythonInterpreter.getPy4jPort());
   assertTrue(cmdHistory.contains("def help()"));
   assertTrue(cmdHistory.contains("class PyZeppelinContext():"));
   assertTrue(cmdHistory.contains("z = PyZeppelinContext"));

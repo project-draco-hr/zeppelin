@@ -13,9 +13,7 @@
  catch (  IOException e) {
     logger.error("Can't initiate python process",e);
   }
-  Properties properties=new Properties();
-  properties.put(ZEPPELIN_PYTHON,DEFAULT_ZEPPELIN_PYTHON);
-  pythonInterpreter=spy(new PythonInterpreter(properties));
+  pythonInterpreter=spy(new PythonInterpreter(getPythonTestProperties()));
   when(pythonInterpreter.getPythonProcess()).thenReturn(mockPythonProcess);
   try {
     when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn("ImportError");

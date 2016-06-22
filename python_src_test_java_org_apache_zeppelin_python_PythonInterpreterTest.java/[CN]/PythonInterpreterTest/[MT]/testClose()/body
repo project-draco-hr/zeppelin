@@ -6,10 +6,10 @@
     e.printStackTrace();
   }
   pythonInterpreter.open();
-  Integer py4jPort=pythonInterpreter.getPy4JPort();
+  Integer py4jPort=pythonInterpreter.getPy4jPort();
   assertNotNull(py4jPort);
   pythonInterpreter.close();
-  assertFalse(checkSocketAdress(py4jPort));
+  assertFalse(checkSocketAddress(py4jPort));
   try {
     verify(mockPythonProcess,times(1)).close();
   }

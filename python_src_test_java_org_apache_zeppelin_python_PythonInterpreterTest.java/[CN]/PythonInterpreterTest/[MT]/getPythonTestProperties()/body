@@ -1,0 +1,6 @@
+{
+  Properties p=new Properties();
+  p.setProperty(ZEPPELIN_PYTHON,DEFAULT_ZEPPELIN_PYTHON);
+  p.setProperty(MAX_RESULT,"1000");
+  return p;
+}
