@@ -1,2 +1,2 @@
 String artifact
-String destPath
+File destPath

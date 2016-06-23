@@ -1,0 +1,8 @@
+{
+  if (names.length != artifacts.length) {
+    throw new RuntimeException("Length of given names and artifacts are different");
+  }
+  for (int i=0; i < names.length; i++) {
+    install(names[i],artifacts[i]);
+  }
+}

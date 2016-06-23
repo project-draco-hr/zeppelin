@@ -1,12 +1,6 @@
 {
-  testPath="test-repo";
-  testCopyPath="test-copy-repo";
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  testPath=tmpDir.getAbsolutePath() + "/test-repo";
+  testCopyPath=new File(tmpDir,"test-copy-repo");
   resolver=new DependencyResolver(testPath);
-  home=System.getenv("ZEPPELIN_HOME");
-  if (home == null) {
-    home=System.getProperty("zeppelin.home");
-  }
-  if (home == null) {
-    home="..";
-  }
 }

@@ -1,0 +1,9 @@
+{
+  for (  AvailableInterpreterInfo info : availableInterpreters) {
+    if (name.equals(info.name)) {
+      install(name,info.artifact);
+      return;
+    }
+  }
+  throw new RuntimeException("Can't find interpreter '" + name + "'");
+}

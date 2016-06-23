@@ -1,0 +1,5 @@
+{
+  installer.installAll();
+  assertTrue(new File(interpreterBaseDir,"intp1").isDirectory());
+  assertTrue(new File(interpreterBaseDir,"intp2").isDirectory());
+}

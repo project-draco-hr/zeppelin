@@ -1,0 +1,7 @@
+{
+  this.interpreterListFile=interpreterListFile;
+  this.interpreterBaseDir=interpreterBaseDir;
+  this.localRepoDir=localRepoDir;
+  availableInterpreters=new LinkedList<AvailableInterpreterInfo>();
+  readAvailableInterpreters();
+}

@@ -1,0 +1,26 @@
+{
+  if (!interpreterListFile.isFile()) {
+    System.err.println("Can't find interpreter list " + interpreterListFile.getAbsolutePath());
+    return;
+  }
+  String text=FileUtils.readFileToString(interpreterListFile);
+  String[] lines=text.split("\n");
+  Pattern pattern=Pattern.compile("(\\S+)\\s+(\\S+)\\s+(.*)");
+  int lineNo=0;
+  for (  String line : lines) {
+    lineNo++;
+    if (line == null || line.length() == 0 || line.startsWith("#")) {
+      continue;
+    }
+    Matcher match=pattern.matcher(line);
+    if (match.groupCount() != 3) {
+      System.err.println("Error on line " + lineNo + ", "+ line);
+      continue;
+    }
+    match.find();
+    String name=match.group(1);
+    String artifact=match.group(2);
+    String description=match.group(3);
+    availableInterpreters.add(new AvailableInterpreterInfo(name,artifact,description));
+  }
+}

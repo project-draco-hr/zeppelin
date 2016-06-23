@@ -1,0 +1,3 @@
+{
+  assertEquals(2,installer.list().size());
+}

@@ -1,0 +1,15 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  new File(tmpDir,"conf").mkdirs();
+  interpreterBaseDir=new File(tmpDir,"interpreter");
+  File localRepoDir=new File(tmpDir,"local-repo");
+  interpreterBaseDir.mkdir();
+  localRepoDir.mkdir();
+  File interpreterListFile=new File(tmpDir,"conf/interpreter-list");
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_HOME.getVarName(),tmpDir.getAbsolutePath());
+  String interpreterList="";
+  interpreterList+="intp1   org.apache.commons:commons-csv:1.1   test interpreter 1\n";
+  interpreterList+="intp2   org.apache.commons:commons-math3:3.6.1 test interpreter 2\n";
+  FileUtils.writeStringToFile(new File(tmpDir,"conf/interpreter-list"),interpreterList);
+  installer=new InstallInterpreter(interpreterListFile,interpreterBaseDir,localRepoDir.getAbsolutePath());
+}

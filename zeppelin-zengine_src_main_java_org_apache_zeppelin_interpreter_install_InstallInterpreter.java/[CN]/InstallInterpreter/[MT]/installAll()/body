@@ -1,0 +1,5 @@
+{
+  for (  AvailableInterpreterInfo info : availableInterpreters) {
+    install(info.name,info.artifact);
+  }
+}

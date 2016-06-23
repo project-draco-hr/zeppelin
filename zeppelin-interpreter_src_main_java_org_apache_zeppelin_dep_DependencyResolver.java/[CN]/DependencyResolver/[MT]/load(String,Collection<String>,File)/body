@@ -2,15 +2,8 @@
   List<File> libs=new LinkedList<File>();
   if (StringUtils.isNotBlank(artifact)) {
     libs=load(artifact,excludes);
-    String home=System.getenv("ZEPPELIN_HOME");
-    if (home == null) {
-      home=System.getProperty("zeppelin.home");
-    }
-    if (home == null) {
-      home="..";
-    }
     for (    File srcFile : libs) {
-      File destFile=new File(home + "/" + destPath,srcFile.getName());
+      File destFile=new File(destPath,srcFile.getName());
       if (!destFile.exists() || !FileUtils.contentEquals(srcFile,destFile)) {
         FileUtils.copyFile(srcFile,destFile);
         logger.info("copy {} to {}",srcFile.getAbsolutePath(),destPath);

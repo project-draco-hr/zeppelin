@@ -1,0 +1,5 @@
+{
+  assertEquals(0,interpreterBaseDir.listFiles().length);
+  installer.install("intp1");
+  assertTrue(new File(interpreterBaseDir,"intp1").isDirectory());
+}

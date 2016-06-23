@@ -1,0 +1,10 @@
+{
+  System.out.println("Options");
+  System.out.println("  -l, --list                   List available interpreters");
+  System.out.println("  -a, --all                    Install all available interpreters");
+  System.out.println("  -n, --name       [NAMES]     Install interpreters (comma separated " + "list)" + "e.g. md,shell,jdbc,python,angular");
+  System.out.println("  -t, --artifact   [ARTIFACTS] (Optional with -n) custom artifact names" + ". " + "(comma separated list correspond to --name) "+ "e.g. customGroup:customArtifact:customVersion");
+  System.out.println("  --proxy-url      [url]       (Optional) proxy url. http(s)://host:port");
+  System.out.println("  --proxy-user     [user]      (Optional) proxy user");
+  System.out.println("  --proxy-password [password]  (Optional) proxy password");
+}

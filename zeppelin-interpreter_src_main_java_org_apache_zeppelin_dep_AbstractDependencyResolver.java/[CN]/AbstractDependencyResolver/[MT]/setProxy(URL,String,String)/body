@@ -1,0 +1,9 @@
+{
+  Authentication auth=new Authentication(proxyUser,proxyPassword);
+  Proxy proxy=new Proxy(proxyUrl.getProtocol(),proxyUrl.getHost(),proxyUrl.getPort(),auth);
+synchronized (repos) {
+    for (    RemoteRepository repo : repos) {
+      repo.setProxy(proxy);
+    }
+  }
+}

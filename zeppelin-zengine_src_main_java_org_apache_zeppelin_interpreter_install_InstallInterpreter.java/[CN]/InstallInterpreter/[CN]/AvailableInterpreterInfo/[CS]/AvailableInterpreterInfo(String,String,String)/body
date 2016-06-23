@@ -1,0 +1,5 @@
+{
+  this.name=name;
+  this.artifact=artifact;
+  this.description=description;
+}

@@ -1,0 +1,3 @@
+{
+  System.out.println("Add interpreter class name to '" + ZeppelinConfiguration.ConfVars.ZEPPELIN_INTERPRETERS.getVarName() + "' property "+ "in your conf/zeppelin-site.xml file");
+}

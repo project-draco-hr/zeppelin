@@ -1,0 +1,3 @@
+URL proxyUrl
+String proxyUser
+String proxyPassword

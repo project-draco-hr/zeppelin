@@ -1,0 +1,76 @@
+{
+  if (args.length == 0) {
+    usage();
+    return;
+  }
+  ZeppelinConfiguration conf=ZeppelinConfiguration.create();
+  InstallInterpreter installer=new InstallInterpreter(new File(conf.getInterpreterListPath()),new File(conf.getInterpreterDir()),conf.getInterpreterLocalRepoPath());
+  String names=null;
+  String artifacts=null;
+  URL proxyUrl=null;
+  String proxyUser=null;
+  String proxyPassword=null;
+  boolean all=false;
+  for (int i=0; i < args.length; i++) {
+    String arg=args[i].toLowerCase(Locale.US);
+switch (arg) {
+case "--list":
+case "-l":
+      installer.list();
+    System.exit(0);
+  break;
+case "--all":
+case "-a":
+all=true;
+break;
+case "--name":
+case "-n":
+names=args[++i];
+break;
+case "--artifact":
+case "-t":
+artifacts=args[++i];
+break;
+case "--version":
+case "-v":
+Util.getVersion();
+break;
+case "--proxy-url":
+proxyUrl=new URL(args[++i]);
+break;
+case "--proxy-user":
+proxyUser=args[++i];
+break;
+case "--proxy-password":
+proxyPassword=args[++i];
+break;
+case "--help":
+case "-h":
+usage();
+System.exit(0);
+break;
+default :
+System.out.println("Unknown option " + arg);
+}
+}
+if (proxyUrl != null) {
+installer.setProxy(proxyUrl,proxyUser,proxyPassword);
+}
+if (all) {
+installer.installAll();
+System.exit(0);
+}
+if (names != null) {
+if (artifacts != null) {
+installer.install(names.split(","),artifacts.split(","));
+startTip();
+configurationTip();
+interpreterSettingTip();
+}
+ else {
+installer.install(names.split(","));
+startTip();
+interpreterSettingTip();
+}
+}
+}

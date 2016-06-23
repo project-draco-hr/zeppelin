@@ -1,0 +1,22 @@
+{
+  DependencyResolver depResolver=new DependencyResolver(localRepoDir);
+  if (proxyUrl != null) {
+    depResolver.setProxy(proxyUrl,proxyUser,proxyPassword);
+  }
+  File installDir=new File(interpreterBaseDir,name);
+  if (installDir.exists()) {
+    System.err.println("Directory " + installDir.getAbsolutePath() + " already exists. Skipping");
+    return;
+  }
+  System.out.println("Install " + name + "("+ artifact+ ") to "+ installDir.getAbsolutePath()+ " ... ");
+  try {
+    depResolver.load(artifact,installDir);
+    System.out.println("Interpreter " + name + " installed under "+ installDir.getAbsolutePath()+ ".");
+  }
+ catch (  RepositoryException e) {
+    e.printStackTrace();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+  }
+}
