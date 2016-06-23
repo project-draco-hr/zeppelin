@@ -1,7 +1,0 @@
-String str
-String escapeSeq
-char escapeChar
-String[] blockStart
-String[] blockEnd
-String[] splitters
-boolean includeSplitter

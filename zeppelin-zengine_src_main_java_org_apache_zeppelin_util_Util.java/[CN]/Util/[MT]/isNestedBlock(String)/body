@@ -1,8 +1,0 @@
-{
-  if (blockDef.startsWith("N_")) {
-    return true;
-  }
- else {
-    return false;
-  }
-}

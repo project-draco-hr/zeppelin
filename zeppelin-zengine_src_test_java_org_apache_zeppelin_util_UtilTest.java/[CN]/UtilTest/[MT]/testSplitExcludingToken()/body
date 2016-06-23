@@ -1,5 +1,0 @@
-{
-  String[] token=Util.split("hello | \"world '>|hehe\" > next >> sink",new String[]{"|",">>",">"},false);
-  assertEquals(4,token.length);
-  assertEquals(" \"world '>|hehe\" ",token[1]);
-}

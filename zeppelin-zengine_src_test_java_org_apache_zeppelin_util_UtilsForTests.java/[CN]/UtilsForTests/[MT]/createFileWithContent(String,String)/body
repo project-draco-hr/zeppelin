@@ -1,6 +1,0 @@
-{
-  File f=new File(path);
-  if (!f.exists()) {
-    stringToFile(content,f);
-  }
-}

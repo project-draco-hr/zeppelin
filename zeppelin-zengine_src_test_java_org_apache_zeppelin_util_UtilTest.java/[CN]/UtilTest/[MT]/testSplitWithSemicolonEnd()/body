@@ -1,5 +1,0 @@
-{
-  String[] token=Util.split("show tables;",';');
-  assertEquals(1,token.length);
-  assertEquals("show tables",token[0]);
-}
