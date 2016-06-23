@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   final Paragraph p=note.addParagraph();
   String simpleText="hello world";
@@ -9,7 +9,7 @@
     Thread.yield();
   }
   String exportedNoteJson=notebook.exportNote(note.getId());
-  Note importedNote=notebook.importNote(exportedNoteJson,"Title");
+  Note importedNote=notebook.importNote(exportedNoteJson,"Title",null);
   Paragraph p2=importedNote.getParagraphs().get(0);
   assertEquals(p.getId(),p2.getId());
   assertEquals(p.text,p2.text);

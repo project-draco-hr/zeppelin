@@ -1,5 +1,5 @@
 {
-  Note note=notebook.createNote();
+  Note note=notebook.createNote(null);
   note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
   final Paragraph p=note.addParagraph();
   p.setText("hello world");
@@ -8,7 +8,7 @@
     Thread.yield();
   }
   p.setResult("Exception");
-  Note cloneNote=notebook.cloneNote(note.getId(),"clone note with Exception result");
+  Note cloneNote=notebook.cloneNote(note.getId(),"clone note with Exception result",null);
   Paragraph cp=cloneNote.paragraphs.get(0);
   assertEquals(cp.getId(),p.getId());
   assertEquals(cp.text,p.text);
