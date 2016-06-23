@@ -1,5 +1,8 @@
 {
   this.context=contextInterpreter;
+  if (cmd == null || cmd.isEmpty()) {
+    return new InterpreterResult(Code.SUCCESS,"");
+  }
   String output=sendCommandToPython(cmd);
   return new InterpreterResult(Code.SUCCESS,output.replaceAll(">>>","").replaceAll("\\.\\.\\.","").trim());
 }

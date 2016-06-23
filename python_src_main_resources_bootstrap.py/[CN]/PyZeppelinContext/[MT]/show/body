@@ -1,0 +1,5 @@
+def show(self, p, **kwargs):
+    if (hasattr(p, '__name__') and (p.__name__ == 'matplotlib.pyplot')):
+        self.show_matplotlib(p, **kwargs)
+    elif (type(p).__name__ == 'DataFrame'):
+        self.show_dataframe(p, **kwargs)

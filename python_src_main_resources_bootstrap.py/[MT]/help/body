@@ -19,11 +19,13 @@ def help():
     print '<pre> print("".join(z.checkbox("f3", [("o1","1"), ("o2","2")],["1"])))</pre>'
     print '<h3>Matplotlib graph</h3>'
     print '<div>The interpreter can display matplotlib graph with '
-    print 'the function zeppelin_show()</div>'
+    print 'the function z.show()</div>'
     print '<div> You need to already have matplotlib module installed '
     print 'to use this functionality !</div><br/>'
-    print '<pre>import matplotlib.pyplot as plt\nplt.figure()\n(.. ..)\nzeppelin_show(plt)\nplt.close()\n</pre>'
-    print '<div><br/> zeppelin_show function can take optional parameters '
+    print '<pre>import matplotlib.pyplot as plt\nplt.figure()\n(.. ..)\nz.show(plt)\nplt.close()\n</pre>'
+    print '<div><br/> z.show function can take optional parameters '
     print 'to adapt graph width and height</div>'
     print '<div><b>example </b>:'
-    print "<pre>zeppelin_show(plt,width='50px')\nzeppelin_show(plt,height='150px') </pre></div>"
+    print "<pre>z.show(plt,width='50px')\nz.show(plt,height='150px') </pre></div>"
+    print '<h3>Pandas DataFrame</h3>'
+    print '\n<div>The interpreter can visualize Pandas DataFrame\nwith the function z.show()\n<pre>\nimport pandas as pd\ndf = pd.read_csv("bank.csv", sep=";")\nz.show(df)\n</pre></div>\n'

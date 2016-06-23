@@ -1,4 +1,5 @@
-def zeppelin_show(p, width='0', height='0'):
+def show_matplotlib(self, p, width='0', height='0', **kwargs):
+    'Matplotlib show function\n        '
     img = io.StringIO()
     p.savefig(img, format='svg')
     img.seek(0)
@@ -10,3 +11,4 @@ def zeppelin_show(p, width='0', height='0'):
             style += ','
             style += ('height:' + height)
     print (((("%html <div style='" + style) + "'>") + img.read()) + '<div>')
+    img.close()

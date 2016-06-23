@@ -1,2 +1,3 @@
 def __init__(self, zc):
     self.z = zc
+    self.max_result = 1000
