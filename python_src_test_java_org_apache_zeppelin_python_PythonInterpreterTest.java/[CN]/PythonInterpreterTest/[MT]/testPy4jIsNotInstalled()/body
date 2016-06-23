@@ -4,6 +4,6 @@
   assertTrue(cmdHistory.contains("def help()"));
   assertTrue(cmdHistory.contains("class PyZeppelinContext(object):"));
   assertTrue(cmdHistory.contains("z = PyZeppelinContext"));
-  assertTrue(cmdHistory.contains("z.show"));
+  assertTrue(cmdHistory.contains("def show"));
   assertFalse(cmdHistory.contains("GatewayClient"));
 }
