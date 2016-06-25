@@ -1,5 +1,6 @@
 {
   Map<String,Set<String>> noteAuthInfo=authInfo.get(noteId);
+  entities=validateUser(entities);
   if (noteAuthInfo == null) {
     noteAuthInfo=new LinkedHashMap();
     noteAuthInfo.put("owners",new LinkedHashSet());

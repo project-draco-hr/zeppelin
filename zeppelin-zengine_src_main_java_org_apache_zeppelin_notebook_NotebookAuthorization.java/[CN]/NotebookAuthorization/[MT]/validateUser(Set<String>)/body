@@ -1,0 +1,9 @@
+{
+  Set<String> returnUser=new HashSet<>();
+  for (  String user : users) {
+    if (!user.trim().isEmpty()) {
+      returnUser.add(user.trim());
+    }
+  }
+  return returnUser;
+}
