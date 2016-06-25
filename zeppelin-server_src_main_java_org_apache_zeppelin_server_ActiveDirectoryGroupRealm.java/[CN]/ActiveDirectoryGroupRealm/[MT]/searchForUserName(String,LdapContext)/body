@@ -1,0 +1,25 @@
+{
+  List<String> userNameList=new ArrayList<>();
+  SearchControls searchCtls=new SearchControls();
+  searchCtls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+  String searchFilter="(&(objectClass=*)(userPrincipalName=*" + containString + "*))";
+  Object[] searchArguments=new Object[]{containString};
+  NamingEnumeration answer=ldapContext.search(searchBase,searchFilter,searchArguments,searchCtls);
+  while (answer.hasMoreElements()) {
+    SearchResult sr=(SearchResult)answer.next();
+    if (log.isDebugEnabled()) {
+      log.debug("Retrieving userprincipalname names for user [" + sr.getName() + "]");
+    }
+    Attributes attrs=sr.getAttributes();
+    if (attrs != null) {
+      NamingEnumeration ae=attrs.getAll();
+      while (ae.hasMore()) {
+        Attribute attr=(Attribute)ae.next();
+        if (attr.getID().toLowerCase().equals("cn")) {
+          userNameList.addAll(LdapUtils.getAllAttributeValues(attr));
+        }
+      }
+    }
+  }
+  return userNameList;
+}

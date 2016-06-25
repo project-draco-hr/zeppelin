@@ -22,7 +22,7 @@
  else       retval=retval[0].split("=",2);
       username=retval[0];
     }
-    if (username.equals("") || tablename.equals("")) {
+    if (StringUtils.isBlank(username) || StringUtils.isBlank(tablename)) {
       return userlist;
     }
     userquery="select " + username + " from "+ tablename;
@@ -36,7 +36,7 @@
     ps=con.prepareStatement(userquery);
     rs=ps.executeQuery();
     while (rs.next()) {
-      userlist.add(rs.getString(1));
+      userlist.add(rs.getString(1).trim());
     }
   }
  catch (  Exception e) {

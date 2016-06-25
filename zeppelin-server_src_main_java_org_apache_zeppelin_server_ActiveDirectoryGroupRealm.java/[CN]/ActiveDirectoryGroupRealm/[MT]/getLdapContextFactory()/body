@@ -1,0 +1,15 @@
+{
+  if (this.ldapContextFactory == null) {
+    if (log.isDebugEnabled()) {
+      log.debug("No LdapContextFactory specified - creating a default instance.");
+    }
+    DefaultLdapContextFactory defaultFactory=new DefaultLdapContextFactory();
+    defaultFactory.setPrincipalSuffix(this.principalSuffix);
+    defaultFactory.setSearchBase(this.searchBase);
+    defaultFactory.setUrl(this.url);
+    defaultFactory.setSystemUsername(this.systemUsername);
+    defaultFactory.setSystemPassword(this.systemPassword);
+    this.ldapContextFactory=defaultFactory;
+  }
+  return this.ldapContextFactory;
+}

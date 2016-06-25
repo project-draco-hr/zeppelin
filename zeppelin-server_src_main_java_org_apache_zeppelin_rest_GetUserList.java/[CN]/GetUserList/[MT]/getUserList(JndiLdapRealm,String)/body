@@ -11,12 +11,12 @@
     constraints.setSearchScope(SearchControls.SUBTREE_SCOPE);
     String[] attrIDs={userDnPrefix};
     constraints.setReturningAttributes(attrIDs);
-    NamingEnumeration result=ctx.search(userDnSuffix,"(objectclass=*)",constraints);
+    NamingEnumeration result=ctx.search(userDnSuffix,"(" + userDnPrefix + "=*"+ searchText+ "*)",constraints);
     while (result.hasMore()) {
       Attributes attrs=((SearchResult)result.next()).getAttributes();
       if (attrs.get(userDnPrefix) != null) {
         String currentUser=attrs.get(userDnPrefix).toString();
-        userList.add(currentUser.split(":")[1]);
+        userList.add(currentUser.split(":")[1].trim());
       }
     }
   }

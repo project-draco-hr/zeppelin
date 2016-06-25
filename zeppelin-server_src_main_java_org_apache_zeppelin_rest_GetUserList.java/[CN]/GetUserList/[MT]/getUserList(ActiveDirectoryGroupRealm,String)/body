@@ -1,0 +1,11 @@
+{
+  List<String> userList=new ArrayList<>();
+  try {
+    LdapContext ctx=r.getLdapContextFactory().getSystemLdapContext();
+    userList=r.searchForUserName(searchText,ctx);
+  }
+ catch (  Exception e) {
+    LOG.error("Error retrieving User list from ActiveDirectory Realm",e);
+  }
+  return userList;
+}
