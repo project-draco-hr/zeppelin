@@ -22,7 +22,7 @@
     WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]"));
     collector.checkThat("Paragraph from ZeppelinIT of testSparkInterpreterDependencyLoading result: ",paragraph1Result.getText().toString(),CoreMatchers.containsString("import org.apache.commons.csv.CSVFormat"));
     deleteTestNotebook(driver);
-    sleep(1000,false);
+    ZeppelinITUtils.sleep(1000,false);
     settingButton.click();
     interpreterLink.click();
     driver.findElement(By.xpath("//div[@id='spark']//button[contains(.,'edit')]")).sendKeys(Keys.ENTER);

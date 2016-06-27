@@ -22,7 +22,7 @@
     waitForParagraph(2,"FINISHED");
     waitForText("NEW_VALUE",By.xpath(getParagraphXPath(2) + "//div[contains(@id,\"_text\") and @class=\"text\"]"));
     deleteTestNotebook(driver);
-    sleep(1000,true);
+    ZeppelinITUtils.sleep(1000,true);
     LOG.info("testAngularRunParagraph Test executed");
   }
  catch (  Exception e) {

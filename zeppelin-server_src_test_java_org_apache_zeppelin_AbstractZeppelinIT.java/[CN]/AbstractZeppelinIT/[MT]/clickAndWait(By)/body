@@ -1,0 +1,4 @@
+{
+  driver.findElement(locator).click();
+  ZeppelinITUtils.sleep(1000,true);
+}
