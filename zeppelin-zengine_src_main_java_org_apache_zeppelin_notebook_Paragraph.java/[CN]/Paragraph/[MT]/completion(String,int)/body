@@ -1,6 +1,6 @@
 {
   String replName=getRequiredReplName(buffer);
-  if (replName != null) {
+  if (replName != null && cursor > replName.length()) {
     cursor-=replName.length() + 1;
   }
   String body=getScriptBody(buffer);
