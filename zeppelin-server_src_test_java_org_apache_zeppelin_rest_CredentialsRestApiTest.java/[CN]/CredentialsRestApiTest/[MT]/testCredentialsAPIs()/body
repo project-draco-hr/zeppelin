@@ -1,0 +1,14 @@
+{
+  String requestData1="{\"entity\" : \"entityname\", \"username\" : \"myuser\", \"password\" : \"mypass\"}";
+  String entity="entityname";
+  Map<String,UserCredentials> credentialMap;
+  testPutUserCredentials(requestData1);
+  credentialMap=testGetUserCredentials();
+  assertNotNull("CredentialMap should be null",credentialMap);
+  testRemoveCredentialEntity(entity);
+  credentialMap=testGetUserCredentials();
+  assertNull("CredentialMap should be null",credentialMap.get("entity1"));
+  testRemoveUserCredentials();
+  credentialMap=testGetUserCredentials();
+  assertEquals("Compare CredentialMap",credentialMap.toString(),"{}");
+}

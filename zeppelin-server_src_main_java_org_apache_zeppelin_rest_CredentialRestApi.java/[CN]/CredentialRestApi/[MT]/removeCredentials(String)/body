@@ -1,0 +1,9 @@
+{
+  String user=SecurityUtils.getPrincipal();
+  logger.info("removeCredentials credentials for user {} ",user);
+  UserCredentials uc=credentials.removeUserCredentials(user);
+  if (uc == null) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+  return new JsonResponse(Status.OK).build();
+}

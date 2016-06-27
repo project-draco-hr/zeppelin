@@ -1,0 +1,8 @@
+{
+  String user=SecurityUtils.getPrincipal();
+  logger.info("removeCredentialEntity for user {} entity {}",user,entity);
+  if (credentials.removeCredentialEntity(user,entity) == false) {
+    return new JsonResponse(Status.NOT_FOUND).build();
+  }
+  return new JsonResponse(Status.OK).build();
+}

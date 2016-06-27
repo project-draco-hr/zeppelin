@@ -1,0 +1,6 @@
+{
+  PutMethod putMethod=httpPut("/credential",requestData);
+  putMethod.addRequestHeader("Origin","http://localhost");
+  assertThat(putMethod,isAllowed());
+  putMethod.releaseConnection();
+}

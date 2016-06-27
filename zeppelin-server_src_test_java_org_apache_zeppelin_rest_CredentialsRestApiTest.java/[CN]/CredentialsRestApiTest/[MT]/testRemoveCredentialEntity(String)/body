@@ -1,0 +1,5 @@
+{
+  DeleteMethod deleteMethod=httpDelete("/credential/" + entity);
+  assertThat("Test delete method:",deleteMethod,isAllowed());
+  deleteMethod.releaseConnection();
+}

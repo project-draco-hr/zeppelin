@@ -1,0 +1,6 @@
+{
+  String user=SecurityUtils.getPrincipal();
+  logger.info("getCredentials credentials for user {} ",user);
+  UserCredentials uc=credentials.getUserCredentials(user);
+  return new JsonResponse(Status.OK,uc).build();
+}

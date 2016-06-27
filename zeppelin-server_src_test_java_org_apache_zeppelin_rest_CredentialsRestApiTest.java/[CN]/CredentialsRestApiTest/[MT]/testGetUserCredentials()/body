@@ -1,0 +1,11 @@
+{
+  GetMethod getMethod=httpGet("/credential");
+  getMethod.addRequestHeader("Origin","http://localhost");
+  Map<String,Object> resp=gson.fromJson(getMethod.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  Map<String,Object> body=(Map<String,Object>)resp.get("body");
+  Map<String,UserCredentials> credentialMap=(Map<String,UserCredentials>)body.get("userCredentials");
+  getMethod.releaseConnection();
+  return credentialMap;
+}
