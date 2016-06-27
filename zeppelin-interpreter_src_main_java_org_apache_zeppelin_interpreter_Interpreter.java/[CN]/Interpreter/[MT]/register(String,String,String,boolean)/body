@@ -1,0 +1,3 @@
+{
+  register(name,group,className,defaultInterpreter,new HashMap<String,InterpreterProperty>());
+}

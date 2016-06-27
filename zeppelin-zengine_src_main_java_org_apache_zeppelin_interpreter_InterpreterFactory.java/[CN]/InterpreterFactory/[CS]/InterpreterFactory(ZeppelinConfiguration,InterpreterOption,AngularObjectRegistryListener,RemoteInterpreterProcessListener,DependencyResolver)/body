@@ -7,6 +7,8 @@
   this.remoteInterpreterProcessListener=remoteInterpreterProcessListener;
   String replsConf=conf.getString(ConfVars.ZEPPELIN_INTERPRETERS);
   interpreterClassList=replsConf.split(",");
+  String groupOrder=conf.getString(ConfVars.ZEPPELIN_INTERPRETER_GROUP_ORDER);
+  interpreterGroupOrderList=groupOrder.split(",");
   GsonBuilder builder=new GsonBuilder();
   builder.setPrettyPrinting();
   builder.registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());

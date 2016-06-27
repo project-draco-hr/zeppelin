@@ -39,30 +39,41 @@ synchronized (interpreterSettings) {
       HashMap<String,List<RegisteredInterpreter>> groupClassNameMap=new HashMap<>();
       for (      String k : Interpreter.registeredInterpreters.keySet()) {
         RegisteredInterpreter info=Interpreter.registeredInterpreters.get(k);
-        if (!groupClassNameMap.containsKey(info.getGroup())) {
-          groupClassNameMap.put(info.getGroup(),new LinkedList<RegisteredInterpreter>());
+        String group=info.getGroup();
+        if (!groupClassNameMap.containsKey(group)) {
+          groupClassNameMap.put(group,new LinkedList<RegisteredInterpreter>());
+          groupClassNameMap.get(group).add(info);
         }
-        groupClassNameMap.get(info.getGroup()).add(info);
+ else {
+          if (info.isDefaultInterpreter()) {
+            groupClassNameMap.get(group).add(0,info);
+          }
+ else {
+            groupClassNameMap.get(group).add(info);
+          }
+        }
       }
-      for (      String className : interpreterClassList) {
-        for (        String groupName : groupClassNameMap.keySet()) {
-          List<RegisteredInterpreter> infos=groupClassNameMap.get(groupName);
-          boolean found=false;
+      for (      String groupName : interpreterGroupOrderList) {
+        List<RegisteredInterpreter> infos=groupClassNameMap.remove(groupName);
+        if (null != infos) {
           Properties p=new Properties();
           for (          RegisteredInterpreter info : infos) {
-            if (found == false && info.getClassName().equals(className)) {
-              found=true;
-            }
-            for (            String k : info.getProperties().keySet()) {
-              p.put(k,info.getProperties().get(k).getValue());
+            for (            String key : info.getProperties().keySet()) {
+              p.put(key,info.getProperties().get(key).getValue());
             }
           }
-          if (found) {
-            add(groupName,groupName,new LinkedList<Dependency>(),defaultOption,p);
-            groupClassNameMap.remove(groupName);
-            break;
+          add(groupName,groupName,new LinkedList<Dependency>(),defaultOption,p);
+        }
+      }
+      for (      String groupName : groupClassNameMap.keySet()) {
+        List<RegisteredInterpreter> infos=groupClassNameMap.get(groupName);
+        Properties p=new Properties();
+        for (        RegisteredInterpreter info : infos) {
+          for (          String key : info.getProperties().keySet()) {
+            p.put(key,info.getProperties().get(key).getValue());
           }
         }
+        add(groupName,groupName,new LinkedList<Dependency>(),defaultOption,p);
       }
     }
   }

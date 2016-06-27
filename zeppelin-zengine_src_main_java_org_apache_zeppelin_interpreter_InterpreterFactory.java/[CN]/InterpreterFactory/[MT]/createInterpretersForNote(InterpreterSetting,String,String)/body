@@ -24,30 +24,32 @@ synchronized (interpreterGroup) {
     }
   }
   logger.info("Create interpreter instance {} for note {}",interpreterSetting.getName(),noteId);
-  for (  String className : interpreterClassList) {
-    Set<String> keys=Interpreter.registeredInterpreters.keySet();
-    for (    String intName : keys) {
-      RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
-      if (info.getClassName().equals(className) && info.getGroup().equals(groupName)) {
-        Interpreter intp;
-        if (option.isRemote()) {
-          intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
+  Set<String> keys=Interpreter.registeredInterpreters.keySet();
+  for (  String intName : keys) {
+    RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
+    if (info.getGroup().equals(groupName)) {
+      Interpreter intp;
+      if (option.isRemote()) {
+        intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
+      }
+ else {
+        intp=createRepl(info.getPath(),info.getClassName(),properties);
+      }
+synchronized (interpreterGroup) {
+        List<Interpreter> interpreters=interpreterGroup.get(key);
+        if (interpreters == null) {
+          interpreters=new LinkedList<Interpreter>();
+          interpreterGroup.put(key,interpreters);
+        }
+        if (info.isDefaultInterpreter()) {
+          interpreters.add(0,intp);
         }
  else {
-          intp=createRepl(info.getPath(),info.getClassName(),properties);
-        }
-synchronized (interpreterGroup) {
-          List<Interpreter> interpreters=interpreterGroup.get(key);
-          if (interpreters == null) {
-            interpreters=new LinkedList<Interpreter>();
-            interpreterGroup.put(key,interpreters);
-          }
           interpreters.add(intp);
         }
-        logger.info("Interpreter " + intp.getClassName() + " "+ intp.hashCode()+ " created");
-        intp.setInterpreterGroup(interpreterGroup);
-        break;
       }
+      logger.info("Interpreter " + intp.getClassName() + " "+ intp.hashCode()+ " created");
+      intp.setInterpreterGroup(interpreterGroup);
     }
   }
 }

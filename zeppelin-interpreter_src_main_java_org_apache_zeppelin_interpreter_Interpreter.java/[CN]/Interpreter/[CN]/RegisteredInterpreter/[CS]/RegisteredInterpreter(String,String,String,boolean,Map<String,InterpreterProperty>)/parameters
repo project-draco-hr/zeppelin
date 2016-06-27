@@ -1,0 +1,5 @@
+String name
+String group
+String className
+boolean defaultInterpreter
+Map<String,InterpreterProperty> properties

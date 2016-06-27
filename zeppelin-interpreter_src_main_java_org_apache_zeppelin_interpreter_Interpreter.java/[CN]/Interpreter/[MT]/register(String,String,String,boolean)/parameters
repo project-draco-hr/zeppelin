@@ -1,0 +1,4 @@
+String name
+String group
+String className
+boolean defaultInterpreter
