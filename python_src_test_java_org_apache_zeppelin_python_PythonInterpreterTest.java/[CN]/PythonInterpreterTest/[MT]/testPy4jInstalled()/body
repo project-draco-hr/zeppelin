@@ -1,10 +1,5 @@
 {
-  try {
-    when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
   pythonInterpreter.open();
   Integer py4jPort=pythonInterpreter.getPy4jPort();
   assertNotNull(py4jPort);
@@ -14,5 +9,5 @@
   assertTrue(cmdHistory.contains("def show"));
   assertTrue(cmdHistory.contains("GatewayClient(port=" + py4jPort + ")"));
   assertTrue(cmdHistory.contains("org.apache.zeppelin.display.Input"));
-  assertTrue(checkSocketAddress(py4jPort));
+  assertTrue(serverIsListeningOn(py4jPort));
 }

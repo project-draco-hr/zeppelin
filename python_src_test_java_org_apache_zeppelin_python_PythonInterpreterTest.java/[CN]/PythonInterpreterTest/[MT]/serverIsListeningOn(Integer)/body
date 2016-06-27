@@ -1,0 +1,10 @@
+{
+  boolean serverIsListening=false;
+  Socket s=new Socket();
+  boolean connected=tryToConnect(s,port);
+  if (connected) {
+    serverIsListening=true;
+    tryToClose(s);
+  }
+  return serverIsListening;
+}

@@ -5,7 +5,7 @@
     socket.close();
   }
  catch (  IOException e) {
-    logger.error("Can't find an open port",e);
+    LOG.error("Can't find an open port",e);
   }
   return port;
 }

@@ -1,38 +1,38 @@
 {
-  logger.info("Starting Python interpreter .....");
-  logger.info("Python path is set to:" + property.getProperty(ZEPPELIN_PYTHON));
+  LOG.info("Starting Python interpreter .....");
+  LOG.info("Python path is set to:" + property.getProperty(ZEPPELIN_PYTHON));
   maxResult=Integer.valueOf(getProperty(MAX_RESULT));
   process=getPythonProcess();
   try {
     process.open();
   }
  catch (  IOException e) {
-    logger.error("Can't start the python process",e);
+    LOG.error("Can't start the python process",e);
   }
   try {
-    logger.info("python PID : " + process.getPid());
+    LOG.info("python PID : " + process.getPid());
   }
  catch (  Exception e) {
-    logger.warn("Can't find python pid process",e);
+    LOG.warn("Can't find python pid process",e);
   }
   try {
-    logger.info("Bootstrap interpreter with " + BOOTSTRAP_PY);
+    LOG.info("Bootstrap interpreter with " + BOOTSTRAP_PY);
     bootStrapInterpreter(BOOTSTRAP_PY);
   }
  catch (  IOException e) {
-    logger.error("Can't execute " + BOOTSTRAP_PY + " to initiate python process",e);
+    LOG.error("Can't execute " + BOOTSTRAP_PY + " to initiate python process",e);
   }
   if (py4J=isPy4jInstalled()) {
     port=findRandomOpenPortOnAllLocalInterfaces();
-    logger.info("Py4j gateway port : " + port);
+    LOG.info("Py4j gateway port : " + port);
     try {
       gatewayServer=new GatewayServer(this,port);
       gatewayServer.start();
-      logger.info("Bootstrap inputs with " + BOOTSTRAP_INPUT_PY);
+      LOG.info("Bootstrap inputs with " + BOOTSTRAP_INPUT_PY);
       bootStrapInterpreter(BOOTSTRAP_INPUT_PY);
     }
  catch (    IOException e) {
-      logger.error("Can't execute " + BOOTSTRAP_INPUT_PY + " to "+ "initialize Zeppelin inputs in python process",e);
+      LOG.error("Can't execute " + BOOTSTRAP_INPUT_PY + " to "+ "initialize Zeppelin inputs in python process",e);
     }
   }
 }

@@ -1,19 +1,9 @@
 {
-  try {
-    when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
   pythonInterpreter.open();
   Integer py4jPort=pythonInterpreter.getPy4jPort();
   assertNotNull(py4jPort);
   pythonInterpreter.close();
-  assertFalse(checkSocketAddress(py4jPort));
-  try {
-    verify(mockPythonProcess,times(1)).close();
-  }
- catch (  IOException e) {
-    e.printStackTrace();
-  }
+  assertFalse(serverIsListeningOn(py4jPort));
+  verify(mockPythonProcess,times(1)).close();
 }

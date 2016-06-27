@@ -1,0 +1,8 @@
+{
+  try {
+    s.close();
+  }
+ catch (  IOException e) {
+    LOG.error("Can't close connection to " + s.getInetAddress(),e);
+  }
+}

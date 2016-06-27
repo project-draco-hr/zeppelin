@@ -8,6 +8,6 @@
   if (py4J && port != null && port != -1) {
     bootstrapCode=bootstrapCode.replaceAll("\\%PORT\\%",port.toString());
   }
-  logger.info("Bootstrap python interpreter with code from \n " + file);
+  LOG.info("Bootstrap python interpreter with code from \n " + file);
   sendCommandToPython(bootstrapCode);
 }

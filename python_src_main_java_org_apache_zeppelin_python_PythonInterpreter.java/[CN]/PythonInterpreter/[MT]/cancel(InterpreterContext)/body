@@ -3,6 +3,6 @@
     process.interrupt();
   }
  catch (  IOException e) {
-    logger.error("Can't interrupt the python interpreter",e);
+    LOG.error("Can't interrupt the python interpreter",e);
   }
 }
