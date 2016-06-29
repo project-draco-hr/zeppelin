@@ -1,4 +1,4 @@
 {
-  driver.findElement(locator).click();
+  pollingWait(locator,MAX_IMPLICIT_WAIT).click();
   ZeppelinITUtils.sleep(1000,true);
 }

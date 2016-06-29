@@ -1,15 +1,8 @@
 {
-  List<WebElement> notebookLinks=driver.findElements(By.xpath("//div[contains(@class, \"col-md-4\")]/div/ul/li"));
-  List<String> notebookTitles=new LinkedList<String>();
-  for (  WebElement el : notebookLinks) {
-    notebookTitles.add(el.getText());
-  }
-  WebElement createNoteLink=driver.findElement(By.xpath("//div[contains(@class, \"col-md-4\")]/div/h5/a[contains(.,'Create new note')]"));
-  createNoteLink.click();
+  clickAndWait(By.xpath("//div[contains(@class, \"col-md-4\")]/div/h5/a[contains(.,'Create new" + " note')]"));
   WebDriverWait block=new WebDriverWait(driver,MAX_BROWSER_TIMEOUT_SEC);
-  WebElement modal=block.until(ExpectedConditions.visibilityOfElementLocated(By.id("noteNameModal")));
-  WebElement createNoteButton=modal.findElement(By.id("createNoteButton"));
-  createNoteButton.click();
+  block.until(ExpectedConditions.visibilityOfElementLocated(By.id("noteNameModal")));
+  clickAndWait(By.id("createNoteButton"));
   try {
     Thread.sleep(500);
   }
