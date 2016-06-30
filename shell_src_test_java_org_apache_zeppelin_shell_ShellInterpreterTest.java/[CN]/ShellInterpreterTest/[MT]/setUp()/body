@@ -1,0 +1,5 @@
+{
+  Properties p=new Properties();
+  p.setProperty("shell.command.timeout.millisecs","60000");
+  shell=new ShellInterpreter(p);
+}

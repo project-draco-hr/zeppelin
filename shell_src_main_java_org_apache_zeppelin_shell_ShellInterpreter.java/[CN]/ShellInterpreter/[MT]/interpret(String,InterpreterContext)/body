@@ -1,38 +1,37 @@
 {
-  logger.debug("Run shell command '" + cmd + "'");
+  LOGGER.debug("Run shell command '" + cmd + "'");
+  OutputStream outStream=new ByteArrayOutputStream();
+  OutputStream errStream=new ByteArrayOutputStream();
   CommandLine cmdLine=CommandLine.parse(shell);
   if (isWindows) {
     String[] lines=StringUtils.split(cmd,"\n");
     cmd=StringUtils.join(lines," && ");
   }
   cmdLine.addArgument(cmd,false);
-  DefaultExecutor executor=new DefaultExecutor();
-  ByteArrayOutputStream errorStream=new ByteArrayOutputStream();
-  executor.setStreamHandler(new PumpStreamHandler(contextInterpreter.out,errorStream));
-  executor.setWatchdog(new ExecuteWatchdog(commandTimeOut));
-  Job runningJob=getRunningJob(contextInterpreter.getParagraphId());
-  Map<String,Object> info=runningJob.info();
-  info.put(EXECUTOR_KEY,executor);
   try {
+    DefaultExecutor executor=new DefaultExecutor();
+    executor.setStreamHandler(new PumpStreamHandler(outStream,errStream));
+    executor.setWatchdog(new ExecuteWatchdog(Long.valueOf(getProperty(TIMEOUT_PROPERTY))));
+    executors.put(contextInterpreter.getParagraphId(),executor);
     int exitVal=executor.execute(cmdLine);
-    logger.info("Paragraph " + contextInterpreter.getParagraphId() + "return with exit value: "+ exitVal);
-    return new InterpreterResult(InterpreterResult.Code.SUCCESS,null);
+    LOGGER.info("Paragraph " + contextInterpreter.getParagraphId() + " return with exit value: "+ exitVal);
+    return new InterpreterResult(Code.SUCCESS,outStream.toString());
   }
  catch (  ExecuteException e) {
     int exitValue=e.getExitValue();
-    logger.error("Can not run " + cmd,e);
+    LOGGER.error("Can not run " + cmd,e);
     Code code=Code.ERROR;
-    String msg=errorStream.toString();
+    String message=errStream.toString();
     if (exitValue == 143) {
       code=Code.INCOMPLETE;
-      msg=msg + "Paragraph received a SIGTERM.\n";
-      logger.info("The paragraph " + contextInterpreter.getParagraphId() + " stopped executing: "+ msg);
+      message+="Paragraph received a SIGTERM.\n";
+      LOGGER.info("The paragraph " + contextInterpreter.getParagraphId() + " stopped executing: "+ message);
     }
-    msg+="ExitValue: " + exitValue;
-    return new InterpreterResult(code,msg);
+    message+="ExitValue: " + exitValue;
+    return new InterpreterResult(code,message);
   }
 catch (  IOException e) {
-    logger.error("Can not run " + cmd,e);
+    LOGGER.error("Can not run " + cmd,e);
     return new InterpreterResult(Code.ERROR,e.getMessage());
   }
 }

@@ -1,4 +1,4 @@
 {
-  logger.info("Command timeout is set as:",SHELL_COMMAND_TIMEOUT);
-  commandTimeOut=Integer.valueOf(getProperty(SHELL_COMMAND_TIMEOUT));
+  LOGGER.info("Command timeout property: {}",TIMEOUT_PROPERTY);
+  executors=new HashMap<String,DefaultExecutor>();
 }

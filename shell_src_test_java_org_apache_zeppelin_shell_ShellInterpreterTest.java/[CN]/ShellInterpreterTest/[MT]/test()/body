@@ -1,0 +1,12 @@
+{
+  shell.open();
+  InterpreterContext context=new InterpreterContext("","1","","",null,null,null,null,null,null,null);
+  InterpreterResult result=new InterpreterResult(Code.ERROR);
+  if (System.getProperty("os.name").startsWith("Windows")) {
+    result=shell.interpret("dir",context);
+  }
+ else {
+    result=shell.interpret("ls",context);
+  }
+  assertEquals(InterpreterResult.Code.SUCCESS,result.code());
+}
