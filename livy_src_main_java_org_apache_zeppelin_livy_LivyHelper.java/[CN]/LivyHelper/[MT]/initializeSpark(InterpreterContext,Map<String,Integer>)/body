@@ -1,3 +1,3 @@
 {
-  interpret("val sqlContext= new org.apache.spark.sql.SQLContext(sc)\n" + "import sqlContext.implicits._",context,userSessionMap);
+  interpret("val sqlContext = new org.apache.spark.sql.SQLContext(sc)\n" + "import sqlContext.implicits._",context,userSessionMap);
 }

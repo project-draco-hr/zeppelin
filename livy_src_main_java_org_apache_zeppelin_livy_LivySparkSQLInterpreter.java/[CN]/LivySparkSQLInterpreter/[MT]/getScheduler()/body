@@ -1,3 +1,15 @@
 {
-  return SchedulerFactory.singleton().createOrGetFIFOScheduler(LivySparkInterpreter.class.getName() + this.hashCode());
+  if (concurrentSQL()) {
+    int maxConcurrency=10;
+    return SchedulerFactory.singleton().createOrGetParallelScheduler(LivySparkInterpreter.class.getName() + this.hashCode(),maxConcurrency);
+  }
+ else {
+    Interpreter intp=getInterpreterInTheSameSessionByClassName(LivySparkInterpreter.class.getName());
+    if (intp != null) {
+      return intp.getScheduler();
+    }
+ else {
+      return null;
+    }
+  }
 }
