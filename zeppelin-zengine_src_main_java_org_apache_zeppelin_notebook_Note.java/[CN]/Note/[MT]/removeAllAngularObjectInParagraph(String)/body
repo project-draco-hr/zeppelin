@@ -1,6 +1,6 @@
 {
   angularObjects=new HashMap<String,List<AngularObject>>();
-  List<InterpreterSetting> settings=replLoader.getInterpreterSettings();
+  List<InterpreterSetting> settings=factory.getInterpreterSettings(getId());
   if (settings == null || settings.size() == 0) {
     return;
   }

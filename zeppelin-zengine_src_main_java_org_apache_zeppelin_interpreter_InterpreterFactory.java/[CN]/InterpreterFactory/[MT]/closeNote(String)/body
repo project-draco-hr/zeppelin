@@ -1,0 +1,10 @@
+{
+  List<InterpreterSetting> settings=getInterpreterSettings(noteId);
+  if (settings == null || settings.size() == 0) {
+    return;
+  }
+  logger.info("closeNote: {}",noteId);
+  for (  InterpreterSetting setting : settings) {
+    removeInterpretersForNote(setting,noteId);
+  }
+}

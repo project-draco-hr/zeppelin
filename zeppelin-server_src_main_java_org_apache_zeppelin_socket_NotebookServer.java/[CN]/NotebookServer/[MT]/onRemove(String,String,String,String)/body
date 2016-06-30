@@ -5,7 +5,7 @@
     if (noteId != null && !note.id().equals(noteId)) {
       continue;
     }
-    List<String> ids=note.getNoteReplLoader().getInterpreters();
+    List<String> ids=notebook.getInterpreterFactory().getInterpreters(note.getId());
     for (    String id : ids) {
       if (id.equals(interpreterGroupId)) {
         broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_REMOVE).put("name",name).put("noteId",noteId).put("paragraphId",paragraphId));

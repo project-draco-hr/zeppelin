@@ -1,8 +1,8 @@
 {
   AngularObjectRegistry registry=null;
   ResourcePool resourcePool=null;
-  if (!getNoteReplLoader().getInterpreterSettings().isEmpty()) {
-    InterpreterSetting intpGroup=getNoteReplLoader().getInterpreterSettings().get(0);
+  if (!factory.getInterpreterSettings(note.getId()).isEmpty()) {
+    InterpreterSetting intpGroup=factory.getInterpreterSettings(note.getId()).get(0);
     registry=intpGroup.getInterpreterGroup(note.id()).getAngularObjectRegistry();
     resourcePool=intpGroup.getInterpreterGroup(note.id()).getResourcePool();
   }

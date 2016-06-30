@@ -2,7 +2,7 @@
   Note note1=notebook.createNote(null);
   Paragraph p1=note1.addParagraph();
   p1.setText("getId");
-  for (  InterpreterSetting setting : note1.getNoteReplLoader().getInterpreterSettings()) {
+  for (  InterpreterSetting setting : factory.getInterpreterSettings(note1.getId())) {
     setting.getOption().setPerNoteSession(true);
     notebook.getInterpreterFactory().restart(setting.id());
   }

@@ -1,7 +1,5 @@
 {
-  NoteInterpreterLoader intpLoader=new NoteInterpreterLoader(replFactory);
-  Note note=new Note(notebookRepo,intpLoader,jobListenerFactory,notebookIndex,credentials);
-  intpLoader.setNoteId(note.id());
+  Note note=new Note(notebookRepo,replFactory,jobListenerFactory,notebookIndex,credentials);
 synchronized (notes) {
     notes.put(note.id(),note);
   }

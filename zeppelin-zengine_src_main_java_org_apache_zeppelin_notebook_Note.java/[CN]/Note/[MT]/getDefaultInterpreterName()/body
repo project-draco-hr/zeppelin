@@ -1,4 +1,4 @@
 {
-  Optional<InterpreterSetting> settingOptional=replLoader.getDefaultInterpreterSetting();
-  return settingOptional.isPresent() ? settingOptional.get().getGroup() : StringUtils.EMPTY;
+  InterpreterSetting setting=factory.getDefaultInterpreterSetting(getId());
+  return null != setting ? setting.getGroup() : StringUtils.EMPTY;
 }

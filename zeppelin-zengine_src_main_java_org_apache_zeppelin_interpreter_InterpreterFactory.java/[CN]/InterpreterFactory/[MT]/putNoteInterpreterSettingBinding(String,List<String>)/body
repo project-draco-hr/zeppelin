@@ -1,5 +1,5 @@
 {
-  List<String> unBindedSettings=new LinkedList<String>();
+  List<String> unBindedSettings=new LinkedList<>();
 synchronized (interpreterSettings) {
     List<String> oldSettings=interpreterBindings.get(noteId);
     if (oldSettings != null) {

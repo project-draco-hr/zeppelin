@@ -1,6 +1,6 @@
 {
   Note note=notebook.createNote(null);
-  note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
+  factory.setInterpreters(note.getId(),factory.getDefaultInterpreterSettingList());
   Paragraph p1=note.addParagraph();
   Map config1=p1.getConfig();
   config1.put("enabled",true);

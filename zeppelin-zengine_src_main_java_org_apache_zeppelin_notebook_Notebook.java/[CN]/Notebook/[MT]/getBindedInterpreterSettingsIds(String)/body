@@ -1,7 +1,7 @@
 {
   Note note=getNote(id);
   if (note != null) {
-    return note.getNoteReplLoader().getInterpreters();
+    return getInterpreterFactory().getInterpreters(note.getId());
   }
  else {
     return new LinkedList<String>();

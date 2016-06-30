@@ -21,7 +21,7 @@
     logger.error(e.getMessage(),e);
   }
   if (releaseResource) {
-    for (    InterpreterSetting setting : note.getNoteReplLoader().getInterpreterSettings()) {
+    for (    InterpreterSetting setting : notebook.getInterpreterFactory().getInterpreterSettings(note.getId())) {
       notebook.getInterpreterFactory().restart(setting.id());
     }
   }

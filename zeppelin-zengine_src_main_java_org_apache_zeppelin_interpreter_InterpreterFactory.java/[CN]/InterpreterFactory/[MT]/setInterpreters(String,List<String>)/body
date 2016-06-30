@@ -1,0 +1,3 @@
+{
+  putNoteInterpreterSettingBinding(noteId,ids);
+}

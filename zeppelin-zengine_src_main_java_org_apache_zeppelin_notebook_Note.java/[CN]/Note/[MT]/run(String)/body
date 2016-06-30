@@ -1,11 +1,11 @@
 {
   Paragraph p=getParagraph(paragraphId);
-  p.setNoteReplLoader(replLoader);
+  p.setInterpreterFactory(factory);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
   String requiredReplName=p.getRequiredReplName();
-  Interpreter intp=replLoader.get(requiredReplName);
+  Interpreter intp=factory.getInterpreter(getId(),requiredReplName);
   if (intp == null) {
-    if (conf.getUseJdbcAlias() && null != (intp=replLoader.get("jdbc"))) {
+    if (conf.getUseJdbcAlias() && null != (intp=factory.getInterpreter(getId(),"jdbc"))) {
       String pText=p.getText().replaceFirst(requiredReplName,"jdbc(" + requiredReplName + ")");
       logger.debug("New paragraph: {}",pText);
       p.setEffectiveText(pText);

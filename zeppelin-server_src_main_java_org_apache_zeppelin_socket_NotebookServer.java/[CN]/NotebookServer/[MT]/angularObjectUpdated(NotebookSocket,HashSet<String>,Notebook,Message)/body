@@ -8,7 +8,7 @@
   boolean global=false;
   Note note=notebook.getNote(noteId);
   if (note != null) {
-    List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
+    List<InterpreterSetting> settings=notebook.getInterpreterFactory().getInterpreterSettings(note.getId());
     for (    InterpreterSetting setting : settings) {
       if (setting.getInterpreterGroup(note.id()) == null) {
         continue;
@@ -43,7 +43,7 @@
   }
   if (global) {
     for (    Note n : notebook.getAllNotes()) {
-      List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
+      List<InterpreterSetting> settings=notebook.getInterpreterFactory().getInterpreterSettings(note.getId());
       for (      InterpreterSetting setting : settings) {
         if (setting.getInterpreterGroup(n.id()) == null) {
           continue;

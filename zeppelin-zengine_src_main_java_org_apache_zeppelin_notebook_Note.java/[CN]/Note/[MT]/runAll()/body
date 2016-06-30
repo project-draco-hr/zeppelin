@@ -11,9 +11,9 @@ synchronized (paragraphs) {
       AuthenticationInfo authenticationInfo=new AuthenticationInfo();
       authenticationInfo.setUser(cronExecutingUser);
       p.setAuthenticationInfo(authenticationInfo);
-      p.setNoteReplLoader(replLoader);
+      p.setInterpreterFactory(factory);
       p.setListener(jobListenerFactory.getParagraphJobListener(this));
-      Interpreter intp=replLoader.get(p.getRequiredReplName());
+      Interpreter intp=factory.getInterpreter(getId(),p.getRequiredReplName());
       intp.getScheduler().submit(p);
     }
   }

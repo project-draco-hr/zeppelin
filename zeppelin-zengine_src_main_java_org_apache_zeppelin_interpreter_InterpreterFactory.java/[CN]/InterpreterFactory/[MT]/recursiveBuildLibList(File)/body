@@ -1,6 +1,6 @@
 {
   URL[] urls=new URL[0];
-  if (path == null || path.exists() == false) {
+  if (path == null || !path.exists()) {
     return urls;
   }
  else   if (path.getName().startsWith(".")) {

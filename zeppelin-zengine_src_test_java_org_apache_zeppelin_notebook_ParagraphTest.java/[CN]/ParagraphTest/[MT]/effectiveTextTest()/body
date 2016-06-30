@@ -1,13 +1,15 @@
 {
-  NoteInterpreterLoader noteInterpreterLoader=mock(NoteInterpreterLoader.class);
+  InterpreterFactory interpreterFactory=mock(InterpreterFactory.class);
   Interpreter interpreter=mock(Interpreter.class);
-  Paragraph p=new Paragraph(null,null,null,noteInterpreterLoader);
+  Note note=mock(Note.class);
+  Paragraph p=new Paragraph("paragraph",note,null,interpreterFactory);
   p.setText("%h2 show databases");
   p.setEffectiveText("%jdbc(h2) show databases");
   assertEquals("Get right replName","jdbc",p.getRequiredReplName());
   assertEquals("Get right scriptBody","(h2) show databases",p.getScriptBody());
-  when(noteInterpreterLoader.get("jdbc")).thenReturn(interpreter);
+  when(interpreterFactory.getInterpreter(anyString(),eq("jdbc"))).thenReturn(interpreter);
   when(interpreter.getFormType()).thenReturn(Interpreter.FormType.NATIVE);
+  when(note.getId()).thenReturn("noteId");
   try {
     p.jobRun();
   }

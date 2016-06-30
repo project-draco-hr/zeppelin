@@ -1,0 +1,6 @@
+{
+  if (settings == null || settings.isEmpty()) {
+    return null;
+  }
+  return settings.get(0);
+}

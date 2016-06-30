@@ -1,6 +1,6 @@
 {
 synchronized (interpreterSettings) {
-    List<InterpreterSetting> orderedSettings=new LinkedList<InterpreterSetting>();
+    List<InterpreterSetting> orderedSettings=new LinkedList<>();
     Map<String,List<InterpreterSetting>> groupNameInterpreterSettingMap=new HashMap<>();
     for (    InterpreterSetting interpreterSetting : interpreterSettings.values()) {
       String groupName=interpreterSetting.getGroup();

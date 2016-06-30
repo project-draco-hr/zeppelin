@@ -38,7 +38,7 @@ synchronized (interpreterGroup) {
 synchronized (interpreterGroup) {
         List<Interpreter> interpreters=interpreterGroup.get(key);
         if (interpreters == null) {
-          interpreters=new LinkedList<Interpreter>();
+          interpreters=new LinkedList<>();
           interpreterGroup.put(key,interpreters);
         }
         if (info.isDefaultInterpreter()) {

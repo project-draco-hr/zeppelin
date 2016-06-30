@@ -1,7 +1,7 @@
 {
   Note note=getNote(id);
   if (note != null) {
-    return note.getNoteReplLoader().getInterpreterSettings();
+    return replFactory.getInterpreterSettings(note.getId());
   }
  else {
     return new LinkedList<InterpreterSetting>();

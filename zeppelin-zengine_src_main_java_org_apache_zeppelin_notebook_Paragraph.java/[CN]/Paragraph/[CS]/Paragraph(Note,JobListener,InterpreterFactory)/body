@@ -1,0 +1,11 @@
+{
+  super(generateId(),listener);
+  this.note=note;
+  this.factory=factory;
+  title=null;
+  text=null;
+  authenticationInfo=null;
+  dateUpdated=null;
+  settings=new GUI();
+  config=new HashMap<String,Object>();
+}

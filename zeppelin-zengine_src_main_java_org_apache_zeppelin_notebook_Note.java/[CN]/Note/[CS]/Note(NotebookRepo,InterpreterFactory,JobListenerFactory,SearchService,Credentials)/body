@@ -1,0 +1,8 @@
+{
+  this.repo=repo;
+  this.factory=factory;
+  this.jobListenerFactory=jlFactory;
+  this.index=noteIndex;
+  this.credentials=credentials;
+  generateId();
+}

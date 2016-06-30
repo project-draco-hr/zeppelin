@@ -1,6 +1,0 @@
-{
-  if (settings == null || settings.isEmpty()) {
-    return Optional.absent();
-  }
-  return Optional.of(settings.get(0));
-}

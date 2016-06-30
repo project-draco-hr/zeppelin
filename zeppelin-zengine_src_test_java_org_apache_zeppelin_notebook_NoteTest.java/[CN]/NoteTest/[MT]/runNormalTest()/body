@@ -1,13 +1,13 @@
 {
-  when(replLoader.get("spark")).thenReturn(interpreter);
+  when(interpreterFactory.getInterpreter(anyString(),eq("spark"))).thenReturn(interpreter);
   when(interpreter.getScheduler()).thenReturn(scheduler);
   String pText="%spark sc.version";
-  Note note=new Note(repo,replLoader,jobListenerFactory,index,credentials);
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials);
   Paragraph p=note.addParagraph();
   p.setText(pText);
   note.run(p.getId());
   ArgumentCaptor<Paragraph> pCaptor=ArgumentCaptor.forClass(Paragraph.class);
   verify(scheduler,only()).submit(pCaptor.capture());
-  verify(replLoader,only()).get("spark");
+  verify(interpreterFactory,only()).getInterpreter(anyString(),eq("spark"));
   assertEquals("Paragraph text",pText,pCaptor.getValue().getText());
 }

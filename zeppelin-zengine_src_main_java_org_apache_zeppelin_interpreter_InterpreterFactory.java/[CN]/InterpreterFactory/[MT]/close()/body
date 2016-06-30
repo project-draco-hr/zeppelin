@@ -1,5 +1,5 @@
 {
-  List<Thread> closeThreads=new LinkedList<Thread>();
+  List<Thread> closeThreads=new LinkedList<>();
 synchronized (interpreterSettings) {
     Collection<InterpreterSetting> intpsettings=interpreterSettings.values();
     for (    final InterpreterSetting intpsetting : intpsettings) {

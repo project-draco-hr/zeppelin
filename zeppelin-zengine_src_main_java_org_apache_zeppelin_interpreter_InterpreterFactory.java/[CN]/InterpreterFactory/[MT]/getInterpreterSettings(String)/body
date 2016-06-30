@@ -1,0 +1,16 @@
+{
+  List<String> interpreterSettingIds=getNoteInterpreterSettingBinding(noteId);
+  LinkedList<InterpreterSetting> settings=new LinkedList<>();
+synchronized (interpreterSettingIds) {
+    for (    String id : interpreterSettingIds) {
+      InterpreterSetting setting=get(id);
+      if (setting == null) {
+        interpreterSettingIds.remove(id);
+      }
+ else {
+        settings.add(setting);
+      }
+    }
+  }
+  return settings;
+}

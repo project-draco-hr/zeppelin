@@ -43,8 +43,8 @@
       }
     }
     String interpreterGroupName=null;
-    if (note.getNoteReplLoader().getInterpreterSettings() != null && note.getNoteReplLoader().getInterpreterSettings().size() >= 1) {
-      interpreterGroupName=note.getNoteReplLoader().getInterpreterSettings().get(0).getGroup();
+    if (replFactory.getInterpreterSettings(note.getId()) != null && replFactory.getInterpreterSettings(note.getId()).size() >= 1) {
+      interpreterGroupName=replFactory.getInterpreterSettings(note.getId()).get(0).getGroup();
     }
     if (isUpdateNotebook == false && isNotebookRunning == false) {
       continue;

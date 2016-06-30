@@ -10,7 +10,7 @@
   while (p1.getStatus() != Status.FINISHED)   Thread.yield();
   while (p2.getStatus() != Status.FINISHED)   Thread.yield();
   assertEquals(p1.getResult().message(),p2.getResult().message());
-  for (  InterpreterSetting setting : note1.getNoteReplLoader().getInterpreterSettings()) {
+  for (  InterpreterSetting setting : notebook.getInterpreterFactory().getInterpreterSettings(note1.getId())) {
     setting.getOption().setPerNoteSession(true);
     notebook.getInterpreterFactory().restart(setting.id());
   }

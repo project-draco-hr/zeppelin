@@ -1,5 +1,5 @@
 {
-  List<InterpreterSetting> settings=note.getNoteReplLoader().getInterpreterSettings();
+  List<InterpreterSetting> settings=notebook().getInterpreterFactory().getInterpreterSettings(note.getId());
   if (settings == null || settings.size() == 0) {
     return;
   }

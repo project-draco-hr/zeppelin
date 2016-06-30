@@ -1,5 +1,4 @@
 {
   notebookRepoMock=mock(NotebookRepo.class);
-  replLoaderMock=mock(NoteInterpreterLoader.class);
-  when(replLoaderMock.getInterpreterSettings()).thenReturn(ImmutableList.<InterpreterSetting>of());
+  interpreterFactory=mock(InterpreterFactory.class);
 }

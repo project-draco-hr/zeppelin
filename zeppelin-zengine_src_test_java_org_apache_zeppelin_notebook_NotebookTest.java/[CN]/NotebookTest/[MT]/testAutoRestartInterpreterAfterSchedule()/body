@@ -1,6 +1,6 @@
 {
   Note note=notebook.createNote(null);
-  note.getNoteReplLoader().setInterpreters(factory.getDefaultInterpreterSettingList());
+  factory.setInterpreters(note.getId(),factory.getDefaultInterpreterSettingList());
   Paragraph p=note.addParagraph();
   Map config=new HashMap<String,Object>();
   p.setConfig(config);
@@ -14,8 +14,8 @@
   config.put("releaseresource",true);
   note.setConfig(config);
   notebook.refreshCron(note.id());
-  MockInterpreter1 mock1=((MockInterpreter1)(((ClassloaderInterpreter)((LazyOpenInterpreter)note.getNoteReplLoader().get("mock1")).getInnerInterpreter()).getInnerInterpreter()));
-  MockInterpreter2 mock2=((MockInterpreter2)(((ClassloaderInterpreter)((LazyOpenInterpreter)note.getNoteReplLoader().get("mock2")).getInnerInterpreter()).getInnerInterpreter()));
+  MockInterpreter1 mock1=((MockInterpreter1)(((ClassloaderInterpreter)((LazyOpenInterpreter)factory.getInterpreter(note.getId(),"mock1")).getInnerInterpreter()).getInnerInterpreter()));
+  MockInterpreter2 mock2=((MockInterpreter2)(((ClassloaderInterpreter)((LazyOpenInterpreter)factory.getInterpreter(note.getId(),"mock2")).getInnerInterpreter()).getInnerInterpreter()));
   while (!mock1.isOpen() || !mock2.isOpen()) {
     Thread.yield();
   }

@@ -1,6 +1,6 @@
 {
   Paragraph p=getParagraph(paragraphId);
-  p.setNoteReplLoader(replLoader);
+  p.setInterpreterFactory(factory);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
   List completion=p.completion(buffer,cursor);
   return completion;
