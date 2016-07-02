@@ -25,7 +25,7 @@
             }
           }
         }
- catch (        ClassNotFoundException e) {
+ catch (        Throwable t) {
         }
       }
     }
