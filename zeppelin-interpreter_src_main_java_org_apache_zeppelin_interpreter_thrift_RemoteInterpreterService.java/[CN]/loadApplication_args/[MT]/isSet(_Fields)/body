@@ -1,0 +1,16 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    return isSetApplicationInstanceId();
+case PACKAGE_INFO:
+  return isSetPackageInfo();
+case NOTE_ID:
+return isSetNoteId();
+case PARAGRAPH_ID:
+return isSetParagraphId();
+}
+throw new IllegalStateException();
+}

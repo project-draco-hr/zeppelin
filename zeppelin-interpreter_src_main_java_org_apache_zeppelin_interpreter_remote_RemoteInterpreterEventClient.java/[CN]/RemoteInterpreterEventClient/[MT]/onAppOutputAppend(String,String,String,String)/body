@@ -1,0 +1,8 @@
+{
+  Map<String,String> appendOutput=new HashMap<String,String>();
+  appendOutput.put("noteId",noteId);
+  appendOutput.put("paragraphId",paragraphId);
+  appendOutput.put("appId",appId);
+  appendOutput.put("data",output);
+  sendEvent(new RemoteInterpreterEvent(RemoteInterpreterEventType.OUTPUT_APPEND,gson.toJson(appendOutput)));
+}

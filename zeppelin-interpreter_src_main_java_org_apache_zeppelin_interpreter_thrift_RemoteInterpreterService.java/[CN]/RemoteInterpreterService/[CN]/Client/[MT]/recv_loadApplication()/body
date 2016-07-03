@@ -1,0 +1,8 @@
+{
+  loadApplication_result result=new loadApplication_result();
+  receiveBase(result,"loadApplication");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"loadApplication failed: unknown result");
+}

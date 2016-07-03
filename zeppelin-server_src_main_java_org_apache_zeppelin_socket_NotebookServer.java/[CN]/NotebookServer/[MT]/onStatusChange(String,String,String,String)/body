@@ -1,0 +1,4 @@
+{
+  Message msg=new Message(OP.APP_STATUS_CHANGE).put("noteId",noteId).put("paragraphId",paragraphId).put("appId",appId).put("status",status);
+  broadcast(noteId,msg);
+}

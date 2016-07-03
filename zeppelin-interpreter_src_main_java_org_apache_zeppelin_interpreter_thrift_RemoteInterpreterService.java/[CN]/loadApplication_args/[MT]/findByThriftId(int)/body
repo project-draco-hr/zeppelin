@@ -1,0 +1,14 @@
+{
+switch (fieldId) {
+case 1:
+    return APPLICATION_INSTANCE_ID;
+case 2:
+  return PACKAGE_INFO;
+case 3:
+return NOTE_ID;
+case 4:
+return PARAGRAPH_ID;
+default :
+return null;
+}
+}

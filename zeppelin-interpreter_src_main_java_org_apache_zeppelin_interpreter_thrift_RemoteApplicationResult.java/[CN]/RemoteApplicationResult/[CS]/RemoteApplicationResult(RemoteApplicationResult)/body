@@ -1,0 +1,7 @@
+{
+  __isset_bitfield=other.__isset_bitfield;
+  this.success=other.success;
+  if (other.isSetMsg()) {
+    this.msg=other.msg;
+  }
+}

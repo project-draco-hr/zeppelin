@@ -34,6 +34,7 @@
       }
     }
   }
+  note.setNoteEventListener(this);
 synchronized (notes) {
     notes.put(note.id(),note);
     refreshCron(note.id());

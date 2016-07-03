@@ -1,0 +1,5 @@
+{
+  unloadApplication_result result=new unloadApplication_result();
+  result.success=iface.unloadApplication(args.applicationInstanceId);
+  return result;
+}

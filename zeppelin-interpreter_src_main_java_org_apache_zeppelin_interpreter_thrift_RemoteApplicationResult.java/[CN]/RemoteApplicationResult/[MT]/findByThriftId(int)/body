@@ -1,0 +1,10 @@
+{
+switch (fieldId) {
+case 1:
+    return SUCCESS;
+case 2:
+  return MSG;
+default :
+return null;
+}
+}

@@ -1,0 +1,7 @@
+{
+  this();
+  this.applicationInstanceId=applicationInstanceId;
+  this.packageInfo=packageInfo;
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+}

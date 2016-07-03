@@ -1,0 +1,13 @@
+{
+  if (requiredResources == null || requiredResources.length == 0) {
+    return new ResourceSet();
+  }
+  ResourceSet allResources;
+  if (resourcePool instanceof DistributedResourcePool) {
+    allResources=((DistributedResourcePool)resourcePool).getAll(false);
+  }
+ else {
+    allResources=resourcePool.getAll();
+  }
+  return findRequiredResourceSet(requiredResources,noteId,paragraphId,allResources);
+}

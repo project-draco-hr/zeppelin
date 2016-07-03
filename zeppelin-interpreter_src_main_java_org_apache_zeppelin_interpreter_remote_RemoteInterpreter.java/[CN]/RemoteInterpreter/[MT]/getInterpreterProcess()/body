@@ -5,7 +5,13 @@
   }
 synchronized (intpGroup) {
     if (intpGroup.getRemoteInterpreterProcess() == null) {
-      RemoteInterpreterProcess remoteProcess=new RemoteInterpreterProcess(interpreterRunner,interpreterPath,localRepoPath,env,connectTimeout,remoteInterpreterProcessListener);
+      RemoteInterpreterProcess remoteProcess;
+      if (connectToExistingProcess()) {
+        remoteProcess=new RemoteInterpreterRunningProcess(connectTimeout,remoteInterpreterProcessListener,applicationEventListener,host,port);
+      }
+ else {
+        remoteProcess=new RemoteInterpreterManagedProcess(interpreterRunner,interpreterPath,localRepoPath,env,connectTimeout,remoteInterpreterProcessListener,applicationEventListener);
+      }
       intpGroup.setRemoteInterpreterProcess(remoteProcess);
     }
     return intpGroup.getRemoteInterpreterProcess();

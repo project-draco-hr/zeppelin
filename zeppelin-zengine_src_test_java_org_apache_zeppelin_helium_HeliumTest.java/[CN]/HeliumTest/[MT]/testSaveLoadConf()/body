@@ -1,0 +1,13 @@
+{
+  File heliumConf=new File(tmpDir,"helium.conf");
+  Helium helium=new Helium(heliumConf.getAbsolutePath(),localRegistryPath.getAbsolutePath());
+  assertFalse(heliumConf.exists());
+  HeliumTestRegistry registry1=new HeliumTestRegistry("r1","r1");
+  helium.addRegistry(registry1);
+  assertEquals(2,helium.getAllRegistry().size());
+  assertEquals(0,helium.getAllPackageInfo().size());
+  helium.save();
+  assertTrue(heliumConf.exists());
+  Helium heliumRestored=new Helium(heliumConf.getAbsolutePath(),localRegistryPath.getAbsolutePath());
+  assertEquals(2,heliumRestored.getAllRegistry().size());
+}

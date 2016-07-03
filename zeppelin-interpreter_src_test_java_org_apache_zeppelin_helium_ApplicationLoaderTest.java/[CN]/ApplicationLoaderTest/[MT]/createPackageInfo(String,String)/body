@@ -1,0 +1,4 @@
+{
+  HeliumPackage app1=new HeliumPackage(HeliumPackage.Type.APPLICATION,"name1","desc1",artifact,className,new String[][]{{}});
+  return app1;
+}

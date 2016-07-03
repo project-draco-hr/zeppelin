@@ -1,0 +1,7 @@
+{
+  JsonObject json=new JsonObject();
+  json.addProperty("class",heliumRegistry.getClass().getName());
+  json.addProperty("uri",heliumRegistry.uri());
+  json.addProperty("name",heliumRegistry.name());
+  return json;
+}

@@ -12,7 +12,7 @@
       waitForParagraph(1,"ERROR");
       collector.checkThat("Paragraph from SparkParagraphIT of testSqlSpark status: ","ERROR",CoreMatchers.equalTo("FINISHED"));
     }
-    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]//table"));
+    WebElement paragraph1Result=driver.findElement(By.xpath(getParagraphXPath(1) + "//div[@class=\"tableDisplay\"]/div/div/div/div/div/div[1]"));
     collector.checkThat("Paragraph from SparkParagraphIT of testSqlSpark result: ",paragraph1Result.getText().toString(),CoreMatchers.equalTo("age\njob\nmarital\neducation\nbalance\n" + "30 unemployed married primary 1,787"));
   }
  catch (  Exception e) {

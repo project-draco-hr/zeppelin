@@ -1,0 +1,4 @@
+{
+  InterpreterOutput out=createAppOutput(noteId,paragraphId,applicationInstanceId);
+  return new ApplicationContext(noteId,paragraphId,applicationInstanceId,new HeliumAppAngularObjectRegistry(angularObjectRegistry,noteId,applicationInstanceId),out);
+}

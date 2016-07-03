@@ -1,0 +1,18 @@
+{
+  updateThread=new Thread(){
+    public void run(){
+      while (!shutdown) {
+        SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        context().getAngularObjectRegistry().add("date",df.format(date));
+        try {
+          Thread.sleep(1000);
+        }
+ catch (        InterruptedException e) {
+        }
+        date=new Date(date.getTime() + 1000);
+      }
+    }
+  }
+;
+  updateThread.start();
+}

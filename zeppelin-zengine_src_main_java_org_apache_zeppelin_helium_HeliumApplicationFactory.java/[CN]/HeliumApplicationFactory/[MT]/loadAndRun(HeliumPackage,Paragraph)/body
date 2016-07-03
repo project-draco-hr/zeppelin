@@ -1,0 +1,6 @@
+{
+  ApplicationState appState=paragraph.createOrGetApplicationState(pkg);
+  onLoad(paragraph.getNote().getId(),paragraph.getId(),appState.getId(),appState.getHeliumPackage());
+  executor.submit(new LoadApplication(appState,pkg,paragraph));
+  return appState.getId();
+}

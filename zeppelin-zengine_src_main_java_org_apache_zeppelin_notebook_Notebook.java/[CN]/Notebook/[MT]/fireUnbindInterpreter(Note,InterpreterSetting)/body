@@ -1,0 +1,5 @@
+{
+  for (  NotebookEventListener listener : notebookEventListeners) {
+    listener.onUnbindInterpreter(note,setting);
+  }
+}

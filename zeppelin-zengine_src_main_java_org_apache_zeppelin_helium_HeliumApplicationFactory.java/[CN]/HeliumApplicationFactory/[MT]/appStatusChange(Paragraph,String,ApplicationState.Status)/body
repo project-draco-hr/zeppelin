@@ -1,0 +1,5 @@
+{
+  ApplicationState app=paragraph.getApplicationState(appId);
+  app.setStatus(status);
+  onStatusChange(paragraph.getNote().getId(),paragraph.getId(),appId,status.toString());
+}

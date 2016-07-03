@@ -25,7 +25,7 @@
     sql.setInterpreterGroup(intpGroup);
     sql.open();
   }
-  context=new InterpreterContext("note","id","title","text",new AuthenticationInfo(),new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),null,new LinkedList<InterpreterContextRunner>(),new InterpreterOutput(new InterpreterOutputListener(){
+  context=new InterpreterContext("note","id","title","text",new AuthenticationInfo(),new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),new LocalResourcePool("id"),new LinkedList<InterpreterContextRunner>(),new InterpreterOutput(new InterpreterOutputListener(){
     @Override public void onAppend(    InterpreterOutput out,    byte[] line){
     }
     @Override public void onUpdate(    InterpreterOutput out,    byte[] output){

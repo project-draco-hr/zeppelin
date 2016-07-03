@@ -1,0 +1,26 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.applicationInstanceId != null) {
+    oprot.writeFieldBegin(APPLICATION_INSTANCE_ID_FIELD_DESC);
+    oprot.writeString(struct.applicationInstanceId);
+    oprot.writeFieldEnd();
+  }
+  if (struct.packageInfo != null) {
+    oprot.writeFieldBegin(PACKAGE_INFO_FIELD_DESC);
+    oprot.writeString(struct.packageInfo);
+    oprot.writeFieldEnd();
+  }
+  if (struct.noteId != null) {
+    oprot.writeFieldBegin(NOTE_ID_FIELD_DESC);
+    oprot.writeString(struct.noteId);
+    oprot.writeFieldEnd();
+  }
+  if (struct.paragraphId != null) {
+    oprot.writeFieldBegin(PARAGRAPH_ID_FIELD_DESC);
+    oprot.writeString(struct.paragraphId);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

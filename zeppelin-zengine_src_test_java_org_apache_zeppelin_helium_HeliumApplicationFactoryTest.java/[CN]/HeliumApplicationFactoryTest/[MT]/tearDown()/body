@@ -1,0 +1,10 @@
+{
+  List<InterpreterSetting> settings=factory.get();
+  for (  InterpreterSetting setting : settings) {
+    for (    InterpreterGroup intpGroup : setting.getAllInterpreterGroups()) {
+      intpGroup.close();
+    }
+  }
+  FileUtils.deleteDirectory(tmpDir);
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_CONF_DIR.getVarName(),ZeppelinConfiguration.ConfVars.ZEPPELIN_CONF_DIR.getStringValue());
+}

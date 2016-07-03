@@ -1,0 +1,7 @@
+{
+  for (  InterpreterContextRunner r : context.getRunners()) {
+    if (context.getParagraphId().equals(r.getParagraphId())) {
+      r.run();
+    }
+  }
+}

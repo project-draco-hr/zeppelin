@@ -1,0 +1,5 @@
+{
+  beginJavascript();
+  context.out.write(js);
+  endJavascript();
+}

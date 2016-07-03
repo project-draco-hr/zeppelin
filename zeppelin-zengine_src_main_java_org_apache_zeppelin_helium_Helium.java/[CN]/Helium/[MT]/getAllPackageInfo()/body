@@ -1,0 +1,16 @@
+{
+  List<HeliumPackageSearchResult> list=new LinkedList<HeliumPackageSearchResult>();
+synchronized (registry) {
+    for (    HeliumRegistry r : registry) {
+      try {
+        for (        HeliumPackage pkg : r.getAll()) {
+          list.add(new HeliumPackageSearchResult(r.name(),pkg));
+        }
+      }
+ catch (      IOException e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+  }
+  return list;
+}

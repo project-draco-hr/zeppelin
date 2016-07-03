@@ -8,6 +8,9 @@ synchronized (paragraphs) {
       if (p.getId().equals(paragraphId)) {
         index.deleteIndexDoc(this,p);
         i.remove();
+        if (noteEventListener != null) {
+          noteEventListener.onParagraphRemove(p);
+        }
         return p;
       }
     }

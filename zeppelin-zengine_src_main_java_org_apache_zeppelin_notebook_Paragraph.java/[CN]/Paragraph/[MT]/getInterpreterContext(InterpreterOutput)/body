@@ -1,0 +1,21 @@
+{
+  AngularObjectRegistry registry=null;
+  ResourcePool resourcePool=null;
+  if (!factory.getInterpreterSettings(note.getId()).isEmpty()) {
+    InterpreterSetting intpGroup=factory.getInterpreterSettings(note.getId()).get(0);
+    registry=intpGroup.getInterpreterGroup(note.id()).getAngularObjectRegistry();
+    resourcePool=intpGroup.getInterpreterGroup(note.id()).getResourcePool();
+  }
+  List<InterpreterContextRunner> runners=new LinkedList<InterpreterContextRunner>();
+  for (  Paragraph p : note.getParagraphs()) {
+    runners.add(new ParagraphRunner(note,note.id(),p.getId()));
+  }
+  final Paragraph self=this;
+  Credentials credentials=note.getCredentials();
+  if (authenticationInfo != null) {
+    UserCredentials userCredentials=credentials.getUserCredentials(authenticationInfo.getUser());
+    authenticationInfo.setUserCredentials(userCredentials);
+  }
+  InterpreterContext interpreterContext=new InterpreterContext(note.id(),getId(),this.getTitle(),this.getText(),this.getAuthenticationInfo(),this.getConfig(),this.settings,registry,resourcePool,runners,output);
+  return interpreterContext;
+}

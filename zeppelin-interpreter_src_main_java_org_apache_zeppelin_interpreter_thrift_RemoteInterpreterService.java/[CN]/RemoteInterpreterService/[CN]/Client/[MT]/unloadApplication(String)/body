@@ -1,0 +1,4 @@
+{
+  send_unloadApplication(applicationInstanceId);
+  return recv_unloadApplication();
+}

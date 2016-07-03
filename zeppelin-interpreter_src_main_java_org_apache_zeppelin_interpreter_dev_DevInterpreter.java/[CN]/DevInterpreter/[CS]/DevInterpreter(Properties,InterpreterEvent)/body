@@ -1,0 +1,4 @@
+{
+  super(property);
+  this.interpreterEvent=interpreterEvent;
+}

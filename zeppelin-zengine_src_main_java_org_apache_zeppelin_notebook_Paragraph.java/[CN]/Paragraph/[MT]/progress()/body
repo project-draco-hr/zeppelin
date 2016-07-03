@@ -2,7 +2,7 @@
   String replName=getRequiredReplName();
   Interpreter repl=getRepl(replName);
   if (repl != null) {
-    return repl.getProgress(getInterpreterContext());
+    return repl.getProgress(getInterpreterContext(null));
   }
  else {
     return 0;

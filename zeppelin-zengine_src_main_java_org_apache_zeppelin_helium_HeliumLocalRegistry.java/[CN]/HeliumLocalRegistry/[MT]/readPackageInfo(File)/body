@@ -1,0 +1,11 @@
+{
+  try {
+    JsonReader reader=new JsonReader(new StringReader(FileUtils.readFileToString(f)));
+    reader.setLenient(true);
+    return gson.fromJson(reader,HeliumPackage.class);
+  }
+ catch (  IOException e) {
+    logger.error(e.getMessage(),e);
+    return null;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  loadApplication_args args=new loadApplication_args();
+  args.setApplicationInstanceId(applicationInstanceId);
+  args.setPackageInfo(packageInfo);
+  args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
+  sendBase("loadApplication",args);
+}

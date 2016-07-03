@@ -1,0 +1,7 @@
+{
+  if (!(o instanceof HeliumPackage)) {
+    return false;
+  }
+  HeliumPackage info=(HeliumPackage)o;
+  return type == info.type && artifact.equals(info.artifact) && className.equals(info.className);
+}

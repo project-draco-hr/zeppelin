@@ -1,0 +1,5 @@
+{
+  this.appState=appState;
+  this.pkg=pkg;
+  this.paragraph=paragraph;
+}

@@ -1,0 +1,5 @@
+{
+  runApplication_result result=new runApplication_result();
+  result.success=iface.runApplication(args.applicationInstanceId);
+  return result;
+}

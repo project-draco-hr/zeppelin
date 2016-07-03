@@ -1,0 +1,13 @@
+{
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    return getApplicationInstanceId();
+case PACKAGE_INFO:
+  return getPackageInfo();
+case NOTE_ID:
+return getNoteId();
+case PARAGRAPH_ID:
+return getParagraphId();
+}
+throw new IllegalStateException();
+}

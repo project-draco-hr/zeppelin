@@ -1,0 +1,12 @@
+{
+  String jsonString;
+synchronized (registry) {
+    heliumConf.setRegistry(registry);
+    jsonString=gson.toJson(heliumConf);
+  }
+  File heliumConfFile=new File(heliumConfPath);
+  if (!heliumConfFile.exists()) {
+    heliumConfFile.createNewFile();
+  }
+  FileUtils.writeStringToFile(heliumConfFile,jsonString);
+}

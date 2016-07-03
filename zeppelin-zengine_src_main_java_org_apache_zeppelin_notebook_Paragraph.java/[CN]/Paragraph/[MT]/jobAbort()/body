@@ -12,7 +12,7 @@
     job.setStatus(Status.ABORT);
   }
  else {
-    repl.cancel(getInterpreterContext());
+    repl.cancel(getInterpreterContext(null));
   }
   return true;
 }

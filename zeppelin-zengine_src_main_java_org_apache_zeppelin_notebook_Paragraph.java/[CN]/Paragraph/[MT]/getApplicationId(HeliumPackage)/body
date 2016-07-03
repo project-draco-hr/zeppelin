@@ -1,0 +1,3 @@
+{
+  return "app_" + getNote().getId() + "-"+ getId()+ pkg.getName().replaceAll("\\.","_");
+}

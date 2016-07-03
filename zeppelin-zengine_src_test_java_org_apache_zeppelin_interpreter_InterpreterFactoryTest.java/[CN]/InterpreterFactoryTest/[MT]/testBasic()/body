@@ -1,10 +1,16 @@
 {
-  List<String> all=factory.getDefaultInterpreterSettingList();
-  InterpreterSetting setting=factory.get(all.get(0));
-  InterpreterGroup interpreterGroup=setting.getInterpreterGroup("sharedProcess");
-  factory.createInterpretersForNote(setting,"sharedProcess","session");
+  List<InterpreterSetting> all=factory.get();
+  InterpreterSetting mock1Setting=null;
+  for (  InterpreterSetting setting : all) {
+    if (setting.getName().equals("mock1")) {
+      mock1Setting=setting;
+      break;
+    }
+  }
+  InterpreterGroup interpreterGroup=mock1Setting.getInterpreterGroup("sharedProcess");
+  factory.createInterpretersForNote(mock1Setting,"sharedProcess","session");
   assertNotNull("get Interpreter",interpreterGroup.get("session").get(0));
   assertNull(factory.get("unknown"));
-  factory.restart(all.get(0));
-  assertNull(setting.getInterpreterGroup("sharedProcess").get("session"));
+  factory.restart(mock1Setting.id());
+  assertNull(mock1Setting.getInterpreterGroup("sharedProcess").get("session"));
 }

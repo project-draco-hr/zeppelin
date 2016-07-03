@@ -1,2 +1,11 @@
 {
+  if (jobListenerFactory != null) {
+    ParagraphJobListener listener=jobListenerFactory.getParagraphJobListener(this);
+    if (listener != null) {
+      listener.afterStatusChange(job,before,after);
+    }
+  }
+  if (noteEventListener != null) {
+    noteEventListener.onParagraphStatusChange((Paragraph)job,after);
+  }
 }

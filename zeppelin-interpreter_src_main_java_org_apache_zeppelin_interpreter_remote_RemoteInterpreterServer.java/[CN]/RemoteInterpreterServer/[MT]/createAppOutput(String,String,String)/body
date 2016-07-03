@@ -1,0 +1,11 @@
+{
+  return new InterpreterOutput(new InterpreterOutputListener(){
+    @Override public void onAppend(    InterpreterOutput out,    byte[] line){
+      eventClient.onAppOutputAppend(noteId,paragraphId,appId,new String(line));
+    }
+    @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
+      eventClient.onAppOutputUpdate(noteId,paragraphId,appId,new String(output));
+    }
+  }
+);
+}

@@ -1,0 +1,8 @@
+{
+  unloadApplication_result result=new unloadApplication_result();
+  receiveBase(result,"unloadApplication");
+  if (result.isSetSuccess()) {
+    return result.success;
+  }
+  throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT,"unloadApplication failed: unknown result");
+}

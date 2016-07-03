@@ -1,0 +1,7 @@
+{
+  LocalResourcePool pool=new LocalResourcePool("dev");
+  pool.put("date",new Date());
+  ZeppelinApplicationDevServer devServer=new ZeppelinApplicationDevServer(Clock.class.getName(),pool.getAll());
+  devServer.start();
+  devServer.join();
+}

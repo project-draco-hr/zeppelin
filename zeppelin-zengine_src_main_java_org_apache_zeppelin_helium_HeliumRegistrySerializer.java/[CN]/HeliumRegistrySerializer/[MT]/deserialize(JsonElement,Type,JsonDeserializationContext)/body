@@ -1,0 +1,17 @@
+{
+  JsonObject jsonObject=json.getAsJsonObject();
+  String className=jsonObject.get("class").getAsString();
+  String uri=jsonObject.get("uri").getAsString();
+  String name=jsonObject.get("name").getAsString();
+  try {
+    logger.info("Restore helium registry {} {} {}",name,className,uri);
+    Class<HeliumRegistry> cls=(Class<HeliumRegistry>)getClass().getClassLoader().loadClass(className);
+    Constructor<HeliumRegistry> constructor=cls.getConstructor(String.class,String.class);
+    HeliumRegistry registry=constructor.newInstance(name,uri);
+    return registry;
+  }
+ catch (  ClassNotFoundException|NoSuchMethodException|IllegalAccessException|InstantiationException|InvocationTargetException e) {
+    logger.error(e.getMessage(),e);
+    return null;
+  }
+}

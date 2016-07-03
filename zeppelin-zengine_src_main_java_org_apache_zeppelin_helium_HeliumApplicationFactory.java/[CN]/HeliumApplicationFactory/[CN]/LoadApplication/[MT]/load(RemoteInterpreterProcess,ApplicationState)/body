@@ -1,0 +1,30 @@
+{
+  RemoteInterpreterService.Client client=null;
+synchronized (appState) {
+    if (appState.getStatus() == ApplicationState.Status.LOADED) {
+      return;
+    }
+    try {
+      appStatusChange(paragraph,appState.getId(),ApplicationState.Status.LOADING);
+      String pkgInfo=gson.toJson(pkg);
+      String appId=appState.getId();
+      client=intpProcess.getClient();
+      RemoteApplicationResult ret=client.loadApplication(appId,pkgInfo,paragraph.getNote().getId(),paragraph.getId());
+      if (ret.isSuccess()) {
+        appStatusChange(paragraph,appState.getId(),ApplicationState.Status.LOADED);
+      }
+ else {
+        throw new ApplicationException(ret.getMsg());
+      }
+    }
+ catch (    TException e) {
+      intpProcess.releaseBrokenClient(client);
+      throw e;
+    }
+ finally {
+      if (client != null) {
+        intpProcess.releaseClient(client);
+      }
+    }
+  }
+}

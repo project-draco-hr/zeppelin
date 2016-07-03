@@ -1,0 +1,17 @@
+{
+  if (notebook == null) {
+    return null;
+  }
+  Note note=notebook.getNote(noteId);
+  if (note == null) {
+    logger.error("Can't get note {}",noteId);
+    return null;
+  }
+  Paragraph paragraph=note.getParagraph(paragraphId);
+  if (paragraph == null) {
+    logger.error("Can't get paragraph {}",paragraphId);
+    return null;
+  }
+  ApplicationState appFound=paragraph.getApplicationState(appId);
+  return appFound;
+}

@@ -1,0 +1,7 @@
+{
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+  this.applicationInstanceId=applicationInstanceId;
+  this.angularObjectRegistry=angularObjectRegistry;
+  this.out=out;
+}

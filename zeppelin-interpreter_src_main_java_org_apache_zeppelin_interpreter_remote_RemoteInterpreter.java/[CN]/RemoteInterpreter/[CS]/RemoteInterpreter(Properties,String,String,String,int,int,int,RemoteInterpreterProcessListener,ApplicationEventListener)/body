@@ -1,0 +1,12 @@
+{
+  super(property);
+  this.noteId=noteId;
+  this.className=className;
+  initialized=false;
+  this.host=host;
+  this.port=port;
+  this.connectTimeout=connectTimeout;
+  this.maxPoolSize=maxPoolSize;
+  this.remoteInterpreterProcessListener=remoteInterpreterProcessListener;
+  this.applicationEventListener=appListener;
+}

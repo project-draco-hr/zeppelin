@@ -1,0 +1,10 @@
+{
+  List<Object> list=new ArrayList<Object>();
+  boolean present_success=true;
+  list.add(present_success);
+  if (present_success)   list.add(success);
+  boolean present_msg=true && (isSetMsg());
+  list.add(present_msg);
+  if (present_msg)   list.add(msg);
+  return list.hashCode();
+}

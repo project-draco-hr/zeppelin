@@ -1,4 +1,17 @@
 {
+  for (  String appId : runningApplications.keySet()) {
+    RunningApplication appInfo=runningApplications.get(appId);
+    if (appInfo.noteId.equals(noteId) || noteId.equals("shared_session")) {
+      try {
+        logger.info("Unload App {} ",appInfo.pkg.getName());
+        appInfo.app.unload();
+        eventClient.onAppStatusUpdate(appInfo.noteId,appInfo.paragraphId,appId,"UNLOADED");
+      }
+ catch (      ApplicationException e) {
+        logger.error(e.getMessage(),e);
+      }
+    }
+  }
 synchronized (interpreterGroup) {
     List<Interpreter> interpreters=interpreterGroup.get(noteId);
     if (interpreters != null) {

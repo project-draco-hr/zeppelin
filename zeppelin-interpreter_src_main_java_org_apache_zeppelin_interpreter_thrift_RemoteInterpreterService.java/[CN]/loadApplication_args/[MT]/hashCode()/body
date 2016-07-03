@@ -1,0 +1,16 @@
+{
+  List<Object> list=new ArrayList<Object>();
+  boolean present_applicationInstanceId=true && (isSetApplicationInstanceId());
+  list.add(present_applicationInstanceId);
+  if (present_applicationInstanceId)   list.add(applicationInstanceId);
+  boolean present_packageInfo=true && (isSetPackageInfo());
+  list.add(present_packageInfo);
+  if (present_packageInfo)   list.add(packageInfo);
+  boolean present_noteId=true && (isSetNoteId());
+  list.add(present_noteId);
+  if (present_noteId)   list.add(noteId);
+  boolean present_paragraphId=true && (isSetParagraphId());
+  list.add(present_paragraphId);
+  if (present_paragraphId)   list.add(paragraphId);
+  return list.hashCode();
+}

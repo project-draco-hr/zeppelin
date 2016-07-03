@@ -1,0 +1,12 @@
+{
+  for (  Paragraph p : note.getParagraphs()) {
+    Interpreter currentInterpreter=p.getCurrentRepl();
+    List<InterpreterSetting.InterpreterInfo> infos=setting.getInterpreterInfos();
+    for (    InterpreterSetting.InterpreterInfo info : infos) {
+      if (info.getClassName().equals(currentInterpreter.getClassName())) {
+        onParagraphRemove(p);
+        break;
+      }
+    }
+  }
+}

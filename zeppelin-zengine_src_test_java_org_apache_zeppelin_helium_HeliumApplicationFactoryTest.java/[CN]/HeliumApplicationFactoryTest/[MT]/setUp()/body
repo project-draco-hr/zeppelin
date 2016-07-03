@@ -1,0 +1,29 @@
+{
+  tmpDir=new File(System.getProperty("java.io.tmpdir") + "/ZeppelinLTest_" + System.currentTimeMillis());
+  tmpDir.mkdirs();
+  File confDir=new File(tmpDir,"conf");
+  confDir.mkdirs();
+  notebookDir=new File(tmpDir + "/notebook");
+  notebookDir.mkdirs();
+  File home=new File(getClass().getClassLoader().getResource("note").getFile()).getParentFile().getParentFile().getParentFile().getParentFile();
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_HOME.getVarName(),home.getAbsolutePath());
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_CONF_DIR.getVarName(),tmpDir.getAbsolutePath() + "/conf");
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
+  System.setProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"org.apache.zeppelin.interpreter.mock.MockInterpreter1,org.apache.zeppelin.interpreter.mock.MockInterpreter2");
+  conf=new ZeppelinConfiguration();
+  this.schedulerFactory=new SchedulerFactory();
+  MockInterpreter1.register("mock1","org.apache.zeppelin.interpreter.mock.MockInterpreter1");
+  MockInterpreter2.register("mock2","org.apache.zeppelin.interpreter.mock.MockInterpreter2");
+  heliumAppFactory=new HeliumApplicationFactory();
+  depResolver=new DependencyResolver(tmpDir.getAbsolutePath() + "/local-repo");
+  factory=new InterpreterFactory(conf,new InterpreterOption(true),null,null,heliumAppFactory,depResolver);
+  HashMap<String,String> env=new HashMap<String,String>();
+  env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
+  factory.setEnv(env);
+  SearchService search=mock(SearchService.class);
+  notebookRepo=new VFSNotebookRepo(conf);
+  NotebookAuthorization notebookAuthorization=new NotebookAuthorization(conf);
+  notebook=new Notebook(conf,notebookRepo,schedulerFactory,factory,this,search,notebookAuthorization,null);
+  heliumAppFactory.setNotebook(notebook);
+  notebook.addNotebookEventListener(heliumAppFactory);
+}

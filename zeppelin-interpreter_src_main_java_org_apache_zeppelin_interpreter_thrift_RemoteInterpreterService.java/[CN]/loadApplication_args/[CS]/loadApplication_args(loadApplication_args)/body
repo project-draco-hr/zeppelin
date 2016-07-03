@@ -1,0 +1,14 @@
+{
+  if (other.isSetApplicationInstanceId()) {
+    this.applicationInstanceId=other.applicationInstanceId;
+  }
+  if (other.isSetPackageInfo()) {
+    this.packageInfo=other.packageInfo;
+  }
+  if (other.isSetNoteId()) {
+    this.noteId=other.noteId;
+  }
+  if (other.isSetParagraphId()) {
+    this.paragraphId=other.paragraphId;
+  }
+}

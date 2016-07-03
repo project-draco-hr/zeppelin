@@ -7,6 +7,6 @@
     job.setStatus(Status.ABORT);
   }
  else {
-    intp.cancel(convert(interpreterContext));
+    intp.cancel(convert(interpreterContext,null));
   }
 }

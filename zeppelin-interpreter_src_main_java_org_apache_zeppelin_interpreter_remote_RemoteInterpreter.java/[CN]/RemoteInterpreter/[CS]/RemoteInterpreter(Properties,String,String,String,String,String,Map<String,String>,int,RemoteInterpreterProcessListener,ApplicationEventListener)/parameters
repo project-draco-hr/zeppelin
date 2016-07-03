@@ -1,0 +1,10 @@
+Properties property
+String noteId
+String className
+String interpreterRunner
+String interpreterPath
+String localRepoPath
+Map<String,String> env
+int connectTimeout
+RemoteInterpreterProcessListener remoteInterpreterProcessListener
+ApplicationEventListener appListener

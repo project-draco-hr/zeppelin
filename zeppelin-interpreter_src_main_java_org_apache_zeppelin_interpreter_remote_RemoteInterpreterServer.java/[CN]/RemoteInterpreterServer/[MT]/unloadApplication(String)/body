@@ -1,0 +1,14 @@
+{
+  RunningApplication runningApplication=runningApplications.remove(applicationInstanceId);
+  if (runningApplication != null) {
+    try {
+      logger.info("Unloading application {}",applicationInstanceId);
+      runningApplication.app.unload();
+    }
+ catch (    ApplicationException e) {
+      logger.error(e.getMessage(),e);
+      return new RemoteApplicationResult(false,e.getMessage());
+    }
+  }
+  return new RemoteApplicationResult(true,"");
+}

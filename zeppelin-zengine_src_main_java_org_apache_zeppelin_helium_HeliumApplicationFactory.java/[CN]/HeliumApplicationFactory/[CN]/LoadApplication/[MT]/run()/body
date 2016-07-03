@@ -1,0 +1,20 @@
+{
+  try {
+    Interpreter intp=paragraph.getRepl(paragraph.getRequiredReplName());
+    InterpreterGroup intpGroup=intp.getInterpreterGroup();
+    RemoteInterpreterProcess intpProcess=intpGroup.getRemoteInterpreterProcess();
+    if (intpProcess == null) {
+      throw new ApplicationException("Target interpreter process is not running");
+    }
+    load(intpProcess,appState);
+    RunApplication runTask=new RunApplication(paragraph,appState.getId());
+    runTask.run();
+  }
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
+    if (appState != null) {
+      appStatusChange(paragraph,appState.getId(),ApplicationState.Status.ERROR);
+      appState.setOutput(e.getMessage());
+    }
+  }
+}

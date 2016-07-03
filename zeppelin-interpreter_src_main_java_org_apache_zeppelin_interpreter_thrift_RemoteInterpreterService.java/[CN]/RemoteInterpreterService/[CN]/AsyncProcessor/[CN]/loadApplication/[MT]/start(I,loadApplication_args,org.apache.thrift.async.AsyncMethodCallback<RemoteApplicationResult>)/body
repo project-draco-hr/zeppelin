@@ -1,0 +1,3 @@
+{
+  iface.loadApplication(args.applicationInstanceId,args.packageInfo,args.noteId,args.paragraphId,resultHandler);
+}

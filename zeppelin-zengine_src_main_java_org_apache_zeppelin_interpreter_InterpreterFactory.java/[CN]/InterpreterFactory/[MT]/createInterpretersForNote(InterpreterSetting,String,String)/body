@@ -30,7 +30,12 @@ synchronized (interpreterGroup) {
     if (info.getGroup().equals(groupName)) {
       Interpreter intp;
       if (option.isRemote()) {
-        intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
+        if (option.isConnectExistingProcess()) {
+          intp=connectToRemoteRepl(noteId,info.getClassName(),option.getHost(),option.getPort(),properties);
+        }
+ else {
+          intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
+        }
       }
  else {
         intp=createRepl(info.getPath(),info.getClassName(),properties);

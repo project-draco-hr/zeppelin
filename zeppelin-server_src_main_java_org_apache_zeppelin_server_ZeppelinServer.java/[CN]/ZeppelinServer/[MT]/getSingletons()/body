@@ -4,6 +4,8 @@
   singletons.add(root);
   NotebookRestApi notebookApi=new NotebookRestApi(notebook,notebookWsServer,notebookIndex);
   singletons.add(notebookApi);
+  HeliumRestApi heliumApi=new HeliumRestApi(helium,heliumApplicationFactory,notebook);
+  singletons.add(heliumApi);
   InterpreterRestApi interpreterApi=new InterpreterRestApi(replFactory);
   singletons.add(interpreterApi);
   CredentialRestApi credentialApi=new CredentialRestApi(credentials);

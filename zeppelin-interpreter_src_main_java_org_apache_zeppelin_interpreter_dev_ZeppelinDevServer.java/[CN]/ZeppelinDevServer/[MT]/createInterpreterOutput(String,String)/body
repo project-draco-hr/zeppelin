@@ -1,0 +1,21 @@
+{
+  if (out == null) {
+    final RemoteInterpreterEventClient eventClient=getEventClient();
+    try {
+      out=new InterpreterOutput(new InterpreterOutputListener(){
+        @Override public void onAppend(        InterpreterOutput out,        byte[] line){
+          eventClient.onInterpreterOutputAppend(noteId,paragraphId,new String(line));
+        }
+        @Override public void onUpdate(        InterpreterOutput out,        byte[] output){
+          eventClient.onInterpreterOutputUpdate(noteId,paragraphId,new String(output));
+        }
+      }
+,this);
+    }
+ catch (    IOException e) {
+      return null;
+    }
+  }
+  out.clear();
+  return out;
+}

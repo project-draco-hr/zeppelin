@@ -1,0 +1,11 @@
+{
+  File heliumConf=new File(tmpDir,"helium.conf");
+  Helium helium=new Helium(heliumConf.getAbsolutePath(),localRegistryPath.getAbsolutePath());
+  HeliumTestRegistry registry1=new HeliumTestRegistry("r1","r1");
+  HeliumTestRegistry registry2=new HeliumTestRegistry("r2","r2");
+  helium.addRegistry(registry1);
+  helium.addRegistry(registry2);
+  registry1.add(new HeliumPackage(HeliumPackage.Type.APPLICATION,"name1","desc1","artifact1","className1",new String[][]{}));
+  registry2.add(new HeliumPackage(HeliumPackage.Type.APPLICATION,"name2","desc2","artifact2","className2",new String[][]{}));
+  assertEquals(2,helium.getAllPackageInfo().size());
+}

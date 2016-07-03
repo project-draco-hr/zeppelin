@@ -1,0 +1,9 @@
+{
+synchronized (this.registry) {
+    List list=new LinkedList<HeliumRegistry>();
+    for (    HeliumRegistry r : registry) {
+      list.add(r);
+    }
+    return list;
+  }
+}

@@ -1,0 +1,5 @@
+{
+  this.angularObjectRegistry=angularObjectRegistry;
+  this.noteId=noteId;
+  this.appId=appId;
+}

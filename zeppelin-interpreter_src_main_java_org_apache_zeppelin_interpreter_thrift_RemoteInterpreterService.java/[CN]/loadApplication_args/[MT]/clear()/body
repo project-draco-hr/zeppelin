@@ -1,0 +1,6 @@
+{
+  this.applicationInstanceId=null;
+  this.packageInfo=null;
+  this.noteId=null;
+  this.paragraphId=null;
+}

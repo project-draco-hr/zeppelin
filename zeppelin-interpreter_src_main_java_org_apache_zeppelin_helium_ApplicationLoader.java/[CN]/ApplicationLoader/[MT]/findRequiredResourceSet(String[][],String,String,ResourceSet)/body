@@ -1,0 +1,32 @@
+{
+  ResourceSet args=new ResourceSet();
+  if (requiredResources == null || requiredResources.length == 0) {
+    return args;
+  }
+  resources=resources.filterByNoteId(noteId).filterByParagraphId(paragraphId);
+  for (  String[] requires : requiredResources) {
+    args.clear();
+    for (    String require : requires) {
+      boolean found=false;
+      for (      Resource r : resources) {
+        if (require.startsWith(":") && r.getClassName().equals(require.substring(1))) {
+          found=true;
+        }
+ else         if (r.getResourceId().getName().equals(require)) {
+          found=true;
+        }
+        if (found) {
+          args.add(r);
+          break;
+        }
+      }
+      if (found == false) {
+        break;
+      }
+    }
+    if (args.size() == requires.length) {
+      return args;
+    }
+  }
+  return null;
+}

@@ -1,0 +1,11 @@
+{
+  String varName=intp.mostRecentVar();
+  if (varName == null || varName.isEmpty()) {
+    return;
+  }
+  Object lastObj=getValue(varName);
+  if (lastObj != null) {
+    ResourcePool resourcePool=context.getResourcePool();
+    resourcePool.put(context.getNoteId(),context.getParagraphId(),WellKnownResourceName.ZeppelinReplResult.toString(),lastObj);
+  }
+}

@@ -1,11 +1,16 @@
 {
   ZeppelinConfiguration conf=ZeppelinConfiguration.create();
   this.depResolver=new DependencyResolver(conf.getString(ConfVars.ZEPPELIN_INTERPRETER_LOCALREPO));
+  this.helium=new Helium(conf.getHeliumConfPath(),conf.getHeliumDefaultLocalRegistryPath());
+  this.heliumApplicationFactory=new HeliumApplicationFactory();
   this.schedulerFactory=new SchedulerFactory();
-  this.replFactory=new InterpreterFactory(conf,notebookWsServer,notebookWsServer,depResolver);
+  this.replFactory=new InterpreterFactory(conf,notebookWsServer,notebookWsServer,heliumApplicationFactory,depResolver);
   this.notebookRepo=new NotebookRepoSync(conf);
   this.notebookIndex=new LuceneSearch();
   this.notebookAuthorization=new NotebookAuthorization(conf);
   this.credentials=new Credentials(conf.credentialsPersist(),conf.getCredentialsPath());
   notebook=new Notebook(conf,notebookRepo,schedulerFactory,replFactory,notebookWsServer,notebookIndex,notebookAuthorization,credentials);
+  heliumApplicationFactory.setNotebook(notebook);
+  heliumApplicationFactory.setApplicationEventListener(notebookWsServer);
+  notebook.addNotebookEventListener(heliumApplicationFactory);
 }

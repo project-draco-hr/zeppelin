@@ -1,0 +1,10 @@
+{
+synchronized (apps) {
+    for (    ApplicationState as : apps) {
+      if (as.getId().equals(appId)) {
+        return as;
+      }
+    }
+  }
+  return null;
+}

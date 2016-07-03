@@ -1,0 +1,5 @@
+{
+  beginJavascript();
+  context.out.writeResource(resourceName);
+  endJavascript();
+}

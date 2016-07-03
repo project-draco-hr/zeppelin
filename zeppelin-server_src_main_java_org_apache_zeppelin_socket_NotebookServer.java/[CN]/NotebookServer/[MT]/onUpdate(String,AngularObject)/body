@@ -9,11 +9,9 @@
       continue;
     }
     List<InterpreterSetting> intpSettings=notebook.getInterpreterFactory().getInterpreterSettings(note.getId());
-    if (intpSettings.isEmpty())     continue;
-    for (    InterpreterSetting setting : intpSettings) {
-      if (setting.getInterpreterGroup(note.id()).getId().equals(interpreterGroupId)) {
-        broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()).put("paragraphId",object.getParagraphId()));
-      }
+    if (intpSettings.isEmpty()) {
+      continue;
     }
+    broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",object).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()).put("paragraphId",object.getParagraphId()));
   }
 }

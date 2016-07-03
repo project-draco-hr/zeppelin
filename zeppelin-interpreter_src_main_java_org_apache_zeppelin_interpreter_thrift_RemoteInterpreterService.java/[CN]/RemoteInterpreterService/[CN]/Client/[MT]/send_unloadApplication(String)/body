@@ -1,0 +1,5 @@
+{
+  unloadApplication_args args=new unloadApplication_args();
+  args.setApplicationInstanceId(applicationInstanceId);
+  sendBase("unloadApplication",args);
+}

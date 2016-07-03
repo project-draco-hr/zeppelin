@@ -1,0 +1,5 @@
+{
+  this.depResolver=depResolver;
+  this.resourcePool=resourcePool;
+  cached=Collections.synchronizedMap(new HashMap<HeliumPackage,Class<Application>>());
+}

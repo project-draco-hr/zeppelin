@@ -1,0 +1,8 @@
+{
+  Collections.sort(available,new Comparator<HeliumPackageSearchResult>(){
+    @Override public int compare(    HeliumPackageSearchResult o1,    HeliumPackageSearchResult o2){
+      return o1.getPkg().getName().compareTo(o2.getPkg().getName());
+    }
+  }
+);
+}

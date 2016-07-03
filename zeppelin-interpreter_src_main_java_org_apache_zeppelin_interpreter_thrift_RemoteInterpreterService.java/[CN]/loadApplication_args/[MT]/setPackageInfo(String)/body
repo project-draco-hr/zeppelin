@@ -1,0 +1,4 @@
+{
+  this.packageInfo=packageInfo;
+  return this;
+}

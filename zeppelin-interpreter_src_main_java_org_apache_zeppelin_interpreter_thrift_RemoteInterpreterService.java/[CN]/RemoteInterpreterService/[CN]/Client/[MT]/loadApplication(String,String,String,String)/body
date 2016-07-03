@@ -1,0 +1,4 @@
+{
+  send_loadApplication(applicationInstanceId,packageInfo,noteId,paragraphId);
+  return recv_loadApplication();
+}

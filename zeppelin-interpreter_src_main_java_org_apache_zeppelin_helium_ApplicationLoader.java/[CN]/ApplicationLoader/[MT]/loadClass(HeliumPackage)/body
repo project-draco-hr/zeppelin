@@ -1,0 +1,18 @@
+{
+  if (cached.containsKey(packageInfo)) {
+    return cached.get(packageInfo);
+  }
+  List<URL> urlList=new LinkedList<URL>();
+  if (packageInfo.getArtifact() != null) {
+    List<File> paths=depResolver.load(packageInfo.getArtifact());
+    if (paths != null) {
+      for (      File path : paths) {
+        urlList.add(path.toURI().toURL());
+      }
+    }
+  }
+  URLClassLoader applicationClassLoader=new URLClassLoader(urlList.toArray(new URL[]{}),Thread.currentThread().getContextClassLoader());
+  Class<Application> cls=(Class<Application>)applicationClassLoader.loadClass(packageInfo.getClassName());
+  cached.put(packageInfo,cls);
+  return cls;
+}

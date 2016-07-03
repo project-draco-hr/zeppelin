@@ -1,0 +1,30 @@
+{
+  if (app == null) {
+    logger.info("Create instance " + className);
+    try {
+      Class<?> appClass=ClassLoader.getSystemClassLoader().loadClass(className);
+      Constructor<?> constructor=appClass.getConstructor(ApplicationContext.class);
+      String classPath=appClass.getProtectionDomain().getCodeSource().getLocation().getPath();
+      context.out.addResourceSearchPath(classPath + "../../src/main/resources/");
+      context.out.addResourceSearchPath(classPath + "../../src/test/resources/");
+      ApplicationContext appContext=getApplicationContext(context);
+      app=(Application)constructor.newInstance(appContext);
+    }
+ catch (    Exception e) {
+      logger.error(e.getMessage(),e);
+      return new InterpreterResult(Code.ERROR,e.getMessage());
+    }
+  }
+  try {
+    logger.info("Run " + className);
+    app.context().out.clear();
+    app.context().out.setType(InterpreterResult.Type.ANGULAR);
+    transferTableResultDataToFrontend();
+    app.run(resourceSet);
+  }
+ catch (  IOException|ApplicationException e) {
+    logger.error(e.getMessage(),e);
+    return new InterpreterResult(Code.ERROR,e.getMessage());
+  }
+  return new InterpreterResult(Code.SUCCESS,"");
+}

@@ -1,0 +1,12 @@
+{
+  date=(Date)resources.get(0).get();
+  try {
+    context().out.writeResource("example/app/clock/clock.html");
+  }
+ catch (  IOException e) {
+    throw new ApplicationException(e);
+  }
+  if (updateThread == null) {
+    start();
+  }
+}

@@ -1,0 +1,41 @@
+{
+  StringBuilder sb=new StringBuilder("loadApplication_args(");
+  boolean first=true;
+  sb.append("applicationInstanceId:");
+  if (this.applicationInstanceId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.applicationInstanceId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("packageInfo:");
+  if (this.packageInfo == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.packageInfo);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("noteId:");
+  if (this.noteId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.noteId);
+  }
+  first=false;
+  if (!first)   sb.append(", ");
+  sb.append("paragraphId:");
+  if (this.paragraphId == null) {
+    sb.append("null");
+  }
+ else {
+    sb.append(this.paragraphId);
+  }
+  first=false;
+  sb.append(")");
+  return sb.toString();
+}

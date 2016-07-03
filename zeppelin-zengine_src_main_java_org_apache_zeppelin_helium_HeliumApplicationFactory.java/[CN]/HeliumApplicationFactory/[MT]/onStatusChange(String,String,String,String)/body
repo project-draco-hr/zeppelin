@@ -1,0 +1,9 @@
+{
+  ApplicationState appToUpdate=getAppState(noteId,paragraphId,appId);
+  if (appToUpdate != null) {
+    appToUpdate.setStatus(ApplicationState.Status.valueOf(status));
+  }
+  if (applicationEventListener != null) {
+    applicationEventListener.onStatusChange(noteId,paragraphId,appId,status);
+  }
+}

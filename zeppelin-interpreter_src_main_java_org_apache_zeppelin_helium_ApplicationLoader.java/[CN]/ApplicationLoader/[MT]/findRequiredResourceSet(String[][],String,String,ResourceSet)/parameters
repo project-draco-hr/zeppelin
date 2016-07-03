@@ -1,0 +1,4 @@
+String[][] requiredResources
+String noteId
+String paragraphId
+ResourceSet resources

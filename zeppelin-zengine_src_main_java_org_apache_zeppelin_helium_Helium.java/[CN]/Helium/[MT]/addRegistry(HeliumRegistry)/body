@@ -1,0 +1,5 @@
+{
+synchronized (this.registry) {
+    this.registry.add(registry);
+  }
+}

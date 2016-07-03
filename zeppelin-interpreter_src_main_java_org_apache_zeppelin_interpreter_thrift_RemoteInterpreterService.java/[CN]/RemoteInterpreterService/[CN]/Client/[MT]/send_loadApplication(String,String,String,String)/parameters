@@ -1,0 +1,4 @@
+String applicationInstanceId
+String packageInfo
+String noteId
+String paragraphId

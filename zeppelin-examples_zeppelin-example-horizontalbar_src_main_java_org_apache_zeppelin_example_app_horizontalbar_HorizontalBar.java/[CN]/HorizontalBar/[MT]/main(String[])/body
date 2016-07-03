@@ -1,0 +1,9 @@
+{
+  LocalResourcePool pool=new LocalResourcePool("dev");
+  InputStream ins=ClassLoader.getSystemResourceAsStream("example/app/horizontalbar/horizontalbar_mockdata.txt");
+  InterpreterResult result=new InterpreterResult(InterpreterResult.Code.SUCCESS,InterpreterResult.Type.TABLE,IOUtils.toString(ins));
+  pool.put(WellKnownResourceName.ZeppelinTableResult.name(),result);
+  ZeppelinApplicationDevServer devServer=new ZeppelinApplicationDevServer(HorizontalBar.class.getName(),pool.getAll());
+  devServer.start();
+  devServer.join();
+}

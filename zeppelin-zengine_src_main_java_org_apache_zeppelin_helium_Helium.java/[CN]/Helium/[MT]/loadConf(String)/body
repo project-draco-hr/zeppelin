@@ -1,0 +1,18 @@
+{
+  File heliumConfFile=new File(path);
+  if (!heliumConfFile.isFile()) {
+    logger.warn("{} does not exists",path);
+    HeliumConf conf=new HeliumConf();
+    LinkedList<HeliumRegistry> defaultRegistry=new LinkedList<HeliumRegistry>();
+    defaultRegistry.add(new HeliumLocalRegistry("local",defaultLocalRegistryPath));
+    conf.setRegistry(defaultRegistry);
+    this.registry=conf.getRegistry();
+    return conf;
+  }
+ else {
+    String jsonString=FileUtils.readFileToString(heliumConfFile);
+    HeliumConf conf=gson.fromJson(jsonString,HeliumConf.class);
+    this.registry=conf.getRegistry();
+    return conf;
+  }
+}

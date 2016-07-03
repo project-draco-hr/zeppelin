@@ -1,0 +1,9 @@
+{
+  File r1Path=new File(tmpDir,"r1");
+  HeliumLocalRegistry r1=new HeliumLocalRegistry("r1",r1Path.getAbsolutePath());
+  assertEquals(0,r1.getAll().size());
+  Gson gson=new Gson();
+  HeliumPackage pkg1=new HeliumPackage(HeliumPackage.Type.APPLICATION,"app1","desc1","artifact1","classname1",new String[][]{});
+  FileUtils.writeStringToFile(new File(r1Path,"pkg1.json"),gson.toJson(pkg1));
+  assertEquals(1,r1.getAll().size());
+}

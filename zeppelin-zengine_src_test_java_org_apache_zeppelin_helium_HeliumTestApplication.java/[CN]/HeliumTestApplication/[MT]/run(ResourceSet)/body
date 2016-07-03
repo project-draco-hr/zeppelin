@@ -1,0 +1,10 @@
+{
+  try {
+    context().out.clear();
+    context().out.write("Hello world " + numRun.incrementAndGet());
+    context().out.flush();
+  }
+ catch (  IOException e) {
+    throw new ApplicationException(e);
+  }
+}

@@ -1,0 +1,5 @@
+String applicationInstanceId
+String packageInfo
+String noteId
+String paragraphId
+org.apache.thrift.async.AsyncMethodCallback resultHandler

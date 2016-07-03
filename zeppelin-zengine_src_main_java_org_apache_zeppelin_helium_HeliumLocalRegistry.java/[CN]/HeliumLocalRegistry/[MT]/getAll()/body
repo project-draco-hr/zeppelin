@@ -1,0 +1,18 @@
+{
+  List<HeliumPackage> result=new LinkedList<HeliumPackage>();
+  File file=new File(uri());
+  File[] files=file.listFiles();
+  if (files == null) {
+    return result;
+  }
+  for (  File f : files) {
+    if (f.getName().startsWith(".")) {
+      continue;
+    }
+    HeliumPackage pkgInfo=readPackageInfo(f);
+    if (pkgInfo != null) {
+      result.add(pkgInfo);
+    }
+  }
+  return result;
+}

@@ -2,7 +2,7 @@
   InterpreterSetting interpreterSetting=Mockito.mock(InterpreterSetting.class);
   when(interpreterSetting.getGroup()).thenReturn("spark");
   when(interpreterFactory.getDefaultInterpreterSetting(anyString())).thenReturn(interpreterSetting);
-  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials);
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
   note.putDefaultReplName();
   Paragraph p=note.addParagraph();
   assertEquals("%spark ",p.getText());

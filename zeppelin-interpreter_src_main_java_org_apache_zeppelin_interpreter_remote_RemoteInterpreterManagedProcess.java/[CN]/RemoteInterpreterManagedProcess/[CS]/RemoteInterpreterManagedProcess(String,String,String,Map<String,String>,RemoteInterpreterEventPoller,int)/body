@@ -1,0 +1,7 @@
+{
+  super(remoteInterpreterEventPoller,connectTimeout);
+  this.interpreterRunner=intpRunner;
+  this.env=env;
+  this.interpreterDir=intpDir;
+  this.localRepoDir=localRepoDir;
+}

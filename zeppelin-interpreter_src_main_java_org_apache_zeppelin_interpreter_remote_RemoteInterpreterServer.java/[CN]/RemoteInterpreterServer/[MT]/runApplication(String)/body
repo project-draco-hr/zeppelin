@@ -1,0 +1,26 @@
+{
+  logger.info("run application {}",applicationInstanceId);
+  RunningApplication runningApp=runningApplications.get(applicationInstanceId);
+  if (runningApp == null) {
+    logger.error("Application instance {} not exists",applicationInstanceId);
+    return new RemoteApplicationResult(false,"Application instance does not exists");
+  }
+ else {
+    ApplicationContext context=runningApp.app.context();
+    try {
+      context.out.clear();
+      context.out.setType(InterpreterResult.Type.ANGULAR);
+      ResourceSet resource=appLoader.findRequiredResourceSet(runningApp.pkg.getResources(),context.getNoteId(),context.getParagraphId());
+      for (      Resource res : resource) {
+        System.err.println("Resource " + res.get());
+      }
+      runningApp.app.run(resource);
+      String output=new String(context.out.toByteArray());
+      eventClient.onAppOutputUpdate(context.getNoteId(),context.getParagraphId(),applicationInstanceId,output);
+      return new RemoteApplicationResult(true,"");
+    }
+ catch (    ApplicationException|IOException e) {
+      return new RemoteApplicationResult(false,e.getMessage());
+    }
+  }
+}

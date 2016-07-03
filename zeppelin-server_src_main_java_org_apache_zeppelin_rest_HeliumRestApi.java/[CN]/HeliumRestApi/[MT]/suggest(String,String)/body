@@ -1,0 +1,11 @@
+{
+  Note note=notebook.getNote(noteId);
+  if (note == null) {
+    return new JsonResponse(Response.Status.NOT_FOUND,"Note " + noteId + " not found").build();
+  }
+  Paragraph paragraph=note.getParagraph(paragraphId);
+  if (paragraph == null) {
+    return new JsonResponse(Response.Status.NOT_FOUND,"Paragraph " + paragraphId + " not found").build();
+  }
+  return new JsonResponse(Response.Status.OK,"",helium.suggestApp(paragraph)).build();
+}

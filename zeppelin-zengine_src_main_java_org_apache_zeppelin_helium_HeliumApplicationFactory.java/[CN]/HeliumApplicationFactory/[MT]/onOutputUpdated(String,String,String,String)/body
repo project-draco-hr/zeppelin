@@ -1,0 +1,12 @@
+{
+  ApplicationState appToUpdate=getAppState(noteId,paragraphId,appId);
+  if (appToUpdate != null) {
+    appToUpdate.setOutput(output);
+  }
+ else {
+    logger.error("Can't find app {}",appId);
+  }
+  if (applicationEventListener != null) {
+    applicationEventListener.onOutputUpdated(noteId,paragraphId,appId,output);
+  }
+}

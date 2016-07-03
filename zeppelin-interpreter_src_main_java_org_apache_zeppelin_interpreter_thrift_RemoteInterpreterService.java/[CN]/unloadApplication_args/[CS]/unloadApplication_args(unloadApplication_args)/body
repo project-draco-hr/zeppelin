@@ -1,0 +1,5 @@
+{
+  if (other.isSetApplicationInstanceId()) {
+    this.applicationInstanceId=other.applicationInstanceId;
+  }
+}

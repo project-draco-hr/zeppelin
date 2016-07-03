@@ -1,0 +1,5 @@
+{
+  result=(InterpreterResult)resources.get(0).get();
+  println(String.format("<div id=\"horizontalbar_%s\" style=\"height:400px\"><svg></svg></div>",context().getApplicationInstanceId()));
+  printResourceAsJavascript("example/app/horizontalbar/horizontalbar.js");
+}

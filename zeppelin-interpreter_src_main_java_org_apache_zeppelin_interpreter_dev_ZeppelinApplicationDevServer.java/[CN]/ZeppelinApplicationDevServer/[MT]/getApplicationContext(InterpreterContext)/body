@@ -1,0 +1,3 @@
+{
+  return new ApplicationContext(interpreterContext.getNoteId(),interpreterContext.getParagraphId(),"app_" + this.hashCode(),new HeliumAppAngularObjectRegistry(interpreterContext.getAngularObjectRegistry(),interpreterContext.getNoteId(),interpreterContext.getParagraphId()),interpreterContext.out);
+}

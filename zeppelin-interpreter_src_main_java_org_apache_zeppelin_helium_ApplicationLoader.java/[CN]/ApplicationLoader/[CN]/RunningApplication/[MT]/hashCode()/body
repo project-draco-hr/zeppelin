@@ -1,0 +1,3 @@
+{
+  return (paragraphId + noteId + packageInfo.getArtifact()+ packageInfo.getClassName()).hashCode();
+}

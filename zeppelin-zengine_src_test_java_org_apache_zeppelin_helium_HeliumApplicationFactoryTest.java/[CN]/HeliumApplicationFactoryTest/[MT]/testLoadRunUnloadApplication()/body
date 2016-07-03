@@ -1,0 +1,21 @@
+{
+  HeliumPackage pkg1=new HeliumPackage(HeliumPackage.Type.APPLICATION,"name1","desc1","",HeliumTestApplication.class.getName(),new String[][]{});
+  Note note1=notebook.createNote(null);
+  factory.setInterpreters(note1.getId(),factory.getDefaultInterpreterSettingList());
+  Paragraph p1=note1.addParagraph();
+  p1.setText("%mock1 job");
+  note1.run(p1.getId());
+  while (p1.isTerminated() == false || p1.getResult() == null)   Thread.yield();
+  assertEquals("repl1: job",p1.getResult().message());
+  assertEquals(0,p1.getAllApplicationStates().size());
+  String appId=heliumAppFactory.loadAndRun(pkg1,p1);
+  assertEquals(1,p1.getAllApplicationStates().size());
+  ApplicationState app=p1.getApplicationState(appId);
+  Thread.sleep(500);
+  assertEquals("Hello world 1",app.getOutput());
+  heliumAppFactory.run(p1,appId);
+  Thread.sleep(500);
+  assertEquals("Hello world 2",app.getOutput());
+  heliumAppFactory.unload(p1,appId);
+  notebook.removeNote(note1.getId(),null);
+}

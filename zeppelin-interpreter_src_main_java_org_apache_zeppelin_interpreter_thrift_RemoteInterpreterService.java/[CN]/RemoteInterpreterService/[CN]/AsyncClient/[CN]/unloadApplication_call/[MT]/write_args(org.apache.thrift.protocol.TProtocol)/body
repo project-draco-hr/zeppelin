@@ -1,0 +1,7 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("unloadApplication",org.apache.thrift.protocol.TMessageType.CALL,0));
+  unloadApplication_args args=new unloadApplication_args();
+  args.setApplicationInstanceId(applicationInstanceId);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

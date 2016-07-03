@@ -112,6 +112,8 @@ synchronized (sharedInterpreterLock) {
     binder.put("sc",sc);
     binder.put("sqlc",sqlc);
     binder.put("z",z);
+    binder.put("intp",intp);
+    intp.interpret("@transient val intp = _binder.get(\"intp\").asInstanceOf[org.apache.spark" + ".repl.SparkIMain]");
     intp.interpret("@transient val z = " + "_binder.get(\"z\").asInstanceOf[org.apache.zeppelin.spark.ZeppelinContext]");
     intp.interpret("@transient val sc = " + "_binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
     intp.interpret("@transient val sqlc = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");

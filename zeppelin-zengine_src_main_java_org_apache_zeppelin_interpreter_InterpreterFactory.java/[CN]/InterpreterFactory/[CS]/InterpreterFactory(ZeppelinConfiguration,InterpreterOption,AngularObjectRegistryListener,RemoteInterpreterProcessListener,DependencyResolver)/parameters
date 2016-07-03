@@ -1,5 +1,0 @@
-ZeppelinConfiguration conf
-InterpreterOption defaultOption
-AngularObjectRegistryListener angularObjectRegistryListener
-RemoteInterpreterProcessListener remoteInterpreterProcessListener
-DependencyResolver depResolver

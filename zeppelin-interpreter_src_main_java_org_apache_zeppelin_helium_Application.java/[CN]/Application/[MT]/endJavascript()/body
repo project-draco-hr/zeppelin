@@ -1,0 +1,6 @@
+{
+  StringBuffer js=new StringBuffer();
+  js.append("\n})();\n");
+  js.append("</script>\n");
+  context.out.write(js.toString());
+}

@@ -1,0 +1,13 @@
+{
+synchronized (this) {
+    InterpreterGroup interpreterGroup=getInterpreterGroup();
+    if (interpreterGroup == null) {
+      createInterpreter("dev",noteId,DevInterpreter.class.getName(),new HashMap<String,String>());
+      Interpreter intp=super.getInterpreter(noteId,className);
+      interpreter=(DevInterpreter)(((LazyOpenInterpreter)intp).getInnerInterpreter());
+      interpreter.setInterpreterEvent(this);
+      notify();
+    }
+  }
+  return super.getInterpreter(noteId,className);
+}

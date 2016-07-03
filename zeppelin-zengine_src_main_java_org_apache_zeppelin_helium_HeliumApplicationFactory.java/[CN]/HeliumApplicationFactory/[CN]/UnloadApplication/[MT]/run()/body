@@ -1,0 +1,21 @@
+{
+  ApplicationState appState=null;
+  try {
+    appState=paragraph.getApplicationState(appId);
+    if (appState == null) {
+      logger.warn("Can not find {} to unload from {}",appId,paragraph.getId());
+      return;
+    }
+    if (appState.getStatus() == ApplicationState.Status.UNLOADED) {
+      return;
+    }
+    unload(appState);
+  }
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
+    if (appState != null) {
+      appStatusChange(paragraph,appId,ApplicationState.Status.ERROR);
+      appState.setOutput(e.getMessage());
+    }
+  }
+}

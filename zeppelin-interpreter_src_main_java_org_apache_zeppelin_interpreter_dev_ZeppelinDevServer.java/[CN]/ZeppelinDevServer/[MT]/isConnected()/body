@@ -1,0 +1,3 @@
+{
+  return !(interpreter == null || interpreter.getLastInterpretContext() == null);
+}

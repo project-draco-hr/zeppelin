@@ -56,5 +56,8 @@
       }
     }
   }
+  if (DevInterpreter.isInterpreterName(replName)) {
+    return getDevInterpreter();
+  }
   return null;
 }

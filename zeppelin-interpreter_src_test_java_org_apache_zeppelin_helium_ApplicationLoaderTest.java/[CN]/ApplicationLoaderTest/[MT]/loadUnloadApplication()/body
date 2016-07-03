@@ -1,0 +1,13 @@
+{
+  LocalResourcePool resourcePool=new LocalResourcePool("pool1");
+  DependencyResolver dep=new DependencyResolver(tmpDir.getAbsolutePath());
+  ApplicationLoader appLoader=new ApplicationLoader(resourcePool,dep);
+  HeliumPackage pkg1=createPackageInfo(MockApplication1.class.getName(),"artifact1");
+  ApplicationContext context1=createContext("note1","paragraph1","app1");
+  MockApplication1 app=(MockApplication1)((ClassLoaderApplication)appLoader.load(pkg1,context1)).getInnerApplication();
+  assertFalse(app.isUnloaded());
+  assertEquals(0,app.getNumRun());
+  app.unload();
+  assertTrue(app.isUnloaded());
+  assertEquals(0,app.getNumRun());
+}

@@ -1,4 +1,4 @@
 {
   Interpreter intp=getInterpreter(noteId,className);
-  return intp.getProgress(convert(interpreterContext));
+  return intp.getProgress(convert(interpreterContext,null));
 }

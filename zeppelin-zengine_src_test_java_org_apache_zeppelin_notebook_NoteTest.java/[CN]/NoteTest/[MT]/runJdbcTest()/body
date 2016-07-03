@@ -3,7 +3,7 @@
   when(interpreterFactory.getInterpreter(anyString(),eq("jdbc"))).thenReturn(interpreter);
   when(interpreter.getScheduler()).thenReturn(scheduler);
   String pText="%mysql show databases";
-  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials);
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
   Paragraph p=note.addParagraph();
   p.setText(pText);
   note.run(p.getId());

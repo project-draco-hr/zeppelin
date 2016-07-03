@@ -1,0 +1,5 @@
+{
+  setSuccessIsSet(false);
+  this.success=false;
+  this.msg=null;
+}

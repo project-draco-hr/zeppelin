@@ -1,0 +1,10 @@
+{
+  if (isRunning()) {
+    logger.info("kill interpreter process");
+    watchdog.destroyProcess();
+  }
+  executor=null;
+  watchdog=null;
+  running=false;
+  logger.info("Remote process terminated");
+}

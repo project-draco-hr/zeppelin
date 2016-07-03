@@ -1,0 +1,10 @@
+{
+  ApplicationContext context1=new ApplicationContext(noteId,paragraphId,appInstanceId,null,new InterpreterOutput(new InterpreterOutputListener(){
+    @Override public void onAppend(    InterpreterOutput out,    byte[] line){
+    }
+    @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
+    }
+  }
+));
+  return context1;
+}

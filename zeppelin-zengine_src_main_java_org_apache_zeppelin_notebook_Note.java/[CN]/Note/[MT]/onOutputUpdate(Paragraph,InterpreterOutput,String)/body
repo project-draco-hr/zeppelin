@@ -1,0 +1,8 @@
+{
+  if (jobListenerFactory != null) {
+    ParagraphJobListener listener=jobListenerFactory.getParagraphJobListener(this);
+    if (listener != null) {
+      listener.onOutputUpdate(paragraph,out,output);
+    }
+  }
+}

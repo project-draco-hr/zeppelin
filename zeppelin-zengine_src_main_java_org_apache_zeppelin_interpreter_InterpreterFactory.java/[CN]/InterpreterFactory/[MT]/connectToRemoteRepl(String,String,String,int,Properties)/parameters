@@ -1,0 +1,5 @@
+String noteId
+String className
+String host
+int port
+Properties property

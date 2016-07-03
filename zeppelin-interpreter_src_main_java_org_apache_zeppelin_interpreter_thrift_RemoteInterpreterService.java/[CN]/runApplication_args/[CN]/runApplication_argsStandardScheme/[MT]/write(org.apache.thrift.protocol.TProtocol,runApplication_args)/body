@@ -1,0 +1,11 @@
+{
+  struct.validate();
+  oprot.writeStructBegin(STRUCT_DESC);
+  if (struct.applicationInstanceId != null) {
+    oprot.writeFieldBegin(APPLICATION_INSTANCE_ID_FIELD_DESC);
+    oprot.writeString(struct.applicationInstanceId);
+    oprot.writeFieldEnd();
+  }
+  oprot.writeFieldStop();
+  oprot.writeStructEnd();
+}

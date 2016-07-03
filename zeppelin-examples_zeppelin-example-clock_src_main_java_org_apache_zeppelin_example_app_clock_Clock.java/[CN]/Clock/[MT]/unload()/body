@@ -1,0 +1,9 @@
+{
+  shutdown=true;
+  try {
+    updateThread.join();
+  }
+ catch (  InterruptedException e) {
+  }
+  context().getAngularObjectRegistry().remove("date");
+}

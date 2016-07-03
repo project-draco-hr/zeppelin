@@ -3,7 +3,7 @@
   final InterpreterGroup intpGroup=new InterpreterGroup();
   Map<String,String> env=new HashMap<String,String>();
   env.put("ZEPPELIN_CLASSPATH",new File("./target/test-classes").getAbsolutePath());
-  final RemoteInterpreter intpA=new RemoteInterpreter(p,"note",MockInterpreterA.class.getName(),new File(INTERPRETER_SCRIPT).getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,this);
+  final RemoteInterpreter intpA=new RemoteInterpreter(p,"note",MockInterpreterA.class.getName(),new File(INTERPRETER_SCRIPT).getAbsolutePath(),"fake","fakeRepo",env,10 * 1000,this,null);
   intpGroup.put("note",new LinkedList<Interpreter>());
   intpGroup.get("note").add(intpA);
   intpA.setInterpreterGroup(intpGroup);

@@ -1,0 +1,4 @@
+HeliumPackage packageInfo
+String noteId
+String paragraphId
+String applicationInstanceId

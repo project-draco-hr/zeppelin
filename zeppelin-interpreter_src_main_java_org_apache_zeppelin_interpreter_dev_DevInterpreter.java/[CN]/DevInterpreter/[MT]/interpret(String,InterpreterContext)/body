@@ -1,0 +1,9 @@
+{
+  this.context=context;
+  try {
+    return interpreterEvent.interpret(st,context);
+  }
+ catch (  Exception e) {
+    throw new InterpreterException(e);
+  }
+}

@@ -9,9 +9,21 @@
     AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
     if (registry instanceof RemoteAngularObjectRegistry) {
       ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,paragraphId);
+      List<ApplicationState> appStates=getParagraph(paragraphId).getAllApplicationStates();
+      if (appStates != null) {
+        for (        ApplicationState app : appStates) {
+          ((RemoteAngularObjectRegistry)registry).removeAllAndNotifyRemoteProcess(id,app.getId());
+        }
+      }
     }
  else {
       registry.removeAll(id,paragraphId);
+      List<ApplicationState> appStates=getParagraph(paragraphId).getAllApplicationStates();
+      if (appStates != null) {
+        for (        ApplicationState app : appStates) {
+          registry.removeAll(id,app.getId());
+        }
+      }
     }
   }
 }

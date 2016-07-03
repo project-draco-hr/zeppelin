@@ -1,0 +1,10 @@
+{
+  prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("loadApplication",org.apache.thrift.protocol.TMessageType.CALL,0));
+  loadApplication_args args=new loadApplication_args();
+  args.setApplicationInstanceId(applicationInstanceId);
+  args.setPackageInfo(packageInfo);
+  args.setNoteId(noteId);
+  args.setParagraphId(paragraphId);
+  args.write(prot);
+  prot.writeMessageEnd();
+}

@@ -1,0 +1,6 @@
+{
+  this.app=app;
+  this.pkg=pkg;
+  this.noteId=noteId;
+  this.paragraphId=paragraphId;
+}

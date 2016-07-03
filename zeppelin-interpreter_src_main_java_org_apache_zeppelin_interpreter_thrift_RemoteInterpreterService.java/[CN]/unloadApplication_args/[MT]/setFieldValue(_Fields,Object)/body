@@ -1,0 +1,12 @@
+{
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    if (value == null) {
+      unsetApplicationInstanceId();
+    }
+ else {
+      setApplicationInstanceId((String)value);
+    }
+  break;
+}
+}

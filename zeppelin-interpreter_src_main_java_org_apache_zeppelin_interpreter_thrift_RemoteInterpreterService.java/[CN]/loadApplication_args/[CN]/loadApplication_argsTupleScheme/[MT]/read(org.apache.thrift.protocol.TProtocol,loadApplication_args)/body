@@ -1,0 +1,20 @@
+{
+  TTupleProtocol iprot=(TTupleProtocol)prot;
+  BitSet incoming=iprot.readBitSet(4);
+  if (incoming.get(0)) {
+    struct.applicationInstanceId=iprot.readString();
+    struct.setApplicationInstanceIdIsSet(true);
+  }
+  if (incoming.get(1)) {
+    struct.packageInfo=iprot.readString();
+    struct.setPackageInfoIsSet(true);
+  }
+  if (incoming.get(2)) {
+    struct.noteId=iprot.readString();
+    struct.setNoteIdIsSet(true);
+  }
+  if (incoming.get(3)) {
+    struct.paragraphId=iprot.readString();
+    struct.setParagraphIdIsSet(true);
+  }
+}

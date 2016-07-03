@@ -1,2 +1,8 @@
 {
+  if (jobListenerFactory != null) {
+    ParagraphJobListener listener=jobListenerFactory.getParagraphJobListener(this);
+    if (listener != null) {
+      listener.beforeStatusChange(job,before,after);
+    }
+  }
 }

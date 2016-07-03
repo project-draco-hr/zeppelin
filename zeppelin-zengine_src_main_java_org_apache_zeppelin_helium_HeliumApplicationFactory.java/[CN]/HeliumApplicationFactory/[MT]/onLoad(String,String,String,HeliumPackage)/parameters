@@ -1,0 +1,4 @@
+String noteId
+String paragraphId
+String appId
+HeliumPackage pkg

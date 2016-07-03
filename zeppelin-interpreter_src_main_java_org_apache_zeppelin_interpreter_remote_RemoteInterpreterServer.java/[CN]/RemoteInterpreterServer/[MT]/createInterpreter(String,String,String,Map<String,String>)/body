@@ -5,6 +5,9 @@
     resourcePool=new DistributedResourcePool(interpreterGroup.getId(),eventClient);
     interpreterGroup.setAngularObjectRegistry(angularObjectRegistry);
     interpreterGroup.setResourcePool(resourcePool);
+    String localRepoPath=properties.get("zeppelin.interpreter.localRepo");
+    depLoader=new DependencyResolver(localRepoPath);
+    appLoader=new ApplicationLoader(resourcePool,depLoader);
   }
   try {
     Class<Interpreter> replClass=(Class<Interpreter>)Object.class.forName(className);

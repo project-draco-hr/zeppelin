@@ -1,0 +1,9 @@
+Properties property
+String noteId
+String className
+String host
+int port
+int connectTimeout
+int maxPoolSize
+RemoteInterpreterProcessListener remoteInterpreterProcessListener
+ApplicationEventListener appListener

@@ -1,6 +1,6 @@
 {
   RemoteInterpreterProcess remoteInterpreterProcess=getRemoteInterpreterProcess();
-  if (!remoteInterpreterProcess.isRunning()) {
+  if (remoteInterpreterProcess == null || !remoteInterpreterProcess.isRunning()) {
     return super.remove(name,noteId,paragraphId);
   }
   Client client=null;

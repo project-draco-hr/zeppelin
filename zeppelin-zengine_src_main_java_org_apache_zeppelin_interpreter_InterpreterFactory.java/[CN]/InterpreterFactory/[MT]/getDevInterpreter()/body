@@ -1,0 +1,13 @@
+{
+  if (devInterpreter == null) {
+    InterpreterOption option=new InterpreterOption();
+    option.setRemote(true);
+    InterpreterGroup interpreterGroup=createInterpreterGroup("dev",option);
+    devInterpreter=connectToRemoteRepl("dev",DevInterpreter.class.getName(),"localhost",ZeppelinDevServer.DEFAULT_TEST_INTERPRETER_PORT,new Properties());
+    LinkedList<Interpreter> intpList=new LinkedList<Interpreter>();
+    intpList.add(devInterpreter);
+    interpreterGroup.put("dev",intpList);
+    devInterpreter.setInterpreterGroup(interpreterGroup);
+  }
+  return devInterpreter;
+}

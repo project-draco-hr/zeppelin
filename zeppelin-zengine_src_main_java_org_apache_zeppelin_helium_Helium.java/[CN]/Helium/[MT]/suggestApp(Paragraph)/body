@@ -1,0 +1,31 @@
+{
+  HeliumPackageSuggestion suggestion=new HeliumPackageSuggestion();
+  Interpreter intp=paragraph.getCurrentRepl();
+  if (intp == null) {
+    return suggestion;
+  }
+  ResourcePool resourcePool=intp.getInterpreterGroup().getResourcePool();
+  ResourceSet allResources;
+  if (resourcePool != null) {
+    if (resourcePool instanceof DistributedResourcePool) {
+      allResources=((DistributedResourcePool)resourcePool).getAll(true);
+    }
+ else {
+      allResources=resourcePool.getAll();
+    }
+  }
+ else {
+    allResources=ResourcePoolUtils.getAllResources();
+  }
+  for (  HeliumPackageSearchResult pkg : getAllPackageInfo()) {
+    ResourceSet resources=ApplicationLoader.findRequiredResourceSet(pkg.getPkg().getResources(),paragraph.getNote().getId(),paragraph.getId(),allResources);
+    if (resources == null) {
+      continue;
+    }
+ else {
+      suggestion.addAvailablePackage(pkg);
+    }
+  }
+  suggestion.sort();
+  return suggestion;
+}

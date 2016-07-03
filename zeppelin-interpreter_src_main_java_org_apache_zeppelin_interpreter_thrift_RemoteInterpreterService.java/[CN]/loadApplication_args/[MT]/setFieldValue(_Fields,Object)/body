@@ -1,0 +1,36 @@
+{
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    if (value == null) {
+      unsetApplicationInstanceId();
+    }
+ else {
+      setApplicationInstanceId((String)value);
+    }
+  break;
+case PACKAGE_INFO:
+if (value == null) {
+  unsetPackageInfo();
+}
+ else {
+  setPackageInfo((String)value);
+}
+break;
+case NOTE_ID:
+if (value == null) {
+unsetNoteId();
+}
+ else {
+setNoteId((String)value);
+}
+break;
+case PARAGRAPH_ID:
+if (value == null) {
+unsetParagraphId();
+}
+ else {
+setParagraphId((String)value);
+}
+break;
+}
+}

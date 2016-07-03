@@ -1,0 +1,9 @@
+{
+switch (field) {
+case SUCCESS:
+    return Boolean.valueOf(isSuccess());
+case MSG:
+  return getMsg();
+}
+throw new IllegalStateException();
+}

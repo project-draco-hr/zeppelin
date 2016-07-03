@@ -1,3 +1,0 @@
-{
-  this(conf,new InterpreterOption(true),angularObjectRegistryListener,remoteInterpreterProcessListener,depResolver);
-}

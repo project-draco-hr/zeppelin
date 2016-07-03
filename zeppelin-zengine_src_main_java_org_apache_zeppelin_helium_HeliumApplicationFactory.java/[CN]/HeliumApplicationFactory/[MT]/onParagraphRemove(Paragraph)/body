@@ -1,0 +1,7 @@
+{
+  List<ApplicationState> appStates=paragraph.getAllApplicationStates();
+  for (  ApplicationState app : appStates) {
+    UnloadApplication unloadJob=new UnloadApplication(paragraph,app.getId());
+    unloadJob.run();
+  }
+}

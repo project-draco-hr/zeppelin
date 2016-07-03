@@ -4,5 +4,8 @@
 synchronized (paragraphs) {
     paragraphs.add(p);
   }
+  if (noteEventListener != null) {
+    noteEventListener.onParagraphCreate(p);
+  }
   return p;
 }

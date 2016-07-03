@@ -1,0 +1,7 @@
+{
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    return getApplicationInstanceId();
+}
+throw new IllegalStateException();
+}

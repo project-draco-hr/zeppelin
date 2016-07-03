@@ -1,0 +1,3 @@
+{
+  iface.runApplication(args.applicationInstanceId,resultHandler);
+}

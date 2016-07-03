@@ -1,5 +1,0 @@
-NotebookRepo repo
-InterpreterFactory factory
-JobListenerFactory jlFactory
-SearchService noteIndex
-Credentials credentials

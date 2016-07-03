@@ -1,0 +1,6 @@
+{
+  this();
+  this.success=success;
+  setSuccessIsSet(true);
+  this.msg=msg;
+}

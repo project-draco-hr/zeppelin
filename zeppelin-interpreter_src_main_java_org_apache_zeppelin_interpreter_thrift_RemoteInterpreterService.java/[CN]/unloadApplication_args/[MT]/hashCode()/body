@@ -1,0 +1,7 @@
+{
+  List<Object> list=new ArrayList<Object>();
+  boolean present_applicationInstanceId=true && (isSetApplicationInstanceId());
+  list.add(present_applicationInstanceId);
+  if (present_applicationInstanceId)   list.add(applicationInstanceId);
+  return list.hashCode();
+}

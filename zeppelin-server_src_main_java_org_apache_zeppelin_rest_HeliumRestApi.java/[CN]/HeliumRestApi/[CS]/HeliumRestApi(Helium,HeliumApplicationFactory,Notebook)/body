@@ -1,0 +1,5 @@
+{
+  this.helium=helium;
+  this.applicationFactory=heliumApplicationFactory;
+  this.notebook=notebook;
+}

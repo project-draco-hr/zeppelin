@@ -1,0 +1,7 @@
+{
+  if (!(o instanceof RunningApplication)) {
+    return false;
+  }
+  RunningApplication r=(RunningApplication)o;
+  return packageInfo.equals(r.getPackageInfo()) && paragraphId.equals(r.getParagraphId()) && noteId.equals(r.getNoteId());
+}

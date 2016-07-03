@@ -1,0 +1,3 @@
+I iface
+loadApplication_args args
+org.apache.thrift.async.AsyncMethodCallback<RemoteApplicationResult> resultHandler

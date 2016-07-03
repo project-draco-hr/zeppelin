@@ -1,0 +1,9 @@
+{
+  this.heliumConfPath=heliumConfPath;
+  this.defaultLocalRegistryPath=defaultLocalRegistryPath;
+  GsonBuilder builder=new GsonBuilder();
+  builder.setPrettyPrinting();
+  builder.registerTypeAdapter(HeliumRegistry.class,new HeliumRegistrySerializer());
+  gson=builder.create();
+  heliumConf=loadConf(heliumConfPath);
+}

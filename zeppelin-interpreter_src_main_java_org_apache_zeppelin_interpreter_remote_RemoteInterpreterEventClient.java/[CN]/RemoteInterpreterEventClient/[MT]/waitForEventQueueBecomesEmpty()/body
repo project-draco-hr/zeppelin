@@ -1,0 +1,11 @@
+{
+synchronized (eventQueue) {
+    while (!eventQueue.isEmpty()) {
+      try {
+        eventQueue.wait(100);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+}

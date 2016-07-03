@@ -1,0 +1,4 @@
+{
+  Message msg=new Message(OP.APP_APPEND_OUTPUT).put("noteId",noteId).put("paragraphId",paragraphId).put("appId",appId).put("data",output);
+  broadcast(noteId,msg);
+}

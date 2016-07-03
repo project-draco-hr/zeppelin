@@ -1,0 +1,5 @@
+{
+  if (status != Status.ERROR) {
+    status=Status.UNLOADED;
+  }
+}

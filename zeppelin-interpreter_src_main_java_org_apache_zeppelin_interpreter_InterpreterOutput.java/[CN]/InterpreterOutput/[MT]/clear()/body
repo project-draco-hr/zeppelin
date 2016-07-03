@@ -6,5 +6,6 @@ synchronized (outList) {
     if (watcher != null) {
       watcher.clear();
     }
+    flushListener.onUpdate(this,new byte[]{});
   }
 }

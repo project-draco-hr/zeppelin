@@ -1,0 +1,5 @@
+{
+  runApplication_args args=new runApplication_args();
+  args.setApplicationInstanceId(applicationInstanceId);
+  sendBase("runApplication",args);
+}

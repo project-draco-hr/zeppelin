@@ -1,0 +1,8 @@
+{
+  if (this.output == null) {
+    this.output=output;
+  }
+ else {
+    this.output+=output;
+  }
+}

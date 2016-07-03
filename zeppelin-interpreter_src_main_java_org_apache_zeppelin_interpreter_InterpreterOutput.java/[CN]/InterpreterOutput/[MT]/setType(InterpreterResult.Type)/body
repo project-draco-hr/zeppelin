@@ -1,7 +1,6 @@
 {
   if (this.type != type) {
     clear();
-    flushListener.onUpdate(this,new byte[]{});
     this.type=type;
   }
 }

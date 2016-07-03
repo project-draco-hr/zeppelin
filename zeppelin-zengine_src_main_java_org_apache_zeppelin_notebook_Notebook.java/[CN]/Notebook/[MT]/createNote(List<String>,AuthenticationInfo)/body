@@ -1,5 +1,5 @@
 {
-  Note note=new Note(notebookRepo,replFactory,jobListenerFactory,notebookIndex,credentials);
+  Note note=new Note(notebookRepo,replFactory,jobListenerFactory,notebookIndex,credentials,this);
 synchronized (notes) {
     notes.put(note.id(),note);
   }
@@ -9,5 +9,6 @@ synchronized (notes) {
   }
   notebookIndex.addIndexDoc(note);
   note.persist(subject);
+  fireNoteCreateEvent(note);
   return note;
 }

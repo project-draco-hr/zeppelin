@@ -6,7 +6,6 @@
     context.out.flush();
     InterpreterResult.Type outputType=context.out.getType();
     byte[] interpreterOutput=context.out.toByteArray();
-    context.out.clear();
     if (interpreterOutput != null && interpreterOutput.length > 0) {
       message=new String(interpreterOutput);
     }
@@ -19,7 +18,9 @@
  else {
       combinedResult=new InterpreterResult(result.code(),outputType,message);
     }
-    context.getResourcePool().put(context.getNoteId(),context.getParagraphId(),WellKnownResourceName.ParagraphResult.toString(),combinedResult);
+    if (combinedResult.type() == InterpreterResult.Type.TABLE) {
+      context.getResourcePool().put(context.getNoteId(),context.getParagraphId(),WellKnownResourceName.ZeppelinTableResult.toString(),combinedResult);
+    }
     return combinedResult;
   }
   finally {

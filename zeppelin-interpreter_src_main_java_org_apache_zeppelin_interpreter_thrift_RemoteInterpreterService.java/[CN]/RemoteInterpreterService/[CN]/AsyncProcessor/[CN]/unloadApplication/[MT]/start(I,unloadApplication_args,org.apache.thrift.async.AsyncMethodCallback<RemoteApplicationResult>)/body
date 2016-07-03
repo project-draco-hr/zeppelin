@@ -1,0 +1,3 @@
+{
+  iface.unloadApplication(args.applicationInstanceId,resultHandler);
+}

@@ -1,0 +1,20 @@
+{
+switch (field) {
+case SUCCESS:
+    if (value == null) {
+      unsetSuccess();
+    }
+ else {
+      setSuccess((Boolean)value);
+    }
+  break;
+case MSG:
+if (value == null) {
+  unsetMsg();
+}
+ else {
+  setMsg((String)value);
+}
+break;
+}
+}

@@ -1,0 +1,6 @@
+{
+  super(port);
+  this.className=className;
+  this.resourceSet=resourceSet;
+  setLogger();
+}

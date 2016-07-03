@@ -1,0 +1,13 @@
+{
+synchronized (apps) {
+    for (    ApplicationState as : apps) {
+      if (as.equals(pkg)) {
+        return as;
+      }
+    }
+    String appId=getApplicationId(pkg);
+    ApplicationState appState=new ApplicationState(appId,pkg);
+    apps.add(appState);
+    return appState;
+  }
+}

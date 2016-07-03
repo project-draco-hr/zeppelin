@@ -1,0 +1,8 @@
+{
+  if (status == Job.Status.FINISHED) {
+    List<ApplicationState> appStates=p.getAllApplicationStates();
+    for (    ApplicationState app : appStates) {
+      loadAndRun(app.getHeliumPackage(),p);
+    }
+  }
+}

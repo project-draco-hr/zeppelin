@@ -1,0 +1,10 @@
+{
+  if (field == null) {
+    throw new IllegalArgumentException();
+  }
+switch (field) {
+case APPLICATION_INSTANCE_ID:
+    return isSetApplicationInstanceId();
+}
+throw new IllegalStateException();
+}

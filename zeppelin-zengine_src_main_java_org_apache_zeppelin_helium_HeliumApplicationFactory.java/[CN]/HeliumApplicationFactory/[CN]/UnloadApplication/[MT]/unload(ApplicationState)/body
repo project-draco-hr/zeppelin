@@ -1,0 +1,39 @@
+{
+synchronized (appsToUnload) {
+    if (appsToUnload.getStatus() != ApplicationState.Status.LOADED) {
+      throw new ApplicationException("Can't unload application status " + appsToUnload.getStatus());
+    }
+    appStatusChange(paragraph,appsToUnload.getId(),ApplicationState.Status.UNLOADING);
+    Interpreter intp=paragraph.getCurrentRepl();
+    if (intp == null) {
+      throw new ApplicationException("No interpreter found");
+    }
+    RemoteInterpreterProcess intpProcess=intp.getInterpreterGroup().getRemoteInterpreterProcess();
+    if (intpProcess == null) {
+      throw new ApplicationException("Target interpreter process is not running");
+    }
+    RemoteInterpreterService.Client client;
+    try {
+      client=intpProcess.getClient();
+    }
+ catch (    Exception e) {
+      throw new ApplicationException(e);
+    }
+    try {
+      RemoteApplicationResult ret=client.unloadApplication(appsToUnload.getId());
+      if (ret.isSuccess()) {
+        appStatusChange(paragraph,appsToUnload.getId(),ApplicationState.Status.UNLOADED);
+      }
+ else {
+        throw new ApplicationException(ret.getMsg());
+      }
+    }
+ catch (    TException e) {
+      intpProcess.releaseBrokenClient(client);
+      throw new ApplicationException(e);
+    }
+ finally {
+      intpProcess.releaseClient(client);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  if (packageInfo.getType() != HeliumPackage.Type.APPLICATION) {
+    throw new ApplicationException("Can't instantiate " + packageInfo.getType() + " package using ApplicationLoader");
+  }
+  RunningApplication key=new RunningApplication(packageInfo,context.getNoteId(),context.getParagraphId());
+  ResourceSet resources=findRequiredResourceSet(packageInfo.getResources(),context.getNoteId(),context.getParagraphId());
+  Class<Application> appClass=loadClass(packageInfo);
+  ClassLoader oldcl=Thread.currentThread().getContextClassLoader();
+  ClassLoader cl=appClass.getClassLoader();
+  Thread.currentThread().setContextClassLoader(cl);
+  try {
+    Constructor<Application> constructor=appClass.getConstructor(ApplicationContext.class);
+    Application app=new ClassLoaderApplication(constructor.newInstance(context),cl);
+    return app;
+  }
+ catch (  Exception e) {
+    throw new ApplicationException(e);
+  }
+ finally {
+    Thread.currentThread().setContextClassLoader(oldcl);
+  }
+}

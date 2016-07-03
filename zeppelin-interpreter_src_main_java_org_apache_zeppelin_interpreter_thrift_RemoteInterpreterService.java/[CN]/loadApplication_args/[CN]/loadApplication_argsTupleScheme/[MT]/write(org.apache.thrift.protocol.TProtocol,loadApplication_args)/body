@@ -1,0 +1,29 @@
+{
+  TTupleProtocol oprot=(TTupleProtocol)prot;
+  BitSet optionals=new BitSet();
+  if (struct.isSetApplicationInstanceId()) {
+    optionals.set(0);
+  }
+  if (struct.isSetPackageInfo()) {
+    optionals.set(1);
+  }
+  if (struct.isSetNoteId()) {
+    optionals.set(2);
+  }
+  if (struct.isSetParagraphId()) {
+    optionals.set(3);
+  }
+  oprot.writeBitSet(optionals,4);
+  if (struct.isSetApplicationInstanceId()) {
+    oprot.writeString(struct.applicationInstanceId);
+  }
+  if (struct.isSetPackageInfo()) {
+    oprot.writeString(struct.packageInfo);
+  }
+  if (struct.isSetNoteId()) {
+    oprot.writeString(struct.noteId);
+  }
+  if (struct.isSetParagraphId()) {
+    oprot.writeString(struct.paragraphId);
+  }
+}

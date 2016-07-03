@@ -1,6 +1,12 @@
 {
   Note note=getNote(id);
   if (note != null) {
+    List<InterpreterSetting> currentBindings=replFactory.getInterpreterSettings(id);
+    for (    InterpreterSetting setting : currentBindings) {
+      if (!interpreterSettingIds.contains(setting.id())) {
+        fireUnbindInterpreter(note,setting);
+      }
+    }
     replFactory.setInterpreters(note.getId(),interpreterSettingIds);
   }
 }
