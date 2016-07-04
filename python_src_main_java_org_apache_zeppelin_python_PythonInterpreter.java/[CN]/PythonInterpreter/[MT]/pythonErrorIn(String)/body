@@ -1,0 +1,4 @@
+{
+  Matcher errorMatcher=errorInLastLine.matcher(output);
+  return errorMatcher.find();
+}

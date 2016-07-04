@@ -1,8 +1,15 @@
 {
-  this.context=contextInterpreter;
   if (cmd == null || cmd.isEmpty()) {
     return new InterpreterResult(Code.SUCCESS,"");
   }
+  this.context=contextInterpreter;
   String output=sendCommandToPython(cmd);
-  return new InterpreterResult(Code.SUCCESS,output.replaceAll(">>>","").replaceAll("\\.\\.\\.","").trim());
+  InterpreterResult result;
+  if (pythonErrorIn(output)) {
+    result=new InterpreterResult(Code.ERROR,output.replaceAll(">>>","").trim());
+  }
+ else {
+    result=new InterpreterResult(Code.SUCCESS,output.replaceAll(">>>","").replaceAll("\\.\\.\\.","").trim());
+  }
+  return result;
 }

@@ -22,7 +22,8 @@
  catch (  IOException e) {
     LOG.error("Can't execute " + BOOTSTRAP_PY + " to initiate python process",e);
   }
-  if (py4J=isPy4jInstalled()) {
+  py4JisInstalled=isPy4jInstalled();
+  if (py4JisInstalled) {
     port=findRandomOpenPortOnAllLocalInterfaces();
     LOG.info("Py4j gateway port : " + port);
     try {
