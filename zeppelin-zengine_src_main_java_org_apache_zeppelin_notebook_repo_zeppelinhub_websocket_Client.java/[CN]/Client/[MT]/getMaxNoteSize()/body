@@ -1,0 +1,3 @@
+{
+  return MAXIMUM_NOTE_SIZE;
+}
