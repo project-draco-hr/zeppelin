@@ -17,7 +17,7 @@
     Map<String,Object> info=new HashMap<>();
     info.put("notebookId",note.id());
     String notebookName=note.getName();
-    if (notebookName != null) {
+    if (notebookName != null && !notebookName.equals("")) {
       info.put("notebookName",note.getName());
     }
  else {
@@ -38,9 +38,9 @@
       Map<String,Object> paragraphItem=getParagraphForJobManagerItem(paragraph);
       lastRunningUnixTime=getUnixTimeLastRunParagraph(paragraph);
       if (lastRunningUnixTime > lastUpdateServerUnixTime) {
-        paragraphsInfo.add(paragraphItem);
         isUpdateNotebook=true;
       }
+      paragraphsInfo.add(paragraphItem);
     }
     String interpreterGroupName=null;
     if (replFactory.getInterpreterSettings(note.getId()) != null && replFactory.getInterpreterSettings(note.getId()).size() >= 1) {
