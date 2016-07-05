@@ -1,6 +1,6 @@
 {
 synchronized (interpreterGroupRef) {
-    HashSet<String> groupsToRemove=new HashSet<String>(interpreterGroupRef.keySet());
+    HashSet<String> groupsToRemove=new HashSet<>(interpreterGroupRef.keySet());
     for (    String key : groupsToRemove) {
       closeAndRemoveInterpreterGroup(key);
     }

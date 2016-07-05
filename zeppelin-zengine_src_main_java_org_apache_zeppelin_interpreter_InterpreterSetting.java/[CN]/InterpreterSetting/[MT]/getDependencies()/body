@@ -1,6 +1,6 @@
 {
   if (dependencies == null) {
-    return new LinkedList<Dependency>();
+    return new LinkedList<>();
   }
   return dependencies;
 }

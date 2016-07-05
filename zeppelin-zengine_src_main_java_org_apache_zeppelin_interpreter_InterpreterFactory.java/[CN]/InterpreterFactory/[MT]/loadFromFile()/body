@@ -1,8 +1,4 @@
 {
-  GsonBuilder builder=new GsonBuilder();
-  builder.setPrettyPrinting();
-  builder.registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());
-  Gson gson=builder.create();
   File settingFile=new File(conf.getInterpreterSettingPath());
   if (!settingFile.exists()) {
     return;

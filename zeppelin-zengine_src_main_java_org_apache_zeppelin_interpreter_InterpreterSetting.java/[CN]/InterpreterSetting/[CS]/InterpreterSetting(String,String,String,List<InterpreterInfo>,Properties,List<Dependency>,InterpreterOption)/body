@@ -6,5 +6,4 @@
   this.properties=properties;
   this.dependencies=dependencies;
   this.option=option;
-  this.interpreterGroupFactory=interpreterGroupFactory;
 }

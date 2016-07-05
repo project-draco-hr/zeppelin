@@ -1,5 +1,5 @@
 {
 synchronized (interpreterGroupRef) {
-    return new LinkedList<InterpreterGroup>(interpreterGroupRef.values());
+    return new LinkedList<>(interpreterGroupRef.values());
   }
 }

@@ -12,7 +12,6 @@
   interpreterGroupOrderList=groupOrder.split(",");
   GsonBuilder builder=new GsonBuilder();
   builder.setPrettyPrinting();
-  builder.registerTypeAdapter(InterpreterSetting.InterpreterInfo.class,new InterpreterInfoSerializer());
   gson=builder.create();
   init();
 }
