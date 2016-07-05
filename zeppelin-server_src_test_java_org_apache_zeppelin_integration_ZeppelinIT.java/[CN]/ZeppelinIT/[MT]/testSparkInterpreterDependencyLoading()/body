@@ -16,7 +16,7 @@
     try {
       clickAndWait(By.xpath("//div[@class='modal-dialog'][contains(.,'Do you want to " + "update this interpreter and restart with new settings?')]//" + "div[@class='bootstrap-dialog-close-button']/button"));
     }
- catch (    TimeoutException e) {
+ catch (    TimeoutException|StaleElementReferenceException e) {
     }
     driver.navigate().back();
     createNewNote();
