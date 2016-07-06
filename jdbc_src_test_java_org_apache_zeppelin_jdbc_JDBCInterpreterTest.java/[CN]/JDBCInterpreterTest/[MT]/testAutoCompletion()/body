@@ -1,0 +1,16 @@
+{
+  Properties properties=new Properties();
+  properties.setProperty("common.max_count","1000");
+  properties.setProperty("common.max_retry","3");
+  properties.setProperty("default.driver","org.h2.Driver");
+  properties.setProperty("default.url",getJdbcConnection());
+  properties.setProperty("default.user","");
+  properties.setProperty("default.password","");
+  JDBCInterpreter jdbcInterpreter=new JDBCInterpreter(properties);
+  jdbcInterpreter.open();
+  List<InterpreterCompletion> completionList=jdbcInterpreter.completion("SEL",0);
+  InterpreterCompletion correctCompletionKeyword=new InterpreterCompletion("SELECT","SELECT");
+  assertEquals(2,completionList.size());
+  assertEquals(true,completionList.contains(correctCompletionKeyword));
+  assertEquals(0,jdbcInterpreter.completion("SEL",100).size());
+}
