@@ -10,4 +10,7 @@
   assertTrue(cmdHistory.contains("GatewayClient(port=" + py4jPort + ")"));
   assertTrue(cmdHistory.contains("org.apache.zeppelin.display.Input"));
   assertTrue(serverIsListeningOn(py4jPort));
+  pythonInterpreter.close();
+  TimeUnit.MILLISECONDS.sleep(100);
+  assertFalse(serverIsListeningOn(py4jPort));
 }

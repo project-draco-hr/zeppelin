@@ -4,6 +4,7 @@
   Integer py4jPort=pythonInterpreter.getPy4jPort();
   assertNotNull(py4jPort);
   pythonInterpreter.close();
+  TimeUnit.MILLISECONDS.sleep(100);
   assertFalse(serverIsListeningOn(py4jPort));
   verify(mockPythonProcess,times(1)).close();
 }
