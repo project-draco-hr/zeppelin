@@ -31,5 +31,11 @@
   InterpreterResult result11=t.interpret("ls -l ",null);
   assertEquals(result11.type(),InterpreterResult.Type.TEXT);
   assertEquals(result1.message(),result11.message());
+  List expectedResultOne=Arrays.asList(new InterpreterCompletion("ls","ls"));
+  List expectedResultTwo=Arrays.asList(new InterpreterCompletion("pwd","pwd"));
+  List<InterpreterCompletion> resultOne=t.completion("l",0);
+  List<InterpreterCompletion> resultTwo=t.completion("p",0);
+  assertEquals(expectedResultOne,resultOne);
+  assertEquals(expectedResultTwo,resultTwo);
   t.close();
 }

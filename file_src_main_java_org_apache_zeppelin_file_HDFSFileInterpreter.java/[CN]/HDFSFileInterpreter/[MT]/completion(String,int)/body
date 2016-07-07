@@ -1,16 +1,16 @@
 {
   logger.info("Completion request at position\t" + cursor + " in string "+ buf);
-  final List suggestions=new ArrayList<>();
+  final List<InterpreterCompletion> suggestions=new ArrayList<>();
   if (StringUtils.isEmpty(buf)) {
-    suggestions.add("ls");
-    suggestions.add("cd");
-    suggestions.add("pwd");
+    suggestions.add(new InterpreterCompletion("ls","ls"));
+    suggestions.add(new InterpreterCompletion("cd","cd"));
+    suggestions.add(new InterpreterCompletion("pwd","pwd"));
     return suggestions;
   }
   if (buf.split(" ").length == 1) {
-    if ("cd".contains(buf))     suggestions.add("cd");
-    if ("ls".contains(buf))     suggestions.add("ls");
-    if ("pwd".contains(buf))     suggestions.add("pwd");
+    if ("cd".contains(buf))     suggestions.add(new InterpreterCompletion("cd","cd"));
+    if ("ls".contains(buf))     suggestions.add(new InterpreterCompletion("ls","ls"));
+    if ("pwd".contains(buf))     suggestions.add(new InterpreterCompletion("pwd","pwd"));
     return suggestions;
   }
   String lastToken=buf.substring(buf.lastIndexOf(" ") + 1);
@@ -34,7 +34,7 @@
             if (fs.pathSuffix.contains(unfinished)) {
               String beforeLastPeriod=unfinished.substring(0,unfinished.lastIndexOf('.') + 1);
               String suggestedFinish=fs.pathSuffix.substring(beforeLastPeriod.length());
-              suggestions.add(suggestedFinish);
+              suggestions.add(new InterpreterCompletion(suggestedFinish,suggestedFinish));
             }
           }
           return suggestions;
