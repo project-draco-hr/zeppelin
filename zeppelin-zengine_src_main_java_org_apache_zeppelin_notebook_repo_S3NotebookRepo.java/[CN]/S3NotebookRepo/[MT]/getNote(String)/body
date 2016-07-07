@@ -1,7 +1,7 @@
 {
   GsonBuilder gsonBuilder=new GsonBuilder();
   gsonBuilder.setPrettyPrinting();
-  Gson gson=gsonBuilder.create();
+  Gson gson=gsonBuilder.registerTypeAdapter(Date.class,new NotebookImportDeserializer()).create();
   S3Object s3object;
   try {
     s3object=s3client.getObject(new GetObjectRequest(bucketName,key));

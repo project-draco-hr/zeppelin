@@ -14,7 +14,7 @@
   ins.close();
   GsonBuilder gsonBuilder=new GsonBuilder();
   gsonBuilder.setPrettyPrinting();
-  Gson gson=gsonBuilder.create();
+  Gson gson=gsonBuilder.registerTypeAdapter(Date.class,new NotebookImportDeserializer()).create();
   Note note=gson.fromJson(json,Note.class);
   for (  Paragraph p : note.getParagraphs()) {
     if (p.getStatus() == Job.Status.PENDING || p.getStatus() == Job.Status.RUNNING) {
