@@ -1,0 +1,14 @@
+{
+  List expectedResultOne=Arrays.asList(new InterpreterCompletion("count","count"));
+  List expectedResultTwo=Arrays.asList(new InterpreterCompletion("help","help"));
+  List<InterpreterCompletion> resultOne=interpreter.completion("co",0);
+  List<InterpreterCompletion> resultTwo=interpreter.completion("he",0);
+  List<InterpreterCompletion> resultAll=interpreter.completion("",0);
+  Assert.assertEquals(expectedResultOne,resultOne);
+  Assert.assertEquals(expectedResultTwo,resultTwo);
+  List allCompletionList=new ArrayList<>();
+  for (  InterpreterCompletion ic : resultAll) {
+    allCompletionList.add(ic.getName());
+  }
+  Assert.assertEquals(interpreter.COMMANDS,allCompletionList);
+}

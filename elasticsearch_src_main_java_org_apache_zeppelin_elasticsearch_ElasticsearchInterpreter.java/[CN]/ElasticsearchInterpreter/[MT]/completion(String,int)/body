@@ -1,13 +1,8 @@
 {
   final List suggestions=new ArrayList<>();
-  if (StringUtils.isEmpty(s)) {
-    suggestions.addAll(COMMANDS);
-  }
- else {
-    for (    String cmd : COMMANDS) {
-      if (cmd.toLowerCase().contains(s)) {
-        suggestions.add(cmd);
-      }
+  for (  String cmd : COMMANDS) {
+    if (cmd.toLowerCase().contains(s)) {
+      suggestions.add(new InterpreterCompletion(cmd,cmd));
     }
   }
   return suggestions;
