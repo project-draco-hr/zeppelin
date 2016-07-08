@@ -1,6 +1,5 @@
 {
   Paragraph p=getParagraph(paragraphId);
-  p.setInterpreterFactory(factory);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
   List completion=p.completion(buffer,cursor);
   return completion;

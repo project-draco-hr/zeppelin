@@ -1,3 +1,8 @@
 {
   this.factory=factory;
+synchronized (paragraphs) {
+    for (    Paragraph p : paragraphs) {
+      p.setInterpreterFactory(factory);
+    }
+  }
 }

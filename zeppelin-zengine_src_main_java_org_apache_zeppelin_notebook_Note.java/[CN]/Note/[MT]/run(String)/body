@@ -1,6 +1,5 @@
 {
   Paragraph p=getParagraph(paragraphId);
-  p.setInterpreterFactory(factory);
   p.setListener(jobListenerFactory.getParagraphJobListener(this));
   String requiredReplName=p.getRequiredReplName();
   Interpreter intp=factory.getInterpreter(getId(),requiredReplName);

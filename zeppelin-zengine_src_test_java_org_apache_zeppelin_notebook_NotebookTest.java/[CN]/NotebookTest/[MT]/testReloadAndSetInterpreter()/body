@@ -1,0 +1,9 @@
+{
+  File srcDir=new File("src/test/resources/2A94M5J1Z");
+  File destDir=new File(notebookDir.getAbsolutePath() + "/2A94M5J1Z");
+  FileUtils.copyDirectory(srcDir,destDir);
+  notebook.reloadAllNotes(null);
+  assertEquals(1,notebook.getAllNotes().size());
+  Note note=notebook.getAllNotes().get(0);
+  assertNull(note.getParagraphs().get(0).getRepl(null));
+}
