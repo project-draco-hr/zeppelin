@@ -1,0 +1,19 @@
+{
+  GetMethod get=httpGet("/security/userlist/admi");
+  get.addRequestHeader("Origin","http://localhost");
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  List<String> userList=(List<String>)resp.get("body");
+  collector.checkThat("Search result size",userList.size(),CoreMatchers.equalTo(1));
+  collector.checkThat("Search result contains admin",userList.contains("admin"),CoreMatchers.equalTo(true));
+  get.releaseConnection();
+  GetMethod notUser=httpGet("/security/userlist/randomString");
+  notUser.addRequestHeader("Origin","http://localhost");
+  Map<String,Object> notUserResp=gson.fromJson(notUser.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  List<String> emptyUserList=(List<String>)notUserResp.get("body");
+  collector.checkThat("Search result size",emptyUserList.size(),CoreMatchers.equalTo(0));
+  notUser.releaseConnection();
+}

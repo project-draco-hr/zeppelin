@@ -5,7 +5,7 @@
   }
 .getType());
   Map<String,String> body=(Map<String,String>)resp.get("body");
-  assertEquals("anonymous",body.get("principal"));
-  assertEquals("anonymous",body.get("ticket"));
+  collector.checkThat("Paramater principal",body.get("principal"),CoreMatchers.equalTo("anonymous"));
+  collector.checkThat("Paramater ticket",body.get("ticket"),CoreMatchers.equalTo("anonymous"));
   get.releaseConnection();
 }
