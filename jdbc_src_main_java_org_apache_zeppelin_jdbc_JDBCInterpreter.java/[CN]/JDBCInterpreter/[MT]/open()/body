@@ -31,6 +31,9 @@
   logger.debug("propertiesMap: {}",propertiesMap);
   Connection connection=null;
   SqlCompleter sqlCompleter=null;
+  if (!StringUtils.isAnyEmpty(property.getProperty("zeppelin.jdbc.auth.type"))) {
+    JDBCSecurityImpl.createSecureConfiguration(property);
+  }
   for (  String propertyKey : propertiesMap.keySet()) {
     try {
       connection=getConnection(propertyKey);
