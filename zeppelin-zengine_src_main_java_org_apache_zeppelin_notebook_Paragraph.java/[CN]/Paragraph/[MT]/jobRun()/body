@@ -1,9 +1,9 @@
 {
   String replName=getRequiredReplName();
   Interpreter repl=getRepl(replName);
-  logger().info("run paragraph {} using {} " + repl,getId(),replName);
+  logger.info("run paragraph {} using {} " + repl,getId(),replName);
   if (repl == null) {
-    logger().error("Can not find interpreter name " + repl);
+    logger.error("Can not find interpreter name " + repl);
     throw new RuntimeException("Can not find interpreter for " + getRequiredReplName());
   }
   String script=getScriptBody();
@@ -18,7 +18,7 @@
     settings.setForms(inputs);
     script=Input.getSimpleQuery(settings.getParams(),scriptBody);
   }
-  logger().debug("RUN : " + script);
+  logger.debug("RUN : " + script);
   try {
     InterpreterContext context=getInterpreterContext();
     InterpreterContext.set(context);

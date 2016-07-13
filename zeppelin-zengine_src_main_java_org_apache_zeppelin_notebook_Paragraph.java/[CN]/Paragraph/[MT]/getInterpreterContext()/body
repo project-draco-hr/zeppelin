@@ -16,7 +16,7 @@
         message=new String(out.toByteArray());
       }
  catch (      IOException e) {
-        logger().error(e.getMessage(),e);
+        logger.error(e.getMessage(),e);
         t=e;
       }
       setReturn(new InterpreterResult(Code.SUCCESS,out.getType(),message),t);
