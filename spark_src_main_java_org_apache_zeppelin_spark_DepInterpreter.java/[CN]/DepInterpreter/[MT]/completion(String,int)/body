@@ -1,10 +1,15 @@
 {
-  ScalaCompleter c=completor.completer();
-  Candidates ret=c.complete(buf,cursor);
-  List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
-  List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
-  for (  String candidate : candidates) {
-    completions.add(new InterpreterCompletion(candidate,candidate));
+  if (Utils.isScala2_10()) {
+    ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completor,"completer");
+    Candidates ret=c.complete(buf,cursor);
+    List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
+    List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
+    for (    String candidate : candidates) {
+      completions.add(new InterpreterCompletion(candidate,candidate));
+    }
+    return completions;
   }
-  return completions;
+ else {
+    return new LinkedList<InterpreterCompletion>();
+  }
 }

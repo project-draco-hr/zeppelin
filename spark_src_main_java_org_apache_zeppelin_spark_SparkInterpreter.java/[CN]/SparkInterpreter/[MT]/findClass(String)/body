@@ -1,0 +1,9 @@
+{
+  try {
+    return this.getClass().forName(name);
+  }
+ catch (  ClassNotFoundException e) {
+    logger.error(e.getMessage(),e);
+    return null;
+  }
+}

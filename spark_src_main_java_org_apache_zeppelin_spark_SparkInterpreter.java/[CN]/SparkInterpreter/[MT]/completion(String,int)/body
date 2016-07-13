@@ -7,12 +7,17 @@
     completionText="";
     cursor=completionText.length();
   }
-  ScalaCompleter c=completor.completer();
-  Candidates ret=c.complete(completionText,cursor);
-  List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
-  List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
-  for (  String candidate : candidates) {
-    completions.add(new InterpreterCompletion(candidate,candidate));
+  if (Utils.isScala2_10()) {
+    ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completor,"completor");
+    Candidates ret=c.complete(completionText,cursor);
+    List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
+    List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
+    for (    String candidate : candidates) {
+      completions.add(new InterpreterCompletion(candidate,candidate));
+    }
+    return completions;
   }
-  return completions;
+ else {
+    return new LinkedList<InterpreterCompletion>();
+  }
 }

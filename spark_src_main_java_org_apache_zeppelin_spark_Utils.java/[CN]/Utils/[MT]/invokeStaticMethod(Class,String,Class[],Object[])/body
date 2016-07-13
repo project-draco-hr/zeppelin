@@ -1,0 +1,9 @@
+{
+  try {
+    return c.getMethod(name,argTypes).invoke(null,params);
+  }
+ catch (  NoSuchMethodException|InvocationTargetException|IllegalAccessException e) {
+    logger.error(e.getMessage(),e);
+  }
+  return null;
+}

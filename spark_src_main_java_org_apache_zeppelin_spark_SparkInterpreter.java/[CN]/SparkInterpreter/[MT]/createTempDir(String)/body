@@ -1,0 +1,8 @@
+{
+  File file=null;
+  file=(File)Utils.invokeStaticMethod(Utils.findClass("org.apache.spark.util.Utils"),"createTempDir",new Class[]{String.class,String.class},new Object[]{dir,"spark"});
+  if (file == null) {
+    file=(File)Utils.invokeStaticMethod(Utils.findClass("org.apache.spark.util.Utils"),"createTempDir",new Class[]{String.class},new Object[]{dir});
+  }
+  return file;
+}

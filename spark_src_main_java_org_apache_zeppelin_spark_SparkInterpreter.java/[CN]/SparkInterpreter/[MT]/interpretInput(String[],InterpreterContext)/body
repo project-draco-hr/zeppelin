@@ -39,7 +39,7 @@
     }
     scala.tools.nsc.interpreter.Results.Result res=null;
     try {
-      res=intp.interpret(incomplete + s);
+      res=interpret(incomplete + s);
     }
  catch (    Exception e) {
       sc.clearJobGroup();
@@ -61,8 +61,8 @@
     }
   }
   if (r == Code.INCOMPLETE) {
-    scala.tools.nsc.interpreter.Results.Result res;
-    res=intp.interpret(incomplete + "\nprint(\"\")");
+    scala.tools.nsc.interpreter.Results.Result res=null;
+    res=interpret(incomplete + "\nprint(\"\")");
     r=getResultCode(res);
   }
   if (r == Code.INCOMPLETE) {

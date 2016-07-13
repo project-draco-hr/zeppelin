@@ -1,5 +1,5 @@
 {
-  Object ret=intp.valueOfTerm(name);
+  Object ret=Utils.invokeMethod(intp,"valueOfTerm",new Class[]{String.class},new Object[]{name});
   if (ret instanceof None) {
     return null;
   }

@@ -1,0 +1,4 @@
+{
+  Object obj=imain.lastRequest().lineRep().call("$result",JavaConversions.asScalaBuffer(new LinkedList<Object>()));
+  return obj;
+}

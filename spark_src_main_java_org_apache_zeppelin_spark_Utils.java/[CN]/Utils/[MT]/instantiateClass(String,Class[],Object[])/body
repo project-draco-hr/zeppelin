@@ -1,0 +1,10 @@
+{
+  try {
+    Constructor<?> constructor=Utils.class.getClassLoader().loadClass(name).getConstructor(argTypes);
+    return constructor.newInstance(params);
+  }
+ catch (  NoSuchMethodException|ClassNotFoundException|IllegalAccessException|InstantiationException|InvocationTargetException e) {
+    logger.error(e.getMessage(),e);
+  }
+  return null;
+}

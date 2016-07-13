@@ -1,0 +1,9 @@
+{
+  try {
+    Utils.class.forName("org.apache.spark.repl.SparkIMain");
+    return true;
+  }
+ catch (  ClassNotFoundException e) {
+    return false;
+  }
+}

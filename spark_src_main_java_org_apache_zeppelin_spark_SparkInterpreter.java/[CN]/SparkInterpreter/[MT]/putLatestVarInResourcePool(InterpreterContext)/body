@@ -1,5 +1,5 @@
 {
-  String varName=intp.mostRecentVar();
+  String varName=(String)Utils.invokeMethod(intp,"mostRecentVar");
   if (varName == null || varName.isEmpty()) {
     return;
   }

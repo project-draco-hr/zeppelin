@@ -1,4 +1,5 @@
-SparkIMain intp
+Global global
+ClassLoader runtimeClassLoader
 SparkContext sc
 String localRepoPath
 String additionalRemoteRepository

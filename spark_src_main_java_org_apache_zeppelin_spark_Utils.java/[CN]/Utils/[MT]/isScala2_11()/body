@@ -1,0 +1,3 @@
+{
+  return !isScala2_10();
+}

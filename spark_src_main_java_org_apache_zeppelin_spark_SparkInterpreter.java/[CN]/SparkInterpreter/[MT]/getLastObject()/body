@@ -1,0 +1,5 @@
+{
+  IMain.Request r=(IMain.Request)Utils.invokeMethod(intp,"lastRequest");
+  Object obj=r.lineRep().call("$result",JavaConversions.asScalaBuffer(new LinkedList<Object>()));
+  return obj;
+}

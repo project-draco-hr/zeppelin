@@ -1,6 +1,6 @@
 {
   File jarFile=new File(artifact);
-  intp.global().new Run();
+  global.new Run();
   if (sc.version().startsWith("1.1")) {
     updateRuntimeClassPath_1_x(new URL[]{jarFile.toURI().toURL()});
   }

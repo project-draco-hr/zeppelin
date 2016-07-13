@@ -24,7 +24,7 @@
     files.add(artifactResult.getArtifact().getFile());
     loadedLibs.add(artifactResult.getArtifact().getGroupId() + ":" + artifactResult.getArtifact().getArtifactId()+ ":"+ artifactResult.getArtifact().getVersion());
   }
-  intp.global().new Run();
+  global.new Run();
   if (sc.version().startsWith("1.1")) {
     updateRuntimeClassPath_1_x(newClassPathList.toArray(new URL[0]));
   }

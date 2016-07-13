@@ -1,0 +1,3 @@
+{
+  return (Results.Result)Utils.invokeMethod(intp,"interpret",new Class[]{String.class},new Object[]{line});
+}

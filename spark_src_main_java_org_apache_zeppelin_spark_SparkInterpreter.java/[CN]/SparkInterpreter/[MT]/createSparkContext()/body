@@ -1,23 +1,34 @@
 {
   logger.info("------ Create new SparkContext {} -------",getProperty("master"));
   String execUri=System.getenv("SPARK_EXECUTOR_URI");
-  String[] jars=SparkILoop.getAddedJars();
+  String[] jars=null;
+  if (Utils.isScala2_10()) {
+    jars=(String[])Utils.invokeStaticMethod(SparkILoop.class,"getAddedJars");
+  }
+ else {
+    jars=(String[])Utils.invokeStaticMethod(findClass("org.apache.spark.repl.Main"),"getAddedJars");
+  }
   String classServerUri=null;
   try {
-    Method classServer=interpreter.intp().getClass().getMethod("classServer");
-    HttpServer httpServer=(HttpServer)classServer.invoke(interpreter.intp());
+    Method classServer=intp.getClass().getMethod("classServer");
+    HttpServer httpServer=(HttpServer)classServer.invoke(intp);
     classServerUri=httpServer.uri();
   }
  catch (  NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
   }
   if (classServerUri == null) {
     try {
-      Method classServer=interpreter.intp().getClass().getMethod("classServerUri");
-      classServerUri=(String)classServer.invoke(interpreter.intp());
+      Method classServer=intp.getClass().getMethod("classServerUri");
+      classServerUri=(String)classServer.invoke(intp);
     }
  catch (    NoSuchMethodException|SecurityException|IllegalAccessException|IllegalArgumentException|InvocationTargetException e) {
       logger.warn(String.format("Spark method classServerUri not available due to: [%s]",e.getMessage()));
     }
+  }
+  if (Utils.isScala2_11()) {
+    classServer=createHttpServer(outputDir);
+    classServer.start();
+    classServerUri=classServer.uri();
   }
   SparkConf conf=new SparkConf().setMaster(getProperty("master")).setAppName(getProperty("spark.app.name"));
   if (classServerUri != null) {

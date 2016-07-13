@@ -1,7 +1,7 @@
 {
   super(localRepoPath);
-  this.intp=intp;
-  this.global=intp.global();
+  this.global=global;
+  this.runtimeClassLoader=runtimeClassLoader;
   this.sc=sc;
   addRepoFromProperty(additionalRemoteRepository);
 }

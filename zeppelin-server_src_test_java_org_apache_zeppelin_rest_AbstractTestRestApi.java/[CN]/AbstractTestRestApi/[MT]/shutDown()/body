@@ -20,5 +20,6 @@
       throw new RuntimeException("Can not stop Zeppelin server");
     }
     LOG.info("Test Zeppelin terminated.");
+    System.clearProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_INTERPRETERS.getVarName());
   }
 }

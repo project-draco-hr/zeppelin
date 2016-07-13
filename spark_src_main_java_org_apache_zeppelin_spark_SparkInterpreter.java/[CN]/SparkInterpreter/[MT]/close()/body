@@ -3,6 +3,10 @@
   if (numReferenceOfSparkContext.decrementAndGet() == 0) {
     sc.stop();
     sc=null;
+    if (classServer != null) {
+      classServer.stop();
+      classServer=null;
+    }
   }
-  intp.close();
+  Utils.invokeMethod(intp,"close");
 }
