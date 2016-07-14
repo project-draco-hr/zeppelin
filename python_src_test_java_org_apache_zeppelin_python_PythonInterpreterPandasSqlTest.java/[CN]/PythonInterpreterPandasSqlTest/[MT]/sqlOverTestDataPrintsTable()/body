@@ -1,0 +1,13 @@
+{
+  InterpreterResult ret;
+  ret=python.interpret("import pandas as pd",context);
+  ret=python.interpret("import numpy as np",context);
+  ret=python.interpret("df2 = pd.DataFrame({ 'age'  : np.array([33, 51, 51, 34]), " + "'name' : pd.Categorical(['moon','jobs','gates','park'])})",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  ret=sql.interpret("select name, age from df2 where age < 40",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals(ret.message(),Type.TABLE,ret.type());
+  assertTrue(ret.message().indexOf("moon\t33") > 0);
+  assertTrue(ret.message().indexOf("park\t34") > 0);
+  assertEquals(InterpreterResult.Code.SUCCESS,sql.interpret("select case when name==\"aa\" then name else name end from df2",context).code());
+}

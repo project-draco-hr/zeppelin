@@ -1,0 +1,4 @@
+{
+  InterpreterResult ret=python.interpret("import pandas\nimport pandasql\nimport numpy\n",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+}

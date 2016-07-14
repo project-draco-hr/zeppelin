@@ -6,7 +6,6 @@
     connected=true;
   }
  catch (  IOException e) {
-    LOG.error("Can't open connection to " + sa,e);
   }
   return connected;
 }

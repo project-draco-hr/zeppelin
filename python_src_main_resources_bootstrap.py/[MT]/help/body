@@ -28,4 +28,10 @@ def help():
     print '<div><b>example </b>:'
     print "<pre>z.show(plt,width='50px')\nz.show(plt,height='150px') </pre></div>"
     print '<h3>Pandas DataFrame</h3>'
+    print '<div> You need to have Pandas module installed '
+    print 'to use this functionality (pip install pandas) !</div><br/>'
     print '\n<div>The interpreter can visualize Pandas DataFrame\nwith the function z.show()\n<pre>\nimport pandas as pd\ndf = pd.read_csv("bank.csv", sep=";")\nz.show(df)\n</pre></div>\n'
+    print '<h3>SQL over Pandas DataFrame</h3>'
+    print '<div> You need to have Pandas&Pandasql modules installed '
+    print 'to use this functionality (pip install pandas pandasql) !</div><br/>'
+    print '\n<div>Python interpreter group includes %sql interpreter that can query\nPandas DataFrames using SQL and visualize results using Zeppelin Table Display System\n\n<pre>\n%python\nimport pandas as pd\ndf = pd.read_csv("bank.csv", sep=";")\n</pre>\n<br />\n\n<pre>\n%python.sql\n%sql\nSELECT * from df LIMIT 5\n</pre></div>\n'

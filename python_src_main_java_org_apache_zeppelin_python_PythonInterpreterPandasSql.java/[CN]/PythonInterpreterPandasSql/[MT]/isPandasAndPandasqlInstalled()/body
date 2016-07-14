@@ -1,0 +1,5 @@
+{
+  PythonInterpreter python=getPythonInterpreter();
+  String output=python.sendCommandToPython("\n\nimport pandas\nimport pandasql\n");
+  return !output.contains("ImportError");
+}

@@ -1,0 +1,5 @@
+{
+  LOG.info("Running SQL query: '{}' over Pandas DataFrame",st);
+  Interpreter python=getPythonInterpreter();
+  return python.interpret("z.show(pysqldf('" + st + "'))",context);
+}

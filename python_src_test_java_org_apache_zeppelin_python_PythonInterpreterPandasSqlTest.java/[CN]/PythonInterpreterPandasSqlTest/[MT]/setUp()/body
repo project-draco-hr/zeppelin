@@ -1,0 +1,20 @@
+{
+  Properties p=new Properties();
+  p.setProperty("zeppelin.python","python");
+  p.setProperty("zeppelin.python.maxResult","100");
+  intpGroup=new InterpreterGroup();
+  python=new PythonInterpreter(p);
+  python.setInterpreterGroup(intpGroup);
+  python.open();
+  sql=new PythonInterpreterPandasSql(p);
+  sql.setInterpreterGroup(intpGroup);
+  intpGroup.put("note",Arrays.asList(python,sql));
+  context=new InterpreterContext("note","id","title","text",new AuthenticationInfo(),new HashMap<String,Object>(),new GUI(),new AngularObjectRegistry(intpGroup.getId(),null),null,new LinkedList<InterpreterContextRunner>(),new InterpreterOutput(new InterpreterOutputListener(){
+    @Override public void onAppend(    InterpreterOutput out,    byte[] line){
+    }
+    @Override public void onUpdate(    InterpreterOutput out,    byte[] output){
+    }
+  }
+));
+  sql.open();
+}

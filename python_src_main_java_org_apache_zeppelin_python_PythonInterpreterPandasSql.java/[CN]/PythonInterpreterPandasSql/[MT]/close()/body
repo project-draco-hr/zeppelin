@@ -1,0 +1,5 @@
+{
+  LOG.info("Close Python SQL interpreter instance: {}",this.toString());
+  Interpreter python=getPythonInterpreter();
+  python.close();
+}

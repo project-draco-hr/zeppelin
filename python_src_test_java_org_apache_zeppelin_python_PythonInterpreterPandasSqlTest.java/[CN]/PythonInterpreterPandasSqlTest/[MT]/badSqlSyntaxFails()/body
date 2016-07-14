@@ -1,0 +1,6 @@
+{
+  InterpreterResult ret=sql.interpret("select wrong syntax",context);
+  assertNotNull("Interpreter returned 'null'",ret);
+  assertEquals(ret.toString(),InterpreterResult.Code.ERROR,ret.code());
+  assertTrue(ret.message().length() > 0);
+}

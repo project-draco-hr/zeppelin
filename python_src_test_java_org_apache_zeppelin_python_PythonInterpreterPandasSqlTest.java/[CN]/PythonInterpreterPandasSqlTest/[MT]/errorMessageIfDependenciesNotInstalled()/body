@@ -1,0 +1,9 @@
+{
+  InterpreterResult ret;
+  ret=python.interpret("pysqldf = lambda q: print('Can not execute SQL as Python dependency is not installed')",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  ret=sql.interpret("SELECT * from something",context);
+  assertNotNull(ret);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  assertTrue(ret.message().contains("dependency is not installed"));
+}

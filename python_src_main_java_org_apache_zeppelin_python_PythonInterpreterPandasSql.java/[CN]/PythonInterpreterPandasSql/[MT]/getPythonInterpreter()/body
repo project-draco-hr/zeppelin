@@ -1,0 +1,16 @@
+{
+  LazyOpenInterpreter lazy=null;
+  PythonInterpreter python=null;
+  Interpreter p=getInterpreterInTheSameSessionByClassName(PythonInterpreter.class.getName());
+  while (p instanceof WrappedInterpreter) {
+    if (p instanceof LazyOpenInterpreter) {
+      lazy=(LazyOpenInterpreter)p;
+    }
+    p=((WrappedInterpreter)p).getInnerInterpreter();
+  }
+  python=(PythonInterpreter)p;
+  if (lazy != null) {
+    lazy.open();
+  }
+  return python;
+}
