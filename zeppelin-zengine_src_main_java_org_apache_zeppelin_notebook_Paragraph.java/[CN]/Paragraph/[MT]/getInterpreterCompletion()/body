@@ -1,0 +1,16 @@
+{
+  List<InterpreterCompletion> completion=new LinkedList();
+  for (  InterpreterSetting intp : factory.getInterpreterSettings(note.getId())) {
+    List<InterpreterSetting.InterpreterInfo> intInfo=intp.getInterpreterInfos();
+    if (intInfo.size() > 1) {
+      for (      InterpreterSetting.InterpreterInfo info : intInfo) {
+        String name=intp.getGroup() + "." + info.getName();
+        completion.add(new InterpreterCompletion(name,name));
+      }
+    }
+ else {
+      completion.add(new InterpreterCompletion(intp.getGroup(),intp.getGroup()));
+    }
+  }
+  return completion;
+}
