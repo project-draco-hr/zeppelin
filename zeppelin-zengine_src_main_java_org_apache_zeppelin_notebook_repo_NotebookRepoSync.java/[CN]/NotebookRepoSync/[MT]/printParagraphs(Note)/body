@@ -1,7 +1,0 @@
-{
-  LOG.info("Note name :  " + note.getName());
-  LOG.info("Note ID :  " + note.id());
-  for (  Paragraph p : note.getParagraphs()) {
-    printParagraph(p);
-  }
-}

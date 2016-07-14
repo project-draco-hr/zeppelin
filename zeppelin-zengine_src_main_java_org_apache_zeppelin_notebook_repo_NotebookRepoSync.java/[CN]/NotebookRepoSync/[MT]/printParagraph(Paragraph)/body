@@ -1,7 +1,0 @@
-{
-  LOG.info("Date created :  " + paragraph.getDateCreated());
-  LOG.info("Date started :  " + paragraph.getDateStarted());
-  LOG.info("Date finished :  " + paragraph.getDateFinished());
-  LOG.info("Paragraph ID : " + paragraph.getId());
-  LOG.info("Paragraph title : " + paragraph.getTitle());
-}
