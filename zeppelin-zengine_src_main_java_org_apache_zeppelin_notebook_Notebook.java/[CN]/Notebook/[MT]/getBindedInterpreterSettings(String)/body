@@ -4,6 +4,6 @@
     return replFactory.getInterpreterSettings(note.getId());
   }
  else {
-    return new LinkedList<InterpreterSetting>();
+    return new LinkedList<>();
   }
 }

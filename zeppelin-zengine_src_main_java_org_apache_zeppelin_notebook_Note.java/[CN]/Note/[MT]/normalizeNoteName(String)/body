@@ -1,7 +1,7 @@
 {
   name=name.trim();
   name=name.replace("\\","/");
-  while (name.indexOf("///") >= 0) {
+  while (name.contains("///")) {
     name=name.replaceAll("///","/");
   }
   name=name.replaceAll("//","/");

@@ -1,0 +1,15 @@
+{
+  Preconditions.checkNotNull(noteId,"noteId should be not null");
+  Preconditions.checkNotNull(setting,"setting should be not null");
+  Preconditions.checkNotNull(name,"name should be not null");
+  String className;
+  if (null != (className=getInterpreterClassFromInterpreterSetting(setting,name))) {
+    List<Interpreter> interpreterGroup=createOrGetInterpreterList(noteId,setting);
+    for (    Interpreter interpreter : interpreterGroup) {
+      if (className.equals(interpreter.getClassName())) {
+        return interpreter;
+      }
+    }
+  }
+  return null;
+}

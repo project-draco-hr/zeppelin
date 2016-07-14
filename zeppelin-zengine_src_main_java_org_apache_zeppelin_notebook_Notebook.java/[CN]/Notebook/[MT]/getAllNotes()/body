@@ -1,6 +1,6 @@
 {
 synchronized (notes) {
-    List<Note> noteList=new ArrayList<Note>(notes.values());
+    List<Note> noteList=new ArrayList<>(notes.values());
     Collections.sort(noteList,new Comparator<Note>(){
       @Override public int compare(      Note note1,      Note note2){
         String name1=note1.id();

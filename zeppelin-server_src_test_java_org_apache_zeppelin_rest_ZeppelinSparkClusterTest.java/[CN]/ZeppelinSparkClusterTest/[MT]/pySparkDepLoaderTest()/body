@@ -3,8 +3,8 @@
   if (isPyspark() && getSparkVersionNumber(note) >= 14) {
     List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
     for (    InterpreterSetting setting : settings) {
-      if (setting.getGroup().equals("spark")) {
-        ZeppelinServer.notebook.getInterpreterFactory().restart(setting.id());
+      if (setting.getName().equals("spark")) {
+        ZeppelinServer.notebook.getInterpreterFactory().restart(setting.getId());
         break;
       }
     }

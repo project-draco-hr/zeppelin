@@ -1,0 +1,6 @@
+String group
+ArrayList<InterpreterInfo> interpreterInfos
+List<Dependency> dependencies
+InterpreterOption option
+Properties properties
+String path

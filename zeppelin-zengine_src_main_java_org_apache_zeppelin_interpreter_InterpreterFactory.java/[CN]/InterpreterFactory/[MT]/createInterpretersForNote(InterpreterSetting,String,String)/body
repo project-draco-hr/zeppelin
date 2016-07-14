@@ -1,6 +1,5 @@
 {
   InterpreterGroup interpreterGroup=interpreterSetting.getInterpreterGroup(noteId);
-  String groupName=interpreterSetting.getGroup();
   InterpreterOption option=interpreterSetting.getOption();
   Properties properties=interpreterSetting.getProperties();
   if (option.isExistingProcess) {
@@ -24,37 +23,35 @@ synchronized (interpreterGroup) {
     }
   }
   logger.info("Create interpreter instance {} for note {}",interpreterSetting.getName(),noteId);
-  Set<String> keys=Interpreter.registeredInterpreters.keySet();
-  for (  String intName : keys) {
-    RegisteredInterpreter info=Interpreter.registeredInterpreters.get(intName);
-    if (info.getGroup().equals(groupName)) {
-      Interpreter intp;
-      if (option.isRemote()) {
-        if (option.isConnectExistingProcess()) {
-          intp=connectToRemoteRepl(noteId,info.getClassName(),option.getHost(),option.getPort(),properties);
-        }
- else {
-          intp=createRemoteRepl(info.getPath(),key,info.getClassName(),properties,interpreterSetting.id());
-        }
+  List<InterpreterInfo> interpreterInfos=interpreterSetting.getInterpreterInfos();
+  String path=interpreterSetting.getPath();
+  Interpreter interpreter;
+  for (  InterpreterInfo info : interpreterInfos) {
+    if (option.isRemote()) {
+      if (option.isConnectExistingProcess()) {
+        interpreter=connectToRemoteRepl(noteId,info.getClassName(),option.getHost(),option.getPort(),properties);
       }
  else {
-        intp=createRepl(info.getPath(),info.getClassName(),properties);
+        interpreter=createRemoteRepl(path,key,info.getClassName(),properties,interpreterSetting.getId());
       }
-synchronized (interpreterGroup) {
-        List<Interpreter> interpreters=interpreterGroup.get(key);
-        if (interpreters == null) {
-          interpreters=new LinkedList<>();
-          interpreterGroup.put(key,interpreters);
-        }
-        if (info.isDefaultInterpreter()) {
-          interpreters.add(0,intp);
-        }
- else {
-          interpreters.add(intp);
-        }
-      }
-      logger.info("Interpreter " + intp.getClassName() + " "+ intp.hashCode()+ " created");
-      intp.setInterpreterGroup(interpreterGroup);
     }
+ else {
+      interpreter=createRepl(interpreterSetting.getPath(),info.getClassName(),properties);
+    }
+synchronized (interpreterGroup) {
+      List<Interpreter> interpreters=interpreterGroup.get(key);
+      if (null == interpreters) {
+        interpreters=new ArrayList<>();
+        interpreterGroup.put(key,interpreters);
+      }
+      if (info.isDefaultInterpreter()) {
+        interpreters.add(0,interpreter);
+      }
+ else {
+        interpreters.add(interpreter);
+      }
+    }
+    logger.info("Interpreter {} {} created",interpreter.getClassName(),interpreter.hashCode());
+    interpreter.setInterpreterGroup(interpreterGroup);
   }
 }

@@ -1,4 +1,4 @@
 {
   String exportJson=notebook.exportNote(noteId);
-  return new JsonResponse(Status.OK,"",exportJson).build();
+  return new JsonResponse<>(Status.OK,"",exportJson).build();
 }

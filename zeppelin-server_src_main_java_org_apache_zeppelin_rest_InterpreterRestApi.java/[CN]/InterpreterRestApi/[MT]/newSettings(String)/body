@@ -3,16 +3,12 @@
     NewInterpreterSettingRequest request=gson.fromJson(message,NewInterpreterSettingRequest.class);
     Properties p=new Properties();
     p.putAll(request.getProperties());
-    InterpreterSetting interpreterSetting=interpreterFactory.add(request.getName(),request.getGroup(),request.getDependencies(),request.getOption(),p);
-    logger.info("new setting created with {}",interpreterSetting.id());
-    return new JsonResponse(Status.CREATED,"",interpreterSetting).build();
+    InterpreterSetting interpreterSetting=interpreterFactory.createNewSetting(request.getName(),request.getGroup(),request.getDependencies(),request.getOption(),p);
+    logger.info("new setting created with {}",interpreterSetting.getId());
+    return new JsonResponse<>(Status.CREATED,"",interpreterSetting).build();
   }
- catch (  InterpreterException e) {
+ catch (  InterpreterException|IOException e) {
     logger.error("Exception in InterpreterRestApi while creating ",e);
-    return new JsonResponse(Status.NOT_FOUND,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
-  }
-catch (  IOException|RepositoryException e) {
-    logger.error("Exception in InterpreterRestApi while creating ",e);
-    return new JsonResponse(Status.INTERNAL_SERVER_ERROR,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
+    return new JsonResponse<>(Status.NOT_FOUND,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
   }
 }

@@ -1,4 +1,4 @@
 {
-  Map<String,RegisteredInterpreter> m=Interpreter.registeredInterpreters;
-  return new JsonResponse(Status.OK,"",m).build();
+  Map<String,InterpreterSetting> m=interpreterFactory.getAvailableInterpreterSettings();
+  return new JsonResponse<>(Status.OK,"",m).build();
 }

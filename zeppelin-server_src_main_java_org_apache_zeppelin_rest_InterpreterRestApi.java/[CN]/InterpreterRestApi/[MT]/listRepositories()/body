@@ -1,5 +1,4 @@
 {
-  List<RemoteRepository> interpreterRepositories=null;
-  interpreterRepositories=interpreterFactory.getRepositories();
-  return new JsonResponse(Status.OK,"",interpreterRepositories).build();
+  List<RemoteRepository> interpreterRepositories=interpreterFactory.getRepositories();
+  return new JsonResponse<>(Status.OK,"",interpreterRepositories).build();
 }

@@ -8,5 +8,5 @@
   if (p == null) {
     return new JsonResponse(Status.NOT_FOUND,"paragraph not found.").build();
   }
-  return new JsonResponse(Status.OK,"",p).build();
+  return new JsonResponse<>(Status.OK,"",p).build();
 }

@@ -1,5 +1,7 @@
 {
   List<InterpreterSetting> settings=getInterpreterSettings(noteId);
+  InterpreterSetting setting;
+  Interpreter interpreter;
   if (settings == null || settings.size() == 0) {
     return null;
   }
@@ -7,51 +9,31 @@
     InterpreterSetting defaultSettings=getDefaultInterpreterSetting(settings);
     return createOrGetInterpreterList(noteId,defaultSettings).get(0);
   }
-  if (Interpreter.registeredInterpreters == null) {
-    return null;
-  }
   String[] replNameSplit=replName.split("\\.");
-  String group=null;
-  String name=null;
   if (replNameSplit.length == 2) {
+    String group=null;
+    String name=null;
     group=replNameSplit[0];
     name=replNameSplit[1];
-    Interpreter.RegisteredInterpreter registeredInterpreter=Interpreter.registeredInterpreters.get(group + "." + name);
-    if (registeredInterpreter == null || registeredInterpreter.getClassName() == null) {
-      throw new InterpreterException(replName + " interpreter not found");
-    }
-    String interpreterClassName=registeredInterpreter.getClassName();
-    for (    InterpreterSetting setting : settings) {
-      if (registeredInterpreter.getGroup().equals(setting.getGroup())) {
-        List<Interpreter> intpGroup=createOrGetInterpreterList(noteId,setting);
-        for (        Interpreter interpreter : intpGroup) {
-          if (interpreterClassName.equals(interpreter.getClassName())) {
-            return interpreter;
-          }
-        }
+    setting=getInterpreterSettingByGroup(settings,group);
+    if (null != setting) {
+      interpreter=getInterpreter(noteId,setting,name);
+      if (null != interpreter) {
+        return interpreter;
       }
     }
     throw new InterpreterException(replName + " interpreter not found");
   }
  else {
-    InterpreterSetting defaultSetting=getDefaultInterpreterSetting(settings);
-    Interpreter.RegisteredInterpreter registeredInterpreter=Interpreter.registeredInterpreters.get(defaultSetting.getGroup() + "." + replName);
-    if (registeredInterpreter != null) {
-      List<Interpreter> interpreters=createOrGetInterpreterList(noteId,defaultSetting);
-      for (      Interpreter interpreter : interpreters) {
-        RegisteredInterpreter intp=Interpreter.findRegisteredInterpreterByClassName(interpreter.getClassName());
-        if (intp == null) {
-          continue;
-        }
-        if (intp.getName().equals(replName)) {
-          return interpreter;
-        }
-      }
-      throw new InterpreterException(defaultSetting.getGroup() + "." + replName+ " interpreter not found");
+    setting=getDefaultInterpreterSetting(settings);
+    interpreter=getInterpreter(noteId,setting,replName);
+    if (null != interpreter) {
+      return interpreter;
     }
-    for (    InterpreterSetting setting : settings) {
-      if (setting.getGroup().equals(replName)) {
-        List<Interpreter> interpreters=createOrGetInterpreterList(noteId,setting);
+    setting=getInterpreterSettingByGroup(settings,replName);
+    if (null != setting) {
+      List<Interpreter> interpreters=createOrGetInterpreterList(noteId,setting);
+      if (null != interpreters) {
         return interpreters.get(0);
       }
     }

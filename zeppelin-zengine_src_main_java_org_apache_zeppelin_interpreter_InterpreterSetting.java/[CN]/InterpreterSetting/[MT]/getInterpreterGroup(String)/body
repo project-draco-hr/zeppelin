@@ -2,7 +2,7 @@
   String key=getInterpreterProcessKey(noteId);
 synchronized (interpreterGroupRef) {
     if (!interpreterGroupRef.containsKey(key)) {
-      String interpreterGroupId=id() + ":" + key;
+      String interpreterGroupId=getId() + ":" + key;
       InterpreterGroup intpGroup=interpreterGroupFactory.createInterpreterGroup(interpreterGroupId,getOption());
       interpreterGroupRef.put(key,intpGroup);
     }

@@ -5,7 +5,7 @@
   String mock1IntpSettingId=null;
   for (  InterpreterSetting setting : notebook.getBindedInterpreterSettings(note1.id())) {
     if (setting.getName().equals("mock1")) {
-      mock1IntpSettingId=setting.id();
+      mock1IntpSettingId=setting.getId();
       break;
     }
   }

@@ -33,58 +33,35 @@
   for (  RegisteredInterpreter registeredInterpreter : Interpreter.registeredInterpreters.values()) {
     logger.debug("Registered: {} -> {}. Properties: {}",registeredInterpreter.getInterpreterKey(),registeredInterpreter.getClassName(),registeredInterpreter.getProperties());
   }
+  InterpreterInfo interpreterInfo;
+  for (  RegisteredInterpreter r : Interpreter.registeredInterpreters.values()) {
+    interpreterInfo=new InterpreterInfo(r.getClassName(),r.getName(),r.isDefaultInterpreter());
+    add(r.getGroup(),interpreterInfo,convertInterpreterProperties(r.getProperties()),r.getPath());
+  }
+  for (  String settingId : interpreterSettingsRef.keySet()) {
+    InterpreterSetting setting=interpreterSettingsRef.get(settingId);
+    logger.info("InterpreterSettingRef name {}",setting.getName());
+  }
   loadFromFile();
-synchronized (interpreterSettings) {
-    if (interpreterSettings.size() == 0) {
-      HashMap<String,List<RegisteredInterpreter>> groupClassNameMap=new HashMap<>();
-      for (      String k : Interpreter.registeredInterpreters.keySet()) {
-        RegisteredInterpreter info=Interpreter.registeredInterpreters.get(k);
-        String group=info.getGroup();
-        if (!groupClassNameMap.containsKey(group)) {
-          groupClassNameMap.put(group,new LinkedList<RegisteredInterpreter>());
-          groupClassNameMap.get(group).add(info);
-        }
- else {
-          if (info.isDefaultInterpreter()) {
-            groupClassNameMap.get(group).add(0,info);
-          }
- else {
-            groupClassNameMap.get(group).add(info);
-          }
-        }
-      }
-      for (      String groupName : interpreterGroupOrderList) {
-        List<RegisteredInterpreter> infos=groupClassNameMap.remove(groupName);
-        if (null != infos) {
-          Properties p=new Properties();
-          for (          RegisteredInterpreter info : infos) {
-            Map<String,InterpreterProperty> interpreterProperties=info.getProperties();
-            if (null != interpreterProperties) {
-              for (              String key : info.getProperties().keySet()) {
-                p.put(key,info.getProperties().get(key).getValue());
-              }
-            }
-          }
-          add(groupName,groupName,new LinkedList<Dependency>(),defaultOption,p);
-        }
-      }
-      for (      String groupName : groupClassNameMap.keySet()) {
-        List<RegisteredInterpreter> infos=groupClassNameMap.get(groupName);
-        Properties p=new Properties();
-        for (        RegisteredInterpreter info : infos) {
-          Map<String,InterpreterProperty> interpreterProperties=info.getProperties();
-          if (null != interpreterProperties) {
-            for (            String key : info.getProperties().keySet()) {
-              p.put(key,info.getProperties().get(key).getValue());
-            }
-          }
-        }
-        add(groupName,groupName,new LinkedList<Dependency>(),defaultOption,p);
+  if (0 == interpreterSettings.size()) {
+    Map<String,InterpreterSetting> temp=new HashMap<>();
+    InterpreterSetting interpreterSetting;
+    for (    InterpreterSetting setting : interpreterSettingsRef.values()) {
+      interpreterSetting=createFromInterpreterSettingRef(setting);
+      temp.put(setting.getName(),interpreterSetting);
+    }
+    for (    String group : interpreterGroupOrderList) {
+      if (null != (interpreterSetting=temp.remove(group))) {
+        interpreterSettings.put(interpreterSetting.getId(),interpreterSetting);
       }
     }
+    for (    InterpreterSetting setting : temp.values()) {
+      interpreterSettings.put(setting.getId(),setting);
+    }
+    saveToFile();
   }
   for (  String settingId : interpreterSettings.keySet()) {
     InterpreterSetting setting=interpreterSettings.get(settingId);
-    logger.info("Interpreter setting group {} : id={}, name={}",setting.getGroup(),settingId,setting.getName());
+    logger.info("InterpreterSetting group {} : id={}, name={}",setting.getGroup(),settingId,setting.getName());
   }
 }

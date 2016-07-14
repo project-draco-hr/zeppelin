@@ -1,5 +1,5 @@
 {
-  List<InterpreterSetting> interpreterSettings=null;
+  List<InterpreterSetting> interpreterSettings;
   interpreterSettings=interpreterFactory.get();
-  return new JsonResponse(Status.OK,"",interpreterSettings).build();
+  return new JsonResponse<>(Status.OK,"",interpreterSettings).build();
 }

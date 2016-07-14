@@ -18,9 +18,9 @@
   for (  String k : info.interpreterSettings.keySet()) {
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
-    InterpreterSetting intpSetting=new InterpreterSetting(setting.id(),setting.getName(),setting.getGroup(),setting.getInterpreterInfos(),setting.getProperties(),setting.getDependencies(),setting.getOption());
-    intpSetting.setInterpreterGroupFactory(this);
-    interpreterSettings.put(k,intpSetting);
+    setting.setPath(interpreterSettingsRef.get(setting.getGroup()).getPath());
+    setting.setInterpreterGroupFactory(this);
+    interpreterSettings.put(k,setting);
   }
   this.interpreterBindings=info.interpreterBindings;
   if (info.interpreterRepositories != null) {

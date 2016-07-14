@@ -1,0 +1,5 @@
+{
+  this.className=className;
+  this.name=name;
+  this.defaultInterpreter=defaultInterpreter;
+}

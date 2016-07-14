@@ -1,5 +1,5 @@
 {
 synchronized (paragraphs) {
-    return new LinkedList<Paragraph>(paragraphs);
+    return new LinkedList<>(paragraphs);
   }
 }

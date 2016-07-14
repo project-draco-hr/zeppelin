@@ -11,6 +11,6 @@
   factory.createInterpretersForNote(mock1Setting,"sharedProcess","session");
   assertNotNull("get Interpreter",interpreterGroup.get("session").get(0));
   assertNull(factory.get("unknown"));
-  factory.restart(mock1Setting.id());
+  factory.restart(mock1Setting.getId());
   assertNull(mock1Setting.getInterpreterGroup("sharedProcess").get("session"));
 }

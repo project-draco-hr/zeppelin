@@ -1,0 +1,10 @@
+{
+  this.id=id;
+  this.name=name;
+  this.group=group;
+  this.interpreterInfos=interpreterInfos;
+  this.properties=properties;
+  this.dependencies=dependencies;
+  this.option=option;
+  this.path=path;
+}

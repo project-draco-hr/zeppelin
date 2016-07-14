@@ -5,11 +5,11 @@
   }
  catch (  InterpreterException e) {
     logger.error("Exception in InterpreterRestApi while restartSetting ",e);
-    return new JsonResponse(Status.NOT_FOUND,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
+    return new JsonResponse<>(Status.NOT_FOUND,e.getMessage(),ExceptionUtils.getStackTrace(e)).build();
   }
   InterpreterSetting setting=interpreterFactory.get(settingId);
   if (setting == null) {
-    return new JsonResponse(Status.NOT_FOUND,"",settingId).build();
+    return new JsonResponse<>(Status.NOT_FOUND,"",settingId).build();
   }
-  return new JsonResponse(Status.OK,"",setting).build();
+  return new JsonResponse<>(Status.OK,"",setting).build();
 }

@@ -1,0 +1,7 @@
+{
+  for (  Dependency dependency : dependencies) {
+    if (!this.dependencies.contains(dependency)) {
+      this.dependencies.add(dependency);
+    }
+  }
+}

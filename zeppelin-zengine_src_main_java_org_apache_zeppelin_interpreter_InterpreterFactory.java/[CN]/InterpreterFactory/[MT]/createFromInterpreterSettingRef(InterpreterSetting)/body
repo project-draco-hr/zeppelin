@@ -1,0 +1,5 @@
+{
+  InterpreterSetting setting=new InterpreterSetting(o.getName(),o.getName(),o.getInterpreterInfos(),o.getProperties(),o.getDependencies(),o.getOption(),o.getPath());
+  setting.setInterpreterGroupFactory(this);
+  return setting;
+}

@@ -1,0 +1,10 @@
+{
+  if (!(obj instanceof InterpreterInfo)) {
+    return false;
+  }
+  InterpreterInfo other=(InterpreterInfo)obj;
+  boolean sameName=null == getName() ? null == other.getName() : getName().equals(other.getName());
+  boolean sameClassName=null == getClassName() ? null == other.getClassName() : getClassName().equals(other.getClassName());
+  boolean sameIsDefaultInterpreter=defaultInterpreter == other.isDefaultInterpreter();
+  return sameName && sameClassName && sameIsDefaultInterpreter;
+}

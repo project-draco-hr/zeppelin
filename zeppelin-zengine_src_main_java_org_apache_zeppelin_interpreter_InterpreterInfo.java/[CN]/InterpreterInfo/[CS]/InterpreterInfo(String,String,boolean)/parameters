@@ -1,0 +1,3 @@
+String className
+String name
+boolean defaultInterpreter

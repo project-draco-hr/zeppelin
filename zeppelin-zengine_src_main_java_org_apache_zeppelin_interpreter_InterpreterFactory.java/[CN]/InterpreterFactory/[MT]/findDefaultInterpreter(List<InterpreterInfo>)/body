@@ -1,0 +1,6 @@
+{
+  for (  InterpreterInfo interpreterInfo : infos) {
+    if (interpreterInfo.isDefaultInterpreter())     return true;
+  }
+  return false;
+}

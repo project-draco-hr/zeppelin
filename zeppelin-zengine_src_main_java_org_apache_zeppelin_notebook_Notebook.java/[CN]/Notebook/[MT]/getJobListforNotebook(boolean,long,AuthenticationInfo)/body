@@ -23,7 +23,7 @@
  else {
       info.put("notebookName","Note " + note.id());
     }
-    if (note.getConfig().containsKey(CRON_TYPE_NOTEBOOK_KEYWORD) == true && !note.getConfig().get(CRON_TYPE_NOTEBOOK_KEYWORD).equals("")) {
+    if (note.getConfig().containsKey(CRON_TYPE_NOTEBOOK_KEYWORD) && !note.getConfig().get(CRON_TYPE_NOTEBOOK_KEYWORD).equals("")) {
       info.put("notebookType","cron");
     }
  else {
@@ -31,7 +31,7 @@
     }
     List<Map<String,Object>> paragraphsInfo=new LinkedList<>();
     for (    Paragraph paragraph : note.getParagraphs()) {
-      if (paragraph.getStatus().isRunning() == true) {
+      if (paragraph.getStatus().isRunning()) {
         isNotebookRunning=true;
         isUpdateNotebook=true;
       }
@@ -44,9 +44,9 @@
     }
     String interpreterGroupName=null;
     if (replFactory.getInterpreterSettings(note.getId()) != null && replFactory.getInterpreterSettings(note.getId()).size() >= 1) {
-      interpreterGroupName=replFactory.getInterpreterSettings(note.getId()).get(0).getGroup();
+      interpreterGroupName=replFactory.getInterpreterSettings(note.getId()).get(0).getName();
     }
-    if (isUpdateNotebook == false && isNotebookRunning == false) {
+    if (!isUpdateNotebook && !isNotebookRunning) {
       continue;
     }
     info.put("interpreter",interpreterGroupName);

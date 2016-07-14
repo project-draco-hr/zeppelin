@@ -4,6 +4,6 @@
     return getInterpreterFactory().getInterpreters(note.getId());
   }
  else {
-    return new LinkedList<String>();
+    return new LinkedList<>();
   }
 }

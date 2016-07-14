@@ -3,12 +3,12 @@
   Map<String,Boolean> interpreterGroupCheck=new HashMap<>();
   List<InterpreterSetting> sortedSettings=get();
   for (  InterpreterSetting setting : sortedSettings) {
-    if (defaultSettings.contains(setting.id())) {
+    if (defaultSettings.contains(setting.getId())) {
       continue;
     }
-    if (!interpreterGroupCheck.containsKey(setting.getGroup())) {
-      defaultSettings.add(setting.id());
-      interpreterGroupCheck.put(setting.getGroup(),true);
+    if (!interpreterGroupCheck.containsKey(setting.getName())) {
+      defaultSettings.add(setting.getId());
+      interpreterGroupCheck.put(setting.getName(),true);
     }
   }
   return defaultSettings;

@@ -2,7 +2,7 @@
   LOG.info("Searching notebooks for: {}",queryTerm);
   String principal=SecurityUtils.getPrincipal();
   HashSet<String> roles=SecurityUtils.getRoles();
-  HashSet<String> userAndRoles=new HashSet<String>();
+  HashSet<String> userAndRoles=new HashSet<>();
   userAndRoles.add(principal);
   userAndRoles.addAll(roles);
   List<Map<String,String>> notebooksFound=notebookIndex.query(queryTerm);

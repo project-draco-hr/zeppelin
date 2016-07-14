@@ -6,7 +6,7 @@
   String principal=SecurityUtils.getPrincipal();
   HashSet<String> roles=SecurityUtils.getRoles();
   LOG.info("Set permissions {} {} {} {} {}",noteId,principal,permMap.get("owners"),permMap.get("readers"),permMap.get("writers"));
-  HashSet<String> userAndRoles=new HashSet<String>();
+  HashSet<String> userAndRoles=new HashSet<>();
   userAndRoles.add(principal);
   userAndRoles.addAll(roles);
   if (!notebookAuthorization.isOwner(noteId,userAndRoles)) {

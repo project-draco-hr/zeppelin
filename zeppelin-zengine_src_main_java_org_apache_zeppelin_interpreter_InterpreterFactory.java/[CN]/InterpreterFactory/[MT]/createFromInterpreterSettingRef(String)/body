@@ -1,0 +1,5 @@
+{
+  Preconditions.checkNotNull(name,"reference name should be not null");
+  InterpreterSetting settingRef=interpreterSettingsRef.get(name);
+  return createFromInterpreterSettingRef(settingRef);
+}

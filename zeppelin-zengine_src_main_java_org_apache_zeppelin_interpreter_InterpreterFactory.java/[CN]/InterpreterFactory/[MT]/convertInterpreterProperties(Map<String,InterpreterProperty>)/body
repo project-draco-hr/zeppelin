@@ -1,0 +1,7 @@
+{
+  Properties properties=new Properties();
+  for (  String key : p.keySet()) {
+    properties.put(key,p.get(key).getValue());
+  }
+  return properties;
+}

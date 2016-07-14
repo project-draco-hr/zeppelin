@@ -1,8 +1,8 @@
 {
   for (  Paragraph p : note.getParagraphs()) {
     Interpreter currentInterpreter=p.getCurrentRepl();
-    List<InterpreterSetting.InterpreterInfo> infos=setting.getInterpreterInfos();
-    for (    InterpreterSetting.InterpreterInfo info : infos) {
+    List<InterpreterInfo> infos=setting.getInterpreterInfos();
+    for (    InterpreterInfo info : infos) {
       if (info.getClassName().equals(currentInterpreter.getClassName())) {
         onParagraphRemove(p);
         break;

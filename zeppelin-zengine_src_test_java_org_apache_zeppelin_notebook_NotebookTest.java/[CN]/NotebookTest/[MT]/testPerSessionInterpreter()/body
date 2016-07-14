@@ -12,7 +12,7 @@
   assertEquals(p1.getResult().message(),p2.getResult().message());
   for (  InterpreterSetting setting : notebook.getInterpreterFactory().getInterpreterSettings(note1.getId())) {
     setting.getOption().setPerNoteSession(true);
-    notebook.getInterpreterFactory().restart(setting.id());
+    notebook.getInterpreterFactory().restart(setting.getId());
   }
   note1.run(p1.getId());
   note2.run(p2.getId());

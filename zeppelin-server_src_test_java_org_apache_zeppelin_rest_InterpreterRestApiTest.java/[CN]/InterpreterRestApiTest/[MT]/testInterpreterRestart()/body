@@ -13,7 +13,7 @@
   assertEquals("<p>markdown</p>\n",p.getResult().message());
   for (  InterpreterSetting setting : ZeppelinServer.notebook.getInterpreterFactory().getInterpreterSettings(note.getId())) {
     if (setting.getName().equals("md")) {
-      PutMethod put=httpPut("/interpreter/setting/restart/" + setting.id(),"");
+      PutMethod put=httpPut("/interpreter/setting/restart/" + setting.getId(),"");
       assertThat("test interpreter restart:",put,isAllowed());
       put.releaseConnection();
       break;

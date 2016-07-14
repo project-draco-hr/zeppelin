@@ -1,16 +1,16 @@
 {
 synchronized (interpreterSettings) {
     List<InterpreterSetting> orderedSettings=new LinkedList<>();
-    Map<String,List<InterpreterSetting>> groupNameInterpreterSettingMap=new HashMap<>();
+    Map<String,List<InterpreterSetting>> nameInterpreterSettingMap=new HashMap<>();
     for (    InterpreterSetting interpreterSetting : interpreterSettings.values()) {
-      String groupName=interpreterSetting.getGroup();
-      if (!groupNameInterpreterSettingMap.containsKey(groupName)) {
-        groupNameInterpreterSettingMap.put(groupName,new ArrayList<InterpreterSetting>());
+      String name=interpreterSetting.getName();
+      if (!nameInterpreterSettingMap.containsKey(name)) {
+        nameInterpreterSettingMap.put(name,new ArrayList<InterpreterSetting>());
       }
-      groupNameInterpreterSettingMap.get(groupName).add(interpreterSetting);
+      nameInterpreterSettingMap.get(name).add(interpreterSetting);
     }
     for (    String groupName : interpreterGroupOrderList) {
-      List<InterpreterSetting> interpreterSettingList=groupNameInterpreterSettingMap.remove(groupName);
+      List<InterpreterSetting> interpreterSettingList=nameInterpreterSettingMap.remove(groupName);
       if (null != interpreterSettingList) {
         for (        InterpreterSetting interpreterSetting : interpreterSettingList) {
           orderedSettings.add(interpreterSetting);
@@ -18,7 +18,7 @@ synchronized (interpreterSettings) {
       }
     }
     List<InterpreterSetting> settings=new ArrayList<>();
-    for (    List<InterpreterSetting> interpreterSettingList : groupNameInterpreterSettingMap.values()) {
+    for (    List<InterpreterSetting> interpreterSettingList : nameInterpreterSettingMap.values()) {
       for (      InterpreterSetting interpreterSetting : interpreterSettingList) {
         settings.add(interpreterSetting);
       }

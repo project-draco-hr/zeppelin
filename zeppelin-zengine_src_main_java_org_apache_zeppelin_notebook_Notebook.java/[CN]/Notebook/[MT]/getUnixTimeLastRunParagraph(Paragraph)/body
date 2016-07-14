@@ -1,6 +1,6 @@
 {
-  Date lastRunningDate=null;
-  long lastRunningUnixTime=0;
+  Date lastRunningDate;
+  long lastRunningUnixTime;
   Date paragaraphDate=paragraph.getDateStarted();
   if (paragaraphDate == null) {
     paragaraphDate=paragraph.getDateFinished();

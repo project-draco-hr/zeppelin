@@ -3,7 +3,7 @@
   if (note != null) {
     List<InterpreterSetting> currentBindings=replFactory.getInterpreterSettings(id);
     for (    InterpreterSetting setting : currentBindings) {
-      if (!interpreterSettingIds.contains(setting.id())) {
+      if (!interpreterSettingIds.contains(setting.getId())) {
         fireUnbindInterpreter(note,setting);
       }
     }

@@ -1,4 +1,4 @@
 {
   InterpreterSetting setting=factory.getDefaultInterpreterSetting(getId());
-  return null != setting ? setting.getGroup() : StringUtils.EMPTY;
+  return null != setting ? setting.getName() : StringUtils.EMPTY;
 }

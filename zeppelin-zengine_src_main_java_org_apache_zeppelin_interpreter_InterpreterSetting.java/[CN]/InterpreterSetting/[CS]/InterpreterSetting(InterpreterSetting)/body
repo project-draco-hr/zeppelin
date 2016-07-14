@@ -1,0 +1,3 @@
+{
+  this(generateId(),o.getName(),o.getGroup(),o.getInterpreterInfos(),o.getProperties(),o.getDependencies(),o.getOption(),o.getPath());
+}

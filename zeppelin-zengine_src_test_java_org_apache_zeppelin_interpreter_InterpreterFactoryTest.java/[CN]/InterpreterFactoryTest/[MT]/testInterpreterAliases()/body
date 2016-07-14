@@ -1,0 +1,27 @@
+{
+  factory=new InterpreterFactory(conf,null,null,null,depResolver);
+  final InterpreterInfo info1=new InterpreterInfo("className1","name1",true);
+  final InterpreterInfo info2=new InterpreterInfo("className2","name1",true);
+  factory.add("group1",new ArrayList<InterpreterInfo>(){
+{
+      add(info1);
+    }
+  }
+,new ArrayList<Dependency>(),new InterpreterOption(true),new Properties(),"/path1");
+  factory.add("group2",new ArrayList<InterpreterInfo>(){
+{
+      add(info2);
+    }
+  }
+,new ArrayList<Dependency>(),new InterpreterOption(true),new Properties(),"/path2");
+  final InterpreterSetting setting1=factory.createNewSetting("test-group1","group1",new ArrayList<Dependency>(),new InterpreterOption(true),new Properties());
+  final InterpreterSetting setting2=factory.createNewSetting("test-group2","group1",new ArrayList<Dependency>(),new InterpreterOption(true),new Properties());
+  factory.setInterpreters("note",new ArrayList<String>(){
+{
+      add(setting1.getId());
+      add(setting2.getId());
+    }
+  }
+);
+  assertEquals("className1",factory.getInterpreter("note","test-group1").getClassName());
+}

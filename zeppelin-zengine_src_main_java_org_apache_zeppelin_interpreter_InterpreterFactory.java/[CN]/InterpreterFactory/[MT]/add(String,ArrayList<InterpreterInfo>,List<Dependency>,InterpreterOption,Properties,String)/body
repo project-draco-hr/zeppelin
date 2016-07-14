@@ -1,0 +1,47 @@
+{
+  Preconditions.checkNotNull(group,"name should not be null");
+  Preconditions.checkNotNull(interpreterInfos,"interpreterInfos should not be null");
+  Preconditions.checkNotNull(dependencies,"dependencies should not be null");
+  Preconditions.checkNotNull(option,"option should not be null");
+  Preconditions.checkNotNull(properties,"properties should not be null");
+  InterpreterSetting interpreterSetting;
+synchronized (interpreterSettingsRef) {
+    if (interpreterSettingsRef.containsKey(group)) {
+      interpreterSetting=interpreterSettingsRef.get(group);
+      List<InterpreterInfo> infos=interpreterSetting.getInterpreterInfos();
+      boolean hasDefaultInterpreter=findDefaultInterpreter(infos);
+      for (      InterpreterInfo interpreterInfo : interpreterInfos) {
+        if (!infos.contains(interpreterInfo)) {
+          if (!hasDefaultInterpreter && interpreterInfo.isDefaultInterpreter()) {
+            hasDefaultInterpreter=true;
+            infos.add(0,interpreterInfo);
+          }
+ else {
+            infos.add(interpreterInfo);
+          }
+        }
+      }
+      List<Dependency> dependencyList=interpreterSetting.getDependencies();
+      for (      Dependency dependency : dependencies) {
+        if (!dependencyList.contains(dependency)) {
+          dependencyList.add(dependency);
+        }
+      }
+      Properties interpreterProperties=interpreterSetting.getProperties();
+      for (      String key : properties.stringPropertyNames()) {
+        if (!interpreterProperties.containsKey(key)) {
+          interpreterProperties.setProperty(key,properties.getProperty(key));
+        }
+      }
+    }
+ else {
+      interpreterSetting=new InterpreterSetting(group,null,interpreterInfos,properties,dependencies,option,path);
+      interpreterSettingsRef.put(group,interpreterSetting);
+    }
+  }
+  if (dependencies.size() > 0) {
+    loadInterpreterDependencies(interpreterSetting);
+  }
+  interpreterSetting.setInterpreterGroupFactory(this);
+  return interpreterSetting;
+}

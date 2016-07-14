@@ -12,7 +12,7 @@
   }
   note.runAll();
   while (paragraphs.get(0).getStatus() != Status.FINISHED)   Thread.yield();
-  factory.restart(factory.getInterpreterSettings(note.getId()).get(0).id());
+  factory.restart(factory.getInterpreterSettings(note.getId()).get(0).getId());
   boolean isAborted=false;
   for (  Paragraph p : paragraphs) {
     logger.debug(p.getStatus().name());

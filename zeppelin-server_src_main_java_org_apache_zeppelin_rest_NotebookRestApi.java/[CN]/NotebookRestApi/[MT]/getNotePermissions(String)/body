@@ -1,6 +1,5 @@
 {
-  Note note=notebook.getNote(noteId);
-  HashMap<String,Set<String>> permissionsMap=new HashMap();
+  HashMap<String,Set<String>> permissionsMap=new HashMap<>();
   permissionsMap.put("owners",notebookAuthorization.getOwners(noteId));
   permissionsMap.put("readers",notebookAuthorization.getReaders(noteId));
   permissionsMap.put("writers",notebookAuthorization.getWriters(noteId));

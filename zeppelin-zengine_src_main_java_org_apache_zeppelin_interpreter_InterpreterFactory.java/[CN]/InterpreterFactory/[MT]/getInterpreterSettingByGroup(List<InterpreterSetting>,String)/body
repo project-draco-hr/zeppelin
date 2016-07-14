@@ -1,0 +1,9 @@
+{
+  Preconditions.checkNotNull(group,"group should be not null");
+  for (  InterpreterSetting setting : settings) {
+    if (group.equals(setting.getName())) {
+      return setting;
+    }
+  }
+  return null;
+}

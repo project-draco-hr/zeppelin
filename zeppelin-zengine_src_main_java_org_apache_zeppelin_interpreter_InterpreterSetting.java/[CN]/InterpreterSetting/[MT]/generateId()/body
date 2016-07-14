@@ -1,3 +1,0 @@
-{
-  return IdHashes.encode(System.currentTimeMillis() + new Random().nextInt());
-}

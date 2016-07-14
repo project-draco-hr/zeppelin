@@ -36,7 +36,7 @@
     if ("true".equals(System.getenv("CI"))) {
       InterpreterSetting sparkIntpSetting=null;
       for (      InterpreterSetting intpSetting : ZeppelinServer.notebook.getInterpreterFactory().get()) {
-        if (intpSetting.getGroup().equals("spark")) {
+        if (intpSetting.getName().equals("spark")) {
           sparkIntpSetting=intpSetting;
         }
       }
@@ -45,12 +45,12 @@
       sparkIntpSetting.getProperties().setProperty("spark.home",getSparkHome());
       pySpark=true;
       sparkR=true;
-      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
+      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.getId());
     }
  else {
       InterpreterSetting sparkIntpSetting=null;
       for (      InterpreterSetting intpSetting : ZeppelinServer.notebook.getInterpreterFactory().get()) {
-        if (intpSetting.getGroup().equals("spark")) {
+        if (intpSetting.getName().equals("spark")) {
           sparkIntpSetting=intpSetting;
         }
       }
@@ -60,7 +60,7 @@
         pySpark=true;
         sparkR=true;
       }
-      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.id());
+      ZeppelinServer.notebook.getInterpreterFactory().restart(sparkIntpSetting.getId());
     }
   }
 }

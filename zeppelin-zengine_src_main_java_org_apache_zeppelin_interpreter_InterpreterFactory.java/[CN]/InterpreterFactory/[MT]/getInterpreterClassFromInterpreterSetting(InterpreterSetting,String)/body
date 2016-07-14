@@ -1,0 +1,10 @@
+{
+  Preconditions.checkNotNull(name,"name should be not null");
+  for (  InterpreterInfo info : setting.getInterpreterInfos()) {
+    String infoName=info.getName();
+    if (null != info.getName() && name.equals(infoName)) {
+      return info.getClassName();
+    }
+  }
+  return null;
+}

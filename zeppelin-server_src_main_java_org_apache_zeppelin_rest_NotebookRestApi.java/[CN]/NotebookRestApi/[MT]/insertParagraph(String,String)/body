@@ -2,7 +2,7 @@
   LOG.info("insert paragraph {} {}",notebookId,message);
   Note note=notebook.getNote(notebookId);
   if (note == null) {
-    return new JsonResponse(Status.NOT_FOUND,"note not found.").build();
+    return new JsonResponse<>(Status.NOT_FOUND,"note not found.").build();
   }
   NewParagraphRequest request=gson.fromJson(message,NewParagraphRequest.class);
   Paragraph p;
@@ -18,5 +18,5 @@
   AuthenticationInfo subject=new AuthenticationInfo(SecurityUtils.getPrincipal());
   note.persist(subject);
   notebookServer.broadcastNote(note);
-  return new JsonResponse(Status.CREATED,"",p.getId()).build();
+  return new JsonResponse<>(Status.CREATED,"",p.getId()).build();
 }

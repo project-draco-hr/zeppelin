@@ -4,7 +4,7 @@
   p1.setText("getId");
   for (  InterpreterSetting setting : factory.getInterpreterSettings(note1.getId())) {
     setting.getOption().setPerNoteSession(true);
-    notebook.getInterpreterFactory().restart(setting.id());
+    notebook.getInterpreterFactory().restart(setting.getId());
   }
   note1.run(p1.getId());
   while (p1.getStatus() != Status.FINISHED)   Thread.yield();
