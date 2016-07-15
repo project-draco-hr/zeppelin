@@ -13,6 +13,7 @@
   cmdLine.addArgument("-l",false);
   cmdLine.addArgument(localRepoDir,false);
   executor=new DefaultExecutor();
+  executor.setStreamHandler(new PumpStreamHandler(new ProcessLogOutputStream(logger)));
   watchdog=new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT);
   executor.setWatchdog(watchdog);
   try {
