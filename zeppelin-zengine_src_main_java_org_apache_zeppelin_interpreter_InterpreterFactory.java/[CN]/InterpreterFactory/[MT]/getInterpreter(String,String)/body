@@ -37,6 +37,14 @@
         return interpreters.get(0);
       }
     }
+    for (    InterpreterSetting s : settings) {
+      if (s.getGroup().equals(replName)) {
+        List<Interpreter> interpreters=createOrGetInterpreterList(noteId,s);
+        if (null != interpreters) {
+          return interpreters.get(0);
+        }
+      }
+    }
   }
   if (DevInterpreter.isInterpreterName(replName)) {
     return getDevInterpreter();
