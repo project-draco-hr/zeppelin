@@ -1,7 +1,7 @@
 {
   String paragraphId=interpreterContext.getParagraphId();
   try {
-    Statement statement=getStatement(propertyKey,paragraphId);
+    Statement statement=getStatement(propertyKey,paragraphId,interpreterContext);
     if (statement == null) {
       return new InterpreterResult(Code.ERROR,"Prefix not found.");
     }

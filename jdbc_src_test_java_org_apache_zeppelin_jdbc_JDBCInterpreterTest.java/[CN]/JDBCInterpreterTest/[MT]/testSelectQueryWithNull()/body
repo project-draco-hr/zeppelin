@@ -9,7 +9,7 @@
   JDBCInterpreter t=new JDBCInterpreter(properties);
   t.open();
   String sqlQuery="select * from test_table WHERE ID = 'c'";
-  InterpreterResult interpreterResult=t.interpret(sqlQuery,new InterpreterContext("","1","","",null,null,null,null,null,null,null));
+  InterpreterResult interpreterResult=t.interpret(sqlQuery,interpreterContext);
   assertEquals(InterpreterResult.Code.SUCCESS,interpreterResult.code());
   assertEquals(InterpreterResult.Type.TABLE,interpreterResult.type());
   assertEquals("ID\tNAME\nc\tnull\n",interpreterResult.message());

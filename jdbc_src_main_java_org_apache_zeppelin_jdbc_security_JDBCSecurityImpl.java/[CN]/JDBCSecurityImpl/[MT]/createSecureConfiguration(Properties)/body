@@ -1,12 +1,5 @@
 {
-  UserGroupInformation.AuthenticationMethod authType;
-  try {
-    authType=UserGroupInformation.AuthenticationMethod.valueOf(properties.getProperty("zeppelin.jdbc.auth.type").trim().toUpperCase());
-  }
- catch (  Exception e) {
-    LOGGER.error(String.format("Invalid auth.type detected with value %s, defaulting " + "auth.type to SIMPLE",properties.getProperty("zeppelin.jdbc.auth.type").trim()));
-    authType=SIMPLE;
-  }
+  AuthenticationMethod authType=getAuthtype(properties);
 switch (authType) {
 case KERBEROS:
     Configuration conf=new org.apache.hadoop.conf.Configuration();

@@ -2,7 +2,7 @@
   logger.info("Cancel current query statement.");
   String paragraphId=context.getParagraphId();
   try {
-    paragraphIdStatementMap.get(paragraphId).cancel();
+    paragraphIdStatementMap.get(paragraphId + context.getAuthenticationInfo().getUser()).cancel();
   }
  catch (  SQLException e) {
     logger.error("Error while cancelling...",e);

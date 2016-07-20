@@ -1,0 +1,20 @@
+{
+  Connection connection;
+  if (paragraphIdConnectionMap.containsKey(paragraphId + interpreterContext.getAuthenticationInfo().getUser())) {
+    connection=paragraphIdConnectionMap.get(paragraphId + interpreterContext.getAuthenticationInfo().getUser());
+  }
+ else {
+    connection=getConnection(propertyKey,interpreterContext.getAuthenticationInfo().getUser());
+  }
+  if (connection == null) {
+    return null;
+  }
+  Statement statement=connection.createStatement();
+  if (isStatementClosed(statement)) {
+    connection=getConnection(propertyKey,interpreterContext.getAuthenticationInfo().getUser());
+    statement=connection.createStatement();
+  }
+  paragraphIdConnectionMap.put(paragraphId + interpreterContext.getAuthenticationInfo().getUser(),connection);
+  paragraphIdStatementMap.put(paragraphId + interpreterContext.getAuthenticationInfo().getUser(),statement);
+  return statement;
+}

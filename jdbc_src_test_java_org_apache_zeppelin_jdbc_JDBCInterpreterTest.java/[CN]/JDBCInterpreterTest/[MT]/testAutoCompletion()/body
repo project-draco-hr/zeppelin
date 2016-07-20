@@ -8,6 +8,7 @@
   properties.setProperty("default.password","");
   JDBCInterpreter jdbcInterpreter=new JDBCInterpreter(properties);
   jdbcInterpreter.open();
+  jdbcInterpreter.interpret("",interpreterContext);
   List<InterpreterCompletion> completionList=jdbcInterpreter.completion("SEL",0);
   InterpreterCompletion correctCompletionKeyword=new InterpreterCompletion("SELECT","SELECT");
   assertEquals(2,completionList.size());
