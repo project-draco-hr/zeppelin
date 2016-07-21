@@ -1,0 +1,6 @@
+{
+  String noteId=(String)fromMessage.get("noteId");
+  AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
+  List<NotebookRepo.Revision> revisions=notebook.listRevisionHistory(noteId,subject);
+  conn.send(serializeMessage(new Message(OP.LIST_REVISION_HISTORY).put("revisionList",revisions)));
+}

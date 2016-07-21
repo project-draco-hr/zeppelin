@@ -96,6 +96,9 @@ break;
 case CHECKPOINT_NOTEBOOK:
 checkpointNotebook(conn,notebook,messagereceived);
 break;
+case LIST_REVISION_HISTORY:
+listRevisionHistory(conn,notebook,messagereceived);
+break;
 case NOTE_REVISION:
 getNoteRevision(conn,notebook,messagereceived);
 break;

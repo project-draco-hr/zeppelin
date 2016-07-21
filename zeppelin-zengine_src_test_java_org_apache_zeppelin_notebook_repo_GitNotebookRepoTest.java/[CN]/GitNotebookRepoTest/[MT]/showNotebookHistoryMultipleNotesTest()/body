@@ -1,0 +1,34 @@
+{
+  notebookRepo=new GitNotebookRepo(conf);
+  assertThat(notebookRepo.list(null)).isNotEmpty();
+  assertThat(containsNote(notebookRepo.list(null),TEST_NOTE_ID)).isTrue();
+  assertThat(containsNote(notebookRepo.list(null),TEST_NOTE_ID2)).isTrue();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null)).isEmpty();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID2,null)).isEmpty();
+  notebookRepo.checkpoint(TEST_NOTE_ID,"first commit, note1",null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(1);
+  notebookRepo.checkpoint(TEST_NOTE_ID2,"first commit, note2",null);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID2,null).size()).isEqualTo(1);
+  Note note=notebookRepo.get(TEST_NOTE_ID,null);
+  Paragraph p=note.addParagraph();
+  Map<String,Object> config=p.getConfig();
+  config.put("enabled",true);
+  p.setConfig(config);
+  p.setText("%md note1 test text");
+  notebookRepo.save(note,null);
+  assertThat(notebookRepo.checkpoint(TEST_NOTE_ID,"second commit, note1",null)).isNotNull();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(2);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID2,null).size()).isEqualTo(1);
+  assertThat(notebookRepo.checkpoint(TEST_NOTE_ID2,"first commit, note2",null)).isNull();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID2,null).size()).isEqualTo(1);
+  note=notebookRepo.get(TEST_NOTE_ID2,null);
+  p=note.addParagraph();
+  config=p.getConfig();
+  config.put("enabled",false);
+  p.setConfig(config);
+  p.setText("%md note2 test text");
+  notebookRepo.save(note,null);
+  assertThat(notebookRepo.checkpoint(TEST_NOTE_ID2,"second commit, note2",null)).isNotNull();
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(2);
+  assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID2,null).size()).isEqualTo(2);
+}

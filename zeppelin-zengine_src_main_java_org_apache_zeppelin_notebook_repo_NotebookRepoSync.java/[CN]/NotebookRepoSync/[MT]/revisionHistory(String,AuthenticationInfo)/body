@@ -1,3 +1,10 @@
 {
-  return null;
+  List<Revision> revisions=Collections.emptyList();
+  try {
+    revisions=getRepo(0).revisionHistory(noteId,subject);
+  }
+ catch (  IOException e) {
+    LOG.error("Failed to list revision history",e);
+  }
+  return revisions;
 }

@@ -7,7 +7,9 @@
   File notebookDir=new File(notebooksDir);
   notebookDir.mkdirs();
   String testNoteDir=Joiner.on(File.separator).join(notebooksDir,TEST_NOTE_ID);
+  String testNoteDir2=Joiner.on(File.separator).join(notebooksDir,TEST_NOTE_ID2);
   FileUtils.copyDirectory(new File(Joiner.on(File.separator).join("src","test","resources",TEST_NOTE_ID)),new File(testNoteDir));
+  FileUtils.copyDirectory(new File(Joiner.on(File.separator).join("src","test","resources",TEST_NOTE_ID2)),new File(testNoteDir2));
   System.setProperty(ConfVars.ZEPPELIN_HOME.getVarName(),zeppelinDir.getAbsolutePath());
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),notebookDir.getAbsolutePath());
   System.setProperty(ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"org.apache.zeppelin.interpreter.mock.MockInterpreter1,org.apache.zeppelin.interpreter.mock.MockInterpreter2");
