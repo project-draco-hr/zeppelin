@@ -115,7 +115,7 @@ synchronized (sharedInterpreterLock) {
           logger.error(e.getMessage(),e);
         }
       }
-      completor=Utils.instantiateClass("SparkJLineCompletion",new Class[]{findClass("org.apache.spark.repl.SparkIMain")},new Object[]{intp});
+      completor=Utils.instantiateClass("org.apache.spark.repl.SparkJLineCompletion",new Class[]{Utils.findClass("org.apache.spark.repl.SparkIMain")},new Object[]{intp});
     }
     sc=getSparkContext();
     if (sc.getPoolForName("fair").isEmpty()) {

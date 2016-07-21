@@ -6,7 +6,7 @@
     jars=(String[])Utils.invokeStaticMethod(SparkILoop.class,"getAddedJars");
   }
  else {
-    jars=(String[])Utils.invokeStaticMethod(findClass("org.apache.spark.repl.Main"),"getAddedJars");
+    jars=(String[])Utils.invokeStaticMethod(Utils.findClass("org.apache.spark.repl.Main"),"getAddedJars");
   }
   String classServerUri=null;
   try {
