@@ -1,8 +1,6 @@
 {
-  for (  String paragraphId : executors.keySet()) {
-    if (paragraphId.equals(context.getParagraphId())) {
-      DefaultExecutor executor=executors.get(paragraphId);
-      executor.getWatchdog().destroyProcess();
-    }
+  DefaultExecutor executor=executors.remove(context.getParagraphId());
+  if (executor != null) {
+    executor.getWatchdog().destroyProcess();
   }
 }

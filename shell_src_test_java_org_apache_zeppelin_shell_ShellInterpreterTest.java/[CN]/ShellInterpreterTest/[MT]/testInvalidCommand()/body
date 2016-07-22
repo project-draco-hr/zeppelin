@@ -3,13 +3,11 @@
   InterpreterContext context=new InterpreterContext("","1","","",null,null,null,null,null,null,null);
   InterpreterResult result=new InterpreterResult(Code.ERROR);
   if (System.getProperty("os.name").startsWith("Windows")) {
-    result=shell.interpret("dir",context);
+    result=shell.interpret("invalid_command\ndir",context);
   }
  else {
-    result=shell.interpret("ls",context);
+    result=shell.interpret("invalid_command\nls",context);
   }
   assertEquals(InterpreterResult.Code.SUCCESS,result.code());
-  assertTrue(shell.executors.isEmpty());
-  shell.cancel(context);
-  assertTrue(shell.executors.isEmpty());
+  assertTrue(result.message().contains("invalid_command"));
 }

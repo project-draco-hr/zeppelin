@@ -1,7 +1,6 @@
 {
   LOGGER.debug("Run shell command '" + cmd + "'");
   OutputStream outStream=new ByteArrayOutputStream();
-  OutputStream errStream=new ByteArrayOutputStream();
   CommandLine cmdLine=CommandLine.parse(shell);
   if (isWindows) {
     String[] lines=StringUtils.split(cmd,"\n");
@@ -10,7 +9,7 @@
   cmdLine.addArgument(cmd,false);
   try {
     DefaultExecutor executor=new DefaultExecutor();
-    executor.setStreamHandler(new PumpStreamHandler(outStream,errStream));
+    executor.setStreamHandler(new PumpStreamHandler(outStream,outStream));
     executor.setWatchdog(new ExecuteWatchdog(Long.valueOf(getProperty(TIMEOUT_PROPERTY))));
     executors.put(contextInterpreter.getParagraphId(),executor);
     int exitVal=executor.execute(cmdLine);
@@ -21,7 +20,7 @@
     int exitValue=e.getExitValue();
     LOGGER.error("Can not run " + cmd,e);
     Code code=Code.ERROR;
-    String message=errStream.toString();
+    String message=outStream.toString();
     if (exitValue == 143) {
       code=Code.INCOMPLETE;
       message+="Paragraph received a SIGTERM.\n";
@@ -33,5 +32,8 @@
 catch (  IOException e) {
     LOGGER.error("Can not run " + cmd,e);
     return new InterpreterResult(Code.ERROR,e.getMessage());
+  }
+ finally {
+    executors.remove(contextInterpreter.getParagraphId());
   }
 }
