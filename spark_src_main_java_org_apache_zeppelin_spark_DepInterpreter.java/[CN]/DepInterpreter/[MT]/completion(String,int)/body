@@ -1,6 +1,6 @@
 {
   if (Utils.isScala2_10()) {
-    ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completor,"completer");
+    ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completer,"completer");
     Candidates ret=c.complete(buf,cursor);
     List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
     List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
