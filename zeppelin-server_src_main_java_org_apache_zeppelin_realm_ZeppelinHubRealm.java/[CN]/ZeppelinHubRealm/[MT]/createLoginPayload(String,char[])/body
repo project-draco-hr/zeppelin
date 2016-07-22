@@ -1,0 +1,4 @@
+{
+  StringBuilder sb=new StringBuilder("{\"login\":\"");
+  return sb.append(login).append("\", \"password\":\"").append(pwd).append("\"}").toString();
+}

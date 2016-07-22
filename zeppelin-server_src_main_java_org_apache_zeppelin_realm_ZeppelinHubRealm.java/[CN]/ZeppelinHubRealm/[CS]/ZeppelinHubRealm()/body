@@ -1,0 +1,7 @@
+{
+  super();
+  LOG.debug("Init ZeppelinhubRealm");
+  httpClient=new HttpClient();
+  gson=new Gson();
+  name=getClass().getName() + "_" + INSTANCE_COUNT.getAndIncrement();
+}

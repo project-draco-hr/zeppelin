@@ -1,0 +1,28 @@
+{
+  PutMethod put=new PutMethod(Joiner.on("/").join(zeppelinhubUrl,USER_LOGIN_API_ENDPOINT));
+  String responseBody=StringUtils.EMPTY;
+  try {
+    put.setRequestEntity(new StringRequestEntity(requestBody,JSON_CONTENT_TYPE,UTF_8_ENCODING));
+    int statusCode=httpClient.executeMethod(put);
+    if (statusCode != HttpStatus.SC_OK) {
+      LOG.error("Cannot login user, HTTP status code is {} instead on 200 (OK)",statusCode);
+      put.releaseConnection();
+      throw new AuthenticationException("Couldnt login to ZeppelinHub. " + "Login or password incorrect");
+    }
+    responseBody=put.getResponseBodyAsString();
+    put.releaseConnection();
+  }
+ catch (  IOException e) {
+    LOG.error("Cannot login user",e);
+    throw new AuthenticationException(e.getMessage());
+  }
+  User account=null;
+  try {
+    account=gson.fromJson(responseBody,User.class);
+  }
+ catch (  JsonParseException e) {
+    LOG.error("Cannot deserialize ZeppelinHub response to User instance",e);
+    throw new AuthenticationException("Cannot login to ZeppelinHub");
+  }
+  return account;
+}

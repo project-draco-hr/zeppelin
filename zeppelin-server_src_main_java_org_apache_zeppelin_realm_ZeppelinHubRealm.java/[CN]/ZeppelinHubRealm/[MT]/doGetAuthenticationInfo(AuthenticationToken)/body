@@ -1,0 +1,10 @@
+{
+  UsernamePasswordToken token=(UsernamePasswordToken)authToken;
+  if (StringUtils.isBlank(token.getUsername())) {
+    throw new AccountException("Empty usernames are not allowed by this realm.");
+  }
+  String loginPayload=createLoginPayload(token.getUsername(),token.getPassword());
+  User user=authenticateUser(loginPayload);
+  LOG.debug("{} successfully login via ZeppelinHub",user.login);
+  return new SimpleAuthenticationInfo(user.login,token.getPassword(),name);
+}

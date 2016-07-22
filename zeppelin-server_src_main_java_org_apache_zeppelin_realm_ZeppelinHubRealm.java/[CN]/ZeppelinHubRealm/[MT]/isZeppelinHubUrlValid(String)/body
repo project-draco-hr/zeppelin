@@ -1,0 +1,12 @@
+{
+  boolean valid;
+  try {
+    new URI(url).toURL();
+    valid=true;
+  }
+ catch (  URISyntaxException|MalformedURLException e) {
+    LOG.error("Zeppelinhub url is not valid, default ZeppelinHub url will be used.",e);
+    valid=false;
+  }
+  return valid;
+}

@@ -1,0 +1,10 @@
+{
+  if (StringUtils.isBlank(url)) {
+    LOG.warn("Zeppelinhub url is empty, setting up default url {}",DEFAULT_ZEPPELINHUB_URL);
+    zeppelinhubUrl=DEFAULT_ZEPPELINHUB_URL;
+  }
+ else {
+    zeppelinhubUrl=(isZeppelinHubUrlValid(url) ? url : DEFAULT_ZEPPELINHUB_URL);
+    LOG.info("Setting up Zeppelinhub url to {}",zeppelinhubUrl);
+  }
+}
