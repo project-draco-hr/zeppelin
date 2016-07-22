@@ -1,18 +1,39 @@
 {
-  File localRepoDir=new File(conf.getInterpreterLocalRepoPath() + "/" + intSetting.getId());
-  if (localRepoDir.exists()) {
-    FileUtils.cleanDirectory(localRepoDir);
-  }
-  List<Dependency> deps=intSetting.getDependencies();
-  if (deps != null) {
-    for (    Dependency d : deps) {
-      File destDir=new File(conf.getRelativeDir(ConfVars.ZEPPELIN_DEP_LOCALREPO));
-      if (d.getExclusions() != null) {
-        depResolver.load(d.getGroupArtifactVersion(),d.getExclusions(),new File(destDir,intSetting.getId()));
-      }
+  setting.setStatus(InterpreterSetting.Status.DOWNLOADING_DEPENDENCIES);
+  interpreterSettings.put(setting.getId(),setting);
+synchronized (interpreterSettings) {
+    final Thread t=new Thread(){
+      public void run(){
+        try {
+          File localRepoDir=new File(conf.getInterpreterLocalRepoPath() + "/" + setting.getId());
+          if (localRepoDir.exists()) {
+            FileUtils.cleanDirectory(localRepoDir);
+          }
+          List<Dependency> deps=setting.getDependencies();
+          if (deps != null) {
+            for (            Dependency d : deps) {
+              File destDir=new File(conf.getRelativeDir(ConfVars.ZEPPELIN_DEP_LOCALREPO));
+              if (d.getExclusions() != null) {
+                depResolver.load(d.getGroupArtifactVersion(),d.getExclusions(),new File(destDir,setting.getId()));
+              }
  else {
-        depResolver.load(d.getGroupArtifactVersion(),new File(destDir,intSetting.getId()));
+                depResolver.load(d.getGroupArtifactVersion(),new File(destDir,setting.getId()));
+              }
+            }
+          }
+          setting.setStatus(InterpreterSetting.Status.READY);
+        }
+ catch (        Exception e) {
+          logger.error(String.format("Error while downloading repos for interpreter group : %s," + " go to interpreter setting page click on edit and save it again to make " + "this interpreter work properly.",setting.getGroup()),e);
+          setting.setErrorReason(e.getLocalizedMessage());
+          setting.setStatus(InterpreterSetting.Status.ERROR);
+        }
+ finally {
+          interpreterSettings.put(setting.getId(),setting);
+        }
       }
     }
+;
+    t.start();
   }
 }

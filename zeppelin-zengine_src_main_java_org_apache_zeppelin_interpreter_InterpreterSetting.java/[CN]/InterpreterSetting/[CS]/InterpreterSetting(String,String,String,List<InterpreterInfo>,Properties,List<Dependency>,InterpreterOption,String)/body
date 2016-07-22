@@ -7,4 +7,5 @@
   this.dependencies=dependencies;
   this.option=option;
   this.path=path;
+  this.status=Status.READY;
 }

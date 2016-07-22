@@ -20,6 +20,7 @@
     setting.getOption().setRemote(true);
     setting.setPath(interpreterSettingsRef.get(setting.getGroup()).getPath());
     setting.setInterpreterGroupFactory(this);
+    loadInterpreterDependencies(setting);
     interpreterSettings.put(k,setting);
   }
   this.interpreterBindings=info.interpreterBindings;
