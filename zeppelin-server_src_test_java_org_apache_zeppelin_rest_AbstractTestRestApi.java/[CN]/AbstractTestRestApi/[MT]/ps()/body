@@ -1,0 +1,12 @@
+{
+  DefaultExecutor executor=new DefaultExecutor();
+  executor.setStreamHandler(new PumpStreamHandler(System.out,System.err));
+  CommandLine cmd=CommandLine.parse("ps");
+  cmd.addArgument("aux",false);
+  try {
+    executor.execute(cmd);
+  }
+ catch (  IOException e) {
+    LOG.error(e.getMessage(),e);
+  }
+}

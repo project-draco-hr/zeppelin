@@ -1,0 +1,43 @@
+{
+  logger.info("------ Create new SparkContext {} -------",getProperty("master"));
+  String execUri=System.getenv("SPARK_EXECUTOR_URI");
+  conf.setAppName(getProperty("spark.app.name"));
+  conf.set("spark.repl.class.outputDir",outputDir.getAbsolutePath());
+  if (execUri != null) {
+    conf.set("spark.executor.uri",execUri);
+  }
+  if (System.getenv("SPARK_HOME") != null) {
+    conf.setSparkHome(System.getenv("SPARK_HOME"));
+  }
+  conf.set("spark.scheduler.mode","FAIR");
+  conf.setMaster(getProperty("master"));
+  Properties intpProperty=getProperty();
+  for (  Object k : intpProperty.keySet()) {
+    String key=(String)k;
+    String val=toString(intpProperty.get(key));
+    if (!key.startsWith("spark.") || !val.trim().isEmpty()) {
+      logger.debug(String.format("SparkConf: key = [%s], value = [%s]",key,val));
+      conf.set(key,val);
+    }
+  }
+  Class SparkSession=Utils.findClass("org.apache.spark.sql.SparkSession");
+  Object builder=Utils.invokeStaticMethod(SparkSession,"builder");
+  Utils.invokeMethod(builder,"config",new Class[]{SparkConf.class},new Object[]{conf});
+  if (useHiveContext()) {
+    if (hiveClassesArePresent()) {
+      Utils.invokeMethod(builder,"enableHiveSupport");
+      sparkSession=Utils.invokeMethod(builder,"getOrCreate");
+      logger.info("Created Spark session with Hive support");
+    }
+ else {
+      Utils.invokeMethod(builder,"config",new Class[]{String.class,String.class},new Object[]{"spark.sql.catalogImplementation","in-memory"});
+      sparkSession=Utils.invokeMethod(builder,"getOrCreate");
+      logger.info("Created Spark session with Hive support");
+    }
+  }
+ else {
+    sparkSession=Utils.invokeMethod(builder,"getOrCreate");
+    logger.info("Created Spark session");
+  }
+  return sparkSession;
+}

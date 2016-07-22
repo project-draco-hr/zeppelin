@@ -1,5 +1,8 @@
 {
   IMain.Request r=(IMain.Request)Utils.invokeMethod(intp,"lastRequest");
+  if (r == null || r.lineRep() == null) {
+    return null;
+  }
   Object obj=r.lineRep().call("$result",JavaConversions.asScalaBuffer(new LinkedList<Object>()));
   return obj;
 }

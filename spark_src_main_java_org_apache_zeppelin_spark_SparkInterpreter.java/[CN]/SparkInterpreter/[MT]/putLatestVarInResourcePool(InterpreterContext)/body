@@ -3,7 +3,18 @@
   if (varName == null || varName.isEmpty()) {
     return;
   }
-  Object lastObj=getValue(varName);
+  Object lastObj=null;
+  try {
+    if (Utils.isScala2_10()) {
+      lastObj=getValue(varName);
+    }
+ else {
+      lastObj=getLastObject();
+    }
+  }
+ catch (  NullPointerException e) {
+    logger.error(e.getMessage(),e);
+  }
   if (lastObj != null) {
     ResourcePool resourcePool=context.getResourcePool();
     resourcePool.put(context.getNoteId(),context.getParagraphId(),WellKnownResourceName.ZeppelinReplResult.toString(),lastObj);

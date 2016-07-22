@@ -1,6 +1,7 @@
 {
   Note note=ZeppelinServer.notebook.createNote(null);
-  if (isPyspark() && getSparkVersionNumber(note) >= 14) {
+  int sparkVersionNumber=getSparkVersionNumber(note);
+  if (isPyspark() && sparkVersionNumber >= 14) {
     List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
     for (    InterpreterSetting setting : settings) {
       if (setting.getName().equals("spark")) {
@@ -20,7 +21,11 @@
     FileUtils.write(tmpFile,"a,b\n1,2");
     Paragraph p1=note.addParagraph();
     p1.setConfig(config);
-    p1.setText("%pyspark\n" + "from pyspark.sql import SQLContext\n" + "print(sqlContext.read.format('com.databricks.spark.csv')"+ ".load('" + tmpFile.getAbsolutePath() + "').count())");
+    String sqlContextName="sqlContext";
+    if (sparkVersionNumber >= 20) {
+      sqlContextName="spark";
+    }
+    p1.setText("%pyspark\n" + "from pyspark.sql import SQLContext\n" + "print(" + sqlContextName + ".read.format('com.databricks.spark.csv')"+ ".load('"+ tmpFile.getAbsolutePath()+ "').count())");
     note.run(p1.getId());
     waitForFinish(p1);
     assertEquals(Status.FINISHED,p1.getStatus());

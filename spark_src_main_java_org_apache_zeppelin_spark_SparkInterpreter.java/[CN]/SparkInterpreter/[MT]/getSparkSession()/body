@@ -1,0 +1,8 @@
+{
+synchronized (sharedInterpreterLock) {
+    if (sparkSession == null) {
+      createSparkSession();
+    }
+    return sparkSession;
+  }
+}

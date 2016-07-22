@@ -1,4 +1,5 @@
 {
+  conf=new SparkConf();
   URL[] urls=getClassloaderUrls();
   Settings settings=new Settings();
   String args=getProperty("args");
@@ -83,7 +84,7 @@
   BooleanSetting b=(BooleanSetting)settings.usejavacp();
   b.v_$eq(true);
   settings.scala$tools$nsc$settings$StandardScalaSettings$_setter_$usejavacp_$eq(b);
-  System.setProperty("scala.repl.name.line","line" + this.hashCode() + "$");
+  System.setProperty("scala.repl.name.line","$line" + this.hashCode());
   MutableSettings.IntSetting numClassFileSetting=settings.maxClassfileName();
   numClassFileSetting.v_$eq(128);
   settings.scala$tools$nsc$settings$ScalaSettings$_setter_$maxClassfileName_$eq(numClassFileSetting);
@@ -117,6 +118,9 @@ synchronized (sharedInterpreterLock) {
       }
       completor=Utils.instantiateClass("org.apache.spark.repl.SparkJLineCompletion",new Class[]{Utils.findClass("org.apache.spark.repl.SparkIMain")},new Object[]{intp});
     }
+    if (Utils.isSpark2()) {
+      sparkSession=getSparkSession();
+    }
     sc=getSparkContext();
     if (sc.getPoolForName("fair").isEmpty()) {
       Value schedulingMode=org.apache.spark.scheduler.SchedulingMode.FAIR();
@@ -140,19 +144,32 @@ synchronized (sharedInterpreterLock) {
     binder.put("sc",sc);
     binder.put("sqlc",sqlc);
     binder.put("z",z);
+    if (Utils.isSpark2()) {
+      binder.put("spark",sparkSession);
+    }
     interpret("@transient val z = " + "_binder.get(\"z\").asInstanceOf[org.apache.zeppelin.spark.ZeppelinContext]");
     interpret("@transient val sc = " + "_binder.get(\"sc\").asInstanceOf[org.apache.spark.SparkContext]");
     interpret("@transient val sqlc = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
     interpret("@transient val sqlContext = " + "_binder.get(\"sqlc\").asInstanceOf[org.apache.spark.sql.SQLContext]");
+    if (Utils.isSpark2()) {
+      interpret("@transient val spark = " + "_binder.get(\"spark\").asInstanceOf[org.apache.spark.sql.SparkSession]");
+    }
     interpret("import org.apache.spark.SparkContext._");
     if (importImplicit()) {
-      if (sparkVersion.oldSqlContextImplicits()) {
-        interpret("import sqlContext._");
+      if (Utils.isSpark2()) {
+        interpret("import spark.implicits._");
+        interpret("import spark.sql");
+        interpret("import org.apache.spark.sql.functions._");
       }
  else {
-        interpret("import sqlContext.implicits._");
-        interpret("import sqlContext.sql");
-        interpret("import org.apache.spark.sql.functions._");
+        if (sparkVersion.oldSqlContextImplicits()) {
+          interpret("import sqlContext._");
+        }
+ else {
+          interpret("import sqlContext.implicits._");
+          interpret("import sqlContext.sql");
+          interpret("import org.apache.spark.sql.functions._");
+        }
       }
     }
   }

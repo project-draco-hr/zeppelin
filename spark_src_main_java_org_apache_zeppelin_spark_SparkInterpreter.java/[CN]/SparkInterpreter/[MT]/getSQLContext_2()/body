@@ -1,0 +1,9 @@
+{
+  if (sqlc == null) {
+    sqlc=(SQLContext)Utils.invokeMethod(sparkSession,"wrapped");
+    if (sqlc == null) {
+      sqlc=(SQLContext)Utils.invokeMethod(sparkSession,"sqlContext");
+    }
+  }
+  return sqlc;
+}

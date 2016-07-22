@@ -4,7 +4,7 @@
     sc.stop();
     sc=null;
     if (classServer != null) {
-      classServer.stop();
+      Utils.invokeMethod(classServer,"stop");
       classServer=null;
     }
   }

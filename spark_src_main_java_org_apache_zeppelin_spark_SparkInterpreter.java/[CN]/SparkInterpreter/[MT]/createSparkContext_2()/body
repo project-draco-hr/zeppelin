@@ -1,0 +1,3 @@
+{
+  return (SparkContext)Utils.invokeMethod(sparkSession,"sparkContext");
+}

@@ -2,6 +2,13 @@
   Note note=ZeppelinServer.notebook.createNote(null);
   int sparkVersion=getSparkVersionNumber(note);
   if (isSparkR() && sparkVersion >= 14) {
+    List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
+    for (    InterpreterSetting setting : settings) {
+      if (setting.getName().equals("spark")) {
+        ZeppelinServer.notebook.getInterpreterFactory().restart(setting.getId());
+        break;
+      }
+    }
     Paragraph p=note.addParagraph();
     Map config=p.getConfig();
     config.put("enabled",true);

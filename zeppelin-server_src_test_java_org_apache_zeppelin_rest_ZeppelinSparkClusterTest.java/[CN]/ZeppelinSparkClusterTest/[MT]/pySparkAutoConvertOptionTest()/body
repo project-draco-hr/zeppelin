@@ -1,13 +1,17 @@
 {
   Note note=ZeppelinServer.notebook.createNote(null);
   note.setName("note");
-  int sparkVersion=getSparkVersionNumber(note);
-  if (isPyspark() && sparkVersion >= 14) {
+  int sparkVersionNumber=getSparkVersionNumber(note);
+  if (isPyspark() && sparkVersionNumber >= 14) {
     Paragraph p=note.addParagraph();
     Map config=p.getConfig();
     config.put("enabled",true);
     p.setConfig(config);
-    p.setText("%pyspark\nfrom pyspark.sql.functions import *\n" + "print(sqlContext.range(0, 10).withColumn('uniform', rand(seed=10) * 3.14).count())");
+    String sqlContextName="sqlContext";
+    if (sparkVersionNumber >= 20) {
+      sqlContextName="spark";
+    }
+    p.setText("%pyspark\nfrom pyspark.sql.functions import *\n" + "print(" + sqlContextName + ".range(0, 10).withColumn('uniform', rand(seed=10) * 3.14).count())");
     note.run(p.getId());
     waitForFinish(p);
     assertEquals(Status.FINISHED,p.getStatus());
