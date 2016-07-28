@@ -1,4 +1,17 @@
 {
+  if (getProperty("master").equals("yarn-client")) {
+    System.setProperty("SPARK_YARN_MODE","true");
+  }
+  if (getProperty().contains("spark.yarn.keytab") && getProperty().contains("spark.yarn.principal")) {
+    try {
+      String keytab=getProperty().getProperty("spark.yarn.keytab");
+      String principal=getProperty().getProperty("spark.yarn.principal");
+      UserGroupInformation.loginUserFromKeytab(principal,keytab);
+    }
+ catch (    IOException e) {
+      throw new RuntimeException("Can not pass kerberos authentication",e);
+    }
+  }
   conf=new SparkConf();
   URL[] urls=getClassloaderUrls();
   Settings settings=new Settings();
