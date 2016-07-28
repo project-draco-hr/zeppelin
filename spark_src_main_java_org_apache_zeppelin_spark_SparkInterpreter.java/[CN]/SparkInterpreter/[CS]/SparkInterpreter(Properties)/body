@@ -1,4 +1,4 @@
 {
   super(property);
-  out=new SparkOutputStream();
+  out=new SparkOutputStream(logger);
 }

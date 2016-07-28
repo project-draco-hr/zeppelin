@@ -1,2 +1,2 @@
 def reset(self):
-    self.out = ''
+    pass

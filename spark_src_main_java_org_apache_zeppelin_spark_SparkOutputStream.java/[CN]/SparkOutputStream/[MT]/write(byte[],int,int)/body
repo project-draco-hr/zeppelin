@@ -1,4 +1,5 @@
 {
+  super.write(b,offset,len);
   if (interpreterOutput != null) {
     interpreterOutput.write(b,offset,len);
   }

@@ -1,0 +1,3 @@
+{
+  logger.debug("Interpreter output:" + s);
+}

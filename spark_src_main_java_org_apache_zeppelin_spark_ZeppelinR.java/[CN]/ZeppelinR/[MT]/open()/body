@@ -12,7 +12,7 @@
   cmd.addArgument(libPath);
   cmd.addArgument(Integer.toString(sparkVersion.toNumber()));
   executor=new DefaultExecutor();
-  outputStream=new SparkOutputStream();
+  outputStream=new SparkOutputStream(logger);
   input=new PipedOutputStream();
   PipedInputStream in=new PipedInputStream(input);
   PumpStreamHandler streamHandler=new PumpStreamHandler(outputStream,outputStream,in);

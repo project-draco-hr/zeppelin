@@ -1,4 +1,5 @@
 {
+  super.write(b);
   if (interpreterOutput != null) {
     interpreterOutput.write(b);
   }

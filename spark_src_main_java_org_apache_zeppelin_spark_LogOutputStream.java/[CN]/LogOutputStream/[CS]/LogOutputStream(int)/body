@@ -1,0 +1,5 @@
+{
+  this.buffer=new ByteArrayOutputStream(132);
+  this.skip=false;
+  this.level=level;
+}

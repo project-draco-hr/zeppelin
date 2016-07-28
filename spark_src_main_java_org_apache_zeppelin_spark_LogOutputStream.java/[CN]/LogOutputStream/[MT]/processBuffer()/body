@@ -1,0 +1,4 @@
+{
+  this.processLine(this.buffer.toString());
+  this.buffer.reset();
+}

@@ -1,0 +1,5 @@
+{
+  if (this.buffer.size() > 0) {
+    this.processBuffer();
+  }
+}

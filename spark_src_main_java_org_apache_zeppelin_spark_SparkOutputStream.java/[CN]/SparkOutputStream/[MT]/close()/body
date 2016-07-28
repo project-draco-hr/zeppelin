@@ -1,4 +1,5 @@
 {
+  super.close();
   if (interpreterOutput != null) {
     interpreterOutput.close();
   }

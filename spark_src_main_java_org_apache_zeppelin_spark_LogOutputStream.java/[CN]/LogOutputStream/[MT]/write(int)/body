@@ -1,0 +1,10 @@
+{
+  byte c=(byte)cc;
+  if (c != 10 && c != 13) {
+    this.buffer.write(cc);
+  }
+ else   if (!this.skip) {
+    this.processBuffer();
+  }
+  this.skip=c == 13;
+}
