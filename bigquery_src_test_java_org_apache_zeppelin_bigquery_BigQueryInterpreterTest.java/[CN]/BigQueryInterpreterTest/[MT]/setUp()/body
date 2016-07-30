@@ -1,0 +1,10 @@
+{
+  Properties p=new Properties();
+  p.setProperty("zeppelin.bigquery.project_id",CONSTANTS.getProjectId());
+  p.setProperty("zeppelin.bigquery.wait_time","5000");
+  p.setProperty("zeppelin.bigquery.max_no_of_rows","100");
+  intpGroup=new InterpreterGroup();
+  bqInterpreter=new BigQueryInterpreter(p);
+  bqInterpreter.setInterpreterGroup(intpGroup);
+  bqInterpreter.open();
+}

@@ -1,0 +1,17 @@
+{
+  logger.info("Trying to Cancel current query statement.");
+  if (service != null && jobId != null && projectId != null) {
+    try {
+      Bigquery.Jobs.Cancel request=service.jobs().cancel(projectId,jobId);
+      JobCancelResponse response=request.execute();
+      jobId=null;
+      logger.info("Query Execution cancelled");
+    }
+ catch (    IOException ex) {
+      logger.error("Could not cancel the SQL execution");
+    }
+  }
+ else {
+    logger.info("Query Execution was already cancelled");
+  }
+}

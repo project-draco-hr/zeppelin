@@ -1,0 +1,9 @@
+{
+  Job job=request.execute();
+  while (!job.getStatus().getState().equals("DONE")) {
+    System.out.println("Job is " + job.getStatus().getState() + " waiting "+ interval+ " milliseconds...");
+    Thread.sleep(interval);
+    job=request.execute();
+  }
+  return job;
+}

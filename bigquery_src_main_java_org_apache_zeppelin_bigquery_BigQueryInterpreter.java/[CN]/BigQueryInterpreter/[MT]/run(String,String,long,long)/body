@@ -1,0 +1,12 @@
+{
+  try {
+    QueryResponse query=service.jobs().query(projId,new QueryRequest().setTimeoutMs(wTime).setQuery(queryString).setMaxResults(maxRows)).execute();
+    jobId=query.getJobReference().getJobId();
+    projectId=query.getJobReference().getProjectId();
+    GetQueryResults getRequest=service.jobs().getQueryResults(projectId,jobId);
+    return getPages(getRequest);
+  }
+ catch (  IOException ex) {
+    throw ex;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  logger.info("Close bqsql connection!");
+  service=null;
+}

@@ -1,0 +1,25 @@
+{
+  int counter=0;
+  StringBuilder finalmessage=null;
+  finalmessage=new StringBuilder("%table ");
+  String projId=getProperty(PROJECT_ID);
+  long wTime=Long.parseLong(getProperty(WAIT_TIME));
+  long maxRows=Long.parseLong(getProperty(MAX_ROWS));
+  Iterator<GetQueryResultsResponse> pages;
+  try {
+    pages=run(sql,projId,wTime,maxRows);
+  }
+ catch (  IOException ex) {
+    logger.error(ex.getMessage());
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+  try {
+    while (pages.hasNext()) {
+      finalmessage.append(printRows(pages.next()));
+    }
+    return new InterpreterResult(Code.SUCCESS,finalmessage.toString());
+  }
+ catch (  NullPointerException ex) {
+    return new InterpreterResult(Code.ERROR,ex.getMessage());
+  }
+}

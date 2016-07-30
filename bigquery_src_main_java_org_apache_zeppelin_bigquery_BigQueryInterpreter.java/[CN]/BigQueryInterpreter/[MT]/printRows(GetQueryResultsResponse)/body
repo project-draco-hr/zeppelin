@@ -1,0 +1,22 @@
+{
+  StringBuilder msg=null;
+  msg=new StringBuilder();
+  try {
+    for (    TableFieldSchema schem : response.getSchema().getFields()) {
+      msg.append(schem.getName());
+      msg.append(TAB);
+    }
+    msg.append(NEWLINE);
+    for (    TableRow row : response.getRows()) {
+      for (      TableCell field : row.getF()) {
+        msg.append(field.getV().toString());
+        msg.append(TAB);
+      }
+      msg.append(NEWLINE);
+    }
+    return msg.toString();
+  }
+ catch (  NullPointerException ex) {
+    throw new NullPointerException("SQL Execution returned an error!");
+  }
+}

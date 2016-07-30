@@ -1,0 +1,5 @@
+{
+  InterpreterResult ret=bqInterpreter.interpret(CONSTANTS.getOne(),context);
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals(ret.type(),InterpreterResult.Type.TABLE);
+}

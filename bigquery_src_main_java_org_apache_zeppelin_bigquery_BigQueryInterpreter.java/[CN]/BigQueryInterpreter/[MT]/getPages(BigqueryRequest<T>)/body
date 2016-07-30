@@ -1,0 +1,34 @@
+{
+class PageIterator implements Iterator<T> {
+    private BigqueryRequest<T> request;
+    private boolean hasNext=true;
+    public PageIterator(    final BigqueryRequest<T> requestTemplate){
+      this.request=requestTemplate;
+    }
+    public boolean hasNext(){
+      return hasNext;
+    }
+    public T next(){
+      if (!hasNext) {
+        throw new NoSuchElementException();
+      }
+      try {
+        T response=request.execute();
+        if (response.containsKey("pageToken")) {
+          request=request.set("pageToken",response.get("pageToken"));
+        }
+ else {
+          hasNext=false;
+        }
+        return response;
+      }
+ catch (      IOException e) {
+        return null;
+      }
+    }
+    public void remove(){
+      this.next();
+    }
+  }
+  return new PageIterator(requestTemplate);
+}

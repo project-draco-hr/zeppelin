@@ -1,0 +1,18 @@
+{
+  if (service == null) {
+synchronized (serviceLock) {
+      if (service == null) {
+        try {
+          service=createAuthorizedClient();
+          exceptionOnConnect=null;
+          logger.info("Opened BigQuery SQL Connection");
+        }
+ catch (        IOException e) {
+          logger.error("Cannot open connection",e);
+          exceptionOnConnect=e;
+          close();
+        }
+      }
+    }
+  }
+}

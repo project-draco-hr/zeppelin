@@ -1,0 +1,10 @@
+{
+  HttpTransport transport=new NetHttpTransport();
+  JsonFactory jsonFactory=new JacksonFactory();
+  GoogleCredential credential=GoogleCredential.getApplicationDefault(transport,jsonFactory);
+  if (credential.createScopedRequired()) {
+    Collection<String> bigqueryScopes=BigqueryScopes.all();
+    credential=credential.createScoped(bigqueryScopes);
+  }
+  return new Bigquery.Builder(transport,jsonFactory,credential).setApplicationName("Zeppelin/1.0 (GPN:Apache Zeppelin;)").build();
+}

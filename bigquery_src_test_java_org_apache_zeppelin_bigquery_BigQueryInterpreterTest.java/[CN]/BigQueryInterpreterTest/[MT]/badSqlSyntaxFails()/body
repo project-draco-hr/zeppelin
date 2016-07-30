@@ -1,0 +1,4 @@
+{
+  InterpreterResult ret=bqInterpreter.interpret(CONSTANTS.getWrong(),context);
+  assertEquals(InterpreterResult.Code.ERROR,ret.code());
+}

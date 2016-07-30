@@ -1,0 +1,4 @@
+String queryString
+String projId
+long wTime
+long maxRows
