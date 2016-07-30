@@ -1,0 +1,12 @@
+{
+  List<String> roleList=new ArrayList<>();
+  Map getIniRoles=r.getIni().get("roles");
+  if (getIniRoles != null) {
+    Iterator it=getIniRoles.entrySet().iterator();
+    while (it.hasNext()) {
+      Map.Entry pair=(Map.Entry)it.next();
+      roleList.add(pair.getKey().toString().trim());
+    }
+  }
+  return roleList;
+}
