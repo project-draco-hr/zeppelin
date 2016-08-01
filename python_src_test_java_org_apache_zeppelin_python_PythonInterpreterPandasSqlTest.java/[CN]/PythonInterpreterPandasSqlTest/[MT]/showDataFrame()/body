@@ -1,0 +1,13 @@
+{
+  InterpreterResult ret;
+  ret=python.interpret("import pandas as pd",context);
+  ret=python.interpret("import numpy as np",context);
+  ret=python.interpret("d1 = {1 : [np.nan, 1, 2, 3], 'two' : [3., 4., 5., 6.7]}",context);
+  ret=python.interpret("df1 = pd.DataFrame(d1)",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  ret=python.interpret("z.show(df1)",context);
+  assertEquals(ret.message(),InterpreterResult.Code.SUCCESS,ret.code());
+  assertEquals(ret.message(),Type.TABLE,ret.type());
+  assertTrue(ret.message().indexOf("nan") > 0);
+  assertTrue(ret.message().indexOf("6.7") > 0);
+}
