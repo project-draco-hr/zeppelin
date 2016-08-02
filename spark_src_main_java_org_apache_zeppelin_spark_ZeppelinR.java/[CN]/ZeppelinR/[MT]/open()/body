@@ -10,6 +10,7 @@
   cmd.addArgument(Integer.toString(hashCode()));
   cmd.addArgument(Integer.toString(port));
   cmd.addArgument(libPath);
+  cmd.addArgument(Integer.toString(sparkVersion.toNumber()));
   executor=new DefaultExecutor();
   outputStream=new SparkOutputStream();
   input=new PipedOutputStream();
