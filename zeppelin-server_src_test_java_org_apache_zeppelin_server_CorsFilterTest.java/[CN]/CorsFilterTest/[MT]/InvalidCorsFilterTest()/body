@@ -2,7 +2,7 @@
   CorsFilter filter=new CorsFilter();
   HttpServletResponse mockResponse=mock(HttpServletResponse.class);
   FilterChain mockedFilterChain=mock(FilterChain.class);
-  TestHttpServletRequest mockRequest=mock(TestHttpServletRequest.class);
+  HttpServletRequest mockRequest=mock(HttpServletRequest.class);
   when(mockRequest.getHeader("Origin")).thenReturn("http://evillocalhost:8080");
   when(mockRequest.getMethod()).thenReturn("Empty");
   when(mockRequest.getServerName()).thenReturn("evillocalhost");

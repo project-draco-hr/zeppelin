@@ -1,5 +1,5 @@
 {
   NotebookSocket sock=mock(NotebookSocket.class);
-  when(sock.getRequest()).thenReturn(createHttpServletRequest());
+  when(sock.getRequest()).thenReturn(mockRequest);
   return sock;
 }

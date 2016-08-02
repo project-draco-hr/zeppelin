@@ -1,4 +1,4 @@
 {
   NotebookServer server=new NotebookServer();
-  assertFalse(server.checkOrigin(new TestHttpServletRequest(),"http://evillocalhost:8080"));
+  assertFalse(server.checkOrigin(mockRequest,"http://evillocalhost:8080"));
 }
