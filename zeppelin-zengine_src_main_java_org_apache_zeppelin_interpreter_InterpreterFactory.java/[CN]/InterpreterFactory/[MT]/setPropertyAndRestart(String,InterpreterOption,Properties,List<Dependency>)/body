@@ -5,7 +5,7 @@ synchronized (interpreterSettings) {
       stopJobAllInterpreter(intpsetting);
       intpsetting.closeAndRmoveAllInterpreterGroups();
       intpsetting.setOption(option);
-      intpsetting.updateProperties(properties);
+      intpsetting.setProperties(properties);
       intpsetting.setDependencies(dependencies);
       loadInterpreterDependencies(intpsetting);
       saveToFile();
