@@ -1,3 +1,2 @@
-def __init__(self, zc):
-    self.z = zc
+def __init__(self):
     self.max_result = 1000

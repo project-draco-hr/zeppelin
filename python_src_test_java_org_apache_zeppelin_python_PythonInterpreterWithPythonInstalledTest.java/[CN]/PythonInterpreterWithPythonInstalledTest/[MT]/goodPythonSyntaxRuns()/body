@@ -1,0 +1,8 @@
+{
+  PythonInterpreter realPython=new PythonInterpreter(PythonInterpreterTest.getPythonTestProperties());
+  realPython.open();
+  InterpreterResult ret=realPython.interpret("help()",null);
+  assertNotNull("Interpreter returned 'null'",ret);
+  assertEquals(InterpreterResult.Code.SUCCESS,ret.code());
+  assertTrue(ret.message().length() > 0);
+}
