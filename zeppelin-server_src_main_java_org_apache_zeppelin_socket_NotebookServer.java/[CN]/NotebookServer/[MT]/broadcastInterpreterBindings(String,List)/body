@@ -1,0 +1,3 @@
+{
+  broadcast(noteId,new Message(OP.INTERPRETER_BINDINGS).put("interpreterBindings",settingList));
+}

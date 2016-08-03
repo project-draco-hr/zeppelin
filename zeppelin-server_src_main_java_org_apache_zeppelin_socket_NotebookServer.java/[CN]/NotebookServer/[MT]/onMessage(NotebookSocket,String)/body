@@ -108,6 +108,12 @@ break;
 case LIST_UPDATE_NOTEBOOK_JOBS:
 unicastUpdateNotebookJobInfo(conn,messagereceived);
 break;
+case GET_INTERPRETER_BINDINGS:
+getInterpreterBindings(conn,messagereceived);
+break;
+case SAVE_INTERPRETER_BINDINGS:
+saveInterpreterBindings(conn,messagereceived);
+break;
 default :
 break;
 }

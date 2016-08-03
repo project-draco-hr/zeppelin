@@ -1,0 +1,5 @@
+{
+  String noteID=(String)fromMessage.data.get("noteID");
+  List<InterpreterSettingsList> settingList=InterpreterBindingUtils.getInterpreterBindings(notebook(),noteID);
+  conn.send(serializeMessage(new Message(OP.INTERPRETER_BINDINGS).put("interpreterBindings",settingList)));
+}

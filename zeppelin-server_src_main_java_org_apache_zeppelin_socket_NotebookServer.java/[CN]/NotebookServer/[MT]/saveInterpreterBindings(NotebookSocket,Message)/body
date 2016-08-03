@@ -1,0 +1,13 @@
+{
+  String noteId=(String)fromMessage.data.get("noteID");
+  try {
+    List<String> settingIdList=gson.fromJson(String.valueOf(fromMessage.data.get("selectedSettingIds")),new TypeToken<ArrayList<String>>(){
+    }
+.getType());
+    notebook().bindInterpretersToNote(noteId,settingIdList);
+    broadcastInterpreterBindings(noteId,InterpreterBindingUtils.getInterpreterBindings(notebook(),noteId));
+  }
+ catch (  Exception e) {
+    LOG.error("Error while saving interpreter bindings",e);
+  }
+}
