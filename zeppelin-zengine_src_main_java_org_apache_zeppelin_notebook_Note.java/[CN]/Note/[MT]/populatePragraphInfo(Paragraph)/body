@@ -1,0 +1,15 @@
+{
+  Map<String,String> info=new HashMap<>();
+  info.put("id",p.getId());
+  info.put("status",p.getStatus().toString());
+  if (p.getDateStarted() != null) {
+    info.put("started",p.getDateStarted().toString());
+  }
+  if (p.getDateFinished() != null) {
+    info.put("finished",p.getDateFinished().toString());
+  }
+  if (p.getStatus().isRunning()) {
+    info.put("progress",String.valueOf(p.progress()));
+  }
+  return info;
+}

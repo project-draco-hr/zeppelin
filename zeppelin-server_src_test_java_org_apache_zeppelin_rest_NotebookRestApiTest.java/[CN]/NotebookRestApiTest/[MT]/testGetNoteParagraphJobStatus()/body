@@ -1,0 +1,14 @@
+{
+  Note note1=ZeppelinServer.notebook.createNote(null);
+  note1.addParagraph();
+  String paragraphId=note1.getLastParagraph().getId();
+  GetMethod get=httpGet("/notebook/job/" + note1.getId() + "/"+ paragraphId);
+  assertThat(get,isAllowed());
+  Map<String,Object> resp=gson.fromJson(get.getResponseBodyAsString(),new TypeToken<Map<String,Object>>(){
+  }
+.getType());
+  Map<String,Set<String>> paragraphStatus=(Map<String,Set<String>>)resp.get("body");
+  assertEquals(paragraphStatus.get("id"),paragraphId);
+  assertEquals(paragraphStatus.get("status"),"READY");
+  ZeppelinServer.notebook.removeNote(note1.getId(),null);
+}

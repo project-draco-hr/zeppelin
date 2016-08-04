@@ -1,0 +1,10 @@
+{
+synchronized (paragraphs) {
+    for (    Paragraph p : paragraphs) {
+      if (p.getId().equals(paragraphId)) {
+        return populatePragraphInfo(p);
+      }
+    }
+    return new HashMap<>();
+  }
+}
