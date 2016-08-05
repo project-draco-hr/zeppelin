@@ -13,6 +13,7 @@
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_DIR.getVarName(),mainNotebookDir.getAbsolutePath());
   System.setProperty(ConfVars.ZEPPELIN_INTERPRETERS.getVarName(),"org.apache.zeppelin.interpreter.mock.MockInterpreter1,org.apache.zeppelin.interpreter.mock.MockInterpreter2");
   System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE.getVarName(),"org.apache.zeppelin.notebook.repo.VFSNotebookRepo,org.apache.zeppelin.notebook.repo.mock.VFSNotebookRepoMock");
+  System.setProperty(ConfVars.ZEPPELIN_NOTEBOOK_ONE_WAY_SYNC.getVarName(),"false");
   LOG.info("main Note dir : " + mainNotePath);
   LOG.info("secondary note dir : " + secNotePath);
   conf=ZeppelinConfiguration.create();

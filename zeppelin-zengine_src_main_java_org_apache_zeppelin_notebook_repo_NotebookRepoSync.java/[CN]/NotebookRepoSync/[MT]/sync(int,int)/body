@@ -7,6 +7,7 @@
   Map<String,List<String>> noteIDs=notesCheckDiff(srcNotes,srcRepo,dstNotes,dstRepo);
   List<String> pushNoteIDs=noteIDs.get(pushKey);
   List<String> pullNoteIDs=noteIDs.get(pullKey);
+  List<String> delDstNoteIDs=noteIDs.get(delDstKey);
   if (!pushNoteIDs.isEmpty()) {
     LOG.info("Notes with the following IDs will be pushed");
     for (    String id : pushNoteIDs) {
@@ -26,6 +27,16 @@
   }
  else {
     LOG.info("Nothing to pull");
+  }
+  if (!delDstNoteIDs.isEmpty()) {
+    LOG.info("Notes with the following IDs will be deleted from dest");
+    for (    String id : delDstNoteIDs) {
+      LOG.info("ID : " + id);
+    }
+    deleteNotes(delDstNoteIDs,dstRepo);
+  }
+ else {
+    LOG.info("Nothing to delete from dest");
   }
   LOG.info("Sync ended");
 }

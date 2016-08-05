@@ -1,0 +1,5 @@
+{
+  for (  String id : ids) {
+    repo.remove(id,null);
+  }
+}

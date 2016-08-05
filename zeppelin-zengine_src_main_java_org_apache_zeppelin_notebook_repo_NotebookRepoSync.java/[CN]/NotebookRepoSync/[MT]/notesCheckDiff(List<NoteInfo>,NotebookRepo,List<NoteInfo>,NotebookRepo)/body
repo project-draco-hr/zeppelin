@@ -1,6 +1,7 @@
 {
   List<String> pushIDs=new ArrayList<String>();
   List<String> pullIDs=new ArrayList<String>();
+  List<String> delDstIDs=new ArrayList<String>();
   NoteInfo dnote;
   Date sdate, ddate;
   for (  NoteInfo snote : sourceNotes) {
@@ -8,13 +9,15 @@
     if (dnote != null) {
       sdate=lastModificationDate(sourceRepo.get(snote.getId(),null));
       ddate=lastModificationDate(destRepo.get(dnote.getId(),null));
-      if (sdate.after(ddate)) {
-        pushIDs.add(snote.getId());
-        LOG.info("Modified note is added to push list : " + sdate);
-      }
- else       if (sdate.compareTo(ddate) != 0) {
-        LOG.info("Modified note is added to pull list : " + ddate);
-        pullIDs.add(snote.getId());
+      if (sdate.compareTo(ddate) != 0) {
+        if (sdate.after(ddate) || oneWaySync) {
+          pushIDs.add(snote.getId());
+          LOG.info("Modified note is added to push list : " + sdate);
+        }
+ else {
+          LOG.info("Modified note is added to pull list : " + ddate);
+          pullIDs.add(snote.getId());
+        }
       }
     }
  else {
@@ -24,11 +27,19 @@
   for (  NoteInfo note : destNotes) {
     dnote=containsID(sourceNotes,note.getId());
     if (dnote == null) {
-      pullIDs.add(note.getId());
+      if (oneWaySync) {
+        LOG.info("Extraneous note is added to delete dest list : " + note.getId());
+        delDstIDs.add(note.getId());
+      }
+ else {
+        LOG.info("Missing note is added to pull list : " + note.getId());
+        pullIDs.add(note.getId());
+      }
     }
   }
   Map<String,List<String>> map=new HashMap<String,List<String>>();
   map.put(pushKey,pushIDs);
   map.put(pullKey,pullIDs);
+  map.put(delDstKey,delDstIDs);
   return map;
 }

@@ -1,5 +1,6 @@
 {
   config=conf;
+  oneWaySync=conf.getBoolean(ConfVars.ZEPPELIN_NOTEBOOK_ONE_WAY_SYNC);
   String allStorageClassNames=conf.getString(ConfVars.ZEPPELIN_NOTEBOOK_STORAGE).trim();
   if (allStorageClassNames.isEmpty()) {
     allStorageClassNames=defaultStorage;
