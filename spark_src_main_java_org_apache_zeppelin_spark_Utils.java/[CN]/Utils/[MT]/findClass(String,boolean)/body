@@ -1,0 +1,11 @@
+{
+  try {
+    return Utils.class.forName(name);
+  }
+ catch (  ClassNotFoundException e) {
+    if (!silence) {
+      logger.error(e.getMessage(),e);
+    }
+    return null;
+  }
+}

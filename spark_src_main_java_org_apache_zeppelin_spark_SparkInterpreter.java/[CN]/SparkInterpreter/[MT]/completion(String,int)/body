@@ -1,4 +1,8 @@
 {
+  if (completer == null) {
+    logger.warn("Can't find completer");
+    return new LinkedList<InterpreterCompletion>();
+  }
   if (buf.length() < cursor) {
     cursor=buf.length();
   }
@@ -7,17 +11,12 @@
     completionText="";
     cursor=completionText.length();
   }
-  if (Utils.isScala2_10()) {
-    ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completer,"completer");
-    Candidates ret=c.complete(completionText,cursor);
-    List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
-    List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
-    for (    String candidate : candidates) {
-      completions.add(new InterpreterCompletion(candidate,candidate));
-    }
-    return completions;
+  ScalaCompleter c=(ScalaCompleter)Utils.invokeMethod(completer,"completer");
+  Candidates ret=c.complete(completionText,cursor);
+  List<String> candidates=WrapAsJava$.MODULE$.seqAsJavaList(ret.candidates());
+  List<InterpreterCompletion> completions=new LinkedList<InterpreterCompletion>();
+  for (  String candidate : candidates) {
+    completions.add(new InterpreterCompletion(candidate,candidate));
   }
- else {
-    return new LinkedList<InterpreterCompletion>();
-  }
+  return completions;
 }

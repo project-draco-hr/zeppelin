@@ -1,0 +1,4 @@
+{
+  List<InterpreterCompletion> completions=repl.completion("sc.","sc.".length());
+  assertTrue(completions.size() > 0);
+}

@@ -1,9 +1,3 @@
 {
-  try {
-    return Utils.class.forName(name);
-  }
- catch (  ClassNotFoundException e) {
-    logger.error(e.getMessage(),e);
-    return null;
-  }
+  return findClass(name,false);
 }
