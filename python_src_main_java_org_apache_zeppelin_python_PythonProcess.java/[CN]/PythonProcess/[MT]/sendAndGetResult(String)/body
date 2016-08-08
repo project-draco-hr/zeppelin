@@ -1,17 +1,17 @@
 {
-  writer.write(cmd + "\n\n");
-  writer.write("print (\"*!?flush reader!?*\")\n\n");
-  writer.flush();
-  String output="";
-  String line;
-  while (!(line=reader.readLine()).contains("*!?flush reader!?*")) {
+  writer.println(cmd);
+  writer.println();
+  writer.println("\"" + STATEMENT_END + "\"");
+  StringBuilder output=new StringBuilder();
+  String line=null;
+  while (!(line=reader.readLine()).contains(STATEMENT_END)) {
     logger.debug("Read line from python shell : " + line);
     if (line.equals("...")) {
       logger.warn("Syntax error ! ");
-      output+="Syntax error ! ";
+      output.append("Syntax error ! ");
       break;
     }
-    output+="\r" + line + "\n";
+    output.append(line + "\n");
   }
-  return output;
+  return output.toString();
 }

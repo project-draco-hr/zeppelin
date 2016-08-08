@@ -1,5 +1,5 @@
 {
-  when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn(">>>");
+  when(mockPythonProcess.sendAndGetResult(eq("\n\nimport py4j\n"))).thenReturn("");
   pythonInterpreter.open();
   Integer py4jPort=pythonInterpreter.getPy4jPort();
   assertNotNull(py4jPort);

@@ -4,7 +4,7 @@
   process=builder.start();
   stdout=process.getInputStream();
   stdin=process.getOutputStream();
-  writer=new BufferedWriter(new OutputStreamWriter(stdin));
+  writer=new PrintWriter(stdin,true);
   reader=new BufferedReader(new InputStreamReader(stdout));
   try {
     pid=findPid();

@@ -6,10 +6,10 @@
   String output=sendCommandToPython(cmd);
   InterpreterResult result;
   if (pythonErrorIn(output)) {
-    result=new InterpreterResult(Code.ERROR,output.replaceAll(">>>","").trim());
+    result=new InterpreterResult(Code.ERROR,output);
   }
  else {
-    result=new InterpreterResult(Code.SUCCESS,output.replaceAll(">>>","").replaceAll("\\.\\.\\.","").trim());
+    result=new InterpreterResult(Code.SUCCESS,output.replaceAll("\\.\\.\\.",""));
   }
   return result;
 }
