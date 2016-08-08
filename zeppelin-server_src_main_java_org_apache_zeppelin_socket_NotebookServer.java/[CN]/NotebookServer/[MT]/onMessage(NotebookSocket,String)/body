@@ -10,7 +10,15 @@
       LOG.trace("RECEIVE MSG = " + messagereceived);
     }
     String ticket=TicketContainer.instance.getTicket(messagereceived.principal);
-    if (ticket != null && !ticket.equals(messagereceived.ticket))     throw new Exception("Invalid ticket " + messagereceived.ticket + " != "+ ticket);
+    if (ticket != null && !ticket.equals(messagereceived.ticket)) {
+      if (StringUtils.isEmpty(messagereceived.ticket)) {
+        LOG.debug("{} message: invalid ticket {} != {}",messagereceived.op,messagereceived.ticket,ticket);
+      }
+ else {
+        LOG.warn("{} message: invalid ticket {} != {}",messagereceived.op,messagereceived.ticket,ticket);
+      }
+      return;
+    }
     ZeppelinConfiguration conf=ZeppelinConfiguration.create();
     boolean allowAnonymous=conf.getBoolean(ZeppelinConfiguration.ConfVars.ZEPPELIN_ANONYMOUS_ALLOWED);
     if (!allowAnonymous && messagereceived.principal.equals("anonymous")) {
