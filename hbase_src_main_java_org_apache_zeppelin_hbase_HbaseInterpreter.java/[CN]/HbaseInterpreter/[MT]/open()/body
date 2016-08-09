@@ -2,9 +2,9 @@
   this.scriptingContainer=new ScriptingContainer(LocalContextScope.SINGLETON);
   this.writer=new StringWriter();
   scriptingContainer.setOutput(this.writer);
-  if (!Boolean.parseBoolean(getProperty("zeppelin.hbase.test.mode"))) {
-    String hbase_home=getProperty("hbase.home");
-    String ruby_src=getProperty("hbase.ruby.sources");
+  if (!Boolean.parseBoolean(getProperty(HBASE_TEST_MODE))) {
+    String hbase_home=getProperty(HBASE_HOME);
+    String ruby_src=getProperty(HBASE_RUBY_SRC);
     Path abs_ruby_src=Paths.get(hbase_home,ruby_src).toAbsolutePath();
     logger.info("Home:" + hbase_home);
     logger.info("Ruby Src:" + ruby_src);
@@ -14,7 +14,7 @@
     }
     logger.info("Absolute Ruby Source:" + abs_ruby_src.toString());
     Properties sysProps=System.getProperties();
-    sysProps.setProperty("hbase.ruby.sources",abs_ruby_src.toString());
+    sysProps.setProperty(HBASE_RUBY_SRC,abs_ruby_src.toString());
     Path abs_hirb_path=Paths.get(hbase_home,"bin/hirb.rb");
     try {
       FileInputStream fis=new FileInputStream(abs_hirb_path.toFile());
