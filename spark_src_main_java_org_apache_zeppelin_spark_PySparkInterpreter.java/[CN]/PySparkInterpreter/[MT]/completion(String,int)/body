@@ -14,8 +14,13 @@ synchronized (statementSetNotifier) {
     statementSetNotifier.notify();
   }
 synchronized (statementFinishedNotifier) {
-    while (statementOutput == null) {
+    long startTime=System.currentTimeMillis();
+    while (statementOutput == null && pythonScriptInitialized == false && pythonscriptRunning) {
       try {
+        if (System.currentTimeMillis() - startTime < MAX_TIMEOUT_SEC * 1000) {
+          logger.error("pyspark completion didn't have response for {}sec.",MAX_TIMEOUT_SEC);
+          break;
+        }
         statementFinishedNotifier.wait(1000);
       }
  catch (      InterruptedException e) {
