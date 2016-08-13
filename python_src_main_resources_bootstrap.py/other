@@ -1,5 +1,6 @@
 import sys
 import signal
+import base64
 try:
     import StringIO as io
 except ImportError:
