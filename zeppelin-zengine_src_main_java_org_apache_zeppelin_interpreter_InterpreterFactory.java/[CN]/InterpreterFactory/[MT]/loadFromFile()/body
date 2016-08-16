@@ -7,6 +7,8 @@
   InputStreamReader isr=new InputStreamReader(fis);
   BufferedReader bufferedReader=new BufferedReader(isr);
   StringBuilder sb=new StringBuilder();
+  InterpreterSetting interpreterSettingObject;
+  String depClassPath=StringUtils.EMPTY;
   String line;
   while ((line=bufferedReader.readLine()) != null) {
     sb.append(line);
@@ -18,7 +20,13 @@
   for (  String k : info.interpreterSettings.keySet()) {
     InterpreterSetting setting=info.interpreterSettings.get(k);
     setting.getOption().setRemote(true);
-    setting.setPath(interpreterSettingsRef.get(setting.getGroup()).getPath());
+    interpreterSettingObject=interpreterSettingsRef.get(setting.getGroup());
+    if (interpreterSettingObject == null) {
+      logger.warn("can't get InterpreterSetting " + "Information From loaded Interpreter Setting Ref - {} ",setting.getGroup());
+      continue;
+    }
+    depClassPath=interpreterSettingObject.getPath();
+    setting.setPath(depClassPath);
     setting.setInterpreterGroupFactory(this);
     loadInterpreterDependencies(setting);
     interpreterSettings.put(k,setting);
