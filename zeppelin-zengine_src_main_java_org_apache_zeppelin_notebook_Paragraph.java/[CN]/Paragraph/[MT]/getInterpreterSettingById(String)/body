@@ -1,0 +1,10 @@
+{
+  InterpreterSetting setting=null;
+  for (  InterpreterSetting i : factory.getInterpreterSettings(note.getId())) {
+    if (id.startsWith(i.getId())) {
+      setting=i;
+      break;
+    }
+  }
+  return setting;
+}

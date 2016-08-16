@@ -1,0 +1,11 @@
+{
+  if (1 > intpUsers.size()) {
+    return true;
+  }
+  for (  String u : intpUsers) {
+    if (user.trim().equals(u.trim())) {
+      return true;
+    }
+  }
+  return false;
+}

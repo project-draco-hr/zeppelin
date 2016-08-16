@@ -1,0 +1,3 @@
+{
+  return !factory.getInterpreterSettings(note.getId()).isEmpty();
+}

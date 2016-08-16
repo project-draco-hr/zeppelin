@@ -1,0 +1,3 @@
+{
+  return intpOpt.permissionIsSet() && hasPermission(authenticationInfo.getUser(),intpOpt.getUsers());
+}
