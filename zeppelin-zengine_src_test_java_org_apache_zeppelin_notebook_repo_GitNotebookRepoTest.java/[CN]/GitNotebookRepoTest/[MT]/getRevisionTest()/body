@@ -17,7 +17,7 @@
   assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(2);
   int paragraphCount_2=notebookRepo.get(TEST_NOTE_ID,null).getParagraphs().size();
   assertThat(paragraphCount_2).isEqualTo(paragraphCount_1 + 1);
-  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1.id,null);
   assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
   note=notebookRepo.get(TEST_NOTE_ID,null);
   assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_2);
@@ -29,7 +29,7 @@
   note=notebookRepo.get(TEST_NOTE_ID,null);
   int paragraphCount_3=note.getParagraphs().size();
   assertThat(paragraphCount_3).isEqualTo(paragraphCount_2 + 1);
-  noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1.id,null);
   assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
   note=notebookRepo.get(TEST_NOTE_ID,null);
   assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_3);

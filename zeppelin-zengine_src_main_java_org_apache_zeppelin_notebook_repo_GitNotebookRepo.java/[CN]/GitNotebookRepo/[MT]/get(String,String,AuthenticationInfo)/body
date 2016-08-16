@@ -10,7 +10,7 @@
       LOG.debug("Created stash : {}, stash size : {}",stash,stashes.size());
     }
     ObjectId head=git.getRepository().resolve(Constants.HEAD);
-    git.checkout().setStartPoint(rev.id).addPath(noteId).call();
+    git.checkout().setStartPoint(revId).addPath(noteId).call();
     note=super.get(noteId,subject);
     git.checkout().setStartPoint(head.getName()).addPath(noteId).call();
     if (modified && stash != null) {
@@ -21,7 +21,7 @@
     }
   }
  catch (  GitAPIException e) {
-    LOG.error("Failed to return note from revision \"{}\"",rev.message,e);
+    LOG.error("Failed to return note from revision \"{}\"",revId,e);
   }
   return note;
 }

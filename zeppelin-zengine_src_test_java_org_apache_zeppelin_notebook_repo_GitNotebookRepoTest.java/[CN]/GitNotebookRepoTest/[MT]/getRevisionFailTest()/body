@@ -15,11 +15,11 @@
   p1.setText("%md get revision when modified note test text");
   notebookRepo.save(note,null);
   int paragraphCount_2=note.getParagraphs().size();
-  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1,null);
+  Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1.id,null);
   assertThat(noteRevision_1.getParagraphs().size()).isEqualTo(paragraphCount_1);
   note=notebookRepo.get(TEST_NOTE_ID,null);
   assertThat(note.getParagraphs().size()).isEqualTo(paragraphCount_2);
   Revision absentRevision=new Revision("absentId",StringUtils.EMPTY,0);
-  note=notebookRepo.get(TEST_NOTE_ID,absentRevision,null);
+  note=notebookRepo.get(TEST_NOTE_ID,absentRevision.id,null);
   assertThat(note).isNull();
 }

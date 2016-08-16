@@ -1,7 +1,0 @@
-{
-  String noteId=(String)fromMessage.get("noteId");
-  Revision revision=(Revision)fromMessage.get("revision");
-  AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
-  Note revisionNote=notebook.getNoteRevision(noteId,revision,subject);
-  conn.send(serializeMessage(new Message(OP.NOTE_REVISION).put("noteId",noteId).put("revisionId",revision).put("data",revisionNote)));
-}

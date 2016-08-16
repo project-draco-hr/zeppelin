@@ -1,3 +1,0 @@
-{
-  return notebookRepo.get(noteId,revision,subject);
-}
