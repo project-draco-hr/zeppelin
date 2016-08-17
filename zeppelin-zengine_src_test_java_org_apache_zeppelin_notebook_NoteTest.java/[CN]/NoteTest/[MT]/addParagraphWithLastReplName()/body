@@ -4,6 +4,7 @@
   when(interpreterFactory.getDefaultInterpreterSetting(anyString())).thenReturn(interpreterSetting);
   Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
   note.putDefaultReplName();
+  when(interpreterFactory.getInterpreter(note.getId(),"spark")).thenReturn(new MockInterpreter2(null));
   Paragraph p=note.addParagraph();
   assertEquals("%spark ",p.getText());
 }
