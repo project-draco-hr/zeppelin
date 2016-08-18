@@ -1,5 +1,5 @@
 {
-  HashMap<String,HashSet> permMap=gson.fromJson(req,new TypeToken<HashMap<String,HashSet>>(){
+  HashMap<String,HashSet<String>> permMap=gson.fromJson(req,new TypeToken<HashMap<String,HashSet<String>>>(){
   }
 .getType());
   Note note=notebook.getNote(noteId);
@@ -12,9 +12,9 @@
   if (!notebookAuthorization.isOwner(noteId,userAndRoles)) {
     return new JsonResponse<>(Status.FORBIDDEN,ownerPermissionError(userAndRoles,notebookAuthorization.getOwners(noteId))).build();
   }
-  HashSet readers=permMap.get("readers");
-  HashSet owners=permMap.get("owners");
-  HashSet writers=permMap.get("writers");
+  HashSet<String> readers=permMap.get("readers");
+  HashSet<String> owners=permMap.get("owners");
+  HashSet<String> writers=permMap.get("writers");
   if (readers != null && !readers.isEmpty()) {
     if (writers.isEmpty()) {
       writers=Sets.newHashSet(SecurityUtils.getPrincipal());
