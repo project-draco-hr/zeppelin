@@ -1,10 +1,11 @@
 import sys
 import signal
 import base64
+from io import BytesIO
 try:
-    import StringIO as io
+    from StringIO import StringIO
 except ImportError:
-    import io as io
+    from io import StringIO
 signal.signal(signal.SIGINT, intHandler)
 sys.ps1 = ''
 z = PyZeppelinContext()

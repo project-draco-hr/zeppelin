@@ -1,2 +1,3 @@
 def __init__(self):
     self.max_result = 1000
+    self.py3 = bool((sys.version_info >= (3,)))
