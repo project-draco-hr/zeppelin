@@ -1,0 +1,3 @@
+{
+  this.hadoopSecurityCredentialPath=hadoopSecurityCredentialPath;
+}

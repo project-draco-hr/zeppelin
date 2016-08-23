@@ -8,7 +8,7 @@
     defaultFactory.setSearchBase(this.searchBase);
     defaultFactory.setUrl(this.url);
     defaultFactory.setSystemUsername(this.systemUsername);
-    defaultFactory.setSystemPassword(this.systemPassword);
+    defaultFactory.setSystemPassword(getSystemPassword());
     this.ldapContextFactory=defaultFactory;
   }
   return this.ldapContextFactory;

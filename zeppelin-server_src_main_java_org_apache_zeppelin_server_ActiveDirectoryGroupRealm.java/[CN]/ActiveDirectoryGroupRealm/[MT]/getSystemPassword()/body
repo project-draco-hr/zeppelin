@@ -1,0 +1,20 @@
+{
+  String password="";
+  if (StringUtils.isEmpty(this.hadoopSecurityCredentialPath)) {
+    password=this.systemPassword;
+  }
+ else {
+    try {
+      Configuration configuration=new Configuration();
+      configuration.set(CredentialProviderFactory.CREDENTIAL_PROVIDER_PATH,this.hadoopSecurityCredentialPath);
+      CredentialProvider provider=CredentialProviderFactory.getProviders(configuration).get(0);
+      CredentialProvider.CredentialEntry credEntry=provider.getCredentialEntry(KEYSTORE_PASS);
+      if (credEntry != null) {
+        password=new String(credEntry.getCredential());
+      }
+    }
+ catch (    Exception e) {
+    }
+  }
+  return password;
+}
