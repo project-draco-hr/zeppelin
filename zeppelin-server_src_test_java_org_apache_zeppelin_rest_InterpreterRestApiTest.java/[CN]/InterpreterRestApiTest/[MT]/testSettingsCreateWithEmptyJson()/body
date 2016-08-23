@@ -1,0 +1,6 @@
+{
+  PostMethod post=httpPost("/interpreter/setting/","");
+  LOG.info("testSettingCRUD create response\n" + post.getResponseBodyAsString());
+  assertThat("test create method:",post,isBadRequest());
+  post.releaseConnection();
+}
