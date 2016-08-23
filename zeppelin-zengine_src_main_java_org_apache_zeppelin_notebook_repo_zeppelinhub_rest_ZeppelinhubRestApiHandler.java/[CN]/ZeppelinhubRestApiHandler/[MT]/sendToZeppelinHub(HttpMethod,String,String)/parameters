@@ -1,0 +1,3 @@
+HttpMethod method
+String url
+String json

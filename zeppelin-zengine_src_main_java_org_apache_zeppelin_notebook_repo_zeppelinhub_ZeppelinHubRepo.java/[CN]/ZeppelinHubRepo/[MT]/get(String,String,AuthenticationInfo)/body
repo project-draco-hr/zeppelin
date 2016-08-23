@@ -1,3 +1,13 @@
 {
-  return null;
+  if (StringUtils.isBlank(noteId) || StringUtils.isBlank(revId)) {
+    return EMPTY_NOTE;
+  }
+  String endpoint=Joiner.on("/").join(noteId,"checkpoint",revId);
+  String response=restApiClient.asyncGet(endpoint);
+  Note note=GSON.fromJson(response,Note.class);
+  if (note == null) {
+    return EMPTY_NOTE;
+  }
+  LOG.info("ZeppelinHub REST API get note {} revision {}",noteId,revId);
+  return note;
 }

@@ -1,0 +1,7 @@
+{
+  if (StringUtils.isBlank(url) || StringUtils.isBlank(json)) {
+    LOG.error("Empty note, cannot send it to zeppelinHub");
+    throw new IOException("Cannot send emtpy note to zeppelinHub");
+  }
+  return sendToZeppelinHub(HttpMethod.PUT,zepelinhubUrl + url,json);
+}

@@ -1,3 +1,17 @@
 {
-  return null;
+  if (StringUtils.isBlank(noteId)) {
+    return Collections.emptyList();
+  }
+  String endpoint=Joiner.on("/").join(noteId,"checkpoint");
+  List<Revision> history=Collections.emptyList();
+  try {
+    String response=restApiClient.asyncGet(endpoint);
+    history=GSON.fromJson(response,new TypeToken<List<Revision>>(){
+    }
+.getType());
+  }
+ catch (  IOException e) {
+    LOG.error("Cannot get note history",e);
+  }
+  return history;
 }
