@@ -4,6 +4,6 @@
   p1.setText("%fake ");
   Interpreter intp=p1.getCurrentRepl();
   assertEquals(intp,null);
-  notebook.bindInterpretersToNote(note1.id(),new LinkedList<String>());
+  notebook.bindInterpretersToNote(note1.getId(),new LinkedList<String>());
   notebook.removeNote(note1.getId(),null);
 }

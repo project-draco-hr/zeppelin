@@ -19,7 +19,7 @@
     note.setName(name);
     note.setConfig(config);
     if (cronUpdated) {
-      notebook.refreshCron(note.id());
+      notebook.refreshCron(note.getId());
     }
     AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);
     note.persist(subject);

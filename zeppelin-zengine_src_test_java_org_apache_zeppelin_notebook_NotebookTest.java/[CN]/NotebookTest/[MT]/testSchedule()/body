@@ -11,11 +11,11 @@
   config.put("enabled",true);
   config.put("cron","* * * * * ?");
   note.setConfig(config);
-  notebook.refreshCron(note.id());
+  notebook.refreshCron(note.getId());
   Thread.sleep(1 * 1000);
   config.put("cron",null);
   note.setConfig(config);
-  notebook.refreshCron(note.id());
+  notebook.refreshCron(note.getId());
   Thread.sleep(1000);
   dateFinished=p.getDateFinished();
   assertNotNull(dateFinished);

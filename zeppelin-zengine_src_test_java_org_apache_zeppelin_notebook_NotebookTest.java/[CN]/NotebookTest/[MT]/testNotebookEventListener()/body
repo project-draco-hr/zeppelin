@@ -32,8 +32,8 @@
   assertEquals(2,onParagraphCreate.get());
   note1.removeParagraph(p1.getId());
   assertEquals(1,onParagraphRemove.get());
-  List<String> settings=notebook.getBindedInterpreterSettingsIds(note1.id());
-  notebook.bindInterpretersToNote(note1.id(),new LinkedList<String>());
+  List<String> settings=notebook.getBindedInterpreterSettingsIds(note1.getId());
+  notebook.bindInterpretersToNote(note1.getId(),new LinkedList<String>());
   assertEquals(settings.size(),unbindInterpreter.get());
   notebook.removeNote(note1.getId(),null);
   assertEquals(1,onNoteRemove.get());

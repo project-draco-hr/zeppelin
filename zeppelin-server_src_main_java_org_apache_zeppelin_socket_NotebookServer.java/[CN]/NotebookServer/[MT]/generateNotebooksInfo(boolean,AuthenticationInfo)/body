@@ -15,10 +15,10 @@
   List<Map<String,String>> notesInfo=new LinkedList<>();
   for (  Note note : notes) {
     Map<String,String> info=new HashMap<>();
-    if (hideHomeScreenNotebookFromList && note.id().equals(homescreenNotebookId)) {
+    if (hideHomeScreenNotebookFromList && note.getId().equals(homescreenNotebookId)) {
       continue;
     }
-    info.put("id",note.id());
+    info.put("id",note.getId());
     info.put("name",note.getName());
     notesInfo.add(info);
   }

@@ -10,11 +10,11 @@
   if (note != null) {
     List<InterpreterSetting> settings=notebook.getInterpreterFactory().getInterpreterSettings(note.getId());
     for (    InterpreterSetting setting : settings) {
-      if (setting.getInterpreterGroup(note.id()) == null) {
+      if (setting.getInterpreterGroup(note.getId()) == null) {
         continue;
       }
-      if (interpreterGroupId.equals(setting.getInterpreterGroup(note.id()).getId())) {
-        AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup(note.id()).getAngularObjectRegistry();
+      if (interpreterGroupId.equals(setting.getInterpreterGroup(note.getId()).getId())) {
+        AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup(note.getId()).getAngularObjectRegistry();
         ao=angularObjectRegistry.get(varName,noteId,paragraphId);
         if (ao == null) {
           ao=angularObjectRegistry.get(varName,noteId,null);
@@ -45,17 +45,17 @@
     for (    Note n : notebook.getAllNotes()) {
       List<InterpreterSetting> settings=notebook.getInterpreterFactory().getInterpreterSettings(note.getId());
       for (      InterpreterSetting setting : settings) {
-        if (setting.getInterpreterGroup(n.id()) == null) {
+        if (setting.getInterpreterGroup(n.getId()) == null) {
           continue;
         }
-        if (interpreterGroupId.equals(setting.getInterpreterGroup(n.id()).getId())) {
-          AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup(n.id()).getAngularObjectRegistry();
-          this.broadcastExcept(n.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.id()).put("paragraphId",ao.getParagraphId()),conn);
+        if (interpreterGroupId.equals(setting.getInterpreterGroup(n.getId()).getId())) {
+          AngularObjectRegistry angularObjectRegistry=setting.getInterpreterGroup(n.getId()).getAngularObjectRegistry();
+          this.broadcastExcept(n.getId(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",n.getId()).put("paragraphId",ao.getParagraphId()),conn);
         }
       }
     }
   }
  else {
-    this.broadcastExcept(note.id(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.id()).put("paragraphId",ao.getParagraphId()),conn);
+    this.broadcastExcept(note.getId(),new Message(OP.ANGULAR_OBJECT_UPDATE).put("angularObject",ao).put("interpreterGroupId",interpreterGroupId).put("noteId",note.getId()).put("paragraphId",ao.getParagraphId()),conn);
   }
 }

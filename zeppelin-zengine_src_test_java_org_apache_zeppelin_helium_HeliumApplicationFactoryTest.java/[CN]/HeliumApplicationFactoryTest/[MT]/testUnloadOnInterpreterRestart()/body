@@ -1,9 +1,9 @@
 {
   HeliumPackage pkg1=new HeliumPackage(HeliumPackage.Type.APPLICATION,"name1","desc1","",HeliumTestApplication.class.getName(),new String[][]{});
   Note note1=notebook.createNote(null);
-  notebook.bindInterpretersToNote(note1.id(),factory.getDefaultInterpreterSettingList());
+  notebook.bindInterpretersToNote(note1.getId(),factory.getDefaultInterpreterSettingList());
   String mock1IntpSettingId=null;
-  for (  InterpreterSetting setting : notebook.getBindedInterpreterSettings(note1.id())) {
+  for (  InterpreterSetting setting : notebook.getBindedInterpreterSettings(note1.getId())) {
     if (setting.getName().equals("mock1")) {
       mock1IntpSettingId=setting.getId();
       break;

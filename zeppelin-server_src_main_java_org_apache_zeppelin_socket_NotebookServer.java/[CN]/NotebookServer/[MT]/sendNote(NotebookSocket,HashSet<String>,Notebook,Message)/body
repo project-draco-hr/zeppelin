@@ -11,7 +11,7 @@
       permissionError(conn,"read",fromMessage.principal,userAndRoles,notebookAuthorization.getReaders(noteId));
       return;
     }
-    addConnectionToNote(note.id(),conn);
+    addConnectionToNote(note.getId(),conn);
     conn.send(serializeMessage(new Message(OP.NOTE).put("note",note)));
     sendAllAngularObjects(note,conn);
   }

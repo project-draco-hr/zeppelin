@@ -7,8 +7,11 @@
   if (newNoteName != null) {
     newNote.setName(newNoteName);
   }
-  List<String> boundInterpreterSettingsIds=getBindedInterpreterSettingsIds(sourceNote.id());
-  bindInterpretersToNote(newNote.id(),boundInterpreterSettingsIds);
+ else {
+    newNote.setName("Note " + newNote.getId());
+  }
+  List<String> boundInterpreterSettingsIds=getBindedInterpreterSettingsIds(sourceNote.getId());
+  bindInterpretersToNote(newNote.getId(),boundInterpreterSettingsIds);
   List<Paragraph> paragraphs=sourceNote.getParagraphs();
   for (  Paragraph p : paragraphs) {
     newNote.addCloneParagraph(p);

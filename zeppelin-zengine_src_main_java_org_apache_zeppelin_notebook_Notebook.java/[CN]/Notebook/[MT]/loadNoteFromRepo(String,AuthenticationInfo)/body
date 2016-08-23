@@ -36,14 +36,14 @@
   }
   note.setNoteEventListener(this);
 synchronized (notes) {
-    notes.put(note.id(),note);
-    refreshCron(note.id());
+    notes.put(note.getId(),note);
+    refreshCron(note.getId());
   }
   for (  String name : angularObjectSnapshot.keySet()) {
     SnapshotAngularObject snapshot=angularObjectSnapshot.get(name);
     List<InterpreterSetting> settings=replFactory.get();
     for (    InterpreterSetting setting : settings) {
-      InterpreterGroup intpGroup=setting.getInterpreterGroup(note.id());
+      InterpreterGroup intpGroup=setting.getInterpreterGroup(note.getId());
       if (intpGroup.getId().equals(snapshot.getIntpGroupId())) {
         AngularObjectRegistry registry=intpGroup.getAngularObjectRegistry();
         String noteId=snapshot.getAngularObject().getNoteId();

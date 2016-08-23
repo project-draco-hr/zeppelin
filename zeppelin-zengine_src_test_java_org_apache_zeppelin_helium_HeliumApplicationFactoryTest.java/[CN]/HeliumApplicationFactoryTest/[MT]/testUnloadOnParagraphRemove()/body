@@ -1,7 +1,7 @@
 {
   HeliumPackage pkg1=new HeliumPackage(HeliumPackage.Type.APPLICATION,"name1","desc1","",HeliumTestApplication.class.getName(),new String[][]{});
   Note note1=notebook.createNote(null);
-  factory.setInterpreters(note1.id(),factory.getDefaultInterpreterSettingList());
+  factory.setInterpreters(note1.getId(),factory.getDefaultInterpreterSettingList());
   Paragraph p1=note1.addParagraph();
   p1.setText("%mock1 job");
   note1.run(p1.getId());

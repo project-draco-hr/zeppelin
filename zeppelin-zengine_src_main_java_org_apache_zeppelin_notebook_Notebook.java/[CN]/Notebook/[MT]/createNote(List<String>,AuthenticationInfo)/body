@@ -1,10 +1,10 @@
 {
   Note note=new Note(notebookRepo,replFactory,jobListenerFactory,notebookIndex,credentials,this);
 synchronized (notes) {
-    notes.put(note.id(),note);
+    notes.put(note.getId(),note);
   }
   if (interpreterIds != null) {
-    bindInterpretersToNote(note.id(),interpreterIds);
+    bindInterpretersToNote(note.getId(),interpreterIds);
     note.putDefaultReplName();
   }
   notebookIndex.addIndexDoc(note);

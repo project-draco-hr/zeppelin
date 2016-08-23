@@ -1,3 +1,3 @@
 {
-  repo.remove(id(),subject);
+  repo.remove(getId(),subject);
 }

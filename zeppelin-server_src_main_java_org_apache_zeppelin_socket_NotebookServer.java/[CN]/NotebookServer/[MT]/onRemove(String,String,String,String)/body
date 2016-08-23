@@ -2,13 +2,13 @@
   Notebook notebook=notebook();
   List<Note> notes=notebook.getAllNotes();
   for (  Note note : notes) {
-    if (noteId != null && !note.id().equals(noteId)) {
+    if (noteId != null && !note.getId().equals(noteId)) {
       continue;
     }
     List<String> ids=notebook.getInterpreterFactory().getInterpreters(note.getId());
     for (    String id : ids) {
       if (id.equals(interpreterGroupId)) {
-        broadcast(note.id(),new Message(OP.ANGULAR_OBJECT_REMOVE).put("name",name).put("noteId",noteId).put("paragraphId",paragraphId));
+        broadcast(note.getId(),new Message(OP.ANGULAR_OBJECT_REMOVE).put("name",name).put("noteId",noteId).put("paragraphId",paragraphId));
       }
     }
   }

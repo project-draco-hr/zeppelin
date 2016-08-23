@@ -2,7 +2,7 @@
   Note note=ZeppelinServer.notebook.createNote(null);
   int sparkVersionNumber=getSparkVersionNumber(note);
   if (isPyspark() && sparkVersionNumber >= 14) {
-    List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.id());
+    List<InterpreterSetting> settings=ZeppelinServer.notebook.getBindedInterpreterSettings(note.getId());
     for (    InterpreterSetting setting : settings) {
       if (setting.getName().equals("spark")) {
         ZeppelinServer.notebook.getInterpreterFactory().restart(setting.getId());

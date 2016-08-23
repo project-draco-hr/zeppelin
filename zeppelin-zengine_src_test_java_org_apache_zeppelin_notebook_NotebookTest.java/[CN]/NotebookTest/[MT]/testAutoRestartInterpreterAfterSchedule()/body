@@ -13,7 +13,7 @@
   config.put("cron","1/3 * * * * ?");
   config.put("releaseresource",true);
   note.setConfig(config);
-  notebook.refreshCron(note.id());
+  notebook.refreshCron(note.getId());
   MockInterpreter1 mock1=((MockInterpreter1)(((ClassloaderInterpreter)((LazyOpenInterpreter)factory.getInterpreter(note.getId(),"mock1")).getInnerInterpreter()).getInnerInterpreter()));
   MockInterpreter2 mock2=((MockInterpreter2)(((ClassloaderInterpreter)((LazyOpenInterpreter)factory.getInterpreter(note.getId(),"mock2")).getInnerInterpreter()).getInnerInterpreter()));
   while (!mock1.isOpen() || !mock2.isOpen()) {
@@ -24,7 +24,7 @@
   }
   config.put("cron",null);
   note.setConfig(config);
-  notebook.refreshCron(note.id());
+  notebook.refreshCron(note.getId());
   assertNotNull(p.getDateFinished());
   assertNotNull(p2.getDateFinished());
 }

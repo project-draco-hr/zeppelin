@@ -5,7 +5,7 @@
     List<String> ids=notebook.getInterpreterFactory().getInterpreters(note.getId());
     for (    String id : ids) {
       if (id.equals(interpreterGroupId)) {
-        broadcast(note.id(),m);
+        broadcast(note.getId(),m);
       }
     }
   }

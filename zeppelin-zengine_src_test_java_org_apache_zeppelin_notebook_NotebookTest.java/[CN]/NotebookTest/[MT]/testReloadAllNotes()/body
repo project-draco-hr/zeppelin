@@ -16,7 +16,7 @@
   notebook.reloadAllNotes(null);
   notes=notebook.getAllNotes();
   assertEquals(notes.size(),2);
-  assertEquals(notes.get(1).id(),copiedNote.id());
+  assertEquals(notes.get(1).getId(),copiedNote.getId());
   assertEquals(notes.get(1).getName(),copiedNote.getName());
   assertEquals(notes.get(1).getParagraphs(),copiedNote.getParagraphs());
   for (  String note : noteNames) {

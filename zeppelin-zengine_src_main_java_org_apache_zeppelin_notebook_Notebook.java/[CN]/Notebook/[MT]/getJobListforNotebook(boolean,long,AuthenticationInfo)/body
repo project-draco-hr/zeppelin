@@ -15,13 +15,13 @@
     boolean isUpdateNotebook=false;
     long lastRunningUnixTime=0;
     Map<String,Object> info=new HashMap<>();
-    info.put("notebookId",note.id());
+    info.put("notebookId",note.getId());
     String notebookName=note.getName();
     if (notebookName != null && !notebookName.equals("")) {
       info.put("notebookName",note.getName());
     }
  else {
-      info.put("notebookName","Note " + note.id());
+      info.put("notebookName","Note " + note.getId());
     }
     if (note.getConfig().containsKey(CRON_TYPE_NOTEBOOK_KEYWORD) && !note.getConfig().get(CRON_TYPE_NOTEBOOK_KEYWORD).equals("")) {
       info.put("notebookType","cron");

@@ -19,5 +19,5 @@
   p.setTitle((String)fromMessage.get("title"));
   p.setText((String)fromMessage.get("paragraph"));
   note.persist(subject);
-  broadcast(note.id(),new Message(OP.PARAGRAPH).put("paragraph",p));
+  broadcast(note.getId(),new Message(OP.PARAGRAPH).put("paragraph",p));
 }

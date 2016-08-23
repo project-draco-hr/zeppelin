@@ -14,6 +14,6 @@
   assertEquals(2,ResourcePoolUtils.getAllResources().size());
   note.removeParagraph(p1.getId());
   assertEquals(1,ResourcePoolUtils.getAllResources().size());
-  notebook.removeNote(note.id(),null);
+  notebook.removeNote(note.getId(),null);
   assertEquals(0,ResourcePoolUtils.getAllResources().size());
 }

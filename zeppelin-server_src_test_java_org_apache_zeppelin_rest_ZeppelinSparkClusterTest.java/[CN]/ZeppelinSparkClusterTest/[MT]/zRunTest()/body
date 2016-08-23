@@ -22,5 +22,5 @@
   waitForFinish(p2);
   assertEquals(Status.FINISHED,p2.getStatus());
   assertEquals("10",p2.getResult().message());
-  ZeppelinServer.notebook.removeNote(note.id(),null);
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }
