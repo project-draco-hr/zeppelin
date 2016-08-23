@@ -10,7 +10,12 @@
       p.setEffectiveText(pText);
     }
  else {
-      throw new InterpreterException("Interpreter " + requiredReplName + " not found");
+      String intpExceptionMsg=String.format("%s",p.getJobName() + "'s Interpreter " + requiredReplName+ " not found");
+      InterpreterException intpException=new InterpreterException(intpExceptionMsg);
+      InterpreterResult intpResult=new InterpreterResult(InterpreterResult.Code.ERROR,intpException.getMessage());
+      p.setReturn(intpResult,intpException);
+      p.setStatus(Job.Status.ERROR);
+      throw intpException;
     }
   }
   if (p.getConfig().get("enabled") == null || (Boolean)p.getConfig().get("enabled")) {
