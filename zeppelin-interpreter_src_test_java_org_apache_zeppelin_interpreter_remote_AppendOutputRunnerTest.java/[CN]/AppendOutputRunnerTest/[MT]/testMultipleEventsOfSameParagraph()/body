@@ -1,0 +1,9 @@
+{
+  RemoteInterpreterProcessListener listener=mock(RemoteInterpreterProcessListener.class);
+  String note1="note1";
+  String para1="para1";
+  String[][] buffer={{note1,para1,"data1\n"},{note1,para1,"data2\n"},{note1,para1,"data3\n"}};
+  loopForCompletingEvents(listener,1,buffer);
+  verify(listener,times(1)).onOutputAppend(any(String.class),any(String.class),any(String.class));
+  verify(listener,times(1)).onOutputAppend(note1,para1,"data1\ndata2\ndata3\n");
+}

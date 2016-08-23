@@ -1,0 +1,30 @@
+{
+  RemoteInterpreterProcessListener listener=mock(RemoteInterpreterProcessListener.class);
+  AppendOutputRunner runner=new AppendOutputRunner(listener);
+  String data="data\n";
+  int numEvents=100000;
+  for (int i=0; i < numEvents; i++) {
+    runner.appendBuffer("noteId","paraId",data);
+  }
+  TestAppender appender=new TestAppender();
+  Logger logger=Logger.getRootLogger();
+  logger.addAppender(appender);
+  Logger.getLogger(RemoteInterpreterEventPoller.class);
+  runner.run();
+  List<LoggingEvent> log;
+  int warnLogCounter;
+  LoggingEvent sizeWarnLogEntry=null;
+  do {
+    warnLogCounter=0;
+    log=appender.getLog();
+    for (    LoggingEvent logEntry : log) {
+      if (Level.WARN.equals(logEntry.getLevel())) {
+        sizeWarnLogEntry=logEntry;
+        warnLogCounter+=1;
+      }
+    }
+  }
+ while (warnLogCounter != 2);
+  String loggerString="Processing size for buffered append-output is high: " + (data.length() * numEvents) + " characters.";
+  assertTrue(loggerString.equals(sizeWarnLogEntry.getMessage()));
+}

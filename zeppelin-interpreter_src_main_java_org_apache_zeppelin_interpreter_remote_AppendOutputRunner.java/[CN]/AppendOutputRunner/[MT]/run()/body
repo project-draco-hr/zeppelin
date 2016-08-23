@@ -1,0 +1,42 @@
+{
+  Map<String,Map<String,StringBuilder>> noteMap=new HashMap<>();
+  List<AppendOutputBuffer> list=new LinkedList<>();
+  try {
+    list.add(queue.take());
+  }
+ catch (  InterruptedException e) {
+    logger.error("Wait for OutputBuffer queue interrupted: " + e.getMessage());
+  }
+  Long processingStartTime=System.currentTimeMillis();
+  queue.drainTo(list);
+  for (  AppendOutputBuffer buffer : list) {
+    String noteId=buffer.getNoteId();
+    String paragraphId=buffer.getParagraphId();
+    Map<String,StringBuilder> paragraphMap=(noteMap.containsKey(noteId)) ? noteMap.get(noteId) : new HashMap<String,StringBuilder>();
+    StringBuilder builder=paragraphMap.containsKey(paragraphId) ? paragraphMap.get(paragraphId) : new StringBuilder();
+    builder.append(buffer.getData());
+    paragraphMap.put(paragraphId,builder);
+    noteMap.put(noteId,paragraphMap);
+  }
+  Long processingTime=System.currentTimeMillis() - processingStartTime;
+  if (processingTime > SAFE_PROCESSING_TIME) {
+    logger.warn("Processing time for buffered append-output is high: " + processingTime + " milliseconds.");
+  }
+ else {
+    logger.debug("Processing time for append-output took " + processingTime + " milliseconds");
+  }
+  Long sizeProcessed=new Long(0);
+  for (  String noteId : noteMap.keySet()) {
+    for (    String paragraphId : noteMap.get(noteId).keySet()) {
+      String data=noteMap.get(noteId).get(paragraphId).toString();
+      sizeProcessed+=data.length();
+      listener.onOutputAppend(noteId,paragraphId,data);
+    }
+  }
+  if (sizeProcessed > SAFE_PROCESSING_STRING_SIZE) {
+    logger.warn("Processing size for buffered append-output is high: " + sizeProcessed + " characters.");
+  }
+ else {
+    logger.debug("Processing size for append-output is " + sizeProcessed + " characters");
+  }
+}

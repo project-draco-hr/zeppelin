@@ -1,5 +1,7 @@
 {
   Client client=null;
+  AppendOutputRunner runner=new AppendOutputRunner(listener);
+  ScheduledFuture<?> appendFuture=appendService.scheduleWithFixedDelay(runner,0,AppendOutputRunner.BUFFER_TIME_MS,TimeUnit.MILLISECONDS);
   while (!shutdown) {
     if (!interpreterProcess.isRunning()) {
       try {
@@ -79,7 +81,7 @@
         String outputToAppend=outputAppend.get("data");
         String appId=outputAppend.get("appId");
         if (appId == null) {
-          listener.onOutputAppend(noteId,paragraphId,outputToAppend);
+          runner.appendBuffer(noteId,paragraphId,outputToAppend);
         }
  else {
           appListener.onOutputAppend(noteId,paragraphId,appId,outputToAppend);
@@ -115,5 +117,8 @@
  catch (    Exception e) {
       logger.error("Can't handle event " + event,e);
     }
+  }
+  if (appendFuture != null) {
+    appendFuture.cancel(true);
   }
 }

@@ -1,0 +1,15 @@
+{
+  numInvocations=0;
+  prepareInvocationCounts(listener);
+  AppendOutputRunner runner=new AppendOutputRunner(listener);
+  for (  String[] bufferElement : buffer) {
+    runner.appendBuffer(bufferElement[0],bufferElement[1],bufferElement[2]);
+  }
+  future=service.scheduleWithFixedDelay(runner,0,AppendOutputRunner.BUFFER_TIME_MS,TimeUnit.MILLISECONDS);
+  long startTimeMs=System.currentTimeMillis();
+  while (numInvocations != numTimes) {
+    if (System.currentTimeMillis() - startTimeMs > 2000) {
+      fail("Buffered events were not sent for 2 seconds");
+    }
+  }
+}

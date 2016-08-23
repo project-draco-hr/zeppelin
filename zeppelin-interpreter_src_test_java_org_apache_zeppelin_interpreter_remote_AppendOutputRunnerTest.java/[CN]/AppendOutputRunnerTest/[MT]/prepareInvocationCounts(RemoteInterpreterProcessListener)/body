@@ -1,0 +1,9 @@
+{
+  doAnswer(new Answer<Void>(){
+    @Override public Void answer(    InvocationOnMock invocation) throws Throwable {
+      numInvocations+=1;
+      return null;
+    }
+  }
+).when(listener).onOutputAppend(any(String.class),any(String.class),any(String.class));
+}
