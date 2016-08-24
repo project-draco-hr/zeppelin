@@ -29,7 +29,7 @@
     propertiesMap.remove(key);
   }
   logger.debug("propertiesMap: {}",propertiesMap);
-  if (!StringUtils.isAnyEmpty(property.getProperty("zeppelin.jdbc.auth.type"))) {
+  if (!StringUtils.isEmpty(property.getProperty("zeppelin.jdbc.auth.type"))) {
     JDBCSecurityImpl.createSecureConfiguration(property);
   }
   for (  String propertyKey : propertiesMap.keySet()) {
