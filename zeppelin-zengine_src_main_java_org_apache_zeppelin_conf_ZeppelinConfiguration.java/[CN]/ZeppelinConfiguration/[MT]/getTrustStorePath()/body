@@ -1,9 +1,9 @@
 {
   String path=getString(ConfVars.ZEPPELIN_SSL_TRUSTSTORE_PATH);
-  if (path == null) {
-    return getKeyStorePath();
+  if (path != null && path.startsWith("/") || isWindowsPath(path)) {
+    return path;
   }
  else {
-    return getRelativeDir(path);
+    return getRelativeDir(String.format("%s/%s",getConfDir(),getString(path)));
   }
 }

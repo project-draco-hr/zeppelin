@@ -1,3 +1,9 @@
 {
-  return getRelativeDir(String.format("%s/%s",getConfDir(),getString(ConfVars.ZEPPELIN_SSL_KEYSTORE_PATH)));
+  String path=getString(ConfVars.ZEPPELIN_SSL_KEYSTORE_PATH);
+  if (path != null && path.startsWith("/") || isWindowsPath(path)) {
+    return path;
+  }
+ else {
+    return getRelativeDir(String.format("%s/%s",getConfDir(),getString(path)));
+  }
 }
