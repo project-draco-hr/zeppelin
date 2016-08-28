@@ -3,4 +3,10 @@
   if (!registeredInterpreters.containsKey(interpreterKey)) {
     registeredInterpreters.put(interpreterKey,registeredInterpreter);
   }
+ else {
+    RegisteredInterpreter existInterpreter=registeredInterpreters.get(interpreterKey);
+    if (!existInterpreter.getProperties().equals(registeredInterpreter.getProperties())) {
+      logger.error("exist registeredInterpreter with the same key but has different settings.");
+    }
+  }
 }
