@@ -1,0 +1,4 @@
+{
+  properties.put(name,new InterpreterProperty(envName,propertyName,defaultValue,description));
+  return this;
+}
