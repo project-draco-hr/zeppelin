@@ -1,5 +1,7 @@
 {
-  logger.debug("st: {}",st);
+  if (logger.isDebugEnabled()) {
+    logger.debug("st:\n{}",st);
+  }
   Interpreter intp=getInterpreter(noteId,className);
   InterpreterContext context=convert(interpreterContext);
   Scheduler scheduler=intp.getScheduler();
