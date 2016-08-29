@@ -1,4 +1,7 @@
 {
+  if (name.indexOf(".") >= 0) {
+    throw new IOException("'.' is invalid for InterpreterSetting name.");
+  }
   InterpreterSetting setting=createFromInterpreterSettingRef(group);
   setting.setName(name);
   setting.setGroup(group);
