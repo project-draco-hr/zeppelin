@@ -4,19 +4,12 @@
   String requiredReplName=p.getRequiredReplName();
   Interpreter intp=factory.getInterpreter(getId(),requiredReplName);
   if (intp == null) {
-    if (conf.getUseJdbcAlias() && null != (intp=factory.getInterpreter(getId(),"jdbc"))) {
-      String pText=p.getText().replaceFirst(requiredReplName,"jdbc(" + requiredReplName + ")");
-      logger.debug("New paragraph: {}",pText);
-      p.setEffectiveText(pText);
-    }
- else {
-      String intpExceptionMsg=format("%s",p.getJobName() + "'s Interpreter " + requiredReplName+ " not found");
-      InterpreterException intpException=new InterpreterException(intpExceptionMsg);
-      InterpreterResult intpResult=new InterpreterResult(InterpreterResult.Code.ERROR,intpException.getMessage());
-      p.setReturn(intpResult,intpException);
-      p.setStatus(Job.Status.ERROR);
-      throw intpException;
-    }
+    String intpExceptionMsg=p.getJobName() + "'s Interpreter " + requiredReplName+ " not found";
+    InterpreterException intpException=new InterpreterException(intpExceptionMsg);
+    InterpreterResult intpResult=new InterpreterResult(InterpreterResult.Code.ERROR,intpException.getMessage());
+    p.setReturn(intpResult,intpException);
+    p.setStatus(Job.Status.ERROR);
+    throw intpException;
   }
   if (p.getConfig().get("enabled") == null || (Boolean)p.getConfig().get("enabled")) {
     intp.getScheduler().submit(p);

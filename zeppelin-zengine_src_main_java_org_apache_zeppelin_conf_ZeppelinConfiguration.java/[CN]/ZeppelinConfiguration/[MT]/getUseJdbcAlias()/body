@@ -1,3 +1,0 @@
-{
-  return getBoolean(ConfVars.ZEPPELIN_USE_JDBC_ALIAS);
-}
