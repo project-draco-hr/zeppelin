@@ -11,7 +11,7 @@
   Map<String,Object> config=p1.getConfig();
   config.put("enabled",true);
   p1.setConfig(config);
-  p1.setText("%md checkpoint test text");
+  p1.setText("checkpoint test text");
   notebookRepo.save(note,null);
   notebookRepo.checkpoint(TEST_NOTE_ID,"second commit",null);
   assertThat(notebookRepo.revisionHistory(TEST_NOTE_ID,null).size()).isEqualTo(2);
@@ -24,7 +24,7 @@
   Paragraph p2=note.addParagraph();
   config.put("enabled",false);
   p2.setConfig(config);
-  p2.setText("%md get revision when modified note test text");
+  p2.setText("get revision when modified note test text");
   notebookRepo.save(note,null);
   note=notebookRepo.get(TEST_NOTE_ID,null);
   int paragraphCount_3=note.getParagraphs().size();

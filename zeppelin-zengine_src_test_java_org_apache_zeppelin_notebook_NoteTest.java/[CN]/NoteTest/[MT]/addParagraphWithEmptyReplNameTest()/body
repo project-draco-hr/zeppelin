@@ -1,0 +1,5 @@
+{
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
+  Paragraph p=note.addParagraph();
+  assertNull(p.getText());
+}

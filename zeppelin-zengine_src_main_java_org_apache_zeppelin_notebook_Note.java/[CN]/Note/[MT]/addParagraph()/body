@@ -1,6 +1,6 @@
 {
   Paragraph p=new Paragraph(this,this,factory);
-  addLastReplNameIfEmptyText(p);
+  setParagraphMagic(p,paragraphs.size());
 synchronized (paragraphs) {
     paragraphs.add(p);
   }

@@ -1,3 +1,0 @@
-{
-  return factory.getInterpreter(this.getId(),replName) != null;
-}

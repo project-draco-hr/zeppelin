@@ -1,9 +1,0 @@
-{
-  InterpreterSetting interpreterSetting=Mockito.mock(InterpreterSetting.class);
-  when(interpreterSetting.getName()).thenReturn("spark");
-  when(interpreterFactory.getDefaultInterpreterSetting(anyString())).thenReturn(interpreterSetting);
-  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
-  note.putDefaultReplName();
-  assertEquals("spark",note.getLastReplName());
-  assertEquals("%spark",note.getLastInterpreterName());
-}

@@ -1,6 +1,0 @@
-{
-  String replName=lastReplName.get();
-  if (isEmpty(p.getText()) && isNotEmpty(replName) && isBinding(replName)) {
-    p.setText(getInterpreterName(replName) + " ");
-  }
-}

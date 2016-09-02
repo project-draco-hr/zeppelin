@@ -1,3 +1,0 @@
-{
-  return isBlank(replName) ? EMPTY : "%" + replName;
-}

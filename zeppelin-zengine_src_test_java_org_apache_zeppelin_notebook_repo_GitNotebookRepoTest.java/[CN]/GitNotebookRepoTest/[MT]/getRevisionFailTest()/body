@@ -12,7 +12,7 @@
   Map<String,Object> config=p1.getConfig();
   config.put("enabled",true);
   p1.setConfig(config);
-  p1.setText("%md get revision when modified note test text");
+  p1.setText("get revision when modified note test text");
   notebookRepo.save(note,null);
   int paragraphCount_2=note.getParagraphs().size();
   Note noteRevision_1=notebookRepo.get(TEST_NOTE_ID,revision_1.id,null);

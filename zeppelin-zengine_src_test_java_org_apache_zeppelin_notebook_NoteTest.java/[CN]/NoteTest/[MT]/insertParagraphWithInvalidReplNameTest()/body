@@ -1,0 +1,8 @@
+{
+  when(interpreterFactory.getInterpreter(anyString(),eq("invalid"))).thenReturn(null);
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
+  Paragraph p1=note.addParagraph();
+  p1.setText("%invalid ");
+  Paragraph p2=note.insertParagraph(note.getParagraphs().size());
+  assertNull(p2.getText());
+}

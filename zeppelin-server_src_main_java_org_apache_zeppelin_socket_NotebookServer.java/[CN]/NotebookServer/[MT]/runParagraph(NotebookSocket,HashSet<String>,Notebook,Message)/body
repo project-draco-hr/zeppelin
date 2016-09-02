@@ -25,9 +25,8 @@
   p.settings.setParams(params);
   Map<String,Object> config=(Map<String,Object>)fromMessage.get("config");
   p.setConfig(config);
-  boolean isTheLastParagraph=note.getLastParagraph().getId().equals(p.getId());
-  note.setLastReplName(paragraphId);
-  if (!(text.equals(note.getLastInterpreterName() + " ") || Strings.isNullOrEmpty(text)) && isTheLastParagraph) {
+  boolean isTheLastParagraph=note.isLastParagraph(p.getId());
+  if (!(text.trim().equals(p.getMagic()) || Strings.isNullOrEmpty(text)) && isTheLastParagraph) {
     note.addParagraph();
   }
   AuthenticationInfo subject=new AuthenticationInfo(fromMessage.principal);

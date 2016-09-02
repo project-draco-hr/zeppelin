@@ -1,0 +1,8 @@
+{
+  when(interpreterFactory.getInterpreter(anyString(),eq("spark"))).thenReturn(interpreter);
+  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
+  Paragraph p1=note.addParagraph();
+  p1.setText("%spark ");
+  Paragraph p2=note.addParagraph();
+  assertEquals("%spark\n",p2.getText());
+}

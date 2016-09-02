@@ -1,0 +1,14 @@
+{
+  if (paragraphs.size() > 0) {
+    String magic;
+    if (index == 0) {
+      magic=paragraphs.get(0).getMagic();
+    }
+ else {
+      magic=paragraphs.get(index - 1).getMagic();
+    }
+    if (StringUtils.isNotEmpty(magic)) {
+      p.setText(magic + "\n");
+    }
+  }
+}

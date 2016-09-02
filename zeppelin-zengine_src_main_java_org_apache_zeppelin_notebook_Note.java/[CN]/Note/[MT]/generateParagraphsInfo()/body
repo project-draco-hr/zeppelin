@@ -2,7 +2,7 @@
   List<Map<String,String>> paragraphsInfo=new LinkedList<>();
 synchronized (paragraphs) {
     for (    Paragraph p : paragraphs) {
-      Map<String,String> info=populatePragraphInfo(p);
+      Map<String,String> info=populateParagraphInfo(p);
       paragraphsInfo.add(info);
     }
   }

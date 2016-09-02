@@ -1,9 +1,0 @@
-{
-  Note note=spy(new Note());
-  when(note.getId()).thenReturn("test1");
-  InterpreterFactory mockInterpreterFactory=mock(InterpreterFactory.class);
-  note.setInterpreterFactory(mockInterpreterFactory);
-  assertFalse(note.isBinding("spark"));
-  when(mockInterpreterFactory.getInterpreter("test1","spark")).thenReturn(new MockInterpreter2(null));
-  assertTrue(note.isBinding("spark"));
-}

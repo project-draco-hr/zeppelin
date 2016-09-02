@@ -1,7 +1,0 @@
-{
-  when(interpreterFactory.getDefaultInterpreterSetting(anyString())).thenReturn(null);
-  Note note=new Note(repo,interpreterFactory,jobListenerFactory,index,credentials,noteEventListener);
-  note.putDefaultReplName();
-  assertEquals(StringUtils.EMPTY,note.getLastReplName());
-  assertEquals(StringUtils.EMPTY,note.getLastInterpreterName());
-}

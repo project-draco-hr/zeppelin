@@ -5,7 +5,6 @@ synchronized (notes) {
   }
   if (interpreterIds != null) {
     bindInterpretersToNote(note.getId(),interpreterIds);
-    note.putDefaultReplName();
   }
   notebookIndex.addIndexDoc(note);
   note.persist(subject);
