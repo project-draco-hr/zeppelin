@@ -1,4 +1,13 @@
 {
-  Matcher errorMatcher=errorInLastLine.matcher(output);
-  return errorMatcher.find();
+  boolean isError=false;
+  String[] outputMultiline=output.split("\n");
+  Matcher errorMatcher;
+  for (  String row : outputMultiline) {
+    errorMatcher=errorInLastLine.matcher(row);
+    if (errorMatcher.find() == true) {
+      isError=true;
+      break;
+    }
+  }
+  return isError;
 }
