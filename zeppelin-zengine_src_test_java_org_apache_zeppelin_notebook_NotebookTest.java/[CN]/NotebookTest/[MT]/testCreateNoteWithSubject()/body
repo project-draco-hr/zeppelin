@@ -1,0 +1,9 @@
+{
+  AuthenticationInfo subject=new AuthenticationInfo("user1");
+  Note note=notebook.createNote(subject);
+  assertNotNull(notebook.getNotebookAuthorization().getOwners(note.getId()));
+  assertEquals(1,notebook.getNotebookAuthorization().getOwners(note.getId()).size());
+  Set<String> owners=new HashSet<>();
+  owners.add("user1");
+  assertEquals(owners,notebook.getNotebookAuthorization().getOwners(note.getId()));
+}

@@ -6,6 +6,11 @@ synchronized (notes) {
   if (interpreterIds != null) {
     bindInterpretersToNote(note.getId(),interpreterIds);
   }
+  if (subject != null && !"anonymous".equals(subject.getUser())) {
+    Set<String> owners=new HashSet<String>();
+    owners.add(subject.getUser());
+    notebookAuthorization.setOwners(note.getId(),owners);
+  }
   notebookIndex.addIndexDoc(note);
   note.persist(subject);
   fireNoteCreateEvent(note);

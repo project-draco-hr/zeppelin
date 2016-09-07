@@ -12,4 +12,11 @@
   assertEquals(cp.getId(),p.getId());
   assertEquals(cp.text,p.text);
   assertEquals(cp.getResult().message(),p.getResult().message());
+  AuthenticationInfo subject=new AuthenticationInfo("user1");
+  Note cloneNote2=notebook.cloneNote(note.getId(),"clone note2",subject);
+  assertNotNull(notebook.getNotebookAuthorization().getOwners(cloneNote2.getId()));
+  assertEquals(1,notebook.getNotebookAuthorization().getOwners(cloneNote2.getId()).size());
+  Set<String> owners=new HashSet<>();
+  owners.add("user1");
+  assertEquals(owners,notebook.getNotebookAuthorization().getOwners(cloneNote2.getId()));
 }
