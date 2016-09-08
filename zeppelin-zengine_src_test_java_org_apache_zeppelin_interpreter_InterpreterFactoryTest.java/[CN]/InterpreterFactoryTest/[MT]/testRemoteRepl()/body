@@ -1,0 +1,20 @@
+{
+  factory=new InterpreterFactory(conf,new InterpreterOption(true),null,null,null,depResolver);
+  List<InterpreterSetting> all=factory.get();
+  InterpreterSetting mock1Setting=null;
+  for (  InterpreterSetting setting : all) {
+    if (setting.getName().equals("mock1")) {
+      mock1Setting=setting;
+      break;
+    }
+  }
+  InterpreterGroup interpreterGroup=mock1Setting.getInterpreterGroup("sharedProcess");
+  factory.createInterpretersForNote(mock1Setting,"sharedProcess","session");
+  assertNotNull("get Interpreter",interpreterGroup.get("session").get(0));
+  assertTrue(interpreterGroup.get("session").get(0) instanceof LazyOpenInterpreter);
+  LazyOpenInterpreter lazyInterpreter=(LazyOpenInterpreter)(interpreterGroup.get("session").get(0));
+  assertTrue(lazyInterpreter.getInnerInterpreter() instanceof RemoteInterpreter);
+  RemoteInterpreter remoteInterpreter=(RemoteInterpreter)lazyInterpreter.getInnerInterpreter();
+  assertEquals("VALUE_1",remoteInterpreter.getEnv().get("PROPERTY_1"));
+  assertEquals("value_2",remoteInterpreter.getProperty("property_2"));
+}
