@@ -1,0 +1,21 @@
+{
+  try {
+    notebookServer.broadcastUpdateNotebookJobInfo(System.currentTimeMillis() - 5000);
+  }
+ catch (  IOException ioe) {
+    LOG.error("can not broadcast for job manager {}",ioe.getMessage());
+  }
+  List<Map<String,Object>> notesInfo=new LinkedList<>();
+  Map<String,Object> info=new HashMap<>();
+  info.put("notebookId",note.getId());
+  List<Map<String,Object>> paragraphsInfo=new LinkedList<>();
+  info.put("isRunningJob",false);
+  info.put("unixTimeLastRun",0);
+  info.put("isRemoved",true);
+  info.put("paragraphs",paragraphsInfo);
+  notesInfo.add(info);
+  Map<String,Object> response=new HashMap<>();
+  response.put("lastResponseUnixTime",System.currentTimeMillis());
+  response.put("jobs",notesInfo);
+  notebookServer.broadcast(JOB_MANAGER_SERVICE.JOB_MANAGER_PAGE.getKey(),new Message(OP.LIST_UPDATE_NOTEBOOK_JOBS).put("notebookRunningJobs",response));
+}

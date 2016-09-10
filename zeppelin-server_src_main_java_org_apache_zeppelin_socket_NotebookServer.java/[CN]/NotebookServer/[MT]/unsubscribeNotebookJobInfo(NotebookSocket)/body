@@ -1,0 +1,3 @@
+{
+  removeConnectionFromNote(JOB_MANAGER_SERVICE.JOB_MANAGER_PAGE.getKey(),conn);
+}

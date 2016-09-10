@@ -1,0 +1,11 @@
+{
+  String gotNoteId=null;
+  List<Note> notes=getAllNotes();
+  for (  Note note : notes) {
+    Paragraph p=note.getParagraph(paragraphID);
+    if (p != null) {
+      gotNoteId=note.getId();
+    }
+  }
+  return getJobListBymNotebookId(gotNoteId);
+}

@@ -14,4 +14,10 @@
     }
   }
   notebookServer.broadcastNote(note);
+  try {
+    notebookServer.broadcastUpdateNotebookJobInfo(System.currentTimeMillis() - 5000);
+  }
+ catch (  IOException e) {
+    LOG.error("can not broadcast for job manager {}",e);
+  }
 }

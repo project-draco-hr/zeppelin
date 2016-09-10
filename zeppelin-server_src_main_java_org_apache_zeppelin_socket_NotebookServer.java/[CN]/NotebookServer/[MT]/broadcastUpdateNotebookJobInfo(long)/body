@@ -1,0 +1,13 @@
+{
+  List<Map<String,Object>> notebookJobs=new LinkedList<>();
+  Notebook notebookObject=notebook();
+  List<Map<String,Object>> jobNotes=null;
+  if (notebookObject != null) {
+    jobNotes=notebook().getJobListByUnixTime(false,lastUpdateUnixTime,null);
+    notebookJobs=jobNotes == null ? notebookJobs : jobNotes;
+  }
+  Map<String,Object> response=new HashMap<>();
+  response.put("lastResponseUnixTime",System.currentTimeMillis());
+  response.put("jobs",notebookJobs != null ? notebookJobs : new LinkedList<>());
+  broadcast(JOB_MANAGER_SERVICE.JOB_MANAGER_PAGE.getKey(),new Message(OP.LIST_UPDATE_NOTEBOOK_JOBS).put("notebookRunningJobs",response));
+}

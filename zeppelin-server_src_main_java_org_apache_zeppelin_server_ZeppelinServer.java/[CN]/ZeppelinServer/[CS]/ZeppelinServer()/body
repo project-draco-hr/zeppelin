@@ -13,4 +13,5 @@
   heliumApplicationFactory.setNotebook(notebook);
   heliumApplicationFactory.setApplicationEventListener(notebookWsServer);
   notebook.addNotebookEventListener(heliumApplicationFactory);
+  notebook.addNotebookEventListener(notebookWsServer.getNotebookInformationListener());
 }

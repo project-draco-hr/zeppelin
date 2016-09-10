@@ -113,8 +113,8 @@ break;
 case LIST_NOTEBOOK_JOBS:
 unicastNotebookJobInfo(conn,messagereceived);
 break;
-case LIST_UPDATE_NOTEBOOK_JOBS:
-unicastUpdateNotebookJobInfo(conn,messagereceived);
+case UNSUBSCRIBE_UPDATE_NOTEBOOK_JOBS:
+unsubscribeNotebookJobInfo(conn);
 break;
 case GET_INTERPRETER_BINDINGS:
 getInterpreterBindings(conn,messagereceived);

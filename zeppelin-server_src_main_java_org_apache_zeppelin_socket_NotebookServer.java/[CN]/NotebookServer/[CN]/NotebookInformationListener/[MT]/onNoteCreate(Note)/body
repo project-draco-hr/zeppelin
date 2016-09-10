@@ -1,0 +1,8 @@
+{
+  Notebook notebook=notebookServer.notebook();
+  List<Map<String,Object>> notebookJobs=notebook.getJobListBymNotebookId(note.getId());
+  Map<String,Object> response=new HashMap<>();
+  response.put("lastResponseUnixTime",System.currentTimeMillis());
+  response.put("jobs",notebookJobs);
+  notebookServer.broadcast(JOB_MANAGER_SERVICE.JOB_MANAGER_PAGE.getKey(),new Message(OP.LIST_UPDATE_NOTEBOOK_JOBS).put("notebookRunningJobs",response));
+}
