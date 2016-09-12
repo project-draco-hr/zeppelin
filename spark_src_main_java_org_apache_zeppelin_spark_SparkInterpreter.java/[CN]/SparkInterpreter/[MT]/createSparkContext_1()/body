@@ -54,6 +54,7 @@
     }
   }
   setupConfForPySpark(conf);
+  setupConfForSparkR(conf);
   SparkContext sparkContext=new SparkContext(conf);
   return sparkContext;
 }

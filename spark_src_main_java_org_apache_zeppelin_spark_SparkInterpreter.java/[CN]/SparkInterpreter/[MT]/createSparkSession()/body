@@ -23,6 +23,7 @@
     }
   }
   setupConfForPySpark(conf);
+  setupConfForSparkR(conf);
   Class SparkSession=Utils.findClass("org.apache.spark.sql.SparkSession");
   Object builder=Utils.invokeStaticMethod(SparkSession,"builder");
   Utils.invokeMethod(builder,"config",new Class[]{SparkConf.class},new Object[]{conf});
