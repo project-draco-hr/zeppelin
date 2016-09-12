@@ -2,8 +2,8 @@
   LOG.info("Sync started");
   NotebookRepo srcRepo=getRepo(sourceRepoIndex);
   NotebookRepo dstRepo=getRepo(destRepoIndex);
-  List<NoteInfo> srcNotes=srcRepo.list(null);
-  List<NoteInfo> dstNotes=dstRepo.list(null);
+  List<NoteInfo> srcNotes=srcRepo.list(subject);
+  List<NoteInfo> dstNotes=dstRepo.list(subject);
   Map<String,List<String>> noteIDs=notesCheckDiff(srcNotes,srcRepo,dstNotes,dstRepo);
   List<String> pushNoteIDs=noteIDs.get(pushKey);
   List<String> pullNoteIDs=noteIDs.get(pullKey);
@@ -13,7 +13,7 @@
     for (    String id : pushNoteIDs) {
       LOG.info("ID : " + id);
     }
-    pushNotes(pushNoteIDs,srcRepo,dstRepo);
+    pushNotes(subject,pushNoteIDs,srcRepo,dstRepo);
   }
  else {
     LOG.info("Nothing to push");
@@ -23,7 +23,7 @@
     for (    String id : pullNoteIDs) {
       LOG.info("ID : " + id);
     }
-    pushNotes(pullNoteIDs,dstRepo,srcRepo);
+    pushNotes(subject,pullNoteIDs,dstRepo,srcRepo);
   }
  else {
     LOG.info("Nothing to pull");
@@ -33,7 +33,7 @@
     for (    String id : delDstNoteIDs) {
       LOG.info("ID : " + id);
     }
-    deleteNotes(delDstNoteIDs,dstRepo);
+    deleteNotes(subject,delDstNoteIDs,dstRepo);
   }
  else {
     LOG.info("Nothing to delete from dest");

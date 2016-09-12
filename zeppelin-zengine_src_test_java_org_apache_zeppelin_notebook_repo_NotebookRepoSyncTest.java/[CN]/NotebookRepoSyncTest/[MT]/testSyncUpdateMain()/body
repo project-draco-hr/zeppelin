@@ -11,7 +11,7 @@
   notebookRepoSync.save(0,note,null);
   assertEquals(1,notebookRepoSync.get(0,notebookRepoSync.list(0,null).get(0).getId(),null).getParagraphs().size());
   assertEquals(0,notebookRepoSync.get(1,notebookRepoSync.list(1,null).get(0).getId(),null).getParagraphs().size());
-  notebookRepoSync.sync();
+  notebookRepoSync.sync(null);
   assertEquals(1,notebookRepoSync.get(1,notebookRepoSync.list(1,null).get(0).getId(),null).getParagraphs().size());
   assertEquals(p1.getId(),notebookRepoSync.get(0,notebookRepoSync.list(0,null).get(0).getId(),null).getLastParagraph().getId());
   assertEquals(p1.getId(),notebookRepoSync.get(1,notebookRepoSync.list(1,null).get(0).getId(),null).getLastParagraph().getId());

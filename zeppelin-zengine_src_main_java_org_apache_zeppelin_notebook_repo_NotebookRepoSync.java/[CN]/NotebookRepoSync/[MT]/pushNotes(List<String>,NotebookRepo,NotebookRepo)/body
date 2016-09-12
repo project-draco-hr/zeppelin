@@ -1,5 +1,0 @@
-{
-  for (  String id : ids) {
-    remoteRepo.save(localRepo.get(id,null),null);
-  }
-}

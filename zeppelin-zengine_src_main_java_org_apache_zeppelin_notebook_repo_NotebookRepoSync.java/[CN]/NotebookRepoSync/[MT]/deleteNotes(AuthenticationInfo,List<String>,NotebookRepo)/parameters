@@ -1,2 +1,3 @@
+AuthenticationInfo subject
 List<String> ids
 NotebookRepo repo

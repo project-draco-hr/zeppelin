@@ -27,7 +27,8 @@
   }
   if (getRepoCount() > 1) {
     try {
-      sync(0,1);
+      AuthenticationInfo subject=new AuthenticationInfo("anonymous");
+      sync(0,1,subject);
     }
  catch (    IOException e) {
       LOG.warn("Failed to sync with secondary storage on start {}",e);
