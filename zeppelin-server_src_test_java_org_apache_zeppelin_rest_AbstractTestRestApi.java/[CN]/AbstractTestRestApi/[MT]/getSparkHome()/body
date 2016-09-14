@@ -1,5 +1,9 @@
 {
-  String sparkHome=getSparkHomeRecursively(new File(System.getProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_HOME.getVarName())));
+  String sparkHome=System.getenv("SPARK_HOME");
+  if (sparkHome != null) {
+    return sparkHome;
+  }
+  sparkHome=getSparkHomeRecursively(new File(System.getProperty(ZeppelinConfiguration.ConfVars.ZEPPELIN_HOME.getVarName())));
   System.out.println("SPARK HOME detected " + sparkHome);
   return sparkHome;
 }

@@ -37,7 +37,11 @@
     if (sparkReplClassDir == null) {
       sparkReplClassDir=System.getProperty("java.io.tmpdir");
     }
-    outputDir=createTempDir(sparkReplClassDir);
+synchronized (sharedInterpreterLock) {
+      if (outputDir == null) {
+        outputDir=createTempDir(sparkReplClassDir);
+      }
+    }
     argList.add("-Yrepl-class-based");
     argList.add("-Yrepl-outdir");
     argList.add(outputDir.getAbsolutePath());

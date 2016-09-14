@@ -12,6 +12,28 @@
     waitForFinish(p);
     assertEquals(Status.FINISHED,p.getStatus());
     assertEquals("55\n",p.getResult().message());
+    if (sparkVersion >= 13) {
+      p=note.addParagraph();
+      config=p.getConfig();
+      config.put("enabled",true);
+      p.setConfig(config);
+      p.setText("%pyspark from pyspark.sql import Row\n" + "df=sqlContext.createDataFrame([Row(id=1, age=20)])\n" + "df.collect()");
+      note.run(p.getId());
+      waitForFinish(p);
+      assertEquals(Status.FINISHED,p.getStatus());
+      assertEquals("[Row(age=20, id=1)]\n",p.getResult().message());
+    }
+    if (sparkVersion >= 20) {
+      p=note.addParagraph();
+      config=p.getConfig();
+      config.put("enabled",true);
+      p.setConfig(config);
+      p.setText("%pyspark from pyspark.sql import Row\n" + "df=sqlContext.createDataFrame([Row(id=1, age=20)])\n" + "df.collect()");
+      note.run(p.getId());
+      waitForFinish(p);
+      assertEquals(Status.FINISHED,p.getStatus());
+      assertEquals("[Row(age=20, id=1)]\n",p.getResult().message());
+    }
   }
   ZeppelinServer.notebook.removeNote(note.getId(),null);
 }

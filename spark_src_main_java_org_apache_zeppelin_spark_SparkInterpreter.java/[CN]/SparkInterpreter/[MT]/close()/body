@@ -1,7 +1,13 @@
 {
   logger.info("Close interpreter");
   if (numReferenceOfSparkContext.decrementAndGet() == 0) {
-    sc.stop();
+    if (sparkSession != null) {
+      Utils.invokeMethod(sparkSession,"stop");
+    }
+ else     if (sc != null) {
+      sc.stop();
+    }
+    sparkSession=null;
     sc=null;
     if (classServer != null) {
       Utils.invokeMethod(classServer,"stop");

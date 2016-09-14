@@ -31,4 +31,5 @@
     assertEquals(Status.FINISHED,p1.getStatus());
     assertEquals("2\n",p1.getResult().message());
   }
+  ZeppelinServer.notebook.removeNote(note.getId(),null);
 }
