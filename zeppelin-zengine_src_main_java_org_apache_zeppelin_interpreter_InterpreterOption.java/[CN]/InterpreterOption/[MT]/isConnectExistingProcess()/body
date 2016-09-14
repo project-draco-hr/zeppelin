@@ -1,3 +1,0 @@
-{
-  return (host != null && port != -1);
-}
