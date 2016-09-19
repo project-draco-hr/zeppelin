@@ -2,13 +2,21 @@
 synchronized (interpreterSettings) {
     InterpreterSetting intpsetting=interpreterSettings.get(id);
     if (intpsetting != null) {
-      stopJobAllInterpreter(intpsetting);
-      intpsetting.closeAndRmoveAllInterpreterGroups();
-      intpsetting.setOption(option);
-      intpsetting.setProperties(properties);
-      intpsetting.setDependencies(dependencies);
-      loadInterpreterDependencies(intpsetting);
-      saveToFile();
+      try {
+        stopJobAllInterpreter(intpsetting);
+        intpsetting.closeAndRmoveAllInterpreterGroups();
+        intpsetting.setOption(option);
+        intpsetting.setProperties(properties);
+        intpsetting.setDependencies(dependencies);
+        loadInterpreterDependencies(intpsetting);
+        saveToFile();
+      }
+ catch (      Exception e) {
+        throw e;
+      }
+ finally {
+        loadFromFile();
+      }
     }
  else {
       throw new InterpreterException("Interpreter setting id " + id + " not found");
