@@ -37,7 +37,7 @@
   }
   InterpreterInfo interpreterInfo;
   for (  RegisteredInterpreter r : Interpreter.registeredInterpreters.values()) {
-    interpreterInfo=new InterpreterInfo(r.getClassName(),r.getName(),r.isDefaultInterpreter());
+    interpreterInfo=new InterpreterInfo(r.getClassName(),r.getName(),r.isDefaultInterpreter(),r.getEditor());
     add(r.getGroup(),interpreterInfo,convertInterpreterProperties(r.getProperties()),r.getPath());
   }
   for (  String settingId : interpreterSettingsRef.keySet()) {

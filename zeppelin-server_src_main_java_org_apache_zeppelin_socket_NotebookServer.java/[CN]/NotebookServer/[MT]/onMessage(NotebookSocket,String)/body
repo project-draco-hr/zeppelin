@@ -122,6 +122,9 @@ break;
 case SAVE_INTERPRETER_BINDINGS:
 saveInterpreterBindings(conn,messagereceived);
 break;
+case EDITOR_SETTING:
+getEditorSetting(conn,messagereceived);
+break;
 default :
 break;
 }

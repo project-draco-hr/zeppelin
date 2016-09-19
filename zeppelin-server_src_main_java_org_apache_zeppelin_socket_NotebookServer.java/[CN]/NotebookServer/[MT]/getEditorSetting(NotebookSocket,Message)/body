@@ -1,0 +1,8 @@
+{
+  String replName=(String)fromMessage.get("magic");
+  String noteId=getOpenNoteId(conn);
+  Message resp=new Message(OP.EDITOR_SETTING);
+  resp.put("editor",notebook().getInterpreterFactory().getEditorSetting(noteId,replName));
+  conn.send(serializeMessage(resp));
+  return;
+}

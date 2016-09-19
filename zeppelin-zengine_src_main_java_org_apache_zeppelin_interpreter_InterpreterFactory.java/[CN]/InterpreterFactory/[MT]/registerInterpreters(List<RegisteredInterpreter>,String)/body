@@ -1,6 +1,6 @@
 {
   for (  RegisteredInterpreter registeredInterpreter : registeredInterpreters) {
-    InterpreterInfo interpreterInfo=new InterpreterInfo(registeredInterpreter.getClassName(),registeredInterpreter.getName(),registeredInterpreter.isDefaultInterpreter());
+    InterpreterInfo interpreterInfo=new InterpreterInfo(registeredInterpreter.getClassName(),registeredInterpreter.getName(),registeredInterpreter.isDefaultInterpreter(),registeredInterpreter.getEditor());
     Properties properties=new Properties();
     Map<String,InterpreterProperty> p=registeredInterpreter.getProperties();
     if (null != p) {

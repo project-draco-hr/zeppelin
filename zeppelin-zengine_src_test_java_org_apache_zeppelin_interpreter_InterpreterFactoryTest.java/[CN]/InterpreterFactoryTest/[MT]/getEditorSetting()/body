@@ -1,0 +1,15 @@
+{
+  List<String> intpIds=new ArrayList<>();
+  for (  InterpreterSetting intpSetting : factory.get()) {
+    if (intpSetting.getName().startsWith("mock1")) {
+      intpIds.add(intpSetting.getId());
+    }
+  }
+  Note note=notebook.createNote(intpIds,null);
+  Map<String,Object> editor=factory.getEditorSetting(note.getId(),"mock11");
+  assertEquals("java",editor.get("language"));
+  editor=factory.getEditorSetting(note.getId(),"mock1");
+  assertEquals(null,editor.get("language"));
+  editor=factory.getEditorSetting(note.getId(),"mock2");
+  assertEquals("text",editor.get("language"));
+}

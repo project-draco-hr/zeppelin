@@ -1,3 +1,4 @@
 String className
 String name
 boolean defaultInterpreter
+Map<String,Object> editor

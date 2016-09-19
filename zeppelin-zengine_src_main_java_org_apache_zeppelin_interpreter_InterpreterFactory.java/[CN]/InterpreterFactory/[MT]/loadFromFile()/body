@@ -16,9 +16,10 @@
   isr.close();
   fis.close();
   String json=sb.toString();
-  InterpreterInfoSaving info=gson.fromJson(json,InterpreterInfoSaving.class);
-  for (  String k : info.interpreterSettings.keySet()) {
-    InterpreterSetting setting=info.interpreterSettings.get(k);
+  InterpreterInfoSaving infoSaving=gson.fromJson(json,InterpreterInfoSaving.class);
+  for (  String k : infoSaving.interpreterSettings.keySet()) {
+    InterpreterSetting setting=infoSaving.interpreterSettings.get(k);
+    List<InterpreterInfo> infos=setting.getInterpreterInfos();
     setting.getOption().setRemote(true);
     interpreterSettingObject=interpreterSettingsRef.get(setting.getGroup());
     if (interpreterSettingObject == null) {
@@ -27,13 +28,19 @@
     }
     depClassPath=interpreterSettingObject.getPath();
     setting.setPath(depClassPath);
+    for (    InterpreterInfo info : infos) {
+      if (info.getEditor() == null) {
+        Map<String,Object> editor=getEditorFromSettingByClassName(interpreterSettingObject,info.getClassName());
+        info.setEditor(editor);
+      }
+    }
     setting.setInterpreterGroupFactory(this);
     loadInterpreterDependencies(setting);
     interpreterSettings.put(k,setting);
   }
-  this.interpreterBindings=info.interpreterBindings;
-  if (info.interpreterRepositories != null) {
-    for (    RemoteRepository repo : info.interpreterRepositories) {
+  this.interpreterBindings=infoSaving.interpreterBindings;
+  if (infoSaving.interpreterRepositories != null) {
+    for (    RemoteRepository repo : infoSaving.interpreterRepositories) {
       if (!depResolver.getRepos().contains(repo)) {
         this.interpreterRepositories.add(repo);
       }

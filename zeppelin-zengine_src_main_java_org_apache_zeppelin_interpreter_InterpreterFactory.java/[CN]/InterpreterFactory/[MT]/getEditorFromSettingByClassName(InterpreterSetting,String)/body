@@ -1,0 +1,9 @@
+{
+  List<InterpreterInfo> intpInfos=intpSetting.getInterpreterInfos();
+  for (  InterpreterInfo intpInfo : intpInfos) {
+    if (className.equals(intpInfo.getClassName())) {
+      return intpInfo.getEditor();
+    }
+  }
+  return ImmutableMap.of("language",(Object)"text");
+}

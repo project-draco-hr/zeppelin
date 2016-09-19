@@ -1,0 +1,26 @@
+{
+  Interpreter intp=getInterpreter(noteId,replName);
+  Map<String,Object> editor=Maps.newHashMap(ImmutableMap.<String,Object>builder().put("language","text").build());
+  String defaultSettingName=getDefaultInterpreterSetting(noteId).getName();
+  String group=StringUtils.EMPTY;
+  try {
+    List<InterpreterSetting> intpSettings=getInterpreterSettings(noteId);
+    for (    InterpreterSetting intpSetting : intpSettings) {
+      String[] replNameSplit=replName.split("\\.");
+      if (replNameSplit.length == 2) {
+        group=replNameSplit[0];
+      }
+      if (defaultSettingName.equals(intpSetting.getName())) {
+        editor=getEditorFromSettingByClassName(intpSetting,intp.getClassName());
+      }
+      if (replName.equals(intpSetting.getName()) || group.equals(intpSetting.getName())) {
+        editor=getEditorFromSettingByClassName(intpSetting,intp.getClassName());
+        break;
+      }
+    }
+  }
+ catch (  NullPointerException e) {
+    logger.warn("Couldn't get interpreter editor language");
+  }
+  return editor;
+}

@@ -5,4 +5,5 @@
   this.className=className;
   this.defaultInterpreter=defaultInterpreter;
   this.properties=properties;
+  this.editor=new HashMap<>();
 }
