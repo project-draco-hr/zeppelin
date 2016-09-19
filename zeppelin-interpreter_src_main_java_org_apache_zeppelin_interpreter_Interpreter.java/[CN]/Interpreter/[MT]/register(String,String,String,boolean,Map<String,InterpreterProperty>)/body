@@ -1,4 +1,4 @@
 {
-  logger.error("Static initialization is deprecated. You should change it to use " + "interpreter-setting.json in your jar or " + "interpreter/{interpreter}/interpreter-setting.json");
+  logger.warn("Static initialization is deprecated for interpreter {}, You should change it " + "to use interpreter-setting.json in your jar or " + "interpreter/{interpreter}/interpreter-setting.json",name);
   register(new RegisteredInterpreter(name,group,className,defaultInterpreter,properties));
 }

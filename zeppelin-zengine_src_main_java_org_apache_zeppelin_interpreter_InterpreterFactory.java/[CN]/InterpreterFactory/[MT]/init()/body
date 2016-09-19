@@ -10,22 +10,24 @@
     }
 )) {
       String interpreterDirString=interpreterDir.toString();
-      registerInterpreterFromPath(interpreterDirString,interpreterJson);
-      registerInterpreterFromResource(cl,interpreterDirString,interpreterJson);
-      URLClassLoader ccl=new URLClassLoader(recursiveBuildLibList(interpreterDir.toFile()),cl);
-      for (      String className : interpreterClassList) {
-        try {
-          Class.forName(className,true,ccl);
-          Set<String> interpreterKeys=Interpreter.registeredInterpreters.keySet();
-          for (          String interpreterKey : interpreterKeys) {
-            if (className.equals(Interpreter.registeredInterpreters.get(interpreterKey).getClassName())) {
-              Interpreter.registeredInterpreters.get(interpreterKey).setPath(interpreterDirString);
-              logger.info("Interpreter " + interpreterKey + " found. class="+ className);
-              cleanCl.put(interpreterDirString,ccl);
+      if (!registerInterpreterFromPath(interpreterDirString,interpreterJson)) {
+        if (!registerInterpreterFromResource(cl,interpreterDirString,interpreterJson)) {
+          URLClassLoader ccl=new URLClassLoader(recursiveBuildLibList(interpreterDir.toFile()),cl);
+          for (          String className : interpreterClassList) {
+            try {
+              Class.forName(className,true,ccl);
+              Set<String> interpreterKeys=Interpreter.registeredInterpreters.keySet();
+              for (              String interpreterKey : interpreterKeys) {
+                if (className.equals(Interpreter.registeredInterpreters.get(interpreterKey).getClassName())) {
+                  Interpreter.registeredInterpreters.get(interpreterKey).setPath(interpreterDirString);
+                  logger.info("Interpreter " + interpreterKey + " found. class="+ className);
+                  cleanCl.put(interpreterDirString,ccl);
+                }
+              }
+            }
+ catch (            Throwable t) {
             }
           }
-        }
- catch (        Throwable t) {
         }
       }
     }

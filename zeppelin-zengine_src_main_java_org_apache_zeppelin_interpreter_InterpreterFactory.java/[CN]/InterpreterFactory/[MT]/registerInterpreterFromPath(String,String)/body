@@ -4,5 +4,7 @@
     logger.debug("Reading {}",interpreterJsonPath);
     List<RegisteredInterpreter> registeredInterpreterList=getInterpreterListFromJson(interpreterJsonPath);
     registerInterpreters(registeredInterpreterList,interpreterDir);
+    return true;
   }
+  return false;
 }
