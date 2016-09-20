@@ -1,0 +1,12 @@
+{
+  StringWriter writer=new StringWriter();
+  PrintWriter out=new PrintWriter(writer);
+  out.println("public class HelloWorld {");
+  out.println("  public static void main(String args[]) {");
+  out.println("    System.out.println(\"This is in another java file\");");
+  out.println("  }");
+  out.println("}");
+  out.close();
+  InterpreterResult res=beam.interpret(writer.toString(),context);
+  assertEquals(InterpreterResult.Code.SUCCESS,res.code());
+}

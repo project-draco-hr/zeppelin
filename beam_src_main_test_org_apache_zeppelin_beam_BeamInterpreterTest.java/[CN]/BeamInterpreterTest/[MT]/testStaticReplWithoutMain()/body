@@ -1,0 +1,9 @@
+{
+  StringBuffer sourceCode=new StringBuffer();
+  sourceCode.append("package org.mdkt;\n");
+  sourceCode.append("public class HelloClass {\n");
+  sourceCode.append("   public String hello() { return \"hello\"; }");
+  sourceCode.append("}");
+  InterpreterResult res=beam.interpret(sourceCode.toString(),context);
+  assertEquals(InterpreterResult.Code.ERROR,res.code());
+}

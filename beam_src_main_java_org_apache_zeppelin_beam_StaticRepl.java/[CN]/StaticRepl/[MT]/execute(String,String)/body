@@ -1,0 +1,75 @@
+{
+  JavaCompiler compiler=ToolProvider.getSystemJavaCompiler();
+  DiagnosticCollector<JavaFileObject> diagnostics=new DiagnosticCollector<JavaFileObject>();
+  JavaProjectBuilder builder=new JavaProjectBuilder();
+  JavaSource src=builder.addSource(new StringReader(code));
+  List<JavaClass> classes=src.getClasses();
+  String mainClassName=null;
+  for (int i=0; i < classes.size(); i++) {
+    boolean hasMain=false;
+    for (int j=0; j < classes.get(i).getMethods().size(); j++) {
+      if (classes.get(i).getMethods().get(j).getName().equals("main") && classes.get(i).getMethods().get(j).isStatic()) {
+        mainClassName=classes.get(i).getName();
+        hasMain=true;
+        break;
+      }
+    }
+    if (hasMain == true) {
+      break;
+    }
+  }
+  if (mainClassName == null) {
+    logger.error("Exception for Main method","There isn't any class " + "containing static main method.");
+    throw new Exception("There isn't any class containing static main method.");
+  }
+  code=code.replace(mainClassName,generatedClassName);
+  JavaFileObject file=new JavaSourceFromString(generatedClassName,code.toString());
+  Iterable<? extends JavaFileObject> compilationUnits=Arrays.asList(file);
+  ByteArrayOutputStream baosOut=new ByteArrayOutputStream();
+  ByteArrayOutputStream baosErr=new ByteArrayOutputStream();
+  PrintStream newOut=new PrintStream(baosOut);
+  PrintStream newErr=new PrintStream(baosErr);
+  PrintStream oldOut=System.out;
+  PrintStream oldErr=System.err;
+  System.setOut(newOut);
+  System.setErr(newErr);
+  CompilationTask task=compiler.getTask(null,null,diagnostics,null,null,compilationUnits);
+  boolean success=task.call();
+  if (!success) {
+    for (    Diagnostic diagnostic : diagnostics.getDiagnostics()) {
+      if (diagnostic.getLineNumber() == -1) {
+        continue;
+      }
+      System.err.println("line " + diagnostic.getLineNumber() + " : "+ diagnostic.getMessage(null));
+    }
+    System.out.flush();
+    System.err.flush();
+    System.setOut(oldOut);
+    System.setErr(oldErr);
+    logger.error("Exception in Interpreter while compilation",baosErr.toString());
+    throw new Exception(baosErr.toString());
+  }
+ else {
+    try {
+      URLClassLoader classLoader=URLClassLoader.newInstance(new URL[]{new File("").toURI().toURL()});
+      Class.forName(generatedClassName,true,classLoader).getDeclaredMethod("main",new Class[]{String[].class}).invoke(null,new Object[]{null});
+      System.out.flush();
+      System.err.flush();
+      System.setOut(oldOut);
+      System.setErr(oldErr);
+      return baosOut.toString();
+    }
+ catch (    ClassNotFoundException|NoSuchMethodException|IllegalAccessException|InvocationTargetException e) {
+      logger.error("Exception in Interpreter while execution",e);
+      System.err.println(e);
+      e.printStackTrace(newErr);
+      throw new Exception(baosErr.toString(),e);
+    }
+ finally {
+      System.out.flush();
+      System.err.flush();
+      System.setOut(oldOut);
+      System.setErr(oldErr);
+    }
+  }
+}
