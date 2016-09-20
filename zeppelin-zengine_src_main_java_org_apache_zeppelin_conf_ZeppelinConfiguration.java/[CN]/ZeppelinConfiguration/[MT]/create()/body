@@ -28,5 +28,9 @@
       conf=new ZeppelinConfiguration();
     }
   }
+  LOG.info("Server Host: " + conf.getServerAddress());
+  LOG.info("Server Port: " + conf.getServerPort());
+  LOG.info("Context Path: " + conf.getServerContextPath());
+  LOG.info("Zeppelin Version: " + Util.getVersion());
   return conf;
 }
