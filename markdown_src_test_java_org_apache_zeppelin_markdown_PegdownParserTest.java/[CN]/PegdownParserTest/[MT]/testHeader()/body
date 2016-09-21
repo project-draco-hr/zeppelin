@@ -1,0 +1,18 @@
+{
+  InterpreterResult r1=md.interpret("# H1",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h1>H1</h1>"),r1.message());
+  InterpreterResult r2=md.interpret("## H2",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h2>H2</h2>"),r2.message());
+  InterpreterResult r3=md.interpret("### H3",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h3>H3</h3>"),r3.message());
+  InterpreterResult r4=md.interpret("#### H4",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h4>H4</h4>"),r4.message());
+  InterpreterResult r5=md.interpret("##### H5",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h5>H5</h5>"),r5.message());
+  InterpreterResult r6=md.interpret("###### H6",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h6>H6</h6>"),r6.message());
+  InterpreterResult r7=md.interpret("Alt-H1\n" + "======",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h1>Alt-H1</h1>"),r7.message());
+  InterpreterResult r8=md.interpret("Alt-H2\n" + "------",null);
+  assertEquals(wrapWithMarkdownClassDiv("<h2>Alt-H2</h2>"),r8.message());
+}

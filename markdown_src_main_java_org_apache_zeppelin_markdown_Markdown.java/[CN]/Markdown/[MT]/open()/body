@@ -1,3 +1,0 @@
-{
-  md=new Markdown4jProcessor();
-}

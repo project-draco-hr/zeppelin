@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=md.interpret("This is ~~deleted~~ text",null);
+  assertEquals(wrapWithMarkdownClassDiv("<p>This is <del>deleted</del> text</p>"),result.message());
+}

@@ -1,0 +1,6 @@
+{
+  InterpreterResult r1=md.interpret("> Blockquotes are very handy in email to emulate reply text.\n" + "> This line is part of the same quote.",null);
+  assertEquals(wrapWithMarkdownClassDiv("<blockquote>\n" + "  <p>Blockquotes are very handy in email to emulate reply text.<br/>This line is part of the same quote.</p>\n" + "</blockquote>"),r1.message());
+  InterpreterResult r2=md.interpret("> This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **MarkdownInterpreter** into a blockquote. ",null);
+  assertEquals(wrapWithMarkdownClassDiv("<blockquote>\n" + "  <p>This is a very long line that will still be quoted properly when it wraps. Oh boy let&rsquo;s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can <em>put</em> <strong>MarkdownInterpreter</strong> into a blockquote. </p>\n" + "</blockquote>"),r2.message());
+}

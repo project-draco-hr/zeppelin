@@ -1,0 +1,4 @@
+{
+  String parserType=getProperty(MARKDOWN_PARSER_TYPE);
+  parser=createMarkdownParser(parserType);
+}

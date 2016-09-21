@@ -1,0 +1,9 @@
+{
+  String html="";
+  String parsed=processor.markdownToHtml(markdownText);
+  if (null == parsed) {
+    throw new RuntimeException("Cannot parse markdown text to HTML using pegdown");
+  }
+  html=wrapWithMarkdownClassDiv(parsed);
+  return html;
+}

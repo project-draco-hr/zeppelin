@@ -1,0 +1,6 @@
+{
+  String input=new StringBuilder().append("MarkdownInterpreter | Less | Pretty\n").append("--- | --- | ---\n").append("*Still* | `renders` | **nicely**\n").append("1 | 2 | 3").toString();
+  String expected=new StringBuilder().append("<table>\n").append("  <thead>\n").append("    <tr>\n").append("      <th>MarkdownInterpreter </th>\n").append("      <th>Less </th>\n").append("      <th>Pretty</th>\n").append("    </tr>\n").append("  </thead>\n").append("  <tbody>\n").append("    <tr>\n").append("      <td><em>Still</em> </td>\n").append("      <td><code>renders</code> </td>\n").append("      <td><strong>nicely</strong></td>\n").append("    </tr>\n").append("    <tr>\n").append("      <td>1 </td>\n").append("      <td>2 </td>\n").append("      <td>3</td>\n").append("    </tr>\n").append("  </tbody>\n").append("</table>").toString();
+  InterpreterResult result=md.interpret(input,null);
+  assertEquals(wrapWithMarkdownClassDiv(expected),result.message());
+}

@@ -1,0 +1,5 @@
+{
+  int pegdownOptions=Extensions.ALL_WITH_OPTIONALS - Extensions.ANCHORLINKS;
+  int parsingTimeoutAsMillis=5000;
+  processor=new PegDownProcessor(pegdownOptions,parsingTimeoutAsMillis);
+}

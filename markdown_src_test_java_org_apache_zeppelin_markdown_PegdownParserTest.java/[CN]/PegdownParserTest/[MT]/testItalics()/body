@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=md.interpret("This is *italics* text",null);
+  assertEquals(wrapWithMarkdownClassDiv("<p>This is <em>italics</em> text</p>"),result.message());
+}

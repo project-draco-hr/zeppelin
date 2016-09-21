@@ -1,0 +1,11 @@
+{
+  String html;
+  try {
+    html=parser.render(markdownText);
+  }
+ catch (  RuntimeException e) {
+    LOGGER.error("Exception in MarkdownInterpreter while interpret ",e);
+    return new InterpreterResult(Code.ERROR,InterpreterUtils.getMostRelevantMessage(e));
+  }
+  return new InterpreterResult(Code.SUCCESS,"%html " + html);
+}

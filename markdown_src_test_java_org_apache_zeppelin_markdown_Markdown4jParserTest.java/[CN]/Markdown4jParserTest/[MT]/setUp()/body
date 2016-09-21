@@ -1,0 +1,6 @@
+{
+  Properties props=new Properties();
+  props.put(MarkdownInterpreter.MARKDOWN_PARSER_TYPE,MarkdownInterpreter.PARSER_TYPE_MARKDOWN4J);
+  md=new MarkdownInterpreter(props);
+  md.open();
+}

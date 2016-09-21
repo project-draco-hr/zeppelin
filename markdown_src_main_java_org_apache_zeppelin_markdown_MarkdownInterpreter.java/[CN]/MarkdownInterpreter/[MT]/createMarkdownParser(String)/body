@@ -1,0 +1,9 @@
+{
+  LOGGER.debug("Creating " + parserType + " markdown interpreter");
+  if (MarkdownParserType.PEGDOWN.toString().equals(parserType)) {
+    return new PegdownParser();
+  }
+ else {
+    return new Markdown4jParser();
+  }
+}

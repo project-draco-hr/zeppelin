@@ -1,0 +1,6 @@
+{
+  String input=new StringBuilder().append("1. First ordered list item\n").append("2. Another item").toString();
+  String expected=new StringBuilder().append("<ol>\n").append("  <li>First ordered list item</li>\n").append("  <li>Another item</li>\n").append("</ol>").toString();
+  InterpreterResult result=md.interpret(input,null);
+  assertEquals(wrapWithMarkdownClassDiv(expected),result.message());
+}

@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=md.interpret("This is **strong emphasis** text",null);
+  assertEquals(wrapWithMarkdownClassDiv("<p>This is <strong>strong emphasis</strong> text</p>"),result.message());
+}

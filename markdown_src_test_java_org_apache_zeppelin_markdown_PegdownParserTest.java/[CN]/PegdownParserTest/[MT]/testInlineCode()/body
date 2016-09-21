@@ -1,0 +1,4 @@
+{
+  InterpreterResult result=md.interpret("Inline `code` has `back-ticks around` it.",null);
+  assertEquals(wrapWithMarkdownClassDiv("<p>Inline <code>code</code> has <code>back-ticks around</code> it.</p>"),result.message());
+}
