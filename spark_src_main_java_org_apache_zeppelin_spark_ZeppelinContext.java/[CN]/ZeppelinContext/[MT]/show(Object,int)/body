@@ -1,29 +1,6 @@
 {
-  Class cls=null;
   try {
-    cls=this.getClass().forName("org.apache.spark.sql.Dataset");
-  }
- catch (  ClassNotFoundException e) {
-  }
-  if (cls == null) {
-    try {
-      cls=this.getClass().forName("org.apache.spark.sql.DataFrame");
-    }
- catch (    ClassNotFoundException e) {
-    }
-  }
-  if (cls == null) {
-    try {
-      cls=this.getClass().forName("org.apache.spark.sql.SchemaRDD");
-    }
- catch (    ClassNotFoundException e) {
-    }
-  }
-  if (cls == null) {
-    throw new InterpreterException("Can not road Dataset/DataFrame/SchemaRDD class");
-  }
-  try {
-    if (cls.isInstance(o)) {
+    if (supportedClasses.contains(o.getClass())) {
       interpreterContext.out.write(showDF(sc,interpreterContext,o,maxResult));
     }
  else {

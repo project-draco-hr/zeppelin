@@ -4,4 +4,23 @@
   this.interpreterContext=interpreterContext;
   this.dep=dep;
   this.maxResult=maxResult;
+  this.supportedClasses=new ArrayList<>();
+  try {
+    supportedClasses.add(this.getClass().forName("org.apache.spark.sql.Dataset"));
+  }
+ catch (  ClassNotFoundException e) {
+  }
+  try {
+    supportedClasses.add(this.getClass().forName("org.apache.spark.sql.DataFrame"));
+  }
+ catch (  ClassNotFoundException e) {
+  }
+  try {
+    supportedClasses.add(this.getClass().forName("org.apache.spark.sql.SchemaRDD"));
+  }
+ catch (  ClassNotFoundException e) {
+  }
+  if (supportedClasses.isEmpty()) {
+    throw new InterpreterException("Can not road Dataset/DataFrame/SchemaRDD class");
+  }
 }

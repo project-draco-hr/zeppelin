@@ -1,0 +1,38 @@
+{
+  Note note=ZeppelinServer.notebook.createNote(null);
+  int sparkVersion=getSparkVersionNumber(note);
+  if (sparkVersion >= 13) {
+    Paragraph p=note.addParagraph();
+    Map config=p.getConfig();
+    config.put("enabled",true);
+    p.setConfig(config);
+    p.setText("%spark val df=sqlContext.createDataFrame(Seq((\"hello\",20)))\n" + "df.collect()");
+    note.run(p.getId());
+    waitForFinish(p);
+    assertEquals(Status.FINISHED,p.getStatus());
+    assertTrue(p.getResult().message().contains("Array[org.apache.spark.sql.Row] = Array([hello,20])"));
+    p=note.addParagraph();
+    config=p.getConfig();
+    config.put("enabled",true);
+    p.setConfig(config);
+    p.setText("%spark val df=sqlContext.createDataFrame(Seq((\"hello\",20)))\n" + "z.show(df)");
+    note.run(p.getId());
+    waitForFinish(p);
+    assertEquals(Status.FINISHED,p.getStatus());
+    assertEquals(InterpreterResult.Type.TABLE,p.getResult().type());
+    assertEquals("_1\t_2\nhello\t20\n",p.getResult().message());
+    if (sparkVersion >= 20) {
+      p=note.addParagraph();
+      config=p.getConfig();
+      config.put("enabled",true);
+      p.setConfig(config);
+      p.setText("%spark val ds=spark.createDataset(Seq((\"hello\",20)))\n" + "z.show(ds)");
+      note.run(p.getId());
+      waitForFinish(p);
+      assertEquals(Status.FINISHED,p.getStatus());
+      assertEquals(InterpreterResult.Type.TABLE,p.getResult().type());
+      assertEquals("_1\t_2\nhello\t20\n",p.getResult().message());
+    }
+    ZeppelinServer.notebook.removeNote(note.getId(),null);
+  }
+}
