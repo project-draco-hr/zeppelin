@@ -1,2 +1,0 @@
-InterpreterContext context
-Map<String,Integer> userSessionMap

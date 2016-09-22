@@ -3,7 +3,6 @@
     if (userSessionMap.get(interpreterContext.getAuthenticationInfo().getUser()) == null) {
       try {
         userSessionMap.put(interpreterContext.getAuthenticationInfo().getUser(),livyHelper.createSession(interpreterContext,"spark"));
-        livyHelper.initializeSpark(interpreterContext,userSessionMap);
       }
  catch (      Exception e) {
         LOGGER.error("Exception in LivySparkInterpreter while interpret ",e);
