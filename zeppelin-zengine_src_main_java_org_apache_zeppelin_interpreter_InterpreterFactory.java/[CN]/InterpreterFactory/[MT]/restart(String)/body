@@ -1,6 +1,7 @@
 {
 synchronized (interpreterSettings) {
     InterpreterSetting intpsetting=interpreterSettings.get(id);
+    copyDependenciesFromLocalPath(intpsetting);
     if (intpsetting != null) {
       stopJobAllInterpreter(intpsetting);
       intpsetting.closeAndRmoveAllInterpreterGroups();

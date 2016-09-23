@@ -1,0 +1,11 @@
+{
+  if (StringUtils.isBlank(srcPath)) {
+    return;
+  }
+  File srcFile=new File(srcPath);
+  File destFile=new File(destPath,srcFile.getName());
+  if (!destFile.exists() || !FileUtils.contentEquals(srcFile,destFile)) {
+    FileUtils.copyFile(srcFile,destFile);
+    logger.info("copy {} to {}",srcFile.getAbsolutePath(),destPath);
+  }
+}
