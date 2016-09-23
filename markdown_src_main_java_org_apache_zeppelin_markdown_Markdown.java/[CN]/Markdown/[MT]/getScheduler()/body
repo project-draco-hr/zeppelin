@@ -1,0 +1,3 @@
+{
+  return SchedulerFactory.singleton().createOrGetParallelScheduler(Markdown.class.getName() + this.hashCode(),5);
+}
