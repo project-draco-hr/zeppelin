@@ -3,16 +3,6 @@
   if (propertyKey == null || propertiesMap.get(propertyKey) == null) {
     return null;
   }
-  if (propertyKeyUnusedConnectionListMap.containsKey(propertyKey)) {
-    ArrayList<Connection> connectionList=propertyKeyUnusedConnectionListMap.get(propertyKey);
-    if (0 != connectionList.size()) {
-      connection=propertyKeyUnusedConnectionListMap.get(propertyKey).remove(0);
-      if (null != connection && connection.isClosed()) {
-        connection.close();
-        connection=null;
-      }
-    }
-  }
   if (null == connection) {
     final Properties properties=(Properties)propertiesMap.get(propertyKey).clone();
     logger.info(properties.getProperty(DRIVER_KEY));
@@ -26,11 +16,11 @@
 switch (authType) {
 case KERBEROS:
         if (user == null) {
-          connection=DriverManager.getConnection(url,properties);
+          connection=getConnectionFromPool(url,propertyKey,properties);
         }
  else {
           if ("hive".equalsIgnoreCase(propertyKey)) {
-            connection=DriverManager.getConnection(url + ";hive.server2.proxy.user=" + user,properties);
+            connection=getConnectionFromPool(url + ";hive.server2.proxy.user=" + user,propertyKey,properties);
           }
  else {
             UserGroupInformation ugi=null;
@@ -44,10 +34,11 @@ case KERBEROS:
               stringBuilder.append(e.getCause());
               throw new InterpreterException(stringBuilder.toString());
             }
+            final String poolKey=propertyKey;
             try {
               connection=ugi.doAs(new PrivilegedExceptionAction<Connection>(){
                 @Override public Connection run() throws Exception {
-                  return DriverManager.getConnection(url,properties);
+                  return getConnectionFromPool(url,poolKey,properties);
                 }
               }
 );
@@ -63,7 +54,7 @@ case KERBEROS:
         }
       break;
 default :
-    connection=DriverManager.getConnection(url,properties);
+    connection=getConnectionFromPool(url,propertyKey,properties);
 }
 }
 }

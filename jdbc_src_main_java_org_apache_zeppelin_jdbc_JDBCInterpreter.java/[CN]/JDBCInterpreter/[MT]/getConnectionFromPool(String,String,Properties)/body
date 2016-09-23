@@ -1,0 +1,6 @@
+{
+  if (!isConnectionInPool(propertyKey)) {
+    createConnectionPool(url,propertyKey,properties);
+  }
+  return DriverManager.getConnection(DBCP_STRING + propertyKey);
+}

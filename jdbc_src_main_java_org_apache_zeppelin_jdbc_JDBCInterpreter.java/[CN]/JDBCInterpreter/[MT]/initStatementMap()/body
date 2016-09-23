@@ -1,0 +1,11 @@
+{
+  for (  Statement statement : paragraphIdStatementMap.values()) {
+    try {
+      statement.close();
+    }
+ catch (    Exception e) {
+      logger.error("Error while closing paragraphIdStatementMap statement...",e);
+    }
+  }
+  paragraphIdStatementMap.clear();
+}

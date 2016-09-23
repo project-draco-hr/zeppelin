@@ -1,0 +1,9 @@
+{
+  ConnectionFactory connectionFactory=new DriverManagerConnectionFactory(url,properties);
+  PoolableConnectionFactory poolableConnectionFactory=new PoolableConnectionFactory(connectionFactory,null);
+  ObjectPool connectionPool=new GenericObjectPool(poolableConnectionFactory);
+  poolableConnectionFactory.setPool(connectionPool);
+  PoolingDriver driver=new PoolingDriver();
+  driver.registerPool(propertyKey,connectionPool);
+  poolingDriverMap.put(propertyKey,driver);
+}

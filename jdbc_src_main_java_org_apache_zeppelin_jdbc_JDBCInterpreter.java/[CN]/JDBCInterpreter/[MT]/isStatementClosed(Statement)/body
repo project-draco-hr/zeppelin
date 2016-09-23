@@ -1,9 +1,0 @@
-{
-  try {
-    return statement.isClosed();
-  }
- catch (  Throwable t) {
-    logger.debug("{} doesn't support isClosed method",statement);
-    return false;
-  }
-}

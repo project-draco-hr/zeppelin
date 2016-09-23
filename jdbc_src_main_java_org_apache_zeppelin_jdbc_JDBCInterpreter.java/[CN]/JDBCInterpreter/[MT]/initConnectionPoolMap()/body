@@ -1,0 +1,9 @@
+{
+  Iterator<String> it=poolingDriverMap.keySet().iterator();
+  while (it.hasNext()) {
+    String driverName=it.next();
+    poolingDriverMap.get(driverName).closePool(driverName);
+    it.remove();
+  }
+  poolingDriverMap.clear();
+}

@@ -1,0 +1,3 @@
+{
+  paragraphIdStatementMap.remove(key);
+}

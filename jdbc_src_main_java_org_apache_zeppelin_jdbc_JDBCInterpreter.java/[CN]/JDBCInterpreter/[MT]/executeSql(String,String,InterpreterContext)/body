@@ -1,11 +1,17 @@
 {
   String paragraphId=interpreterContext.getParagraphId();
+  Connection connection;
+  Statement statement;
+  ResultSet resultSet=null;
   try {
-    Statement statement=getStatement(propertyKey,paragraphId,interpreterContext);
+    connection=getConnection(propertyKey,interpreterContext.getAuthenticationInfo().getUser());
+    if (connection == null) {
+      return new InterpreterResult(Code.ERROR,"Prefix not found.");
+    }
+    statement=connection.createStatement();
     if (statement == null) {
       return new InterpreterResult(Code.ERROR,"Prefix not found.");
     }
-    statement.setMaxRows(getMaxResult());
     StringBuilder msg=null;
     boolean isTableType=false;
     if (containsIgnoreCase(sql,EXPLAIN_PREDICATE)) {
@@ -15,8 +21,8 @@
       msg=new StringBuilder(TABLE_MAGIC_TAG);
       isTableType=true;
     }
-    ResultSet resultSet=null;
     try {
+      saveStatement(paragraphId + interpreterContext.getAuthenticationInfo().getUser(),statement);
       boolean isResultSetAvailable=statement.execute(sql);
       if (isResultSetAvailable) {
         resultSet=statement.getResultSet();
@@ -56,15 +62,28 @@
       }
     }
   finally {
-      try {
-        if (resultSet != null) {
+      if (resultSet != null) {
+        try {
           resultSet.close();
         }
-        statement.close();
+ catch (        SQLException e) {
+        }
       }
-  finally {
-        statement=null;
+      if (statement != null) {
+        try {
+          statement.close();
+        }
+ catch (        SQLException e) {
+        }
       }
+      if (connection != null) {
+        try {
+          connection.close();
+        }
+ catch (        SQLException e) {
+        }
+      }
+      removeStatement(paragraphId + interpreterContext.getAuthenticationInfo().getUser());
     }
     return new InterpreterResult(Code.SUCCESS,msg.toString());
   }
